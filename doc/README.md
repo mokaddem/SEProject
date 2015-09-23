@@ -1,6 +1,4 @@
-------------------
-    SE Project
-------------------
+# SEProject
 
 Team members :
 
