@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Registration form Template | PrepBootstrap</title>
+    <title>Inscription</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
@@ -16,7 +16,7 @@
 <div class="container">
 
 <div class="page-header">
-    <h1>Registration form</h1>
+    <h1>Formulaire d'inscription</h1>
 </div>
 
 <!-- Registration form - START -->
@@ -103,9 +103,15 @@
                 </div>                
                 <div class="form-group">
                     <!--<label for="InputCredit">Paiement</label>-->
+                    <label for="InputPhone">Montant à payer</label>
                     <div class="input-group">
-                      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                      <input type="text" class="form-control" placeholder="15" disabled>
                       <span class="input-group-addon">€</span>
+                    </div>
+                    <div class="input-group">
+                        <label class="radio-inline"><input type="radio" name="optradio">CB</label>
+                        <label class="radio-inline"><input type="radio" name="optradio">Paypal</label>
+                        <label class="radio-inline"><input type="radio" name="optradio">Chèque</label> 
                     </div>
                 </div>
                 <div class="form-group">
