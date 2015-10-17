@@ -45,7 +45,7 @@
             <div class="container">
 
                 <div class="page-header">
-                    <h1>Formulaire d'inscription</h1>
+                    <h1>Ajouter une paire</h1>
                 </div>
 
                 <!-- Registration form - START -->
@@ -53,7 +53,7 @@
                     <div class="row">
                         <form role="form">
                             <div class="col-lg-6">
-                                <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div>
+                                <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
 
                                 <div class="form-group">
                                   <label for="sel1">Je m'inscire en tant que </label>
