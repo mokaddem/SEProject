@@ -85,7 +85,7 @@
                                             <td class="center">12:15</td>
                                             <td class="center">18-25</td>
                                             <td class="center">10/10/2015</td>
-                                            <td><i class="fa fa-edit fa-fw"></i> <i class="fa fa-trash-o"></i></td>
+                                            <td><a href="./edit-match.php"><i class="fa fa-edit fa-fw"></i></a> <i class="fa fa-trash-o"></i></td>
                                             <!-- <td class="center">serge</td> -->
                                         </tr>
                                     </tbody>
