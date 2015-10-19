@@ -78,7 +78,7 @@
                                             <td>Touille</td>
                                             <td>Sacha</td>
                                             <td class="center">10/10/2015</td>
-                                            <td><a href="./edit-owner.php"><i class="fa fa-edit fa-fw"></i></a> <i class="fa fa-trash-o"></i></td>
+                                            <td><a href="./edit-owner.php"><i class="fa fa-edit fa-fw"></i></a> <a href="delete-owner.php" onclick="return confirm('Voulez-vous vraiment suprimer ce propriétaire ?');"><i class="fa fa-trash-o"></i></a></td>
                                             <!-- <td class="center">serge</td> -->
                                         </tr>
                                     </tbody>
