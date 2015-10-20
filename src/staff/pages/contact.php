@@ -42,26 +42,25 @@
 
 
         <div id="page-wrapper">
-            <div class="container">
 
                 <div class="page-header">
                     <h1>Envoyer un mail</h1>
                 </div>
 
                 <!-- Registration form - START -->
-                <div class="container">
                     <div class="row">
                         <form role="form">
                             <div class="col-lg-6">
                             <div class="form-group">
-                                <input type="checkbox" name="option1" value="Participants"> Participants<br>
+                                <input type="text" class="form-control" placeholder="Destinataire" id="Destinataire">
+                                <input type="checkbox" name="option1" value="Participants"> Participants<br/>
                                 <input type="checkbox" name="option2" value="Propriétaires"> Propriétaires  
                             </div>                              
-                                <div class="form-group">
+                            <div class="form-group">
                                   <!-- <label for="sel1"><span class="fa fa-user"></span> Message à tous les propriétaires</label> -->
-                                    <input type="text" class="form-control" placeholder="Sujet du message ici" id="id" required data-validation-required-message="Veuillez entrer le sujet."></input>
-                                  <br><textarea rows="15" cols="50" class="form-control" placeholder="Votre message ici" id="message" required data-validation-required-message="Veuillez entrer votre message."></textarea>
-                                  </div>
+                                    <input type="text" class="form-control" placeholder="Sujet" id="id" required data-validation-required-message="Veuillez entrer le sujet.">
+                                  <br><textarea rows="15" cols="50" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Veuillez entrer votre message."></textarea>
+                              </div>
                                 <input type="submit" name="submitPlayers" id="submitPlayers" value="Envoyer" class="btn btn-info pull-center" >
                             </div>
                         </form>
@@ -75,8 +74,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
                 <!-- Registration form - END -->
 
                 </div>
