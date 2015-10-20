@@ -56,13 +56,13 @@
                             <div class="col-lg-9">
                                 <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
 
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                   <label for="sel1">Je m'inscire en tant que </label>
                                   <select class="form-control" id="sel1">
                                     <option>participant</option>
                                     <option>propriétaire</option>
                                   </select>
-                                </div>
+                                </div> -->
                                 <div class="form-group">
                                   <!--<label for="sel1">Titre:</label>-->
                                   <select class="form-control" id="sel1">
@@ -75,19 +75,19 @@
                                     <!--<label for="InputNom">Nom</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                        <input type="text" class="form-control" Nom="InputNom" id="InputNom" placeholder="Nom" required>
-                                        <input type="text" class="form-control" Prenom="InputPrenom" id="InputPrenom" placeholder="Prenom" required>
-                                        <input type="text" class="form-control" id="InputPrenom" placeholder="Née le jj/mm/aaaa" required>
+                                        <input type="text" class="form-control" Nom="InputNom" id="InputNom1" placeholder="Nom" required>
+                                        <input type="text" class="form-control" Prenom="InputPrenom" id="InputPrenom1" placeholder="Prenom" required>
+                                        <input type="text" class="form-control" id="InputBirth1" placeholder="Née le jj/mm/aaaa" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <!--<label for="InputPrenom">Adresse</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                        <input type="text" class="form-control" id="InputAdresse" placeholder="Adresse" required>
-                                        <input type="text" class="form-control" id="InputBat" placeholder="Numero - Batiment">
-                                        <input type="text" class="form-control" id="InputCP" placeholder="Code Postal" required>
-                                        <input type="text" class="form-control" id="InputLoc" placeholder="Localité">
+                                        <input type="text" class="form-control" id="InputAdresse1" placeholder="Adresse" required>
+                                        <input type="text" class="form-control" id="InputBat1" placeholder="Numero - Batiment">
+                                        <input type="text" class="form-control" id="InputCP1" placeholder="Code Postal" required>
+                                        <input type="text" class="form-control" id="InputLoc1" placeholder="Localité">
                                     </div>
                                 </div>
 
@@ -95,7 +95,7 @@
                                     <!--<label for="InputEmail">Email</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-at"></i></span>
-                                        <input type="email" class="form-control" id="InputEmailFirst" name="InputEmail" placeholder="Email" required>
+                                        <input type="email" class="form-control" id="InputEmailFirst1" name="InputEmail" placeholder="Email" required>
                                     </div>
                                 </div>
 
@@ -103,9 +103,9 @@
                                     <!--<label for="InputPhone">Numéro de téléphone</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                        <input type="text" class="form-control bfh-phone"  placeholder="+33 fixe">
+                                        <input type="text" class="form-control bfh-phone" id="InputFixe1" placeholder="+33 fixe">
                                         <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                        <input type="text" class="form-control bfh-phone"  placeholder="+33 mobile" required>
+                                        <input type="text" class="form-control bfh-phone" id="InputMob1" placeholder="+33 mobile" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -118,19 +118,19 @@
                                 <div class="form-group">
                                     <label for="InputPhone">Déjà participé au tournoi?</label>
                                     <label class="radio-inline">
-                                      <input type="radio" name="optradio">Oui
+                                      <input id="InputPartYes" type="radio" name="optradio">Oui
                                     </label>
                                     <label class="radio-inline">
-                                      <input type="radio" name="optradio">Non
+                                      <input id="InputPartNo" type="radio" name="optradio">Non
                                     </label>
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group"> -->
                                     <!--<label for="InputNamePartner">Enter Name Partner</label>-->
-                                    <div class="input-group">
+                                    <!-- <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-users"></i></span>
                                         <input type="text" class="form-control" name="InputNamePartner" id="InputNamePartner" placeholder="Nom du partenaire" required>
-                                    </div>
-                                </div>                
+                                    </div> -->
+                                <!-- </div>                 -->
                                 <div class="form-group">
                                     <!--<label for="InputCredit">Paiement</label>-->
                                     <label for="InputPhone">Montant à payer</label>
@@ -151,8 +151,6 @@
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
                                     </div>
                                 </div>
-
-                                <input type="submit" name="submit" id="submit" value="Inscription" class="btn btn-info pull-right">
 
                             </div>
                         </form>
@@ -162,13 +160,13 @@
                             <div class="col-lg-9">
                                 <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
 
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                   <label for="sel1">Je m'inscire en tant que </label>
                                   <select class="form-control" id="sel1">
                                     <option>participant</option>
                                     <option>propriétaire</option>
                                   </select>
-                                </div>
+                                </div> -->
                                 <div class="form-group">
                                   <!--<label for="sel1">Titre:</label>-->
                                   <select class="form-control" id="sel1">
@@ -230,13 +228,13 @@
                                       <input type="radio" name="optradio">Non
                                     </label>
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group"> -->
                                     <!--<label for="InputNamePartner">Enter Name Partner</label>-->
-                                    <div class="input-group">
+                                    <!-- <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-users"></i></span>
                                         <input type="text" class="form-control" name="InputNamePartner" id="InputNamePartner" placeholder="Nom du partenaire" required>
                                     </div>
-                                </div>                
+                                </div> -->                
                                 <div class="form-group">
                                     <!--<label for="InputCredit">Paiement</label>-->
                                     <label for="InputPhone">Montant à payer</label>
@@ -257,23 +255,12 @@
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
                                     </div>
                                 </div>
-
-                                <input type="submit" name="submit" id="submit" value="Inscription" class="btn btn-info pull-right">
-
                             </div>
                         </form>
                         </div>
-                    
-                        <!--<div class="col-lg-5 col-md-push-1">
-                            <div class="col-md-12">
-                                <div class="alert alert-success">
-                                    <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
-                                </div>
-                                <div class="alert alert-danger">
-                                    <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page inputs.</strong>
-                                </div>
-                            </div>
-                        </div>-->
+                    </div>
+                    <div class="col-lg-offset-5">
+                        <input type="submit" name="submit" id="submit" value="Valider" class="btn btn-info text-center">
                     </div>
                 </div>
                 <!-- Registration form - END -->
