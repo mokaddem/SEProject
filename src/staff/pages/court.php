@@ -42,32 +42,17 @@
 
 
         <div id="page-wrapper">
-
-                <div class="page-header">
-                    <h1>Ajouter un terrain</h1>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Ajouter un terrain</h1>
                 </div>
-
+                <!-- /.col-lg-12 -->
+            </div>
                 <!-- Registration form - START -->
                     <div class="row">
                         <form role="form">
                             <div class="col-lg-6">
-                                <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
-                                <!-- <div class="form-group">
-                                  <label for="sel1">Je m'inscire en tant que </label>
-                                  <select class="form-control" id="sel1">
-                                    <option>participant</option>
-                                    <option>propriétaire</option>
-                                  </select>
-                                </div> -->
-                                <!-- <div class="form-group"> -->
-                                  <!--<label for="sel1">Titre:</label>-->
-                                  <!-- <select class="form-control" id="sel1">
-                                    <option>M.</option>
-                                    <option>Mme.</option>
-                                  </select>
-                                </div> -->
                                 <div class="form-group">
-                                    <!--<label for="InputNomTerrain">Nom</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-circle-thin"></i></span>
                                         <input type="text" class="form-control" Nom="InputNom" id="InputNomTerrain" placeholder="Nom du terrain" required>

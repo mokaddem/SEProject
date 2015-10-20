@@ -42,14 +42,13 @@
 
 
         <div id="page-wrapper">
-            <div class="container">
-
-                <div class="page-header">
-                    <h1>Ajouter une paire</h1>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Ajouter une paire</h1>
                 </div>
-
+                <!-- /.col-lg-12 -->
+            </div>
                 <!-- Registration form - START -->
-                <div class="container">
                     <div class="row">
                         <div class="col-lg-6">
                         <form role="form">
@@ -258,16 +257,15 @@
                             </div>
                         </form>
                         </div>
+                    <div class="col-lg-offset-5 col-lg-2">
+                        <input type="submit" name="submit" id="submit" value="Valider" class="btn btn-info">
                     </div>
-                    <div class="col-lg-offset-5">
-                        <input type="submit" name="submit" id="submit" value="Valider" class="btn btn-info text-center">
-                    </div>
-                </div>
+
+            </div>
                 <!-- Registration form - END -->
 
                 </div>
             <!-- /.row -->
-        </div>
         <!-- /#page-wrapper -->
 
     </div>
