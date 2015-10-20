@@ -117,10 +117,10 @@
                                 <div class="form-group">
                                     <label for="InputPhone">Déjà participé au tournoi?</label>
                                     <label class="radio-inline">
-                                      <input id="InputPartYes" type="radio" name="optradio">Oui
+                                      <input id="InputPartYes1" type="radio" name="optradio">Oui
                                     </label>
                                     <label class="radio-inline">
-                                      <input id="InputPartNo" type="radio" name="optradio">Non
+                                      <input id="InputPartNo1" type="radio" name="optradio">Non
                                     </label>
                                 </div>
                                 <!-- <div class="form-group"> -->
@@ -178,19 +178,19 @@
                                     <!--<label for="InputNom">Nom</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                        <input type="text" class="form-control" Nom="InputNom" id="InputNom" placeholder="Nom" required>
-                                        <input type="text" class="form-control" Prenom="InputPrenom" id="InputPrenom" placeholder="Prenom" required>
-                                        <input type="text" class="form-control" id="InputPrenom" placeholder="Née le jj/mm/aaaa" required>
+                                        <input type="text" class="form-control" Nom="InputNom" id="InputNom2" placeholder="Nom" required>
+                                        <input type="text" class="form-control" Prenom="InputPrenom" id="InputPrenom2" placeholder="Prenom" required>
+                                        <input type="text" class="form-control" id="InputBirth2" placeholder="Née le jj/mm/aaaa" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <!--<label for="InputPrenom">Adresse</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                        <input type="text" class="form-control" id="InputAdresse" placeholder="Adresse" required>
-                                        <input type="text" class="form-control" id="InputBat" placeholder="Numero - Batiment">
-                                        <input type="text" class="form-control" id="InputCP" placeholder="Code Postal" required>
-                                        <input type="text" class="form-control" id="InputLoc" placeholder="Localité">
+                                        <input type="text" class="form-control" id="InputAdresse2" placeholder="Adresse" required>
+                                        <input type="text" class="form-control" id="InputBat2" placeholder="Numero - Batiment">
+                                        <input type="text" class="form-control" id="InputCP2" placeholder="Code Postal" required>
+                                        <input type="text" class="form-control" id="InputLoc2" placeholder="Localité">
                                     </div>
                                 </div>
 
@@ -198,7 +198,7 @@
                                     <!--<label for="InputEmail">Email</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-at"></i></span>
-                                        <input type="email" class="form-control" id="InputEmailFirst" name="InputEmail" placeholder="Email" required>
+                                        <input type="email" class="form-control" id="InputEmailFirst2" name="InputEmail" placeholder="Email" required>
                                     </div>
                                 </div>
 
@@ -206,9 +206,9 @@
                                     <!--<label for="InputPhone">Numéro de téléphone</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                        <input type="text" class="form-control bfh-phone"  placeholder="+33 fixe">
+                                        <input type="text" class="form-control bfh-phone" id="InputFixe2" placeholder="+33 fixe">
                                         <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                        <input type="text" class="form-control bfh-phone"  placeholder="+33 mobile" required>
+                                        <input type="text" class="form-control bfh-phone" id="InputMob2" placeholder="+33 mobile" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -221,10 +221,10 @@
                                 <div class="form-group">
                                     <label for="InputPhone">Déjà participé au tournoi?</label>
                                     <label class="radio-inline">
-                                      <input type="radio" name="optradio">Oui
+                                      <input id="InputPartYes2" type="radio" name="optradio">Oui
                                     </label>
                                     <label class="radio-inline">
-                                      <input type="radio" name="optradio">Non
+                                      <input id="InputPartNo2" type="radio" name="optradio">Non
                                     </label>
                                 </div>
                                 <!-- <div class="form-group"> -->
