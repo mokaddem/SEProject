@@ -42,14 +42,12 @@
 
 
         <div id="page-wrapper">
-            <div class="container">
 
                 <div class="page-header">
                     <h1>Ajouter un terrain</h1>
                 </div>
 
                 <!-- Registration form - START -->
-                <div class="container">
                     <div class="row">
                         <form role="form">
                             <div class="col-lg-6">
@@ -104,68 +102,7 @@
                                         <input type="text" class="form-control" id="InputLoc" placeholder="Localité">
                                     </div>
                                 </div>
-                                
-                                <!-- <div class="form-group"> -->
-                                    <!--<label for="InputEmail">Email</label>-->
-                                    <!-- div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-at"></i></span>
-                                        <input type="email" class="form-control" id="InputEmailFirst" name="InputEmail" placeholder="Email" required>
-                                    </div>
-                                </div> -->
-                                
-                                <!-- <div class="form-group"> -->
-                                    <!--<label for="InputPhone">Numéro de téléphone</label>-->
-                                    <!-- <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                        <input type="text" class="form-control bfh-phone"  placeholder="+33 fixe">
-                                        <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                        <input type="text" class="form-control bfh-phone"  placeholder="+33 mobile" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                  <label for="sel1">Classement </label>
-                                  <select class="form-control" id="sel1">
-                                    <option>NC</option>
-                                    <option>Trofor</option>
-                                  </select>
-                                </div>     
-                                <div class="form-group">
-                                    <label for="InputPhone">Déjà participé au tournoi?</label>
-                                    <label class="radio-inline">
-                                      <input type="radio" name="optradio">Oui
-                                    </label>
-                                    <label class="radio-inline">
-                                      <input type="radio" name="optradio">Non
-                                    </label>
-                                </div>
-                                <div class="form-group"> -->
-                                    <!--<label for="InputNamePartner">Enter Name Partner</label>-->
-                                    <!-- <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                                        <input type="text" class="form-control" name="InputNamePartner" id="InputNamePartner" placeholder="Nom du partenaire" required>
-                                    </div>
-                                </div>                
-                                <div class="form-group"> -->
-                                    <!--<label for="InputCredit">Paiement</label>-->
-                                    <!-- <label for="InputPhone">Montant à payer</label>
-                                    <div class="input-group">
-                                      <input type="text" class="form-control" placeholder="15" disabled>
-                                      <span class="input-group-addon">€</span>
-                                    </div>
-                                    <div class="input-group">
-                                        <label class="radio-inline"><input type="radio" name="optradio">CB</label>
-                                        <label class="radio-inline"><input type="radio" name="optradio">Paypal</label>
-                                        <label class="radio-inline"><input type="radio" name="optradio">Chèque</label> 
-                                    </div>
-                                </div>
-                                <div class="form-group"> -->
-                                    <!--<label for="InputMessage">Message</label>-->
-                                    <!-- <div class="input-group">
-                                        <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" required></textarea>
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
-                                    </div>
-                                </div> -->
-                                
+                                                                
                                 <input type="submit" name="submit" id="submit" value="Ajouter" class="btn btn-info pull-right">
 
                             </div>
@@ -180,8 +117,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
                 <!-- Registration form - END -->
 
                 </div>
