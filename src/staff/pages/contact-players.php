@@ -42,14 +42,12 @@
 
 
         <div id="page-wrapper">
-            <div class="container">
 
                 <div class="page-header">
                     <h1>Contacter les participants</h1>
                 </div>
 
                 <!-- Registration form - START -->
-                <div class="container">
                     <div class="row">
                         <form role="form">
                             <div class="col-lg-6">                              
@@ -72,14 +70,12 @@
                             </div>
                         </div>
                     </div>
-                </div>
                 <!-- Registration form - END -->
 
-                </div>
+            </div>
             <!-- /.row -->
-        </div>
+        
         <!-- /#page-wrapper -->
-
     </div>
     <!-- /#wrapper -->
 
