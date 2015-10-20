@@ -42,20 +42,18 @@
 
 
         <div id="page-wrapper">
-            <div class="container">
 
                 <div class="page-header">
                     <h1>Contacter les participants</h1>
                 </div>
 
                 <!-- Registration form - START -->
-                <div class="container">
                     <div class="row">
                         <form role="form">
                             <div class="col-lg-6">                              
                                 <div class="form-group">
                                   <label for="sel1"><span class="fa fa-user"></span> Message à tous les participants</label>
-                                  <input type="text" class="form-control" placeholder="Sujet du message ici" id="id" required data-validation-required-message="Veuillez entrer le sujet."></input>
+                                  <input type="text" class="form-control" placeholder="Sujet du message ici" id="id" required data-validation-required-message="Veuillez entrer le sujet."/>
                                   <br><textarea rows="15" cols="50" class="form-control" placeholder="Votre message ici" id="message" required data-validation-required-message="Veuillez entrer votre message."></textarea>
                                   </div>
                                 <input type="submit" name="submitPlayers" id="submitPlayers" value="Envoyer" class="btn btn-info pull-center" >
@@ -72,14 +70,12 @@
                             </div>
                         </div>
                     </div>
-                </div>
                 <!-- Registration form - END -->
 
-                </div>
+            </div>
             <!-- /.row -->
-        </div>
+        
         <!-- /#page-wrapper -->
-
     </div>
     <!-- /#wrapper -->
 
