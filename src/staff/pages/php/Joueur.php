@@ -12,5 +12,17 @@ class Joueur
 	public function consulterMatchs() {
 		//TODO
 	}
+
+	public function getClassement()
+	{
+		return $this->classement;
+	}
+
+	public function getParticipate()
+	{
+		return $this->participate;
+	}
+
+
 }
 ?>

@@ -7,8 +7,8 @@ class Administrateur
 	private $id, $nom;
 	public function __construct($id, $nom)
 	{
-		this->id = $id;
-		this->nom = $nom;
+		$this->id = $id;
+		$this->nom = $nom;
 	}
 
 	public function ajouterJoueur() {}
@@ -36,6 +36,18 @@ class Administrateur
 	public function supprimerMatch() {}
 
 	public function envoyerMailGroupe() {}
+
+
+	public function getId()
+	{
+		return $this->id;
+	}
+
+	public function getNom()
+	{
+		return $this->nom;
+	}
+
 
 }
 ?>
