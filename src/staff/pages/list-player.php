@@ -74,6 +74,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <!--< ?php require_once("./php/inc/list-player.inc");
+                                            dbAndPrint();
+                                        ?>-->
                                         <tr class="odd gradeX">
                                             <td>1</td>
                                             <td>ROLLIN</td>
