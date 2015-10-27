@@ -2,9 +2,12 @@
 
 Team members :
 
-- Florian Francotte
+- Sami Mokkadem
 - Pierre Heymans
 - Alicia Marin
-- Sami Mokkadem
-- Serge Murhububa Bushamuka
 - Antoine Rollin
+- Pierre-Yves Dehon
+- Serge Murhububa Bushamuka
+- Florian Francotte
+- Abouri Faissal
+
