@@ -69,7 +69,7 @@
                                     <!--<label for="size">Size</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-at"></i></span>
-                                        <input type="number" class="form-control" name="size" id="size" placeholder="Nombre d'équipe" min="2" step="2" required>
+                                        <input type="number" class="form-control" name="size" id="size" placeholder="Nombre d'Ã©quipes" min="2" step="2" value="<?php if(isset($_GET['size'])) { echo htmlentities($_GET['size']);}?>" required>
                                     </div>
                                 </div>
 								
