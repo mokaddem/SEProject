@@ -42,67 +42,50 @@
 
 
         <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Créer un knock-off tournament</h1>
+            <div class="container">
+
+                <div class="page-header">
+                    <h1>Modifier un extra</h1>
                 </div>
-                <!-- /.col-lg-12 -->
-            </div>
 
                 <!-- Registration form - START -->
-                     <div class="row">
+                <div class="container">
+                    <div class="row">
                         <form role="form">
                             <div class="col-lg-6">
                                 <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
-                                
-								
-								<fieldset data-role="controlgroup" data-type="horizontal">
-								
-									<label for="male">Samedi</label>
-									<input type="radio" name="day"  value="saturday">
-									<label for="female">Dimanche</label>
-									<input type="radio" name="day"  value="sunday" checked>	
-								 </fieldset>
-								 <hr>
 
-								<div class="form-group">
-                                    <!--<label for="size">Size</label>-->
+                                <div class="form-group">
+                                    <!--<label for="InputNom">Nom</label>-->
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input type="text" class="form-control" Nom="InputNom" id="InputNom" placeholder="Nom" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <!--<label for="InputPrice">Prix</label>-->
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-at"></i></span>
-                                        <input type="number" class="form-control" name="size" id="size" placeholder="Nombre d'équipes" min="2" step="2" value="<?php if(isset($_GET['size'])) { echo htmlentities($_GET['size']);}?>" required>
+                                        <input type="price" class="form-control" id="InputPrice" name="InputPrice" placeholder="Prix" required>
+                                        <span class="input-group-addon">€</span>
                                     </div>
                                 </div>
-								
-								<?php 
-									if (isset($_GET['size'])){
-										$_size=$_GET['size'];
-										} else {
-										$_size=0;
-										}
-									?>
-									
-								<?php
-								for ($i = 1; $i <= $_size; $i++) {
-									if ($i % 2 != 0){
-										echo "<div class=\"form-group\">";
-			                              echo "<label for=\"sel1\"><span class=\"fa fa-users\"></span> Match ". ceil($i/2) ."</label>";
-			                              echo "<select class=\"form-control\" id=\"sel1\">";
-			                                echo "<option>Equipe ". $i ."</option>";
-			                                echo "<!-- <option>Propriétaire</option> -->";
-			                              echo "</select>";
-			                            echo "</div>";
-		                            } else{
-		                            	echo "<div class=\"form-group\">";
-			                              echo "<select class=\"form-control\" id=\"sel1\">";
-			                                echo "<option>Equipe ". $i ."</option>";
-			                                echo "<!-- <option>Propriétaire</option> -->";
-			                              echo "</select>";
-			                            echo "</div>";
-		                            }
-		                        }
-								?>
-								
-                                <input type="submit" name="submit" id="submit" value="Créer" class="btn btn-info pull-right">
+                                
+                                <div class="form-group">
+                                    <!--<label for="InputNumber">Number</label>-->
+                                    <div class="input-group">
+                                    	<span class="input-group-addon">€</span>
+                                        <input type="number" class="form-control" id="InputNumber" name="InputNumber" placeholder="Nombre de personnes" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <!--<label for="InputMessage">Message</label>-->
+                                    <div class="input-group">
+                                        <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" placeholder="Description" required></textarea>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
+                                    </div>
+                                </div>
+
+                                <input type="submit" name="edit-submit" id="edit-submit" value="Modifier" class="btn btn-info pull-right">
 
                             </div>
                         </form>
@@ -116,6 +99,8 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
                 <!-- Registration form - END -->
 
                 </div>
