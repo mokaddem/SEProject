@@ -50,6 +50,39 @@
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
+                <div class="row">
+                <div class="col-lg-12">
+                    <label for="sel1"><span class="fa fa-history"></span>  Historique des modifications</label>
+                    <div class="panel panel-default">
+                        
+                        <!-- <div class="panel-heading">
+                            DataTables Advanced Tables
+                        </div> -->
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="dataTable_wrapper">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>ID Admin</th>
+                                            <th>ID Entité modifiée</th>
+                                            <th>Action effectuée</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php //require_once("./php/inc/list-team.inc"); ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-6 -->
+            </div>
                 <div class="row text-center">
                 <iframe scrolling="no" width="334" height ="175" frameborder="0" marginwidth="0" marginheight="0" src="http://www.meteo.be/services/widget/.?postcode=1000&nbDay=6&type=4&lang=fr&bgImageId=14&bgColor=567cd2&scrolChoice=0&colorTempMax=A5D6FF&colorTempMin=ffffff"></iframe>
                 </div>
