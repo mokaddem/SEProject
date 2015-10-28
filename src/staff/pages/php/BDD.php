@@ -1,5 +1,5 @@
 <?php
-
+	error_reporting(E_ALL ^ E_STRICT);
 // CLASS A VERIFIER !!!!!!!! Surement des choses à changer
 class BDD extends mysqli
 {
