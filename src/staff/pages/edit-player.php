@@ -37,9 +37,14 @@
     <div id="wrapper">
 
         <?php            
-            include("./html/header.html");
-        ?>
+		include("./html/header.html");
+		include_once('php/BDD.php');
 
+		$db = new BDD();
+		$reponse = $db->query('SELECT * FROM Personne pers, Player play WHERE '. $_GET['id']. ' = pers.ID');
+		$donnes = $reponse->fetch_array();
+		$reponse->free();
+        ?>
 
         <div id="page-wrapper">
             <div class="container">
@@ -66,9 +71,9 @@
                                     <!--<label for="InputNom">Nom</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                        <input type="text" class="form-control" Nom="InputNom" id="InputNom" placeholder="Nom" required>
+                                        <input type="text" class="form-control" id="InputNom" placeholder="Nom" required>
                                         <input type="text" class="form-control" Prenom="InputPrenom" id="InputPrenom" placeholder="Prenom" required>
-                                        <input type="text" class="form-control" id="InputPrenom" placeholder="Née le jj/mm/aaaa" required>
+                                        <input type="text" class="form-control" id="InputBirth" placeholder="Née le jj/mm/aaaa" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -94,9 +99,9 @@
                                     <!--<label for="InputPhone">Numéro de téléphone</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                        <input type="text" class="form-control bfh-phone"  placeholder="+33 fixe">
+                                        <input type="text" class="form-control bfh-phone"  placeholder="+33 fixe" id="fixnumber">
                                         <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                        <input type="text" class="form-control bfh-phone"  placeholder="+33 mobile" required>
+                                        <input type="text" class="form-control bfh-phone"  placeholder="+33 mobile" id="gsmnumber" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -181,6 +186,21 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
+	<script type="text/javascript">
+	    $(document).ready(function() {
+		$('#InputNom').val('<?php echo $donnes['LastName']; ?>');
+		$('#InputPrenom').val('<?php echo $donnes['FirstName']; ?>');
+		$('#InputBirth').val('<?php echo $donnes['BirthDate']; ?>');
+		$('#InputAdresse').val('<?php echo $donnes['Address']; ?>');
+		$('#InputBat').val('<?php echo $donnes['Address']; ?>');
+		$('#InputCP').val('<?php echo $donnes['Address']; ?>');
+		$('#InputLoc').val('<?php echo $donnes['Address']; ?>');
+		$('#InputEmailFirst').val('<?php echo $donnes['Mail']; ?>');
+		$('#fixnumber').val('<?php echo $donnes['PhoneNumber']; ?>');
+		$('#gsmnumber').val('<?php echo $donnes['GSMNumber']; ?>');
+	    });
+	</script>
+	<?php $reponse->free(); ?>
 </body>
 
 </html>
