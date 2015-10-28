@@ -6,7 +6,7 @@ function dbAndPrint() {
     $db = new BDD();
     $reponse = $db->query('SELECT * FROM Owner, Personne WHERE Personne.ID=Owner.ID_Personne ');
     $id=0;
-    while ($donnes = mysql_fetch_array($reponse))
+    while ($donnes = $reponse->fetch_array())
     {
         $id=$id+1;
         printListPlayer($donnes);

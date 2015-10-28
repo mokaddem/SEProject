@@ -5,7 +5,7 @@ dbAndPrint();
 function dbAndPrint() {
     $db = new BDD();
     $reponse = $db->query('SELECT *, Terrain.ID as id FROM `Terrain`, Personne WHERE Personne.ID = Terrain.ID_Personne ');
-    while ($donnes = mysql_fetch_array($reponse))
+    while ($donnes = $reponse->fetch_array())
     {
         printListPlayer($donnes);
     }

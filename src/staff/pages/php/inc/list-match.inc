@@ -5,7 +5,7 @@ dbAndPrint();
 function dbAndPrint() {
     $db = new BDD();
     $reponse = $db->query('SELECT `id` , `ID_Equipe1` , `ID_Equipe2` , `date` FROM `Match` ');
-    while ($donnes = mysql_fetch_array($reponse))
+    while ($donnes = $reponse->fetch_array())
     {
         printListPlayer($donnes);
     }
