@@ -43,7 +43,6 @@
 		$db = new BDD();
 		$reponse = $db->query('SELECT * FROM Personne pers, Player play WHERE '. $_GET['id']. ' = pers.ID');
 		$donnes = $reponse->fetch_array();
-		$reponse->free();
         ?>
 
         <div id="page-wrapper">
@@ -191,10 +190,10 @@
 		$('#InputNom').val('<?php echo $donnes['LastName']; ?>');
 		$('#InputPrenom').val('<?php echo $donnes['FirstName']; ?>');
 		$('#InputBirth').val('<?php echo $donnes['BirthDate']; ?>');
-		$('#InputAdresse').val('<?php echo $donnes['Address']; ?>');
-		$('#InputBat').val('<?php echo $donnes['Address']; ?>');
-		$('#InputCP').val('<?php echo $donnes['Address']; ?>');
-		$('#InputLoc').val('<?php echo $donnes['Address']; ?>');
+		$('#InputAdresse').val('<?php echo $donnes['Rue']; ?>');
+		$('#InputBat').val('<?php echo $donnes['Ville']; ?>');
+		$('#InputCP').val('<?php echo $donnes['ZIPCode']; ?>');
+		$('#InputLoc').val('<?php echo $donnes['Ville']; ?>');
 		$('#InputEmailFirst').val('<?php echo $donnes['Mail']; ?>');
 		$('#fixnumber').val('<?php echo $donnes['PhoneNumber']; ?>');
 		$('#gsmnumber').val('<?php echo $donnes['GSMNumber']; ?>');
