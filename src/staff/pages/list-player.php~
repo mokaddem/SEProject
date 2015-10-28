@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin Mode - Terrains</title>
+    <title>Admin Mode - Joueurs</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -45,11 +45,10 @@
         <?php            
             include("./html/header.html");
         ?>
-
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Liste des terrains</h1>
+                    <h1 class="page-header">Liste des participants</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -68,16 +67,14 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Nom</th>
-                                            <th>Adresse</th>
-                                            <th>Surface</th>
-                                            <th>Etat</th>
-                                            <th>Propriétaire</th>
+                                            <th>Prénom</th>
+                                            <th>Age</th>
                                             <th>Créé le</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php require_once("./php/inc/list-court.inc"); ?>                                        
+                                        <?php require_once("./php/inc/list-player.inc"); ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -113,11 +110,11 @@
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
-    $(document).ready(function() {
+/*    $(document).ready(function() {
         $('#dataTables-example').DataTable({
                 responsive: true
         });
-    });
+    });*/
     </script>
 
 </body>

@@ -75,15 +75,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="odd gradeX">
-                                            <td>1</td>
-                                            <td>Tintin</td>
-                                            <td>Milou</td>
-                                            <td class="center">18-23</td>
-                                            <td class="center">10/10/2015</td>
-                                            <td><a href="./edit-team.php"><i class="fa fa-edit fa-fw"></i></a> <a href="delete-team.php" onclick="return confirm('Voulez-vous vraiment suprimer cette équipe ?');"><i class="fa fa-trash-o"></i></a></td>
-                                            <!-- <td class="center">serge</td> -->
-                                        </tr>
+                                        <?php require_once("./php/inc/list-team.inc"); ?>
                                     </tbody>
                                 </table>
                             </div>

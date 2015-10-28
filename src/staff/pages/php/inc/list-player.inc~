@@ -3,6 +3,10 @@ include_once('php/BDD.php');
 dbAndPrint();
 
 function dbAndPrint() {
+/*    $db = getDb();
+    mysql_query("SET character_set_results=utf8", $db);
+    $reponse = mysql_query('SELECT * FROM Personne ', $db);
+*/
     $db = new BDD();
     $reponse = $db->query('SELECT * FROM Personne ');
     $id=0;
@@ -12,6 +16,18 @@ function dbAndPrint() {
         printListPlayer($donnes);
     }
 }
+/*
+function getDb() {
+    $db = mysql_connect("localhost","root","123"); 
+     if (!$db) {
+        die("Database connection failed miserably: " . mysql_error());
+     }
+    $db_select = mysql_select_db("SEProjectC",$db);
+     if (!$db_select) {
+        die("Database selection also failed miserably: " . mysql_error());
+     }	 
+    return $db;
+}*/
 
 function printListPlayer($donnes) {
     echo "<tr class=\"odd gradeX\">";

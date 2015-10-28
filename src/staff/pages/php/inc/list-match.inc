@@ -4,22 +4,22 @@ dbAndPrint();
 
 function dbAndPrint() {
     $db = new BDD();
-    $reponse = $db->query('SELECT * FROM Personne ');
-    $id=0;
+    $reponse = $db->query('SELECT `id` , `ID_Equipe1` , `ID_Equipe2` , `date` FROM `Match` ');
     while ($donnes = mysql_fetch_array($reponse))
     {
-        $id=$id+1;
         printListPlayer($donnes);
     }
 }
 
 function printListPlayer($donnes) {
     echo "<tr class=\"odd gradeX\">";
-    echo "<td>".$donnes['ID']."</td>";
-    echo "<td>".$donnes['LastName']."</td>";
-    echo "<td>".$donnes['FirstName']."</td>";
-    echo "<td class=\"center\">".$donnes['BirthDate']."</td>";
-    echo "<td class=\"center\">".$donnes['CreationDate']."</td>";
+    echo "<td>".$donnes['id']."</td>";
+    echo "<td>".$donnes['ID_Equipe1']."</td>";
+    echo "<td>".$donnes['ID_Equipe2']."</td>";
+    echo "<td>".$donnes['date']."</td>";
+    echo "<td>1</td>";
+    echo "<td>2</td>";
+    echo "<td>3</td>";
     echo "<td><a href=\"./edit-player.php\" ><i class=\"fa fa-edit fa-fw\"></i></a> <a href=\"delete-player.php\" onclick=\"return confirm('Voulez-vous vraiment suprimer ce participant ?');\"><i class=\"fa fa-trash-o\"></i></a></td>";
     echo "</tr>";
 }

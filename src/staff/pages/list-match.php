@@ -77,17 +77,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="odd gradeX">
-                                            <td>1</td>
-                                            <td>Chelsea</td>
-                                            <td>OGC Nice</td>
-                                            <td class="center">25/01/2045</td>
-                                            <td class="center">12:15</td>
-                                            <td class="center">18-25</td>
-                                            <td class="center">10/10/2015</td>
-                                            <td><a href="./edit-match.php"><i class="fa fa-edit fa-fw"></i></a> <a href="delete-match.php" onclick="return confirm('Voulez-vous vraiment suprimer ce match ?');"><i class="fa fa-trash-o"></i></a></td>
-                                            <!-- <td class="center">serge</td> -->
-                                        </tr>
+                                            <?php require_once("./php/inc/list-match.inc"); ?>
                                     </tbody>
                                 </table>
                             </div>

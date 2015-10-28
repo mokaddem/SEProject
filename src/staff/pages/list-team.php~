@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin Mode - Terrains</title>
+    <title>Admin Mode - Equipes</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -45,11 +45,11 @@
         <?php            
             include("./html/header.html");
         ?>
-
+        
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Liste des terrains</h1>
+                    <h1 class="page-header">Liste des équipes</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -67,17 +67,23 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Nom</th>
-                                            <th>Adresse</th>
-                                            <th>Surface</th>
-                                            <th>Etat</th>
-                                            <th>Propriétaire</th>
+                                            <th>Premier joueur</th>
+                                            <th>Second joueur</th>
+                                            <th>Catégorie</th>
                                             <th>Créé le</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php require_once("./php/inc/list-court.inc"); ?>                                        
+                                        <tr class="odd gradeX">
+                                            <td>1</td>
+                                            <td>Tintin</td>
+                                            <td>Milou</td>
+                                            <td class="center">18-23</td>
+                                            <td class="center">10/10/2015</td>
+                                            <td><a href="./edit-team.php"><i class="fa fa-edit fa-fw"></i></a> <a href="delete-team.php" onclick="return confirm('Voulez-vous vraiment suprimer cette équipe ?');"><i class="fa fa-trash-o"></i></a></td>
+                                            <!-- <td class="center">serge</td> -->
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
