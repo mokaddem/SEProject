@@ -1,10 +1,10 @@
 <?php
+include_once('php/BDD.php');
 dbAndPrint();
 
 function dbAndPrint() {
-    $db = getDb();
-    mysql_query("SET character_set_results=utf8", $db);
-    $reponse = mysql_query('SELECT * FROM Personne ', $db);
+    $db = new BDD();
+    $reponse = $db->query('SELECT * FROM Personne ');
     $id=0;
     while ($donnes = mysql_fetch_array($reponse))
     {
@@ -13,26 +13,14 @@ function dbAndPrint() {
     }
 }
 
-function getDb() {
-    $db = mysql_connect("localhost","root","123"); 
-     if (!$db) {
-        die("Database connection failed miserably: " . mysql_error());
-     }
-    $db_select = mysql_select_db("SEProjectC",$db);
-     if (!$db_select) {
-        die("Database selection also failed miserably: " . mysql_error());
-     }	 
-    return $db;
-}
-
 function printListPlayer($donnes) {
     echo "<tr class=\"odd gradeX\">";
-    echo "<td>.$donnes['ID'].</td>";
-    echo "<td>.$donnes['LastName'].</td>";
-    echo "<td>.$donnes['FirstName'].</td>";
-    echo "<td class=\"center\">.$donnes['BirthDate'].</td>";
-    echo "<td class=\"center\">.$donnes['CreationDate'].</td>";
-    echo "<td><i class=\"fa fa-edit fa-fw\"></i> <i class=\"fa fa-trash-o\"></i></td>";
+    echo "<td>".$donnes['ID']."</td>";
+    echo "<td>".$donnes['LastName']."</td>";
+    echo "<td>".$donnes['FirstName']."</td>";
+    echo "<td class=\"center\">".$donnes['BirthDate']."</td>";
+    echo "<td class=\"center\">".$donnes['CreationDate']."</td>";
+    echo "<td><a href=\"./edit-player.php\" ><i class=\"fa fa-edit fa-fw\"></i></a> <a href=\"delete-player.php\" onclick=\"return confirm('Voulez-vous vraiment suprimer ce participant ?');\"><i class=\"fa fa-trash-o\"></i></a></td>";
     echo "</tr>";
 }
 ?>

@@ -51,7 +51,7 @@
                 <!-- Registration form - START -->
                     <div class="row">
                         <div class="col-lg-6">
-                        <form role="form">
+                        <form role="form" method="Get" action="php/add-new-pair.php">
                             <div class="col-lg-9">
                                 <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
 
@@ -108,8 +108,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                  <label for="sel1">Classement </label>
-                                  <select class="form-control" id="sel1">
+                                  <label for="sel2">Classement </label>
+                                  <select class="form-control" id="sel2">
                                     <option>NC</option>
                                     <option>Trofor</option>
                                   </select>
@@ -168,7 +168,7 @@
                                 </div> -->
                                 <div class="form-group">
                                   <!--<label for="sel1">Titre:</label>-->
-                                  <select class="form-control" id="sel1">
+                                  <select class="form-control" id="sel3">
                                     <option>M.</option>
                                     <option>Mme.</option>
                                   </select>
@@ -212,8 +212,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                  <label for="sel1">Classement </label>
-                                  <select class="form-control" id="sel1">
+                                  <label for="sel4">Classement </label>
+                                  <select class="form-control" id="sel4">
                                     <option>NC</option>
                                     <option>Trofor</option>
                                   </select>
@@ -255,11 +255,12 @@
                                     </div>
                                 </div>
                             </div>
+				<div class="col-lg-offset-5 col-lg-2">
+             				<input type="submit" name="submit" id="submit" value="Valider" class="btn btn-info">
+          		  	</div>
                         </form>
                         </div>
-                    <div class="col-lg-offset-5 col-lg-2">
-                        <input type="submit" name="submit" id="submit" value="Valider" class="btn btn-info">
-                    </div>
+                    
 
             </div>
                 <!-- Registration form - END -->

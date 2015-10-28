@@ -77,17 +77,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="odd gradeX">
-                                            <td>1</td>
-                                            <td>Terrain de la défaite</td>
-                                            <td>1, rue des vainqueurs</td>
-                                            <td class="center">Terre battue</td>
-                                            <td class="center">Neuf</td>
-                                            <td class="center">Jean-Claude</td>
-                                            <td class="center">10/10/2015</td>
-                                            <td><a href="./edit-court.php"><i class="fa fa-edit fa-fw"></i></a> <a href="delete-court.php" onclick="return confirm('Voulez-vous vraiment suprimer ce terrain ?');"><i class="fa fa-trash-o"></i></a></td>
-                                            <!-- <td class="center">serge</td> -->
-                                        </tr>
+                                        <?php require_once("./php/inc/list-court.inc"); ?>                                        
                                     </tbody>
                                 </table>
                             </div>

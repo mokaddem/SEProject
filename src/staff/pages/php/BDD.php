@@ -1,30 +1,37 @@
 <?php
 
 // CLASS A VERIFIER !!!!!!!! Surement des choses à changer
-class BDD extends PDO
+class BDD
 {
-    public static $db = false;
-    private $database_host = '127.0.0.1';
-    private $database_user = 'username';
-    private $database_pass = 'verySecretPassWord';
-    private $database_db = 'database';
+	public static $db = false;
+	private $database_host = '127.0.0.1';
+	private $database_user = 'root';
+	private $database_pass = '123';
+	private $database_db = 'SEProject';
 
-    function __construct()
-    {
-        if (self::$db === false) {
-            $this->connect();
-        }
-    }
+	function __construct()
+	{
+		if (self::$db === false) {
+		    $this->connect();
+		}
+	}
 
-    private function connect()
-    {
-        $dsn = $this->database_type . ":dbname=" . $this->database_db . ";host=" . $this->database_host;
-        try {
-            self::$db = new PDO($dsn, $this->database_user, $this->database_pass, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
-            self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
+	private function connect()
+	{
+	 	self::$db = mysql_connect($this->database_host,$this->database_user,$this->database_pass); 
+		if (!self::$db) {
+			die("Database connection failed miserably: " . mysql_error());
+		}
+		$db_select = mysql_select_db("SEProjectC",self::$db);
+		if (!$db_select) {
+			die("Database selection also failed miserably: " . mysql_error());
+		}
+		mysql_query("SET character_set_results=utf8", self::$db);	 
+	}
 
-            //your log handler
-        }
-    }
+	function query($sql)
+	{
+		return mysql_query($sql);
+	}
+	
 }

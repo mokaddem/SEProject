@@ -42,21 +42,22 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
-                            <fieldset>
+                         <form role="form" method="Post" action="php/test-password.php">
+                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                    <input class="form-control" placeholder="User Name" id="username" name="username" type="text" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    <input class="form-control" placeholder="Password" id="password" name="password" type="password" value="">
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me</input>
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.php" class="btn btn-lg btn-success btn-block">Login</a>
+                      <!--          <a href="test-password.php" class="btn btn-lg btn-success btn-block">Login</a> -->
+				<input type="submit" class="btn btn-lg btn-success btn-block" value="Login"></input>
                             </fieldset>
                         </form>
                     </div>
