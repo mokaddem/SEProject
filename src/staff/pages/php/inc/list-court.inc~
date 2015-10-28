@@ -1,4 +1,5 @@
 <?php
+include_once('php/BDD.php');
 dbAndPrint();
 
 function dbAndPrint() {
