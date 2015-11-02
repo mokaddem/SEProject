@@ -36,7 +36,7 @@
 
     <div id="wrapper">
 
-        <?php            
+        <?php
             include("./html/header.html");
         ?>
 
