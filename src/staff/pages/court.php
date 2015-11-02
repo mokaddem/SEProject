@@ -38,7 +38,8 @@
 
         <?php            
             include("./html/header.html");
-        ?>
+		include_once('php/BDD.php');        
+	?>
 
 
         <div id="page-wrapper">
@@ -55,23 +56,21 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-circle-thin"></i></span>
-                                        <input type="text" class="form-control" Nom="InputNom" id="InputNomTerrain" placeholder="Nom du terrain" required>
-                                        <select class="form-control" id="sel1">
+                                        <select class="form-control" id="sel1" name="sel1">
                                             <option>Terre battue</option>
                                             <option>Gazon</option>
                                             <option>Synthétique</option>
                                         </select>
-                                        <select class="form-control" id="sel1">
+                                        <select class="form-control" id="sel2" name="sel2">
                                             <option>Neuf</option>
                                             <option>Passable</option>
                                             <option>Usé</option>
                                         </select>
-                                    </div>
-                                 
-                                </div>
+                                        <input type="number" class="form-control" name="surface" id="surface" placeholder="Surface (m²)" min="0" step="1" required>
+                        	    </div>
                                  <div class="form-group">
                                   <label for="sel1"><span class="fa fa-user"></span> Propriétaire</label>
-                                  <select class="form-control" id="sel2" name="sel2">
+                                  <select class="form-control" id="sel3" name="sel3">
 				    <?php
 					$db = new BDD();
 					$reponse = $db->query('SELECT * FROM Personne, Owner WHERE Personne.ID=Owner.ID_Personne');
@@ -82,14 +81,15 @@
 			 	    ?>	
                                   </select>
                                 </div>
-                                <div class="form-group">
+				
+				<div class="form-group">
                                     <!--<label for="InputPrenom">Adresse</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                        <input type="text" class="form-control" id="InputAdresse" placeholder="Adresse" required>
+                                        <input type="text" class="form-control" id="InputAdresse" name="InputAdresse" placeholder="Adresse" required>
                                     </div>
                                 </div>
-				
+
 				 <div class="form-group">
                                     <!--<label for="InputMessage">Message</label>-->
                                     <div class="input-group">
