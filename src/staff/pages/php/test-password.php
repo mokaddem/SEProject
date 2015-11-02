@@ -11,7 +11,7 @@ if ($donnes['Password'] == $_POST['password'] & 1 == $_POST['username']){
 }
 else{
     header("Location: ../login.php");
-    die();
+    die(); 
 }
 
 ?>

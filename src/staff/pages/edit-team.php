@@ -38,6 +38,7 @@
 
         <?php            
             include("./html/header.html");
+		include_once('php/BDD.php');
         ?>
 
 
@@ -51,25 +52,44 @@
                 <!-- Registration form - START -->
                 <div class="container">
                     <div class="row">
-                        <form role="form">
+                        <form role="form" method="Get" action="php/inc/edit-team.inc">
                             <div class="col-lg-6">                              
                                 <div class="form-group">
                                   <label for="sel1"><span class="fa fa-user"></span> Premier joueur</label>
-                                  <select class="form-control" id="sel1">
-                                    <option>[liste des joueurs]</option>
+                                  <select class="form-control" id="sel1" name="sel1">
+				    <?php
+					$db = new BDD();
+					$reponse = $db->query('SELECT * FROM Personne ');
+					while ($donnes = $reponse->fetch_array())
+					{
+						if ($_GET['id1'] == $donnes['ID']){
+							echo "<option value=".$donnes['ID']." selected=\"selected\">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
+						}						
+						echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
+					}
+			 	    ?>	
                                     <!-- <option>propriétaire</option> -->
                                   </select>
                                 </div>
 
                                 <div class="form-group">
                                   <label for="sel1"><span class="fa fa-user"></span> Second joueur</label>
-                                  <select class="form-control" id="sel1">
-                                    <option>[liste des joueurs]</option>
-                                    <!-- <option>propriétaire</option> -->
+                                  <select class="form-control" id="sel2" name="sel2">
+				    <?php
+					$db = new BDD();
+					$reponse = $db->query('SELECT * FROM Personne ');
+					while ($donnes = $reponse->fetch_array())
+					{
+						if ($_GET['id2'] == $donnes['ID']){
+							echo "<option value=".$donnes['ID']." selected=\"selected\">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
+						}						
+						echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
+					}
+			 	    ?>	
                                   </select>
                                 </div>
                                 
-                                <input type="submit" name="edit-submit" id="edit-submit" value="Modifier" class="btn btn-info pull-right">
+                                <input type="submit" name="submit" id="submit" value="Créer" class="btn btn-info pull-right">
 
                             </div>
                         </form>

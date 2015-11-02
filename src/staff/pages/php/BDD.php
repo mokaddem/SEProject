@@ -24,7 +24,7 @@ class BDD extends mysqli
 	}
 
 	function query($sql)
-	{
+	{ 
 		return self::$db->query($sql);
 	}
 }

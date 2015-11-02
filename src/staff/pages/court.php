@@ -50,7 +50,7 @@
             </div>
                 <!-- Registration form - START -->
                     <div class="row">
-                        <form role="form">
+                        <form role="form" method="Get" action="php/add-new-court.php">
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <div class="input-group">
@@ -69,22 +69,32 @@
                                     </div>
                                  
                                 </div>
-                                <div class="form-group">
-                                    <!--<label for="InputNom">Nom</label>-->
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                        <input type="text" class="form-control" Nom="InputNom" id="InputNom" placeholder="Nom du propriétaire" required>
-                                        <input type="text" class="form-control" Prenom="InputPrenom" id="InputPrenom" placeholder="Prénom du propriétaire" required>
-                                    </div>
+                                 <div class="form-group">
+                                  <label for="sel1"><span class="fa fa-user"></span> Propriétaire</label>
+                                  <select class="form-control" id="sel2" name="sel2">
+				    <?php
+					$db = new BDD();
+					$reponse = $db->query('SELECT * FROM Personne, Owner WHERE Personne.ID=Owner.ID_Personne');
+					while ($donnes = $reponse->fetch_array())
+					{					
+						echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
+					}
+			 	    ?>	
+                                  </select>
                                 </div>
                                 <div class="form-group">
                                     <!--<label for="InputPrenom">Adresse</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
                                         <input type="text" class="form-control" id="InputAdresse" placeholder="Adresse" required>
-                                        <input type="text" class="form-control" id="InputBat" placeholder="Numero de voie">
-                                        <input type="text" class="form-control" id="InputCP" placeholder="Code Postal" required>
-                                        <input type="text" class="form-control" id="InputLoc" placeholder="Localité">
+                                    </div>
+                                </div>
+				
+				 <div class="form-group">
+                                    <!--<label for="InputMessage">Message</label>-->
+                                    <div class="input-group">
+                                        <textarea name="InputNote" id="InputNote" class="form-control" rows="5" required></textarea>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
                                     </div>
                                 </div>
                                                                 

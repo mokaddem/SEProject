@@ -1,5 +1,5 @@
 <?php
-
+	error_reporting(E_ALL ^ E_STRICT);
 // CLASS A VERIFIER !!!!!!!! Surement des choses à changer
 class BDD extends mysqli
 {
@@ -10,21 +10,21 @@ class BDD extends mysqli
 	private $database_db = 'SEProjectC';
 	function __construct()
 	{
-		if ($this->db == false) {
+		if (self::$db === false) {
 		    $this->connect();
 		}
 	}
 	public function connect()
 	{
-		$this->db = new mysqli($this->database_host, $this->database_user, $this->database_pass, $this->database_db);
-		if (!$this->db) {
+		self::$db = new mysqli($this->database_host, $this->database_user, $this->database_pass, $this->database_db);
+		if (!self::$db) {
 			die("Database connection failed miserably: " . mysqli_error());
 		}
-		$this->query("SET character_set_results=utf8");	 
+		self::$db->query("SET character_set_results=utf8");	 
 	}
 
-/*	function query($sql)
+	function query($sql)
 	{
-		return $this->query($sql);
-	}*/
+		return self::$db->query($sql);
+	}
 }
