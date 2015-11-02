@@ -88,7 +88,7 @@
                                         <input type="text" class="form-control" name="InputAdresse1" id="InputAdresse1" placeholder="Adresse" required>
                                         <input type="text" class="form-control" name="InputBat1" id="InputBat1" placeholder="Numero - Batiment">
                                         <input type="text" class="form-control" name="InputCP1" id="InputCP1" placeholder="Code Postal" required>
-                                        <input type="text" class="form-control" name="InputLo1" id="InputLoc1" placeholder="Localité">
+                                        <input type="text" class="form-control" name="InputLoc1" id="InputLoc1" placeholder="Localité">
                                     </div>
                                 </div>
 
@@ -258,7 +258,7 @@
                             
                         </div>
                             <div class="col-lg-offset-5 col-lg-2">
-             				   <input type="submit" name="submit" id="submit" value="Valider" class="btn btn-info">
+				   <input type="submit" name="submit" id="submit" value="Valider" class="btn btn-info">
                             </div>
                         </form>
 
