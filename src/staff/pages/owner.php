@@ -58,8 +58,8 @@
                                 <div class="form-group">
                                   <!--<label for="sel1">Titre:</label>-->
                                   <select class="form-control" id="title" name="title">
-                                    <option>M.</option>
-                                    <option>Mme.</option>
+                                    <option value="1">M.</option>
+                                    <option value="2">Mme.</option>
                                   </select>
                                 </div>
 

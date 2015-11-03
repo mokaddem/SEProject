@@ -73,10 +73,10 @@
                                   <select class="form-control" id="sel3" name="sel3">
 				    <?php
 					$db = new BDD();
-					$reponse = $db->query('SELECT * FROM Personne, Owner WHERE Personne.ID=Owner.ID_Personne');
+					$reponse = $db->query('SELECT *, Owner.ID as O_id FROM Personne, Owner WHERE Personne.ID=Owner.ID_Personne');
 					while ($donnes = $reponse->fetch_array())
 					{										
-						echo "<option value=".$donnes['Owner.ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
+						echo "<option value=".$donnes['O_id'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
 					}
 			 	    ?>	
                                   </select>

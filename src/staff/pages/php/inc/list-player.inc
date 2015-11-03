@@ -14,7 +14,7 @@ include_once('php/BDD.php');
 
 function getPlayers() {
     $db = new BDD(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
-    return $db->query('SELECT * FROM Personne');
+    return $db->query('SELECT * FROM Personne WHERE isPlayer=1');
 }
 
 function getPlayer($id) {
