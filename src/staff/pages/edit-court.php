@@ -120,20 +120,10 @@
                                     </div>
                                 </div>
                                                                 
-                                <input type="submit" name="submit" id="submit" value="Ajouter" class="btn btn-info pull-right">
+                                <input type="submit" name="submit" id="submit" value="Modifier" class="btn btn-info pull-right">
 
                             </div>
                         </form>
-                        <div class="col-lg-5 col-md-push-1">
-                            <div class="col-md-12">
-                                <div class="alert alert-success">
-                                    <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
-                                </div>
-                                <div class="alert alert-danger">
-                                    <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page inputs.</strong>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <!-- Registration form - END -->

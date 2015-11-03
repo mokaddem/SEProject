@@ -96,6 +96,9 @@
                 <!-- /.col-lg-6 -->
             </div>
             <!-- /.row -->
+            
+            <input type="submit" name="submit" id="submit" value="Supprimer cette poule" class="btn btn-info pull-left">
+            
         </div>
         <!-- /#page-wrapper -->
 

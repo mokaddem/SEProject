@@ -119,13 +119,13 @@
                                       <input type="radio" name="optradio">Non
                                     </label>
                                 </div>
-                                <div class="form-group">
+                                <!--<div class="form-group">
                                     <!--<label for="InputNamePartner">Enter Name Partner</label>-->
-                                    <div class="input-group">
+                                    <!--<div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-users"></i></span>
                                         <input type="text" class="form-control" name="InputNamePartner" id="InputNamePartner" placeholder="Nom du partenaire" required>
                                     </div>
-                                </div>                
+                                </div>-->                
                                 <div class="form-group">
                                     <!--<label for="InputCredit">Paiement</label>-->
                                     <label for="InputPhone">Montant à payer</label>
@@ -151,16 +151,6 @@
 
                             </div>
                         </form>
-                        <div class="col-lg-5 col-md-push-1">
-                            <div class="col-md-12">
-                                <div class="alert alert-success">
-                                    <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
-                                </div>
-                                <div class="alert alert-danger">
-                                    <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page inputs.</strong>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <!-- Registration form - END -->

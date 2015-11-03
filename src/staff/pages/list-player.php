@@ -1,3 +1,5 @@
+<?php require_once("./php/inc/list-player.inc");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -74,7 +76,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php require_once("./php/inc/list-player.inc"); ?>
+                                        <?php
+                                            dbAndPrintPlayer();
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -86,6 +90,13 @@
                 <!-- /.col-lg-6 -->
             </div>
             <!-- /.row -->
+
+            <!-- Modal -->
+            <?php
+                dbAndPrintModal();
+            ?>
+
+
         </div>
         <!-- /#page-wrapper -->
 
