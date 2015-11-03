@@ -14,7 +14,7 @@ include_once('php/BDD.php');
 
 function dbAndPrintModal() {
     $db = new BDD();
-    $reponse = $db->query('SELECT * FROM Personne ');
+    $reponse = $db->query('SELECT * FROM Player ');
     $id=0;
     while ($donnes = $reponse->fetch_array())
     {
