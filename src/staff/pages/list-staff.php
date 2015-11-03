@@ -1,4 +1,4 @@
-<?php require_once("./php/inc/list-player.inc");
+<?php require_once("./php/inc/list-staff.inc");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,14 +76,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php foreach (getDb() as $player){ ?>
+                                    <?php foreach (getDb() as $staff){ ?>
                                         <tr class="odd gradeX">
-                                            <td data-toggle="modal" data-target="#myModal<?=$player['ID']?>"><?=$player['ID']?></td>
-                                            <td data-toggle="modal" data-target="#myModal<?=$player['ID']?>"><?=$player['LastName']?></td>
-                                            <td data-toggle="modal" data-target="#myModal<?=$player['ID']?>"><?=$player['FirstName']?></td>
-                                            <td class="center" data-toggle="modal" data-target="#myModal<?=$player['ID']?>"><?=$player['BirthDate']?></td>
-                                            <td class="center" data-toggle="modal" data-target="#myModal<?=$player['ID']?>"><?=$player['CreationDate']?></td>
-                                            <td><a href="./edit-player.php?id=<?=$player['ID']?>"><i class="fa fa-edit fa-fw"></i></a> <a href="php/delete-player.php?id=<?=$player['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce participant ?');"><i class="fa fa-trash-o"></i></a></td>
+                                            <td data-toggle="modal" data-target="#myModal<?=$staff['ID']?>"><?=$staff['ID']?></td>
+                                            <td data-toggle="modal" data-target="#myModal<?=$staff['ID']?>"><?=$staff['LastName']?></td>
+                                            <td data-toggle="modal" data-target="#myModal<?=$staff['ID']?>"><?=$staff['FirstName']?></td>
+                                            <td class="center" data-toggle="modal" data-target="#myModal<?=$staff['ID']?>"><?=$staff['BirthDate']?></td>
+                                            <td class="center" data-toggle="modal" data-target="#myModal<?=$staff['ID']?>"><?=$staff['CreationDate']?></td>
+                                            <td><a href="./edit-player.php?id=<?=$staff['ID']?>"><i class="fa fa-edit fa-fw"></i></a> <a href="php/delete-player.php?id=<?=$staff['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce participant ?');"><i class="fa fa-trash-o"></i></a></td>
                                         </tr>
                                     <?php } ?>
                                     </tbody>

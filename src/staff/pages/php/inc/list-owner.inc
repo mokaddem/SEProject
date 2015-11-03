@@ -4,7 +4,7 @@ dbAndPrint();
 
 function dbAndPrint() {
     $db = new BDD();
-    $reponse = $db->query('SELECT * FROM Owner, Personne WHERE Personne.ID=Owner.ID_Personne ');
+    $reponse = $db->query('SELECT * FROM Personne WHERE isOwner=1');
     $id=0;
     while ($donnes = $reponse->fetch_array())
     {
