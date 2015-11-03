@@ -52,7 +52,7 @@
                         <form role="form">
                             <div class="col-lg-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Destinataire" id="Destinataire">
+                                <input type="text" class="form-control" placeholder="Destinataire (facultatif)" id="Destinataire">
                                 <input type="checkbox" name="option1" value="Participants"> Participants<br/>
                                 <input type="checkbox" name="option2" value="Propriétaires"> Propriétaires  
                             </div>                              
@@ -64,16 +64,6 @@
                                 <input type="submit" name="submitPlayers" id="submitPlayers" value="Envoyer" class="btn btn-info pull-center" >
                             </div>
                         </form>
-                        <div class="col-lg-5 col-md-push-1">
-                            <div class="col-md-12">
-                                <div class="alert alert-success">
-                                    <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
-                                </div>
-                                <div class="alert alert-danger">
-                                    <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page inputs.</strong>
-                                </div>
-                            </div>
-                        </div>
                 <!-- Registration form - END -->
 
                 </div>
