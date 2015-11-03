@@ -44,7 +44,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Créer un knock-off tournament</h1>
+                    <h1 class="page-header">Créer un tournois de knock-off</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -52,7 +52,7 @@
                 <!-- Registration form - START -->
                      <div class="row">
                         <form role="form">
-                            <div class="col-lg-6">
+                            <div class="col-lg-3">
                                 <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
                                 
 								
@@ -73,6 +73,7 @@
                                     </div>
                                 </div>
 								
+								
 								<?php 
 									if (isset($_GET['size'])){
 										$_size=$_GET['size'];
@@ -82,20 +83,22 @@
 									?>
 									
 								<?php
-								for ($i = 1; $i <= $_size; $i++) {
+								$i = 1;
+								//echo "<label for=\"sel1\"> Equipes </label>";
+								for (; $i <= $_size; $i++) {
 									if ($i % 2 != 0){
 										echo "<div class=\"form-group\">";
-			                              echo "<label for=\"sel1\"><span class=\"fa fa-users\"></span> Match ". ceil($i/2) ."</label>";
+										  echo "<label for=\"sel1\"><span class=\"fa fa-users\"></span> Match ". ceil($i/2) ."</label>";
+			                            echo "</div>";
+										echo "<div class=\"form-group\">";
 			                              echo "<select class=\"form-control\" id=\"sel1\">";
 			                                echo "<option>Equipe ". $i ."</option>";
-			                                echo "<!-- <option>Propriétaire</option> -->";
 			                              echo "</select>";
 			                            echo "</div>";
 		                            } else{
 		                            	echo "<div class=\"form-group\">";
 			                              echo "<select class=\"form-control\" id=\"sel1\">";
 			                                echo "<option>Equipe ". $i ."</option>";
-			                                echo "<!-- <option>Propriétaire</option> -->";
 			                              echo "</select>";
 			                            echo "</div>";
 		                            }
@@ -105,8 +108,30 @@
                                 <input type="submit" name="submit" id="submit" value="Créer" class="btn btn-info pull-right">
 
                             </div>
+                            
+                            <?php
+                            $i = ceil(($i-1)/2);
+                            $matchNum = 1;
+                            $iter = 0;
+                            for ($k = $i; $k >= 1; $k = $k/2){
+	                            echo "<div class=\"col-lg-3\" style=\"position: relative; top: 100px;\">";
+	                            for ($j = 1; $j <= $k; $j++) {
+	                            		echo "<div class=\"form-group\">";
+										  echo "<label for=\"sel1\"><span class=\"fa fa-users\"></span> Match ". $matchNum ."</label>";
+										  echo "<select class=\"form-control\" id=\"sel1\">";
+			                                echo "<option>Terrain ". $matchNum ."</option>";
+			                              echo "</select>";
+			                            echo "</div>";
+			                            $matchNum++;
+				                }
+				                echo "</div>";
+				                $iter++;
+				                $i = $i + $k/2;
+				            }
+			                ?>
                         </form>
-                        <div class="col-lg-5 col-md-push-1">
+                        
+                        <div class="col-lg-3 col-md-push-1">
                             <div class="col-md-12">
                                 <div class="alert alert-success">
                                     <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
