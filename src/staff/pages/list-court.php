@@ -67,12 +67,14 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Nom</th>
                                             <th>Adresse</th>
                                             <th>Surface</th>
-                                            <th>Etat</th>
                                             <th>Propriétaire</th>
+                                            <th>Etat</th>
+                                            <th>Type</th>
+                                            <th>Disponible</th>
                                             <th>Créé le</th>
+                                            <th>Note</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
