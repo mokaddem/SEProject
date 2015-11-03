@@ -75,8 +75,8 @@
 					$db = new BDD();
 					$reponse = $db->query('SELECT * FROM Personne, Owner WHERE Personne.ID=Owner.ID_Personne');
 					while ($donnes = $reponse->fetch_array())
-					{					
-						echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
+					{										
+						echo "<option value=".$donnes['Owner.ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
 					}
 			 	    ?>	
                                   </select>
