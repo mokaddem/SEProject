@@ -35,44 +35,39 @@
 <body>
 
 
-    <?php
-    include_once('php/BDD.php');
+<?php
+include_once('php/BDD.php');
 
-    $db = new BDD();
-    $reponse = $db->query('SELECT * FROM Personne pers, Player play WHERE '. $_GET['id']. ' = pers.ID');
-    $donnes = $reponse->fetch_array();
-    ?>
-
-<div class="col-lg-offset-4 col-lg-4">
-    <div id="page-wrapper">
-        <div class="container">
-
-            <div class="page-header">
-                <h1>Informations</h1>
-            </div>
-
-            <!-- Registration form - START -->
-                <div class="row">
-                    <p>Nom: <?=$donnes['LastName']?></p>
-                    <p>Prénom: <?=$donnes['FirstName']?></p>
-                    <p>E-mail: <?=$donnes['Mail']?></p>
-                    <p>Née le: <?=$donnes['BirthDate']?></p>
-                    <p>Rue: <?=$donnes['Rue']?></p>
-                    <p>Ville: <?=$donnes['Ville']?></p>
-                    <p>Code Postal: <?=$donnes['ZIPCode']?></p>
-                    <p>Tel: <?=$donnes['PhoneNumber']?></p>
-                    <p>Mobile: <?=$donnes['GSMNumber']?></p>
-
-                </div>
-            <!-- Registration form - END -->
+$db = new BDD();
+$reponse = $db->query('SELECT * FROM Personne pers, Player play WHERE '. $_GET['id']. ' = pers.ID');
+$donnes = $reponse->fetch_array();
+?>
+<div class="col-lg-offset-5 col-lg-3">
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Informations</h4>
         </div>
-        <!-- /container -->
+        <div class="modal-body">
+            <div class="container">
+                <p>Nom: <?=$donnes['LastName']?></p>
+                <p>Prénom: <?=$donnes['FirstName']?></p>
+                <p>E-mail: <?=$donnes['Mail']?></p>
+                <p>Née le: <?=$donnes['BirthDate']?></p>
+                <p>Rue: <?=$donnes['Rue']?></p>
+                <p>Ville: <?=$donnes['Ville']?></p>
+                <p>Code Postal: <?=$donnes['ZIPCode']?></p>
+                <p>Tel: <?=$donnes['PhoneNumber']?></p>
+                <p>Mobile: <?=$donnes['GSMNumber']?></p>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
     </div>
-    <!-- /#page-wrapper -->
-
 </div>
-<!-- /#wrapper -->
-
 <!-- jQuery -->
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
@@ -85,20 +80,6 @@
 <!-- Custom Theme JavaScript -->
 <script src="../dist/js/sb-admin-2.js"></script>
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#InputNom').val('<?php echo $donnes['LastName']; ?>');
-        $('#InputPrenom').val('<?php echo $donnes['FirstName']; ?>');
-        $('#InputBirth').val('<?php echo $donnes['BirthDate']; ?>');
-        $('#InputAdresse').val('<?php echo $donnes['Rue']; ?>');
-        $('#InputBat').val('<?php echo $donnes['Ville']; ?>');
-        $('#InputCP').val('<?php echo $donnes['ZIPCode']; ?>');
-        $('#InputLoc').val('<?php echo $donnes['Ville']; ?>');
-        $('#InputEmailFirst').val('<?php echo $donnes['Mail']; ?>');
-        $('#fixnumber').val('<?php echo $donnes['PhoneNumber']; ?>');
-        $('#gsmnumber').val('<?php echo $donnes['GSMNumber']; ?>');
-    });
-</script>
 <?php $reponse->free(); ?>
 </body>
 
