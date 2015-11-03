@@ -43,27 +43,45 @@
 
         <div id="page-wrapper">
             <div class="row">
-                <div class="page-header">
-                    <h1>Envoyer un mail</h1>
+                <div class="col-lg-12">
+                    <h1 class="page-header">Résultats</h1>
                 </div>
+                <!-- /.col-lg-12 -->
             </div>
+
                 <!-- Registration form - START -->
-                    <div class="row">
+                     <div class="row">
                         <form role="form">
                             <div class="col-lg-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Destinataire (facultatif)" id="Destinataire">
-                                <input type="checkbox" name="option1" value="Participants"> Participants<br/>
-                                <input type="checkbox" name="option2" value="Propriétaires"> Propriétaires  
-                            </div>                              
-                            <div class="form-group">
-                                  <!-- <label for="sel1"><span class="fa fa-user"></span> Message à tous les propriétaires</label> -->
-                                    <input type="text" class="form-control" placeholder="Sujet" id="id" required data-validation-required-message="Veuillez entrer le sujet.">
-                                  <br><textarea rows="15" cols="50" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Veuillez entrer votre message."></textarea>
-                              </div>
-                                <input type="submit" name="submitPlayers" id="submitPlayers" value="Envoyer" class="btn btn-info pull-center" >
+                                <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
+                                
+								
+								<fieldset data-role="controlgroup" data-type="horizontal">
+								
+									<label for="male">Samedi</label>
+									<input type="radio" name="day"  value="saturday">
+									<label for="female">Dimanche</label>
+									<input type="radio" name="day"  value="sunday" checked>	
+								 </fieldset>
+								 <hr>
+
+
+								
+								<?php 
+									?>
+
                             </div>
                         </form>
+                        <div class="col-lg-5 col-md-push-1">
+                            <div class="col-md-12">
+                                <div class="alert alert-success">
+                                    <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
+                                </div>
+                                <div class="alert alert-danger">
+                                    <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page inputs.</strong>
+                                </div>
+                            </div>
+                        </div>
                 <!-- Registration form - END -->
 
                 </div>

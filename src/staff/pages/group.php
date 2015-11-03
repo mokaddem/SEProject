@@ -52,76 +52,52 @@
                 <!-- Registration form - START -->
                      <div class="row">
                         <form role="form">
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
-                                
+                                <script javascript>
+                                	function setDay(newDay) {
+    									$_day = newDay
+									}
+                                </script>
 								
 								<fieldset data-role="controlgroup" data-type="horizontal">
 								
-									<label for="male">Samedi</label>
-									<input type="radio" name="day"  value="saturday">
-									<label for="female">Dimanche</label>
-									<input type="radio" name="day"  value="sunday" checked>	
+									<label for="saturday">Samedi</label>
+									<input type="radio" name="day"  value="saturday" onClick="setDay("saturday")">
+									<label for="sunday">Dimanche</label>
+									<input type="radio" name="day"  value="sunday" onClick="setDay("sunday")">	
 								 </fieldset>
 								 <hr>
-
-								
-                                <div class="form-group">
-                                  <label for="sel1"><span class="fa fa-users"></span> Première équipe</label>
-                                  <select class="form-control" id="sel1">
-                                    <option>[liste des équipes]</option>
-                                    <!-- <option>propriétaire</option> -->
-                                  </select>
-                                </div>
-
-                                <div class="form-group">
-                                  <label for="sel1"><span class="fa fa-users"></span> Seconde équipe</label>
-                                  <select class="form-control" id="sel1">
-                                    <option>[liste des équipes]</option>
-                                    <!-- <option>propriétaire</option> -->
-                                  </select>
-                                </div>
-                               
-                                <div class="form-group">
-                                  <label for="sel1"><span class="fa fa-users"></span> Troisième équipe</label>
-                                  <select class="form-control" id="sel1">
-                                    <option>[liste des équipes]</option>
-                                    <!-- <option>propriétaire</option> -->
-                                  </select>
-                                </div>
 								
 								<div class="form-group">
-                                  <label for="sel1"><span class="fa fa-users"></span> Quatrième équipe</label>
+                                  <label for="sel1"><span class="fa fa-users"></span> Terrain</label>
                                   <select class="form-control" id="sel1">
-                                    <option>[liste des équipes]</option>
-                                    <!-- <option>propriétaire</option> -->
+                                    <option>[Terrains disponibles]</option>
                                   </select>
                                 </div>
+                                
+								<?php
+									
+								if ($_day == "saturday"){ 
+									$groupNum = 5;
+								} elseif($_day == "sunday"){
+									$groupNum = 6;
+								} else{
+									$groupNum = 0;
+								}
 								
-								<div class="form-group">
-                                  <label for="sel1"><span class="fa fa-users"></span> Cinquième équipe</label>
-                                  <select class="form-control" id="sel1">
-                                    <option>[liste des équipes]</option>
-                                    <!-- <option>propriétaire</option> -->
-                                  </select>
-                                </div>	
+								for ($i = 1; $i <= $groupNum; $i++) {
+									echo "<div class=\"form-group\">";
+									  echo "<label for=\"sel1\"><span class=\"fa fa-users\"></span> Equipe ". $i ."</label>";
+		                            echo "</div>";
+									echo "<div class=\"form-group\">";
+		                              echo "<select class=\"form-control\" id=\"sel1\">";
+		                                echo "<option>Equipe ". $i ."</option>";
+		                              echo "</select>";
+		                            echo "</div>";
+		                        }
+								?>
 								
-								<?php 
-									if (isset($_POST['day'])){
-										$_day=$_POST['day'];
-										} else {
-										$_day="";
-										}
-									?>
-								<?php if( $_day == "sunday") : ?>
-								<div class="form-group">
-                                  <label for="sel1"><span class="fa fa-users"></span> Sixième équipe</label>
-                                  <select class="form-control" id="sel1">
-                                    <option>[liste des équipes]</option>
-                                    <!-- <option>propriétaire</option> -->
-                                  </select>
-                                </div>
-								<?php endif; ?>
 								
                                 <input type="submit" name="submit" id="submit" value="Créer" class="btn btn-info pull-right">
 
