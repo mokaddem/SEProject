@@ -76,9 +76,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php
-                                            dbAndPrintPlayer();
-                                        ?>
+                                    <?php foreach (getDb() as $player){ ?>
+                                        <tr class="odd gradeX">
+                                            <td data-toggle="modal" data-target="#myModal<?=$player['ID']?>"><?=$player['ID']?></td>
+                                            <td data-toggle="modal" data-target="#myModal<?=$player['ID']?>"><?=$player['LastName']?></td>
+                                            <td data-toggle="modal" data-target="#myModal<?=$player['ID']?>"><?=$player['FirstName']?></td>
+                                            <td class="center" data-toggle="modal" data-target="#myModal<?=$player['ID']?>"><?=$player['BirthDate']?></td>
+                                            <td class="center" data-toggle="modal" data-target="#myModal<?=$player['ID']?>"><?=$player['CreationDate']?></td>
+                                            <td><a href="./edit-player.php?id=<?=$player['ID']?>"><i class="fa fa-edit fa-fw"></i></a> <a href="php/delete-player.php?id=<?=$player['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce participant ?');"><i class="fa fa-trash-o"></i></a></td>
+                                        </tr>
+                                    <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -93,7 +100,6 @@
 
             <!-- Modal -->
             <?php
-                dbAndPrintModal();
             ?>
 
 
