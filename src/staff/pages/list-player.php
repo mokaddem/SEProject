@@ -76,14 +76,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php foreach (getDb() as $player){ ?>
-                                        <tr class="odd gradeX">
-                                            <td data-toggle="modal" data-target="#myModal<?=$player['ID']?>"><?=$player['ID']?></td>
-                                            <td data-toggle="modal" data-target="#myModal<?=$player['ID']?>"><?=$player['LastName']?></td>
-                                            <td data-toggle="modal" data-target="#myModal<?=$player['ID']?>"><?=$player['FirstName']?></td>
-                                            <td class="center" data-toggle="modal" data-target="#myModal<?=$player['ID']?>"><?=$player['BirthDate']?></td>
-                                            <td class="center" data-toggle="modal" data-target="#myModal<?=$player['ID']?>"><?=$player['CreationDate']?></td>
-                                            <td><a href="./edit-player.php?id=<?=$player['ID']?>"><i class="fa fa-edit fa-fw"></i></a> <a href="php/delete-player.php?id=<?=$player['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce participant ?');"><i class="fa fa-trash-o"></i></a></td>
+                                    <?php foreach (getPlayers() as $player){ ?>
+                                        <tr class="odd gradeX" data-toggle="modal" data-target="#myModal<?=$player['ID']?>" data-url="./show-player.php?id=<?=$player['ID']?>">
+                                            <td><?=$player['ID']?></td>
+                                            <td><?=$player['LastName']?></td>
+                                            <td><?=$player['FirstName']?></td>
+                                            <td class="center"><?=$player['BirthDate']?></td>
+                                            <td class="center"><?=$player['CreationDate']?></td>
+                                            <td>
+                                                <a href="./edit-player.php?id=<?=$player['ID']?>"><i class="fa fa-edit fa-fw"></i></a>
+                                                <a href="php/delete-player.php?id=<?=$player['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce participant ?');"><i class="fa fa-trash-o"></i></a>
+                                            </td>
                                         </tr>
                                     <?php } ?>
                                     </tbody>
@@ -99,25 +102,9 @@
             <!-- /.row -->
 
             <!-- Modal -->
-            <div id="myModal1" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Modal Header</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>Some text in the modal.</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+            <?php foreach (getPlayers() as $player){ ?>
+                <div id="myModal<?=$player['ID']?>" class="modal fade" role="dialog"></div>
+            <?php } ?>
 
 
         </div>
@@ -150,6 +137,27 @@
         });
     });
     </script>
+    <script type="text/javascript">
+
+        // Stop click on last td in a data-toggle=modal
+        $("[data-toggle='modal'] td:last-child").on("click", function(event) {
+            $(this).preventDefault();
+            $(this).stopPropagation();
+        });
+
+        // On click, get html content from url and update the corresponding modal
+        $("[data-toggle='modal']").on("click", function(event) {
+            event.preventDefault();
+            var url = $(this).attr('data-url');
+            var modal_id = $(this).attr('data-target');
+            $.get(url, function(data) {
+                $(modal_id).html(data);
+            });
+        });
+
+    </script>
+
+
 
 </body>
 
