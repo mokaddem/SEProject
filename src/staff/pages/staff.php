@@ -37,27 +37,23 @@
     <div id="wrapper">
 
         <?php            
-		include("./html/header.html");
-		include_once('php/BDD.php');
-
-		$db = new BDD();
-		$reponse = $db->query('SELECT * FROM Personne pers, Player play WHERE '. $_GET['id']. ' = pers.ID');
-		$donnes = $reponse->fetch_array();
+            include("./html/header.html");
         ?>
+
 
         <div id="page-wrapper">
             <div class="container">
 
                 <div class="page-header">
-                    <h1>Modifier un participant</h1>
+                    <h1>Ajouter un Staffer</h1>
                 </div>
 
                 <!-- Registration form - START -->
                 <div class="container">
                     <div class="row">
+                        <div class="col-lg-6">
                         <form role="form">
-                            <div class="col-lg-6">
-                                <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
+                            <div class="col-lg-9">
                                 <div class="form-group">
                                   <!--<label for="sel1">Titre:</label>-->
                                   <select class="form-control" id="sel1">
@@ -70,7 +66,7 @@
                                     <!--<label for="InputNom">Nom</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                        <input type="text" class="form-control" id="InputNom" placeholder="Nom" required>
+                                        <input type="text" class="form-control" Nom="InputNom" id="InputNom" placeholder="Nom" required>
                                         <input type="text" class="form-control" Prenom="InputPrenom" id="InputPrenom" placeholder="Prenom" required>
                                         <input type="text" class="form-control" id="InputBirth" placeholder="Née le jj/mm/aaaa" required>
                                     </div>
@@ -98,45 +94,9 @@
                                     <!--<label for="InputPhone">Numéro de téléphone</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                        <input type="text" class="form-control bfh-phone"  placeholder="+33 fixe" id="fixnumber">
+                                        <input type="text" class="form-control bfh-phone"  placeholder="+33 fixe">
                                         <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                        <input type="text" class="form-control bfh-phone"  placeholder="+33 mobile" id="gsmnumber" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                  <label for="sel1">Classement </label>
-                                  <select class="form-control" id="sel1">
-                                    <option>NC</option>
-                                    <option>Trofor</option>
-                                  </select>
-                                </div>     
-                                <div class="form-group">
-                                    <label for="InputPhone">Déjà participé au tournoi?</label>
-                                    <label class="radio-inline">
-                                      <input type="radio" name="optradio">Oui
-                                    </label>
-                                    <label class="radio-inline">
-                                      <input type="radio" name="optradio">Non
-                                    </label>
-                                </div>
-                                <!--<div class="form-group">
-                                    <!--<label for="InputNamePartner">Enter Name Partner</label>-->
-                                    <!--<div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                                        <input type="text" class="form-control" name="InputNamePartner" id="InputNamePartner" placeholder="Nom du partenaire" required>
-                                    </div>
-                                </div>-->                
-                                <div class="form-group">
-                                    <!--<label for="InputCredit">Paiement</label>-->
-                                    <label for="InputPhone">Montant à payer</label>
-                                    <div class="input-group">
-                                      <input type="text" class="form-control" placeholder="15" disabled>
-                                      <span class="input-group-addon">€</span>
-                                    </div>
-                                    <div class="input-group">
-                                        <label class="radio-inline"><input type="radio" name="optradio">CB</label>
-                                        <label class="radio-inline"><input type="radio" name="optradio">Paypal</label>
-                                        <label class="radio-inline"><input type="radio" name="optradio">Chèque</label> 
+                                        <input type="text" class="form-control bfh-phone"  placeholder="+33 mobile" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -147,10 +107,23 @@
                                     </div>
                                 </div>
 
-                                <input type="submit" name="edit-submit" id="edit-submit" value="Modifier" class="btn btn-info pull-right">
+                                <input type="submit" name="submit" id="submit" value="Valider" class="btn btn-info pull-right">
 
                             </div>
                         </form>
+                        </div>
+                        
+                    
+                        <!--<div class="col-lg-5 col-md-push-1">
+                            <div class="col-md-12">
+                                <div class="alert alert-success">
+                                    <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
+                                </div>
+                                <div class="alert alert-danger">
+                                    <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page inputs.</strong>
+                                </div>
+                            </div>
+                        </div>-->
                     </div>
                 </div>
                 <!-- Registration form - END -->
@@ -162,7 +135,7 @@
 
     </div>
     <!-- /#wrapper -->
-
+    <br/><br/>
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
@@ -175,21 +148,6 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-	<script type="text/javascript">
-	    $(document).ready(function() {
-		$('#InputNom').val('<?php echo $donnes['LastName']; ?>');
-		$('#InputPrenom').val('<?php echo $donnes['FirstName']; ?>');
-		$('#InputBirth').val('<?php echo $donnes['BirthDate']; ?>');
-		$('#InputAdresse').val('<?php echo $donnes['Rue']; ?>');
-		$('#InputBat').val('<?php echo $donnes['Ville']; ?>');
-		$('#InputCP').val('<?php echo $donnes['ZIPCode']; ?>');
-		$('#InputLoc').val('<?php echo $donnes['Ville']; ?>');
-		$('#InputEmailFirst').val('<?php echo $donnes['Mail']; ?>');
-		$('#fixnumber').val('<?php echo $donnes['PhoneNumber']; ?>');
-		$('#gsmnumber').val('<?php echo $donnes['GSMNumber']; ?>');
-	    });
-	</script>
-	<?php $reponse->free(); ?>
 </body>
 
 </html>

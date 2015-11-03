@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Admin Mode - Reset</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -43,25 +43,21 @@
 
         <div id="page-wrapper">
             <div class="row">
-                <div class="page-header">
-                    <h1>Envoyer un mail</h1>
+                <div class="col-lg-12">
+                    <h1 class="page-header">Réinitialiser le tournoi</h1>
                 </div>
+                <!-- /.col-lg-12 -->
             </div>
+
                 <!-- Registration form - START -->
-                    <div class="row">
+                     <div class="row">
                         <form role="form">
                             <div class="col-lg-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Destinataire (facultatif)" id="Destinataire">
-                                <input type="checkbox" name="option1" value="Participants"> Participants<br/>
-                                <input type="checkbox" name="option2" value="Propriétaires"> Propriétaires  
-                            </div>                              
-                            <div class="form-group">
-                                  <!-- <label for="sel1"><span class="fa fa-user"></span> Message à tous les propriétaires</label> -->
-                                    <input type="text" class="form-control" placeholder="Sujet" id="id" required data-validation-required-message="Veuillez entrer le sujet.">
-                                  <br><textarea rows="15" cols="50" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Veuillez entrer votre message."></textarea>
-                              </div>
-                                <input type="submit" name="submitPlayers" id="submitPlayers" value="Envoyer" class="btn btn-info pull-center" >
+								
+                                <label>Attention, le fait de réinitialiser le tournoi va supprimer toutes les poules et le Knock-Off. Cette action est irréversible.</label>
+                                
+                                <input type="submit" name="submit" id="submit" value="J'ai pris connaissances des risques. Je lève la main et dis 'Je le jure'." class="btn btn-info pull-center">
+
                             </div>
                         </form>
                 <!-- Registration form - END -->

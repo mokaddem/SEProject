@@ -4,7 +4,7 @@ dbAndPrint();
 
 function dbAndPrint() {
     $db = new BDD();
-    $reponse = $db->query('SELECT * FROM Owner, Personne WHERE Personne.ID=Owner.ID_Personne ');
+    $reponse = $db->query('SELECT * FROM Personne WHERE isOwner=1');
     $id=0;
     while ($donnes = $reponse->fetch_array())
     {
@@ -19,6 +19,6 @@ function printListPlayer($donnes) {
     echo "<td>".$donnes['LastName']."</td>";
     echo "<td>".$donnes['FirstName']."</td>";
     echo "<td></td>";
-    echo "<td><a href=\"./edit-player.php\" ><i class=\"fa fa-edit fa-fw\"></i></a> <a href=\"delete-player.php\" onclick=\"return confirm('Voulez-vous vraiment suprimer ce participant ?');\"><i class=\"fa fa-trash-o\"></i></a></td>";
+    echo "<td><a href=\"./edit-owner.php?id=".$donnes['ID']."\" ><i class=\"fa fa-edit fa-fw\"></i></a> <a href=\"php/delete-owner.php?id=".$donnes['ID']."\" onclick=\"return confirm('Voulez-vous vraiment suprimer ce participant ?');\"><i class=\"fa fa-trash-o\"></i></a></td>";
     echo "</tr>";
 }

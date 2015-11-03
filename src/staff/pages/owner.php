@@ -38,6 +38,7 @@
 
         <?php            
             include("./html/header.html");
+	    include_once('php/BDD.php');
         ?>
 
 
@@ -51,12 +52,12 @@
                 <!-- Registration form - START -->
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-6">
-                        <form role="form">
+                        <div class="col-lg-12">
+                        <form role="form" method="Get" action="php/add-new-owner.php">
                             <div class="col-lg-9">
                                 <div class="form-group">
                                   <!--<label for="sel1">Titre:</label>-->
-                                  <select class="form-control" id="sel1">
+                                  <select class="form-control" id="title" name="title">
                                     <option>M.</option>
                                     <option>Mme.</option>
                                   </select>
@@ -66,19 +67,50 @@
                                     <!--<label for="InputNom">Nom</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                        <input type="text" class="form-control" Nom="InputNom" id="InputNom" placeholder="Nom" required>
-                                        <input type="text" class="form-control" Prenom="InputPrenom" id="InputPrenom" placeholder="Prenom" required>
-                                        <input type="text" class="form-control" id="InputBirth" placeholder="Née le jj/mm/aaaa" required>
+                                        <input type="text" class="form-control" Nom="InputNom" id="InputNom" name="InputNom" placeholder="Nom" required>
+                                        <input type="text" class="form-control" Prenom="InputPrenom" id="InputPrenom" name="InputPrenom" placeholder="Prenom" required>
+                                        <span>Née le </span>
+                                        <select name='birth_day' id='birth_day1'>
+                                            <option value="na">Jour</option>
+                                            <?php
+                                                  for ($i = 1; $i <= 31; $i++) {
+                                                        echo "<option>$i</option>\n";
+                                                      }
+                                        
+                                                ?></select>
+                                            <select name='birth_month' id='birth_month1'>
+                                                <option value="na">Mois</option>
+                                                <option value="1">Janvier</option>
+                                                <option value="2">Fevrier</option>
+                                                <option value="3">Mars</option>
+                                                <option value="4">Avril</option>
+                                                <option value="5">Mai</option>
+                                                <option value="6">Juin</option>
+                                                <option value="7">Juillet</option>
+                                                <option value="8">Aout</option>
+                                                <option value="9">Septembre</option>
+                                                <option value="1°">Octobre</option>
+                                                <option value="11">Novembre</option>
+                                                <option value="12">Decembre</option>
+                                            </select>
+                                            <select name='birth_year' id='birth_year1'>
+                                                <option value="na">Année</option>
+                                            <?php
+                                                  for ($i = date('Y'); $i >= 1900; $i--) {
+                                                    echo "<option>$i</option>\n";
+                                                  }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <!--<label for="InputPrenom">Adresse</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                        <input type="text" class="form-control" id="InputAdresse" placeholder="Adresse" required>
-                                        <input type="text" class="form-control" id="InputBat" placeholder="Numero - Batiment">
-                                        <input type="text" class="form-control" id="InputCP" placeholder="Code Postal" required>
-                                        <input type="text" class="form-control" id="InputLoc" placeholder="Localité">
+                                        <input type="text" class="form-control" id="InputAdresse" name="InputAdresse" placeholder="Adresse" required>
+                                        <input type="text" class="form-control" id="InputBat" name="InputBat" placeholder="Numero - Batiment">
+                                        <input type="text" class="form-control" id="InputCP" name="InputCP" placeholder="Code Postal" required>
+                                        <input type="text" class="form-control" id="InputLoc" name="InputLoc" placeholder="Localité">
                                     </div>
                                 </div>
 
@@ -86,7 +118,7 @@
                                     <!--<label for="InputEmail">Email</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-at"></i></span>
-                                        <input type="email" class="form-control" id="InputEmailFirst" name="InputEmail" placeholder="Email" required>
+                                        <input type="email" class="form-control" id="InputEmailFirst" name="InputEmailFirst" placeholder="Email" required>
                                     </div>
                                 </div>
 
@@ -94,16 +126,9 @@
                                     <!--<label for="InputPhone">Numéro de téléphone</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                        <input type="text" class="form-control bfh-phone"  placeholder="+33 fixe">
+                                        <input type="text" class="form-control bfh-phone"  placeholder="+33 fixe" id="InputFixe" name="InputFixe">
                                         <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                        <input type="text" class="form-control bfh-phone"  placeholder="+33 mobile" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <!--<label for="InputMessage">Message</label>-->
-                                    <div class="input-group">
-                                        <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" required></textarea>
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
+                                        <input type="text" class="form-control bfh-phone"  placeholder="+33 mobile" id="InputMob" name="InputMob" required>
                                     </div>
                                 </div>
 

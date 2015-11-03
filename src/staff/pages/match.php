@@ -38,6 +38,7 @@
 
         <?php            
             include("./html/header.html");
+	    include_once('php/BDD.php');
         ?>
 
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 02, 2015 at 09:02 PM
+-- Generation Time: Nov 03, 2015 at 10:37 AM
 -- Server version: 5.5.46-0ubuntu0.14.04.2
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `Personne` (
   `IsOwner` tinyint(1) NOT NULL,
   `IsStaff` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
 -- Dumping data for table `Personne`
@@ -147,7 +147,9 @@ INSERT INTO `Personne` (`ID`, `Title`, `FirstName`, `LastName`, `Ville`, `ZIPCod
 (5, 2, 'Beatrice', 'Lebouch', '', 7463, 'Avenue des carottes, 12', 0, 64795321, 2147483647, '1974-01-06', 'blebouch@hotmail.fr', '2015-10-02', 1, 0, 0),
 (6, 1, 'Leonard', 'Leriche', '', 3256, 'Rue des richards, 1', 0, 61235495, 2147483647, '1950-06-14', 'legrosriche@hotmail.', '2015-09-24', 0, 1, 0),
 (7, 1, 'Billy', 'Biloup', '', 9413, 'chemin des Bibilou, 14', 0, 413257954, 2147483647, '1964-11-19', 'Billy.Biloup@gmail.c', '2015-08-20', 0, 0, 1),
-(8, 2, 'Noémie', 'milé', '', 7456, 'route des bleus,74', 0, 98764138, 2147483647, '1995-12-24', 'nonolabest@gmail.com', '2015-10-01', 1, 0, 0);
+(8, 2, 'Noémie', 'milé', '', 7456, 'route des bleus,74', 0, 98764138, 2147483647, '1995-12-24', 'nonolabest@gmail.com', '2015-10-01', 1, 0, 0),
+(21, 0, 'a', 'Alicia', '545', 453544, '', 0, 335465468, 335465468, '0000-00-00', 'lzefjzf@ldgzj.com', '0000-00-00', 1, 0, 0),
+(22, 0, 'bb', 'balicia', '54', 35435, 'clvkszjvlzekv', 0, 335465468, 335486846, '0000-00-00', 'lzefjzf@ldgzj.com', '0000-00-00', 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -217,7 +219,7 @@ CREATE TABLE IF NOT EXISTS `Team` (
   KEY `ID_Player1` (`ID_Player1`),
   KEY `ID_Player2` (`ID_Player2`),
   KEY `ID_Cat` (`ID_Cat`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `Team`
@@ -225,8 +227,7 @@ CREATE TABLE IF NOT EXISTS `Team` (
 
 INSERT INTO `Team` (`ID`, `ID_Player1`, `ID_Player2`, `ID_Cat`, `NbWinMatch`) VALUES
 (1, 1, 2, 1, 0),
-(2, 3, 4, 1, 1),
-(3, 5, 8, 1, 4);
+(2, 3, 4, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -238,19 +239,24 @@ CREATE TABLE IF NOT EXISTS `Terrain` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `adresse` varchar(250) NOT NULL,
   `surface` int(11) NOT NULL,
-  `ID_Personne` int(11) NOT NULL,
+  `ID_Owner` int(11) NOT NULL,
   `etat` varchar(250) NOT NULL,
-  `disponibilite` date NOT NULL,
+  `disponibiliteFrom` date NOT NULL,
+  `disponibiliteTo` date NOT NULL,
+  `CreationDate` date NOT NULL,
+  `Type` varchar(500) NOT NULL,
   `Note` varchar(500) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `Terrain`
 --
 
-INSERT INTO `Terrain` (`ID`, `adresse`, `surface`, `ID_Personne`, `etat`, `disponibilite`, `Note`) VALUES
-(1, 'Place des joueurs, 25 TennisVille', 400, 6, 'Parfait', '2015-10-22', '');
+INSERT INTO `Terrain` (`ID`, `adresse`, `surface`, `ID_Owner`, `etat`, `disponibiliteFrom`, `disponibiliteTo`, `CreationDate`, `Type`, `Note`) VALUES
+(1, 'Place des joueurs, 25 TennisVille', 400, 0, 'Usé', '2015-10-22', '0000-00-00', '0000-00-00', 'Gazon', 'Meilleur terrain du monde!'),
+(4, 'Rue du printemps', 4775, 0, 'Passable', '2015-05-12', '2015-09-14', '2015-05-12', 'SynthÃ©tique', 'Terrain boueux'),
+(5, 'Village de tennis', 550, 0, 'Neuf', '2015-05-12', '2015-09-14', '2015-05-12', 'Terre battue', 'Blabla');
 
 --
 -- Constraints for dumped tables

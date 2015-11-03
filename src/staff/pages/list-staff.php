@@ -1,3 +1,5 @@
+<?php require_once("./php/inc/list-staff.inc");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin Mode - Poules - Vue d'ensemble</title>
+    <title>Admin Mode - Staff</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -45,28 +47,17 @@
         <?php            
             include("./html/header.html");
         ?>
-        
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Poules - Vue d'ensemble</h1>
+                    <h1 class="page-header">Liste des Staffer</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-
-            <div class="form-group">
-                          <label for="sel1"><span class="fa fa-dot-circle-o"></span> Choix de la poule</label>
-                          <select class="form-control" id="sel1">
-                            <option>[liste des poules]</option>
-                            <!-- <option>propriétaire</option> -->
-                          </select>
-                        </div>
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        
                         <!-- <div class="panel-heading">
                             DataTables Advanced Tables
                         </div> -->
@@ -76,15 +67,25 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>ID Equipe</th>
-                                            <th>Nb. Victoires</th>
-                                            <th>Nb. Egalités</th>
-                                            <th>Nb. Défaites</th>
-                                            <th>Points</th>
+                                            <th>ID</th>
+                                            <th>Nom</th>
+                                            <th>Prénom</th>
+                                            <th>Né(e) le</th>
+                                            <th>Créé le</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php //require_once("./php/inc/list-team.inc"); ?>
+                                    <?php foreach (getDb() as $staff){ ?>
+                                        <tr class="odd gradeX">
+                                            <td data-toggle="modal" data-target="#myModal<?=$staff['ID']?>"><?=$staff['ID']?></td>
+                                            <td data-toggle="modal" data-target="#myModal<?=$staff['ID']?>"><?=$staff['LastName']?></td>
+                                            <td data-toggle="modal" data-target="#myModal<?=$staff['ID']?>"><?=$staff['FirstName']?></td>
+                                            <td class="center" data-toggle="modal" data-target="#myModal<?=$staff['ID']?>"><?=$staff['BirthDate']?></td>
+                                            <td class="center" data-toggle="modal" data-target="#myModal<?=$staff['ID']?>"><?=$staff['CreationDate']?></td>
+                                            <td><a href="./edit-player.php?id=<?=$staff['ID']?>"><i class="fa fa-edit fa-fw"></i></a> <a href="php/delete-player.php?id=<?=$staff['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce participant ?');"><i class="fa fa-trash-o"></i></a></td>
+                                        </tr>
+                                    <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -96,9 +97,29 @@
                 <!-- /.col-lg-6 -->
             </div>
             <!-- /.row -->
-            
-            <input type="submit" name="submit" id="submit" value="Supprimer cette poule" class="btn btn-info pull-left">
-            
+
+            <!-- Modal -->
+            <div id="myModal1" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Modal Header</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Some text in the modal.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
         </div>
         <!-- /#page-wrapper -->
 
