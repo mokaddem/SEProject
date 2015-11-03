@@ -68,7 +68,7 @@
                                             <th>ID</th>
                                             <th>Nom</th>
                                             <th>Prénom</th>
-                                            <th>Age</th>
+                                            <th>Né(e) le</th>
                                             <th>Créé le</th>
                                             <th>Action</th>
                                         </tr>

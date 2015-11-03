@@ -22,13 +22,14 @@
 	$Ville		= $_GET['InputLoc1'];
 	$Rue		= $_GET['InputAdresse1'];
 	$Number		= $_GET['InputBat1'];
-	$BirthDate	= $_GET['InputBirth1'];
+	$BirthDate	= $_GET['birth_year1']."-".$_GET['birth_month1']."-".$_GET['birth_day1'];
 	$Mail		= $_GET['InputEmailFirst1'];
-	$CreationDate	= time();
+	$CreationDate	= date('Y-m-d');
 	$IsPlayer	= 1;
 	$IsOwner	= 0;
 	$IsStaff	= 0;
 
+	var_dump($BirthDate);
 	$req->bind_param("issiissssisssiii", $ID, $FirstName, $LastName, $Title, $ZIPCode, $PhoneNumber, $GSMNumber, $Ville, $Rue, $Number, $BirthDate, $Mail, $CreationDate, $IsPlayer, $IsOwner, $IsStaff);
 
 	$req->execute();
@@ -45,9 +46,9 @@
 	$Ville		= $_GET['InputLoc2'];
 	$Rue		= $_GET['InputAdresse2'];
 	$Number		= $_GET['InputBat2'];
-	$BirthDate	= $_GET['InputBirth2'];
+	$BirthDate	= $_GET['birth_year2']."-".$_GET['birth_month2']."-".$_GET['birth_day2'];
 	$Mail		= $_GET['InputEmailFirst2'];
-	$CreationDate	= time();
+	//$CreationDate	= date('Y-m-d');
 	$IsPlayer	= 1;
 	$IsOwner	= 0;
 	$IsStaff	= 0;
