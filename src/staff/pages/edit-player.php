@@ -119,13 +119,13 @@
                                       <input type="radio" name="optradio">Non
                                     </label>
                                 </div>
-                                <div class="form-group">
+                                <!--<div class="form-group">
                                     <!--<label for="InputNamePartner">Enter Name Partner</label>-->
-                                    <div class="input-group">
+                                    <!--<div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-users"></i></span>
                                         <input type="text" class="form-control" name="InputNamePartner" id="InputNamePartner" placeholder="Nom du partenaire" required>
                                     </div>
-                                </div>                
+                                </div>-->                
                                 <div class="form-group">
                                     <!--<label for="InputCredit">Paiement</label>-->
                                     <label for="InputPhone">Montant à payer</label>
