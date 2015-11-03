@@ -42,11 +42,11 @@
 
 
         <div id="page-wrapper">
-
+            <div class="row">
                 <div class="page-header">
                     <h1>Envoyer un mail</h1>
                 </div>
-
+            </div>
                 <!-- Registration form - START -->
                     <div class="row">
                         <form role="form">
