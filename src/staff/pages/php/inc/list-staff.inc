@@ -14,7 +14,7 @@ include_once('php/BDD.php');
 
 function dbAndPrintModal() {
     $db = new BDD();
-    $reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
+    $reponse = $db->query('SELECT * FROM Personne WHERE isStaff=1');
     $id=0;
     while ($donnes = $reponse->fetch_array())
     {
@@ -25,7 +25,7 @@ function dbAndPrintModal() {
 
 function getDb() {
     $db = new BDD();
-    $reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
+    $reponse = $db->query('SELECT * FROM Personne WHERE isStaff=1');
 
     return $reponse;
 }
