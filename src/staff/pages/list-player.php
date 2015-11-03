@@ -77,12 +77,12 @@
                                     </thead>
                                     <tbody>
                                     <?php foreach (getPlayers() as $player){ ?>
-                                        <tr class="odd gradeX" data-toggle="modal" data-target="#myModal<?=$player['ID']?>" data-url="./show-player.php?id=<?=$player['ID']?>">
-                                            <td><?=$player['ID']?></td>
-                                            <td><?=$player['LastName']?></td>
-                                            <td><?=$player['FirstName']?></td>
-                                            <td class="center"><?=$player['BirthDate']?></td>
-                                            <td class="center"><?=$player['CreationDate']?></td>
+                                        <tr class="odd gradeX">
+                                            <td data-toggle="modal" data-target="#myModal<?=$player['ID']?>" data-url="./show-player.php?id=<?=$player['ID']?>"><?=$player['ID']?></td>
+                                            <td data-toggle="modal" data-target="#myModal<?=$player['ID']?>" data-url="./show-player.php?id=<?=$player['ID']?>"><?=$player['LastName']?></td>
+                                            <td data-toggle="modal" data-target="#myModal<?=$player['ID']?>" data-url="./show-player.php?id=<?=$player['ID']?>"><?=$player['FirstName']?></td>
+                                            <td class="center" data-toggle="modal" data-target="#myModal<?=$player['ID']?>" data-url="./show-player.php?id=<?=$player['ID']?>"><?=$player['BirthDate']?></td>
+                                            <td class="center" data-toggle="modal" data-target="#myModal<?=$player['ID']?>" data-url="./show-player.php?id=<?=$player['ID']?>"><?=$player['CreationDate']?></td>
                                             <td>
                                                 <a href="./edit-player.php?id=<?=$player['ID']?>"><i class="fa fa-edit fa-fw"></i></a>
                                                 <a href="php/delete-player.php?id=<?=$player['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce participant ?');"><i class="fa fa-trash-o"></i></a>
@@ -129,14 +129,14 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <!-- Page-Level Demo Scripts - Tables - Use for reference 
     <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
                 responsive: true
         });
     });
-    </script>
+    </script>-->
     <script type="text/javascript">
 
         // Stop click on last td in a data-toggle=modal
