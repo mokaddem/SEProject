@@ -41,17 +41,17 @@
         ?>
 
 
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Ajouter une paire</h1>
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Ajouter une paire</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
                 </div>
-                <!-- /.col-lg-12 -->
-            </div>
 
                 <!-- Registration form - START -->
-                    <div class="row">
-                        <form role="form" method="Get" action="php/add-new-pair.php">
+                <div class="row">
+                    <form role="form" method="Get" action="php/add-new-pair.php">
 
                         <div class="col-lg-6">
                             <div class="col-lg-9">
@@ -65,11 +65,11 @@
                                   </select>
                                 </div> -->
                                 <div class="form-group">
-                                  <!--<label for="sel1">Titre:</label>-->
-                                  <select class="form-control" id="title1" name="title1">
-                                    <option>M.</option>
-                                    <option>Mme.</option>
-                                  </select>
+                                    <!--<label for="sel1">Titre:</label>-->
+                                    <select class="form-control" id="title1" name="title1">
+                                        <option>M.</option>
+                                        <option>Mme.</option>
+                                    </select>
                                 </div>
 
                                 <div class="form-group">
@@ -87,24 +87,25 @@
                                                         echo "<option>$i</option>\n";
                                                       }
                                         
-                                                ?></select>
-                                            <select name='birth_month1' id='birth_month1'>
-                                                <option value="na">Mois</option>
-                                                <option value="1">Janvier</option>
-                                                <option value="2">Fevrier</option>
-                                                <option value="3">Mars</option>
-                                                <option value="4">Avril</option>
-                                                <option value="5">Mai</option>
-                                                <option value="6">Juin</option>
-                                                <option value="7">Juillet</option>
-                                                <option value="8">Aout</option>
-                                                <option value="9">Septembre</option>
-                                                <option value="1°">Octobre</option>
-                                                <option value="11">Novembre</option>
-                                                <option value="12">Decembre</option>
-                                            </select>
-                                            <select name='birth_year1' id='birth_year1'>
-                                                <option value="na">Année</option>
+                                                ?>
+                                        </select>
+                                        <select name='birth_month1' id='birth_month1'>
+                                            <option value="na">Mois</option>
+                                            <option value="1">Janvier</option>
+                                            <option value="2">Fevrier</option>
+                                            <option value="3">Mars</option>
+                                            <option value="4">Avril</option>
+                                            <option value="5">Mai</option>
+                                            <option value="6">Juin</option>
+                                            <option value="7">Juillet</option>
+                                            <option value="8">Aout</option>
+                                            <option value="9">Septembre</option>
+                                            <option value="1°">Octobre</option>
+                                            <option value="11">Novembre</option>
+                                            <option value="12">Decembre</option>
+                                        </select>
+                                        <select name='birth_year1' id='birth_year1'>
+                                            <option value="na">Année</option>
                                             <?php
                                                   for ($i = date(Y); $i >= 1900; $i--) {
                                                     echo "<option>$i</option>\n";
@@ -143,24 +144,24 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                  <label for="sel2">Classement </label>
-                                  <select class="form-control" id="sel2">
-                                    <option>NC</option>
-                                    <option>Trofor</option>
-                                  </select>
+                                    <label for="sel2">Classement </label>
+                                    <select class="form-control" id="sel2">
+                                        <option>NC</option>
+                                        <option>Trofor</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="InputPhone">Déjà participé au tournoi?</label>
                                     <label class="radio-inline">
-                                      <input id="InputPartYes1" type="radio" name="InputPartYes1">Oui
+                                        <input id="InputPartYes1" type="radio" name="InputPartYes1">Oui
                                     </label>
                                     <label class="radio-inline">
-                                      <input id="InputPartNo1" type="radio" name="InputPartNo1">Non
+                                        <input id="InputPartNo1" type="radio" name="InputPartNo1">Non
                                     </label>
                                 </div>
                                 <!-- <div class="form-group"> -->
-                                    <!--<label for="InputNamePartner">Enter Name Partner</label>-->
-                                    <!-- <div class="input-group">
+                                <!--<label for="InputNamePartner">Enter Name Partner</label>-->
+                                <!-- <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-users"></i></span>
                                         <input type="text" class="form-control" name="InputNamePartner" id="InputNamePartner" placeholder="Nom du partenaire" required>
                                     </div> -->
@@ -169,13 +170,16 @@
                                     <!--<label for="InputCredit">Paiement</label>-->
                                     <label for="InputPhone">Montant à payer</label>
                                     <div class="input-group">
-                                      <input type="text" class="form-control" placeholder="15" disabled>
-                                      <span class="input-group-addon">€</span>
+                                        <input type="text" class="form-control" placeholder="15" disabled>
+                                        <span class="input-group-addon">€</span>
                                     </div>
                                     <div class="input-group">
-                                        <label class="radio-inline"><input type="radio" name="CB1" id="CB1">CB</label>
-                                        <label class="radio-inline"><input type="radio" name="Paypal1" id="Paypal1">Paypal</label>
-                                        <label class="radio-inline"><input type="radio" name="Chèque1" id="Chèque1">Chèque</label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="CB1" id="CB1">CB</label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="Paypal1" id="Paypal1">Paypal</label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="Chèque1" id="Chèque1">Chèque</label>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -200,11 +204,11 @@
                                   </select>
                                 </div> -->
                                 <div class="form-group">
-                                  <!--<label for="sel1">Titre:</label>-->
-                                  <select class="form-control" id="title2" name="title2">
-                                    <option>M.</option>
-                                    <option>Mme.</option>
-                                  </select>
+                                    <!--<label for="sel1">Titre:</label>-->
+                                    <select class="form-control" id="title2" name="title2">
+                                        <option>M.</option>
+                                        <option>Mme.</option>
+                                    </select>
                                 </div>
 
                                 <div class="form-group">
@@ -213,7 +217,7 @@
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                         <input type="text" class="form-control" Nom="InputNom" name="InputNom2" id="InputNom2" placeholder="Nom" required>
                                         <input type="text" class="form-control" Prenom="InputPrenom" name="InputPrenom2" id="InputPrenom2" placeholder="Prenom" required>
-                                                                                <span>Née le </span>
+                                        <span>Née le </span>
                                         <select name='birth_day2' id='birth_day2'>
                                             <option value="na">Jour</option>
                                             <?php
@@ -221,24 +225,25 @@
                                                         echo "<option>$i</option>\n";
                                                       }
                                         
-                                                ?></select>
-                                            <select name='birth_month2' id='birth_month2'>
-                                                <option value="na">Mois</option>
-                                                <option value="1">Janvier</option>
-                                                <option value="2">Fevrier</option>
-                                                <option value="3">Mars</option>
-                                                <option value="4">Avril</option>
-                                                <option value="5">Mai</option>
-                                                <option value="6">Juin</option>
-                                                <option value="7">Juillet</option>
-                                                <option value="8">Aout</option>
-                                                <option value="9">Septembre</option>
-                                                <option value="1°">Octobre</option>
-                                                <option value="11">Novembre</option>
-                                                <option value="12">Decembre</option>
-                                            </select>
-                                            <select name='birth_year2' id='birth_year2'>
-                                                <option value="na">Année</option>
+                                                ?>
+                                        </select>
+                                        <select name='birth_month2' id='birth_month2'>
+                                            <option value="na">Mois</option>
+                                            <option value="1">Janvier</option>
+                                            <option value="2">Fevrier</option>
+                                            <option value="3">Mars</option>
+                                            <option value="4">Avril</option>
+                                            <option value="5">Mai</option>
+                                            <option value="6">Juin</option>
+                                            <option value="7">Juillet</option>
+                                            <option value="8">Aout</option>
+                                            <option value="9">Septembre</option>
+                                            <option value="1°">Octobre</option>
+                                            <option value="11">Novembre</option>
+                                            <option value="12">Decembre</option>
+                                        </select>
+                                        <select name='birth_year2' id='birth_year2'>
+                                            <option value="na">Année</option>
                                             <?php
                                                   for ($i = date(Y); $i >= 1900; $i--) {
                                                     echo "<option>$i</option>\n";
@@ -277,39 +282,42 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                  <label for="sel4">Classement </label>
-                                  <select class="form-control" id="sel4">
-                                    <option>NC</option>
-                                    <option>Trofor</option>
-                                  </select>
-                                </div>     
+                                    <label for="sel4">Classement </label>
+                                    <select class="form-control" id="sel4">
+                                        <option>NC</option>
+                                        <option>Trofor</option>
+                                    </select>
+                                </div>
                                 <div class="form-group">
                                     <label for="InputPhone">Déjà participé au tournoi?</label>
                                     <label class="radio-inline">
-                                      <input id="InputPartYes2" name="InputPartYes2" type="radio" name="optradio">Oui
+                                        <input id="InputPartYes2" name="InputPartYes2" type="radio" name="optradio">Oui
                                     </label>
                                     <label class="radio-inline">
-                                      <input id="InputPartNo2" name="InputPartNo2" type="radio" name="optradio">Non
+                                        <input id="InputPartNo2" name="InputPartNo2" type="radio" name="optradio">Non
                                     </label>
                                 </div>
                                 <!-- <div class="form-group"> -->
-                                    <!--<label for="InputNamePartner">Enter Name Partner</label>-->
-                                    <!-- <div class="input-group">
+                                <!--<label for="InputNamePartner">Enter Name Partner</label>-->
+                                <!-- <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-users"></i></span>
                                         <input type="text" class="form-control" name="InputNamePartner" id="InputNamePartner" placeholder="Nom du partenaire" required>
                                     </div>
-                                </div> -->                
+                                </div> -->
                                 <div class="form-group">
                                     <label for="InputPhone">Montant à payer</label>
                                     <!--<label for="InputCredit">Paiement</label>-->
                                     <div class="input-group">
-                                      <input type="text" class="form-control" placeholder="15" disabled>
-                                      <span class="input-group-addon">€</span>
+                                        <input type="text" class="form-control" placeholder="15" disabled>
+                                        <span class="input-group-addon">€</span>
                                     </div>
                                     <div class="input-group">
-                                        <label class="radio-inline"><input type="radio" name="CB2" id="CB2">CB</label>
-                                        <label class="radio-inline"><input type="radio" name="Paypal2" id="Paypal2">Paypal</label>
-                                        <label class="radio-inline"><input type="radio" name="Chèque2" id="Chèque2">Chèque</label> 
+                                        <label class="radio-inline">
+                                            <input type="radio" name="CB2" id="CB2">CB</label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="Paypal2" id="Paypal2">Paypal</label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="Chèque2" id="Chèque2">Chèque</label>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -320,23 +328,24 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                        </div>
-                            <div class="col-lg-offset-5 col-lg-2">
-				   <input type="submit" name="submit" id="submit" value="Valider" class="btn btn-info">
-                            </div>
-                        </form>
 
-            </div>
-                <!-- Registration form - END -->
+                        </div>
+                        <div class="col-lg-offset-5 col-lg-2">
+                            <input type="submit" name="submit" id="submit" value="Valider" class="btn btn-info">
+                        </div>
+                    </form>
 
                 </div>
+                <!-- Registration form - END -->
+
+            </div>
             <!-- /.row -->
-        <!-- /#page-wrapper -->
+            <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
-    <br/><br/>
+    <br/>
+    <br/>
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 

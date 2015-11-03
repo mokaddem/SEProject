@@ -41,53 +41,26 @@
         ?>
 
 
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Résultats</h1>
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Résultats</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
                 </div>
-                <!-- /.col-lg-12 -->
-            </div>
 
                 <!-- Registration form - START -->
-                     <div class="row">
-                        <form role="form">
-                            <div class="col-lg-6">
-                                <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
-                                
-								
-								<fieldset data-role="controlgroup" data-type="horizontal">
-								
-									<label for="male">Samedi</label>
-									<input type="radio" name="day"  value="saturday">
-									<label for="female">Dimanche</label>
-									<input type="radio" name="day"  value="sunday" checked>	
-								 </fieldset>
-								 <hr>
-
-
-								
-								<?php 
-									?>
-
-                            </div>
-                        </form>
-                        <div class="col-lg-5 col-md-push-1">
-                            <div class="col-md-12">
-                                <div class="alert alert-success">
-                                    <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
-                                </div>
-                                <div class="alert alert-danger">
-                                    <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page inputs.</strong>
-                                </div>
-                            </div>
-                        </div>
-                <!-- Registration form - END -->
+                <div class="row">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="knock-off-results-sam.php">Samedi</a></li>
+                        <li><a href="knock-off-results-dim.php">Dimanche</a></li>
+                    </ul>
+                    <!-- Registration form - END -->
 
                 </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
+                <!-- /.row -->
+            </div>
+            <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
