@@ -76,9 +76,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php
-                                            dbAndPrintPlayer();
-                                        ?>
+                                    <?php foreach (getDb() as $player){ ?>
+                                        <tr class="odd gradeX">
+                                            <td data-toggle="modal" data-target="#myModal<?=$player['ID']?>"><?=$player['ID']?></td>
+                                            <td data-toggle="modal" data-target="#myModal<?=$player['ID']?>"><?=$player['LastName']?></td>
+                                            <td data-toggle="modal" data-target="#myModal<?=$player['ID']?>"><?=$player['FirstName']?></td>
+                                            <td class="center" data-toggle="modal" data-target="#myModal<?=$player['ID']?>"><?=$player['BirthDate']?></td>
+                                            <td class="center" data-toggle="modal" data-target="#myModal<?=$player['ID']?>"><?=$player['CreationDate']?></td>
+                                            <td><a href="./edit-player.php?id=<?=$player['ID']?>"><i class="fa fa-edit fa-fw"></i></a> <a href="php/delete-player.php?id=<?=$player['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce participant ?');"><i class="fa fa-trash-o"></i></a></td>
+                                        </tr>
+                                    <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -92,9 +99,25 @@
             <!-- /.row -->
 
             <!-- Modal -->
-            <?php
-                dbAndPrintModal();
-            ?>
+            <div id="myModal1" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Modal Header</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Some text in the modal.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 
 
         </div>

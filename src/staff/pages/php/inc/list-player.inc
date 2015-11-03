@@ -1,7 +1,7 @@
 <?php
 include_once('php/BDD.php');
 
-function dbAndPrintPlayer() {
+/*function dbAndPrintPlayer() {
     $db = new BDD();
     $reponse = $db->query('SELECT * FROM Personne ');
     $id=0;
@@ -10,7 +10,7 @@ function dbAndPrintPlayer() {
         $id=$id+1;
         printListPlayer($donnes);
     }
-}
+}*/
 
 function dbAndPrintModal() {
     $db = new BDD();
@@ -23,7 +23,14 @@ function dbAndPrintModal() {
     }
 }
 
-function printListPlayer($donnes) {
+function getDb() {
+    $db = new BDD();
+    $reponse = $db->query('SELECT * FROM Personne ');
+
+    return $reponse;
+}
+
+/*function printListPlayer($donnes) {
     echo "<tr class=\"odd gradeX\">";
     $id = $donnes['ID'];
     echo "<td data-toggle=\"modal\" data-target=\"#myModal$id\">".$donnes['ID']."</td>";
@@ -33,7 +40,7 @@ function printListPlayer($donnes) {
     echo "<td class=\"center\" data-toggle=\"modal\" data-target=\"#myModal$id\">".$donnes['CreationDate']."</td>";
     echo "<td><a href=\"./edit-player.php?id=".$donnes['ID']."\" ><i class=\"fa fa-edit fa-fw\"></i></a> <a href=\"php/delete-player.php?id=".$donnes['ID']."\" onclick=\"return confirm('Voulez-vous vraiment suprimer ce participant ?');\"><i class=\"fa fa-trash-o\"></i></a></td>";
     echo "</tr>";
-}
+}*/
 
 function printModalPlayer($donnes) {
     $id = $donnes['ID'];
