@@ -52,7 +52,7 @@
                 <!-- Registration form - START -->
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                         <form role="form" method="Get" action="php/add-new-owner.php">
                             <div class="col-lg-9">
                                 <div class="form-group">
