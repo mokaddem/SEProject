@@ -70,8 +70,8 @@ $donnes = $reponse->fetch_array();
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a class="btn btn-danger" href="php/delete-player.php?id=<?=$donnes['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce participant ?');">Supprimer</a>
-                    <a class="btn btn-success" href="edit-player.php?id=<?=$donnes['ID']?>">Modifier</a>
+                    <a class="btn btn-danger" href="php/delete-match.php?id=<?=$donnes['id']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce participant ?');">Supprimer</a>
+                    <a class="btn btn-success" href="edit-match.php?id=<?=$donnes['id']?>">Modifier</a>
                     <button type="button" class="btn btn-info" data-dismiss="modal">Retour</button>
                 </div>
             </div>
@@ -88,7 +88,7 @@ $donnes = $reponse->fetch_array();
         <!-- Custom Theme JavaScript -->
         <script src="../dist/js/sb-admin-2.js"></script>
 
-        <?php $donnes->free(); ?>
+        <?php $reponse->free(); ?>
 </body>
 
 </html>

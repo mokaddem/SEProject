@@ -124,23 +124,6 @@
 
     </div>
     <!-- /#wrapper -->
-    <script type="text/javascript">
-        // Stop click on last td in a data-toggle=modal
-        $("[data-toggle='modal'] td:last-child").on("click", function (event) {
-            $(this).preventDefault();
-            $(this).stopPropagation();
-        });
-
-        // On click, get html content from url and update the corresponding modal
-        $("[data-toggle='modal']").on("click", function (event) {
-            event.preventDefault();
-            var url = $(this).attr('data-url');
-            var modal_id = $(this).attr('data-target');
-            $.get(url, function (data) {
-                $(modal_id).html(data);
-            });
-        });
-    </script>
 
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
@@ -163,6 +146,24 @@
         $(document).ready(function () {
             $('#dataTables-example').DataTable({
                 responsive: true
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        // Stop click on last td in a data-toggle=modal
+        $("[data-toggle='modal'] td:last-child").on("click", function (event) {
+            $(this).preventDefault();
+            $(this).stopPropagation();
+        });
+
+        // On click, get html content from url and update the corresponding modal
+        $("[data-toggle='modal']").on("click", function (event) {
+            event.preventDefault();
+            var url = $(this).attr('data-url');
+            var modal_id = $(this).attr('data-target');
+            $.get(url, function(data) {
+                $(modal_id).html(data);
             });
         });
     </script>
