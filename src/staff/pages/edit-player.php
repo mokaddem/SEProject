@@ -71,7 +71,7 @@
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                             <input type="text" class="form-control" id="InputNom" placeholder="Nom" required>
-                                            <input type="text" class="form-control" Prenom="InputPrenom" id="InputPrenom" placeholder="Prenom" required>
+                                            <input type="text" class="form-control" id="InputPrenom" placeholder="Prenom" required>
                                             <input type="text" class="form-control" id="InputBirth" placeholder="Née le jj/mm/aaaa" required>
                                         </div>
                                     </div>

@@ -79,7 +79,26 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php require_once("./php/inc/list-court.inc"); ?>                                        
+                                        <?php require_once("./php/inc/list-court.inc");
+                                        ?>
+                                        <?php foreach (getCourts() as $court){ ?>
+                                            <tr class="odd gradeX">
+                                                <td data-toggle="modal" data-target="#myModal<?=$court['ID']?>" data-url="./show-court.php?id=<?=$court['ID']?>"><?=$court['ID']?></td>
+                                                <td data-toggle="modal" data-target="#myModal<?=$court['ID']?>" data-url="./show-court.php?id=<?=$court['ID']?>"><?=$court['adresse']?></td>
+                                                <td data-toggle="modal" data-target="#myModal<?=$court['ID']?>" data-url="./show-court.php?id=<?=$court['ID']?>"><?=$court['surface']?></td>
+                                                <td data-toggle="modal" data-target="#myModal<?=$court['ID']?>" data-url="./show-court.php?id=<?=$court['ID']?>"><?=$court['FirstName']?></td>
+                                                <td data-toggle="modal" data-target="#myModal<?=$court['ID']?>" data-url="./show-court.php?id=<?=$court['ID']?>"><?=$court['etat']?></td>
+                                                <td data-toggle="modal" data-target="#myModal<?=$court['ID']?>" data-url="./show-court.php?id=<?=$court['ID']?>"><?=$court['Type']?></td>
+                                                <td data-toggle="modal" data-target="#myModal<?=$court['ID']?>" data-url="./show-court.php?id=<?=$court['ID']?>"><?=$court['disponibiliteFrom']?></td>
+                                                <td class="center" data-toggle="modal" data-target="#myModal<?=$court['ID']?>" data-url="./show-court.php?id=<?=$court['ID']?>"><?=$court['CreationDate']?></td>
+                                                <td data-toggle="modal" data-target="#myModal<?=$court['ID']?>" data-url="./show-court.php?id=<?=$court['ID']?>"><?=$court['Note']?></td>
+                                                <td>
+                                                    <a href="./edit-court.php?id=<?=$court['ID']?>&type=<?=$court['Type']?>&etat=<?=$court['etat']?>&surface=<?=$court['surface']?>&adresse=<?=$court['adresse']?>&note=<?=$court['Note']?>"><i class="fa fa-edit fa-fw"></i></a>
+                                                    <a href="php/delete-court.php?id=<?=$court['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce terrain ?');"><i class="fa fa-trash-o"></i></a>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -91,6 +110,10 @@
                 <!-- /.col-lg-6 -->
             </div>
             <!-- /.row -->
+            <!-- Modal -->
+            <?php foreach (getCourts() as $court){ ?>
+                <div id="myModal<?=$court['ID']?>" class="modal fade" role="dialog"></div>
+            <?php } ?>
         </div>
         <!-- /#page-wrapper -->
 
@@ -121,7 +144,25 @@
         });
     });
     </script>
+    <script type="text/javascript">
 
+        // Stop click on last td in a data-toggle=modal
+        $("[data-toggle='modal'] td:last-child").on("click", function(event) {
+            $(this).preventDefault();
+            $(this).stopPropagation();
+        });
+
+        // On click, get html content from url and update the corresponding modal
+        $("[data-toggle='modal']").on("click", function(event) {
+            event.preventDefault();
+            var url = $(this).attr('data-url');
+            var modal_id = $(this).attr('data-target');
+            $.get(url, function(data) {
+                $(modal_id).html(data);
+            });
+        });
+
+    </script>
 </body>
 
 </html>

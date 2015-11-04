@@ -60,29 +60,29 @@
                                         <span class="input-group-addon"><i class="fa fa-circle-thin"></i></span>
                                         <select class="form-control" id="sel1" name="sel1">
                                             <?php if ($_GET['type'] == "Terre battue")
-							echo "<option selected=\"selected\">Terre battue</option>";						
+							echo "<option selected=\"selected\">Terre battue</option>";
 						else echo "<option>Terre battue</option>";
 					    ?>
                                             <?php if ($_GET['type'] == "Gazon")
-							echo "<option selected=\"selected\">Gazon</option>";						
+							echo "<option selected=\"selected\">Gazon</option>";
 						else echo "<option>Gazon</option>";
 					    ?>
                                             <?php if ($_GET['type'] == "Synthétique")
-							echo "<option selected=\"selected\">Synthétique</option>";						
+							echo "<option selected=\"selected\">Synthétique</option>";
 						else echo "<option>Synthétique</option>";
 					    ?>
                                         </select>
                                         <select class="form-control" id="sel2" name="sel2">
 					    <?php if ($_GET['etat'] == "Neuf")
-							echo "<option selected=\"selected\">Neuf</option>";						
+							echo "<option selected=\"selected\">Neuf</option>";
 						else echo "<option>Neuf</option>";
 					    ?>
                                             <?php if ($_GET['etat'] == "Passable")
-							echo "<option selected=\"selected\">Passable</option>";						
+							echo "<option selected=\"selected\">Passable</option>";
 						else echo "<option>Passable</option>";
 					    ?>
                                             <?php if ($_GET['etat'] == "Usé")
-							echo "<option selected=\"selected\">Usé</option>";						
+							echo "<option selected=\"selected\">Usé</option>";
 						else echo "<option>Usé</option>";
 					    ?>
                                         </select>
@@ -94,16 +94,16 @@
 				    <?php
 					$reponse = $db->query('SELECT *, Owner.ID as O_id FROM Personne, Owner WHERE Personne.ID = Owner.ID_Personne');
 					while ($donnes = $reponse->fetch_array())
-					{										
+					{
 						if ($_GET['O_id'] == $donnes['O_id']){
 							echo "<option value=".$donnes['O_id']." selected=\"selected\">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
-						}						
+						}
 						echo "<option value=".$donnes['O_id'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
 					}
-			 	    ?>	
+			 	    ?>
                                   </select>
                                 </div>
-				
+
 				<div class="form-group">
                                     <!--<label for="InputPrenom">Adresse</label>-->
                                     <div class="input-group">
@@ -119,7 +119,7 @@
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
                                     </div>
                                 </div>
-                                                                
+
                                 <input type="submit" name="submit" id="submit" value="Modifier" class="btn btn-info pull-right">
 
                             </div>
