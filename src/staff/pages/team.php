@@ -42,68 +42,58 @@
         ?>
 
 
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Créer une équipe</h1>
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Créer une équipe</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
                 </div>
-                <!-- /.col-lg-12 -->
-            </div>
 
 
                 <!-- Registration form - START -->
-                    <div class="row">
-                        <form role="form" method="Get" action="php/add-new-team.php">
-                            <div class="col-lg-6">                              
-                                <div class="form-group">
-                                  <label for="sel1"><span class="fa fa-user"></span> Premier joueur</label>
-                                  <select class="form-control" id="sel1" name="sel1">
-				    <?php
+                <div class="row">
+                    <form role="form" method="Get" action="php/add-new-team.php">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="sel1"><span class="fa fa-user"></span> Premier joueur</label>
+                                <select class="form-control" id="sel1" name="sel1">
+                                    <?php
 					$db = new BDD();
 					$reponse = $db->query('SELECT * FROM Personne ');
 					while ($donnes = $reponse->fetch_array())
 					{
 						echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
 					}
-			 	    ?>	
-                                    <!-- <option>propriétaire</option> -->
-                                  </select>
-                                </div>
+			 	    ?>
+                                        <!-- <option>propriétaire</option> -->
+                                </select>
+                            </div>
 
-                                <div class="form-group">
-                                  <label for="sel1"><span class="fa fa-user"></span> Second joueur</label>
-                                  <select class="form-control" id="sel2" name="sel2">
-				    <?php
+                            <div class="form-group">
+                                <label for="sel1"><span class="fa fa-user"></span> Second joueur</label>
+                                <select class="form-control" id="sel2" name="sel2">
+                                    <?php
 					$db = new BDD();
 					$reponse = $db->query('SELECT * FROM Personne ');
 					while ($donnes = $reponse->fetch_array())
 					{
 						echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
 					}
-			 	    ?>	
-                                  </select>
-                                </div>
-                                
-                                <input type="submit" name="submit" id="submit" value="Créer" class="btn btn-info pull-right">
+			 	    ?>
+                                </select>
+                            </div>
 
-                            </div>
-                        </form>
-                        <div class="col-lg-5 col-md-push-1">
-                            <div class="col-md-12">
-                                <div class="alert alert-success">
-                                    <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
-                                </div>
-                                <div class="alert alert-danger">
-                                    <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page inputs.</strong>
-                                </div>
-                            </div>
+                            <input type="submit" name="submit" id="submit" value="Créer" class="btn btn-info pull-right">
+
                         </div>
-                <!-- Registration form - END -->
+                    </form>
+                    <!-- Registration form - END -->
 
                 </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
+                <!-- /.row -->
+            </div>
+            <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->

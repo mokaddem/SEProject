@@ -41,48 +41,48 @@
         ?>
 
 
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Créer un tournois de knock-off</h1>
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Créer un tournois de knock-off</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
                 </div>
-                <!-- /.col-lg-12 -->
-            </div>
 
                 <!-- Registration form - START -->
-                     <div class="row">
-                        <form role="form">
-                            <div class="col-lg-3">
-                                <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
-                                
-								
-								<fieldset data-role="controlgroup" data-type="horizontal">
-								
-									<label for="male">Samedi</label>
-									<input type="radio" name="day"  value="saturday">
-									<label for="female">Dimanche</label>
-									<input type="radio" name="day"  value="sunday" checked>	
-								 </fieldset>
-								 <hr>
+                <div class="row">
+                    <form role="form">
+                        <div class="col-lg-3">
+                            <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
 
-								<div class="form-group">
-                                    <!--<label for="size">Size</label>-->
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-at"></i></span>
-                                        <input type="number" class="form-control" name="size" id="size" placeholder="Nombre d'équipes" min="2" step="2" value="<?php if(isset($_GET['size'])) { echo htmlentities($_GET['size']);}?>" required>
-                                    </div>
+
+                            <fieldset data-role="controlgroup" data-type="horizontal">
+
+                                <label for="male">Samedi</label>
+                                <input type="radio" name="day" value="saturday">
+                                <label for="female">Dimanche</label>
+                                <input type="radio" name="day" value="sunday" checked>
+                            </fieldset>
+                            <hr>
+
+                            <div class="form-group">
+                                <!--<label for="size">Size</label>-->
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-at"></i></span>
+                                    <input type="number" class="form-control" name="size" id="size" placeholder="Nombre d'équipes" min="2" step="2" value="<?php if(isset($_GET['size'])) { echo htmlentities($_GET['size']);}?>" required>
                                 </div>
-								
-								
-								<?php 
+                            </div>
+
+
+                            <?php 
 									if (isset($_GET['size'])){
 										$_size=$_GET['size'];
 										} else {
 										$_size=0;
 										}
 									?>
-									
-								<?php
+
+                                <?php
 								$i = 1;
 								//echo "<label for=\"sel1\"> Equipes </label>";
 								for (; $i <= $_size; $i++) {
@@ -104,12 +104,42 @@
 		                            }
 		                        }
 								?>
-								
-                                <input type="submit" name="submit" id="submit" value="Créer" class="btn btn-info pull-right">
 
+                                    <input type="submit" name="submit" id="submit" value="Créer" class="btn btn-info pull-right">
+
+                        </div>
+
+                        <?php
+                            $i = ceil(($i-1)/2);
+                            $matchNum = 1;
+                            $iter = 0;
+                            for ($k = $i; $k >= 1; $k = $k/2){
+	                    ?>
+                            <div class="col-lg-3" style="position: relative; top: 100px;">
+                                <?php for ($j = 1; $j <= $k; $j++) { ?>
+                                    <div class="form-group">
+                                        <label for="sel1"><span class="fa fa-users"></span> Match
+                                            <?=$matchNum?>
+                                        </label>
+                                        <select class="form-control" id="sel1">
+                                            <option>Terrain
+                                                <?=$matchNum?>
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <?php
+			                            $matchNum++;
+				                }
+                            ?>
                             </div>
-                            
                             <?php
+                                $iter++;
+				                $i = $i + $k/2;
+				            }
+			                ?>
+
+                                <?php
+                        /* BEURK
                             $i = ceil(($i-1)/2);
                             $matchNum = 1;
                             $iter = 0;
@@ -127,26 +157,15 @@
 				                echo "</div>";
 				                $iter++;
 				                $i = $i + $k/2;
-				            }
+				            }*/
 			                ?>
-                        </form>
-                        
-                        <div class="col-lg-3 col-md-push-1">
-                            <div class="col-md-12">
-                                <div class="alert alert-success">
-                                    <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
-                                </div>
-                                <div class="alert alert-danger">
-                                    <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page inputs.</strong>
-                                </div>
-                            </div>
-                        </div>
-                <!-- Registration form - END -->
+                    </form>
+                    <!-- Registration form - END -->
 
                 </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
+                <!-- /.row -->
+            </div>
+            <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->

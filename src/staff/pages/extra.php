@@ -41,34 +41,34 @@
         ?>
 
 
-        <div id="page-wrapper">
-            <div class="container">
-
-                <div class="page-header">
-                    <h1>Ajouter un extra</h1>
-                </div>
-
-                <!-- Registration form - START -->
+            <div id="page-wrapper">
                 <div class="container">
-                    <div class="row">
-                        <form role="form">
-                            <div class="col-lg-6">
-                                <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
 
-                                <div class="form-group">
-                                    <!--<label for="InputNom">Nom</label>-->
-                                    <input type="text" class="form-control" Nom="InputNom" id="InputNom" placeholder="Nom" required>
-                                </div>
+                    <div class="page-header">
+                        <h1>Ajouter un extra</h1>
+                    </div>
 
-                                <div class="form-group">
-                                    <!--<label for="InputPrice">Prix</label>-->
-                                    <div class="input-group">
-                                        <input type="price" class="form-control" id="InputPrice" name="InputPrice" placeholder="Prix" required>
-                                        <span class="input-group-addon">€</span>
+                    <!-- Registration form - START -->
+                    <div class="container">
+                        <div class="row">
+                            <form role="form">
+                                <div class="col-lg-6">
+                                    <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
+
+                                    <div class="form-group">
+                                        <!--<label for="InputNom">Nom</label>-->
+                                        <input type="text" class="form-control" Nom="InputNom" id="InputNom" placeholder="Nom" required>
                                     </div>
-                                </div>
-                                
-                                <!-- Number = 0 --!>
+
+                                    <div class="form-group">
+                                        <!--<label for="InputPrice">Prix</label>-->
+                                        <div class="input-group">
+                                            <input type="price" class="form-control" id="InputPrice" name="InputPrice" placeholder="Prix" required>
+                                            <span class="input-group-addon">€</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Number = 0 --!>
                                 
                                 <div class="form-group">
                                     <!--<label for="InputMessage">Message</label>-->
@@ -79,27 +79,15 @@
                                 </div>
 
                                 <input type="submit" name="edit-submit" id="edit-submit" value="Valider" class="btn btn-info pull-right">
-
-                            </div>
-                        </form>
-                        <div class="col-lg-5 col-md-push-1">
-                            <div class="col-md-12">
-                                <div class="alert alert-success">
-                                    <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
-                                </div>
-                                <div class="alert alert-danger">
-                                    <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page inputs.</strong>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
-                </div>
-                <!-- Registration form - END -->
+                    <!-- Registration form - END -->
 
                 </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
+                <!-- /.row -->
+            </div>
+            <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->

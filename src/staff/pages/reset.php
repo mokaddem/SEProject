@@ -41,31 +41,31 @@
         ?>
 
 
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Réinitialiser le tournoi</h1>
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Réinitialiser le tournoi</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
                 </div>
-                <!-- /.col-lg-12 -->
-            </div>
 
                 <!-- Registration form - START -->
-                     <div class="row">
-                        <form role="form">
-                            <div class="col-lg-6">
-								
-                                <label>Attention, le fait de réinitialiser le tournoi va supprimer toutes les poules et le Knock-Off. Cette action est irréversible.</label>
-                                
-                                <input type="submit" name="submit" id="submit" value="J'ai pris connaissances des risques. Je lève la main et dis 'Je le jure'." class="btn btn-info pull-center">
+                <div class="row">
+                    <form role="form">
+                        <div class="col-lg-6">
 
-                            </div>
-                        </form>
-                <!-- Registration form - END -->
+                            <label>Attention, le fait de réinitialiser le tournoi va supprimer toutes les poules et le Knock-Off. Cette action est irréversible.</label>
+
+                            <input type="submit" name="submit" id="submit" value="J'ai pris connaissances des risques. Je lève la main et dis 'Je le jure'." class="btn btn-danger pull-center">
+
+                        </div>
+                    </form>
+                    <!-- Registration form - END -->
 
                 </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
+                <!-- /.row -->
+            </div>
+            <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->

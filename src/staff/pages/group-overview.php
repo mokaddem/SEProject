@@ -97,7 +97,7 @@
                 </div>
                 <!-- /.row -->
 
-                <input type="submit" name="submit" id="submit" value="Supprimer cette poule" class="btn btn-info pull-left">
+                <input type="submit" name="submit" id="submit" value="Supprimer cette poule" class="btn btn-danger pull-left">
 
             </div>
             <!-- /#page-wrapper -->
