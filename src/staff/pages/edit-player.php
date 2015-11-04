@@ -46,14 +46,12 @@
         ?>
 
             <div id="page-wrapper">
-                <div class="container">
-
-                    <div class="page-header">
-                        <h1>Modifier un participant</h1>
+                <div class="row">
+                    <div class="col-lg-12 noDeco">
+                            <h1 class="page-header"><a href="list-player.php"> Liste des participants</a> > Modifier</h1>
+                        </div>
                     </div>
-
                     <!-- Registration form - START -->
-                    <div class="container">
                         <div class="row">
                             <form role="form">
                                 <div class="col-lg-6">
