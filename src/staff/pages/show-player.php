@@ -35,52 +35,72 @@
 <body>
 
 
-<?php
+    <?php
 include_once('php/BDD.php');
 
 $db = new BDD();
 $reponse = $db->query('SELECT * FROM Personne pers, Player play WHERE '. $_GET['id']. ' = pers.ID');
 $donnes = $reponse->fetch_array();
 ?>
-<div id="Antoine" class="col-lg-offset-5 col-lg-3">
-    <!-- Modal content-->
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Informations</h4>
-        </div>
-        <div class="modal-body">
-            <div class="container">
-                <p>Nom: <?=$donnes['LastName']?></p>
-                <p>Prénom: <?=$donnes['FirstName']?></p>
-                <p>E-mail: <?=$donnes['Mail']?></p>
-                <p>Née le: <?=$donnes['BirthDate']?></p>
-                <p>Rue: <?=$donnes['Rue']?></p>
-                <p>Ville: <?=$donnes['Ville']?></p>
-                <p>Code Postal: <?=$donnes['ZIPCode']?></p>
-                <p>Tel: <?=$donnes['PhoneNumber']?></p>
-                <p>Mobile: <?=$donnes['GSMNumber']?></p>
+        <div id="Antoine" class="col-lg-offset-5 col-lg-3">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Informations</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <p>Nom:
+                            <?=$donnes['LastName']?>
+                        </p>
+                        <p>Prénom:
+                            <?=$donnes['FirstName']?>
+                        </p>
+                        <p>E-mail:
+                            <?=$donnes['Mail']?>
+                        </p>
+                        <p>Née le:
+                            <?=$donnes['BirthDate']?>
+                        </p>
+                        <p>Adresse:
+                            <?=$donnes['Rue']?>
+                        </p>
+                        <p>Ville:
+                            <?=$donnes['Ville']?>
+                        </p>
+                        <p>Code Postal:
+                            <?=$donnes['ZIPCode']?>
+                        </p>
+                        <p>Tel:
+                            <?=$donnes['PhoneNumber']?>
+                        </p>
+                        <p>Mobile:
+                            <?=$donnes['GSMNumber']?>
+                        </p>
 
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-danger" href="php/delete-player.php?id=<?=$donnes['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce participant ?');">Supprimer</a>
+                    <a class="btn btn-success" href="edit-player.php?id=<?=$donnes['ID']?>">Modifier</a>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Retour</button>
+                </div>
             </div>
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-    </div>
-</div>
-<!-- jQuery -->
-<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <!-- jQuery -->
+        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-<!-- Metis Menu Plugin JavaScript -->
-<script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
-<!-- Custom Theme JavaScript -->
-<script src="../dist/js/sb-admin-2.js"></script>
+        <!-- Custom Theme JavaScript -->
+        <script src="../dist/js/sb-admin-2.js"></script>
 
-<?php $reponse->free(); ?>
+        <?php $reponse->free(); ?>
 </body>
 
 </html>
