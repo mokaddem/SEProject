@@ -1,6 +1,10 @@
 <?php
 include_once('php/BDD.php');
-dbAndPrint();
+
+function getMatchs() {
+    $db = new BDD();
+    return $db->query('SELECT * FROM `Match`');
+}
 
 function dbAndPrint() {
     $db = new BDD();

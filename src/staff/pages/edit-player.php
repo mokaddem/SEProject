@@ -182,26 +182,16 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#InputNom').val('<?php echo $donnes['
-                LastName ']; ?>');
-            $('#InputPrenom').val('<?php echo $donnes['
-                FirstName ']; ?>');
-            $('#InputBirth').val('<?php echo $donnes['
-                BirthDate ']; ?>');
-            $('#InputAdresse').val('<?php echo $donnes['
-                Rue ']; ?>');
-            $('#InputBat').val('<?php echo $donnes['
-                Ville ']; ?>');
-            $('#InputCP').val('<?php echo $donnes['
-                ZIPCode ']; ?>');
-            $('#InputLoc').val('<?php echo $donnes['
-                Ville ']; ?>');
-            $('#InputEmailFirst').val('<?php echo $donnes['
-                Mail ']; ?>');
-            $('#fixnumber').val('<?php echo $donnes['
-                PhoneNumber ']; ?>');
-            $('#gsmnumber').val('<?php echo $donnes['
-                GSMNumber ']; ?>');
+            $('#InputNom').val('<?php echo $donnes["LastName"]; ?>');
+            $('#InputPrenom').val('<?php echo $donnes["FirstName"]; ?>');
+            $('#InputBirth').val('<?php echo $donnes["BirthDate"]; ?>');
+            $('#InputAdresse').val('<?php echo $donnes["Rue"]; ?>');
+            $('#InputBat').val('<?php echo $donnes["Ville"]; ?>');
+            $('#InputCP').val('<?php echo $donnes["ZIPCode"]; ?>');
+            $('#InputLoc').val('<?php echo $donnes["Ville"]; ?>');
+            $('#InputEmailFirst').val('<?php echo $donnes["Mail"]; ?>');
+            $('#fixnumber').val('<?php echo $donnes["PhoneNumber"]; ?>');
+            $('#gsmnumber').val('<?php echo $donnes["GSMNumber"]; ?>');
         });
     </script>
     <?php $reponse->free(); ?>
