@@ -65,15 +65,15 @@
 
                 <div class="form-group">
                     <label for="sel1"><span class="fa fa-edit"></span> Score [Noms joueurs équipe 1]:</label>
-                    <input class="form-control" id="sel1" placeholder="ex: 636" required data-validation-required-message="Veuillez entrer le score de la première équipe."></input>
+                    <input class="form-control" id="sel1" placeholder="ex: 636" required data-validation-required-message="Veuillez entrer le score de la première équipe." />
                     <label for="sel1"><span class="fa fa-edit"></span> Score [Noms joueurs équipe 2]:</label>
-                    <input class="form-control" id="sel1" placeholder="ex: 164" required data-validation-required-message="Veuillez entrer le score de la seconde équipe."></input>
+                    <input class="form-control" id="sel1" placeholder="ex: 164" required data-validation-required-message="Veuillez entrer le score de la seconde équipe." />
                 </div>
 
 
                 <!-- /.row -->
 
-                <input type="submit" name="submit" id="submit" value="Enregistrer" class="btn btn-info pull-left">
+                <input type="submit" name="submit" id="submit" value="Enregistrer" class="btn btn-success pull-left">
 
             </div>
             <!-- /#page-wrapper -->

@@ -52,8 +52,8 @@
                 <!-- Registration form - START -->
                 <div class="row">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="knock-off-results-sam.php">Samedi</a></li>
-                        <li><a href="knock-off-results-dim.php">Dimanche</a></li>
+                        <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="knock-off-results.php?jour=sam">Samedi</a></li>
+                        <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="knock-off-results.php?jour=dim">Dimanche</a></li>
                     </ul>
                     <!-- Registration form - END -->
 

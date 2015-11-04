@@ -80,11 +80,38 @@
 										} else {
 										$_size=0;
 										}
-									?>
+								
+								//echo "<label for=\"sel1\"> Equipes </label> <i class="fa fa-sort-numeric-asc"></i>";
+                        for ($i = 1; $i <=$_size; $i++) {
+                            if ($i % 2 != 0){ ?>
+                                <div class="form-group">
+                                    <label for="sel1"><span class="fa fa-users"></span> Match
+                                        <?=ceil($i/2)?>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control" id="sel1">
+                                        <option>Equipe
+                                            <?=$i?>
+                                        </option>
+                                    </select>
+                                </div>
+                                <?php } else{ ?>
+                                    <div class="form-group">
+                                        <select class="form-control" id="sel1">
+                                            <option>Equipe
+                                                <?=$i?>
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <?php
+                                }
+		                        }
+								?>
 
-                                <?php
+                                        <?php /* BEURK
 								$i = 1;
-								//echo "<label for=\"sel1\"> Equipes </label>";
+								//echo "<label for=\"sel1\"> Equipes </label> <i class="fa fa-sort-numeric-asc"></i>";
 								for (; $i <= $_size; $i++) {
 									if ($i % 2 != 0){
 										echo "<div class=\"form-group\">";
@@ -102,10 +129,10 @@
 			                              echo "</select>";
 			                            echo "</div>";
 		                            }
-		                        }
+		                        }*/
 								?>
 
-                                    <input type="submit" name="submit" id="submit" value="Créer" class="btn btn-info pull-right">
+                                            <input type="submit" name="submit" id="submit" value="Créer" class="btn btn-info pull-right">
 
                         </div>
 
