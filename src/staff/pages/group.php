@@ -41,42 +41,42 @@
         ?>
 
 
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Créer une poule</h1>
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Créer une poule</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
                 </div>
-                <!-- /.col-lg-12 -->
-            </div>
 
                 <!-- Registration form - START -->
-                     <div class="row">
-                        <form role="form">
-                            <div class="col-lg-4">
-                                <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
-                                <script javascript>
-                                	function setDay(newDay) {
-    									$_day = newDay
-									}
-                                </script>
-								
-								<fieldset data-role="controlgroup" data-type="horizontal">
-								
-									<label for="saturday">Samedi</label>
-									<input type="radio" name="day"  value="saturday" onClick="setDay("saturday")">
-									<label for="sunday">Dimanche</label>
-									<input type="radio" name="day"  value="sunday" onClick="setDay("sunday")">	
-								 </fieldset>
-								 <hr>
-								
-								<div class="form-group">
-                                  <label for="sel1"><span class="fa fa-users"></span> Terrain</label>
-                                  <select class="form-control" id="sel1">
+                <div class="row">
+                    <form role="form">
+                        <div class="col-lg-4">
+                            <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
+                            <script javascript>
+                                function setDay(newDay) {
+                                    $_day = newDay
+                                }
+                            </script>
+
+                            <fieldset data-role="controlgroup" data-type="horizontal">
+
+                                <label for="saturday">Samedi</label>
+                                <input type="radio" name="day" value="saturday" onClick="setDay(" saturday ")">
+                                <label for="sunday">Dimanche</label>
+                                <input type="radio" name="day" value="sunday" onClick="setDay(" sunday ")">
+                            </fieldset>
+                            <hr>
+
+                            <div class="form-group">
+                                <label for="sel1"><span class="fa fa-users"></span> Terrain</label>
+                                <select class="form-control" id="sel1">
                                     <option>[Terrains disponibles]</option>
-                                  </select>
-                                </div>
-                                
-								<?php
+                                </select>
+                            </div>
+
+                            <?php
 									
 								if ($_day == "saturday"){ 
 									$groupNum = 5;
@@ -97,28 +97,18 @@
 		                            echo "</div>";
 		                        }
 								?>
-								
-								
+
+
                                 <input type="submit" name="submit" id="submit" value="Créer" class="btn btn-info pull-right">
 
-                            </div>
-                        </form>
-                        <div class="col-lg-5 col-md-push-1">
-                            <div class="col-md-12">
-                                <div class="alert alert-success">
-                                    <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
-                                </div>
-                                <div class="alert alert-danger">
-                                    <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page inputs.</strong>
-                                </div>
-                            </div>
                         </div>
-                <!-- Registration form - END -->
+                    </form>
+                    <!-- Registration form - END -->
 
                 </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
+                <!-- /.row -->
+            </div>
+            <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->

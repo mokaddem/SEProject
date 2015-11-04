@@ -42,104 +42,105 @@
         ?>
 
 
-        <div id="page-wrapper">
-            <div class="container">
-
-                <div class="page-header">
-                    <h1>Ajouter un propriétaire</h1>
-                </div>
-
-                <!-- Registration form - START -->
+            <div id="page-wrapper">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                        <form role="form" method="Get" action="php/add-new-owner.php">
-                            <div class="col-lg-9">
-                                <div class="form-group">
-                                  <!--<label for="sel1">Titre:</label>-->
-                                  <select class="form-control" id="title" name="title">
-                                    <option value="1">M.</option>
-                                    <option value="2">Mme.</option>
-                                  </select>
-                                </div>
 
-                                <div class="form-group">
-                                    <!--<label for="InputNom">Nom</label>-->
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                        <input type="text" class="form-control" Nom="InputNom" id="InputNom" name="InputNom" placeholder="Nom" required>
-                                        <input type="text" class="form-control" Prenom="InputPrenom" id="InputPrenom" name="InputPrenom" placeholder="Prenom" required>
-                                        <span>Née le </span>
-                                        <select name='birth_day' id='birth_day1'>
-                                            <option value="na">Jour</option>
-                                            <?php
+                    <div class="page-header">
+                        <h1>Ajouter un propriétaire</h1>
+                    </div>
+
+                    <!-- Registration form - START -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <form role="form" method="Get" action="php/add-new-owner.php">
+                                    <div class="col-lg-9">
+                                        <div class="form-group">
+                                            <!--<label for="sel1">Titre:</label>-->
+                                            <select class="form-control" id="title" name="title">
+                                                <option value="1">M.</option>
+                                                <option value="2">Mme.</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <!--<label for="InputNom">Nom</label>-->
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                <input type="text" class="form-control" Nom="InputNom" id="InputNom" name="InputNom" placeholder="Nom" required>
+                                                <input type="text" class="form-control" Prenom="InputPrenom" id="InputPrenom" name="InputPrenom" placeholder="Prenom" required>
+                                                <span>Née le </span>
+                                                <select name='birth_day' id='birth_day1'>
+                                                    <option value="na">Jour</option>
+                                                    <?php
                                                   for ($i = 1; $i <= 31; $i++) {
                                                         echo "<option>$i</option>\n";
                                                       }
                                         
-                                                ?></select>
-                                            <select name='birth_month' id='birth_month1'>
-                                                <option value="na">Mois</option>
-                                                <option value="1">Janvier</option>
-                                                <option value="2">Fevrier</option>
-                                                <option value="3">Mars</option>
-                                                <option value="4">Avril</option>
-                                                <option value="5">Mai</option>
-                                                <option value="6">Juin</option>
-                                                <option value="7">Juillet</option>
-                                                <option value="8">Aout</option>
-                                                <option value="9">Septembre</option>
-                                                <option value="1°">Octobre</option>
-                                                <option value="11">Novembre</option>
-                                                <option value="12">Decembre</option>
-                                            </select>
-                                            <select name='birth_year' id='birth_year1'>
-                                                <option value="na">Année</option>
-                                            <?php
+                                                ?>
+                                                </select>
+                                                <select name='birth_month' id='birth_month1'>
+                                                    <option value="na">Mois</option>
+                                                    <option value="1">Janvier</option>
+                                                    <option value="2">Fevrier</option>
+                                                    <option value="3">Mars</option>
+                                                    <option value="4">Avril</option>
+                                                    <option value="5">Mai</option>
+                                                    <option value="6">Juin</option>
+                                                    <option value="7">Juillet</option>
+                                                    <option value="8">Aout</option>
+                                                    <option value="9">Septembre</option>
+                                                    <option value="1°">Octobre</option>
+                                                    <option value="11">Novembre</option>
+                                                    <option value="12">Decembre</option>
+                                                </select>
+                                                <select name='birth_year' id='birth_year1'>
+                                                    <option value="na">Année</option>
+                                                    <?php
                                                   for ($i = date('Y'); $i >= 1900; $i--) {
                                                     echo "<option>$i</option>\n";
                                                   }
                                             ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <!--<label for="InputPrenom">Adresse</label>-->
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                        <input type="text" class="form-control" id="InputAdresse" name="InputAdresse" placeholder="Adresse" required>
-                                        <input type="text" class="form-control" id="InputBat" name="InputBat" placeholder="Numero - Batiment">
-                                        <input type="text" class="form-control" id="InputCP" name="InputCP" placeholder="Code Postal" required>
-                                        <input type="text" class="form-control" id="InputLoc" name="InputLoc" placeholder="Localité">
-                                    </div>
-                                </div>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <!--<label for="InputPrenom">Adresse</label>-->
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                                <input type="text" class="form-control" id="InputAdresse" name="InputAdresse" placeholder="Adresse" required>
+                                                <input type="text" class="form-control" id="InputBat" name="InputBat" placeholder="Numero - Batiment">
+                                                <input type="text" class="form-control" id="InputCP" name="InputCP" placeholder="Code Postal" required>
+                                                <input type="text" class="form-control" id="InputLoc" name="InputLoc" placeholder="Localité">
+                                            </div>
+                                        </div>
 
-                                <div class="form-group">
-                                    <!--<label for="InputEmail">Email</label>-->
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-at"></i></span>
-                                        <input type="email" class="form-control" id="InputEmailFirst" name="InputEmailFirst" placeholder="Email" required>
+                                        <div class="form-group">
+                                            <!--<label for="InputEmail">Email</label>-->
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-at"></i></span>
+                                                <input type="email" class="form-control" id="InputEmailFirst" name="InputEmailFirst" placeholder="Email" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <!--<label for="InputPhone">Numéro de téléphone</label>-->
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                                <input type="text" class="form-control bfh-phone" placeholder="+33 fixe" id="InputFixe" name="InputFixe">
+                                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                                <input type="text" class="form-control bfh-phone" placeholder="+33 mobile" id="InputMob" name="InputMob" required>
+                                            </div>
+                                        </div>
+
+                                        <input type="submit" name="submit" id="submit" value="Valider" class="btn btn-info pull-right">
+
                                     </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <!--<label for="InputPhone">Numéro de téléphone</label>-->
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                        <input type="text" class="form-control bfh-phone"  placeholder="+33 fixe" id="InputFixe" name="InputFixe">
-                                        <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                        <input type="text" class="form-control bfh-phone"  placeholder="+33 mobile" id="InputMob" name="InputMob" required>
-                                    </div>
-                                </div>
-
-                                <input type="submit" name="submit" id="submit" value="Valider" class="btn btn-info pull-right">
-
+                                </form>
                             </div>
-                        </form>
-                        </div>
-                        
-                    
-                        <!--<div class="col-lg-5 col-md-push-1">
+
+
+                            <!--<div class="col-lg-5 col-md-push-1">
                             <div class="col-md-12">
                                 <div class="alert alert-success">
                                     <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
@@ -149,18 +150,19 @@
                                 </div>
                             </div>
                         </div>-->
+                        </div>
                     </div>
-                </div>
-                <!-- Registration form - END -->
+                    <!-- Registration form - END -->
 
                 </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
+                <!-- /.row -->
+            </div>
+            <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
-    <br/><br/>
+    <br/>
+    <br/>
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 

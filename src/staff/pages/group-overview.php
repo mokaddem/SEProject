@@ -45,62 +45,62 @@
         <?php            
             include("./html/header.html");
         ?>
-        
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Poules - Vue d'ensemble</h1>
+
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Poules - Vue d'ensemble</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
                 </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
+                <!-- /.row -->
 
-            <div class="form-group">
-                          <label for="sel1"><span class="fa fa-dot-circle-o"></span> Choix de la poule</label>
-                          <select class="form-control" id="sel1">
-                            <option>[liste des poules]</option>
-                            <!-- <option>propriétaire</option> -->
-                          </select>
-                        </div>
+                <div class="form-group">
+                    <label for="sel1"><span class="fa fa-dot-circle-o"></span> Choix de la poule</label>
+                    <select class="form-control" id="sel1">
+                        <option>[liste des poules]</option>
+                        <!-- <option>propriétaire</option> -->
+                    </select>
+                </div>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        
-                        <!-- <div class="panel-heading">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+
+                            <!-- <div class="panel-heading">
                             DataTables Advanced Tables
                         </div> -->
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="dataTable_wrapper">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            <th>ID Equipe</th>
-                                            <th>Nb. Victoires</th>
-                                            <th>Nb. Egalités</th>
-                                            <th>Nb. Défaites</th>
-                                            <th>Points</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php //require_once("./php/inc/list-team.inc"); ?>
-                                    </tbody>
-                                </table>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="dataTable_wrapper">
+                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                        <thead>
+                                            <tr>
+                                                <th>ID Equipe</th>
+                                                <th>Nb. Victoires</th>
+                                                <th>Nb. Egalités</th>
+                                                <th>Nb. Défaites</th>
+                                                <th>Points</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php //require_once("./php/inc/list-team.inc"); ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
+                            <!-- /.panel-body -->
                         </div>
-                        <!-- /.panel-body -->
+                        <!-- /.panel -->
                     </div>
-                    <!-- /.panel -->
+                    <!-- /.col-lg-6 -->
                 </div>
-                <!-- /.col-lg-6 -->
+                <!-- /.row -->
+
+                <input type="submit" name="submit" id="submit" value="Supprimer cette poule" class="btn btn-danger pull-left">
+
             </div>
-            <!-- /.row -->
-            
-            <input type="submit" name="submit" id="submit" value="Supprimer cette poule" class="btn btn-info pull-left">
-            
-        </div>
-        <!-- /#page-wrapper -->
+            <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
@@ -123,11 +123,11 @@
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
+        $(document).ready(function () {
+            $('#dataTables-example').DataTable({
                 responsive: true
+            });
         });
-    });
     </script>
 
 </body>

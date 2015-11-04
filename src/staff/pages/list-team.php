@@ -45,50 +45,50 @@
         <?php            
             include("./html/header.html");
         ?>
-        
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Liste des équipes</h1>
+
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Liste des équipes</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
                 </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <!-- <div class="panel-heading">
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <!-- <div class="panel-heading">
                             DataTables Advanced Tables
                         </div> -->
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="dataTable_wrapper">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Premier joueur</th>
-                                            <th>Second joueur</th>
-                                            <th>Catégorie</th>
-                                            <th>Créé le</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php require_once("./php/inc/list-team.inc"); ?>
-                                    </tbody>
-                                </table>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="dataTable_wrapper">
+                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Premier joueur</th>
+                                                <th>Second joueur</th>
+                                                <th>Catégorie</th>
+                                                <th>Créé le</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php require_once("./php/inc/list-team.inc"); ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
+                            <!-- /.panel-body -->
                         </div>
-                        <!-- /.panel-body -->
+                        <!-- /.panel -->
                     </div>
-                    <!-- /.panel -->
+                    <!-- /.col-lg-6 -->
                 </div>
-                <!-- /.col-lg-6 -->
+                <!-- /.row -->
             </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
+            <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
@@ -111,11 +111,11 @@
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
+        $(document).ready(function () {
+            $('#dataTables-example').DataTable({
                 responsive: true
+            });
         });
-    });
     </script>
 
 </body>

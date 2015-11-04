@@ -46,54 +46,101 @@
             include("./html/header.html");
         ?>
 
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Liste des matchs</h1>
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Liste des matchs</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
                 </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <!-- <div class="panel-heading">
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <!-- <div class="panel-heading">
                             DataTables Advanced Tables
                         </div> -->
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="dataTable_wrapper">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Première équipe</th>
-                                            <th>Seconde équipe</th>
-                                            <th>Date du match</th>
-                                            <th>Heure du match</th>
-                                            <th>Catégorie</th>
-                                            <th>Créé le</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="dataTable_wrapper">
+                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Première équipe</th>
+                                                <th>Seconde équipe</th>
+                                                <th>Date du match</th>
+                                                <th>Heure du match</th>
+                                                <th>Catégorie</th>
+                                                <th>Créé le</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
                                             <?php require_once("./php/inc/list-match.inc"); ?>
-                                    </tbody>
-                                </table>
+                                                <?php foreach (getMatchs() as $match){ ?>
+                                                    <tr class="odd gradeX">
+                                                        <td data-toggle="modal" data-target="#myModal<?=$match['id']?>" data-url="./show-match.php?id=<?=$match['id']?>">
+                                                            <?=$match['id']?>
+                                                        </td>
+                                                        <td data-toggle="modal" data-target="#myModal<?=$match['id']?>" data-url="./show-match.php?id=<?=$match['id']?>">
+                                                            <?=$match['ID_Equipe1']?>
+                                                        </td>
+                                                        <td data-toggle="modal" data-target="#myModal<?=$match['id']?>" data-url="./show-match.php?id=<?=$match['id']?>">
+                                                            <?=$match['ID_Equipe2']?>
+                                                        </td>
+                                                        <td class="center" data-toggle="modal" data-target="#myModal<?=$match['id']?>" data-url="./show-match.php?id=<?=$match['id']?>">
+                                                            <?=$match['date']?>
+                                                        </td>
+                                                        <td data-toggle="modal" data-target="#myModal<?=$match['id']?>" data-url="./show-match.php?id=<?=$match['id']?>">1</td>
+                                                        <td data-toggle="modal" data-target="#myModal<?=$match['id']?>" data-url="./show-match.php?id=<?=$match['id']?>">2</td>
+                                                        <td data-toggle="modal" data-target="#myModal<?=$match['id']?>" data-url="./show-match.php?id=<?=$match['id']?>">3</td>
+                                                        <td>
+                                                            <a href="./edit-match.php?id=<?=$match['id']?>"><i class="fa fa-edit fa-fw"></i></a>
+                                                            <a href="php/delete-match.php?id=<?=$match['id']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce participant ?');"><i class="fa fa-trash-o"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    <?php } ?>
+
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
+                            <!-- /.panel-body -->
                         </div>
-                        <!-- /.panel-body -->
+                        <!-- /.panel -->
                     </div>
-                    <!-- /.panel -->
+                    <!-- /.col-lg-6 -->
                 </div>
-                <!-- /.col-lg-6 -->
+                <!-- /.row -->
+                <!-- Modal -->
+                <?php foreach (getMatchs() as $match){ ?>
+                    <div id="myModal<?=$match['id']?>" class="modal fade" role="dialog"></div>
+                    <?php } ?>
+
+
             </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
+            <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
+    <script type="text/javascript">
+        // Stop click on last td in a data-toggle=modal
+        $("[data-toggle='modal'] td:last-child").on("click", function (event) {
+            $(this).preventDefault();
+            $(this).stopPropagation();
+        });
+
+        // On click, get html content from url and update the corresponding modal
+        $("[data-toggle='modal']").on("click", function (event) {
+            event.preventDefault();
+            var url = $(this).attr('data-url');
+            var modal_id = $(this).attr('data-target');
+            $.get(url, function (data) {
+                $(modal_id).html(data);
+            });
+        });
+    </script>
 
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
@@ -113,11 +160,11 @@
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
+        $(document).ready(function () {
+            $('#dataTables-example').DataTable({
                 responsive: true
+            });
         });
-    });
     </script>
 
 </body>
