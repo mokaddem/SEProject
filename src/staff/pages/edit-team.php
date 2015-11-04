@@ -88,7 +88,8 @@
 			 	    ?>	
                                   </select>
                                 </div>
-                                
+
+                                <a class="btn btn-info" href="list-team.php">Retour</a>
                                 <input type="submit" name="submit" id="submit" value="Sauvegarder" class="btn btn-success pull-right">
 
                             </div>
