@@ -120,7 +120,8 @@
                                     </div>
                                 </div>
 
-                                <input type="submit" name="submit" id="submit" value="Modifier" class="btn btn-info pull-right">
+                                <a class="btn btn-info" href="list-court.php">Retour</a>
+                                <input type="submit" name="submit" id="submit" value="Sauvegarder" class="btn btn-success pull-right">
 
                             </div>
                         </form>

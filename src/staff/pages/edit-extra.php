@@ -85,7 +85,8 @@
                                     </div>
                                 </div>
 
-                                <input type="submit" name="edit-submit" id="edit-submit" value="Modifier" class="btn btn-info pull-right">
+                                <a class="btn btn-info" href="list-extras.php">Retour</a>
+                                <input type="submit" name="edit-submit" id="edit-submit" value="Sauvegarder" class="btn btn-success pull-right">
 
                             </div>
                         </form>

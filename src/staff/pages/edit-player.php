@@ -151,7 +151,7 @@
                                     </div>
 
                                     <a class="btn btn-info" href="list-player.php">Retour</a>
-                                    <input type="submit" name="edit-submit" id="edit-submit" value="Modifier" class="btn btn-success pull-right">
+                                    <input type="submit" name="edit-submit" id="edit-submit" value="Sauvegarder" class="btn btn-success pull-right">
                                     <br/>
                                     <br/>
                                 </div>

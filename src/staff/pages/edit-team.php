@@ -89,7 +89,7 @@
                                   </select>
                                 </div>
                                 
-                                <input type="submit" name="submit" id="submit" value="Créer" class="btn btn-info pull-right">
+                                <input type="submit" name="submit" id="submit" value="Sauvegarder" class="btn btn-success pull-right">
 
                             </div>
                         </form>

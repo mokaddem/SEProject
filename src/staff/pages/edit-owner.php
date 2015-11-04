@@ -153,7 +153,8 @@
                                     </div>
                                 </div>
 
-                                <input type="submit" name="submit" id="submit" value="Valider" class="btn btn-info pull-right">
+                                <a class="btn btn-info" href="list-owner.php">Retour</a>
+                                <input type="submit" name="submit" id="submit" value="Sauvegarder" class="btn btn-info pull-right">
 
                             </div>
                         </form>
