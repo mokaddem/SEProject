@@ -45,7 +45,7 @@
 
 	$req->execute();
 	
-	header("Location: /staff/pages/list-owner.php");
+	header("Location: ../list-owner.php");
 
 
 	
