@@ -1,4 +1,4 @@
-<?php require_once("./php/inc/list-player.inc");
+<?php require_once("./php/inc/list-function.inc");
 ?>
     <!DOCTYPE html>
     <html lang="en">

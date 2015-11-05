@@ -35,9 +35,8 @@
 <body>
 
 
-    <?php
-include_once('php/BDD.php');
-require_once('php/inc/list-match.inc');
+<?php
+require_once('php/inc/list-function.inc');
 $db = new BDD();
 
 //$reponse = $db->query('SELECT * FROM `Match` match WHERE '. $_GET['id']. ' = match.ID');

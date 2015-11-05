@@ -1,3 +1,5 @@
+<?php require_once("./php/inc/list-function.inc");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -73,9 +75,8 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php require_once("./php/inc/list-owner.inc");
-                                    foreach (getOwners() as $owner){ ?>
-                                        <tr class="odd gradeX">
+                                    <?php foreach (getOwners() as $owner){ ?>
+                                    <tr class="odd gradeX">
                                             <td data-toggle="modal" data-target="#myModal<?=$owner['ID']?>" data-url="./show-owner.php?id=<?=$owner['ID']?>">
                                                 <?=$owner['ID']?>
                                             </td>

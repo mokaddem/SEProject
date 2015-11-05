@@ -1,3 +1,5 @@
+<?php require_once("./php/inc/list-function.inc");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -74,7 +76,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php require_once("./php/inc/list-extras.inc"); ?>
                                         <?php foreach (getExtras() as $extra){ ?>
                                             <tr class="odd gradeX">
                                                 <td data-toggle="modal" data-target="#myModal<?=$extra['ID']?>" data-url="./show-extra.php?id=<?=$extra['ID']?>">

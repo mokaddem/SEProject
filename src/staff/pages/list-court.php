@@ -1,3 +1,5 @@
+<?php require_once("./php/inc/list-function.inc");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,8 +81,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php require_once("./php/inc/list-court.inc");
-                                        ?>
                                         <?php foreach (getCourts() as $court){ ?>
                                             <tr class="odd gradeX">
                                                 <td data-toggle="modal" data-target="#myModal<?=$court['ID']?>" data-url="./show-court.php?id=<?=$court['ID']?>"><?=$court['ID']?></td>
