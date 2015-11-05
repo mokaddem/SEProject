@@ -1,5 +1,7 @@
 <?php
 	include_once('BDD.php');
+    require_once('add-new-history.php');
+
 //	$db = new BDD();
 
 	$database_host = '127.0.0.1';
@@ -44,6 +46,8 @@
 	$req->bind_param("iii", $ID, $ID_personne, $ID_staff);
 
 	$req->execute();
+
+    addHistory(1, 1, "Propriétaire", "Ajout");
 	
 	header("Location: ../list-owner.php");
 
