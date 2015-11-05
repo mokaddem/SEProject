@@ -45,7 +45,7 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12 noDeco">
-                        <h1 class="page-header"><a href="list-player.php"> Liste des équipes</a> > Modifier</h1>
+                        <h1 class="page-header"><a href="list-team.php"> Liste des équipes</a> > Modifier</h1>
                     </div>
                 </div>
 
