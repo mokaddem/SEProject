@@ -1,5 +1,9 @@
+<?php require_once("./php/inc/list-history.inc");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 
 <head>
 
@@ -67,12 +71,34 @@
                                                     <th>ID</th>
                                                     <th>ID Admin</th>
                                                     <th>ID Entité modifiée</th>
+                                                    <th>Type Entité</th>
                                                     <th>Action effectuée</th>
                                                     <th>Date</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php //require_once("./php/inc/list-team.inc"); ?>
+                                                <?php foreach (getHistories() as $histo){ ?>
+                                                    <tr class="odd gradeX">
+                                                        <td>
+                                                            <?=$histo['id']?>
+                                                        </td>
+                                                        <td>
+                                                            <?=$histo['idPerson']?>
+                                                        </td>
+                                                        <td>
+                                                            <?=$histo['idEntite']?>
+                                                        </td>
+                                                        <td>
+                                                            <?=$histo['typeEntite']?>
+                                                        </td>
+                                                        <td>
+                                                            <?=$histo['action']?>
+                                                        </td>
+                                                        <td>
+                                                            <?=$histo['date']?>
+                                                        </td>
+                                                    </tr>
+                                                    <?php } ?>
                                             </tbody>
                                         </table>
                                     </div>
