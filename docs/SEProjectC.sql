@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Jeu 05 Novembre 2015 à 13:35
+-- Généré le: Jeu 05 Novembre 2015 à 13:45
 -- Version du serveur: 5.5.46-0ubuntu0.14.04.2
 -- Version de PHP: 5.5.9-1ubuntu4.14
 
@@ -74,29 +74,20 @@ CREATE TABLE IF NOT EXISTS `History` (
   `idEntite` int(11) NOT NULL,
   `typeEntite` text NOT NULL,
   `action` text NOT NULL,
-  `date` text NOT NULL,
+  `date` date NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `id_3` (`id`),
   UNIQUE KEY `id_4` (`id`),
   KEY `id_2` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Contenu de la table `History`
 --
 
 INSERT INTO `History` (`id`, `idPerson`, `idEntite`, `typeEntite`, `action`, `date`) VALUES
-(3, 1, 1, 'Equipe', 'Ajout', '2015'),
-(4, 1, 1, 'Joueur', 'Suppression', '2015'),
-(5, 1, 1, 'Joueur', 'Suppression', '2015'),
-(6, 1, 1, 'Joueur', 'Suppression', '2015'),
-(7, 1, 1, 'Joueur', 'Ajout', '2015'),
-(8, 1, 1, 'Joueur', 'Ajout', '2015'),
-(9, 1, 1, 'Joueur', 'Suppression', '2015'),
-(10, 1, 1, 'Terrain', 'Ajout', '2015'),
-(11, 1, 1, 'Terrain', 'Ajout', '2015'),
-(12, 1, 1, 'PropriÃ©taire', 'Ajout', '2015');
+(13, 1, 1, 'Equipe', 'Ajout', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -257,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `Team` (
   KEY `ID_Player1` (`ID_Player1`),
   KEY `ID_Player2` (`ID_Player2`),
   KEY `ID_Cat` (`ID_Cat`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Contenu de la table `Team`
@@ -268,7 +259,8 @@ INSERT INTO `Team` (`ID`, `ID_Player1`, `ID_Player2`, `ID_Cat`, `NbWinMatch`) VA
 (2, 3, 4, 1, 1),
 (7, 4, 5, 1, 0),
 (8, 65, 64, 1, 0),
-(9, 64, 65, 1, 0);
+(9, 64, 65, 1, 0),
+(10, 6, 70, 1, 0);
 
 -- --------------------------------------------------------
 
