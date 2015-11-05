@@ -1,5 +1,6 @@
 <?php
 	include_once('BDD.php');
+    require_once('add-new-history.php');
 //	$db = new BDD();
 
 	$database_host = '127.0.0.1';
@@ -29,11 +30,17 @@
 	$IsOwner	= 0;
 	$IsStaff	= 0;
 
+    
+
 	var_dump($BirthDate);
 	$req->bind_param("issiissssisssiii", $ID, $FirstName, $LastName, $Title, $ZIPCode, $PhoneNumber, $GSMNumber, $Ville, $Rue, $Number, $BirthDate, $Mail, $CreationDate, $IsPlayer, $IsOwner, $IsStaff);
 
 	$req->execute();
+
+    addHistory(1, 1, "Player", "Add");
 	
+    
+
 	$req = $db->prepare("INSERT INTO Personne(ID, FirstName, LastName, Title, ZIPCode, PhoneNumber, GSMNumber, Rue, Number, Ville, BirthDate, Mail, CreationDate, IsPlayer, IsOwner, IsStaff) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 	$ID	 	= '';
@@ -56,6 +63,8 @@
 	$req->bind_param("issiissssisssiii", $ID, $FirstName, $LastName, $Title, $ZIPCode, $PhoneNumber, $GSMNumber, $Ville, $Rue, $Number, $BirthDate, $Mail, $CreationDate, $IsPlayer, $IsOwner, $IsStaff);
 
 	$req->execute();
+
+    addHistory(1, 1, "Player", "Add");
 
 	header("Location: ../list-player.php");
 

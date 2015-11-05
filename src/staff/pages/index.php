@@ -67,6 +67,7 @@
                                                     <th>ID</th>
                                                     <th>ID Admin</th>
                                                     <th>ID Entité modifiée</th>
+                                                    <th>Type Entité</th>
                                                     <th>Action effectuée</th>
                                                     <th>Date</th>
                                                 </tr>
