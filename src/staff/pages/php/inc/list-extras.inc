@@ -1,6 +1,10 @@
 <?php
 include_once('php/BDD.php');
-dbAndPrint();
+
+function getExtras() {
+    $db = new BDD();
+    return $db->query('SELECT * FROM Extras ');
+}
 
 function dbAndPrint() {
     $db = new BDD();
