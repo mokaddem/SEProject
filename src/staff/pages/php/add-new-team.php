@@ -1,5 +1,6 @@
 <?php
 	include_once('BDD.php');
+    require_once('add-new-history.php');
 //	$db = new BDD();
 
 	$database_host = '127.0.0.1';
@@ -22,6 +23,9 @@
 
 	$req->execute();
 	
+    addHistory(1, 1, "Equipe", "Ajout");
+
+
 	header("Location: /staff/pages/list-team.php");
 
 //	$req->execute(array('ID' => '', 'FirstName' => $_GET['InputPrenom2'], 'LastName' => $_GET['InputNom2'], 'Title' => $_GET['title2'], 'ZIPCode' => $_GET['InputCP2'], 'PhoneNumber' => $_GET['Fixnum2'], 'GSMNumber' => $_GET['Gsmnum2'], 'Address' => $_GET['InputLoc2'] . "  ," . $_GET['InputAdresse2'] . " n°" . $_GET['InputBat2'] , 'BirthDate' => $_GET['InputBirth2'], 'Mail' => $_GET['InputEmailFirst2'], 'CreationDate' => time(), 'IsPlayer' => $_GET['role2'], 'IsOwner' => $_GET['role2'], 'IsStaff' => 0));

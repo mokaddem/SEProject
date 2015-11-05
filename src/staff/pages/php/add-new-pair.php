@@ -32,12 +32,11 @@
 
     
 
-	var_dump($BirthDate);
 	$req->bind_param("issiissssisssiii", $ID, $FirstName, $LastName, $Title, $ZIPCode, $PhoneNumber, $GSMNumber, $Ville, $Rue, $Number, $BirthDate, $Mail, $CreationDate, $IsPlayer, $IsOwner, $IsStaff);
 
 	$req->execute();
 
-    addHistory(1, 1, "Player", "Add");
+    addHistory(1, 1, "Joueur", "Ajout");
 	
     
 
@@ -64,7 +63,7 @@
 
 	$req->execute();
 
-    addHistory(1, 1, "Player", "Add");
+    addHistory(1, 1, "Joueur", "Ajout");
 
 	header("Location: ../list-player.php");
 
