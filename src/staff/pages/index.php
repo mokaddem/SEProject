@@ -21,6 +21,12 @@
     <!-- MetisMenu CSS -->
     <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
+    <!-- DataTables CSS -->
+    <link href="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="../bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 
@@ -40,7 +46,7 @@
 
     <div id="wrapper">
 
-        <?php            
+        <?php
             include("./html/header.html");
         ?>
 
@@ -77,8 +83,21 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php foreach (getHistories() as $histo){ ?>
-                                                    <tr class="odd gradeX">
+                                                <?php foreach (getHistories() as $histo){
+                                                    $color = "";
+                                                    switch ($histo['action']) {
+                                                        case "Ajout":
+                                                            $color = "success";
+                                                            break;
+                                                        case "Suppression":
+                                                            $color = "danger";
+                                                            break;
+                                                        case "Edition":
+                                                            $color = "info";
+                                                            break;
+                                                    }
+                                                    ?>
+                                                    <tr class="odd gradeX <?=$color?>">
                                                         <td>
                                                             <?=$histo['id']?>
                                                         </td>
@@ -130,25 +149,6 @@
                 </div>
                 <!-- /.col-lg-6 -->
             </div>
-            <div class="row text-center">
-                <iframe scrolling="no" width="334" height="175" frameborder="0" marginwidth="0" marginheight="0" src="http://www.meteo.be/services/widget/.?postcode=1000&nbDay=6&type=4&lang=fr&bgImageId=14&bgColor=567cd2&scrolChoice=0&colorTempMax=A5D6FF&colorTempMin=ffffff"></iframe>
-            </div>
-            <div class="row text-center">
-                <a class="twitter-timeline" href="https://twitter.com/le_gorafi" data-widget-id="653996507264348160">Tweets de @le_gorafi</a>
-                <script>
-                    ! function (d, s, id) {
-                        var js, fjs = d.getElementsByTagName(s)[0],
-                            p = /^http:/.test(d.location) ? 'http' : 'https';
-                        if (!d.getElementById(id)) {
-                            js = d.createElement(s);
-                            js.id = id;
-                            js.src = p + "://platform.twitter.com/widgets.js";
-                            fjs.parentNode.insertBefore(js, fjs);
-                        }
-                    }(document, "script", "twitter-wjs");
-                </script>
-
-            </div>
             <!-- /.container-fluid -->
     </div>
     <!-- /#page-wrapper -->
@@ -167,7 +167,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
-    
+
     <script src="../bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
     <script src="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
     <script>
