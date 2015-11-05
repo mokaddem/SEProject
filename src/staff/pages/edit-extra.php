@@ -41,63 +41,62 @@
         ?>
 
 
-        <div id="page-wrapper">
-            <div class="container">
-
-                <div class="page-header">
-                    <h1>Modifier un extra</h1>
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12 noDeco">
+                        <h1 class="page-header"><a href="list-extras.php">Gestion des extras</a> > Modifier</h1>
+                    </div>
                 </div>
 
                 <!-- Registration form - START -->
-                <div class="container">
-                    <div class="row">
-                        <form role="form">
-                            <div class="col-lg-6">
-                                <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
+                <div class="row">
+                    <form role="form">
+                        <div class="col-lg-6">
+                            <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
 
-                                <div class="form-group">
-                                    <!--<label for="InputNom">Nom</label>-->
+                            <div class="form-group">
+                                <!--<label for="InputNom">Nom</label>-->
+                                <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                     <input type="text" class="form-control" Nom="InputNom" id="InputNom" placeholder="Nom" required>
                                 </div>
-
-                                <div class="form-group">
-                                    <!--<label for="InputPrice">Prix</label>-->
-                                    <div class="input-group">
-                                        <input type="price" class="form-control" id="InputPrice" name="InputPrice" placeholder="Prix" required>
-                                        <span class="input-group-addon">€</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <!--<label for="InputNumber">Number</label>-->
-                                    <div class="input-group">
-                                    	<span class="input-group-addon">€</span>
-                                        <input type="number" class="form-control" id="InputNumber" name="InputNumber" placeholder="Nombre de personnes" required>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <!--<label for="InputMessage">Message</label>-->
-                                    <div class="input-group">
-                                        <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" placeholder="Description" required></textarea>
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
-                                    </div>
-                                </div>
-
-                                <a class="btn btn-info" href="list-extras.php">Retour</a>
-                                <input type="submit" name="edit-submit" id="edit-submit" value="Sauvegarder" class="btn btn-success pull-right">
-
                             </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- Registration form - END -->
+
+                            <div class="form-group">
+                                <!--<label for="InputPrice">Prix</label>-->
+                                <div class="input-group">
+                                    <input type="price" class="form-control" id="InputPrice" name="InputPrice" placeholder="Prix" required>
+                                    <span class="input-group-addon">€</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <!--<label for="InputNumber">Number</label>-->
+                                <div class="input-group">
+                                    <span class="input-group-addon">€</span>
+                                    <input type="number" class="form-control" id="InputNumber" name="InputNumber" placeholder="Nombre de personnes" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <!--<label for="InputMessage">Message</label>-->
+                                <div class="input-group">
+                                    <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" placeholder="Description" required></textarea>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
+                                </div>
+                            </div>
+
+                            <a class="btn btn-info" href="list-extras.php">Retour</a>
+                            <input type="submit" name="edit-submit" id="edit-submit" value="Sauvegarder" class="btn btn-success pull-right">
+
+                        </div>
+                    </form>
+                    <!-- Registration form - END -->
 
                 </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
+                <!-- /.row -->
+            </div>
+            <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->

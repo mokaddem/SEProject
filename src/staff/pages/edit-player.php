@@ -48,114 +48,113 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12 noDeco">
-                            <h1 class="page-header"><a href="list-player.php"> Liste des participants</a> > Modifier</h1>
-                        </div>
+                        <h1 class="page-header"><a href="list-player.php"> Liste des participants</a> > Modifier</h1>
                     </div>
-                    <!-- Registration form - START -->
-                        <div class="row">
-                            <form role="form">
-                                <div class="col-lg-6">
-                                    <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
-                                    <div class="form-group">
-                                        <!--<label for="sel1">Titre:</label>-->
-                                        <select class="form-control" id="sel1">
-                                            <option>M.</option>
-                                            <option>Mme.</option>
-                                        </select>
-                                    </div>
+                </div>
+                <!-- Registration form - START -->
+                <div class="row">
+                    <form role="form">
+                        <div class="col-lg-6">
+                            <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
+                            <div class="form-group">
+                                <!--<label for="sel1">Titre:</label>-->
+                                <select class="form-control" id="sel1">
+                                    <option>M.</option>
+                                    <option>Mme.</option>
+                                </select>
+                            </div>
 
-                                    <div class="form-group">
-                                        <!--<label for="InputNom">Nom</label>-->
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                            <input type="text" class="form-control" id="InputNom" placeholder="Nom" required>
-                                            <input type="text" class="form-control" id="InputPrenom" placeholder="Prenom" required>
-                                            <input type="text" class="form-control" id="InputBirth" placeholder="Née le jj/mm/aaaa" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <!--<label for="InputPrenom">Adresse</label>-->
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                            <input type="text" class="form-control" id="InputAdresse" placeholder="Adresse" required>
-                                            <input type="text" class="form-control" id="InputBat" placeholder="Numero - Batiment">
-                                            <input type="text" class="form-control" id="InputCP" placeholder="Code Postal" required>
-                                            <input type="text" class="form-control" id="InputLoc" placeholder="Localité">
-                                        </div>
-                                    </div>
+                            <div class="form-group">
+                                <!--<label for="InputNom">Nom</label>-->
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input type="text" class="form-control" id="InputNom" placeholder="Nom" required>
+                                    <input type="text" class="form-control" id="InputPrenom" placeholder="Prenom" required>
+                                    <input type="text" class="form-control" id="InputBirth" placeholder="Née le jj/mm/aaaa" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <!--<label for="InputPrenom">Adresse</label>-->
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                    <input type="text" class="form-control" id="InputAdresse" placeholder="Adresse" required>
+                                    <input type="text" class="form-control" id="InputBat" placeholder="Numero - Batiment">
+                                    <input type="text" class="form-control" id="InputCP" placeholder="Code Postal" required>
+                                    <input type="text" class="form-control" id="InputLoc" placeholder="Localité">
+                                </div>
+                            </div>
 
-                                    <div class="form-group">
-                                        <!--<label for="InputEmail">Email</label>-->
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-at"></i></span>
-                                            <input type="email" class="form-control" id="InputEmailFirst" name="InputEmail" placeholder="Email" required>
-                                        </div>
-                                    </div>
+                            <div class="form-group">
+                                <!--<label for="InputEmail">Email</label>-->
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-at"></i></span>
+                                    <input type="email" class="form-control" id="InputEmailFirst" name="InputEmail" placeholder="Email" required>
+                                </div>
+                            </div>
 
-                                    <div class="form-group">
-                                        <!--<label for="InputPhone">Numéro de téléphone</label>-->
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                            <input type="text" class="form-control bfh-phone" placeholder="+33 fixe" id="fixnumber">
-                                            <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                            <input type="text" class="form-control bfh-phone" placeholder="+33 mobile" id="gsmnumber" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="sel1">Classement </label>
-                                        <select class="form-control" id="sel1">
-                                            <option>NC</option>
-                                            <option>Trofor</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="InputPhone">Déjà participé au tournoi?</label>
-                                        <label class="radio-inline">
-                                            <input type="radio" name="optradio">Oui
-                                        </label>
-                                        <label class="radio-inline">
-                                            <input type="radio" name="optradio">Non
-                                        </label>
-                                    </div>
-                                    <!--<div class="form-group">
+                            <div class="form-group">
+                                <!--<label for="InputPhone">Numéro de téléphone</label>-->
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                    <input type="text" class="form-control bfh-phone" placeholder="+33 fixe" id="fixnumber">
+                                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                    <input type="text" class="form-control bfh-phone" placeholder="+33 mobile" id="gsmnumber" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="sel1">Classement </label>
+                                <select class="form-control" id="sel1">
+                                    <option>NC</option>
+                                    <option>Trofor</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="InputPhone">Déjà participé au tournoi?</label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="optradio">Oui
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="optradio">Non
+                                </label>
+                            </div>
+                            <!--<div class="form-group">
                                     <!--<label for="InputNamePartner">Enter Name Partner</label>-->
-                                    <!--<div class="input-group">
+                            <!--<div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-users"></i></span>
                                         <input type="text" class="form-control" name="InputNamePartner" id="InputNamePartner" placeholder="Nom du partenaire" required>
                                     </div>
                                 </div>-->
-                                    <div class="form-group">
-                                        <!--<label for="InputCredit">Paiement</label>-->
-                                        <label for="InputPhone">Montant à payer</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="15" disabled>
-                                            <span class="input-group-addon">€</span>
-                                        </div>
-                                        <div class="input-group">
-                                            <label class="radio-inline">
-                                                <input type="radio" name="optradio">CB</label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="optradio">Paypal</label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="optradio">Chèque</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <!--<label for="InputMessage">Message</label>-->
-                                        <div class="input-group">
-                                            <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" required></textarea>
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
-                                        </div>
-                                    </div>
-
-                                    <a class="btn btn-info" href="list-player.php">Retour</a>
-                                    <input type="submit" name="edit-submit" id="edit-submit" value="Sauvegarder" class="btn btn-success pull-right">
-                                    <br/>
-                                    <br/>
+                            <div class="form-group">
+                                <!--<label for="InputCredit">Paiement</label>-->
+                                <label for="InputPhone">Montant à payer</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="15" disabled>
+                                    <span class="input-group-addon">€</span>
                                 </div>
-                            </form>
+                                <div class="input-group">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio">CB</label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio">Paypal</label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="optradio">Chèque</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <!--<label for="InputMessage">Message</label>-->
+                                <div class="input-group">
+                                    <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" required></textarea>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
+                                </div>
+                            </div>
+
+                            <a class="btn btn-info" href="list-player.php">Retour</a>
+                            <input type="submit" name="edit-submit" id="edit-submit" value="Sauvegarder" class="btn btn-success pull-right">
+                            <br/>
+                            <br/>
                         </div>
-                    </div>
+                    </form>
+
                     <!-- Registration form - END -->
 
                 </div>

@@ -41,65 +41,62 @@
         ?>
 
 
-        <div id="page-wrapper">
-            <div class="container">
-
-                <div class="page-header">
-                    <h1>Modifier un match</h1>
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12 noDeco">
+                        <h1 class="page-header"><a href="list-match.php">Liste des matchs > Modifier</a></h1>
+                    </div>
                 </div>
 
                 <!-- Registration form - START -->
-                <div class="container">
-                    <div class="row">
-                        <form role="form">
-                            <div class="col-lg-6">
-                                <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
-                                
-                                <div class="form-group">
-                                  <label for="sel1"><span class="fa fa-users"></span> Première équipe</label>
-                                  <select class="form-control" id="sel1">
-                                    <option>[liste des équipes]</option>
-                                    <!-- <option>propriétaire</option> -->
-                                  </select>
-                                </div>
+                <div class="row">
+                    <form role="form">
+                        <div class="col-lg-6">
+                            <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
 
-                                <div class="form-group">
-                                  <label for="sel1"><span class="fa fa-users"></span> Seconde équipe</label>
-                                  <select class="form-control" id="sel1">
+                            <div class="form-group">
+                                <label for="sel1"><span class="fa fa-users"></span> Première équipe</label>
+                                <select class="form-control" id="sel1">
                                     <option>[liste des équipes]</option>
                                     <!-- <option>propriétaire</option> -->
-                                  </select>
-                                </div>
-                                
-                                <div class="form-group">
-                                  <label for="sel1"><span class="fa fa-map-marker"></span> Lieu</label>
-                                  <select class="form-control" id="sel1">
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sel1"><span class="fa fa-users"></span> Seconde équipe</label>
+                                <select class="form-control" id="sel1">
+                                    <option>[liste des équipes]</option>
+                                    <!-- <option>propriétaire</option> -->
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sel1"><span class="fa fa-map-marker"></span> Lieu</label>
+                                <select class="form-control" id="sel1">
                                     <option>[liste des terrains]</option>
                                     <!-- <option>propriétaire</option> -->
-                                  </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="sel1"><span class="fa fa-clock-o"></span> Date & Heure</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                        <input type="date" min="2015-10-10" max="2048-10-10" name="calendar" value="2015-10-10">
-                                        <input type="time" name="time" value="08:00">
-                                    </div>
-                                </div>
-
-                                <a class="btn btn-info" href="list-match.php">Retour</a>
-                                <input type="submit" name="edit-submit" id="edit-submit" value="Sauvegarder" class="btn btn-success pull-right">
-
+                                </select>
                             </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- Registration form - END -->
+                            <div class="form-group">
+                                <label for="sel1"><span class="fa fa-clock-o"></span> Date & Heure</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    <input type="date" min="2015-10-10" max="2048-10-10" name="calendar" value="2015-10-10">
+                                    <input type="time" name="time" value="08:00">
+                                </div>
+                            </div>
+
+                            <a class="btn btn-info" href="list-match.php">Retour</a>
+                            <input type="submit" name="edit-submit" id="edit-submit" value="Sauvegarder" class="btn btn-success pull-right">
+
+                        </div>
+                    </form>
+                    <!-- Registration form - END -->
 
                 </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
+                <!-- /.row -->
+            </div>
+            <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
