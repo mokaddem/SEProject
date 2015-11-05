@@ -98,7 +98,7 @@
                                                         <td data-toggle="modal" data-target="#myModal<?=$match['id']?>" data-url="./show-match.php?id=<?=$match['id']?>">3</td>
                                                         <td>
                                                             <a href="./edit-match.php?id=<?=$match['id']?>"><i class="fa fa-edit fa-fw"></i></a>
-                                                            <a href="php/delete-match.php?id=<?=$match['id']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce participant ?');"><i class="fa fa-trash-o"></i></a>
+                                                            <a href="php/delete-match.php?id=<?=$match['id']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce match ?');"><i class="fa fa-trash-o"></i></a>
                                                         </td>
                                                     </tr>
                                                     <?php } ?>
