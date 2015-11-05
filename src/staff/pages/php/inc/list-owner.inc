@@ -1,6 +1,11 @@
 <?php
 include_once('php/BDD.php');
-dbAndPrint();
+//dbAndPrint();
+function getOwners() {
+    $db = new BDD();
+    return $db->query('SELECT * FROM Personne WHERE isOwner=1');
+}
+
 
 function dbAndPrint() {
     $db = new BDD();
