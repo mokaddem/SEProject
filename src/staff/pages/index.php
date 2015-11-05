@@ -1,4 +1,4 @@
-<?php require_once("./php/inc/list-history.inc");
+<?php require_once("./php/inc/list-function.inc");
 ?>
 
 <!DOCTYPE html>
@@ -83,7 +83,8 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php foreach (getHistories() as $histo){
+                                                <?php
+                                                foreach (getHistories() as $histo){
                                                     $color = "";
                                                     switch ($histo['action']) {
                                                         case "Ajout":
