@@ -1,3 +1,5 @@
+<?php require_once("./php/inc/list-function.inc");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,16 +66,35 @@
                             <div class="dataTable_wrapper">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Nom</th>
-                                            <th>Prénom</th>
-                                            <th>Créé le</th>
-                                            <th>Action</th>
-                                        </tr>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nom</th>
+                                        <th>Prénom</th>
+                                        <th>Créé le</th>
+                                        <th>Action</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <?php require_once("./php/inc/list-owner.inc"); ?>
+                                    <?php foreach (getOwners() as $owner){ ?>
+                                    <tr class="odd gradeX">
+                                            <td data-toggle="modal" data-target="#myModal<?=$owner['ID']?>" data-url="./show-owner.php?id=<?=$owner['ID']?>">
+                                                <?=$owner['ID']?>
+                                            </td>
+                                            <td data-toggle="modal" data-target="#myModal<?=$owner['ID']?>" data-url="./show-owner.php?id=<?=$owner['ID']?>">
+                                                <?=$owner['LastName']?>
+                                            </td>
+                                            <td data-toggle="modal" data-target="#myModal<?=$owner['ID']?>" data-url="./show-owner.php?id=<?=$owner['ID']?>">
+                                                <?=$owner['FirstName']?>
+                                            </td>
+                                            <td class="center" data-toggle="modal" data-target="#myModal<?=$owner['ID']?>" data-url="./show-owner.php?id=<?=$owner['ID']?>">
+                                                <?=$owner['CreationDate']?>
+                                            </td>
+                                            <td>
+                                                <a href="./edit-owner.php?id=<?=$owner['ID']?>"><i class="fa fa-edit fa-fw"></i></a>
+                                                <a href="php/delete-owner.php?id=<?=$owner['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce propriétaire ?');"><i class="fa fa-trash-o"></i></a>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -85,6 +106,11 @@
                 <!-- /.col-lg-6 -->
             </div>
             <!-- /.row -->
+            <!-- Modal -->
+            <?php foreach (getOwners() as $owner){ ?>
+                <div id="myModal<?=$owner['ID']?>" class="modal fade" role="dialog"></div>
+            <?php } ?>
+
         </div>
         <!-- /#page-wrapper -->
 
@@ -114,6 +140,23 @@
                 responsive: true
         });
     });
+    </script>
+    <script type="text/javascript">
+        // Stop click on last td in a data-toggle=modal
+        $("[data-toggle='modal'] td:last-child").on("click", function (event) {
+            $(this).preventDefault();
+            $(this).stopPropagation();
+        });
+
+        // On click, get html content from url and update the corresponding modal
+        $("[data-toggle='modal']").on("click", function (event) {
+            event.preventDefault();
+            var url = $(this).attr('data-url');
+            var modal_id = $(this).attr('data-target');
+            $.get(url, function (data) {
+                $(modal_id).html(data);
+            });
+        });
     </script>
 
 </body>

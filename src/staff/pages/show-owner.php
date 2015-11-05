@@ -35,14 +35,12 @@
 <body>
 
 
-<?php
-require_once('php/inc/list-function.inc');
-$db = new BDD();
+    <?php
+include_once('php/BDD.php');
 
-//$reponse = $db->query('SELECT * FROM `Match` match WHERE '. $_GET['id']. ' = match.ID');
-$reponse = $db->query('SELECT * FROM `Match` WHERE '. $_GET['id']. '=ID');
+$db = new BDD();
+$reponse = $db->query('SELECT * FROM Personne pers, Player play WHERE '. $_GET['id']. ' = pers.ID');
 $donnes = $reponse->fetch_array();
-//$donnes = $db->query('SELECT * FROM Match');
 ?>
         <div class="col-lg-offset-5 col-lg-3">
             <!-- Modal content-->
@@ -53,24 +51,39 @@ $donnes = $reponse->fetch_array();
                 </div>
                 <div class="modal-body">
                     <div class="container">
+                        <p>Nom:
+                            <?=$donnes['LastName']?>
+                        </p>
+                        <p>Prénom:
+                            <?=$donnes['FirstName']?>
+                        </p>
+                        <p>E-mail:
+                            <?=$donnes['Mail']?>
+                        </p>
+                        <p>Née le:
+                            <?=$donnes['BirthDate']?>
+                        </p>
+                        <p>Adresse:
+                            <?=$donnes['Rue']?>
+                        </p>
+                        <p>Ville:
+                            <?=$donnes['Ville']?>
+                        </p>
+                        <p>Code Postal:
+                            <?=$donnes['ZIPCode']?>
+                        </p>
+                        <p>Tel:
+                            <?=$donnes['PhoneNumber']?>
+                        </p>
+                        <p>Mobile:
+                            <?=$donnes['GSMNumber']?>
+                        </p>
 
-                        <p>Joueur 1:
-                            <?=$donnes['ID_Equipe1']?>
-                        </p>
-                        <p>Joueur 2:
-                            <?=$donnes['ID_Equipe2']?>
-                        </p>
-                        <p>Score 1:
-                            <?=$donnes['score1']?>
-                        </p>
-                        <p>Score 2:
-                            <?=$donnes['score2']?>
-                        </p>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a class="btn btn-danger" href="php/delete-match.php?id=<?=$donnes['id']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce participant ?');">Supprimer</a>
-                    <a class="btn btn-success" href="edit-match.php?id=<?=$donnes['id']?>">Modifier</a>
+                    <a class="btn btn-danger" href="php/delete-player.php?id=<?=$donnes['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce participant ?');">Supprimer</a>
+                    <a class="btn btn-success" href="edit-player.php?id=<?=$donnes['ID']?>">Modifier</a>
                     <button type="button" class="btn btn-info" data-dismiss="modal">Retour</button>
                 </div>
             </div>

@@ -1,3 +1,5 @@
+<?php require_once("./php/inc/list-function.inc");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,7 +79,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php require_once("./php/inc/list-match.inc"); ?>
                                                 <?php foreach (getMatchs() as $match){ ?>
                                                     <tr class="odd gradeX">
                                                         <td data-toggle="modal" data-target="#myModal<?=$match['id']?>" data-url="./show-match.php?id=<?=$match['id']?>">
