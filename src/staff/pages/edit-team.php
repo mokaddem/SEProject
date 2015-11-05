@@ -42,22 +42,21 @@
         ?>
 
 
-        <div id="page-wrapper">
-            <div class="container">
-
-                <div class="page-header">
-                    <h1>Modifier une équipe</h1>
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12 noDeco">
+                        <h1 class="page-header"><a href="list-player.php"> Liste des équipes</a> > Modifier</h1>
+                    </div>
                 </div>
 
                 <!-- Registration form - START -->
-                <div class="container">
-                    <div class="row">
-                        <form role="form" method="Get" action="php/inc/edit-team.inc">
-                            <div class="col-lg-6">                              
-                                <div class="form-group">
-                                  <label for="sel1"><span class="fa fa-user"></span> Premier joueur</label>
-                                  <select class="form-control" id="sel1" name="sel1">
-				    <?php
+                <div class="row">
+                    <form role="form" method="Get" action="php/inc/edit-team.inc">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="sel1"><span class="fa fa-user"></span> Premier joueur</label>
+                                <select class="form-control" id="sel1" name="sel1">
+                                    <?php
 					$db = new BDD();
 					$reponse = $db->query('SELECT * FROM Personne ');
 					while ($donnes = $reponse->fetch_array())
@@ -67,15 +66,15 @@
 						}						
 						echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
 					}
-			 	    ?>	
-                                    <!-- <option>propriétaire</option> -->
-                                  </select>
-                                </div>
+			 	    ?>
+                                        <!-- <option>propriétaire</option> -->
+                                </select>
+                            </div>
 
-                                <div class="form-group">
-                                  <label for="sel1"><span class="fa fa-user"></span> Second joueur</label>
-                                  <select class="form-control" id="sel2" name="sel2">
-				    <?php
+                            <div class="form-group">
+                                <label for="sel1"><span class="fa fa-user"></span> Second joueur</label>
+                                <select class="form-control" id="sel2" name="sel2">
+                                    <?php
 					$db = new BDD();
 					$reponse = $db->query('SELECT * FROM Personne ');
 					while ($donnes = $reponse->fetch_array())
@@ -85,23 +84,21 @@
 						}						
 						echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
 					}
-			 	    ?>	
-                                  </select>
-                                </div>
-
-                                <a class="btn btn-info" href="list-team.php">Retour</a>
-                                <input type="submit" name="submit" id="submit" value="Sauvegarder" class="btn btn-success pull-right">
-
+			 	    ?>
+                                </select>
                             </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- Registration form - END -->
+
+                            <a class="btn btn-info" href="list-team.php">Retour</a>
+                            <input type="submit" name="submit" id="submit" value="Sauvegarder" class="btn btn-success pull-right">
+
+                        </div>
+                    </form>
+                    <!-- Registration form - END -->
 
                 </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
+                <!-- /.row -->
+            </div>
+            <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
