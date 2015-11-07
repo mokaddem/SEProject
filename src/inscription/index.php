@@ -81,7 +81,7 @@
                                         <select name='birth_year1' id='birth_year1'>
                                             <option value="na">Année</option>
                                             <?php
-                                                  for ($i = date(Y); $i >= 1900; $i--) {
+                                                  for ($i = date("Y"); $i >= 1900; $i--) {
                                                     echo "<option>$i</option>\n";
                                                   }
                                             ?>
@@ -219,7 +219,7 @@
                                         <select name='birth_year2' id='birth_year2'>
                                             <option value="na">Année</option>
                                             <?php
-                                                  for ($i = date(Y); $i >= 1900; $i--) {
+                                                  for ($i = date("Y"); $i >= 1900; $i--) {
                                                     echo "<option>$i</option>\n";
                                                   }
                                             ?>

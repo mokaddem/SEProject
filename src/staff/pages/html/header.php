@@ -256,7 +256,7 @@
                     <a href="#"><i class="fa fa-table fa-fw"></i> Listes<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="list-player.php"> Participants</a>
+                            <a href="list.php?type=player"> Participants</a>
                         </li>
                         <li>
                             <a href="list-team.php"> Equipes</a>
@@ -265,10 +265,10 @@
                             <a href="list-match.php"> Matchs</a>
                         </li>
                         <li>
-                            <a href="list-court.php"> Terrains</a>
+                            <a href="list.php?type=court"> Terrains</a>
                         </li>
                         <li>
-                            <a href="list-owner.php"> Propriétaires</a>
+                            <a href="list.php?type=owner"> Propriétaires</a>
                         </li>
                         <li>
                             <a href="list-staff.php"> Staff</a>
