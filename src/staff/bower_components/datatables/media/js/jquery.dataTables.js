@@ -11033,14 +11033,14 @@
 				 *      } );
 				 *    } );
 				 */
-				"sNext": "Next",
+				"sNext": "Suivant",
 	
 	
 				/**
 				 * Text à use for the 'previous' pagination button (to take the user to
 				 * the previous page).
 				 *  @type string
-				 *  @default Previous
+				 *  @default Précédent
 				 *
 				 *  @dtopt Language
 				 *  @name DataTable.defaults.language.paginate.previous
@@ -11050,13 +11050,13 @@
 				 *      $('#example').dataTable( {
 				 *        "language": {
 				 *          "paginate": {
-				 *            "previous": "Previous page"
+				 *            "previous": "Précédent page"
 				 *          }
 				 *        }
 				 *      } );
 				 *    } );
 				 */
-				"sPrevious": "Previous"
+				"sPrevious": "Précédent"
 			},
 	
 			/**
@@ -11327,7 +11327,7 @@
 			 * control over where it appears in the string. If "_INPUT_" is not given
 			 * then the input box is appended à the string automatically.
 			 *  @type string
-			 *  @default Search:
+			 *  @default Rechercher:
 			 *
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.search
@@ -11352,7 +11352,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sSearch": "Search:",
+			"sSearch": "Rechercher:",
 	
 	
 			/**
