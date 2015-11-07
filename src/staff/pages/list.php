@@ -107,7 +107,7 @@
                     <!-- /.row -->
 
                     <!-- Modal -->
-                    <?php foreach (getPlayers() as $donnee){ ?>
+                    <?php foreach ($listDonnees as $donnee){ ?>
                         <div id="myModal<?=$donnee['ID']?>" class="modal fade" role="dialog"></div>
                         <?php } ?>
 

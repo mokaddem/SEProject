@@ -22,7 +22,7 @@ function getDonnees($get) {
                 return getTeams();
                 break;
             case "staff":
-                return getStaff();
+                return getStaffs();
                 break;
         }
 }
@@ -39,7 +39,7 @@ function getTitre($get) {
             return array("ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Crée le", "Note", "Action");
             break;
         case "extra":
-            return array("ID", "Nom", "Prix", "Nombre de personnes", "Description");
+            return array("ID", "Nom", "Prix", "Nombre de personnes", "Description", "Action");
             break;
         case "owner":
             return array("ID", "Nom", "Prénom", "Créé le", "Action");
@@ -48,7 +48,7 @@ function getTitre($get) {
             return getTeams();
             break;
         case "staff":
-            return getStaff();
+            return array("ID", "Nom", "Prénom", "Né(e) le", "Créé le", "Action");
             break;
     }
 }
@@ -74,7 +74,7 @@ function getParam($get) {
             return getTeams();
             break;
         case "staff":
-            return getStaff();
+            return array("ID", "LastName", "FirstName", "BirthDate", "CreationDate");
             break;
     }
 }
@@ -117,6 +117,13 @@ function getPlayers() {
 function getPlayer($id) {
     $db = new BDD(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
     return $db->query('SELECT * FROM Personne WHERE ID = '.$id.'');
+}
+
+function getStaffs() {
+    $db = new BDD();
+    $reponse = $db->query('SELECT * FROM Personne WHERE isStaff=1');
+
+    return $reponse;
 }
 
 ?>

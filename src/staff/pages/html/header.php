@@ -271,10 +271,10 @@
                             <a href="list.php?type=owner"> Propriétaires</a>
                         </li>
                         <li>
-                            <a href="list-staff.php"> Staff</a>
+                            <a href="list.php?type=staff"> Staff</a>
                         </li>
                         <li>
-                            <a href="list-extras.php"> Extras</a>
+                            <a href="list.php?type=extra"> Extras</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
