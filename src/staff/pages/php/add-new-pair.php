@@ -39,7 +39,7 @@
 
     $reponse = $db->query('SELECT * FROM Personne WHERE "'.$FirstName.'" = FirstName AND "'.$LastName.'" = LastName');
     $donnees = $reponse->fetch_array();
-    addHistory(1, $donnees["ID"], "Joueur", "Ajout");
+    addHistory( $donnees["ID"], "Joueur", "Ajout");
 	
     
 
@@ -69,7 +69,7 @@
 
     $reponse = $db->query('SELECT * FROM Personne WHERE "'.$FirstName.'" = FirstName AND "'.$LastName.'" = LastName');    
     $donnees = $reponse->fetch_array();
-    addHistory(1, $donnees["ID"], "Joueur", "Ajout");
+    addHistory( $donnees["ID"], "Joueur", "Ajout");
 	
 	header("Location: ../list-player.php");
 

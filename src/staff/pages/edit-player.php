@@ -37,7 +37,7 @@
     <div id="wrapper">
 
         <?php            
-		include("./html/header.html");
+		include("./html/header.php");
 		include_once('php/BDD.php');
 
 		$db = new BDD();

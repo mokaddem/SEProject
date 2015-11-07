@@ -30,7 +30,7 @@
 
     $reponse = $db->query('SELECT * FROM Terrain WHERE "'.$Adresse.'" = Adresse AND '.$ID_Owner.' = ID_Owner');    
     $donnees = $reponse->fetch_array();
-    addHistory(1, $donnees["ID"], "Terrain", "Ajout");
+    addHistory($donnees["ID"], "Terrain", "Ajout");
 	
 	header("Location: ../list-court.php");
 

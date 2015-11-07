@@ -47,7 +47,7 @@
     <div id="wrapper">
 
         <?php
-            include("./html/header.html");
+            include("./html/header.php");
         ?>
 
             <!-- Page Content -->

@@ -47,7 +47,7 @@
 
 	$req->execute();
 
-    addHistory(1, $ID_inserted, "Propriétaire", "Ajout");
+    addHistory( $ID_inserted, "Propriétaire", "Ajout");
 	
 	header("Location: ../list-owner.php");
 

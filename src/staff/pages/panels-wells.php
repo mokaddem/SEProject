@@ -37,7 +37,7 @@
     <div id="wrapper">
 
         <?php            
-            include("./html/header.html");
+            include("./html/header.php");
         ?>
         <div id="page-wrapper">
             <div class="row">

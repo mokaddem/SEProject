@@ -1,8 +1,9 @@
+<?php session_start(); ?>
 <?php
 	include_once('BDD.php');
 //	$db = new BDD();
     
-    function addHistory($IdPerson, $IdEntite, $TypeEntite, $Action) {
+    function addHistory($IdEntite, $TypeEntite, $Action) {
     
        $database_host = '127.0.0.1';
 	   $database_user = 'root';
@@ -15,13 +16,13 @@
 //	$req = $db->prepare('INSERT INTO Personne(ID, FirstName, LastName, Title, ZIPCode, PhoneNumber, GSMNumber, Address, BirthDate, Mail, CreationDate, IsPlayer, IsOwner, IsStaff) VALUES('', "bb", "bb", 1, 1234, 12354, 46351, "glkrzjglz e zfzef", 2015-02-02, "lzeijgze@fmezk.com", 2015-02-03, 1, 0, 0)');
 
 	   $Id	= '';
+        $IdPerson = $_SESSION["ID"];
 	   $Date = date("Y-m-d");
         $Hour = date("H:m:s");
 	
         $req->bind_param("iiissss", $Id, $IdPerson, $IdEntite, $TypeEntite, $Action, $Date, $Hour);
 
 	   $req->execute();
-	
         
     }
 	

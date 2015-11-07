@@ -4,7 +4,7 @@
 
 	$db->query('DELETE FROM Team WHERE ID='.$_GET['id']);
     require_once('add-new-history.php');
-    addHistory(1, $_GET['id'], "Equipe", "Suppression");
+    addHistory( $_GET['id'], "Equipe", "Suppression");
 
 	header("Location: ../list-team.php");
 ?>
