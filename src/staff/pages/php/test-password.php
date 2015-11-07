@@ -10,6 +10,12 @@ if ($donnes['Password'] == $_POST['password']){
     session_start();
     $_SESSION["ID"] = $donnes["ID_Personne"];
     
+    $reponse = $db->query('SELECT * FROM Personne WHERE ID = '.$_SESSION["ID"].'', $db);
+    $donnes = $reponse->fetch_array();
+    
+    $_SESSION["NAME"] = $donnes["FirstName"]." ".$donnes["LastName"];
+    
+    
     header("Location: ../index.php");
     die();
 }
