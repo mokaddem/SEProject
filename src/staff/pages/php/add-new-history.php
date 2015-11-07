@@ -15,9 +15,9 @@
 //	$req = $db->prepare('INSERT INTO Personne(ID, FirstName, LastName, Title, ZIPCode, PhoneNumber, GSMNumber, Address, BirthDate, Mail, CreationDate, IsPlayer, IsOwner, IsStaff) VALUES('', "bb", "bb", 1, 1234, 12354, 46351, "glkrzjglz e zfzef", 2015-02-02, "lzeijgze@fmezk.com", 2015-02-03, 1, 0, 0)');
 
 	   $Id	= '';
-	   $Date = date('Y-m-d');
+	   $Date = date("Y-m-d");
 	
-        $req->bind_param("iiissi", $Id, $IdPerson, $IdEntite, $TypeEntite, $Action, $Date);
+        $req->bind_param("iiisss", $Id, $IdPerson, $IdEntite, $TypeEntite, $Action, $Date);
 
 	   $req->execute();
 	
