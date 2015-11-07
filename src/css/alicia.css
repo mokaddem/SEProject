@@ -1,85 +1,111 @@
-.fa-cog {
-    color: black;
-}
-
-#slide-5 {
-    background-color: #bbb;
-    color: #E4E6E5;
-    padding-top: 90px;
-}
-
-section#contact {
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-section#contact .section-heading {
-    color: #fff;
-}
-
-section#contact .form-group {
-    margin-bottom: 25px;
-}
-
-section#contact .form-group input,
-section#contact .form-group textarea {
-    padding: 20px;
-}
-
-section#contact .form-group input.form-control {
-    height: auto;
-}
-
-section#contact .form-group textarea.form-control {
-    height: 236px;
-}
-
-section#contact .form-control:focus {
-    border-color: #fed136;
-    /** Jaune **/
-    box-shadow: none;
-}
-
-section#contact::-webkit-input-placeholder {
-    text-transform: uppercase;
-    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 700;
-    color: #bbb;
-}
-
-section#contact:-moz-placeholder {
-    text-transform: uppercase;
-    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 700;
-    color: #bbb;
-}
-
-section#contact::-moz-placeholder {
-    text-transform: uppercase;
-    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 700;
-    color: #bbb;
-}
-
-section#contact:-ms-input-placeholder {
-    text-transform: uppercase;
-    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 700;
-    color: #bbb;
-}
-
-section#contact .text-danger {
-    color: #e74c3c;
-}
-
-.btn-xl {
-    padding: 20px 40px;
-    border-color: #fed136;
-    border-radius: 3px;
-    text-transform: uppercase;
-    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: #fff;
-    background-color: #fed136;
-}
+ .modal {
+     width: 100%;
+     position: fixed;
+     text-align: center;
+     margin: 0px auto;
+     top: 0px;
+     left: 0px;
+     bottom: 0px;
+     right: 0px;
+     z-index: 1050;
+ }
+ 
+ .modal_wrapper {
+     display: table;
+     overflow: auto;
+     overflow-y: scroll;
+     height: 100%;
+     -webkit-overflow-scrolling: touch;
+     outline: 0;
+     text-align: center;
+     margin: 0px auto;
+ }
+ 
+ .modal-dialog {
+     margin-top: 0px;
+     display: table-cell;
+     vertical-align: middle;
+     margin: 0px 20px;
+ }
+ 
+ #slide-5 {
+     background-color: #bbb;
+     color: #E4E6E5;
+     padding-top: 90px;
+ }
+ 
+ section#contact {
+     background-position: center;
+     background-repeat: no-repeat;
+ }
+ 
+ section#contact .section-heading {
+     color: #fff;
+ }
+ 
+ section#contact .form-group {
+     margin-bottom: 25px;
+ }
+ 
+ section#contact .form-group input,
+ section#contact .form-group textarea {
+     padding: 20px;
+ }
+ 
+ section#contact .form-group input.form-control {
+     height: auto;
+ }
+ 
+ section#contact .form-group textarea.form-control {
+     height: 236px;
+ }
+ 
+ section#contact .form-control:focus {
+     border-color: #fed136;
+     /** Jaune **/
+     box-shadow: none;
+ }
+ 
+ section#contact::-webkit-input-placeholder {
+     text-transform: uppercase;
+     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+     font-weight: 700;
+     color: #bbb;
+ }
+ 
+ section#contact:-moz-placeholder {
+     text-transform: uppercase;
+     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+     font-weight: 700;
+     color: #bbb;
+ }
+ 
+ section#contact::-moz-placeholder {
+     text-transform: uppercase;
+     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+     font-weight: 700;
+     color: #bbb;
+ }
+ 
+ section#contact:-ms-input-placeholder {
+     text-transform: uppercase;
+     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+     font-weight: 700;
+     color: #bbb;
+ }
+ 
+ section#contact .text-danger {
+     color: #e74c3c;
+ }
+ 
+ .btn-xl {
+     padding: 20px 40px;
+     border-color: #fed136;
+     border-radius: 3px;
+     text-transform: uppercase;
+     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+     font-size: 18px;
+     font-weight: 700;
+     color: #fff;
+     background-color: #fed136;
+ }
