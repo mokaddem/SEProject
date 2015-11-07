@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Jeu 05 Novembre 2015 à 13:45
+-- Généré le: Sam 07 Novembre 2015 à 16:58
 -- Version du serveur: 5.5.46-0ubuntu0.14.04.2
 -- Version de PHP: 5.5.9-1ubuntu4.14
 
@@ -75,19 +75,28 @@ CREATE TABLE IF NOT EXISTS `History` (
   `typeEntite` text NOT NULL,
   `action` text NOT NULL,
   `date` date NOT NULL,
+  `hour` text NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `id_3` (`id`),
   UNIQUE KEY `id_4` (`id`),
   KEY `id_2` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=72 ;
 
 --
 -- Contenu de la table `History`
 --
 
-INSERT INTO `History` (`id`, `idPerson`, `idEntite`, `typeEntite`, `action`, `date`) VALUES
-(13, 1, 1, 'Equipe', 'Ajout', '0000-00-00');
+INSERT INTO `History` (`id`, `idPerson`, `idEntite`, `typeEntite`, `action`, `date`, `hour`) VALUES
+(63, 1, 0, 'Historique', 'Suppression', '2015-11-07', '16:11:56'),
+(64, 1, 65, 'Joueur', 'Suppression', '2015-11-07', '16:11:14'),
+(65, 1, 68, 'Joueur', 'Suppression', '2015-11-07', '16:11:16'),
+(66, 1, 20, 'Equipe', 'Suppression', '2015-11-07', '16:11:27'),
+(67, 1, 21, 'Equipe', 'Suppression', '2015-11-07', '16:11:29'),
+(68, 1, 1, 'Terrain', 'Suppression', '2015-11-07', '16:11:54'),
+(69, 1, 1, 'Terrain', 'Suppression', '2015-11-07', '16:11:56'),
+(70, 1, 1, 'Terrain', 'Suppression', '2015-11-07', '16:11:00'),
+(71, 1, 1, 'Terrain', 'Suppression', '2015-11-07', '16:11:03');
 
 -- --------------------------------------------------------
 
@@ -126,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `Owner` (
   PRIMARY KEY (`ID`),
   KEY `ID_Personne` (`ID_Personne`),
   KEY `ID_Staff` (`ID_Staff`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Contenu de la table `Owner`
@@ -134,7 +143,8 @@ CREATE TABLE IF NOT EXISTS `Owner` (
 
 INSERT INTO `Owner` (`ID`, `ID_Personne`, `ID_Staff`) VALUES
 (1, 6, 7),
-(9, 70, 7);
+(9, 70, 7),
+(10, 82, 7);
 
 -- --------------------------------------------------------
 
@@ -160,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `Personne` (
   `IsOwner` tinyint(1) NOT NULL,
   `IsStaff` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=71 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=83 ;
 
 --
 -- Contenu de la table `Personne`
@@ -169,16 +179,16 @@ CREATE TABLE IF NOT EXISTS `Personne` (
 INSERT INTO `Personne` (`ID`, `Title`, `FirstName`, `LastName`, `Ville`, `ZIPCode`, `Rue`, `Number`, `PhoneNumber`, `GSMNumber`, `BirthDate`, `Mail`, `CreationDate`, `IsPlayer`, `IsOwner`, `IsStaff`) VALUES
 (1, 1, 'David', 'Loubard', 'Mons', 1348, 'Rue de la victoire', 42, 61424594, 2147483647, '1992-05-09', 'DavidLoubard@gmail.c', '2015-10-07', 1, 0, 0),
 (2, 2, 'Jeanne', 'Doudremont', '', 7452, 'rue des rosiers, n°5', 0, 61579846, 2147483647, '1984-10-09', 'JeanneDoudremont@gma', '2015-10-10', 1, 0, 0),
-(3, 1, 'Tom', 'Gemblatre', '', 9712, 'Rue des apprentis', 0, 47985231, 2147483647, '1994-05-16', 'Tomlebos@hotmail.fr', '2015-10-04', 1, 0, 0),
 (4, 2, 'Caroline', 'Rochez', '', 7843, 'Londres rue des clampins', 0, 6148796, 2147483647, '1996-01-24', 'crocrolecrocro@gmail', '2015-10-03', 1, 0, 0),
 (5, 2, 'Beatrice', 'Lebouch', '', 7463, 'Avenue des carottes, 12', 0, 64795321, 2147483647, '1974-01-06', 'blebouch@hotmail.fr', '2015-10-02', 1, 0, 0),
 (6, 1, 'Leonard', 'Leriche', 'Charleroi', 3256, 'Rue des richards, 1', 42, 61235495, 2147483647, '1950-06-14', 'legrosriche@hotmail.com', '2015-09-24', 0, 1, 0),
 (7, 1, 'Billy', 'Biloup', '', 9413, 'chemin des Bibilou, 14', 0, 413257954, 2147483647, '1964-11-19', 'Billy.Biloup@gmail.c', '2015-08-20', 0, 0, 1),
 (8, 2, 'Noémie', 'milé', '', 7456, 'route des bleus,74', 0, 98764138, 2147483647, '1995-12-24', 'nonolabest@gmail.com', '2015-10-01', 1, 0, 0),
-(64, 0, 'Alicia', 'MARIN', '310', 1348, 'LLN', 5, 9, 6, '1994-11-08', 'a@m.fr', '2015-11-05', 1, 0, 0),
-(65, 0, 'Antoine', 'ROLLIN', '0', 26500, 'BLV', 192, 0, 2147483647, '1994-05-06', 'antoine.rollin26@free.fr', '2015-11-05', 1, 0, 0),
 (68, 0, 'Alicia', 'MARIN', '310', 1348, 'LLN', 5, 9, 6, '1994-11-08', 'a@m.fr', '2015-11-05', 1, 0, 0),
-(70, 1, 'Antoine', 'ROLLIN', 'Jupiter', 66666, 'TokupCPrivÃ©', 666, 0, 0, '1994-05-06', 'a@a.xn--6ca', '2015-11-05', 0, 1, 0);
+(70, 1, 'Antoine', 'ROLLIN', 'Jupiter', 66666, 'TokupCPrivÃ©', 666, 0, 0, '1994-05-06', 'a@a.xn--6ca', '2015-11-05', 0, 1, 0),
+(77, 0, 'John', 'D''Oeuf', '2', 26500, '1234', 192, 0, 2147483647, '2012-02-01', 'antoine.rollin26@free.fr', '2015-11-07', 1, 0, 0),
+(80, 0, 'Sylvie-Aude-Anne-Marc-Sanson-Gil-Laura', 'FroidEUH!', '1', 26500, '1349', 192, 0, 2147483647, '2014-01-01', 'antoine.rollin26@free.fr', '2015-11-07', 1, 0, 0),
+(82, 1, 'Jean', 'Cule', '26500', 26500, '192 rue des Acacias', 90, 0, 2147483647, '1994-01-05', 'antoine.rollin26@free.fr', '2015-11-07', 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -203,7 +213,6 @@ CREATE TABLE IF NOT EXISTS `Player` (
 INSERT INTO `Player` (`ID_Personne`, `IsLeader`, `Paid`, `AlreadyPart`) VALUES
 (1, 0, 0, 0),
 (2, 0, 0, 0),
-(3, 0, 1, 0),
 (4, 0, 1, 0),
 (5, 1, 1, 0),
 (8, 0, 1, 0);
@@ -248,19 +257,14 @@ CREATE TABLE IF NOT EXISTS `Team` (
   KEY `ID_Player1` (`ID_Player1`),
   KEY `ID_Player2` (`ID_Player2`),
   KEY `ID_Cat` (`ID_Cat`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
 -- Contenu de la table `Team`
 --
 
 INSERT INTO `Team` (`ID`, `ID_Player1`, `ID_Player2`, `ID_Cat`, `NbWinMatch`) VALUES
-(1, 1, 2, 1, 0),
-(2, 3, 4, 1, 1),
-(7, 4, 5, 1, 0),
-(8, 65, 64, 1, 0),
-(9, 64, 65, 1, 0),
-(10, 6, 70, 1, 0);
+(22, 1, 8, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -280,18 +284,18 @@ CREATE TABLE IF NOT EXISTS `Terrain` (
   `Type` varchar(500) NOT NULL,
   `Note` varchar(500) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Contenu de la table `Terrain`
 --
 
 INSERT INTO `Terrain` (`ID`, `adresse`, `surface`, `ID_Owner`, `etat`, `disponibiliteFrom`, `disponibiliteTo`, `CreationDate`, `Type`, `Note`) VALUES
-(1, 'Place des joueurs, 25 TennisVille', 400, 1, 'Usé', '2015-10-22', '0000-00-00', '0000-00-00', 'Gazon', 'Meilleur terrain du monde!'),
 (4, 'Rue du printemps', 4775, 1, 'Passable', '2015-05-12', '2015-09-14', '2015-05-12', 'Synthétique', 'Terrain boueux'),
 (5, 'Village de tennis', 550, 1, 'Neuf', '2015-05-12', '2015-09-14', '2015-05-12', 'Terre battue', 'Blabla'),
 (8, 'OK', 120, 1, 'UsÃ©', '2015-05-12', '2015-09-14', '2015-05-12', 'SynthÃ©tique', 'ok'),
-(9, 'OK', 120, 1, 'UsÃ©', '2015-05-12', '2015-09-14', '2015-05-12', 'SynthÃ©tique', 'ok');
+(9, 'OK', 120, 1, 'UsÃ©', '2015-05-12', '2015-09-14', '2015-05-12', 'SynthÃ©tique', 'ok'),
+(11, 'ok', 5, 10, 'Neuf', '2015-05-12', '9999-01-01', '2015-11-07', 'Terre battue', 'ok\r\n');
 
 --
 -- Contraintes pour les tables exportées

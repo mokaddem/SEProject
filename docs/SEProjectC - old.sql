@@ -2,10 +2,10 @@
 -- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Nov 04, 2015 at 11:07 PM
--- Server version: 5.5.46-0ubuntu0.14.04.2
--- PHP Version: 5.5.9-1ubuntu4.14
+-- Client: localhost
+-- Généré le: Jeu 05 Novembre 2015 à 13:45
+-- Version du serveur: 5.5.46-0ubuntu0.14.04.2
+-- Version de PHP: 5.5.9-1ubuntu4.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `SEProjectC`
+-- Base de données: `SEProjectC`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Categorie`
+-- Structure de la table `Categorie`
 --
 
 CREATE TABLE IF NOT EXISTS `Categorie` (
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `Categorie` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `Categorie`
+-- Contenu de la table `Categorie`
 --
 
 INSERT INTO `Categorie` (`ID`, `Year`, `Designation`) VALUES
@@ -43,7 +43,7 @@ INSERT INTO `Categorie` (`ID`, `Year`, `Designation`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Extras`
+-- Structure de la table `Extras`
 --
 
 CREATE TABLE IF NOT EXISTS `Extras` (
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `Extras` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `Extras`
+-- Contenu de la table `Extras`
 --
 
 INSERT INTO `Extras` (`ID`, `Name`, `Price`, `Description`) VALUES
@@ -65,7 +65,34 @@ INSERT INTO `Extras` (`ID`, `Name`, `Price`, `Description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Match`
+-- Structure de la table `History`
+--
+
+CREATE TABLE IF NOT EXISTS `History` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idPerson` int(11) NOT NULL,
+  `idEntite` int(11) NOT NULL,
+  `typeEntite` text NOT NULL,
+  `action` text NOT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  UNIQUE KEY `id_3` (`id`),
+  UNIQUE KEY `id_4` (`id`),
+  KEY `id_2` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+
+--
+-- Contenu de la table `History`
+--
+
+INSERT INTO `History` (`id`, `idPerson`, `idEntite`, `typeEntite`, `action`, `date`) VALUES
+(13, 1, 1, 'Equipe', 'Ajout', '0000-00-00');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Match`
 --
 
 CREATE TABLE IF NOT EXISTS `Match` (
@@ -80,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `Match` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `Match`
+-- Contenu de la table `Match`
 --
 
 INSERT INTO `Match` (`id`, `date`, `ID_Equipe1`, `ID_Equipe2`, `score1`, `score2`, `ID_Terrain`) VALUES
@@ -89,7 +116,7 @@ INSERT INTO `Match` (`id`, `date`, `ID_Equipe1`, `ID_Equipe2`, `score1`, `score2
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Owner`
+-- Structure de la table `Owner`
 --
 
 CREATE TABLE IF NOT EXISTS `Owner` (
@@ -99,19 +126,20 @@ CREATE TABLE IF NOT EXISTS `Owner` (
   PRIMARY KEY (`ID`),
   KEY `ID_Personne` (`ID_Personne`),
   KEY `ID_Staff` (`ID_Staff`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
--- Dumping data for table `Owner`
+-- Contenu de la table `Owner`
 --
 
 INSERT INTO `Owner` (`ID`, `ID_Personne`, `ID_Staff`) VALUES
-(1, 6, 7);
+(1, 6, 7),
+(9, 70, 7);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Personne`
+-- Structure de la table `Personne`
 --
 
 CREATE TABLE IF NOT EXISTS `Personne` (
@@ -132,10 +160,10 @@ CREATE TABLE IF NOT EXISTS `Personne` (
   `IsOwner` tinyint(1) NOT NULL,
   `IsStaff` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=54 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=71 ;
 
 --
--- Dumping data for table `Personne`
+-- Contenu de la table `Personne`
 --
 
 INSERT INTO `Personne` (`ID`, `Title`, `FirstName`, `LastName`, `Ville`, `ZIPCode`, `Rue`, `Number`, `PhoneNumber`, `GSMNumber`, `BirthDate`, `Mail`, `CreationDate`, `IsPlayer`, `IsOwner`, `IsStaff`) VALUES
@@ -146,12 +174,16 @@ INSERT INTO `Personne` (`ID`, `Title`, `FirstName`, `LastName`, `Ville`, `ZIPCod
 (5, 2, 'Beatrice', 'Lebouch', '', 7463, 'Avenue des carottes, 12', 0, 64795321, 2147483647, '1974-01-06', 'blebouch@hotmail.fr', '2015-10-02', 1, 0, 0),
 (6, 1, 'Leonard', 'Leriche', 'Charleroi', 3256, 'Rue des richards, 1', 42, 61235495, 2147483647, '1950-06-14', 'legrosriche@hotmail.com', '2015-09-24', 0, 1, 0),
 (7, 1, 'Billy', 'Biloup', '', 9413, 'chemin des Bibilou, 14', 0, 413257954, 2147483647, '1964-11-19', 'Billy.Biloup@gmail.c', '2015-08-20', 0, 0, 1),
-(8, 2, 'Noémie', 'milé', '', 7456, 'route des bleus,74', 0, 98764138, 2147483647, '1995-12-24', 'nonolabest@gmail.com', '2015-10-01', 1, 0, 0);
+(8, 2, 'Noémie', 'milé', '', 7456, 'route des bleus,74', 0, 98764138, 2147483647, '1995-12-24', 'nonolabest@gmail.com', '2015-10-01', 1, 0, 0),
+(64, 0, 'Alicia', 'MARIN', '310', 1348, 'LLN', 5, 9, 6, '1994-11-08', 'a@m.fr', '2015-11-05', 1, 0, 0),
+(65, 0, 'Antoine', 'ROLLIN', '0', 26500, 'BLV', 192, 0, 2147483647, '1994-05-06', 'antoine.rollin26@free.fr', '2015-11-05', 1, 0, 0),
+(68, 0, 'Alicia', 'MARIN', '310', 1348, 'LLN', 5, 9, 6, '1994-11-08', 'a@m.fr', '2015-11-05', 1, 0, 0),
+(70, 1, 'Antoine', 'ROLLIN', 'Jupiter', 66666, 'TokupCPrivÃ©', 666, 0, 0, '1994-05-06', 'a@a.xn--6ca', '2015-11-05', 0, 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Player`
+-- Structure de la table `Player`
 --
 
 CREATE TABLE IF NOT EXISTS `Player` (
@@ -165,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `Player` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Player`
+-- Contenu de la table `Player`
 --
 
 INSERT INTO `Player` (`ID_Personne`, `IsLeader`, `Paid`, `AlreadyPart`) VALUES
@@ -179,7 +211,7 @@ INSERT INTO `Player` (`ID_Personne`, `IsLeader`, `Paid`, `AlreadyPart`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Staff`
+-- Structure de la table `Staff`
 --
 
 CREATE TABLE IF NOT EXISTS `Staff` (
@@ -194,7 +226,7 @@ CREATE TABLE IF NOT EXISTS `Staff` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `Staff`
+-- Contenu de la table `Staff`
 --
 
 INSERT INTO `Staff` (`ID`, `ID_Personne`, `Level`, `ID_Cat`, `Password`) VALUES
@@ -203,7 +235,7 @@ INSERT INTO `Staff` (`ID`, `ID_Personne`, `Level`, `ID_Cat`, `Password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Team`
+-- Structure de la table `Team`
 --
 
 CREATE TABLE IF NOT EXISTS `Team` (
@@ -216,21 +248,24 @@ CREATE TABLE IF NOT EXISTS `Team` (
   KEY `ID_Player1` (`ID_Player1`),
   KEY `ID_Player2` (`ID_Player2`),
   KEY `ID_Cat` (`ID_Cat`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
--- Dumping data for table `Team`
+-- Contenu de la table `Team`
 --
 
 INSERT INTO `Team` (`ID`, `ID_Player1`, `ID_Player2`, `ID_Cat`, `NbWinMatch`) VALUES
 (1, 1, 2, 1, 0),
 (2, 3, 4, 1, 1),
-(7, 4, 5, 1, 0);
+(7, 4, 5, 1, 0),
+(8, 65, 64, 1, 0),
+(9, 64, 65, 1, 0),
+(10, 6, 70, 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Terrain`
+-- Structure de la table `Terrain`
 --
 
 CREATE TABLE IF NOT EXISTS `Terrain` (
@@ -245,43 +280,45 @@ CREATE TABLE IF NOT EXISTS `Terrain` (
   `Type` varchar(500) NOT NULL,
   `Note` varchar(500) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
--- Dumping data for table `Terrain`
+-- Contenu de la table `Terrain`
 --
 
 INSERT INTO `Terrain` (`ID`, `adresse`, `surface`, `ID_Owner`, `etat`, `disponibiliteFrom`, `disponibiliteTo`, `CreationDate`, `Type`, `Note`) VALUES
 (1, 'Place des joueurs, 25 TennisVille', 400, 1, 'Usé', '2015-10-22', '0000-00-00', '0000-00-00', 'Gazon', 'Meilleur terrain du monde!'),
 (4, 'Rue du printemps', 4775, 1, 'Passable', '2015-05-12', '2015-09-14', '2015-05-12', 'Synthétique', 'Terrain boueux'),
-(5, 'Village de tennis', 550, 1, 'Neuf', '2015-05-12', '2015-09-14', '2015-05-12', 'Terre battue', 'Blabla');
+(5, 'Village de tennis', 550, 1, 'Neuf', '2015-05-12', '2015-09-14', '2015-05-12', 'Terre battue', 'Blabla'),
+(8, 'OK', 120, 1, 'UsÃ©', '2015-05-12', '2015-09-14', '2015-05-12', 'SynthÃ©tique', 'ok'),
+(9, 'OK', 120, 1, 'UsÃ©', '2015-05-12', '2015-09-14', '2015-05-12', 'SynthÃ©tique', 'ok');
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables exportées
 --
 
 --
--- Constraints for table `Owner`
+-- Contraintes pour la table `Owner`
 --
 ALTER TABLE `Owner`
   ADD CONSTRAINT `Owner_ibfk_1` FOREIGN KEY (`ID_Personne`) REFERENCES `Personne` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Owner_ibfk_2` FOREIGN KEY (`ID_Staff`) REFERENCES `Staff` (`ID_Personne`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `Player`
+-- Contraintes pour la table `Player`
 --
 ALTER TABLE `Player`
   ADD CONSTRAINT `PersonneFK` FOREIGN KEY (`ID_Personne`) REFERENCES `Personne` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `Staff`
+-- Contraintes pour la table `Staff`
 --
 ALTER TABLE `Staff`
   ADD CONSTRAINT `Staff_ibfk_1` FOREIGN KEY (`ID_Personne`) REFERENCES `Personne` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Staff_ibfk_2` FOREIGN KEY (`ID_Cat`) REFERENCES `Categorie` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `Team`
+-- Contraintes pour la table `Team`
 --
 ALTER TABLE `Team`
   ADD CONSTRAINT `Team_ibfk_1` FOREIGN KEY (`ID_Player1`) REFERENCES `Personne` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,

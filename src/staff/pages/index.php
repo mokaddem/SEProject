@@ -80,6 +80,7 @@
                                                     <th>Type Entité</th>
                                                     <th>Action effectuée</th>
                                                     <th>Date</th>
+                                                    <th>Heure</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -116,6 +117,9 @@
                                                         </td>
                                                         <td>
                                                             <?=$histo['date']?>
+                                                        </td>
+                                                        <td>
+                                                            <?=$histo['hour']?>
                                                         </td>
                                                     </tr>
                                                     <?php } ?>

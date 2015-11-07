@@ -67,7 +67,10 @@
                                         <option>Usé</option>
                                     </select>
                                     <input type="number" class="form-control" name="surface" id="surface" placeholder="Surface (m²)" min="0" step="1" required>
+                                    
                                 </div>
+                                </div>
+                                
                                 <div class="form-group">
                                     <label for="sel1"><span class="fa fa-user"></span> Propriétaire</label>
                                     <select class="form-control" id="sel3" name="sel3">
