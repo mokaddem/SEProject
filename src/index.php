@@ -1,5 +1,17 @@
+<?php session_start(); ?>
+
 <!doctype html>
 <html>
+    
+    <?php
+        if (array_key_exists("action", $_GET)) {
+            if ($_GET["action"] == "logout") {
+                $_SESSION=array(); 
+                session_unset(); 
+                session_destroy();
+            }
+        }
+    ?>
 
 <head lang="fr">
     <meta charset="utf-8">

@@ -1,7 +1,23 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    
+    <?php
+        if (array_key_exists("action", $_GET)) {
+            if ($_GET["action"] == "logout") {
+                $_SESSION=array(); 
+                session_unset(); 
+                session_destroy();
+            }
+        }
+        
+        if (array_key_exists("ID", $_SESSION)) {
+            header("Location: ./index.php");
+        }
+    ?>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

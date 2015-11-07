@@ -221,7 +221,7 @@
                 <!--<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>-->
                 <li class="divider"></li>
-                <li><a href="login.php" onclick="$_SESSION=array(); session_unset(); session_destroy();"><i class="fa fa-sign-out fa-fw"></i> Déconnexion</a>
+                <li><a href="login.php?action=logout"><i class="fa fa-sign-out fa-fw"></i> Déconnexion</a>
                 </li>
             </ul>
             <!-- /.dropdown-user -->
@@ -401,7 +401,7 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="../../index.php" onclick="$_SESSION=array(); session_unset(); session_destroy();"><i class="fa fa-home fa-fw"></i> Retour au site</a>
+                    <a href="../../index.php?action=logout"><i class="fa fa-home fa-fw"></i> Retour au site</a>
                 </li>
 
             </ul>
