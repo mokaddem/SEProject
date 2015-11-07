@@ -19,8 +19,8 @@
 	$ID_Owner	= $_GET['sel3'];
 	$Etat		= $_GET['sel2'];
 	$DispoFrom	= '2015-05-12';
-	$DispoTo	= '2015-09-14';
-	$CreationDate	= '2015-05-12';
+	$DispoTo	= '9999-01-01';
+	$CreationDate	= date("Y-m-d");
 	$type		= $_GET['sel1'];
 	$Note		= $_GET['InputNote'];
 

@@ -129,6 +129,11 @@
                         </div>
                         <!-- /.col-lg-6 -->
                     </div>
+                    
+                    <div>
+                        <a href="./php/delete-history.php" class="btn btn-danger">Effacer</a>
+                    </div>
+                    
                     <div class="row text-center">
                         <a class="twitter-timeline" href="https://twitter.com/SimonsCat" data-widget-id="661635155916890112">Tweets de @SimonsCat</a>
                         <script>
