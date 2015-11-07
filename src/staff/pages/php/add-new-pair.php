@@ -36,18 +36,21 @@
 
 	$req->execute();
 
-    addHistory(1, 1, "Joueur", "Ajout");
+
+    $reponse = $db->query('SELECT * FROM Personne WHERE "'.$FirstName.'" = FirstName AND "'.$LastName.'" = LastName');
+    $donnees = $reponse->fetch_array();
+    addHistory(1, $donnees["ID"], "Joueur", "Ajout");
 	
     
 
 	$req = $db->prepare("INSERT INTO Personne(ID, FirstName, LastName, Title, ZIPCode, PhoneNumber, GSMNumber, Rue, Number, Ville, BirthDate, Mail, CreationDate, IsPlayer, IsOwner, IsStaff) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-	$ID	 	= '';
+	$ID	 	    = '';
 	$FirstName	= $_GET['InputPrenom2'];
 	$LastName	= $_GET['InputNom2'];
 	$Title		= $_GET['title2'];
 	$ZIPCode	= $_GET['InputCP2'];
-	$PhoneNumber	= $_GET['InputFixe2'];
+	$PhoneNumber= $_GET['InputFixe2'];
 	$GSMNumber	= $_GET['InputMob2'];
 	$Ville		= $_GET['InputLoc2'];
 	$Rue		= $_GET['InputAdresse2'];
@@ -63,8 +66,11 @@
 
 	$req->execute();
 
-    addHistory(1, 1, "Joueur", "Ajout");
 
+    $reponse = $db->query('SELECT * FROM Personne WHERE "'.$FirstName.'" = FirstName AND "'.$LastName.'" = LastName');    
+    $donnees = $reponse->fetch_array();
+    addHistory(1, $donnees["ID"], "Joueur", "Ajout");
+	
 	header("Location: ../list-player.php");
 
 //	$req->execute(array('ID' => '', 'FirstName' => $_GET['InputPrenom2'], 'LastName' => $_GET['InputNom2'], 'Title' => $_GET['title2'], 'ZIPCode' => $_GET['InputCP2'], 'PhoneNumber' => $_GET['Fixnum2'], 'GSMNumber' => $_GET['Gsmnum2'], 'Address' => $_GET['InputLoc2'] . "  ," . $_GET['InputAdresse2'] . " n°" . $_GET['InputBat2'] , 'BirthDate' => $_GET['InputBirth2'], 'Mail' => $_GET['InputEmailFirst2'], 'CreationDate' => time(), 'IsPlayer' => $_GET['role2'], 'IsOwner' => $_GET['role2'], 'IsStaff' => 0));
