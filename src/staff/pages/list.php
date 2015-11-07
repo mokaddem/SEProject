@@ -49,14 +49,19 @@
 
             if (array_key_exists("type", $_GET)) {
                 $listDonnees = getDonnees($_GET["type"]);
-                $titreDonnees = getTitre($_GET["type"]);
+                $titreDonnees = getTitreTable($_GET["type"]);
                 $paramDonnees = getParam($_GET["type"]);
+
+                $titre = getTitre($_GET["type"]);
+            }
+
+            if (!empty($listDonnees)) {
             ?>
 
                 <div id="page-wrapper">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Liste des participants</h1>
+                            <h1 class="page-header">Liste des <?=$titre?></h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
@@ -119,7 +124,7 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Vous devez préciser un type.</h1>
+                        <h1 class="page-header">Cette liste n'existe pas.</h1>
                     </div>
                 </div>
             </div>

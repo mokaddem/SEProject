@@ -6,76 +6,104 @@ function getDonnees($get) {
             case "match":
                 return getMatchs();
                 break;
+                
             case "player":
                 return getPlayers();
-                break;
+                
             case "court":
                 return getCourts();
-                break;
+                
             case "extra":
                 return getExtras();
-                break;
+                
             case "owner":
                 return getOwners();
-                break;
+                
             case "team":
-                return getTeams();
-                break;
+                //return getTeams();
+            break;
+                
             case "staff":
                 return getStaffs();
-                break;
+                
         }
 }
 
-function getTitre($get) {
+function getTitreTable($get) {
     switch ($get) {
         case "match":
-            return getMatchs();
+           return array("ID", "Première équipe", "Seconde équipe", "Date du match", "Heure du match", "Catégorie", "Crée le", "Action");
             break;
         case "player":
             return array("ID", "Nom", "Prénom", "Né(e) le", "Créé le", "Action");
-            break;
+
         case "court":
             return array("ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Crée le", "Note", "Action");
-            break;
+
         case "extra":
             return array("ID", "Nom", "Prix", "Nombre de personnes", "Description", "Action");
-            break;
+
         case "owner":
             return array("ID", "Nom", "Prénom", "Créé le", "Action");
-            break;
+
         case "team":
-            return getTeams();
+//            return getTeams();
             break;
+
         case "staff":
             return array("ID", "Nom", "Prénom", "Né(e) le", "Créé le", "Action");
-            break;
+
     }
 }
 
 function getParam($get) {
     switch ($get) {
         case "match":
-            return getMatchs();
+            return array("ID", "ID_Equipe1", "ID_Equipe2", "date", "date", "date", "date");
             break;
+            
         case "player":
             return array("ID", "LastName", "FirstName", "BirthDate", "CreationDate");
-            break;
+            
         case "court":
             return array("ID", "adresse", "surface", "FirstName", "etat", "Type", "disponibiliteFrom", "CreationDate", "Note");
-            break;
+            
         case "extra":
             return array("ID", "Name", "Price", "Name", "Description"); // Name à modif (4eme param)
-            break;
+            
         case "owner":
             return array("ID", "LastName", "FirstName", "CreationDate");
-            break;
+            
         case "team":
-            return getTeams();
+//            return getTeams();
             break;
+            
         case "staff":
             return array("ID", "LastName", "FirstName", "BirthDate", "CreationDate");
+            
+    }
+}
+
+function getTitre($get) {
+    switch ($get) {
+        case "match":
+            return "matchs";
             break;
+        case "player":
+            return "participants";
+
+        case "court":
+            return "terrains";
+        case "extra":
+            return "extras";
+        case "owner":
+            return "propriétaires";
+        case "team":
+            return "équipes";
+            break;
+        case "staff":
+            return "staffeurs";
+
     }
 }
 

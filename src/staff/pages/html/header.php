@@ -262,7 +262,7 @@
                             <a href="list-team.php"> Equipes</a>
                         </li>
                         <li>
-                            <a href="list-match.php"> Matchs</a>
+                            <a href="list.php?type=match"> Matchs</a>
                         </li>
                         <li>
                             <a href="list.php?type=court"> Terrains</a>
