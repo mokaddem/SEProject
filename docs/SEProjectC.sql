@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Sam 07 Novembre 2015 à 19:22
--- Version du serveur: 5.5.46-0ubuntu0.14.04.2
--- Version de PHP: 5.5.9-1ubuntu4.14
+-- Généré le: Sam 07 Novembre 2015 à 20:56
+-- Version du serveur: 5.5.44-0ubuntu0.14.04.1
+-- Version de PHP: 5.6.14-1+deb.sury.org~trusty+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -97,21 +97,21 @@ INSERT INTO `History` (`id`, `idPerson`, `idEntite`, `typeEntite`, `action`, `da
 --
 
 CREATE TABLE IF NOT EXISTS `Match` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
   `ID_Equipe1` int(11) NOT NULL,
   `ID_Equipe2` int(11) NOT NULL,
   `score1` int(11) DEFAULT NULL,
   `score2` int(11) DEFAULT NULL,
   `ID_Terrain` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Contenu de la table `Match`
 --
 
-INSERT INTO `Match` (`id`, `date`, `ID_Equipe1`, `ID_Equipe2`, `score1`, `score2`, `ID_Terrain`) VALUES
+INSERT INTO `Match` (`ID`, `date`, `ID_Equipe1`, `ID_Equipe2`, `score1`, `score2`, `ID_Terrain`) VALUES
 (1, '2015-10-22', 1, 2, NULL, NULL, 1);
 
 -- --------------------------------------------------------
