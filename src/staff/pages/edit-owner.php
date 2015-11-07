@@ -46,7 +46,7 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12 noDeco">
-                        <h1 class="page-header"><a href="list-owner.php"> Liste des propriétaires</a> > Modifier</h1>
+                        <h1 class="page-header"><a href="list.php?type=owner"> Liste des propriétaires</a> > Modifier</h1>
                     </div>
                 </div>
 
@@ -153,7 +153,7 @@
                                 </div>
                             </div>
 
-                            <a class="btn btn-info" href="list-owner.php">Retour</a>
+                            <a class="btn btn-info" href="list.php?type=owner">Retour</a>
                             <input type="submit" name="submit" id="submit" value="Sauvegarder" class="btn btn-success pull-right">
 
                         </div>

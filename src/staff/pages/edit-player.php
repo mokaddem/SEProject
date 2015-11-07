@@ -48,7 +48,7 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12 noDeco">
-                        <h1 class="page-header"><a href="list-player.php"> Liste des participants</a> > Modifier</h1>
+                        <h1 class="page-header"><a href="list.php?type=player"> Liste des participants</a> > Modifier</h1>
                     </div>
                 </div>
                 <!-- Registration form - START -->
@@ -148,7 +148,7 @@
                                 </div>
                             </div>
 
-                            <a class="btn btn-info" href="list-player.php">Retour</a>
+                            <a class="btn btn-info" href="list.php?type=player">Retour</a>
                             <input type="submit" name="edit-submit" id="edit-submit" value="Sauvegarder" class="btn btn-success pull-right">
                             <br/>
                             <br/>

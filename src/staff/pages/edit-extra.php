@@ -44,7 +44,7 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12 noDeco">
-                        <h1 class="page-header"><a href="list-extras.php">Gestion des extras</a> > Modifier</h1>
+                        <h1 class="page-header"><a href="list.php?type=extra">Gestion des extras</a> > Modifier</h1>
                     </div>
                 </div>
 
@@ -86,7 +86,7 @@
                                 </div>
                             </div>
 
-                            <a class="btn btn-info" href="list-extras.php">Retour</a>
+                            <a class="btn btn-info" href="list.php?type=extra">Retour</a>
                             <input type="submit" name="edit-submit" id="edit-submit" value="Sauvegarder" class="btn btn-success pull-right">
 
                         </div>

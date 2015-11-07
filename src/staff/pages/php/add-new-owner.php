@@ -49,7 +49,7 @@
 
     addHistory( $ID_inserted, "Propriétaire", "Ajout");
 	
-	header("Location: ../list-owner.php");
+	header("Location: ../list.php?type=owner");
 
 
 	

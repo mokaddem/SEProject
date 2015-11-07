@@ -44,7 +44,7 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12 noDeco">
-                        <h1 class="page-header"><a href="list-match.php">Liste des matchs > Modifier</a></h1>
+                        <h1 class="page-header"><a href="list.php?type=match">Liste des matchs > Modifier</a></h1>
                     </div>
                 </div>
 
@@ -86,7 +86,7 @@
                                 </div>
                             </div>
 
-                            <a class="btn btn-info" href="list-match.php">Retour</a>
+                            <a class="btn btn-info" href="list.php?type=match">Retour</a>
                             <input type="submit" name="edit-submit" id="edit-submit" value="Sauvegarder" class="btn btn-success pull-right">
 
                         </div>
