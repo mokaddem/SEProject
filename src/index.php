@@ -6,13 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <title>Tennis Tournament</title>
-    <meta name="description" content="BlackTie.co - Free Handsome Bootstrap Themes" />
-    <meta name="keywords" content="themes, bootstrap, free, templates, bootstrap 3, freebie,">
-    <meta property="og:title" content="">
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="fancybox/jquery.fancybox-v=2.1.5.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="css/font-awesome.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
@@ -129,13 +125,34 @@
                     <br/>
                     <br/>
                     <p class="text-right">
-                        <button class="btn btn-lg btn-default" data-toggle="collapse" data-target="#demo">Inscription</button>
+                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-url="./inscription/index.php" data-target="#myModal">Inscription</button>
                     </p>
+                    <!--<button class="btn btn-lg btn-default" data-toggle="collapse" data-target="#demo">Inscription</button> -->
                     <!-- <a class="btn btn-lg btn-default" href="./inscription/index.php" onclick="self.location.href='./inscription/index.php'"> >> INSCRIPTION</a> -->
                 </div>
                 <!-- /col12 -->
             </div>
             <!-- /row -->
+            <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Modal Header</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Some text in the modal.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
         <!-- /container -->
     </div>
@@ -316,8 +333,6 @@
         </div>
     </section>
 
-
-
     <!-- SCRIPTS -->
     <!--<script src="js/jquery.js"></script>-->
     <script src="js/html5shiv.js"></script>
@@ -347,6 +362,24 @@
 
         });
     </script>
+    <script type="text/javascript">
+        // Stop click on last td in a data-toggle=modal
+        $("[data-toggle='modal'] td:last-child").on("click", function (event) {
+            $(this).preventDefault();
+            $(this).stopPropagation();
+        });
+
+        // On click, get html content from url and update the corresponding modal
+        $("[data-toggle='modal']").on("click", function (event) {
+            event.preventDefault();
+            var url = $(this).attr('data-url');
+            var modal_id = $(this).attr('data-target');
+            $.get(url, function (data) {
+                $(modal_id).html(data);
+            });
+        });
+    </script>
+
 </body>
 
 </html>
