@@ -132,7 +132,7 @@
                         <!-- /col12 -->
 
                         <div class="col-12 col-lg-6 col-sm-6">
-                            <button data-toggle="modal" data-url="./inscription/index.php" data-target="#myModal">
+                            <button data-toggle="modal" data-url="./inscription/inscription.php" data-target="#myModal">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 
