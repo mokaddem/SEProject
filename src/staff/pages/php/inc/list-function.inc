@@ -6,26 +6,26 @@ function getDonnees($get) {
             case "match":
                 return getMatchs();
                 break;
-                
+
             case "player":
                 return getPlayers();
-                
+
             case "court":
                 return getCourts();
-                
+
             case "extra":
                 return getExtras();
-                
+
             case "owner":
                 return getOwners();
-                
+
             case "team":
                 //return getTeams();
             break;
-                
+
             case "staff":
                 return getStaffs();
-                
+
         }
 }
 
@@ -61,26 +61,26 @@ function getParam($get) {
         case "match":
             return array("ID", "ID_Equipe1", "ID_Equipe2", "date", "date", "date", "date");
             break;
-            
+
         case "player":
             return array("ID", "LastName", "FirstName", "BirthDate", "CreationDate");
-            
+
         case "court":
             return array("ID", "adresse", "surface", "FirstName", "etat", "Type", "disponibiliteFrom", "CreationDate", "Note");
-            
+
         case "extra":
             return array("ID", "Name", "Price", "Name", "Description"); // Name à modif (4eme param)
-            
+
         case "owner":
             return array("ID", "LastName", "FirstName", "CreationDate");
-            
+
         case "team":
 //            return getTeams();
             break;
-            
+
         case "staff":
             return array("ID", "LastName", "FirstName", "BirthDate", "CreationDate");
-            
+
     }
 }
 

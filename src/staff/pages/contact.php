@@ -19,6 +19,7 @@
 
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../dist/css/alicia.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -49,11 +50,14 @@
                 </div>
                 <!-- Registration form - START -->
                 <div class="row">
+
+
+
                     <form role="form">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Destinataire" id="Destinataire">
+                                    <input class="form-control" name="dest" id="dest" placeholder="Destinataire" type="text">
                                     <div class="input-group-btn">
                                         <button type="button" class="btn btn-default btn-outline" data-toggle="collapse" data-target="#demo" ata-toggle="tooltip" data-placement="top" title="Selectionner des groupes">
                                             <i class="fa fa-long-arrow-down"></i> <i class="fa fa-users"></i>
@@ -69,7 +73,7 @@
                                 <br/>
                                 <div class="form-group">
                                     <!-- <label for="sel1"><span class="fa fa-user"></span> Message à tous les propriétaires</label> -->
-                                    <input type="text" class="form-control" placeholder="Sujet" id="id" required data-validation-required-message="Veuillez entrer le sujet.">
+                                    <input type="text" class="form-control" placeholder="Sujet" id="sujet" required data-validation-required-message="Veuillez entrer le sujet.">
                                     <br>
                                     <textarea rows="15" cols="50" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Veuillez entrer votre message."></textarea>
                                 </div>
@@ -97,6 +101,9 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="../dist/js/alicia.js"></script>
+
+    <script src="http://cdn.jsdelivr.net/typeahead.js/0.9.3/typeahead.min.js"></script>
 
     <script>
         $(document).ready(function () {
