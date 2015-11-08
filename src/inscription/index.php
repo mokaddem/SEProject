@@ -8,7 +8,6 @@
 
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 </head>
@@ -26,7 +25,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <form role="form" method="GET" action="php/add-new-pair.php">
+                        <form role="form" method="GET" id="confirmForm" action="php/add-new-pair.php">
 
                             <div class="col-lg-6">
                                 <div class="col-lg-9">
@@ -299,6 +298,7 @@
 
                             </div>
                             <div class="col-lg-offset-5 col-lg-2">
+				<div id="successConfirm"></div>
                                 <input type="submit" name="submit" id="submit" value="Valider" class="btn btn-info">
                             </div>
                         </form>
@@ -318,5 +318,6 @@
 <!-- SCRIPTS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-
+<script src="js/confirmation.js"></script>
+<script src="js/jqBootstrapValidation.js"></script>
 </html>
