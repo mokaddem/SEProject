@@ -130,19 +130,18 @@
                             <h4>Inscrivez-vous en équipe dès maintenant pour être certain de passer un moment inoubliable.</h4>
                         </div>
                         <!-- /col12 -->
-                        <div class="col-12 col-lg-6">
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <p class="text-right">
-                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-url="./inscription/index.php" data-target="#myModal">Inscription</button>
-                            </p>
-                            <!--<button class="btn btn-lg btn-default" data-toggle="collapse" data-target="#demo">Inscription</button> -->
-                            <!-- <a class="btn btn-lg btn-default" href="./inscription/index.php" onclick="self.location.href='./inscription/index.php'"> >> INSCRIPTION</a> -->
+
+                        <div class="col-12 col-lg-6 col-sm-6">
+                            <button data-toggle="modal" data-url="./inscription/index.php" data-target="#myModal">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                
+                                    <i id="crayon" class="fa fa-pencil fa-stack-1x"></i>
+                                </span>
+                            </button>
+                            <h2 class="font-semibold">Inscription</h2>
                         </div>
+                        <!-- /col12 -->
                         <!-- /col12 -->
                     </div>
                     <!-- /row -->

@@ -7,6 +7,11 @@
  * URL: http://blacktie.co
  */
 
+#crayon {
+    color: #1abc9c;
+    text-decoration: none;
+}
+
 #contact {
     padding-bottom: 200px;
 }
