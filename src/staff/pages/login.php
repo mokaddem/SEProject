@@ -55,7 +55,7 @@
                 <div class="col-md-4 col-md-offset-4">
                     <div class="login-panel panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Connectez-vous</h3>
+                            <h3 class="panel-title">Connectez-vous <a href="../../index.php" class="btn btn-default pull-right">Accueil</a></h3>
                         </div>
                         <div class="panel-body">
                             <form role="form" method="Post" action="php/test-password.php">
@@ -96,7 +96,6 @@
                                             Vous n'avez pas les droits suffisant pour visiter cette page";
                                             <?php } ?>
                                 </div>
-
                                 <?php    }  ?>
                         </div>
                     </div>
