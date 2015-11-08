@@ -41,35 +41,47 @@
         ?>
 
 
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="page-header">
-                    <h1>Envoyer un mail</h1>
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="page-header">
+                        <h1>Envoyer un mail</h1>
+                    </div>
                 </div>
-            </div>
                 <!-- Registration form - START -->
-                    <div class="row">
-                        <form role="form">
-                            <div class="col-lg-6">
+                <div class="row">
+                    <form role="form">
+                        <div class="col-lg-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Destinataire (facultatif)" id="Destinataire">
-                                <input type="checkbox" name="option1" value="Participants"> Participants<br/>
-                                <input type="checkbox" name="option2" value="Propriétaires"> Propriétaires  
-                            </div>                              
-                            <div class="form-group">
-                                  <!-- <label for="sel1"><span class="fa fa-user"></span> Message à tous les propriétaires</label> -->
-                                    <input type="text" class="form-control" placeholder="Sujet" id="id" required data-validation-required-message="Veuillez entrer le sujet.">
-                                  <br><textarea rows="15" cols="50" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Veuillez entrer votre message."></textarea>
-                              </div>
-                                <input type="submit" name="submitPlayers" id="submitPlayers" value="Envoyer" class="btn btn-info pull-center" >
-                            </div>
-                        </form>
-                <!-- Registration form - END -->
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Destinataire" id="Destinataire">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-default btn-outline" data-toggle="collapse" data-target="#demo" ata-toggle="tooltip" data-placement="top" title="Selectionner des groupes">
+                                            <i class="fa fa-long-arrow-down"></i> <i class="fa fa-users"></i>
+                                        </button>
+                                    </div>
+                                </div>
 
+                                <div id="demo" class="collapse">
+                                    <input type="checkbox" name="option1" value="Participants"> Participants
+                                    <input type="checkbox" name="option2" value="Propriétaires"> Propriétaires
+                                </div>
+
+                                <br/>
+                                <div class="form-group">
+                                    <!-- <label for="sel1"><span class="fa fa-user"></span> Message à tous les propriétaires</label> -->
+                                    <input type="text" class="form-control" placeholder="Sujet" id="id" required data-validation-required-message="Veuillez entrer le sujet.">
+                                    <br>
+                                    <textarea rows="15" cols="50" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Veuillez entrer votre message."></textarea>
+                                </div>
+                                <input type="submit" name="submitPlayers" id="submitPlayers" value="Envoyer" class="btn btn-primary pull-right" />
+                            </div>
+                        </div>
+                    </form>
+                    <!-- Registration form - END -->
                 </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
+                <!-- /.row -->
+            </div>
+            <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
@@ -85,6 +97,12 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 
 </body>
 
