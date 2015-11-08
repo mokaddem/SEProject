@@ -83,15 +83,21 @@
                                     $_SESSION=array(); 
                                     session_unset(); 
                                     session_destroy();
-                                    echo "<div class='err'><h3>Erreur</h3>";
-                                    if ($_GET["error"] == "identifiants") {
-                                        echo "Utilisateur ou mot de passe incorrect";
-                                    } else if ($_GET["error"] == "reject") {
-                                        echo "Vous n'avez pas les droits suffisant pour visiter cette page";
-                                    }
-                                    echo "</div>";
-                                }
                             ?>
+                                <div class='text-danger'>
+                                    <h3>Erreur</h3>
+                                    <?php
+                                    if ($_GET["error"] == "identifiants") {
+                            ?>
+                                        Utilisateur ou mot de passe incorrect
+                                        <?php
+                                    } else if ($_GET["error"] == "reject") {
+                            ?>
+                                            Vous n'avez pas les droits suffisant pour visiter cette page";
+                                            <?php } ?>
+                                </div>
+
+                                <?php    }  ?>
                         </div>
                     </div>
                 </div>
