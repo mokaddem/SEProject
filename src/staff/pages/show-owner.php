@@ -5,7 +5,7 @@ $db = new BDD();
 $reponse = $db->query('SELECT * FROM Personne pers, Player play WHERE '. $_GET['id']. ' = pers.ID');
 $donnes = $reponse->fetch_array();
 ?>
-    <div class="col-lg-offset-5 col-lg-3">
+<div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">

@@ -44,7 +44,7 @@
 
         <div id="wrapper">
 
-            <?php            
+            <?php
             include("./html/header.php");
 
             if (array_key_exists("type", $_GET)) {
@@ -116,7 +116,8 @@
                 <!-- /.row -->
 
                 <!-- Modal -->
-                <div id="myModal" class="modal fade" role="dialog"></div>
+                <div id="myModal" class="modal fade" role="dialog">
+                  </div>
 
 
         </div>

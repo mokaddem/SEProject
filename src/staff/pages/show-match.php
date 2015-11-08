@@ -7,7 +7,7 @@ $reponse = $db->query('SELECT * FROM `Match` WHERE '. $_GET['id']. '=ID');
 $donnes = $reponse->fetch_array();
 //$donnes = $db->query('SELECT * FROM Match');
 ?>
-    <div class="col-lg-offset-5 col-lg-3">
+<div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
