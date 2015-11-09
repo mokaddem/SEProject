@@ -1,30 +1,30 @@
 <?php
 include_once('php/BDD.php');
 
-function getDonnees($get) {
+function getDonnees($get, $id) {
         switch ($get) {
             case "match":
-                return getMatchs();
+                return getMatch($id);
                 break;
 
             case "player":
-                return getPlayers();
+                return getPlayer($id);
 
             case "court":
-                return getCourts();
+                return getCourt($id);
 
             case "extra":
-                return getExtras();
+                return getExtra($id);
 
             case "owner":
-                return getOwners();
+                return getOwner($id);
 
             case "team":
-                //return getTeams();
+                //return getTeam($id);
             break;
 
             case "staff":
-                return getStaffs();
+                return getStaff($id);
 
         }
 }
@@ -32,19 +32,19 @@ function getDonnees($get) {
 function getTitreTable($get) {
     switch ($get) {
         case "match":
-           return array("ID", "Première équipe", "Seconde équipe", "Date du match", "Heure du match", "Catégorie", "Crée le", "Action");
+           return array("ID", "Première équipe", "Seconde équipe", "score 1", "score 2", "ID Terrain");
             break;
         case "player":
-            return array("ID", "Nom", "Prénom", "Né(e) le", "Créé le", "Action");
+            return array("ID", "Nom", "Prénom", "E-mail", "Né(e) le", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "Créé le");
 
         case "court":
-            return array("T_ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Crée le", "Note", "Action");
+            return array("ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Crée le", "Note");
 
         case "extra":
             return array("ID", "Nom", "Prix", "Nombre de personnes", "Description", "Action");
 
         case "owner":
-            return array("ID", "Nom", "Prénom", "Créé le", "Action");
+        return array("ID", "Nom", "Prénom", "E-mail", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "Créé le");
 
         case "team":
 //            return getTeams();
@@ -59,20 +59,20 @@ function getTitreTable($get) {
 function getParam($get) {
     switch ($get) {
         case "match":
-            return array("ID", "ID_Equipe1", "ID_Equipe2", "date", "date", "date", "date");
+            return array("ID", "ID_Equipe1", "ID_Equipe2", "score1", "score2", "ID_Terrain");
             break;
 
         case "player":
-            return array("ID", "LastName", "FirstName", "BirthDate", "CreationDate");
+            return array("ID", "LastName", "FirstName", "Mail", "BirthDate", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "CreationDate");
 
         case "court":
-            return array("ID", "adresse", "surface", "FirstName", "etat", "Type", "disponibiliteFrom", "CreationDate", "Note");
+            return array("ID", "adresse", "surface", "ID_Owner", "etat", "Type", "disponibiliteFrom", "CreationDate", "Note");
 
         case "extra":
             return array("ID", "Name", "Price", "Name", "Description"); // Name à modif (4eme param)
 
         case "owner":
-            return array("ID", "LastName", "FirstName", "CreationDate");
+        return array("ID", "LastName", "FirstName", "Mail", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "CreationDate");
 
         case "team":
 //            return getTeams();
@@ -91,7 +91,6 @@ function getTitre($get) {
             break;
         case "player":
             return "participants";
-
         case "court":
             return "terrains";
         case "extra":
@@ -107,14 +106,14 @@ function getTitre($get) {
     }
 }
 
-function getCourts() {
+function getCourt($id) {
     $db = new BDD();
-    return $db->query('SELECT *, Terrain.ID as ID, Owner.ID as O_id FROM `Terrain`, `Personne`, `Owner` WHERE Owner.ID = Terrain.ID_Owner AND Personne.ID = Owner.ID_Personne');
+    return $db->query('SELECT * FROM `Terrain` WHERE ID = '.$id.'');
 }
 
-function getExtras() {
+function getExtra($id) {
     $db = new BDD();
-    return $db->query('SELECT * FROM Extras ');
+    return $db->query('SELECT * FROM Extras WHERE ID = '.$id.'');
 }
 
 function getHistories() {
@@ -127,19 +126,14 @@ function getHistory($id) {
     return $db->query('SELECT * FROM History WHERE id = '.$id.'');
 }
 
-function getMatchs() {
+function getMatch($id) {
     $db = new BDD();
-    return $db->query('SELECT * FROM `Match`');
+    return $db->query('SELECT * FROM `Match` WHERE ID = '.$id.'');
 }
 
-function getOwners() {
+function getOwner($id) {
     $db = new BDD();
-    return $db->query('SELECT * FROM Personne WHERE isOwner=1');
-}
-
-function getPlayers() {
-    $db = new BDD(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
-    return $db->query('SELECT * FROM Personne WHERE isPlayer=1');
+    return $db->query('SELECT * FROM Personne WHERE isOwner=1 and ID = '.$id.'');
 }
 
 function getPlayer($id) {
@@ -147,9 +141,9 @@ function getPlayer($id) {
     return $db->query('SELECT * FROM Personne WHERE ID = '.$id.'');
 }
 
-function getStaffs() {
+function getStaff($id) {
     $db = new BDD();
-    $reponse = $db->query('SELECT * FROM Personne WHERE isStaff=1');
+    $reponse = $db->query('SELECT * FROM Personne WHERE isStaff=1 and ID = '.$id.'');
 
     return $reponse;
 }

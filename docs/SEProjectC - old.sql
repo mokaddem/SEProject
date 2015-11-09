@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Sam 07 Novembre 2015 à 16:58
--- Version du serveur: 5.5.46-0ubuntu0.14.04.2
--- Version de PHP: 5.5.9-1ubuntu4.14
+-- Généré le: Sam 07 Novembre 2015 à 20:56
+-- Version du serveur: 5.5.44-0ubuntu0.14.04.1
+-- Version de PHP: 5.6.14-1+deb.sury.org~trusty+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -81,22 +81,14 @@ CREATE TABLE IF NOT EXISTS `History` (
   UNIQUE KEY `id_3` (`id`),
   UNIQUE KEY `id_4` (`id`),
   KEY `id_2` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=72 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=88 ;
 
 --
 -- Contenu de la table `History`
 --
 
 INSERT INTO `History` (`id`, `idPerson`, `idEntite`, `typeEntite`, `action`, `date`, `hour`) VALUES
-(63, 1, 0, 'Historique', 'Suppression', '2015-11-07', '16:11:56'),
-(64, 1, 65, 'Joueur', 'Suppression', '2015-11-07', '16:11:14'),
-(65, 1, 68, 'Joueur', 'Suppression', '2015-11-07', '16:11:16'),
-(66, 1, 20, 'Equipe', 'Suppression', '2015-11-07', '16:11:27'),
-(67, 1, 21, 'Equipe', 'Suppression', '2015-11-07', '16:11:29'),
-(68, 1, 1, 'Terrain', 'Suppression', '2015-11-07', '16:11:54'),
-(69, 1, 1, 'Terrain', 'Suppression', '2015-11-07', '16:11:56'),
-(70, 1, 1, 'Terrain', 'Suppression', '2015-11-07', '16:11:00'),
-(71, 1, 1, 'Terrain', 'Suppression', '2015-11-07', '16:11:03');
+(87, 70, 0, 'Historique', 'Suppression', '2015-11-07', '19:11:22');
 
 -- --------------------------------------------------------
 
@@ -105,21 +97,21 @@ INSERT INTO `History` (`id`, `idPerson`, `idEntite`, `typeEntite`, `action`, `da
 --
 
 CREATE TABLE IF NOT EXISTS `Match` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
   `ID_Equipe1` int(11) NOT NULL,
   `ID_Equipe2` int(11) NOT NULL,
   `score1` int(11) DEFAULT NULL,
   `score2` int(11) DEFAULT NULL,
   `ID_Terrain` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Contenu de la table `Match`
 --
 
-INSERT INTO `Match` (`id`, `date`, `ID_Equipe1`, `ID_Equipe2`, `score1`, `score2`, `ID_Terrain`) VALUES
+INSERT INTO `Match` (`ID`, `date`, `ID_Equipe1`, `ID_Equipe2`, `score1`, `score2`, `ID_Terrain`) VALUES
 (1, '2015-10-22', 1, 2, NULL, NULL, 1);
 
 -- --------------------------------------------------------
@@ -170,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `Personne` (
   `IsOwner` tinyint(1) NOT NULL,
   `IsStaff` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=83 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=85 ;
 
 --
 -- Contenu de la table `Personne`
@@ -184,7 +176,6 @@ INSERT INTO `Personne` (`ID`, `Title`, `FirstName`, `LastName`, `Ville`, `ZIPCod
 (6, 1, 'Leonard', 'Leriche', 'Charleroi', 3256, 'Rue des richards, 1', 42, 61235495, 2147483647, '1950-06-14', 'legrosriche@hotmail.com', '2015-09-24', 0, 1, 0),
 (7, 1, 'Billy', 'Biloup', '', 9413, 'chemin des Bibilou, 14', 0, 413257954, 2147483647, '1964-11-19', 'Billy.Biloup@gmail.c', '2015-08-20', 0, 0, 1),
 (8, 2, 'Noémie', 'milé', '', 7456, 'route des bleus,74', 0, 98764138, 2147483647, '1995-12-24', 'nonolabest@gmail.com', '2015-10-01', 1, 0, 0),
-(68, 0, 'Alicia', 'MARIN', '310', 1348, 'LLN', 5, 9, 6, '1994-11-08', 'a@m.fr', '2015-11-05', 1, 0, 0),
 (70, 1, 'Antoine', 'ROLLIN', 'Jupiter', 66666, 'TokupCPrivÃ©', 666, 0, 0, '1994-05-06', 'a@a.xn--6ca', '2015-11-05', 0, 1, 0),
 (77, 0, 'John', 'D''Oeuf', '2', 26500, '1234', 192, 0, 2147483647, '2012-02-01', 'antoine.rollin26@free.fr', '2015-11-07', 1, 0, 0),
 (80, 0, 'Sylvie-Aude-Anne-Marc-Sanson-Gil-Laura', 'FroidEUH!', '1', 26500, '1349', 192, 0, 2147483647, '2014-01-01', 'antoine.rollin26@free.fr', '2015-11-07', 1, 0, 0),
@@ -229,17 +220,19 @@ CREATE TABLE IF NOT EXISTS `Staff` (
   `Level` varchar(20) NOT NULL,
   `ID_Cat` int(255) NOT NULL,
   `Password` varchar(32) NOT NULL,
+  `Username` text NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `ID_Personne` (`ID_Personne`),
   KEY `ID_Cat` (`ID_Cat`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=101 ;
 
 --
 -- Contenu de la table `Staff`
 --
 
-INSERT INTO `Staff` (`ID`, `ID_Personne`, `Level`, `ID_Cat`, `Password`) VALUES
-(1, 7, '1', 1, 'hello');
+INSERT INTO `Staff` (`ID`, `ID_Personne`, `Level`, `ID_Cat`, `Password`, `Username`) VALUES
+(1, 7, '1', 1, 'hello', '1'),
+(100, 70, '10', 1, '123', 'admin');
 
 -- --------------------------------------------------------
 
@@ -257,14 +250,18 @@ CREATE TABLE IF NOT EXISTS `Team` (
   KEY `ID_Player1` (`ID_Player1`),
   KEY `ID_Player2` (`ID_Player2`),
   KEY `ID_Cat` (`ID_Cat`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
 
 --
 -- Contenu de la table `Team`
 --
 
 INSERT INTO `Team` (`ID`, `ID_Player1`, `ID_Player2`, `ID_Cat`, `NbWinMatch`) VALUES
-(22, 1, 8, 1, 0);
+(24, 4, 1, 1, 0),
+(25, 77, 80, 1, 0),
+(26, 77, 4, 1, 0),
+(27, 1, 1, 1, 0),
+(28, 1, 8, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -284,7 +281,7 @@ CREATE TABLE IF NOT EXISTS `Terrain` (
   `Type` varchar(500) NOT NULL,
   `Note` varchar(500) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Contenu de la table `Terrain`
@@ -295,7 +292,8 @@ INSERT INTO `Terrain` (`ID`, `adresse`, `surface`, `ID_Owner`, `etat`, `disponib
 (5, 'Village de tennis', 550, 1, 'Neuf', '2015-05-12', '2015-09-14', '2015-05-12', 'Terre battue', 'Blabla'),
 (8, 'OK', 120, 1, 'UsÃ©', '2015-05-12', '2015-09-14', '2015-05-12', 'SynthÃ©tique', 'ok'),
 (9, 'OK', 120, 1, 'UsÃ©', '2015-05-12', '2015-09-14', '2015-05-12', 'SynthÃ©tique', 'ok'),
-(11, 'ok', 5, 10, 'Neuf', '2015-05-12', '9999-01-01', '2015-11-07', 'Terre battue', 'ok\r\n');
+(11, 'ok', 5, 10, 'Neuf', '2015-05-12', '9999-01-01', '2015-11-07', 'Terre battue', 'ok\r\n'),
+(12, 'ok', 3, 1, 'Neuf', '2015-05-12', '9999-01-01', '2015-11-07', 'Terre battue', 'ok\r\n');
 
 --
 -- Contraintes pour les tables exportées

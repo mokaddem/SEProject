@@ -81,19 +81,20 @@
                                         <thead>
 
                                             <tr>
-                                                <?php foreach ($titreDonnees as $titre){ ?>
+                                                <?php foreach ($titreDonnees as $titreD){ ?>
                                                     <th>
-                                                        <?=$titre?>
+                                                        <?=$titreD?>
                                                     </th>
                                                     <?php } ?>
 
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach ($listDonnees as $donnee){ ?>
+                                            <?php foreach ($listDonnees as $donnee){?>
+
                                                 <tr class="odd gradeX">
                                                     <?php foreach ($paramDonnees as $param){ ?>
-                                                        <td data-toggle="modal" data-target="#myModal" data-url="./show-<?=$_GET['type']?>.php?id=<?=$donnee['ID']?>">
+                                                        <td data-toggle="modal" data-target="#myModal" data-url="./show.php?type=<?=$_GET['type']?>&id=<?=$donnee['ID']?>">
                                                             <?=$donnee[$param]?>
                                                         </td>
                                                         <?php } ?>

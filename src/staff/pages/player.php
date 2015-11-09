@@ -36,7 +36,7 @@
 
     <div id="wrapper">
 
-        <?php            
+        <?php
             include("./html/header.php");
         ?>
 
@@ -86,7 +86,7 @@
                                                   for ($i = 1; $i <= 31; $i++) {
                                                         echo "<option>$i</option>\n";
                                                       }
-                                        
+
                                                 ?>
                                         </select>
                                         <select name='birth_month1' id='birth_month1'>
@@ -224,7 +224,7 @@
                                                   for ($i = 1; $i <= 31; $i++) {
                                                         echo "<option>$i</option>\n";
                                                       }
-                                        
+
                                                 ?>
                                         </select>
                                         <select name='birth_month2' id='birth_month2'>

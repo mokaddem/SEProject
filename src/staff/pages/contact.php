@@ -24,13 +24,6 @@
   <!-- Custom Fonts -->
   <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
 
 <body>
@@ -52,19 +45,19 @@
         <div class="row">
           <form role="form">
             <div class="col-lg-6">
-              <div class="form-group">
+              <form role="form" method="POST" action="php/contact-send.php">
                 <div class="input-group">
-                  <input class="form-control" autocomplete="off" name="dest" id="dest" placeholder="Destinataire" type="text">
+                  <input class="form-control" id="dest" placeholder="Destinataire" type="text">
                   <div class="input-group-btn">
-                    <button type="button" class="btn btn-default btn-outline" data-toggle="collapse" data-target="#demo" ata-toggle="tooltip" data-placement="top" title="Selectionner des groupes">
+                    <button type="button" class="btn btn-default btn-outline" data-toggle="collapse" data-target="#groupeSelec" ata-toggle="tooltip" data-placement="top" title="Selectionner des groupes">
                       <i class="fa fa-long-arrow-down"></i> <i class="fa fa-users"></i>
                     </button>
                   </div>
                 </div>
 
-                <div id="demo" class="collapse">
-                  <input type="checkbox" name="option1" value="Participants"> Participants
-                  <input type="checkbox" name="option2" value="Propriétaires"> Propriétaires
+                <div id="groupeSelec" class="collapse">
+                  <input type="checkbox" id="parti" value="Participants"> Participants</input>
+                  <input type="checkbox" id="prop" value="Propriétaires"> Propriétaires</input>
                 </div>
 
                 <br/>
@@ -74,7 +67,7 @@
                   <br>
                   <textarea rows="15" cols="50" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Veuillez entrer votre message."></textarea>
                 </div>
-                <input type="submit" name="submitPlayers" id="submitPlayers" value="Envoyer" class="btn btn-primary pull-right" />
+                <input type="submit" value="Envoyer" class="btn btn-primary pull-right" />
               </div>
             </div>
           </form>
