@@ -40,7 +40,7 @@ function getTitreTable($get) {
             return array("ID", "Nom", "Prénom", "Né(e) le", "Créé le", "Action");
 
         case "court":
-            return array("T_ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Crée le", "Note", "Action");
+            return array("T_ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Jusqu'au", "Crée le", "Note", "Action");
 
         case "extra":
             return array("ID", "Nom", "Prix", "Nombre de personnes", "Description", "Action");
@@ -68,7 +68,7 @@ function getParam($get) {
             return array("ID", "LastName", "FirstName", "BirthDate", "CreationDate");
 
         case "court":
-            return array("ID", "adresse", "surface", "FirstName", "etat", "Type", "disponibiliteFrom", "CreationDate", "Note");
+            return array("ID", "adresse", "surface", "FirstName", "etat", "Type", "disponibiliteFrom", "disponibiliteTo","CreationDate", "Note");
 
         case "extra":
             return array("ID", "Name", "Price", "Name", "Description"); // Name à modif (4eme param)
@@ -115,7 +115,7 @@ function getTitre($get) {
 
 function getCourts() {
     $db = new BDD();
-    return $db->query('SELECT *, Terrain.ID as ID, Owner.ID as O_id FROM `Terrain`, `Personne`, `Owner` WHERE Owner.ID = Terrain.ID_Owner AND Personne.ID = Owner.ID_Personne');
+    return $db->query('SELECT *, Terrain.ID as ID, Terrain.Note as Note, Owner.ID as O_id FROM `Terrain`, `Personne`, `Owner` WHERE Owner.ID = Terrain.ID_Owner AND Personne.ID = Owner.ID_Personne');
 }
 
 function getExtras() {

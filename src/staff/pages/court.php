@@ -94,6 +94,16 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="sel1"><span class="fa fa-clock-o"></span> Date & Heure</label>
+                                    <div class="input-group">
+                                       Avaible from: <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            <?php echo '<input name="InputFrom" id="InputFrom" type="date" min="'.date("Y-m-d").'" max="2048-10-10" value="'.date("Y-m-d").'">';?>
+                                       Avaible until: <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            <?php echo '<input name="InputTo" id="InputTo" type="date" min="'.date("Y-m-d").'" max="2048-10-10" value="'.date("Y-m-d").'">';?>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <!--<label for="InputMessage">Message</label>-->
                                     <div class="input-group">
                                         <textarea name="InputNote" id="InputNote" class="form-control" rows="5" required></textarea>

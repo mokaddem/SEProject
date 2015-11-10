@@ -23,8 +23,8 @@
 	$Surface	= $_GET['surface'];
 	$ID_Owner	= $_GET['sel3'];
 	$Etat		= $_GET['sel2'];
-	$DispoFrom	= '2015-05-12';
-	$DispoTo	= '9999-01-01';
+	$DispoFrom	= $_GET['InputFrom'];
+	$DispoTo	= $_GET['InputTo'];
 	$CreationDate	= date("Y-m-d");
 	$type		= $_GET['sel1'];
 	$Note		= $_GET['InputNote'];
