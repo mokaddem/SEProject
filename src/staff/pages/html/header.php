@@ -275,7 +275,7 @@
                                 <a href="list.php?type=owner"> Propriétaires</a>
                             </li>
                             <li>
-                                <a href="list.php?type=category"> Catégorie</a>
+                                <a href="list.php?type=category"> Catégories</a>
                             </li>
                             <li>
                                 <a href="list.php?type=extra"> Extras</a>
