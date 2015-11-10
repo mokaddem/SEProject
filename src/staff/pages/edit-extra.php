@@ -38,6 +38,10 @@
 
         <?php            
             include("./html/header.php");
+            include_once('php/BDD.php');
+            $db = new BDD();
+            $reponse = $db->query('SELECT * FROM Extras WHERE '. $_GET['id']. ' = Extras.ID');
+            $donnes = $reponse->fetch_array();
         ?>
 
 
@@ -50,7 +54,7 @@
 
                 <!-- Registration form - START -->
                 <div class="row">
-                    <form role="form">
+                    <form role="form" method="Get" action="php/edit-extra.php">
                         <div class="col-lg-6">
                             <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
 
@@ -67,14 +71,6 @@
                                 <div class="input-group">
                                     <input type="price" class="form-control" id="InputPrice" name="InputPrice" placeholder="Prix" required>
                                     <span class="input-group-addon">€</span>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <!--<label for="InputNumber">Number</label>-->
-                                <div class="input-group">
-                                    <span class="input-group-addon">€</span>
-                                    <input type="number" class="form-control" id="InputNumber" name="InputNumber" placeholder="Nombre de personnes" required>
                                 </div>
                             </div>
 
@@ -112,6 +108,15 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#InputNom').val('<?php echo $donnes["Name"]; ?>');
+            $('#InputPrice').val('<?php echo $donnes["Price"]; ?>');
+            $('#InputMessage').val('<?php echo $donnes["Description"]; ?>');
+
+        });
+    </script>
 
 </body>
 
