@@ -51,13 +51,13 @@
                     <!-- Registration form - START -->
                     <div class="container">
                         <div class="row">
-                            <form role="form">
+                            <form role="form" method="Get" action="php/add-new-extra.php">
                                 <div class="col-lg-6">
                                     <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
 
                                     <div class="form-group">
                                         <!--<label for="InputNom">Nom</label>-->
-                                        <input type="text" class="form-control" Nom="InputNom" id="InputNom" placeholder="Nom" required>
+                                        <input type="text" class="form-control" name="InputNom" id="InputNom" placeholder="Nom" required>
                                     </div>
 
                                     <div class="form-group">
