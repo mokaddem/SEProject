@@ -18,7 +18,7 @@ $Description = $_GET['InputMessage'];
 
 $reponse = $db->query("UPDATE SEProjectC.Extras SET Description = \"".$Description."\", Name=\"" .$Name. "\", Price=".$Price." WHERE ".$ID."=Extras.ID");
 
-addHistory($ID, "Extras", "Edition");
+addHistory($ID, "Extra", "Edition");
 
 header("Location: ../../list.php?type=extra");
 

@@ -18,7 +18,7 @@
 	   $Id	= '';
         $IdPerson = $_SESSION["ID"];
 	   $Date = date("Y-m-d");
-        $Hour = date("H:m:s");
+        $Hour = date("H:i:s");
 	
         $req->bind_param("iiissss", $Id, $IdPerson, $IdEntite, $TypeEntite, $Action, $Date, $Hour);
 
