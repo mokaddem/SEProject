@@ -62,7 +62,7 @@
                                 <label for="male">Samedi</label>
                                 <input type="radio" name="day" value="saturday">
                                 <label for="female">Dimanche</label>
-                                <input type="radio" name="day" value="sunday" checked>
+                                <input type="radio" name="day" value="sunday">
                             </fieldset>
                             <hr>
 
@@ -71,7 +71,7 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-at"></i></span>
                                     <input type="number" class="form-control" name="size" id="size" placeholder="Nombre d'équipes" min="2" step="2"  style="width: 160px;" value="<?php if(isset($_GET['size'])) { echo htmlentities($_GET['size']);}?>" required>
-                                	Trouver comment mettre la size dans la string...
+                                	Trouver comment mettre la size dans l'URL...
                                 	<a href="../pages/knock-off.php?day=sunday&size=8&submit=Créer" name="submitSize" id="submitSize" style="width: 100px;">Générer</a>
                                 </div>
                             </div>
@@ -103,8 +103,8 @@
 												$id1 = $donnes['ID_Player1'];
 												$id2 = $donnes['ID_Player2'];
 												// Trouver comment mettre la valeur $id1 dans la ligne suivante...
-												$player1 = $db->query('SELECT * FROM Personne WHERE ID = 1')->fetch_array();
-												$player2 = $db->query('SELECT * FROM Personne WHERE ID = 1')->fetch_array();
+												$player1 = $db->query('SELECT * FROM Personne WHERE ID = '.$id1.'')->fetch_array();
+												$player2 = $db->query('SELECT * FROM Personne WHERE ID = '.$id2.'')->fetch_array();
 												echo "<option value=".$donnes['ID'].">".$player1['FirstName']." ".$player1['LastName']." / ".$player2['FirstName']." ".$player2['LastName']."</option>";
 											}
 			 	    					?>
@@ -120,8 +120,8 @@
 											{
 												$id1 = $donnes['ID_Player1'];
 												$id2 = $donnes['ID_Player2'];
-												$player1 = $db->query('SELECT * FROM Personne WHERE ID = 1')->fetch_array();
-												$player2 = $db->query('SELECT * FROM Personne WHERE ID = 1')->fetch_array();
+												$player1 = $db->query('SELECT * FROM Personne WHERE ID = '.$id1.'')->fetch_array();
+												$player2 = $db->query('SELECT * FROM Personne WHERE ID = '.$id2.'')->fetch_array();
 												echo "<option value=".$donnes['ID'].">".$player1['FirstName']." ".$player1['LastName']." / ".$player2['FirstName']." ".$player2['LastName']."</option>";
 											}
 			 	    					?>
