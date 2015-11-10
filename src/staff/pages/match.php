@@ -73,9 +73,16 @@
 
                             <div class="form-group">
                                 <label for="sel1"><span class="fa fa-map-marker"></span> Lieu</label>
+                                
                                 <select class="form-control" id="sel1">
-                                    <option>[liste des terrains]</option>
-                                    <!-- <option>propriétaire</option> -->
+                                    <?php
+										$db = new BDD();
+										$reponse = $db->query('SELECT * FROM Terrain');
+										while ($donnes = $reponse->fetch_array())
+										{
+											echo "<option value=".$donnes['ID'].">".$donnes['adresse']." - ".$donnes['etat']."</option>";
+										}
+			 	    				?>
                                 </select>
                             </div>
                             <div class="form-group">
