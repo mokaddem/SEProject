@@ -62,7 +62,7 @@
                                             <select class="form-control" name='Year' id='Year'>
                                                 <option value="na">Année</option>
                                                 <?php
-                                                      for ($i = date(Y)-10; $i <= 2500; $i++) {
+                                                      for ($i = date("Y"); $i <= 2500; $i++) {
                                                         echo "<option>$i</option>\n";
                                                       }
                                                 ?>

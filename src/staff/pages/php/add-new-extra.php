@@ -14,7 +14,6 @@
 	
 	$req = $db->prepare("INSERT INTO Extras(ID, Name, Price, Description) VALUES(?, ?, ?, ?)");
 
-
 	$ID	 	= '';
 	$Name   = $_GET['InputNom'];
 	$Price	= $_GET['InputPrice'];

@@ -41,7 +41,8 @@
 		include_once('php/BDD.php');
 
 		$db = new BDD();
-		$reponse = $db->query('SELECT * FROM Personne pers, Player play WHERE '. $_GET['id']. ' = pers.ID');
+
+        $reponse = $db->query('SELECT * FROM Personne pers, Player play WHERE '. $_GET['id']. ' = pers.ID');
 		$donnes = $reponse->fetch_array();
         ?>
 
