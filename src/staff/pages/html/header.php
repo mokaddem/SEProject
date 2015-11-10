@@ -306,7 +306,7 @@
                                 <a href="owner.php"> Propriétaire</a>
                             </li>
                             <li>
-                                <a href="category.php"> Extra</a>
+                                <a href="category.php"> Catégorie</a>
                             </li>
                             <li>
                                 <a href="extra.php"> Extra</a>
