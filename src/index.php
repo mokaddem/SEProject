@@ -159,16 +159,26 @@
                         </div>
                         <!-- /col12 -->
 
-                        <div class="col-12 col-lg-6 col-sm-6">
+                        <div class="col-12 col-lg-3 col-sm-6">
                             <a class="btn btn-lg btn-default" href="./inscription/index.php" onclick="self.location.href='./inscription/index.php'">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                     <i id="crayon" class="fa fa-pencil fa-stack-1x"></i>
                                 </span>
                             </a>
-                            <h2 class="font-semibold">Inscription</h2>
+                            <h2 class="font-semibold">Inscription<br/>Participant</h2>
                         </div>
                         <!-- /col12 -->
+                        <div class="col-12 col-lg-3 col-sm-6">
+                            <a class="btn btn-lg btn-default" href="./inscription/index.php" onclick="self.location.href='./inscription/index.php'">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i id="crayon" class="fa fa-suitcase fa-stack-1x"></i>
+                                </span>
+                            </a>
+                            <h2 class="font-semibold">Inscription<br/>Propriétaire</h2>
+                        </div>
+
                         <!-- /col12 -->
                     </div>
                     <!-- /row -->
