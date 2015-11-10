@@ -53,7 +53,7 @@
 
                 <!-- Registration form - START -->
                 <div class="row">
-                    <form role="form" method="Get" action="php/add-new-owner.php">
+                    <form role="form" method="Get" action="php/inc/edit-owner.php">
                         <div class="col-lg-9">
                             <div class="form-group">
                                 <!--<label for="sel1">Titre:</label>-->
@@ -157,7 +157,7 @@
                             </div>
 
                             <a class="btn btn-info" href="list.php?type=owner">Retour</a>
-                            <input type="submit" name="submit" id="submit" value="Sauvegarder" class="btn btn-success pull-right">
+                            <button type="submit" name="id" id="id" value="<?php echo $_GET['id']?>" class="btn btn-success pull-right">Sauvegarder</button>
 
                         </div>
                     </form>

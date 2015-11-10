@@ -12,7 +12,6 @@
 	
 	$req = $db->prepare("INSERT INTO Personne(ID, FirstName, LastName, Title, ZIPCode, PhoneNumber, GSMNumber, Rue, Number, Ville, BirthDate, Mail, CreationDate, IsPlayer, IsOwner, IsStaff) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-
 	$ID	 	= '';
 	$FirstName	= $_GET['InputPrenom'];
 	$LastName	= $_GET['InputNom'];
