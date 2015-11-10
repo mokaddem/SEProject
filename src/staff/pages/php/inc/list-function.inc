@@ -25,6 +25,8 @@ function getDonnees($get) {
 
             case "staff":
                 return getStaffs();
+            case "category":
+                return getCategories();
 
         }
 }
@@ -45,13 +47,13 @@ function getTitreTable($get) {
 
         case "owner":
             return array("ID", "Nom", "Prénom", "Créé le", "Action");
-
         case "team":
 //            return getTeams();
             break;
-
         case "staff":
             return array("ID", "Nom", "Prénom", "Né(e) le", "Créé le", "Action");
+        case "category":
+            return array("ID", "Année", "Désignation", "Action");
 
     }
 }
@@ -80,6 +82,8 @@ function getParam($get) {
 
         case "staff":
             return array("ID", "LastName", "FirstName", "BirthDate", "CreationDate");
+        case "category":
+            return array("ID", "Year", "Designation");
 
     }
 }
@@ -103,6 +107,8 @@ function getTitre($get) {
             break;
         case "staff":
             return "staffeurs";
+        case "category":
+            return "catégories";
 
     }
 }
@@ -119,13 +125,9 @@ function getExtras() {
 
 function getHistories() {
     $db = new BDD(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
-    
-    $rep = $db->query('SELECT * FROM History');
-    $donnees = $rep->fetch_array();
-    
-    $donnees['personName'] = $donnees2['FirstName'] . "-" . $donnees2['LastName'];
-    
-    return $rep;
+
+    return $db->query('SELECT * FROM History');
+
 }
 
 function getStaffName($idPerson) {
@@ -150,6 +152,12 @@ function getMatchs() {
     $db = new BDD();
     return $db->query('SELECT * FROM `Match`');
 }
+
+function getCategories() {
+    $db = new BDD();
+    return $db->query('SELECT * FROM `Categorie`');
+}
+
 
 function getOwners() {
     $db = new BDD();

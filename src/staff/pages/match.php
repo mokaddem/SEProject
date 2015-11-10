@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Admin Mode - Match</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -58,32 +58,62 @@
                             <div class="form-group">
                                 <label for="sel1"><span class="fa fa-users"></span> Première équipe</label>
                                 <select class="form-control" id="sel1">
-                                    <option>[liste des équipes]</option>
-                                    <!-- <option>propriétaire</option> -->
+                                    <?php
+										$db = new BDD();
+										$reponse = $db->query('SELECT * FROM Team');
+										while ($donnes = $reponse->fetch_array())
+										{
+                                            $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player1'].' = ID');
+                                            $p1 = $p->fetch_array();
+                                            $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player2'].' = ID');
+											$p2 = $p->fetch_array();
+                                            echo "<option value=".$donnes['ID'].">".$p1['FirstName']." ".$p1['LastName']." & ".$p2['FirstName']." ".$p2['LastName']."</option>";
+										}
+			 	    				?>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="sel1"><span class="fa fa-users"></span> Seconde équipe</label>
                                 <select class="form-control" id="sel1">
-                                    <option>[liste des équipes]</option>
-                                    <!-- <option>propriétaire</option> -->
+                                    <?php
+										$db = new BDD();
+										$reponse = $db->query('SELECT * FROM Team');
+										while ($donnes = $reponse->fetch_array())
+										{
+                                            $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player1'].' = ID');
+                                            $p1 = $p->fetch_array();
+                                            $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player2'].' = ID');
+											$p2 = $p->fetch_array();
+                                            echo "<option value=".$donnes['ID'].">".$p1['FirstName']." ".$p1['LastName']." & ".$p2['FirstName']." ".$p2['LastName']."</option>";
+										}
+			 	    				?>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="sel1"><span class="fa fa-map-marker"></span> Lieu</label>
+                                
                                 <select class="form-control" id="sel1">
-                                    <option>[liste des terrains]</option>
-                                    <!-- <option>propriétaire</option> -->
+                                    <?php
+										$db = new BDD();
+										$reponse = $db->query('SELECT * FROM Terrain');
+										while ($donnes = $reponse->fetch_array())
+										{
+											echo "<option value=".$donnes['ID'].">".$donnes['adresse']." - ".$donnes['etat']."</option>";
+										}
+			 	    				?>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="sel1"><span class="fa fa-clock-o"></span> Date & Heure</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                    <input type="date" min="2015-10-10" max="2048-10-10" name="calendar" value="2015-10-10">
-                                    <input type="time" name="time" value="08:00">
+                                    
+                                    <?php 
+                                        echo '<input type="date" min="'.date("Y-m-d").'" max="2048-10-10" name="calendar" value="'.date("Y-m-d").'">';
+                                        echo '<input type="time" name="time" value="'.date("H:i").'">';
+                                    ?>
                                 </div>
                             </div>
 

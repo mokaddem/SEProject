@@ -275,11 +275,15 @@
                                 <a href="list.php?type=owner"> Propriétaires</a>
                             </li>
                             <li>
-                                <a href="list.php?type=staff"> Staff</a>
+                                <a href="list.php?type=category"> Catégories</a>
                             </li>
                             <li>
                                 <a href="list.php?type=extra"> Extras</a>
                             </li>
+                            <li>
+                                <a href="list.php?type=staff"> Staff</a>
+                            </li>
+
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
@@ -302,10 +306,13 @@
                                 <a href="owner.php"> Propriétaire</a>
                             </li>
                             <li>
-                                <a href="staff.php"> Staff</a>
+                                <a href="category.php"> Catégorie</a>
                             </li>
                             <li>
                                 <a href="extra.php"> Extra</a>
+                            </li>
+                            <li>
+                                <a href="staff.php"> Staff</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->

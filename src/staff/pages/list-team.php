@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin Mode - Equipes</title>
+    <title>Admin Mode - Liste</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -70,7 +70,6 @@
                                                 <th>Premier joueur</th>
                                                 <th>Second joueur</th>
                                                 <th>Catégorie</th>
-                                                <th>Créé le</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>

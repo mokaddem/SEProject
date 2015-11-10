@@ -11,7 +11,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Admin Mode - Joueurs</title>
+        <title>Admin Mode - Liste</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -100,7 +100,7 @@
                                                         <?php } ?>
                                                             <td>
                                                                 <a href="./edit-<?=$_GET['type']?>.php?id=<?=$donnee['ID']?>"><i class="fa fa-edit fa-fw"></i></a>
-                                                                <a href="php/delete-<?=$_GET['type']?>.php?id=<?=$donnee['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce participant ?');"><i class="fa fa-trash-o"></i></a>
+                                                                <a href="php/delete-<?=$_GET['type']?>.php?id=<?=$donnee['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer cette entrée ?');"><i class="fa fa-trash-o"></i></a>
                                                             </td>
                                                 </tr>
                                                 <?php } ?>

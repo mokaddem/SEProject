@@ -54,7 +54,7 @@
 
                 <!-- Registration form - START -->
                 <div class="row">
-                    <form role="form" method="Get" action="php/edit-extra.php">
+                    <form role="form" method="Get" action="php/inc/edit-extra.php">
                         <div class="col-lg-6">
                             <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
 
@@ -62,7 +62,7 @@
                                 <!--<label for="InputNom">Nom</label>-->
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input type="text" class="form-control" Nom="InputNom" id="InputNom" placeholder="Nom" required>
+                                    <input type="text" class="form-control" name="InputNom" id="InputNom" placeholder="Nom" required>
                                 </div>
                             </div>
 
@@ -83,7 +83,7 @@
                             </div>
 
                             <a class="btn btn-info" href="list.php?type=extra">Retour</a>
-                            <input type="submit" name="edit-submit" id="edit-submit" value="Sauvegarder" class="btn btn-success pull-right">
+                            <button type="submit" name="id" id="id" value=<?=$_GET['id']?> class="btn btn-success pull-right">Sauvegarder</button>
 
                         </div>
                     </form>

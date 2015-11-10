@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin Mode - Extra</title>
+    <title>Admin Mode - Catégorie</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -45,40 +45,34 @@
                 <div class="container">
 
                     <div class="page-header">
-                        <h1>Ajouter un extra</h1>
+                        <h1>Ajouter une catégorie</h1>
                     </div>
 
                     <!-- Registration form - START -->
                     <div class="container">
                         <div class="row">
-                            <form role="form" method="Get" action="php/add-new-extra.php">
+                            <form role="form" method="Get" action="php/add-new-category.php">
                                 <div class="col-lg-6">
                                     <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
 
                                     <div class="form-group">
-                                        <!--<label for="InputNom">Nom</label>-->
-                                        <input type="text" class="form-control" name="InputNom" id="InputNom" placeholder="Nom" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <!--<label for="InputPrice">Prix</label>-->
+                                        <!--<label for="InputNom">Année</label>-->
                                         <div class="input-group">
-                                            <input type="price" class="form-control" id="InputPrice" name="InputPrice" placeholder="Prix" required>
-                                            <span class="input-group-addon">€</span>
+                                            <span class="input-group-addon"><i class="fa fa-edit"></i></span>
+                                            <select class="form-control" name='Year' id='Year'>
+                                                <option value="na">Année</option>
+                                                <?php
+                                                      for ($i = date("Y"); $i <= 2500; $i++) {
+                                                        echo "<option>$i</option>\n";
+                                                      }
+                                                ?>
+                                            </select>
+                                            <input type="text" class="form-control" id="Designation" name="Designation" placeholder="Nom" required>
+                                    
                                         </div>
                                     </div>
 
-                                    <!-- Number = 0 --!>
-                                
-                                <div class="form-group">
-                                    <!--<label for="InputMessage">Message</label>-->
-                                    <div class="input-group">
-                                        <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" placeholder="Description" required></textarea>
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
-                                    </div>
-                                </div>
-
-                                <input type="submit" name="edit-submit" id="edit-submit" value="Valider" class="btn btn-info pull-right">
+                                <input type="submit" name="add-submit" id="add-submit" name="Year" value="Créer" class="btn btn-info pull-right">
                             </form>
                         </div>
                     </div>

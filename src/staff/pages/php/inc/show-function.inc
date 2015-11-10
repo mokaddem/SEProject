@@ -25,6 +25,8 @@ function getDonnees($get, $id) {
 
             case "staff":
                 return getStaff($id);
+            case "category":
+                return getCategory($id);
 
         }
 }
@@ -52,6 +54,8 @@ function getTitreTable($get) {
 
         case "staff":
             return array("ID", "Nom", "Prénom", "Né(e) le", "Créé le", "Action");
+        case "category":
+            return array("ID", "Année", "Désignation", "Action");
 
     }
 }
@@ -80,6 +84,8 @@ function getParam($get) {
 
         case "staff":
             return array("ID", "LastName", "FirstName", "BirthDate", "CreationDate");
+        case "category":
+            return array("ID", "Year", "Designation");
 
     }
 }
@@ -91,6 +97,7 @@ function getTitre($get) {
             break;
         case "player":
             return "participants";
+
         case "court":
             return "terrains";
         case "extra":
@@ -102,9 +109,12 @@ function getTitre($get) {
             break;
         case "staff":
             return "staffeurs";
+        case "category":
+            return "catégories";
 
     }
 }
+
 
 function getCourt($id) {
     $db = new BDD();
@@ -129,6 +139,11 @@ function getHistory($id) {
 function getMatch($id) {
     $db = new BDD();
     return $db->query('SELECT * FROM `Match` WHERE ID = '.$id.'');
+}
+
+function getCategory($id) {
+    $db = new BDD();
+    return $db->query('SELECT * FROM `Categorie` WHERE ID = '.$id.'');
 }
 
 function getOwner($id) {
