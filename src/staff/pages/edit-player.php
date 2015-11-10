@@ -53,7 +53,7 @@
                 </div>
                 <!-- Registration form - START -->
                 <div class="row">
-                    <form role="form">
+                    <form role="form" method="GET" action="php/update-player.php">
                         <div class="col-lg-6">
                             <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
                             <div class="form-group">
