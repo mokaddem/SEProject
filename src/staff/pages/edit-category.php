@@ -47,11 +47,11 @@
 
 
             <div id="page-wrapper">
-                <div class="container">
-
-                    <div class="page-header">
-                        <h1>Ajouter une catégorie</h1>
+                <div class="row">
+                    <div class="col-lg-12 noDeco">
+                        <h1 class="page-header"><a href="list.php?type=category">Gestion des catégories</a> > Modifier</h1>
                     </div>
+                </div>
 
                     <!-- Registration form - START -->
                     <div class="container">
@@ -61,10 +61,9 @@
                                     <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
 
                                     <div class="form-group">
-                                        <!--<label for="InputNom">Année</label>-->
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-edit"></i></span>
-                                            <select class="form-control" name='Year' id='Year'>
+                                            <select class="form-control" name="InputYear" id="InputYear">
                                                 <?php echo '<option value="'.$donnees['Year'].'" selected="'.$donnees['Year'].'">'.$donnees['Year'].'</option>'; ?>
                                                 <?php
                                                       for ($i = date("Y"); $i <= 2500; $i++) {
@@ -72,14 +71,12 @@
                                                       }
                                                 ?>
                                             </select>
-                                            <?php 
-                                            echo '<input type="text" class="form-control" id="Designation" name="Designation" placeholder="Nom" value="'.$donnees['Designation'].'"required>'; 
-                                            ?>
-
+                                            <input type="text" class="form-control" id="InputDesignation" name="InputDesignation" placeholder="Nom" required>
+                                            
                                         </div>
                                     </div>
 
-                                    <input type="submit" name="add-submit" id="add-submit" name="Year" value="Créer" class="btn btn-info pull-right">
+                                    <button class="btn btn-success pull-right" type="submit" name="id" id="id" value=<?=$_GET['id']?>>Sauvegarder</button>
                             </form>
                             </div>
                         </div>
@@ -106,8 +103,8 @@
 
             <script type="text/javascript">
                 $(document).ready(function () {
-                    $('#Year').val('<?php echo $donnees["Year"]; ?>');
-                    $('#Designation').val('<?php echo $donnees["Designation"]; ?>');
+                    $('#InputYear').val('<?php echo $donnees["Year"]; ?>');
+                    $('#InputDesignation').val('<?php echo $donnees["Designation"]; ?>');
 
                 });
             </script>

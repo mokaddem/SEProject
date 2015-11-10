@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Admin Mode - Extras</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -63,7 +63,7 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                     <input type="text" class="form-control" name="InputNom" id="InputNom" placeholder="Nom" required>
-                                </div>
+                                </div>  
                             </div>
 
                             <div class="form-group">
@@ -83,7 +83,7 @@
                             </div>
 
                             <a class="btn btn-info" href="list.php?type=extra">Retour</a>
-                            <button type="submit" name="id" id="id" value=<?=$_GET['id']?> class="btn btn-success pull-right">Sauvegarder</button>
+                            <button class="btn btn-success pull-right" type="submit" name="id" id="id" value=<?=$_GET['id']?>>Sauvegarder</button>
 
                         </div>
                     </form>
