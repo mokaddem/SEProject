@@ -45,7 +45,7 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Modifier les poules</h1>
+                        <h1 class="page-header">Générer les poules</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -71,60 +71,19 @@
                             </fieldset>
                             <hr>
                         </div>
-                            </div>
-                        <div class="row">
-                        <div class="text-center">
-                            <div class="col-lg-2">
-                                Marvellous gestion of preferences !
-                            </div>
-                            <?php 
-                            $poulNum = 5; 
-                            for ($j = 1; $j <= $poulNum; $j++) { 
-                            ?>
-                                <div class="col-lg-2">
-                                    <label><span class="fa fa-users"></span> Poule <?= $j?> </label>
-                                    <div class="form-group">
-                                        <label><span class="fa fa-users"></span> Terrain</label>
-                                        <select class="form-control" id="terrain">
-                                            <?php
-                                                $db = new BDD();
-                                                $reponse = $db->query('SELECT * FROM Terrain');
-                                                while ($donnes = $reponse->fetch_array())
-                                                { ?>
-                                                    <option value=<?=$donnes['ID']?>><?=$donnes['ID']?>, <?=$donnes['Note']?></option>
-                                                <?php }
-                                            ?>
-                                        </select>
-                                    </div>
-                                
-                            
-                                <?php
-                                    $day = "saturday";
-                                    if ($day == "saturday"){ 
-                                        $teamNum = 5;
-                                    } elseif($day == "sunday"){
-                                        $teamNum = 6;
-                                    } else{
-                                        $teamNum = 0;
-                                    }
-                                ?>
-                                    <label><span class="fa fa-users"></span> Equipes </label>
-                                <?php    for ($i = 1; $i <= $teamNum; $i++) { ?>
-                                        <div class="form-group text-center">
-                                          <label> </label>
-                                          <!-- <input class="form-control" id="sel1" value="Equipe <?=$i?>"/> -->
-                                          <p>Equipe <?=$i?> </p>
-                                        </div>
-                                    <?php
-                                    } ?>
-                                </div>
-                                <?php }
-                                ?>
-                                
                         </div>
+                        <?php
+                            $day = "saturday";
+                            if ($day == "saturday"){ 
+                                $teamNum = 5;
+                            } elseif($day == "sunday"){
+                                $teamNum = 6;
+                            } else{
+                                $teamNum = 0;
+                            }
+                        ?>
                     </form>
                     <!-- Registration form - END -->
-                        </div>
                 </div>
                 <!-- /.row -->
             </div>

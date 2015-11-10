@@ -34,7 +34,7 @@ function getDonnees($get) {
 function getTitreTable($get) {
     switch ($get) {
         case "match":
-           return array("ID", "Première équipe", "Seconde équipe", "Date du match", "Heure du match", "Catégorie", "Crée le", "Action");
+           return array("ID", "Première équipe", "Seconde équipe", "Date du match", "Heure du match", "Action");
             break;
         case "player":
             return array("ID", "Nom", "Prénom", "Né(e) le", "Créé le", "Action");
@@ -61,7 +61,7 @@ function getTitreTable($get) {
 function getParam($get) {
     switch ($get) {
         case "match":
-            return array("ID", "ID_Equipe1", "ID_Equipe2", "date", "date", "date", "date");
+            return array("ID", "ID_Equipe1", "ID_Equipe2", "date", "date");
             break;
 
         case "player":

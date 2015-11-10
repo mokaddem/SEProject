@@ -51,7 +51,7 @@
 
                 <!-- Registration form - START -->
                 <div class="row">
-                    <form role="form" method="POST" action="php/update-player.php">
+                    <form role="form" method="GET" action="php/add-new-pair.php">
 
                         <div class="col-lg-6">
                             <div class="col-lg-9">
