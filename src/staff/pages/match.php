@@ -58,16 +58,36 @@
                             <div class="form-group">
                                 <label for="sel1"><span class="fa fa-users"></span> Première équipe</label>
                                 <select class="form-control" id="sel1">
-                                    <option>[liste des équipes]</option>
-                                    <!-- <option>propriétaire</option> -->
+                                    <?php
+										$db = new BDD();
+										$reponse = $db->query('SELECT * FROM Team');
+										while ($donnes = $reponse->fetch_array())
+										{
+                                            $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player1'].' = ID');
+                                            $p1 = $p->fetch_array();
+                                            $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player2'].' = ID');
+											$p2 = $p->fetch_array();
+                                            echo "<option value=".$donnes['ID'].">".$p1['FirstName']." ".$p1['LastName']." & ".$p2['FirstName']." ".$p2['LastName']."</option>";
+										}
+			 	    				?>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="sel1"><span class="fa fa-users"></span> Seconde équipe</label>
                                 <select class="form-control" id="sel1">
-                                    <option>[liste des équipes]</option>
-                                    <!-- <option>propriétaire</option> -->
+                                    <?php
+										$db = new BDD();
+										$reponse = $db->query('SELECT * FROM Team');
+										while ($donnes = $reponse->fetch_array())
+										{
+                                            $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player1'].' = ID');
+                                            $p1 = $p->fetch_array();
+                                            $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player2'].' = ID');
+											$p2 = $p->fetch_array();
+                                            echo "<option value=".$donnes['ID'].">".$p1['FirstName']." ".$p1['LastName']." & ".$p2['FirstName']." ".$p2['LastName']."</option>";
+										}
+			 	    				?>
                                 </select>
                             </div>
 
