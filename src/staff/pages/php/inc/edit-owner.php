@@ -28,7 +28,7 @@ $req = $db->prepare("UPDATE SEProjectC.Personne SET FirstName = ?,LastName = ?,T
 $req->bind_param("ssiiiississ", $FirstName, $LastName, $Title, $ZIPCode, $PhoneNumber, $GSMNumber, $Rue, $Number, $Ville, $BirthDate, $Mail);
 $req->execute();
 
-addHistory($ID, "Owners", "Edition");
+addHistory($ID, "Propriétaire", "Edition");
 
 header("Location: ../../list.php?type=owner");
 
