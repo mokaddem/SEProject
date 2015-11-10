@@ -54,14 +54,14 @@
                 </div>
                 <!-- Registration form - START -->
                 <div class="row">
-                    <form role="form" method="GET" action="php/update-player.php">
+                    <form role="form" method="GET" action="php/inc/edit-player.php">
                         <div class="col-lg-6">
                             <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
                             <div class="form-group">
                                 <!--<label for="sel1">Titre:</label>-->
-                                <select class="form-control" id="sel1">
-                                    <option>M.</option>
-                                    <option>Mme.</option>
+                                <select class="form-control" id="title" name="title">
+                                    <option value="1">M.</option>
+                                    <option value="2">Mme.</option>
                                 </select>
                             </div>
 
@@ -69,19 +69,64 @@
                                 <!--<label for="InputNom">Nom</label>-->
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input type="text" class="form-control" id="InputNom" placeholder="Nom" required>
-                                    <input type="text" class="form-control" id="InputPrenom" placeholder="Prenom" required>
-                                    <input type="text" class="form-control" id="InputBirth" placeholder="Née le jj/mm/aaaa" required>
+                                    <input type="text" class="form-control" id="InputNom" name="InputNom" placeholder="Nom" required>
+                                    <input type="text" class="form-control" id="InputPrenom" name="InputPrenom" placeholder="Prenom" required>
+
+                                    <span>Née le</span>
+                                    <select name='birth_day' id='birth_day1'>
+                                        <option value="na">Jour</option>
+                                        <?php
+                                        for ($i = 1; $i <= 31; $i++) {
+                                            if (idate("d",strtotime($donnes['BirthDate'])) == $i){
+                                                echo "<option selected=\"selected\">$i</option>";
+                                            }
+                                            else{
+                                                echo "<option>$i</option>\n";
+                                            }
+                                        }
+
+                                        ?>
+                                    </select>
+                                    <select name='birth_month' id='birth_month1'>
+                                        <option value="na">Mois</option>
+                                        <?php if (date("m",strtotime($donnes['BirthDate'])) == 1){ echo "<option value=\"1\" selected=\"selected\">Janvier</option>";} else {echo "<option value=\"1\">Janvier</option>";}
+                                        if (date("m",strtotime($donnes['BirthDate'])) == 2){ echo "<option value=\"2\" selected=\"selected\">Février</option>";} else {echo "<option value=\"2\">Février</option>";}
+                                        if (date("m",strtotime($donnes['BirthDate'])) == 3){ echo "<option value=\"3\" selected=\"selected\">Mars</option>";} else {echo "<option value=\"3\">Mars</option>";}
+                                        if (date("m",strtotime($donnes['BirthDate'])) == 4){ echo "<option value=\"4\" selected=\"selected\">Avril</option>";} else {echo "<option value=\"4\">Avril</option>";}
+                                        if (date("m",strtotime($donnes['BirthDate'])) == 5){ echo "<option value=\"5\" selected=\"selected\">Mai</option>";} else {echo "<option value=\"5\">Mai</option>";}
+                                        if (date("m",strtotime($donnes['BirthDate'])) == 6){ echo "<option value=\"6\" selected=\"selected\">Juin</option>";} else {echo "<option value=\"6\">Juin</option>";}
+                                        if (date("m",strtotime($donnes['BirthDate'])) == 7){ echo "<option value=\"7\" selected=\"selected\">Juillet</option>";} else {echo "<option value=\"7\">Juillet</option>";}
+                                        if (date("m",strtotime($donnes['BirthDate'])) == 8){ echo "<option value=\"8\" selected=\"selected\">Aout</option>";} else {echo "<option value=\"8\">Aout</option>";}
+                                        if (date("m",strtotime($donnes['BirthDate'])) == 9){ echo "<option value=\"9\" selected=\"selected\">Septembre</option>";} else {echo "<option value=\"9\">Septembre</option>";}
+                                        if (date("m",strtotime($donnes['BirthDate'])) == 10){ echo "<option value=\"10\" selected=\"selected\">Octobre</option>";} else {echo "<option value=\"10\">Octobre</option>";}
+                                        if (date("m",strtotime($donnes['BirthDate'])) == 11){ echo "<option value=\"11\" selected=\"selected\">Novembre</option>";} else {echo "<option value=\"11\">Novembre</option>";}
+                                        if (date("m",strtotime($donnes['BirthDate'])) == 12){ echo "<option value=\"12\" selected=\"selected\">Décembre</option>";} else {echo "<option value=\"12\">Décembre</option>";} ?>
+                                    </select>
+                                    <select name='birth_year' id='birth_year1'>
+                                        <option value="na">Année</option>
+                                        <?php
+                                        for ($i = idate('Y'); $i >= 1900; $i--) {
+                                            if (idate("Y",strtotime($donnes['BirthDate'])) == $i){
+                                                echo "<option selected=\"selected\">$i</option>\n";
+                                            }
+                                            else{
+                                                echo "<option>$i</option>\n";
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+
+
                                 </div>
                             </div>
                             <div class="form-group">
                                 <!--<label for="InputPrenom">Adresse</label>-->
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                    <input type="text" class="form-control" id="InputAdresse" placeholder="Adresse" required>
-                                    <input type="text" class="form-control" id="InputBat" placeholder="Numero - Batiment">
-                                    <input type="text" class="form-control" id="InputCP" placeholder="Code Postal" required>
-                                    <input type="text" class="form-control" id="InputLoc" placeholder="Localité">
+                                    <input type="text" class="form-control" id="InputAdresse" name="InputAdresse" placeholder="Adresse" required>
+                                    <input type="text" class="form-control" id="InputBat" name="InputBat" placeholder="Numero - Batiment">
+                                    <input type="text" class="form-control" id="InputCP" name="InputCP" placeholder="Code Postal" required>
+                                    <input type="text" class="form-control" id="InputLoc" name="InputLoc" placeholder="Localité">
                                 </div>
                             </div>
 
@@ -89,7 +134,7 @@
                                 <!--<label for="InputEmail">Email</label>-->
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-at"></i></span>
-                                    <input type="email" class="form-control" id="InputEmailFirst" name="InputEmail" placeholder="Email" required>
+                                    <input type="email" class="form-control" id="InputEmailFirst" name="InputEmailFirst" placeholder="Email" required>
                                 </div>
                             </div>
 
@@ -97,17 +142,10 @@
                                 <!--<label for="InputPhone">Numéro de téléphone</label>-->
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                    <input type="text" class="form-control bfh-phone" placeholder="+33 fixe" id="fixnumber">
+                                    <input type="text" class="form-control bfh-phone" placeholder="+33 fixe" id="InputFixe" name="InputFixe">
                                     <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                    <input type="text" class="form-control bfh-phone" placeholder="+33 mobile" id="gsmnumber" required>
+                                    <input type="text" class="form-control bfh-phone" placeholder="+33 mobile" id="InputMob" name="InputMob" required>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="sel1">Classement </label>
-                                <select class="form-control" id="sel1">
-                                    <option>NC</option>
-                                    <option>Trofor</option>
-                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="InputPhone">Déjà participé au tournoi?</label>
@@ -150,7 +188,7 @@
                             </div>
 
                             <a class="btn btn-info" href="list.php?type=player">Retour</a>
-                            <input type="submit" name="edit-submit" id="edit-submit" value="Sauvegarder" class="btn btn-success pull-right">
+                            <button type="submit" name="id" id="id" value="<?php echo $_GET['id'] ?>" class="btn btn-success pull-right">Sauvegarder</button>
                             <br/>
                             <br/>
                         </div>
@@ -188,8 +226,9 @@
             $('#InputCP').val('<?php echo $donnes["ZIPCode"]; ?>');
             $('#InputLoc').val('<?php echo $donnes["Ville"]; ?>');
             $('#InputEmailFirst').val('<?php echo $donnes["Mail"]; ?>');
-            $('#fixnumber').val('<?php echo $donnes["PhoneNumber"]; ?>');
-            $('#gsmnumber').val('<?php echo $donnes["GSMNumber"]; ?>');
+            $('#InputFixe').val('<?php echo $donnes["PhoneNumber"]; ?>');
+            $('#InputMob').val('<?php echo $donnes["GSMNumber"]; ?>');
+            $('#InputMessage').val('<?php echo $donnes["Note"]; ?>');
         });
     </script>
     <?php $reponse->free(); ?>

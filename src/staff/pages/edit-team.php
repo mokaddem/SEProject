@@ -51,11 +51,11 @@
 
                 <!-- Registration form - START -->
                 <div class="row">
-                    <form role="form" method="Get" action="php/inc/edit-team.inc">
+                    <form role="form" method="Get" action="php/inc/edit-team.php">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="sel1"><span class="fa fa-user"></span> Premier joueur</label>
-                                <select class="form-control" id="sel1" name="sel1">
+                                <select class="form-control" id="idp1" name="idp1">
                                     <?php
 					$db = new BDD();
 					$reponse = $db->query('SELECT * FROM Personne ');
@@ -73,7 +73,7 @@
 
                             <div class="form-group">
                                 <label for="sel1"><span class="fa fa-user"></span> Second joueur</label>
-                                <select class="form-control" id="sel2" name="sel2">
+                                <select class="form-control" id="idp2" name="idp2">
                                     <?php
 					$db = new BDD();
 					$reponse = $db->query('SELECT * FROM Personne ');
@@ -89,8 +89,7 @@
                             </div>
 
                             <a class="btn btn-info" href="list-team.php">Retour</a>
-                            <input type="submit" name="submit" id="submit" value="Sauvegarder" class="btn btn-success pull-right">
-
+                            <button type="submit" name="id" id="id" value="<?php echo $_GET['id'] ?>" class="btn btn-success pull-right">Sauvegarder</button>
                         </div>
                     </form>
                     <!-- Registration form - END -->
