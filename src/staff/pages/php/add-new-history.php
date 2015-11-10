@@ -5,9 +5,9 @@
     
     function addHistory($IdEntite, $TypeEntite, $Action) {
     
-       $database_host = 'test.pydehon.me';
-	$database_user = 'team';
-	$database_pass = 'seprojectc';
+       $database_host = 'localhost';
+	$database_user = 'root';
+	$database_pass = '123';
 	$database_db = 'SEProjectC';
 	   $db = new mysqli($database_host, $database_user, $database_pass, $database_db);
 	
