@@ -1,6 +1,6 @@
 <?php
 // Check for empty fields
-require '../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
+require 'Autoload.php';
 
 
 $mail = new PHPMailer();

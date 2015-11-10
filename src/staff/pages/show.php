@@ -31,8 +31,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a class="btn btn-danger btn-outline" href="php/delete-player.php?id=<?=$donnees['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce participant ?');">Supprimer</a>
-                <a class="btn btn-success btn-outline" href="edit-player.php?id=<?=$donnees['ID']?>">Modifier</a>
+                <a class="btn btn-danger btn-outline" href="php/delete-<?=$_GET['type']?>.php?id=<?=$donnee['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce participant ?');">Supprimer</a>
+                <a class="btn btn-success btn-outline" href="./edit-<?=$_GET['type']?>.php?id=<?=$donnee['ID']?>">Modifier</a>
                 <button type="button" class="btn btn-info btn-outline" data-dismiss="modal">Retour</button>
             </div>
             <?php } ?>
