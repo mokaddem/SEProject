@@ -63,14 +63,14 @@
                                             echo "<option selected=\"selected\">Terre battue</option>";
                                             else echo "<option>Terre battue</option>";
                                         ?>
-                                            <?php if ($dataCourt['Type'] == "Gazon")
-                                                echo "<option selected=\"selected\">Gazon</option>";
-                                                else echo "<option>Gazon</option>";
-                                            ?>
-                                            <?php if ($dataCourt['Type'] == "Synthétique")
-                                                echo "<option selected=\"selected\">Synthétique</option>";
-                                                else echo "<option>Synthétique</option>";
-                                            ?>
+                                        <?php if ($dataCourt['Type'] == "Gazon")
+                                            echo "<option selected=\"selected\">Gazon</option>";
+                                            else echo "<option>Gazon</option>";
+                                        ?>
+                                        <?php if ($dataCourt['Type'] == "Synthétique")
+                                            echo "<option selected=\"selected\">Synthétique</option>";
+                                            else echo "<option>Synthétique</option>";
+                                        ?>
                                     </select>
                                     <select class="form-control" id="sel2" name="sel2">
                                         <?php if ($dataCourt['etat'] == "Neuf")

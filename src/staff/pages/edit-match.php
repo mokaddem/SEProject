@@ -38,6 +38,8 @@
 
         <?php            
             include("./html/header.php");
+            include_once('php/BDD.php');
+            $db = new BDD();
         ?>
 
 
@@ -50,31 +52,52 @@
 
                 <!-- Registration form - START -->
                 <div class="row">
-                    <form role="form">
+                    <form role="form" method="Get" action="php/edit-match.php">>
                         <div class="col-lg-6">
                             <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
 
                             <div class="form-group">
                                 <label for="sel1"><span class="fa fa-users"></span> Première équipe</label>
-                                <select class="form-control" id="sel1">
+                                <select class="form-control" id="sel1" name="sel1">
                                     <option>[liste des équipes]</option>
-                                    <!-- <option>propriétaire</option> -->
+                                   <?php
+                                   /* $reponse = $db->query('');
+                                    while ($donnes = $reponse->fetch_array())
+                                    {
+                                        if ($dataCourt['ID_Owner'] == $donnes['O_id']){
+                                            echo "<option value=".$donnes['O_id']." selected=\"selected\">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
+                                        }
+                                        else
+                                            echo "<option value=".$donnes['O_id'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
+                                    }*/
+                                    ?>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="sel1"><span class="fa fa-users"></span> Seconde équipe</label>
-                                <select class="form-control" id="sel1">
+                                <select class="form-control" id="sel2" name="sel2">
                                     <option>[liste des équipes]</option>
-                                    <!-- <option>propriétaire</option> -->
+
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="sel1"><span class="fa fa-map-marker"></span> Lieu</label>
-                                <select class="form-control" id="sel1">
+                                <select class="form-control" id="sel3" name="sel3">
                                     <option>[liste des terrains]</option>
-                                    <!-- <option>propriétaire</option> -->
+                                    <?php
+                                    $reponse = $db->query('SELECT Terrain.ID, adresse, FirstName, LastName, etat, `Type`, Note, surface FROM Terrain, Personne, Owner WHERE Terrain.ID_Owner = Owner.ID and Personne.ID = Owner.ID_Personne');
+                                    while ($donnes = $reponse->fetch_array())
+                                    {
+                                        if ($_GET['id'] == $donnes['ID']){
+                                            echo "<option value=".$donnes['ID']." selected=\"selected\">".$donnes['ID']." - ".$donnes['FirstName']. " " . $donnes['LastName'] . " - " . $donnes['Type'] . " - " . $donnes['etat'] . $donnes['Node'] . "</option>";
+                                        }
+                                        else
+                                            echo "<option value=".$donnes['ID']." >".$donnes['ID']." - ".$donnes['FirstName']. " " . $donnes['LastName'] . " - " . $donnes['Type'] . " - " . $donnes['etat'] . $donnes['Node'] . "</option>";
+                                    }
+                                    ?>
+
                                 </select>
                             </div>
                             <div class="form-group">
