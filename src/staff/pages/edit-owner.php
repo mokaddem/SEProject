@@ -39,8 +39,9 @@
         <?php            
             include("./html/header.php");
 	    include_once('php/BDD.php');  
-	    $db = new BDD();      
-	?>
+	    $db = new BDD();
+
+        ?>
 
 
             <div id="page-wrapper">
@@ -58,9 +59,11 @@
                                 <!--<label for="sel1">Titre:</label>-->
                                 <select class="form-control" id="title" name="title">
                                     <?php
-					$reponse = $db->query("SELECT * FROM Personne, Owner WHERE Personne.ID=".$_GET['id']);
-					$donnes = $reponse->fetch_array();
-					if ($donnes['Title'] == 1){
+					                $reponse = $db->query('SELECT * FROM Personne, Owner WHERE Personne.ID='.$_GET['id'].'');
+
+                                    $donnes = $reponse->fetch_array();
+
+					                                    if ($donnes['Title'] == 1){
 						echo "<option value=".$donnes['Title']." selected=\"selected\">M.</option>";
 						echo "<option value=".$donnes['Title'].">Mme.</option>";
 					}
@@ -76,8 +79,8 @@
                                 <!--<label for="InputNom">Nom</label>-->
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input type="text" class="form-control" Nom="InputNom" id="InputNom" name="InputNom" placeholder="Nom" value="<?php echo $donnes['LastName'] ?>" required>
-                                    <input type="text" class="form-control" Prenom="InputPrenom" id="InputPrenom" name="InputPrenom" placeholder="Prenom" value="<?php echo $donnes['FirstName'] ?>" required>
+                                    <input type="text" class="form-control" Nom="InputNom" id="InputNom" name="InputNom" placeholder="Nom" value="<?php $donnes['FirstName']  ?>" required>
+                                    <input type="text" class="form-control" Prenom="InputPrenom" id="InputPrenom" name="InputPrenom" placeholder="Prenom" value="<?=$donnes['FirstName'] ?>" required>
 
                                     <span>Née le</span>
                                     <select name='birth_day' id='birth_day1'>
@@ -182,26 +185,16 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#InputNom').val('<?php echo $donnes['
-                LastName ']; ?>');
-            $('#InputPrenom').val('<?php echo $donnes['
-                FirstName ']; ?>');
-            $('#InputBirth').val('<?php echo $donnes['
-                BirthDate ']; ?>');
-            $('#InputAdresse').val('<?php echo $donnes['
-                Rue ']; ?>');
-            $('#InputBat').val('<?php echo $donnes['
-                Number ']; ?>');
-            $('#InputCP').val('<?php echo $donnes['
-                ZIPCode ']; ?>');
-            $('#InputLoc').val('<?php echo $donnes['
-                Ville ']; ?>');
-            $('#InputEmailFirst').val('<?php echo $donnes['
-                Mail ']; ?>');
-            $('#InputFixe').val('<?php echo $donnes['
-                PhoneNumber ']; ?>');
-            $('#InputMob').val('<?php echo $donnes['
-                GSMNumber ']; ?>');
+            $('#InputNom').val('<?=$donnes['LastName']?>');
+            $('#InputPrenom').val('<?=$donnes['FirstName']?>');
+            $('#InputBirth').val('<?php echo $donnes['BirthDate']; ?>');
+            $('#InputAdresse').val('<?php echo $donnes['Rue']; ?>');
+            $('#InputBat').val('<?php echo $donnes['Number']; ?>');
+            $('#InputCP').val('<?php echo $donnes['ZIPCode']; ?>');
+            $('#InputLoc').val('<?php echo $donnes['Ville']; ?>');
+            $('#InputEmailFirst').val('<?php echo $donnes['Mail']; ?>');
+            $('#InputFixe').val('<?php echo $donnes['PhoneNumber']; ?>');
+            $('#InputMob').val('<?php echo $donnes['GSMNumber']; ?>');
         });
     </script>
 </body>
