@@ -19,5 +19,23 @@ include_once('BDD.php');
      }
      $result->close();
      echo json_encode($user_arr1);
-   }
+   } else if (array_key_exists('list', $_GET)) {
+         //$result = $db->query("SELECT ID, Mail FROM Personne where Personne.Mail like '%{$_GET['query']}%'");
+         if ($_GET['list'] == "part") {
+
+             $result = $db->query("SELECT * FROM Personne where isPlayer = 1 ");
+             while ($row = $result->fetch_object()){
+                 $user_arr1[] = $row->Mail;
+             }
+             $result->close();
+             echo json_encode($user_arr1);
+         } else if ($_GET['list'] == "prop") {
+             $result = $db->query("SELECT * FROM Personne where isOwner = 1");
+             while ($row = $result->fetch_object()){
+                 $user_arr1[] = $row->Mail;
+             }
+             $result->close();
+             echo json_encode($user_arr1);
+         }
+     }
 ?>
