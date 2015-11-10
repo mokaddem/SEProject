@@ -51,7 +51,7 @@
         <div class="row">
           <form role="form">
             <div class="col-lg-6">
-              <form role="form" method="POST" action="php/contact-send.php">
+              <form role="form" method="POST" id="conStaff" action="php/contact-send.php">
                 <div class="input-group">
                   <input class="form-control" id="dest" placeholder="Destinataire" type="text">
                   <div class="input-group-btn">
@@ -92,6 +92,7 @@
                   <br>
                   <textarea rows="15" cols="50" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Veuillez entrer votre message."></textarea>
                 </div>
+		<div id="contactStaff"></div>
                 <input type="submit" value="Envoyer" class="btn btn-primary pull-right" />
               </div>
             </div>
@@ -125,7 +126,8 @@
       $('[data-toggle="tooltip"]').tooltip();
     });
   </script>
-
+<script src="js/contactStaff.js"></script>
+<script src="js/jqBootstrapValidation.js"></script>
 </body>
 
 </html>
