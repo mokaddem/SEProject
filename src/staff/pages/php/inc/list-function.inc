@@ -61,7 +61,7 @@ function getTitreTable($get) {
 function getParam($get) {
     switch ($get) {
         case "match":
-            return array("ID", "ID_Equipe1", "ID_Equipe2", "date", "date");
+            return array("ID", "ID_Equipe1", "ID_Equipe2", "date", "hour");
             break;
 
         case "player":
