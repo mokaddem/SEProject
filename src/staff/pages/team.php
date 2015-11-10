@@ -38,7 +38,7 @@
 
         <?php            
             include("./html/header.php");
-	    include_once('php/BDD.php');
+	    	include_once('php/BDD.php');
         ?>
 
 
@@ -59,13 +59,13 @@
                                 <label for="sel1"><span class="fa fa-user"></span> Premier joueur</label>
                                 <select class="form-control" id="sel1" name="sel1">
                                     <?php
-					$db = new BDD();
-					$reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
-					while ($donnes = $reponse->fetch_array())
-					{
-						echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
-					}
-			 	    ?>
+										$db = new BDD();
+										$reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
+										while ($donnes = $reponse->fetch_array())
+										{
+											echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
+										}
+			 	    				?>
                                         <!-- <option>propriétaire</option> -->
                                 </select>
                             </div>
@@ -74,13 +74,13 @@
                                 <label for="sel2"><span class="fa fa-user"></span> Second joueur</label>
                                 <select class="form-control" id="sel2" name="sel2">
                                     <?php
-					$db = new BDD();
-					$reponse = $db->query('SELECT * FROM Personne WHERE isPLayer=1');
-					while ($donnes = $reponse->fetch_array())
-					{
-						echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
-					}
-			 	    ?>
+										$db = new BDD();
+										$reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
+										while ($donnes = $reponse->fetch_array())
+										{
+											echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
+										}
+							 	    ?>
                                 </select>
                             </div>
 

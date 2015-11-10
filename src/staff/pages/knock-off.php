@@ -38,6 +38,7 @@
 
         <?php            
             include("./html/header.php");
+            include_once('php/BDD.php');
         ?>
 
 
@@ -82,6 +83,7 @@
 										}
 								
 								//echo "<label for=\"sel1\"> Equipes </label> <i class="fa fa-sort-numeric-asc"></i>";
+								
                         for ($i = 1; $i <=$_size; $i++) {
                             if ($i % 2 != 0){ ?>
                                 <div class="form-group">
@@ -91,45 +93,41 @@
                                 </div>
                                 <div class="form-group">
                                     <select class="form-control" id="sel1">
-                                        <option>Equipe
-                                            <?=$i?>
-                                        </option>
+                                    	<?php
+											$db = new BDD();
+											$reponse = $db->query('SELECT * FROM Team');
+											while ($donnes = $reponse->fetch_array())
+											{
+												$id1 = $donnes['ID_Player1'];
+												$id2 = $donnes['ID_Player2'];
+												// Trouver comment mettre la valeur $id1 dans la ligne suivante...
+												$player1 = $db->query('SELECT * FROM Personne WHERE ID = 1')->fetch_array();
+												$player2 = $db->query('SELECT * FROM Personne WHERE ID = 1')->fetch_array();
+												echo "<option value=".$donnes['ID'].">".$player1['FirstName']." ".$player1['LastName']." / ".$player2['FirstName']." ".$player2['LastName']."</option>";
+											}
+			 	    					?>
                                     </select>
                                 </div>
                                 <?php } else{ ?>
                                     <div class="form-group">
                                         <select class="form-control" id="sel1">
-                                            <option>Equipe
-                                                <?=$i?>
-                                            </option>
-                                        </select>
+                                    	<?php
+											$db = new BDD();
+											$reponse = $db->query('SELECT * FROM Team');
+											while ($donnes = $reponse->fetch_array())
+											{
+												$id1 = $donnes['ID_Player1'];
+												$id2 = $donnes['ID_Player2'];
+												$player1 = $db->query('SELECT * FROM Personne WHERE ID = 1')->fetch_array();
+												$player2 = $db->query('SELECT * FROM Personne WHERE ID = 1')->fetch_array();
+												echo "<option value=".$donnes['ID'].">".$player1['FirstName']." ".$player1['LastName']." / ".$player2['FirstName']." ".$player2['LastName']."</option>";
+											}
+			 	    					?>
+                                    </select>
                                     </div>
                                     <?php
                                 }
 		                        }
-								?>
-
-                                        <?php /* BEURK
-								$i = 1;
-								//echo "<label for=\"sel1\"> Equipes </label> <i class="fa fa-sort-numeric-asc"></i>";
-								for (; $i <= $_size; $i++) {
-									if ($i % 2 != 0){
-										echo "<div class=\"form-group\">";
-										  echo "<label for=\"sel1\"><span class=\"fa fa-users\"></span> Match ". ceil($i/2) ."</label>";
-			                            echo "</div>";
-										echo "<div class=\"form-group\">";
-			                              echo "<select class=\"form-control\" id=\"sel1\">";
-			                                echo "<option>Equipe ". $i ."</option>";
-			                              echo "</select>";
-			                            echo "</div>";
-		                            } else{
-		                            	echo "<div class=\"form-group\">";
-			                              echo "<select class=\"form-control\" id=\"sel1\">";
-			                                echo "<option>Equipe ". $i ."</option>";
-			                              echo "</select>";
-			                            echo "</div>";
-		                            }
-		                        }*/
 								?>
 
                                             <input type="submit" name="submit" id="submit" value="Créer" class="btn btn-info pull-right">
@@ -148,11 +146,16 @@
                                         <label for="sel1"><span class="fa fa-users"></span> Match
                                             <?=$matchNum?>
                                         </label>
-                                        <select class="form-control" id="sel1">
-                                            <option>Terrain
-                                                <?=$matchNum?>
-                                            </option>
-                                        </select>
+                                        <select class="form-control" id="sel1" name="sel1">
+		                                    <?php
+												$db = new BDD();
+												$reponse = $db->query('SELECT * FROM Terrain');
+												while ($donnes = $reponse->fetch_array())
+												{
+													echo "<option value=".$donnes['ID'].">".$donnes['adresse'].", ".$donnes['Note']."</option>";
+												}
+					 	    				?>
+                                		</select>
                                     </div>
                                     <?php
 			                            $matchNum++;
