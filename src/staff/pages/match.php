@@ -51,13 +51,13 @@
                 </div>
                 <!-- Registration form - START -->
                 <div class="row">
-                    <form role="form">
+                    <form role="form" method="GGET" action="php/add-new-match.php">
                         <div class="col-lg-6">
                             <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
 
                             <div class="form-group">
                                 <label for="sel1"><span class="fa fa-users"></span> Première équipe</label>
-                                <select class="form-control" id="sel1">
+                                <select class="form-control" name="InputEq1" id="InputEq1">
                                     <?php
 										$db = new BDD();
 										$reponse = $db->query('SELECT * FROM Team');
@@ -75,7 +75,7 @@
 
                             <div class="form-group">
                                 <label for="sel1"><span class="fa fa-users"></span> Seconde équipe</label>
-                                <select class="form-control" id="sel1">
+                                <select class="form-control" name="InputEq2" id="InputEq2">
                                     <?php
 										$db = new BDD();
 										$reponse = $db->query('SELECT * FROM Team');
@@ -94,7 +94,7 @@
                             <div class="form-group">
                                 <label for="sel1"><span class="fa fa-map-marker"></span> Lieu</label>
                                 
-                                <select class="form-control" id="sel1">
+                                <select class="form-control" name="InputCourt" id="InputCourt">
                                     <?php
 										$db = new BDD();
 										$reponse = $db->query('SELECT * FROM Terrain');
@@ -111,8 +111,8 @@
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                     
                                     <?php 
-                                        echo '<input type="date" min="'.date("Y-m-d").'" max="2048-10-10" name="calendar" value="'.date("Y-m-d").'">';
-                                        echo '<input type="time" name="time" value="'.date("H:i").'">';
+                                        echo '<input type="date" min="'.date("Y-m-d").'" max="2048-10-10" id="InputDate" name="InputDate" value="'.date("Y-m-d").'">';
+                                        echo '<input type="time" id="InputHour" name="InputHour" value="'.date("H:i").'">';
                                     ?>
                                 </div>
                             </div>
