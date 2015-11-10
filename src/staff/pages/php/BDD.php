@@ -4,15 +4,9 @@
 class BDD extends mysqli
 {
 	public static $db = false;
-
-//	private $database_host = 'test.pydehon.me';
-//	private $database_user = 'team';
-//	private $database_pass = 'seprojectc';
-
 	private $database_host = 'localhost';
 	private $database_user = 'root';
 	private $database_pass = '123';
-
 	private $database_db = 'SEProjectC';
 	function __construct()
 	{

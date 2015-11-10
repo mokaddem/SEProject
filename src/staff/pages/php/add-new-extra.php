@@ -4,14 +4,12 @@
 
 //	$db = new BDD();
 
-	$database_host = 'localhost';
-	$database_user = 'root';
-	$database_pass = '123';
-
-//	$database_host = 'test.pydehon.me';
-//	$database_user = 'team';
-//	$database_pass = 'seprojectc';
-	$database_db = 'SEProjectC';
+    $database_host = 'localhost';
+    $database_user = 'root';
+    $database_pass = '123';
+    $database_db = 'SEProjectC';
+	$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
+	
 	$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
 	
 	$req = $db->prepare("INSERT INTO Extras(ID, Name, Price, Description) VALUES(?, ?, ?, ?)");
@@ -25,6 +23,8 @@
 
 	$req->execute();
 
+    $reponse = $db->query("SELECT * FROM Extras WHERE Name=\"".$Name ."\" AND Description=\"" . $Description ."\"");
+    $donnees = $reponse->fetch_array();
     addHistory($donnees["ID"], "Extras", "Ajout");
 	
 	header("Location: ../list.php?type=extra");
