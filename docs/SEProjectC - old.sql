@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Sam 07 Novembre 2015 à 20:56
+-- Généré le: Lun 09 Novembre 2015 à 16:52
 -- Version du serveur: 5.5.44-0ubuntu0.14.04.1
 -- Version de PHP: 5.6.14-1+deb.sury.org~trusty+1
 
@@ -81,14 +81,18 @@ CREATE TABLE IF NOT EXISTS `History` (
   UNIQUE KEY `id_3` (`id`),
   UNIQUE KEY `id_4` (`id`),
   KEY `id_2` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=88 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=97 ;
 
 --
 -- Contenu de la table `History`
 --
 
 INSERT INTO `History` (`id`, `idPerson`, `idEntite`, `typeEntite`, `action`, `date`, `hour`) VALUES
-(87, 70, 0, 'Historique', 'Suppression', '2015-11-07', '19:11:22');
+(92, 7, 0, 'Historique', 'Suppression', '2015-11-08', '09:11:02'),
+(93, 7, 83, 'Joueur', 'Ajout', '2015-11-08', '10:11:22'),
+(94, 7, 84, 'Joueur', 'Ajout', '2015-11-08', '10:11:22'),
+(95, 7, 85, 'Joueur', 'Ajout', '2015-11-08', '10:11:39'),
+(96, 7, 86, 'Joueur', 'Ajout', '2015-11-08', '10:11:39');
 
 -- --------------------------------------------------------
 
@@ -105,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `Match` (
   `score2` int(11) DEFAULT NULL,
   `ID_Terrain` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `Match`
@@ -162,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `Personne` (
   `IsOwner` tinyint(1) NOT NULL,
   `IsStaff` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=85 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=87 ;
 
 --
 -- Contenu de la table `Personne`
@@ -179,7 +183,11 @@ INSERT INTO `Personne` (`ID`, `Title`, `FirstName`, `LastName`, `Ville`, `ZIPCod
 (70, 1, 'Antoine', 'ROLLIN', 'Jupiter', 66666, 'TokupCPrivÃ©', 666, 0, 0, '1994-05-06', 'a@a.xn--6ca', '2015-11-05', 0, 1, 0),
 (77, 0, 'John', 'D''Oeuf', '2', 26500, '1234', 192, 0, 2147483647, '2012-02-01', 'antoine.rollin26@free.fr', '2015-11-07', 1, 0, 0),
 (80, 0, 'Sylvie-Aude-Anne-Marc-Sanson-Gil-Laura', 'FroidEUH!', '1', 26500, '1349', 192, 0, 2147483647, '2014-01-01', 'antoine.rollin26@free.fr', '2015-11-07', 1, 0, 0),
-(82, 1, 'Jean', 'Cule', '26500', 26500, '192 rue des Acacias', 90, 0, 2147483647, '1994-01-05', 'antoine.rollin26@free.fr', '2015-11-07', 0, 1, 0);
+(82, 1, 'Jean', 'Cule', '26500', 26500, '192 rue des Acacias', 90, 0, 2147483647, '1994-01-05', 'antoine.rollin26@free.fr', '2015-11-07', 0, 1, 0),
+(83, 0, 'Prenom1', 'Nom1', '1', 6000, 'Nizza', 0, 331, 336, '2010-03-01', 'a@polytech.unice.fr', '2015-11-08', 1, 0, 0),
+(84, 0, 'Prenom2', 'Nom2', '1', 1358, 'Ko', 0, 331, 331, '2005-11-04', 'b@polytech.unice.fr', '2015-11-08', 1, 0, 0),
+(85, 0, 'A', 'N', '1', 6000, 'Nizza', 0, 331, 336, '1990-05-10', 'c@polytech.unice.fr', '2015-11-08', 1, 0, 0),
+(86, 0, 'Prenom4', 'Nom4', '1', 1358, 'Ok', 0, 331, 331, '1996-04-07', 'd@polytech.unice.fr', '2015-11-08', 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -250,7 +258,7 @@ CREATE TABLE IF NOT EXISTS `Team` (
   KEY `ID_Player1` (`ID_Player1`),
   KEY `ID_Player2` (`ID_Player2`),
   KEY `ID_Cat` (`ID_Cat`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
 -- Contenu de la table `Team`
@@ -261,7 +269,11 @@ INSERT INTO `Team` (`ID`, `ID_Player1`, `ID_Player2`, `ID_Cat`, `NbWinMatch`) VA
 (25, 77, 80, 1, 0),
 (26, 77, 4, 1, 0),
 (27, 1, 1, 1, 0),
-(28, 1, 8, 1, 0);
+(28, 1, 8, 1, 0),
+(29, 77, 1, 1, 0),
+(30, 8, 1, 1, 0),
+(31, 5, 1, 1, 0),
+(32, 1, 1, 1, 0);
 
 -- --------------------------------------------------------
 
