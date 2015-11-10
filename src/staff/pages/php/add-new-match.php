@@ -10,18 +10,19 @@
     $database_db = 'SEProjectC';
 	$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
 	
-	$req = $db->prepare("INSERT INTO `Match`(ID, date, ID_Equipe1, ID_Equipe2, score1, score2, ID_Terrain) VALUES(?, ?, ?, ?, ?, ?, ?)");
+	$req = $db->prepare("INSERT INTO `Match`(ID, date, hour, ID_Equipe1, ID_Equipe2, score1, score2, ID_Terrain) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
 
 	$ID	 	= '';
 	//$Date   = $_GET['InputDate'] . " " . $_GET['InputHour'];
-    $Date = date("Y-m-d");
+    $Date = date("Y-m-d", strtotime($_GET['InputDate']));
+    $Hour = date("H:i", strtotime($_GET['InputHour']));
     $ID_Equipe1	= $_GET['InputEq1'];
     $ID_Equipe2	= $_GET['InputEq2'];
     $Score1		= 0;
 	$Score2		= 0;
     $ID_Terrain = $_GET['InputCourt'];
 
-	$req->bind_param("isiiiii", $ID, $Date, $ID_Equipe1, $ID_Equipe2, $Score1, $Score2, $ID_Terrain);
+	$req->bind_param("issiiiii", $ID, $Date, $Hour, $ID_Equipe1, $ID_Equipe2, $Score1, $Score2, $ID_Terrain);
 
 	$req->execute();
 
