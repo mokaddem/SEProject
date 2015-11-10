@@ -31,7 +31,7 @@ function printListTeam($donnes1,$donnes2) {
     echo "<td>".$donnes2['F'] . " " . $donnes2['L']."</td>";
     echo "<td>".$donnes1['ID_Cat']."</td>";
     echo "<td></td>";
-    echo "<td><a href=\"./edit-team.php?id=".$donnes1['ID']."&id1=".$donnes1['id1']."&id2=".$donnes1['id2']."\" ><i class=\"fa fa-edit fa-fw\"></i></a> <a href=\"./php/delete-team.php?id=".$donnes1['ID']."\" onclick=\"return confirm('Voulez-vous vraiment supprimer cette équipe ?');\"><i class=\"fa fa-trash-o\"></i></a></td>";
+    echo "<td><a href=\"./edit-team.php?id=".$donnes1['ID']."&id1=".$donnes1['id1']."&id2=".$donnes1['id2']."\" ><i class=\"fa fa-edit fa-fw\"></i></a> <a href=\"./php/delete-team.php?id=".$donnes1['ID']."\" onclick=\"return confirm('Voulez-vous vraiment supprimer cette entrée ?');\"><i class=\"fa fa-trash-o\"></i></a></td>";
     echo "</tr>";
 }
 ?>
