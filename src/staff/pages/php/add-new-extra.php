@@ -23,7 +23,7 @@
 
     $reponse = $db->query("SELECT * FROM Extras WHERE Name=\"".$Name ."\" AND Description=\"" . $Description ."\"");
     $donnees = $reponse->fetch_array();
-    addHistory($donnees["ID"], "Extras", "Ajout");
+    addHistory($donnees["ID"], "Extra", "Ajout");
 	
 	header("Location: ../list.php?type=extra");
 
