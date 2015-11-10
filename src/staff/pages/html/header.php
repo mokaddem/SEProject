@@ -306,10 +306,13 @@
                                 <a href="owner.php"> Propriétaire</a>
                             </li>
                             <li>
-                                <a href="staff.php"> Staff</a>
+                                <a href="category.php"> Extra</a>
                             </li>
                             <li>
                                 <a href="extra.php"> Extra</a>
+                            </li>
+                            <li>
+                                <a href="staff.php"> Staff</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
