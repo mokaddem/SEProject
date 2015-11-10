@@ -114,7 +114,6 @@
                                         echo '<input type="date" min="'.date("Y-m-d").'" max="2048-10-10" name="calendar" value="'.date("Y-m-d").'">';
                                         echo '<input type="time" name="time" value="'.date("H:i").'">';
                                     ?>
-                                    <input type="time" name="time" value="08:00">
                                 </div>
                             </div>
 
