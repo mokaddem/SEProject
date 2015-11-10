@@ -75,7 +75,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>ID Admin</th>
+                                                    <th>Admin</th>
                                                     <th>ID Entité modifiée</th>
                                                     <th>Type Entité</th>
                                                     <th>Action effectuée</th>
@@ -104,7 +104,7 @@
                                                             <?=$histo['id']?>
                                                         </td>
                                                         <td>
-                                                            <?=$histo['idPerson']?>
+                                                            <?=getStaffName($histo['idPerson'])?>
                                                         </td>
                                                         <td>
                                                             <?=$histo['idEntite']?>

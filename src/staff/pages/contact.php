@@ -32,7 +32,13 @@
 
     <?php
             include("./html/header.php");
-        ?>
+        include_once('php/BDD.php');
+
+        $db = new BDD();
+
+        $listPart = $db->query("SELECT * FROM Personne where isPlayer = 1 ");
+        $listProp = $db->query("SELECT * FROM Personne where isOwner = 1 ");
+    ?>
 
 
       <div id="page-wrapper">
@@ -49,18 +55,37 @@
                 <div class="input-group">
                   <input class="form-control" id="dest" placeholder="Destinataire" type="text">
                   <div class="input-group-btn">
-                    <button type="button" class="btn btn-default btn-outline" data-toggle="collapse" data-target="#groupeSelec" ata-toggle="tooltip" data-placement="top" title="Selectionner des groupes">
+                    <button type="button" class="btn btn-default btn-outline" data-toggle="collapse" data-target="#groupeSelec" data-toggle="tooltip" data-placement="top" title="Selectionner des groupes">
                       <i class="fa fa-long-arrow-down"></i> <i class="fa fa-users"></i>
                     </button>
                   </div>
                 </div>
 
                 <div id="groupeSelec" class="collapse">
-                  <input type="checkbox" id="parti" value="Participants"> Participants</input>
-                  <input type="checkbox" id="prop" value="Propriétaires"> Propriétaires</input>
+                  <input type="checkbox" id="part" value="Participants" data-toggle="collapse" data-target="#listPart"> Participants</input>
+                  <input type="checkbox" id="prop" value="Propriétaires" data-toggle="collapse" data-target="#listProp"> Propriétaires</input>
+                </div>
+                <div id="listPart" class="collapse">
+                  <p>
+                  <?php
+                  while ($row = $listPart->fetch_object()){ ?>
+                    <?php echo $row->Mail; ?>,
+                  <?php }
+                  ?>
+                  </p>
+
+                </div>
+                  <div id="listProp" class="collapse">
+                    <p>
+                      <?php
+                      while ($row = $listProp->fetch_object()){ ?>
+                        <?php echo $row->Mail; ?>,
+                      <?php }
+                      ?>
+                    </p>
                 </div>
 
-                <br/>
+                  <br/>
                 <div class="form-group">
                   <!-- <label for="sel1"><span class="fa fa-user"></span> Message à tous les propriétaires</label> -->
                   <input type="text" class="form-control" placeholder="Sujet" id="sujet" required data-validation-required-message="Veuillez entrer le sujet.">

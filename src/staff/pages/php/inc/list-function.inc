@@ -119,8 +119,27 @@ function getExtras() {
 
 function getHistories() {
     $db = new BDD(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
-    return $db->query('SELECT * FROM History');
+    
+    $rep = $db->query('SELECT * FROM History');
+    $donnees = $rep->fetch_array();
+    
+    $donnees['personName'] = $donnees2['FirstName'] . "-" . $donnees2['LastName'];
+    
+    return $rep;
 }
+
+function getStaffName($idPerson) {
+    $db = new BDD(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
+    
+    $rep = $db->query('SELECT * FROM Personne WHERE '.$idPerson.' = ID');
+    $donnees = $rep->fetch_array();
+    
+    $res = $donnees['FirstName'] . " " . $donnees['LastName'];
+    
+    return $res;
+}
+
+
 
 function getHistory($id) {
     $db = new BDD(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
