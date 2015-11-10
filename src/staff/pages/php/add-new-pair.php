@@ -71,8 +71,12 @@
     $reponse = $db->query('SELECT * FROM Personne WHERE "'.$FirstName.'" = FirstName AND "'.$LastName.'" = LastName');    
     $donnees = $reponse->fetch_array();
     addHistory( $donnees["ID"], "Joueur", "Ajout");
-	
-	header("Location: ../list.php?type=player");
+
+	if (array_key_exists($_SESSION)) {
+		header("Location: ../list.php?type=player");
+	} else {
+		header( "refresh:5;url=../../../../index.php?action=register" );
+	}
 
 //	$req->execute(array('ID' => '', 'FirstName' => $_GET['InputPrenom2'], 'LastName' => $_GET['InputNom2'], 'Title' => $_GET['title2'], 'ZIPCode' => $_GET['InputCP2'], 'PhoneNumber' => $_GET['Fixnum2'], 'GSMNumber' => $_GET['Gsmnum2'], 'Address' => $_GET['InputLoc2'] . "  ," . $_GET['InputAdresse2'] . " n°" . $_GET['InputBat2'] , 'BirthDate' => $_GET['InputBirth2'], 'Mail' => $_GET['InputEmailFirst2'], 'CreationDate' => time(), 'IsPlayer' => $_GET['role2'], 'IsOwner' => $_GET['role2'], 'IsStaff' => 0));
 	
