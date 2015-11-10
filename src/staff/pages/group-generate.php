@@ -52,34 +52,28 @@
 
                 <!-- Registration form - START -->
                 <div class="row">
-                    <form role="form">
+                    <form role="form" action="php/add-new-group.php">
                         <div class="row">
-                        <div class="col-lg-4">
-                            <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
-                            <script javascript>
-                                function setDay(newDay) {
-                                    $day = newDay
-                                }
-                            </script>
+                        <div class="col-lg-4 text-center">
 
                             <fieldset data-role="controlgroup" data-type="horizontal">
-                                <label for="saturday">Samedi</label>
-                                <input type="radio" name="day" value="saturday" onClick="setDay("saturday")">
-                                <label for="sunday">Dimanche</label>
-                                <input type="radio" name="day" value="sunday" onClick="setDay("sunday")">
-                                <input type="submit" name="submit" id="submit" value="Sauvegarder" class="btn btn-info pull-right">
+                                <label for="sam">Samedi</label>
+                                <input type="radio" name="jour" value="sam">
+                                <label for="dim">Dimanche</label>
+                                <input type="radio" name="jour" value="dim">
+                                <input type="submit" name="submit" id="submit" value="Générer" class="btn btn-info pull-right">
                             </fieldset>
                             <hr>
                         </div>
                         </div>
                         <?php
-                            $day = "saturday";
-                            if ($day == "saturday"){ 
-                                $teamNum = 5;
-                            } elseif($day == "sunday"){
-                                $teamNum = 6;
-                            } else{
-                                $teamNum = 0;
+                            if (isset($_GET['jour'])){
+                                if ($_GET['jour']=="sam"){ 
+                                    $teamNum = 5;
+                                } elseif($_GET['jour']=="dim"){
+                                    $teamNum = 6;
+                                }
+                                
                             }
                         ?>
                     </form>
