@@ -70,7 +70,9 @@
                                 <!--<label for="size">Size</label>-->
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-at"></i></span>
-                                    <input type="number" class="form-control" name="size" id="size" placeholder="Nombre d'équipes" min="2" step="2" value="<?php if(isset($_GET['size'])) { echo htmlentities($_GET['size']);}?>" required>
+                                    <input type="number" class="form-control" name="size" id="size" placeholder="Nombre d'équipes" min="2" step="2"  style="width: 160px;" value="<?php if(isset($_GET['size'])) { echo htmlentities($_GET['size']);}?>" required>
+                                	Trouver comment mettre la size dans la string...
+                                	<a href="../pages/knock-off.php?day=sunday&size=8&submit=Créer" name="submitSize" id="submitSize" style="width: 100px;">Générer</a>
                                 </div>
                             </div>
 
@@ -110,7 +112,7 @@
                                 </div>
                                 <?php } else{ ?>
                                     <div class="form-group">
-                                        <select class="form-control" id="sel1">
+                                        <select class="form-control" id="sel2">
                                     	<?php
 											$db = new BDD();
 											$reponse = $db->query('SELECT * FROM Team');
@@ -130,7 +132,7 @@
 		                        }
 								?>
 
-                                            <input type="submit" name="submit" id="submit" value="Créer" class="btn btn-info pull-right">
+                                 <input type="submit" name="submit" id="submit" value="Créer" class="btn btn-info pull-right">
 
                         </div>
 
@@ -140,13 +142,13 @@
                             $iter = 0;
                             for ($k = $i; $k >= 1; $k = $k/2){
 	                    ?>
-                            <div class="col-lg-3" style="position: relative; top: 100px;">
+                            <div class="col-lg-3" style="position: relative; top: 150px;">
                                 <?php for ($j = 1; $j <= $k; $j++) { ?>
                                     <div class="form-group">
                                         <label for="sel1"><span class="fa fa-users"></span> Match
                                             <?=$matchNum?>
                                         </label>
-                                        <select class="form-control" id="sel1" name="sel1">
+                                        <select class="form-control" id="sel1">
 		                                    <?php
 												$db = new BDD();
 												$reponse = $db->query('SELECT * FROM Terrain');
@@ -166,28 +168,6 @@
                                 $iter++;
 				                $i = $i + $k/2;
 				            }
-			                ?>
-
-                                <?php
-                        /* BEURK
-                            $i = ceil(($i-1)/2);
-                            $matchNum = 1;
-                            $iter = 0;
-                            for ($k = $i; $k >= 1; $k = $k/2){
-	                            echo "<div class=\"col-lg-3\" style=\"position: relative; top: 100px;\">";
-	                            for ($j = 1; $j <= $k; $j++) {
-	                            		echo "<div class=\"form-group\">";
-										  echo "<label for=\"sel1\"><span class=\"fa fa-users\"></span> Match ". $matchNum ."</label>";
-										  echo "<select class=\"form-control\" id=\"sel1\">";
-			                                echo "<option>Terrain ". $matchNum ."</option>";
-			                              echo "</select>";
-			                            echo "</div>";
-			                            $matchNum++;
-				                }
-				                echo "</div>";
-				                $iter++;
-				                $i = $i + $k/2;
-				            }*/
 			                ?>
                     </form>
                     <!-- Registration form - END -->
