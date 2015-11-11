@@ -29,7 +29,7 @@
     $donnees = $reponse->fetch_array();
     addHistory($donnees["ID"], "Match", "Ajout");
 	
-	header("Location: ../list.php?type=match");
+	header("Location: ../list-match.php");
 
 
 ?>
