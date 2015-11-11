@@ -53,6 +53,13 @@
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
+
+                <?php
+                if (array_key_exists("error", $_GET)) {?>
+                    <p class="alert alert-danger"> Vous ne pouvez pas supprimer cette équipe car elle est utilisée ailleurs</p>
+                <?php }
+                ?>
+
                 <!-- /.row -->
                 <div class="row">
                     <div class="col-lg-12">

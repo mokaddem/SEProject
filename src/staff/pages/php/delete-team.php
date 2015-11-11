@@ -1,11 +1,18 @@
 <?php
 	include_once('BDD.php');
-	$db = new BDD();
+require_once('test-delete.php');
 
-	$db->query('DELETE FROM Team WHERE ID='.$_GET['id']);
+$db = new BDD();
 
-    require_once('add-new-history.php');
-    addHistory( $_GET['id'], "Equipe", "Suppression");
+	if (!canDeleteTeam($_GET['id'])) {
+		header("Location: ../list-team.php?error=creation");
+	} else {
+		$db->query('DELETE FROM Team WHERE ID='.$_GET['id']);
 
-	header("Location: ../list-team.php");
+		require_once('add-new-history.php');
+		addHistory( $_GET['id'], "Equipe", "Suppression");
+
+		header("Location: ../list-team.php");
+	}
+
 ?>
