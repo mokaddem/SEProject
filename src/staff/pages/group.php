@@ -51,7 +51,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Modifier les poules</h1>
-                    </div>
+
+                        </div>
                     <!-- /.col-lg-12 -->
                 </div>
 
@@ -75,10 +76,27 @@
                                     <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="group.php?jour=dim">Dimanche</a></li>
                                 </ul>
                             </div>
-                            <div class="row">
+                    <div class="row"><br/></div>
+                    <div class="row">
+                                <form class="form-horizontal" action="./php/group-switch.php?jour=<?=$_GET['jour']?>" method="post">
+                                    <div class="col-lg-2">
+                                        <input size="10" type="text" class="form-control" id="idteam1" name="idteam1" placeholder="ID Equipe 1" required>
+                                    </div>
+                                    <div class="col-lg-2">
+
+                                        <input size="10" type="text" class="form-control" id="idteam2" name="idteam2" placeholder="ID Equipe 2" required>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <input type="submit" class="btn btn-primary pull-left" value="Echanger"/>
+                                    </div>
+                                </form>
+                            </div>
+
+                    <div class="row"><br/></div>
+                    <div class="row">
                                 <div class="text-center">
                                     <div class="col-lg-2">
-                                        <select class="form-select" multiple="">
+                                        <select class="form-select" multiple="" size="10">
                                             <?php
                                         while ($row = $listNote->fetch_object()){ ?>
                                                 <option data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=<?=$row->ID?>">
@@ -87,18 +105,11 @@
                                                 <?php }
                                     ?>
                                         </select>
-                                        <p id="pList">
-
-                                        </p>
                                         <br/>
-
                                         <br/>
-                                        <form action="./php/group-switch.php?jour=<?=$_GET['jour']?>" method="post">
-                                            <input type="text" class="form-control" id="idteam1" name="idteam1" placeholder="ID Team1" required>
-                                            <input type="text" class="form-control" id="idteam2" name="idteam2" placeholder="ID Team2" required>
-                                            <input type="submit" class="btn btn-primary pull-left" value="Echanger"/>
-                                        </form>
+                                        <div id="pList">
 
+                                        </div>
                                     </div>
                                     <?php
                             $db = new BDD();
