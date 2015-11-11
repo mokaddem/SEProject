@@ -22,7 +22,6 @@
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -52,7 +51,7 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">Modifier les poules</h1>
 
-                        </div>
+                    </div>
                     <!-- /.col-lg-12 -->
                 </div>
 
@@ -76,24 +75,28 @@
                                     <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="group.php?jour=dim">Dimanche</a></li>
                                 </ul>
                             </div>
-                    <div class="row"><br/></div>
-                    <div class="row">
+                            <div class="row">
+                                <br/>
+                            </div>
+                            <div class="row">
                                 <form class="form-horizontal" action="./php/group-switch.php?jour=<?=$_GET['jour']?>" method="post">
                                     <div class="col-lg-2">
-                                        <input size="10" type="text" class="form-control" id="idteam1" name="idteam1" placeholder="ID Equipe 1" required>
+                                        <input type="text" class="form-control" id="idteam1" name="idteam1" placeholder="ID Equipe 1" required>
                                     </div>
                                     <div class="col-lg-2">
 
-                                        <input size="10" type="text" class="form-control" id="idteam2" name="idteam2" placeholder="ID Equipe 2" required>
+                                        <input type="text" class="form-control" id="idteam2" name="idteam2" placeholder="ID Equipe 2" required>
                                     </div>
                                     <div class="col-lg-8">
-                                        <input type="submit" class="btn btn-primary pull-left" value="Echanger"/>
+                                        <input type="submit" class="btn btn-primary pull-left" value="Echanger" />
                                     </div>
                                 </form>
                             </div>
 
-                    <div class="row"><br/></div>
-                    <div class="row">
+                            <div class="row">
+                                <br/>
+                            </div>
+                            <div class="row">
                                 <div class="text-center">
                                     <div class="col-lg-2">
                                         <select class="form-select" multiple="" size="10">
@@ -112,17 +115,17 @@
                                         </div>
                                     </div>
                                     <?php
-                            $db = new BDD();
-                            if ($_GET['jour'] == "sam"){
-                                $groups = $db->query('SELECT * FROM GroupSaturday');
-                            } else{ 
-                                $groups = $db->query('SELECT * FROM GroupSunday');
-                            }
-                            $poulNum = 5; 
-                            for ($j = 1; $j <= $poulNum; $j++) {
-                                $group = $groups->fetch_array();
-                                //$group = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"");
-                            ?>
+                                        $db = new BDD();
+                                        if ($_GET['jour'] == "sam"){
+                                            $groups = $db->query('SELECT * FROM GroupSaturday');
+                                        } else{
+                                            $groups = $db->query('SELECT * FROM GroupSunday');
+                                        }
+                                        $poulNum = 5;
+                                        for ($j = 1; $j <= $poulNum; $j++) {
+                                            $group = $groups->fetch_array();
+                                            //$group = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"");
+                                    ?>
                                         <div class="col-lg-2">
                                             <label><span class="fa fa-users"></span> Groupe
                                                 <?= $j?>
@@ -153,7 +156,9 @@
                                     }
                                 ?>
                                                 <label><span class="fa fa-users"></span> Equipes </label>
-                                                <?php    
+                                            <div class="form-group text-center">
+                                                <label> </label>
+                                                <?php
                                     for ($i = 0; $i <= $teamNum; $i++) {
                                         if ($i>0){
                                             $teamID = $group["ID_t".$i];
@@ -164,17 +169,16 @@
                                             $IDPersonne2 = $team['ID_Player2'];
                                             $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
                                             ?>
-                                                    <div class="form-group text-center">
-                                                        <label> </label>
-                                                        <p>
+                                                        <p data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
                                                             <?=$teamID?>,
                                                                 <?=$player['LastName']?> -
                                                                     <?=$player2['LastName']?>
                                                         </p>
-                                                    </div>
                                                     <?php
-                                    }
+                                                }
                                     }?>
+                                            </div>
+
                                         </div>
                                         <?php }
                                 ?>
@@ -212,6 +216,15 @@
                 $(modal_id).html(data);
             });
         });
+
+    $("[data-toggle='idteam1']").on("click", function (event) {
+        var id = $(this).attr('data-id');
+        if (document.getElementById('idteam1').value == "") {
+            document.getElementById('idteam1').value=id;
+        } else {
+            document.getElementById('idteam2').value=id;
+        }
+    });
     </script>
 
 
