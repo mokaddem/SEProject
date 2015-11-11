@@ -359,8 +359,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a class="my-danger" href="reset.php">Réinitialiser</a>
+                            <li class="li-danger">
+                                <a href="reset.php">Réinitialiser</a>
                             </li>
                             <!--<li>
                                     <a href="#">Third Level <span class="fa arrow"></span></a>

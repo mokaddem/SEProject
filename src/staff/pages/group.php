@@ -78,7 +78,7 @@
                             <div class="row">
                                 <div class="text-center">
                                     <div class="col-lg-2">
-                                        <select class="form-select" multiple="">
+                                        <select class="form-select" multiple="" size="10">
                                             <?php
                                         while ($row = $listNote->fetch_object()){ ?>
                                                 <option data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=<?=$row->ID?>">
@@ -87,9 +87,11 @@
                                                 <?php }
                                     ?>
                                         </select>
-                                        <p id="pList">
+                                        <br/>
+                                        <br/>
+                                        <div id="pList">
 
-                                        </p>
+                                        </div>
                                         <br/>
 
                                         <br/>
