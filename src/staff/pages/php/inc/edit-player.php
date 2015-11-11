@@ -33,7 +33,7 @@ $req->bind_param("ssiiiississ", $FirstName, $LastName, $Title, $ZIPCode, $PhoneN
 $req->execute();
 */
 
-addHistory($ID, "Player", "Edition");
+addHistory($ID, "Joueur", "Edition");
 
 header("Location: ../../list.php?type=player");
 

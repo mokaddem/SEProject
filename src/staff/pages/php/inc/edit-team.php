@@ -16,7 +16,7 @@ $idp2   = $_GET['idp2'];
 
 $reponse = $db->query("UPDATE SEProjectC.Team SET ID_Player1 = \"".$idp1."\", ID_Player2=\"" .$idp2. "\" WHERE ".$ID."=Team.ID");
 
-addHistory($ID, "Team", "Edition");
+addHistory($ID, "Equipe", "Edition");
 
 header("Location: ../../list-team.php");
 
