@@ -223,7 +223,12 @@
         var id = $(this).attr('data-id');
         if (document.getElementById('idteam1').value == "") {
             document.getElementById('idteam1').value=id;
-        } else {
+        } else if (document.getElementById('idteam1').value != ""
+            && document.getElementById('idteam2').value != "") {
+            document.getElementById('idteam1').value=id;
+            document.getElementById('idteam2').value="";
+        }
+        else {
             document.getElementById('idteam2').value=id;
         }
     });
