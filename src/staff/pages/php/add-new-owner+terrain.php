@@ -13,14 +13,14 @@
 	$req = $db->prepare("INSERT INTO Personne(ID, FirstName, LastName, Title, ZIPCode, PhoneNumber, GSMNumber, Rue, Number, Ville, BirthDate, Mail, CreationDate, IsPlayer, IsOwner, IsStaff) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 	$ID	 	= '';
-	$FirstName	= $_GET['InputPrenom'];
-	$LastName	= $_GET['InputNom'];
+	$FirstName	= utf8_decode($_GET['InputPrenom']);
+	$LastName	= utf8_decode($_GET['InputNom']);
 	$Title		= $_GET['title'];
 	$ZIPCode	= $_GET['InputCP'];
 	$PhoneNumber= $_GET['InputFixe'];
 	$GSMNumber	= $_GET['InputMob'];
-	$Ville		= $_GET['InputLoc'];
-	$Rue		= $_GET['InputAdresse'];
+	$Ville		= utf8_decode($_GET['InputLoc']);
+	$Rue		= utf8_decode($_GET['InputAdresse']);
 	$Number		= $_GET['InputBat'];
 	$BirthDate	= $_GET['birth_year']."-".$_GET['birth_month']."-".$_GET['birth_day'];
 	$Mail		= $_GET['InputEmailFirst'];
@@ -41,15 +41,15 @@
 
 	$req = $db->prepare("INSERT INTO Terrain(ID, adresse, surface, ID_Owner, etat, disponibiliteFrom, disponibiliteTo, CreationDate, type, Note) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 	$ID	 	= '';
-	$Adresse	= $_GET['InputAdresseCourt'];
-	$Surface	= $_GET['InputSurface'];
+	$Adresse	= utf8_decode($_GET['InputAdresseCourt']);
+	$Surface	= utf8_decode($_GET['InputSurface']);
 	$ID_Owner	= $ID_inserted_O;
-	$Etat		= $_GET['etat'];
+	$Etat		= utf8_decode($_GET['etat']);
 	$DispoFrom	= $_GET['calendarF'];
 	$DispoTo	= $_GET['calendarT'];
 	$CreationDate	= date("Y-m-d");
-	$type		= $_GET['type'];
-	$Note		= $_GET['InputMessage'];
+	$type		= utf8_decode($_GET['type']);
+	$Note		= utf8_decode($_GET['InputMessage']);
 
 	$req->bind_param("isiissssss", $ID,$Adresse,$Surface,$ID_Owner,$Etat,$DispoFrom,$DispoTo,$CreationDate,$type,$Note);
 

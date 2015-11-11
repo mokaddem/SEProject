@@ -6,7 +6,7 @@
 	$db->query('DELETE FROM Owner WHERE ID_Personne='.$_GET['id']);
 
     require_once('add-new-history.php');
-    addHistory( $_GET['id'], "Propriétaire", "Suppression");
+    addHistory( $_GET['id'], utf8_decode("Propriétaire"), "Suppression");
 
 	header("Location: ../list.php?type=owner");
 ?>

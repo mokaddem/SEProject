@@ -19,15 +19,15 @@
 
 
 	$ID	 	= '';
-	$Adresse	= $_GET['InputAdresse'];
-	$Surface	= $_GET['surface'];
+	$Adresse	= utf8_decode($_GET['InputAdresse']);
+	$Surface	= utf8_decode($_GET['surface']);
 	$ID_Owner	= $_GET['sel3'];
-	$Etat		= $_GET['sel2'];
+	$Etat		= utf8_decode($_GET['sel2']);
 	$DispoFrom	= $_GET['InputFrom'];
 	$DispoTo	= $_GET['InputTo'];
 	$CreationDate	= date("Y-m-d");
-	$type		= $_GET['sel1'];
-	$Note		= $_GET['InputNote'];
+	$type		= utf8_decode($_GET['sel1']);
+	$Note		= utf8_decode($_GET['InputNote']);
 
 	$req->bind_param("isiissssss", $ID,$Adresse,$Surface,$ID_Owner,$Etat,$DispoFrom,$DispoTo,$CreationDate,$type,$Note);
 

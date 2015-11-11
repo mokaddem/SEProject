@@ -11,18 +11,18 @@ $database_db = 'SEProjectC';
 $db = new mysqli($database_host, $database_user, $database_pass, $database_db);
 
 $ID	 	    = $_GET['id'];
-$FirstName	= $_GET['InputPrenom'];
-$LastName	= $_GET['InputNom'];
+$FirstName	= utf8_decode($_GET['InputPrenom']);
+$LastName	= utf8_decode($_GET['InputNom']);
 $Title		= $_GET['title'];
 $ZIPCode	= $_GET['InputCP'];
 $PhoneNumber= $_GET['InputFixe'];
 $GSMNumber	= $_GET['InputMob'];
-$Ville		= $_GET['InputLoc'];
-$Rue		= $_GET['InputAdresse'];
+$Ville		= utf8_decode($_GET['InputLoc']);
+$Rue		= utf8_decode($_GET['InputAdresse']);
 $Number		= $_GET['InputBat'];
 $BirthDate	= $_GET['birth_year']."-".$_GET['birth_month']."-".$_GET['birth_day'];
 $Mail		= $_GET['InputEmailFirst'];
-$Note       = $_GET['InputMessage'];
+$Note       = utf8_decode($_GET['InputMessage']);
 
 $req = $db->prepare("UPDATE SEProjectC.Personne SET FirstName = ?,LastName = ?,Title = ?,ZIPCode =?,PhoneNumber = ?,GSMNumber = ?,Ville = ?,Rue = ?,Number = ?,BirthDate = ?,Mail = ?,Note=? WHERE ".$ID."=Personne.ID");
 $req->bind_param("ssiiiississs", $FirstName, $LastName, $Title, $ZIPCode, $PhoneNumber, $GSMNumber, $Rue, $Number, $Ville, $BirthDate, $Mail, $Note);

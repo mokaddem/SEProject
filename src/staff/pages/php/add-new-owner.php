@@ -13,14 +13,14 @@
 	$req = $db->prepare("INSERT INTO Personne(ID, FirstName, LastName, Title, ZIPCode, PhoneNumber, GSMNumber, Rue, Number, Ville, BirthDate, Mail, CreationDate, IsPlayer, IsOwner, IsStaff) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 	$ID	 	= '';
-	$FirstName	= $_GET['InputPrenom'];
-	$LastName	= $_GET['InputNom'];
+	$FirstName	= utf8_decode($_GET['InputPrenom']);
+	$LastName	= utf8_decode($_GET['InputNom']);
 	$Title		= $_GET['title'];
 	$ZIPCode	= $_GET['InputCP'];
 	$PhoneNumber	= $_GET['InputFixe'];
 	$GSMNumber	= $_GET['InputMob'];
-	$Ville		= $_GET['InputLoc'];
-	$Rue		= $_GET['InputAdresse'];
+	$Ville		= utf8_decode($_GET['InputLoc']);
+	$Rue		= utf8_decode($_GET['InputAdresse']);
 	$Number		= $_GET['InputBat'];
 	$BirthDate	= $_GET['birth_year']."-".$_GET['birth_month']."-".$_GET['birth_day'];
 	$Mail		= $_GET['InputEmailFirst'];
@@ -46,7 +46,7 @@
 
 	$req->execute();
 
-    addHistory( $ID_inserted, "Propriétaire", "Ajout");
+    addHistory( $ID_inserted, utf8_decode("Propriétaire"), "Ajout");
 	
 	header("Location: ../list.php?type=owner");
 

@@ -12,11 +12,11 @@ $db = new mysqli($database_host, $database_user, $database_pass, $database_db);
 
 $ID	 	= $_GET['id'];
 $Year   = $_GET['InputYear'];
-$Designation = $_GET['InputDesignation'];
+$Designation = utf8_decode($_GET['InputDesignation']);
 
 $reponse = $db->query("UPDATE SEProjectC.Categorie SET Year = \"".$Year."\", Designation=\"" .$Designation. "\" WHERE ".$ID."= ID");
 
-addHistory($ID, "Catégorie", "Edition");
+addHistory($ID, utf8_decode("Catégorie"), "Edition");
 
 header("Location: ../../list.php?type=category");
 

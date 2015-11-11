@@ -15,14 +15,14 @@
 //	$req = $db->prepare('INSERT INTO Personne(ID, FirstName, LastName, Title, ZIPCode, PhoneNumber, GSMNumber, Address, BirthDate, Mail, CreationDate, IsPlayer, IsOwner, IsStaff) VALUES('', "bb", "bb", 1, 1234, 12354, 46351, "glkrzjglz e zfzef", 2015-02-02, "lzeijgze@fmezk.com", 2015-02-03, 1, 0, 0)');
 
 	$ID1	 	= '';
-	$FirstName1	= $_GET['InputPrenom1'];
-	$LastName1	= $_GET['InputNom1'];
+	$FirstName1	= utf8_decode($_GET['InputPrenom1']);
+	$LastName1	= utf8_decode($_GET['InputNom1']);
 	$Title1	= $_GET['title1'];
 	$ZIPCode1	= $_GET['InputCP1'];
 	$PhoneNumber1	= $_GET['InputFixe1'];
 	$GSMNumber1	= $_GET['InputMob1'];
-	$Ville1		= $_GET['InputLoc1'];
-	$Rue1		= $_GET['InputAdresse1'];
+	$Ville1		= utf8_decode($_GET['InputLoc1']);
+	$Rue1		= utf8_decode($_GET['InputAdresse1']);
 	$Number1		= $_GET['InputBat1'];
 	$BirthDate1	= $_GET['birth_year1']."-".$_GET['birth_month1']."-".$_GET['birth_day1'];
 	$Mail1		= $_GET['InputEmailFirst1'];
@@ -47,14 +47,14 @@
 	$req = $db->prepare("INSERT INTO Personne(ID, FirstName, LastName, Title, ZIPCode, PhoneNumber, GSMNumber, Rue, Number, Ville, BirthDate, Mail, CreationDate, IsPlayer, IsOwner, IsStaff) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 	$ID2	 	    = '';
-	$FirstName2	= $_GET['InputPrenom2'];
-	$LastName2	= $_GET['InputNom2'];
+	$FirstName2	= utf8_decode($_GET['InputPrenom2']);
+	$LastName2	= utf8_decode($_GET['InputNom2']);
 	$Title2		= $_GET['title2'];
 	$ZIPCode2	= $_GET['InputCP2'];
 	$PhoneNumber2= $_GET['InputFixe2'];
 	$GSMNumber2	= $_GET['InputMob2'];
-	$Ville2		= $_GET['InputLoc2'];
-	$Rue2		= $_GET['InputAdresse2'];
+	$Ville2		= utf8_decode($_GET['InputLoc2']);
+	$Rue2		= utf8_decode($_GET['InputAdresse2']);
 	$Number2		= $_GET['InputBat2'];
 	$BirthDate2	= $_GET['birth_year2']."-".$_GET['birth_month2']."-".$_GET['birth_day2'];
 	$Mail2		= $_GET['InputEmailFirst2'];

@@ -11,9 +11,9 @@ $database_db = 'SEProjectC';
 $db = new mysqli($database_host, $database_user, $database_pass, $database_db);
 
 $ID	 	= $_GET['id'];
-$Name   = $_GET['InputNom'];
+$Name   = utf8_decode($_GET['InputNom']);
 $Price	= $_GET['InputPrice'];
-$Description = $_GET['InputMessage'];
+$Description = utf8_decode($_GET['InputMessage']);
 
 
 $reponse = $db->query("UPDATE SEProjectC.Extras SET Description = \"".$Description."\", Name=\"" .$Name. "\", Price=".$Price." WHERE ".$ID."=Extras.ID");

@@ -31,7 +31,7 @@
 	$donnees = $reponse->fetch_array();
 	$ID_inserted = $donnees['ID'];
 
-	addHistory( $donnees["ID"], "Catégorie", "Ajout");
+	addHistory( $donnees["ID"], utf8_decode("Catégorie"), "Ajout");
 
 	header("Location: ../list.php?type=category");
 

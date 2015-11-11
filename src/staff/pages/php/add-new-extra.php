@@ -13,9 +13,9 @@
 	$req = $db->prepare("INSERT INTO Extras(ID, Name, Price, Description) VALUES(?, ?, ?, ?)");
 
 	$ID	 	= '';
-	$Name   = $_GET['InputNom'];
+	$Name   = utf8_decode($_GET['InputNom']);
 	$Price	= $_GET['InputPrice'];
-	$Description		= $_GET['InputMessage'];
+	$Description		= utf8_decode($_GET['InputMessage']);
 
 	$req->bind_param("isis", $ID,$Name,$Price,$Description);
 

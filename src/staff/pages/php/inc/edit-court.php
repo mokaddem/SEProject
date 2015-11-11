@@ -11,14 +11,14 @@ $database_db = 'SEProjectC';
 $db = new mysqli($database_host, $database_user, $database_pass, $database_db);
 
 $ID	 	    = $_GET['id'];
-$adresse    = $_GET['InputAdresse'];
-$surface	= $_GET['surface'];
+$adresse    = utf8_decode($_GET['InputAdresse']);
+$surface	= utf8_decode($_GET['surface']);
 $ID_Owner   = $_GET['owner'];
-$etat       = $_GET['etat'];
+$etat       = utf8_decode($_GET['etat']);
 $disponibiliteFrom  =  $_GET['calendarF'];
 $disponibiliteTo    =  $_GET['calendarT'];
-$Type    = $_GET['type'];
-$Note    = $_GET['InputNote'];
+$Type    = utf8_decode($_GET['type']);
+$Note    = utf8_decode($_GET['InputNote']);
 
 
 $req = $db->prepare("UPDATE SEProjectC.Terrain SET adresse = ?,surface = ?,ID_Owner = ?,etat =?,disponibiliteFrom = ?,disponibiliteTo = ?,Type = ?,Note = ? WHERE ".$ID."=Terrain.ID");
