@@ -155,8 +155,7 @@
                                 </div>
                             </div>
 
-                            <input type="submit" name="submit" id="submit" value="Créer" class="btn btn-info pull-right">
-
+                            <button class="btn btn-success pull-right" type="submit" name="id" id="id" value=<?=$_GET['id']?>>Sauvegarder</button>
                         </div>
                     </form>
                     <!-- Registration form - END -->
