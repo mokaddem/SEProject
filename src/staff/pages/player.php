@@ -185,7 +185,7 @@
                                 <div class="form-group">
                                     <!--<label for="InputMessage">Message</label>-->
                                     <div class="input-group">
-                                        <textarea name="InputMessage" id="InputMessage" name="InputMessage" class="form-control" rows="5" required></textarea>
+                                        <textarea name="InputMessage" id="InputMessage" name="InputMessage" class="form-control" rows="5"></textarea>
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
                                     </div>
                                 </div>
