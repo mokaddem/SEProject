@@ -27,7 +27,7 @@ $req->bind_param("siisssss", $adresse, $surface, $ID_Owner, $etat, $disponibilit
 $req->execute();
 
 
-addHistory($ID, "court", "Edition");
+addHistory($ID, "Terrain", "Edition");
 
 header("Location: ../../list.php?type=court");
 
