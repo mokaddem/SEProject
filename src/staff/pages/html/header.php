@@ -311,9 +311,6 @@
                             <li>
                                 <a href="extra.php"> Extra</a>
                             </li>
-                            <li>
-                                <a href="staff.php"> Staff</a>
-                            </li>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
