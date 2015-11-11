@@ -51,7 +51,7 @@
 
                 <!-- Registration form - START -->
                 <div class="row">
-                    <form role="form">
+                    <form role="form" method="Get" action="php/delete-group-knock-off.php">
                         <div class="col-lg-6">
 
                             <label>Attention, le fait de réinitialiser le tournoi va supprimer toutes les poules et le Knock-Off. Cette action est irréversible.</label>

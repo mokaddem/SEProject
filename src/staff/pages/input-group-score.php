@@ -72,10 +72,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="sel1"><span class="fa fa-edit"></span> Score [Noms joueurs équipe 1]:</label>
-                    <input class="form-control" id="sel1" placeholder="ex: 636" required data-validation-required-message="Veuillez entrer le score de la première équipe."></input>
-                    <label for="sel1"><span class="fa fa-edit"></span> Score [Noms joueurs équipe 2]:</label>
-                    <input class="form-control" id="sel1" placeholder="ex: 164" required data-validation-required-message="Veuillez entrer le score de la seconde équipe."></input>
+                    <label for="sel1"><span class="fa fa-edit"></span> Vainqueur</label>
+                    <select class="form-control" id="sel1">
+                        <option>[Equipe 1]</option>
+                        <option>[Equipe 2]</option>
+                        <!-- <option>propriétaire</option> -->
+                    </select>
                 </div>
 
 
