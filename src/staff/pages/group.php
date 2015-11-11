@@ -79,15 +79,13 @@
                         <div class="row">
                         <div class="text-center">
                             <div class="col-lg-2">
-                                Marvellous gestion of preferences !
-                                <ul class="nav nav-pills">
-
-                                <?php
-                                while ($row = $listNote->fetch_object()){ ?>
-                                    <a href="#" class="list-group-item" data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=<?=$row->ID?>"><?=$row->LastName?></a>
-                                <?php }
-                                ?>
-                                </ul>
+                                <select class="form-select" multiple="">
+                                    <?php
+                                        while ($row = $listNote->fetch_object()){ ?>
+                                            <option data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=<?=$row->ID?>"><?=$row->LastName?></option>
+                                        <?php }
+                                    ?>
+                                </select>
                                 <p id="pList">
 
                                 </p>
@@ -102,7 +100,7 @@
                                 <form action="./php/group-switch.php" method="post">
                                     <input type="text" class="form-control" id="idteam1" name="idteam1" placeholder="ID Team1" required>
                                     <input type="text" class="form-control" id="idteam2" name="idteam2" placeholder="ID Team2" required>
-                                    <input type="submit"  class="btn btn-success pull-right"/ >
+                                    <input type="submit"  class="btn btn-success pull-right" value="Echanger"/>
                                 </form>
 
                             </div>

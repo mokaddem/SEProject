@@ -25,10 +25,10 @@
 
 	$req->execute();
 
-    $reponse = $db->query("SELECT * FROM `Match` WHERE date = \"".$Date ."\" AND ID_Equipe1 = " . $ID_Equipe1 ." AND ID_Equipe2 = " . $ID_Equipe2 ." ");
-    $donnees = $reponse->fetch_array();
-    addHistory($donnees["ID"], "Match", "Ajout");
-	
+$reponse = $db->query("SELECT * FROM `Match` WHERE date = \"".$Date ."\" AND ID_Equipe1 = " . $ID_Equipe1 ." AND ID_Equipe2 = " . $ID_Equipe2 ." ");
+$donnees = $reponse->fetch_array();
+addHistory($donnees["ID"], "Match", "Ajout");
+
 	header("Location: ../list-match.php");
 
 
