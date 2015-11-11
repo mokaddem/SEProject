@@ -17,7 +17,7 @@
 	$LastName	= $_GET['InputNom'];
 	$Title		= $_GET['title'];
 	$ZIPCode	= $_GET['InputCP'];
-	$PhoneNumber	= $_GET['InputFixe'];
+	$PhoneNumber= $_GET['InputFixe'];
 	$GSMNumber	= $_GET['InputMob'];
 	$Ville		= $_GET['InputLoc'];
 	$Rue		= $_GET['InputAdresse'];
@@ -28,29 +28,33 @@
 	$IsPlayer	= 0;
 	$IsOwner	= 1;
 	$IsStaff	= 0;
-
 	$req->bind_param("issiiiisissssiii", $ID, $FirstName, $LastName, $Title, $ZIPCode, $PhoneNumber, $GSMNumber, $Rue, $Number, $Ville, $BirthDate, $Mail, $CreationDate, $IsPlayer, $IsOwner, $IsStaff);
-
 	$req->execute();
+
 	$reponse = $db->query("SELECT ID FROM Personne WHERE FirstName=\"$FirstName\" AND LastName=\"$LastName\" AND Mail=\"$Mail\"");
 	$donnes = $reponse->fetch_array();
 	$ID_inserted = $donnes['ID'];
 
-	$req = $db->prepare("INSERT INTO Owner(ID, ID_Personne, ID_Staff) VALUES(?, ?, ?)");
+	$reponse = $db->query("SELECT Owner.ID as ID FROM Owner WHERE Owner.ID_Personne=".$ID_inserted);
+	$donnes = $reponse->fetch_array();
+	$ID_inserted_O = $donnes['ID'];
 
+	$req = $db->prepare("INSERT INTO Terrain(ID, adresse, surface, ID_Owner, etat, disponibiliteFrom, disponibiliteTo, CreationDate, type, Note) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 	$ID	 	= '';
-	$ID_personne	= $ID_inserted;
-	$ID_staff	= '7';
+	$Adresse	= $_GET['InputAdresseCourt'];
+	$Surface	= $_GET['InputSurface'];
+	$ID_Owner	= $ID_inserted_O;
+	$Etat		= $_GET['etat'];
+	$DispoFrom	= $_GET['calendarF'];
+	$DispoTo	= $_GET['calendarT'];
+	$CreationDate	= date("Y-m-d");
+	$type		= $_GET['type'];
+	$Note		= $_GET['InputMessage'];
 
-	$req->bind_param("iii", $ID, $ID_personne, $ID_staff);
+	$req->bind_param("isiissssss", $ID,$Adresse,$Surface,$ID_Owner,$Etat,$DispoFrom,$DispoTo,$CreationDate,$type,$Note);
 
 	$req->execute();
 
-    addHistory( $ID_inserted, "Propriétaire", "Ajout");
-	
 	header("Location: ../list.php?type=owner");
-
-
-	
 
 ?>
