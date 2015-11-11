@@ -48,17 +48,17 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12 noDeco">
-                        <h1 class="page-header"><a href="list.php?type=court"> Liste des terrains</a> > Modifier</h1>
+                        <h1 class="page-header"><a href="list.php?type=court"> Liste des terrains</a>> Modifier</h1>
                     </div>
                 </div>
                 <!-- Registration form - START -->
                 <div class="row">
-                    <form role="form" method="Get" action="php/edit-court.php">
+                    <form role="form" method="Get" action="php/inc/edit-court.php">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-circle-thin"></i></span>
-                                    <select class="form-control" id="sel1" name="sel1">
+                                    <select class="form-control" id="type" name="type">
                                         <?php if ($dataCourt['Type'] == "Terre battue")
                                             echo "<option selected=\"selected\">Terre battue</option>";
                                             else echo "<option>Terre battue</option>";
@@ -72,7 +72,7 @@
                                             else echo "<option>Synthétique</option>";
                                         ?>
                                     </select>
-                                    <select class="form-control" id="sel2" name="sel2">
+                                    <select class="form-control" id="etat" name="etat">
                                         <?php if ($dataCourt['etat'] == "Neuf")
                                             echo "<option selected=\"selected\">Neuf</option>";
                                             else echo "<option>Neuf</option>";
@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="sel1"><span class="fa fa-user"></span> Propriétaire</label>
-                                    <select class="form-control" id="sel3" name="sel3">
+                                    <select class="form-control" id="owner" name="owner">
                                         <?php
                                             $reponse = $db->query('SELECT *, Owner.ID as O_id FROM Personne, Owner WHERE Personne.ID = Owner.ID_Personne');
                                             while ($donnes = $reponse->fetch_array())
@@ -114,6 +114,16 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="sel1"><span class="fa fa-clock-o"></span> Date & Heure</label>
+                                    <div class="input-group">
+                                        Avaible from: <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        <?php echo '<input type="date" min="'.date("Y-m-d").'" max="2048-10-10" name="calendarF" id="calendarF" value="'.date("Y-m-d").'">';?>
+                                        Avaible until: <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        <?php echo '<input type="date" min="'.date("Y-m-d").'" max="2048-10-10" name="calendarT" id="calendarT" value="'.date("Y-m-d").'">';?>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <!--<label for="InputMessage">Message</label>-->
                                     <div class="input-group">
                                         <textarea name="InputNote" id="InputNote" class="form-control" rows="5" required><?php echo $dataCourt['Note'] ?></textarea>
@@ -122,7 +132,7 @@
                                 </div>
 
                                 <a class="btn btn-info" href="list.php?type=court">Retour</a>
-                                <input type="submit" name="submit" id="submit" value="Sauvegarder" class="btn btn-success pull-right">
+                                <button type="submit" name="id" id="id" value="<?=$_GET['id'] ?>" class="btn btn-success pull-right">Sauvegarder</button>
 
                             </div>
                         </div>

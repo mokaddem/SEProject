@@ -40,7 +40,7 @@ function getTitreTable($get) {
             return array("ID", "Nom", "Prénom", "E-mail", "Né(e) le", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "Créé le");
 
         case "court":
-            return array("ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Crée le", "Note");
+            return array("ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Jusqu'au", "Crée le", "Note");
 
         case "extra":
             return array("ID", "Nom", "Prix", "Nombre de personnes", "Description", "Action");
@@ -49,7 +49,7 @@ function getTitreTable($get) {
         return array("ID", "Nom", "Prénom", "E-mail", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "Créé le");
 
         case "team":
-//            return getTeams();
+            return array("ID", "Nom", "Prénom", "Action");
             break;
 
         case "staff":
@@ -70,7 +70,7 @@ function getParam($get) {
             return array("ID", "LastName", "FirstName", "Mail", "BirthDate", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "CreationDate");
 
         case "court":
-            return array("ID", "adresse", "surface", "ID_Owner", "etat", "Type", "disponibiliteFrom", "CreationDate", "Note");
+            return array("ID", "adresse", "surface", "ID_Owner", "etat", "Type", "disponibiliteFrom", "disponibiliteTo", "CreationDate", "Note");
 
         case "extra":
             return array("ID", "Name", "Price", "Name", "Description"); // Name à modif (4eme param)
@@ -79,7 +79,7 @@ function getParam($get) {
         return array("ID", "LastName", "FirstName", "Mail", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "CreationDate");
 
         case "team":
-//            return getTeams();
+            return array("ID", "L", "F", "ID_Cat");
             break;
 
         case "staff":
@@ -163,4 +163,16 @@ function getStaff($id) {
     return $reponse;
 }
 
+
+function getTeam1() {
+    $db = new BDD();
+    return $db->query('SELECT Team.ID, FirstName as F, LastName as L, Team.ID_Player1 as id1, Team.ID_Player2 as id2 FROM Team, Personne WHERE Personne.ID = Team.ID_Player1 ');
+}
+
+function getTeam2($id) {
+    $db = new BDD();
+    return $db->query('SELECT Team.ID, FirstName as F, LastName as L FROM Team, Personne WHERE Personne.ID = '.$id.'');
+}
+
 ?>
+

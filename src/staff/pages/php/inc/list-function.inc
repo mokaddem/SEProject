@@ -4,7 +4,7 @@ include_once('php/BDD.php');
 function getDonnees($get) {
         switch ($get) {
             case "match":
-                return getMatchs();
+                //return getMatchs();
                 break;
 
             case "player":
@@ -34,13 +34,13 @@ function getDonnees($get) {
 function getTitreTable($get) {
     switch ($get) {
         case "match":
-           return array("ID", "Première équipe", "Seconde équipe", "Date du match", "Heure du match", "Catégorie", "Crée le", "Action");
+           return array("ID", "Première équipe", "Seconde équipe", "Date du match", "Heure du match", "Action");
             break;
         case "player":
             return array("ID", "Nom", "Prénom", "Né(e) le", "Créé le", "Action");
 
         case "court":
-            return array("T_ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Crée le", "Note", "Action");
+            return array("T_ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Jusqu'au", "Crée le", "Note", "Action");
 
         case "extra":
             return array("ID", "Nom", "Prix", "Nombre de personnes", "Description", "Action");
@@ -61,14 +61,14 @@ function getTitreTable($get) {
 function getParam($get) {
     switch ($get) {
         case "match":
-            return array("ID", "ID_Equipe1", "ID_Equipe2", "date", "date", "date", "date");
+            return array("ID", "ID_Equipe1", "ID_Equipe2", "date", "hour");
             break;
 
         case "player":
             return array("ID", "LastName", "FirstName", "BirthDate", "CreationDate");
 
         case "court":
-            return array("ID", "adresse", "surface", "FirstName", "etat", "Type", "disponibiliteFrom", "CreationDate", "Note");
+            return array("ID", "adresse", "surface", "FirstName", "etat", "Type", "disponibiliteFrom", "disponibiliteTo","CreationDate", "Note");
 
         case "extra":
             return array("ID", "Name", "Price", "Name", "Description"); // Name à modif (4eme param)
@@ -115,7 +115,7 @@ function getTitre($get) {
 
 function getCourts() {
     $db = new BDD();
-    return $db->query('SELECT *, Terrain.ID as ID, Owner.ID as O_id FROM `Terrain`, `Personne`, `Owner` WHERE Owner.ID = Terrain.ID_Owner AND Personne.ID = Owner.ID_Personne');
+    return $db->query('SELECT *, Terrain.ID as ID, Terrain.Note as Note, Owner.ID as O_id FROM `Terrain`, `Personne`, `Owner` WHERE Owner.ID = Terrain.ID_Owner AND Personne.ID = Owner.ID_Personne');
 }
 
 function getExtras() {

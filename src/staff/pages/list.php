@@ -91,7 +91,6 @@
                                         </thead>
                                         <tbody>
                                             <?php foreach ($listDonnees as $donnee){?>
-
                                                 <tr class="odd gradeX">
                                                     <?php foreach ($paramDonnees as $param){ ?>
                                                         <td data-toggle="modal" data-target="#myModal" data-url="./show.php?type=<?=$_GET['type']?>&id=<?=$donnee['ID']?>">

@@ -6,12 +6,12 @@
     <?php
         if (array_key_exists("action", $_GET)) {
             if ($_GET["action"] == "logout") {
-                $_SESSION=array();
+                $_SESSION = array();
                 session_unset();
                 session_destroy();
             }
         }
-    ?>
+         ?>
 
         <head lang="fr">
             <meta charset="utf-8">
@@ -81,6 +81,34 @@
             </div>
             <!-- /.arrows -->
 
+            <?php
+            if ($_GET["action"] == "register") { ?>
+
+                <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Inscription réussite</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Félicitation !</p>
+                                <p>Vous avez bien été enregistré !</p>
+                                <p>Vous recevrez un e-mail de confirmation sous peu</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <?php
+            }
+
+            ?>
 
             <!-- === MAIN Background === -->
             <div class="slide story" id="slide-1" data-slide="1">
@@ -131,22 +159,30 @@
                         </div>
                         <!-- /col12 -->
 
-                        <div class="col-12 col-lg-6 col-sm-6">
-                            <button data-toggle="modal" data-url="./inscription/inscription.php" data-target="#myModal">
+                        <div class="col-12 col-lg-3 col-sm-6">
+                            <a class="btn btn-lg btn-default" href="./inscription/index.php" onclick="self.location.href='./inscription/index.php'">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
-
                                     <i id="crayon" class="fa fa-pencil fa-stack-1x"></i>
                                 </span>
-                            </button>
-                            <h2 class="font-semibold">Inscription</h2>
+                            </a>
+                            <h2 class="font-semibold">Inscription<br/>Participant</h2>
                         </div>
                         <!-- /col12 -->
+                        <div class="col-12 col-lg-3 col-sm-6">
+                            <a class="btn btn-lg btn-default" href="./inscription/inscription-owner.php" onclick="self.location.href='./inscription/inscription-owner.php'">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i id="crayon" class="fa fa-suitcase fa-stack-1x"></i>
+                                </span>
+                            </a>
+                            <h2 class="font-semibold">Inscription<br/>Propriétaire</h2>
+                        </div>
+
                         <!-- /col12 -->
                     </div>
                     <!-- /row -->
-                    <!-- Modal -->
-                    <div id="myModal" class="modal fade" role="dialog"></div>
+
                 </div>
                 <!-- /container -->
             </div>
@@ -337,23 +373,10 @@
                 });
             </script>
             <script type="text/javascript">
-                // Stop click on last td in a data-toggle=modal
-                $("[data-toggle='modal'] td:last-child").on("click", function (event) {
-                    $(this).preventDefault();
-                    $(this).stopPropagation();
-                });
-
-                // On click, get html content from url and update the corresponding modal
-                $("[data-toggle='modal']").on("click", function (event) {
-                    event.preventDefault();
-                    var url = $(this).attr('data-url');
-                    var modal_id = $(this).attr('data-target');
-                    $.get(url, function (data) {
-                        $(modal_id).html(data);
-                    });
-                });
+                <!--
+                $('#myModal').modal('show');
+                //-->
             </script>
-
         </body>
 
     </html>
