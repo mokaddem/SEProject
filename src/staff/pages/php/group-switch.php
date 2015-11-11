@@ -7,20 +7,18 @@ include_once('BDD.php');
 //}
 
 // $id = Team.ID
-function switch_teams($id1, $id2) {
+function switch_players($id1, $id2) {
     $db = new BDD();
 
-
-    $req1 = 'SELECT * FROM GroupSaturday WHERE '.$id1.' = ID_p1 or '.$id1.' = ID_p2 or '.$id1.'=  ID_p3 or '.$id1.'= ID_p4 or '.$id1.'= ID_p5';
+    $req1 = 'SELECT * FROM GroupSaturday WHERE '.$id1.' = ID_t1 or '.$id1.' = ID_t2 or '.$id1.'=  ID_t3 or '.$id1.'= ID_t4 or '.$id1.'= ID_t5';
     $reponse = $db->query($req1);
     // Get ID_GS t1 t2 t3 ...
     $donnees = $reponse ->fetch_array();
-    var_dump($donnees);
     // Pour chaque team (du groupe)
     for ($i = 1; $i < 6; $i+=1) {
-        if ($donnees['ID_p'.$i] == $id1) {
+        if ($donnees['ID_t'.$i] == $id1) {
 //             UPDATE
-            $sql = 'UPDATE GroupSaturday SET ID_p'.$i.' = '.$id2.' WHERE '.$donnees['ID'].'=ID';
+            $sql = 'UPDATE GroupSaturday SET ID_t'.$i.' = '.$id2.' WHERE '.$donnees['ID'].'=ID';
         }
     }
 
@@ -33,7 +31,7 @@ function switch_teams($id1, $id2) {
     }
 
 
-    $req2 = 'SELECT * FROM GroupSaturday WHERE '.$id2.' = ID_p1 or '.$id2.' = ID_p2 or '.$id2.'= ID_p3 or '.$id2.'= ID_p4 or '.$id2.'= ID_p5';
+    $req2 = 'SELECT * FROM GroupSaturday WHERE '.$id2.' = ID_t1 or '.$id2.' = ID_t2 or '.$id2.'= ID_t3 or '.$id2.'= ID_t4 or '.$id2.'= ID_t5';
     $reponse = $db->query($req2);
     $donnees = $reponse ->fetch_array();
 
@@ -41,9 +39,9 @@ function switch_teams($id1, $id2) {
     // Get ID_GS t1 t2 t3 ...
     // Pour chaque team (du groupe)
     for ($i = 1; $i < 6; $i+=1) {
-        if ($donnees['ID_p'.$i] == $id2) {
-//          UPDATE $donnees['ID_p'.$i] = $id1;
-            $sql = 'UPDATE GroupSaturday SET ID_p'.$i.' = '.$id1.' WHERE '.$donnees['ID'].'=ID';
+        if ($donnees['ID_t'.$i] == $id2) {
+//          UPDATE $donnees['ID_t'.$i] = $id1;
+            $sql = 'UPDATE GroupSaturday SET ID_t'.$i.' = '.$id1.' WHERE '.$donnees['ID'].'=ID';
         }
     }
 
@@ -59,6 +57,7 @@ function switch_teams($id1, $id2) {
 if (array_key_exists("idteam1", $_POST) && array_key_exists("idteam2", $_POST)) {
     // je sais pas pq mais faut garder inverser
     switch_players($_POST["idteam2"], $_POST["idteam1"]);
+    header("Location: ../group.php?jour=sam");
 } else {
     echo "no data";
 }

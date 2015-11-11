@@ -91,6 +91,20 @@
                                 <p id="pList">
 
                                 </p>
+                                <br/>
+
+                                <div class="hidden">
+                                    <! à laisser ici sinon ca bug ?-->
+                                <form action="./php/group-switch.php" method="post"></form>
+                                    <br/>
+                                </div>
+                                <br/>
+                                <form action="./php/group-switch.php" method="post">
+                                    <input type="text" class="form-control" id="idteam1" name="idteam1" placeholder="ID Team1" required>
+                                    <input type="text" class="form-control" id="idteam2" name="idteam2" placeholder="ID Team2" required>
+                                    <input type="submit"  class="btn btn-success pull-right"/ >
+                                </form>
+
                             </div>
                             <?php
                             $db = new BDD();
