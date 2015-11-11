@@ -39,6 +39,11 @@
         <?php            
             include("./html/header.php");
             include_once('php/BDD.php');
+
+        $db = new BDD();
+
+        $listNote = $db->query("SELECT * FROM Personne where Note != \"\" ");
+
         ?>
 
 
@@ -75,8 +80,19 @@
                         <div class="text-center">
                             <div class="col-lg-2">
                                 Marvellous gestion of preferences !
+                                <div class="list-group">
+
+                                <?php
+                                while ($row = $listNote->fetch_object()){ ?>
+                                    <a href="#" class="list-group-item" data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=<?=$row->ID?>"><?=$row->LastName?></a>
+                                <?php }
+                                ?>
+                                </div>
+                                <p id="pList">
+
+                                </p>
                             </div>
-                            <?php 
+                            <?php
                             $db = new BDD();
                             if ($_GET['jour'] == "sam"){
                                 $groups = $db->query('SELECT * FROM GroupSaturday');
@@ -155,6 +171,19 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+
+    <script type="text/javascript">
+        // On click, get html content from url and update the corresponding modal
+        $("[data-toggle='pList']").on("click", function (event) {
+            event.preventDefault();
+            var url = $(this).attr('data-url');
+            var modal_id = $(this).attr('data-target');
+            $.get(url, function (data) {
+                $(modal_id).html(data);
+            });
+        });
+    </script>
+
 
 </body>
 
