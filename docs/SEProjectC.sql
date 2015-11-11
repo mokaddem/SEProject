@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Mer 11 Novembre 2015 à 00:23
--- Version du serveur: 5.5.46-0ubuntu0.14.04.2
--- Version de PHP: 5.5.9-1ubuntu4.14
+-- Client :  127.0.0.1
+-- Généré le :  Mer 11 Novembre 2015 à 03:21
+-- Version du serveur :  5.6.17
+-- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `SEProjectC`
+-- Base de données :  `seprojectc`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Categorie`
+-- Structure de la table `categorie`
 --
 
 CREATE TABLE IF NOT EXISTS `Categorie` (
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `Categorie` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Contenu de la table `Categorie`
+-- Contenu de la table `categorie`
 --
 
 INSERT INTO `Categorie` (`ID`, `Year`, `Designation`) VALUES
@@ -45,7 +45,7 @@ INSERT INTO `Categorie` (`ID`, `Year`, `Designation`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Extras`
+-- Structure de la table `extras`
 --
 
 CREATE TABLE IF NOT EXISTS `Extras` (
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `Extras` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Contenu de la table `Extras`
+-- Contenu de la table `extras`
 --
 
 INSERT INTO `Extras` (`ID`, `Name`, `Price`, `Description`) VALUES
@@ -68,46 +68,63 @@ INSERT INTO `Extras` (`ID`, `Name`, `Price`, `Description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `GroupSaturday`
+-- Structure de la table `groupsaturday`
 --
 
 CREATE TABLE IF NOT EXISTS `GroupSaturday` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `ID_p1` int(11) NOT NULL,
-  `ID_p2` int(11) NOT NULL,
-  `ID_p3` int(11) NOT NULL,
-  `ID_p4` int(11) NOT NULL,
-  `ID_p5` int(11) NOT NULL,
-  `ID_vic_t1` int(11) NOT NULL,
-  `ID_vic_t2` int(11) NOT NULL,
+  `ID_terrain` int(11) DEFAULT NULL,
+  `ID_t1` int(11) NOT NULL,
+  `ID_t2` int(11) NOT NULL,
+  `ID_t3` int(11) NOT NULL,
+  `ID_t4` int(11) NOT NULL,
+  `ID_t5` int(11) NOT NULL,
+  `ID_vic1` int(11) DEFAULT NULL,
+  `ID_vic2` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Contenu de la table `groupsaturday`
+--
+
+INSERT INTO `GroupSaturday` (`ID`, `ID_terrain`, `ID_t1`, `ID_t2`, `ID_t3`, `ID_t4`, `ID_t5`, `ID_vic1`, `ID_vic2`) VALUES
+(1, NULL, 24, 25, 26, 27, 28, NULL, NULL),
+(2, NULL, 29, 30, 31, 32, 33, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `GroupSunday`
+-- Structure de la table `groupsunday`
 --
 
 CREATE TABLE IF NOT EXISTS `GroupSunday` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `ID_p1` int(11) NOT NULL,
-  `ID_p2` int(11) NOT NULL,
-  `ID_p3` int(11) NOT NULL,
-  `ID_p4` int(11) NOT NULL,
-  `ID_p5` int(11) NOT NULL,
-  `ID_p6` int(11) NOT NULL,
-  `ID_vic_p1` int(11) NOT NULL,
-  `ID_vic_p2` int(11) NOT NULL,
+  `ID_terrain` int(11) DEFAULT NULL,
+  `ID_t1` int(11) NOT NULL,
+  `ID_t2` int(11) NOT NULL,
+  `ID_t3` int(11) NOT NULL,
+  `ID_t4` int(11) NOT NULL,
+  `ID_t5` int(11) NOT NULL,
+  `ID_t6` int(11) NOT NULL,
+  `ID_vic1` int(11) DEFAULT NULL,
+  `ID_vic2` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `groupsunday`
+--
+
+INSERT INTO `GroupSunday` (`ID`, `ID_terrain`, `ID_t1`, `ID_t2`, `ID_t3`, `ID_t4`, `ID_t5`, `ID_t6`, `ID_vic1`, `ID_vic2`) VALUES
+(2, NULL, 24, 25, 26, 27, 28, 29, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `History`
+-- Structure de la table `history`
 --
 
 CREATE TABLE IF NOT EXISTS `History` (
@@ -123,10 +140,10 @@ CREATE TABLE IF NOT EXISTS `History` (
   UNIQUE KEY `id_3` (`id`),
   UNIQUE KEY `id_4` (`id`),
   KEY `id_2` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=130 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=133 ;
 
 --
--- Contenu de la table `History`
+-- Contenu de la table `history`
 --
 
 INSERT INTO `History` (`id`, `idPerson`, `idEntite`, `typeEntite`, `action`, `date`, `hour`) VALUES
@@ -161,12 +178,15 @@ INSERT INTO `History` (`id`, `idPerson`, `idEntite`, `typeEntite`, `action`, `da
 (126, 70, 13, 'Match', 'Ajout', '2015-11-11', '00:20:16'),
 (127, 70, 13, 'Match', 'Suppression', '2015-11-11', '00:22:00'),
 (128, 70, 13, 'Match', 'Suppression', '2015-11-11', '00:22:07'),
-(129, 70, 14, 'Match', 'Ajout', '2015-11-11', '00:22:38');
+(129, 70, 14, 'Match', 'Ajout', '2015-11-11', '00:22:38'),
+(130, 7, 1, 'GroupSaturday', 'Ajout', '2015-11-11', '02:59:09'),
+(131, 7, 2, 'GroupSaturday', 'Ajout', '2015-11-11', '02:59:09'),
+(132, 7, 1, 'GroupSunday', 'Ajout', '2015-11-11', '02:59:15');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Match`
+-- Structure de la table `match`
 --
 
 CREATE TABLE IF NOT EXISTS `Match` (
@@ -182,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `Match` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
--- Contenu de la table `Match`
+-- Contenu de la table `match`
 --
 
 INSERT INTO `Match` (`ID`, `date`, `hour`, `ID_Equipe1`, `ID_Equipe2`, `score1`, `score2`, `ID_Terrain`) VALUES
@@ -203,7 +223,7 @@ INSERT INTO `Match` (`ID`, `date`, `hour`, `ID_Equipe1`, `ID_Equipe2`, `score1`,
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Owner`
+-- Structure de la table `owner`
 --
 
 CREATE TABLE IF NOT EXISTS `Owner` (
@@ -216,7 +236,7 @@ CREATE TABLE IF NOT EXISTS `Owner` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
--- Contenu de la table `Owner`
+-- Contenu de la table `owner`
 --
 
 INSERT INTO `Owner` (`ID`, `ID_Personne`, `ID_Staff`) VALUES
@@ -227,7 +247,7 @@ INSERT INTO `Owner` (`ID`, `ID_Personne`, `ID_Staff`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Personne`
+-- Structure de la table `personne`
 --
 
 CREATE TABLE IF NOT EXISTS `Personne` (
@@ -252,7 +272,7 @@ CREATE TABLE IF NOT EXISTS `Personne` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=87 ;
 
 --
--- Contenu de la table `Personne`
+-- Contenu de la table `personne`
 --
 
 INSERT INTO `Personne` (`ID`, `Title`, `FirstName`, `LastName`, `Ville`, `ZIPCode`, `Rue`, `Number`, `PhoneNumber`, `GSMNumber`, `BirthDate`, `Mail`, `CreationDate`, `Note`, `IsPlayer`, `IsOwner`, `IsStaff`) VALUES
@@ -275,7 +295,7 @@ INSERT INTO `Personne` (`ID`, `Title`, `FirstName`, `LastName`, `Ville`, `ZIPCod
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Player`
+-- Structure de la table `player`
 --
 
 CREATE TABLE IF NOT EXISTS `Player` (
@@ -289,7 +309,7 @@ CREATE TABLE IF NOT EXISTS `Player` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `Player`
+-- Contenu de la table `player`
 --
 
 INSERT INTO `Player` (`ID_Personne`, `IsLeader`, `Paid`, `AlreadyPart`) VALUES
@@ -302,7 +322,7 @@ INSERT INTO `Player` (`ID_Personne`, `IsLeader`, `Paid`, `AlreadyPart`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Staff`
+-- Structure de la table `staff`
 --
 
 CREATE TABLE IF NOT EXISTS `Staff` (
@@ -318,7 +338,7 @@ CREATE TABLE IF NOT EXISTS `Staff` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=101 ;
 
 --
--- Contenu de la table `Staff`
+-- Contenu de la table `staff`
 --
 
 INSERT INTO `Staff` (`ID`, `ID_Personne`, `Level`, `ID_Cat`, `Password`, `Username`) VALUES
@@ -328,7 +348,7 @@ INSERT INTO `Staff` (`ID`, `ID_Personne`, `Level`, `ID_Cat`, `Password`, `Userna
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Team`
+-- Structure de la table `team`
 --
 
 CREATE TABLE IF NOT EXISTS `Team` (
@@ -344,7 +364,7 @@ CREATE TABLE IF NOT EXISTS `Team` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
 
 --
--- Contenu de la table `Team`
+-- Contenu de la table `team`
 --
 
 INSERT INTO `Team` (`ID`, `ID_Player1`, `ID_Player2`, `ID_Cat`, `NbWinMatch`) VALUES
@@ -363,7 +383,7 @@ INSERT INTO `Team` (`ID`, `ID_Player1`, `ID_Player2`, `ID_Cat`, `NbWinMatch`) VA
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Terrain`
+-- Structure de la table `terrain`
 --
 
 CREATE TABLE IF NOT EXISTS `Terrain` (
@@ -381,7 +401,7 @@ CREATE TABLE IF NOT EXISTS `Terrain` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
--- Contenu de la table `Terrain`
+-- Contenu de la table `terrain`
 --
 
 INSERT INTO `Terrain` (`ID`, `adresse`, `surface`, `ID_Owner`, `etat`, `disponibiliteFrom`, `disponibiliteTo`, `CreationDate`, `Type`, `Note`) VALUES
@@ -397,27 +417,27 @@ INSERT INTO `Terrain` (`ID`, `adresse`, `surface`, `ID_Owner`, `etat`, `disponib
 --
 
 --
--- Contraintes pour la table `Owner`
+-- Contraintes pour la table `owner`
 --
 ALTER TABLE `Owner`
   ADD CONSTRAINT `Owner_ibfk_1` FOREIGN KEY (`ID_Personne`) REFERENCES `Personne` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Owner_ibfk_2` FOREIGN KEY (`ID_Staff`) REFERENCES `Staff` (`ID_Personne`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Contraintes pour la table `Player`
+-- Contraintes pour la table `player`
 --
 ALTER TABLE `Player`
   ADD CONSTRAINT `PersonneFK` FOREIGN KEY (`ID_Personne`) REFERENCES `Personne` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `Staff`
+-- Contraintes pour la table `staff`
 --
 ALTER TABLE `Staff`
   ADD CONSTRAINT `Staff_ibfk_1` FOREIGN KEY (`ID_Personne`) REFERENCES `Personne` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Staff_ibfk_2` FOREIGN KEY (`ID_Cat`) REFERENCES `Categorie` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Contraintes pour la table `Team`
+-- Contraintes pour la table `team`
 --
 ALTER TABLE `Team`
   ADD CONSTRAINT `Team_ibfk_1` FOREIGN KEY (`ID_Player1`) REFERENCES `Personne` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
