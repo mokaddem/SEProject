@@ -80,14 +80,14 @@
                         <div class="text-center">
                             <div class="col-lg-2">
                                 Marvellous gestion of preferences !
-                                <div class="list-group">
+                                <ul class="nav nav-pills">
 
                                 <?php
                                 while ($row = $listNote->fetch_object()){ ?>
                                     <a href="#" class="list-group-item" data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=<?=$row->ID?>"><?=$row->LastName?></a>
                                 <?php }
                                 ?>
-                                </div>
+                                </ul>
                                 <p id="pList">
 
                                 </p>
@@ -136,10 +136,13 @@
                                             $team = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"")->fetch_array();
                                             $IDPersonne = $team['ID_Player1'];
                                             $player = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne."\"")->fetch_array();
-                                    ?>
+
+                                            $IDPersonne2 = $team['ID_Player2'];
+                                            $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
+                                            ?>
                                         <div class="form-group text-center">
                                           <label> </label>
-                                          <p><?=$teamID?>, <?=$player['FirstName']?> <?=$player['LastName']?> </p>
+                                          <p><?=$teamID?>, <?=$player['LastName']?> - <?=$player2['LastName']?> </p>
                                         </div>
                                     <?php
                                     }
