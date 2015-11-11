@@ -52,7 +52,7 @@
 
                 <!-- Registration form - START -->
                 <div class="row">
-                    <form role="form" action="php/add-new-group.php">
+                    <form role="form" method="get" action="php/add-new-group.php">
                         <div class="row">
                         <div class="col-lg-4 text-center">
 
