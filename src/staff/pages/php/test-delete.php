@@ -9,7 +9,7 @@
         $db = new BDD();
         $reponse = $db->query('SELECT * FROM `Team` WHERE ID_Player1 = '. $id .' OR ID_Player2 = '. $id .'');
         
-        if (!$reponse){
+        if (!$reponse->fetch_array()){
             return TRUE;
         }
         
@@ -23,15 +23,12 @@
         $db = new BDD();
         $reponsematch = $db->query('SELECT * FROM `Match` WHERE ID_Equipe1 = '. $id .' OR ID_Equipe2 = '. $id .'');
 
-        if (!$reponsematch){
 
+        if ($reponsematch->fetch_array() == NULL){
             $reponsegroupsunday = $db->query('SELECT * FROM `GroupSunday` WHERE ID_t1 = '. $id .' OR ID_t2 = '. $id .' OR ID_t3 = '. $id .' OR ID_t4 = '. $id .' OR ID_t5 = '. $id .' OR ID_t6 = '. $id .'');
-
-            if (!$reponsegroupsunday) {
-
+            if ($reponsegroupsunday->fetch_array() == NULL) {
                 $reponsegroupsaturday = $db->query('SELECT * FROM `GroupSaturday` WHERE ID_t1 = '. $id .' OR ID_t2 = '. $id .' OR ID_t3 = '. $id .' OR ID_t4 = '. $id .' OR ID_t5 = '. $id .'');
-
-                if (!$reponsegroupsaturday) {
+                if ($reponsegroupsaturday->fetch_array() == NULL) {
                     return TRUE;
                 }
             }
@@ -49,15 +46,15 @@
         $db = new BDD();
         $reponse = $db->query('SELECT * FROM `Match` WHERE ID_Terrain = ' . $id . '');
 
-        if (!$reponse) {
+        if (!$reponse->fetch_array()) {
 
             $reponsegroupsunday = $db->query('SELECT * FROM `GroupSunday` WHERE ID_terrain = ' . $id . '');
 
-            if (!$reponsegroupsunday) {
+            if (!$reponsegroupsunday->fetch_array()) {
 
                 $reponsegroupsaturday = $db->query('SELECT * FROM `GroupSaturday` WHERE ID_terrain = ' . $id . '');
 
-                if (!$reponsegroupsaturday) {
+                if (!$reponsegroupsaturday->fetch_array()) {
                     return TRUE;
                 }
             }
@@ -75,7 +72,7 @@
             $db = new BDD();
             $reponse = $db->query('SELECT * FROM `Terrain` WHERE ID_Owner = ' . $id . '');
 
-            if (!$reponse) {
+            if (!$reponse->fetch_array()) {
                 return TRUE;
             }
 
