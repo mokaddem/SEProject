@@ -8,5 +8,5 @@
     require_once('add-new-history.php');
     addHistory( $_GET['id'], "Propriétaire", "Suppression");
 
-	header("Location: ../list-owner.php");
+	header("Location: ../list.php?type=owner");
 ?>
