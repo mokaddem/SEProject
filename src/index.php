@@ -170,7 +170,7 @@
                         </div>
                         <!-- /col12 -->
                         <div class="col-12 col-lg-3 col-sm-6">
-                            <a class="btn btn-lg btn-default" href="./inscription/index.php" onclick="self.location.href='./inscription/index.php'">
+                            <a class="btn btn-lg btn-default" href="./inscription/inscription-owner.php" onclick="self.location.href='./inscription/inscription-owner.php'">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                     <i id="crayon" class="fa fa-suitcase fa-stack-1x"></i>
