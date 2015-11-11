@@ -11,8 +11,10 @@
     if ($_GET['jour']=="sam"){
         
         $reponse = $db->query("SELECT * FROM `GroupSaturday`");
-        
-        if ($reponse != FALSE) {
+
+        $bool = $reponse->fetch_array();
+        if ($bool != NULL) {
+//            var_dump($bool);
             header("Location: ../group-generate.php?error=no_sam");
             return;
         }
@@ -59,8 +61,10 @@
     elseif ($_GET['jour']=="dim"){
         
         $reponse = $db->query("SELECT * FROM `GroupSunday`");
-        
-        if ($reponse != FALSE) {
+
+        $bool = $reponse->fetch_array();
+        if ($bool != NULL) {
+//            var_dump($bool);
             header("Location: ../group-generate.php?error=no_dim");
             return;
         }

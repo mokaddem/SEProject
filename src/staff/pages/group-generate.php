@@ -55,20 +55,19 @@
                 
                  
         
-            <?php 
-                if (array_key_exists("error", $_GET)) {?>
+            <?php if (array_key_exists("error", $_GET)) {?>
                     <p class="alert alert-danger">
-                <?php
-                    if ($_GET["error"] == "no_selection") {
-                        echo 'Veuillez selectionner un jour.';
-                    } elseif ($_GET["error"] == "no_sam") {
-                        echo 'Les groupes du samedi ont déjà été générés.';
-                    } elseif ($_GET["error"] == "no_dim") {
-                        echo 'Les groupes du dimanche ont déjà été générés.';
-                    }
-                    echo '</p><br>';
-                }
-            ?>
+                <?php if ($_GET["error"] == "no_selection") {?>
+                    Veuillez selectionner un jour
+                <?php } elseif ($_GET["error"] == "no_sam") { ?>
+                        Les groupes du samedi ont déjà été générés
+                    <a class="btn btn-danger" href="./reset.php">Supprimer</a>
+                <?php } elseif ($_GET["error"] == "no_dim") { ?>
+                        Les groupes du dimanche ont déjà été générés
+                    <a class="btn btn-danger" href="./reset.php">Supprimer</a>
+                <?php } ?>
+                    </p><br>
+            <?php } ?>
                 
 
                 <!-- Registration form - START -->
