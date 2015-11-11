@@ -6,5 +6,5 @@
     require_once('add-new-history.php');
     addHistory( $_GET['id'], "Match", "Suppression");
 
-	header("Location: ../list.php?type=match");
+	header("Location: ../list-match.php");
 ?>

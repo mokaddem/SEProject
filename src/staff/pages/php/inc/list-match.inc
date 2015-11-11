@@ -1,6 +1,5 @@
 <?php
 include_once('php/BDD.php');
-dbAndPrint();
 
 /*
 function dbAndPrint() {
@@ -61,15 +60,15 @@ function printListMatch($id) {
 
     $terfinal = $ter['adresse'] . " - " . $ter['etat'];
 
-    
-    
     echo "<tr class=\"odd gradeX\">";
-    echo "<td>".$donnees['ID']."</td>";
-    echo "<td>".$t1final."</td>";
-    echo "<td>".$t2final."</td>";
-    echo "<td>".$donnees['date']."</td>";
-    echo "<td>".$donnees['hour']."</td>";
-    echo "<td><a href=\"./edit-team.php?id=".$donnees['ID']."\" ><i class=\"fa fa-edit fa-fw\"></i></a> <a href=\"./php/delete-team.php?id=".$donnees['ID']."\" onclick=\"return confirm('Voulez-vous vraiment supprimer cette entrée ?');\"><i class=\"fa fa-trash-o\"></i></a></td>";
+
+    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".$donnees['ID']."</td>";
+    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".$t1final."</td>";
+    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".$t2final."</td>";
+    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".$donnees['date']."</td>";
+    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".$donnees['hour']."</td>";
+
+    echo "<td><a href=\"./edit-match.php?id=".$donnees['ID']."\" ><i class=\"fa fa-edit fa-fw\"></i></a> <a href=\"./php/delete-match.php?id=".$donnees['ID']."\" onclick=\"return confirm('Voulez-vous vraiment supprimer cette entrée ?');\"><i class=\"fa fa-trash-o\"></i></a></td>";
     echo "</tr>";
 }
 ?>

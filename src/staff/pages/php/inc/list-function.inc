@@ -4,7 +4,7 @@ include_once('php/BDD.php');
 function getDonnees($get) {
         switch ($get) {
             case "match":
-                //return getMatchs();
+                return getMatchs();
                 break;
 
             case "player":
