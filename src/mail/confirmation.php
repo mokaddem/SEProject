@@ -19,8 +19,8 @@ $mail->Username = "seproject2015c@gmail.com";  // Gmail username
 $mail->Password = "seprojectc";      // Gmail password
 
 if(empty($_POST['InputNom1'])  		||
-   empty($_POST['InputEmailFirst1']) 	
-   !filter_var($_POST['InputEmailFirst1'],FILTER_VALIDATE_EMAIL))
+   empty($_POST['InputEmailFirst1'])    ||	
+   (!\filter_var($_POST['InputEmailFirst1'], FILTER_VALIDATE_EMAIL)))
    {
 	echo "No arguments Provided!";
 	return false;
@@ -57,22 +57,6 @@ https://test.pydehon.me/mail/validation.php?log='.urlencode($name).'&cle='.urlen
 ---------------
 Ceci est un mail automatique, Merci de ne pas y répondre.';
  
-$mail->CharSet = 'windows-1250';
-$mail->SetFrom ('noreply@test.pydehon.me', '');
-$mail->Subject = $subject;
-$mail->ContentType = 'text/plain';
-$mail->IsHTML(false);
-
-$mail->Body = $message; 
-$mail->AddAddress ($destinataire);     
-// you may also use this format $mail->AddAddress ($recipient);
-
-if(!$mail->Send())
-{
-        $error_message = "Mailer Error: " . $mail->ErrorInfo;
-} else 
-{
-        $error_message = "Successfully sent!";
-}
-return true;					
+$to[0] = $destinataire;
+sendMail($to, $message, $sujet);
 ?>
