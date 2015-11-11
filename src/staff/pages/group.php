@@ -60,51 +60,47 @@
                     <?php
                         if (array_key_exists("generate", $_GET)) {
                     ?>
-                    <div class='alert alert-success text-center'>
-                        <h3>SUCCESS !!!! WELL DONE DUDE !</h3>
-                        <?php
+                        <div class='alert alert-success text-center'>
+                            <h3>SUCCESS !!!! WELL DONE DUDE !</h3>
+                            <?php
                             if ($_GET["generate"] == "true") {
                         ?>
-                        Génération des groupes terminée. Vous pouvez à présent les modifier à souhait.
-                        <?php } ?>
-                    </div>
-                    <?php    }  ?>
-                    <form role="form">
-                        <div class="row">
-                            <ul class="nav nav-tabs">
-                                <li <?php if ($_GET['jour']=="sam") echo 'class="active" ' ;?>><a href="group.php?jour=sam">Samedi</a></li>
-                                <li <?php if ($_GET['jour']=="dim") echo 'class="active" ' ;?>><a href="group.php?jour=dim">Dimanche</a></li>
-                            </ul>
+                                Génération des groupes terminée. Vous pouvez à présent les modifier à souhait.
+                                <?php } ?>
                         </div>
-                        <div class="row">
-                        <div class="text-center">
-                            <div class="col-lg-2">
-                                <select class="form-select" multiple="">
-                                    <?php
-                                        while ($row = $listNote->fetch_object()){ ?>
-                                            <option data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=<?=$row->ID?>"><?=$row->LastName?></option>
-                                        <?php }
-                                    ?>
-                                </select>
-                                <p id="pList">
-
-                                </p>
-                                <br/>
-
-                                <div class="hidden">
-                                    <! à laisser ici sinon ca bug ?-->
-                                <form action="./php/group-switch.php" method="post"></form>
-                                    <br/>
-                                </div>
-                                <br/>
-                                <form action="./php/group-switch.php" method="post">
-                                    <input type="text" class="form-control" id="idteam1" name="idteam1" placeholder="ID Team1" required>
-                                    <input type="text" class="form-control" id="idteam2" name="idteam2" placeholder="ID Team2" required>
-                                    <input type="submit"  class="btn btn-success pull-right" value="Echanger"/>
-                                </form>
-
+                        <?php    }  ?>
+                            <div class="row">
+                                <ul class="nav nav-tabs">
+                                    <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="group.php?jour=sam">Samedi</a></li>
+                                    <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="group.php?jour=dim">Dimanche</a></li>
+                                </ul>
                             </div>
-                            <?php
+                            <div class="row">
+                                <div class="text-center">
+                                    <div class="col-lg-2">
+                                        <select class="form-select" multiple="">
+                                            <?php
+                                        while ($row = $listNote->fetch_object()){ ?>
+                                                <option data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=<?=$row->ID?>">
+                                                    <?=$row->LastName?>
+                                                </option>
+                                                <?php }
+                                    ?>
+                                        </select>
+                                        <p id="pList">
+
+                                        </p>
+                                        <br/>
+
+                                        <br/>
+                                        <form action="./php/group-switch.php?jour=<?=$_GET['jour']?>" method="post">
+                                            <input type="text" class="form-control" id="idteam1" name="idteam1" placeholder="ID Team1" required>
+                                            <input type="text" class="form-control" id="idteam2" name="idteam2" placeholder="ID Team2" required>
+                                            <input type="submit" class="btn btn-primary pull-left" value="Echanger"/>
+                                        </form>
+
+                                    </div>
+                                    <?php
                             $db = new BDD();
                             if ($_GET['jour'] == "sam"){
                                 $groups = $db->query('SELECT * FROM GroupSaturday');
@@ -116,22 +112,27 @@
                                 $group = $groups->fetch_array();
                                 //$group = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"");
                             ?>
-                                <div class="col-lg-2">
-                                    <label><span class="fa fa-users"></span> Groupe <?= $j?> </label>
-                                    <div class="form-group">
-                                        <label><span class="fa fa-users"></span> Terrain</label>
-                                        <select class="form-control" id="terrain">
-                                            <?php
+                                        <div class="col-lg-2">
+                                            <label><span class="fa fa-users"></span> Groupe
+                                                <?= $j?>
+                                            </label>
+                                            <div class="form-group">
+                                                <label><span class="fa fa-users"></span> Terrain</label>
+                                                <select class="form-control" id="terrain">
+                                                    <?php
                                                 $terrains = $db->query('SELECT * FROM Terrain');
                                                 while ($terrain = $terrains->fetch_array())
                                                 { ?>
-                                                    <option value=<?=$terrain['ID']?>><?=$terrain['ID']?>, <?=$terrain['Note']?></option>
-                                                <?php }
+                                                        <option value=<?=$terrain[ 'ID']?>>
+                                                            <?=$terrain['ID']?>,
+                                                                <?=$terrain['Note']?>
+                                                        </option>
+                                                        <?php }
                                             ?>
-                                        </select>
-                                    </div>
-                                
-                                <?php
+                                                </select>
+                                            </div>
+
+                                            <?php
                                     if ($_GET['jour']=="sam"){
                                         $teamNum = 5;
                                     } elseif($_GET['jour']=="dim"){
@@ -140,8 +141,8 @@
                                         $teamNum = 0;
                                     }
                                 ?>
-                                    <label><span class="fa fa-users"></span> Equipes </label>
-                                <?php    
+                                                <label><span class="fa fa-users"></span> Equipes </label>
+                                                <?php    
                                     for ($i = 0; $i <= $teamNum; $i++) {
                                         if ($i>0){
                                             $teamID = $group["ID_t".$i];
@@ -152,21 +153,24 @@
                                             $IDPersonne2 = $team['ID_Player2'];
                                             $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
                                             ?>
-                                        <div class="form-group text-center">
-                                          <label> </label>
-                                          <p><?=$teamID?>, <?=$player['LastName']?> - <?=$player2['LastName']?> </p>
-                                        </div>
-                                    <?php
+                                                    <div class="form-group text-center">
+                                                        <label> </label>
+                                                        <p>
+                                                            <?=$teamID?>,
+                                                                <?=$player['LastName']?> -
+                                                                    <?=$player2['LastName']?>
+                                                        </p>
+                                                    </div>
+                                                    <?php
                                     }
                                     }?>
-                                </div>
-                                <?php }
+                                        </div>
+                                        <?php }
                                 ?>
-                                
-                        </div>
-                    </form>
-                    <!-- Registration form - END -->
-                        </div>
+
+                                </div>
+                                <!-- Registration form - END -->
+                            </div>
                 </div>
                 <!-- /.row -->
             </div>
