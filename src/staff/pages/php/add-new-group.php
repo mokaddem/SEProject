@@ -9,6 +9,15 @@
 	$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
 	
     if ($_GET['jour']=="sam"){
+        
+        $reponse = $db->query("SELECT * FROM `GroupSaturday`");
+        
+        if ($reponse != FALSE) {
+            header("Location: ../group-generate.php?error=no_sam");
+            return;
+        }
+        
+        
         $reponseTeams = $db->query("SELECT * FROM Team WHERE ID_Cat=1");
         $i=1;
         foreach ($reponseTeams as $team){
@@ -45,7 +54,18 @@
             $i++;
         }
         header("Location: ../group.php?jour=sam&generate=true");
-    } elseif ($_GET['jour']=="dim"){
+        return;
+    } 
+    elseif ($_GET['jour']=="dim"){
+        
+        $reponse = $db->query("SELECT * FROM `GroupSunday`");
+        
+        if ($reponse != FALSE) {
+            header("Location: ../group-generate.php?error=no_dim");
+            return;
+        }
+        
+        
         $reponseTeams = $db->query("SELECT * FROM Team WHERE ID_Cat=1");
         $i=1;
         foreach ($reponseTeams as $team){
@@ -84,5 +104,9 @@
             $i++;
         }
         header("Location: ../group.php?jour=dim&generate=true");
+        return;
     }
+
+    header("Location: ../group-generate.php?error=no_selection");
+
 ?>

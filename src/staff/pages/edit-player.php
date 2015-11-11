@@ -222,8 +222,8 @@
             $('#InputPrenom').val('<?php echo $donnes["FirstName"]; ?>');
             $('#InputBirth').val('<?php echo $donnes["BirthDate"]; ?>');
             $('#InputAdresse').val('<?php echo $donnes["Rue"]; ?>');
-            $('#InputBat').val('<?php echo $donnes["Ville"]; ?>');
             $('#InputCP').val('<?php echo $donnes["ZIPCode"]; ?>');
+            $('#InputBat').val('<?php echo $donnes["Number"]; ?>');
             $('#InputLoc').val('<?php echo $donnes["Ville"]; ?>');
             $('#InputEmailFirst').val('<?php echo $donnes["Mail"]; ?>');
             $('#InputFixe').val('<?php echo $donnes["PhoneNumber"]; ?>');

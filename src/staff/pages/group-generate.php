@@ -39,7 +39,10 @@
         <?php            
             include("./html/header.php");
             include_once('php/BDD.php');
+       
         ?>
+        
+        
 
 
             <div id="page-wrapper">
@@ -49,6 +52,24 @@
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
+                
+                 
+        
+            <?php 
+                if (array_key_exists("error", $_GET)) {?>
+                    <p class="alert alert-danger">
+                <?php
+                    if ($_GET["error"] == "no_selection") {
+                        echo 'Veuillez selectionner un jour.';
+                    } elseif ($_GET["error"] == "no_sam") {
+                        echo 'Les groupes du samedi ont déjà été générés.';
+                    } elseif ($_GET["error"] == "no_dim") {
+                        echo 'Les groupes du dimanche ont déjà été générés.';
+                    }
+                    echo '</p><br>';
+                }
+            ?>
+                
 
                 <!-- Registration form - START -->
                 <div class="row">
