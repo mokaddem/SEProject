@@ -156,8 +156,6 @@
                                     }
                                 ?>
                                                 <label><span class="fa fa-users"></span> Equipes </label>
-                                            <div class="form-group text-center">
-                                                <label> </label>
                                                 <?php
                                     for ($i = 0; $i <= $teamNum; $i++) {
                                         if ($i>0){
@@ -169,15 +167,19 @@
                                             $IDPersonne2 = $team['ID_Player2'];
                                             $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
                                             ?>
-                                                        <p data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
+                                            <div class="form-group text-center">
+                                                <label> </label>
+
+                                                <button class="btn btn-default btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
                                                             <?=$teamID?>,
                                                                 <?=$player['LastName']?> -
                                                                     <?=$player2['LastName']?>
-                                                        </p>
+                                                    </button>
+                                            </div>
+
                                                     <?php
                                                 }
                                     }?>
-                                            </div>
 
                                         </div>
                                         <?php }
