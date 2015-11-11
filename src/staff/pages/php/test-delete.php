@@ -20,7 +20,6 @@
     function canDeleteTeam($id) {
         
         include_once('BDD.php');
-    
         
         $db = new BDD();
         $reponsematch = $db->query('SELECT * FROM `Match` WHERE ID_Equipe1 = '. $id .' OR ID_Equipe2 = '. $id .'');
