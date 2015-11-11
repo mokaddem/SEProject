@@ -52,71 +52,82 @@
 
                 <!-- Registration form - START -->
                 <div class="row">
+                    <?php
+                        if (array_key_exists("generate", $_GET)) {
+                    ?>
+                    <div class='alert alert-success text-center'>
+                        <h3>SUCCESS !!!! WELL DONE DUDE !</h3>
+                        <?php
+                            if ($_GET["generate"] == "true") {
+                        ?>
+                        Génération des groupes terminée. Vous pouvez à présent les modifier à souhait.
+                        <?php } ?>
+                    </div>
+                    <?php    }  ?>
                     <form role="form">
                         <div class="row">
-                        <div class="col-lg-4">
-                            <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
-                            <script javascript>
-                                function setDay(newDay) {
-                                    $day = newDay
-                                }
-                            </script>
-
-                            <fieldset data-role="controlgroup" data-type="horizontal">
-                                <label for="saturday">Samedi</label>
-                                <input type="radio" name="day" value="saturday" onClick="setDay("saturday")">
-                                <label for="sunday">Dimanche</label>
-                                <input type="radio" name="day" value="sunday" onClick="setDay("sunday")">
-                                <input type="submit" name="submit" id="submit" value="Sauvegarder" class="btn btn-info pull-right">
-                            </fieldset>
-                            <hr>
+                            <ul class="nav nav-tabs">
+                                <li <?php if ($_GET['jour']=="sam") echo 'class="active" ' ;?>><a href="group.php?jour=sam">Samedi</a></li>
+                                <li <?php if ($_GET['jour']=="dim") echo 'class="active" ' ;?>><a href="group.php?jour=dim">Dimanche</a></li>
+                            </ul>
                         </div>
-                            </div>
                         <div class="row">
                         <div class="text-center">
                             <div class="col-lg-2">
                                 Marvellous gestion of preferences !
                             </div>
                             <?php 
+                            $db = new BDD();
+                            if ($_GET['jour'] == "sam"){
+                                $groups = $db->query('SELECT * FROM GroupSaturday');
+                            } else{ 
+                                $groups = $db->query('SELECT * FROM GroupSunday');
+                            }
                             $poulNum = 5; 
-                            for ($j = 1; $j <= $poulNum; $j++) { 
+                            for ($j = 1; $j <= $poulNum; $j++) {
+                                $group = $groups->fetch_array();
+                                //$group = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"");
                             ?>
                                 <div class="col-lg-2">
-                                    <label><span class="fa fa-users"></span> Poule <?= $j?> </label>
+                                    <label><span class="fa fa-users"></span> Groupe <?= $j?> </label>
                                     <div class="form-group">
                                         <label><span class="fa fa-users"></span> Terrain</label>
                                         <select class="form-control" id="terrain">
                                             <?php
-                                                $db = new BDD();
-                                                $reponse = $db->query('SELECT * FROM Terrain');
-                                                while ($donnes = $reponse->fetch_array())
+                                                $terrains = $db->query('SELECT * FROM Terrain');
+                                                while ($terrain = $terrains->fetch_array())
                                                 { ?>
-                                                    <option value=<?=$donnes['ID']?>><?=$donnes['ID']?>, <?=$donnes['Note']?></option>
+                                                    <option value=<?=$terrain['ID']?>><?=$terrain['ID']?>, <?=$terrain['Note']?></option>
                                                 <?php }
                                             ?>
                                         </select>
                                     </div>
                                 
-                            
                                 <?php
-                                    $day = "saturday";
-                                    if ($day == "saturday"){ 
+                                    if ($_GET['jour']=="sam"){
                                         $teamNum = 5;
-                                    } elseif($day == "sunday"){
+                                    } elseif($_GET['jour']=="dim"){
                                         $teamNum = 6;
                                     } else{
                                         $teamNum = 0;
                                     }
                                 ?>
                                     <label><span class="fa fa-users"></span> Equipes </label>
-                                <?php    for ($i = 1; $i <= $teamNum; $i++) { ?>
+                                <?php    
+                                    for ($i = 0; $i <= $teamNum; $i++) {
+                                        if ($i>0){
+                                            $teamID = $group["ID_p".$i];
+                                            $team = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"")->fetch_array();
+                                            $IDPersonne = $team['ID_Player1'];
+                                            $player = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne."\"")->fetch_array();
+                                    ?>
                                         <div class="form-group text-center">
                                           <label> </label>
-                                          <!-- <input class="form-control" id="sel1" value="Equipe <?=$i?>"/> -->
-                                          <p>Equipe <?=$i?> </p>
+                                          <p><?=$teamID?>, <?=$player['FirstName']?> <?=$player['LastName']?> </p>
                                         </div>
                                     <?php
-                                    } ?>
+                                    }
+                                    }?>
                                 </div>
                                 <?php }
                                 ?>

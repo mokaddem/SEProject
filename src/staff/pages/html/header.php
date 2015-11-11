@@ -351,13 +351,16 @@
                                 <a href="#">Poules<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li>
+                                        <a href="group-generate.php">Génération</a>
+                                    </li>
+                                    <li>
+                                        <a href="group.php?jour=sam">Modification</a>
+                                    </li>
+                                    <li>
+                                        <a href="input-group-score.php">Saisir un score</a>
+                                    </li>
+                                    <li>
                                         <a href="group-overview.php">Vue d'ensemble</a>
-                                    </li>
-                                    <li>
-                                        <a href="group.php">Création</a>
-                                    </li>
-                                    <li>
-                                        <a href="input-group-score.php">Saisir score</a>
                                     </li>
                                 </ul>
                             </li>
@@ -365,7 +368,7 @@
                                 <a href="#">Knock-Off<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li>
-                                        <a href="knock-off.php">Création</a>
+                                        <a href="knock-off.php?jour=sam&size=0">Création</a>
                                     </li>
                                     <li>
                                         <a href="input-knock-score.php">Saisir score</a>

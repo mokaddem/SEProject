@@ -10,8 +10,6 @@
     $database_db = 'SEProjectC';
 	$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
 	
-	$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
-	
 	$req = $db->prepare("INSERT INTO Extras(ID, Name, Price, Description) VALUES(?, ?, ?, ?)");
 
 	$ID	 	= '';

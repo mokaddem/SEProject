@@ -52,18 +52,14 @@
 
                 <!-- Registration form - START -->
                 <div class="row">
-                    <form role="form">
+                    <form role="form" action="../pages/knock-off.php?jour="<?=$jour?>"&size="<?=$_GET['size']?>"&submit=Créer">
+                        <div class="row">
+                            <ul class="nav nav-tabs">
+                                <li <?php if ($_GET['jour']=="sam" ) echo 'class="active" ' ;?>><a href="knock-off.php?jour=sam">Samedi</a></li>
+                                <li <?php if ($_GET['jour']=="dim" ) echo 'class="active" ' ;?>><a href="knock-off.php?jour=dim">Dimanche</a></li>
+                            </ul>
+                        </div>
                         <div class="col-lg-3">
-                            <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
-
-
-                            <fieldset data-role="controlgroup" data-type="horizontal">
-
-                                <label for="male">Samedi</label>
-                                <input type="radio" name="day" value="saturday">
-                                <label for="female">Dimanche</label>
-                                <input type="radio" name="day" value="sunday">
-                            </fieldset>
                             <hr>
 
                             <div class="form-group">
@@ -71,20 +67,18 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-at"></i></span>
                                     <input type="number" class="form-control" name="size" id="size" placeholder="Nombre d'équipes" min="2" step="2"  style="width: 160px;" value="<?php if(isset($_GET['size'])) { echo htmlentities($_GET['size']);}?>" required>
-                                	Trouver comment mettre la size dans l'URL...
-                                	<a href="../pages/knock-off.php?day=sunday&size=8&submit=Créer" name="submitSize" id="submitSize" style="width: 100px;">Générer</a>
+                                	<a href="../pages/knock-off.php?jour=sam&size=8&submit=Créer" name="submitSize" id="submitSize" style="width: 100px;">Générer</a>
                                 </div>
                             </div>
 
 
                             <?php 
-									if (isset($_GET['size'])){
-										$_size=$_GET['size'];
-										} else {
-										$_size=0;
-										}
+                                if (isset($_GET['size'])){
+                                    $_size=$_GET['size'];
+                                } else {
+                                    $_size=0;
+                                }
 								
-								//echo "<label for=\"sel1\"> Equipes </label> <i class="fa fa-sort-numeric-asc"></i>";
 								
                         for ($i = 1; $i <=$_size; $i++) {
                             if ($i % 2 != 0){ ?>
@@ -102,7 +96,6 @@
 											{
 												$id1 = $donnes['ID_Player1'];
 												$id2 = $donnes['ID_Player2'];
-												// Trouver comment mettre la valeur $id1 dans la ligne suivante...
 												$player1 = $db->query('SELECT * FROM Personne WHERE ID = '.$id1.'')->fetch_array();
 												$player2 = $db->query('SELECT * FROM Personne WHERE ID = '.$id2.'')->fetch_array();
 												echo "<option value=".$donnes['ID'].">".$player1['FirstName']." ".$player1['LastName']." / ".$player2['FirstName']." ".$player2['LastName']."</option>";
@@ -132,7 +125,7 @@
 		                        }
 								?>
 
-                                 <input type="submit" name="submit" id="submit" value="Créer" class="btn btn-info pull-right">
+                                 <!-- <input type="submit" name="submit" id="submit" value="Créer" class="btn btn-info pull-right"> -->
 
                         </div>
 
