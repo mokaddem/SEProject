@@ -10,5 +10,5 @@
     require_once('add-new-history.php');
     addHistory( 0, "Groupes", "Suppression");
     
-	header("Location: ../group-overview.php");
+	header("Location: ../group.php?jour=sam");
 ?>
