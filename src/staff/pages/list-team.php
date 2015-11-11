@@ -74,7 +74,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php require_once("./php/inc/list-team.inc"); ?>
+                                            <?php require_once("./php/inc/list-team.inc");
+                                            dbAndPrint();
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -86,6 +88,10 @@
                     <!-- /.col-lg-6 -->
                 </div>
                 <!-- /.row -->
+                <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                </div>
+
             </div>
             <!-- /#page-wrapper -->
 
@@ -116,7 +122,25 @@
             });
         });
     </script>
+    <script type="text/javascript">
+        // Stop click on last td in a data-toggle=modal
+        /*
+         $("[data-toggle='modal'] td:last-child").on("click", function (event) {
+         $(this).preventDefault();
+         $(this).stopPropagation();
+         });
+         */
 
+        // On click, get html content from url and update the corresponding modal
+        $("[data-toggle='modal']").on("click", function (event) {
+            event.preventDefault();
+            var url = $(this).attr('data-url');
+            var modal_id = $(this).attr('data-target');
+            $.get(url, function (data) {
+                $(modal_id).html(data);
+            });
+        });
+    </script>
 </body>
 
 </html>

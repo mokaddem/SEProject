@@ -13,7 +13,6 @@
 	$req = $db->prepare("INSERT INTO `Match`(ID, date, hour, ID_Equipe1, ID_Equipe2, score1, score2, ID_Terrain) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
 
 	$ID	 	= '';
-	//$Date   = $_GET['InputDate'] . " " . $_GET['InputHour'];
     $Date = date("Y-m-d", strtotime($_GET['InputDate']));
     $Hour = date("H:i", strtotime($_GET['InputHour']));
     $ID_Equipe1	= $_GET['InputEq1'];

@@ -51,7 +51,7 @@
                 </div>
                 <!-- Registration form - START -->
                 <div class="row">
-                    <form role="form" method="GGET" action="php/add-new-match.php">
+                    <form role="form" method="GET" action="php/add-new-match.php">
                         <div class="col-lg-6">
                             <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
 
