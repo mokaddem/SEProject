@@ -96,6 +96,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
+                                                    <th>Terrain</th>
                                                     <th>Equipe 1</th>
                                                     <th>Equipe 2</th>
                                                     <th>Equipe 3</th>
