@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Admin Mode - Equipe</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +38,24 @@
 
         <?php            
             include("./html/header.php");
-		include_once('php/BDD.php');
+            include_once('php/BDD.php');
+            
+        
+            $db = new BDD();
+            
+            $tmp = $db->query('SELECT * FROM Team WHERE '.$_GET['id'].' = ID ');
+            $t = $tmp->fetch_array();
+        
+            $p = $db->query('SELECT * FROM Personne WHERE '.$t['ID_Player1'].' = ID ');
+            $p1 = $p->fetch_array();
+        
+            $p1final = $p1['FirstName']. " " . $p1['LastName']; 
+        
+            $p = $db->query('SELECT * FROM Personne WHERE '.$t['ID_Player2'].' = ID ');
+            $p2 = $p->fetch_array();
+        
+            $p2final = $p2['FirstName']. " " . $p2['LastName'];
+                
         ?>
 
 
@@ -56,17 +73,16 @@
                             <div class="form-group">
                                 <label for="sel1"><span class="fa fa-user"></span> Premier joueur</label>
                                 <select class="form-control" id="idp1" name="idp1">
+                                    <?php echo "<option value=".$p1['ID']." selected=".$p1final.">".$p1final."</option>";?>
+                                    
                                     <?php
-					$db = new BDD();
-					$reponse = $db->query('SELECT * FROM Personne ');
-					while ($donnes = $reponse->fetch_array())
-					{
-						if ($_GET['id1'] == $donnes['ID']){
-							echo "<option value=".$donnes['ID']." selected=\"selected\">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
-						}						
-						echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
-					}
-			 	    ?>
+                                    $db = new BDD();
+                                    $reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
+                                    while ($donnes = $reponse->fetch_array())
+                                    {						
+                                        echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
+                                    }
+                                    ?>
                                         <!-- <option>propriétaire</option> -->
                                 </select>
                             </div>
@@ -74,14 +90,14 @@
                             <div class="form-group">
                                 <label for="sel1"><span class="fa fa-user"></span> Second joueur</label>
                                 <select class="form-control" id="idp2" name="idp2">
+                                    <?php echo "<option value=".$p2['ID']." selected=".$p2final.">".$p2final."</option>";?>
+                                    
+                                    
                                     <?php
 					$db = new BDD();
-					$reponse = $db->query('SELECT * FROM Personne ');
+					$reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
 					while ($donnes = $reponse->fetch_array())
-					{
-						if ($_GET['id2'] == $donnes['ID']){
-							echo "<option value=".$donnes['ID']." selected=\"selected\">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
-						}						
+					{					
 						echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
 					}
 			 	    ?>
