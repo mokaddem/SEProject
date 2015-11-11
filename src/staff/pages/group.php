@@ -116,7 +116,7 @@
                                 <?php    
                                     for ($i = 0; $i <= $teamNum; $i++) {
                                         if ($i>0){
-                                            $teamID = $group["ID_p".$i];
+                                            $teamID = $group["ID_t".$i];
                                             $team = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"")->fetch_array();
                                             $IDPersonne = $team['ID_Player1'];
                                             $player = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne."\"")->fetch_array();

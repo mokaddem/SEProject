@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Mar 10 Novembre 2015 à 19:41
--- Version du serveur: 5.5.44-0ubuntu0.14.04.1
--- Version de PHP: 5.6.14-1+deb.sury.org~trusty+1
+-- Généré le: Mer 11 Novembre 2015 à 00:23
+-- Version du serveur: 5.5.46-0ubuntu0.14.04.2
+-- Version de PHP: 5.5.9-1ubuntu4.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `History` (
   UNIQUE KEY `id_3` (`id`),
   UNIQUE KEY `id_4` (`id`),
   KEY `id_2` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=102 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=130 ;
 
 --
 -- Contenu de la table `History`
@@ -133,7 +133,35 @@ INSERT INTO `History` (`id`, `idPerson`, `idEntite`, `typeEntite`, `action`, `da
 (98, 7, 34, 'Equipe', 'Ajout', '2015-11-10', '17:11:22'),
 (99, 7, 2, 'CatÃ©gorie', 'Ajout', '2015-11-10', '18:11:26'),
 (100, 7, 3, 'CatÃ©gorie', 'Ajout', '2015-11-10', '18:11:25'),
-(101, 7, 1, 'Extras', 'Edition', '2015-11-10', '19:11:13');
+(101, 7, 1, 'Extras', 'Edition', '2015-11-10', '19:11:13'),
+(102, 70, 6, 'Match', 'Ajout', '2015-11-10', '23:55:55'),
+(103, 70, 6, 'Match', 'Ajout', '2015-11-10', '23:56:03'),
+(104, 70, 10, 'Match', 'Ajout', '2015-11-10', '23:56:12'),
+(105, 70, 10, 'Match', 'Suppression', '2015-11-10', '23:56:26'),
+(106, 70, 9, 'Match', 'Suppression', '2015-11-10', '23:56:29'),
+(107, 70, 1, 'Match', 'Suppression', '2015-11-11', '00:15:42'),
+(108, 70, 1, 'Match', 'Suppression', '2015-11-11', '00:15:45'),
+(109, 70, 1, 'Match', 'Suppression', '2015-11-11', '00:15:47'),
+(110, 70, 1, 'Match', 'Suppression', '2015-11-11', '00:15:48'),
+(111, 70, 1, 'Match', 'Suppression', '2015-11-11', '00:15:49'),
+(112, 70, 1, 'Match', 'Suppression', '2015-11-11', '00:15:50'),
+(113, 70, 1, 'Match', 'Suppression', '2015-11-11', '00:15:51'),
+(114, 70, 1, 'Match', 'Suppression', '2015-11-11', '00:15:52'),
+(115, 70, 1, 'Match', 'Suppression', '2015-11-11', '00:15:53'),
+(116, 70, 2, 'Match', 'Suppression', '2015-11-11', '00:15:56'),
+(117, 70, 2, 'Match', 'Suppression', '2015-11-11', '00:15:57'),
+(118, 70, 2, 'Match', 'Suppression', '2015-11-11', '00:15:58'),
+(119, 70, 4, 'Match', 'Suppression', '2015-11-11', '00:16:00'),
+(120, 70, 4, 'Match', 'Suppression', '2015-11-11', '00:16:01'),
+(121, 70, 4, 'Match', 'Suppression', '2015-11-11', '00:16:02'),
+(122, 70, 6, 'Match', 'Suppression', '2015-11-11', '00:16:03'),
+(123, 70, 7, 'Match', 'Suppression', '2015-11-11', '00:19:35'),
+(124, 70, 7, 'Match', 'Suppression', '2015-11-11', '00:19:42'),
+(125, 70, 12, 'Match', 'Ajout', '2015-11-11', '00:19:54'),
+(126, 70, 13, 'Match', 'Ajout', '2015-11-11', '00:20:16'),
+(127, 70, 13, 'Match', 'Suppression', '2015-11-11', '00:22:00'),
+(128, 70, 13, 'Match', 'Suppression', '2015-11-11', '00:22:07'),
+(129, 70, 14, 'Match', 'Ajout', '2015-11-11', '00:22:38');
 
 -- --------------------------------------------------------
 
@@ -144,20 +172,33 @@ INSERT INTO `History` (`id`, `idPerson`, `idEntite`, `typeEntite`, `action`, `da
 CREATE TABLE IF NOT EXISTS `Match` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
+  `hour` text NOT NULL,
   `ID_Equipe1` int(11) NOT NULL,
   `ID_Equipe2` int(11) NOT NULL,
   `score1` int(11) DEFAULT NULL,
   `score2` int(11) DEFAULT NULL,
   `ID_Terrain` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Contenu de la table `Match`
 --
 
-INSERT INTO `Match` (`ID`, `date`, `ID_Equipe1`, `ID_Equipe2`, `score1`, `score2`, `ID_Terrain`) VALUES
-(1, '2015-10-22', 1, 2, NULL, NULL, 1);
+INSERT INTO `Match` (`ID`, `date`, `hour`, `ID_Equipe1`, `ID_Equipe2`, `score1`, `score2`, `ID_Terrain`) VALUES
+(1, '2015-10-22', '', 1, 2, NULL, NULL, 1),
+(2, '2015-11-10', '', 26, 27, 0, 0, 4),
+(3, '2015-11-10', '', 26, 27, 0, 0, 4),
+(4, '2015-11-10', '', 24, 24, 0, 0, 4),
+(6, '2015-11-10', '', 24, 26, 0, 0, 4),
+(7, '2015-11-10', '', 24, 26, 0, 0, 4),
+(8, '2015-11-10', '', 24, 26, 0, 0, 5),
+(9, '2015-11-10', '', 24, 26, 0, 0, 5),
+(10, '2015-11-10', '', 25, 28, 0, 0, 8),
+(11, '0000-00-00', '', 34, 31, 0, 0, 4),
+(12, '2015-11-11', '10:10', 24, 34, 0, 0, 4),
+(13, '2015-11-30', '10:10', 24, 34, 0, 0, 4),
+(14, '2015-11-11', '23:22', 24, 24, 0, 0, 12);
 
 -- --------------------------------------------------------
 
