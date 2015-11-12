@@ -75,7 +75,7 @@
 
 
     // ---------------------AJOUTER TEAM--------------------------
-	$req = $db->prepare("INSERT INTO Team(ID, ID_player1, ID_player2, ID_Cat, NbWinMatch) VALUES(?, ?, ?, ?, ?)");
+/*	$req = $db->prepare("INSERT INTO Team(ID, ID_player1, ID_player2, ID_Cat, NbWinMatch) VALUES(?, ?, ?, ?, ?)");
 
 //	$req = $db->prepare('INSERT INTO Personne(ID, FirstName, LastName, Title, ZIPCode, PhoneNumber, GSMNumber, Address, BirthDate, Mail, CreationDate, IsPlayer, IsOwner, IsStaff) VALUES('', "bb", "bb", 1, 1234, 12354, 46351, "glkrzjglz e zfzef", 2015-02-02, "lzeijgze@fmezk.com", 2015-02-03, 1, 0, 0)');
 
@@ -93,6 +93,7 @@
     $donnees = $reponse->fetch_array();
 	
     addHistory( $donnees["ID"], "Equipe", "Ajout");
+*/
 
     // --------------------AJOUTER PLAYER---------------------------
 
@@ -113,10 +114,10 @@
 	$req->bind_param("iiii", $ID_Personne2, $IsLeader,$Paid, $AlreadyPart);
 	$req->execute();
 
-	$reponse = $db->query('SELECT * FROM Team WHERE '.$ID_player1.' = ID_Player1 AND '.$ID_player2.' = ID_Player2');
-	$donnees = $reponse->fetch_array();
+/*	$reponse = $db->query('SELECT * FROM Team WHERE '.$ID_player1.' = ID_Player1 AND '.$ID_player2.' = ID_Player2');
+	$donnees = $reponse->fetch_array();*/
 
-	addHistory( $donnees["ID"], "Equipe", "Ajout");
+	//addHistory($donnees["ID"], "Equipe", "Ajout");
 
 
 

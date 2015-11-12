@@ -13,9 +13,9 @@ $db = new mysqli($database_host, $database_user, $database_pass, $database_db);
 $ID     = $_GET['id'];
 $idp1   = $_GET['idp1'];
 $idp2   = $_GET['idp2'];
+$cat    = $_GET['InputCat'];
 
-$reponse = $db->query("UPDATE SEProjectC.Team SET ID_Player1 = \"".$idp1."\", ID_Player2=\"" .$idp2. "\" WHERE ".$ID."=Team.ID");
-
+$reponse = $db->query("UPDATE SEProjectC.Team SET ID_Cat = ".$cat.", ID_Player1 = \"".$idp1."\", ID_Player2=\"" .$idp2. "\" WHERE ".$ID."=Team.ID");
 addHistory($ID, "Equipe", "Edition");
 
 header("Location: ../../list-team.php");
