@@ -49,8 +49,9 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Liste des équipes</h1>
+                        <h1 class="page-header">Liste des équipes
                         <a class="btn btn-default btn-outline pull-right" href="./team.php"> Créer</a>
+                        </h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
