@@ -37,7 +37,7 @@ function getTitreTable($get) {
            return array("ID", "Première équipe", "Seconde équipe", "score 1", "score 2", "ID Terrain");
             break;
         case "player":
-            return array("ID", "Nom", "Prénom", "E-mail", "Né(e) le", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "Créé le");
+            return array("ID", "Nom", "Prénom", "E-mail", "Né(e) le", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "Chef?", "A payé", "Créé le");
 
         case "court":
             return array("ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Jusqu'au", "Crée le", "Note");
@@ -53,7 +53,7 @@ function getTitreTable($get) {
             break;
 
         case "staff":
-            return array("ID", "Nom", "Prénom", "Né(e) le", "Créé le", "Action");
+            return array("ID", "Nom", "Prénom", "Resp. cat","Né(e) le", "Créé le", "Action");
         case "category":
             return array("ID", "Année", "Désignation", "Action");
 
@@ -67,7 +67,7 @@ function getParam($get) {
             break;
 
         case "player":
-            return array("ID", "LastName", "FirstName", "Mail", "BirthDate", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "CreationDate");
+            return array("ID", "LastName", "FirstName", "Mail", "BirthDate", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "IsLeader", "Paid", "CreationDate");
 
         case "court":
             return array("ID", "adresse", "surface", "ID_Owner", "etat", "Type", "disponibiliteFrom", "disponibiliteTo", "CreationDate", "Note");
@@ -83,7 +83,7 @@ function getParam($get) {
             break;
 
         case "staff":
-            return array("ID", "LastName", "FirstName", "BirthDate", "CreationDate");
+            return array("ID", "LastName", "FirstName", "ID_Cat", "BirthDate", "CreationDate");
         case "category":
             return array("ID", "Year", "Designation");
 
@@ -153,12 +153,12 @@ function getOwner($id) {
 
 function getPlayer($id) {
     $db = new BDD(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
-    return $db->query('SELECT * FROM Personne WHERE ID = '.$id.'');
+    return $db->query('SELECT * FROM Personne, Player WHERE Personne.ID = '.$id.'');
 }
 
 function getStaff($id) {
     $db = new BDD();
-    $reponse = $db->query('SELECT * FROM Personne WHERE isStaff=1 and ID = '.$id.'');
+    $reponse = $db->query('SELECT * FROM Personne, Staff WHERE isStaff=1 and Personne.ID = '.$id.'');
 
     return $reponse;
 }
