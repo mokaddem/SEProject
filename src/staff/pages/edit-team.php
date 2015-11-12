@@ -39,6 +39,8 @@
         <?php            
             include("./html/header.php");
             include_once('php/BDD.php');
+            include_once('php/test-delete.php');
+
             
         
             $db = new BDD();
@@ -79,8 +81,9 @@
                                     $db = new BDD();
                                     $reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
                                     while ($donnes = $reponse->fetch_array())
-                                    {						
-                                        echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
+                                    {
+                                        if (canDeletePlayer($donnes['ID'])){
+                                            echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>"; }
                                     }
                                     ?>
                                         <!-- <option>propriétaire</option> -->
@@ -97,8 +100,9 @@
 					$db = new BDD();
 					$reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
 					while ($donnes = $reponse->fetch_array())
-					{					
-						echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
+					{				
+                        if (canDeletePlayer($donnes['ID'])){
+                            echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";}
 					}
 			 	    ?>
                                 </select>

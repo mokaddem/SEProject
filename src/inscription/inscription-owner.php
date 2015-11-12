@@ -112,9 +112,9 @@
                                 <!--<label for="InputPhone">Numéro de téléphone</label>-->
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                    <input type="text" class="form-control bfh-phone" name="InputFixe" id="InputFixe" placeholder="+33 fixe">
+                                    <input size="12" pattern=".{9,12}" maxlength="12" type="text" class="form-control bfh-phone" name="InputFixe" id="InputFixe" placeholder="+33 fixe">
                                     <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                    <input type="text" class="form-control bfh-phone" name="InputMob" id="InputMob" placeholder="+33 mobile" required>
+                                    <input size="12" pattern=".{9,12}" maxlength="12" type="text" class="form-control bfh-phone" name="InputMob" id="InputMob" placeholder="+33 mobile" required>
                                 </div>
                             </div>
 

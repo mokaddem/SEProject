@@ -93,15 +93,24 @@
                                     </div>
                                 </div>
 
+                            <label for="sel1"><span class="fa fa-clock-o"></span> Dates</label>
+                            <div class="form-inline">
                                 <div class="form-group">
-                                    <label for="sel1"><span class="fa fa-clock-o"></span> Date & Heure</label>
+                                    <label for="InputFrom">From </label>
                                     <div class="input-group">
-                                       Avaible from: <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <?php echo '<input name="InputFrom" id="InputFrom" type="date" min="'.date("Y-m-d").'" max="2048-10-10" value="'.date("Y-m-d").'">';?>
-                                       Avaible until: <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <?php echo '<input name="InputTo" id="InputTo" type="date" min="'.date("Y-m-d").'" max="2048-10-10" value="'.date("Y-m-d").'">';?>
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        <input size="10" maxlength="10" class="form-control" name="InputFrom" id="InputFrom" type="date" min="<?=date("Y-m-d")?>" max="2048-10-10" value="<?=date("Y-m-d")?>">
                                     </div>
                                 </div>
+                                <div class="form-group pull-right">
+                                    <label for="InputTo">To </label>
+                                    <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        <input size="10" maxlength="10" class="form-control" name="InputTo" id="InputTo" type="date" min="<?=date("Y-m-d")?>" max="2048-10-10" value="<?=date("Y-m-d")?>">
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
 
                                 <div class="form-group">
                                     <!--<label for="InputMessage">Message</label>-->
