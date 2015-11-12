@@ -802,19 +802,4 @@ $('#dest').typeahead({
     //local: ['alpha', 'allpha2', 'alpha3', 'bravo', 'charlie', 'delta', 'epsilon', 'gamma', 'zulu']
 });
 
-$('participant').typeahead({
-  remote: {
-    url: 'php/contact-mail-list.php?query=%QUERY'
-  },
-  //local: ['alpha', 'allpha2', 'alpha3', 'bravo', 'charlie', 'delta', 'epsilon', 'gamma', 'zulu']
-});
-
-$('proprietaire').typeahead({
-  remote: {
-    url: 'php/contact-mail-list.php?query=%QUERY'
-  },
-  //local: ['alpha', 'allpha2', 'alpha3', 'bravo', 'charlie', 'delta', 'epsilon', 'gamma', 'zulu']
-});
-
-
 $('.tt-query').css('background-color', '#fff');
