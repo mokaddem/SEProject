@@ -41,14 +41,11 @@
             include_once('php/BDD.php');
        
         ?>
-        
-        
-
 
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Générer les poules</h1>
+                        <h1 class="page-header">Générer le tournoi de knock-off</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -59,11 +56,11 @@
                     <?php if ($_GET["error"] == "no_selection") {?>
                     Veuillez selectionner un jour
                 <?php } elseif ($_GET["error"] == "no_sam") { ?>
-                        Les groupes du samedi ont déjà été générés
-                    <a class="btn btn-danger pull-right" href="./reset.php">Supprimer</a>
+                        Le tournoi du samedi a déjà été généré.
+                    <!--<a class="btn btn-danger pull-right" href="./reset.php">Supprimer</a>-->
                 <?php } elseif ($_GET["error"] == "no_dim") { ?>
-                        Les groupes du dimanche ont déjà été générés
-                    <a class="btn btn-danger pull-right" href="./reset.php">Supprimer</a>
+                        Le tournoi du dimanche a déjà été généré.
+                    <!--<a class="btn btn-danger pull-right" href="./reset.php">Supprimer</a>-->
                 <?php } ?>
                     </div>
             <?php } ?>
@@ -71,7 +68,7 @@
 
                 <!-- Registration form - START -->
                 <div class="row">
-                    <form role="form" method="get" action="php/add-new-group.php">
+                    <form role="form" method="get" action="php/add-new-knock-off.php">
                         <div class="row">
                         <div class="col-lg-4 text-center">
 

@@ -117,33 +117,6 @@
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
-                    <!-- <li>
-                            <a href="forms.php"><i class="fa fa-edit fa-fw"></i> Inscription</a>
-                        </li> -->
-                    <!--<li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="panels-wells.php">Panels and Wells</a>
-                                </li>
-                                <li>
-                                    <a href="buttons.php">Buttons</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.php">Notifications</a>
-                                </li>
-                                <li>
-                                    <a href="typography.php">Typography</a>
-                                </li>
-                                <li>
-                                    <a href="icons.php"> Icons</a>
-                                </li>
-                                <li>
-                                    <a href="grid.php">Grid</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                    <!--</li>-->
                     <li>
                         <a href="#"><i class="fa fa-sitemap fa-fw"></i> Tournoi<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -168,7 +141,10 @@
                                 <a href="#">Knock-Off<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li>
-                                        <a href="knock-off.php?jour=sam&size=0">Création</a>
+                                        <a href="knock-off-generate.php">Création</a>
+                                    </li>
+                                    <li>
+                                        <a href="knock-off.php?jour=sam">Modification</a>
                                     </li>
                                     <li>
                                         <a href="input-knock-score.php">Saisir score</a>
@@ -181,24 +157,6 @@
                             <li class="li-danger">
                                 <a href="reset.php">Réinitialiser</a>
                             </li>
-                            <!--<li>
-                                    <a href="#">Third Level <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                            <!--</li>-->
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>

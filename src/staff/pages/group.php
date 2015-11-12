@@ -163,8 +163,7 @@
                                                             while ($terrain = $terrains->fetch_array())
                                                             { ?>
                                                         <option value=<?=$terrain[ 'ID']?>>
-                                                            <?=$terrain['ID']?>,
-                                                                <?=$terrain['Note']?>
+                                                            <?=$terrain['ID']?> : <?=$terrain['Note']?>, <?=$terrain['adresse']?>
                                                         </option>
                                                         <?php }
                                                         ?>
@@ -197,7 +196,6 @@
                                                     <?php $color = "default";
                                                             if ($player['Note'] || $player2['Note']) {
                                                                 $color = "primary";
-
                                                             ?>
                                                         <span data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=<?=$teamID?>">
                                                         <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">

@@ -51,91 +51,87 @@
                 </div>
 
                 <!-- Registration form - START -->
+
                 <div class="row">
-                    <form role="form" action="../pages/knock-off.php?jour="<?=$jour?>"&size="<?=$_GET['size']?>"&submit=Créer">
                         <div class="row">
                             <ul class="nav nav-tabs">
                                 <li <?php if ($_GET['jour']=="sam" ) echo 'class="active" ' ;?>><a href="knock-off.php?jour=sam">Samedi</a></li>
                                 <li <?php if ($_GET['jour']=="dim" ) echo 'class="active" ' ;?>><a href="knock-off.php?jour=dim">Dimanche</a></li>
                             </ul>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="row">
+                            <br/>
+                        </div>
+                        <div class="row">
+                            <form class="form-horizontal" action="./php/group-switch.php?jour=<?=$_GET['jour']?>" method="post">
+                                <div class="col-lg-2">
+                                    <input type="text" class="form-control" id="idteam1" name="idteam1" placeholder="ID Equipe 1" required>
+                                </div>
+                                <div class="col-lg-2">
+
+                                    <input type="text" class="form-control" id="idteam2" name="idteam2" placeholder="ID Equipe 2" required>
+                                </div>
+                                <div class="col-lg-8">
+                                    <input type="submit" class="btn btn-primary pull-left" value="Echanger" />
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-2">
                             <hr>
-
-                            <div class="form-group">
-                                <!--<label for="size">Size</label>-->
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-at"></i></span>
-                                    <input type="number" class="form-control" name="size" id="size" placeholder="Nombre d'équipes" min="2" step="2"  style="width: 160px;" value="<?php if(isset($_GET['size'])) { echo htmlentities($_GET['size']);}?>" required>
-                                	<a href="../pages/knock-off.php?jour=sam&size=8&submit=Créer" name="submitSize" id="submitSize" style="width: 100px;">Générer</a>
-                                </div>
-                            </div>
-
-
-                            <?php 
-                                if (isset($_GET['size'])){
-                                    $_size=$_GET['size'];
-                                } else {
-                                    $_size=0;
+                            <?php
+                                $db = new BDD();
+                                if ($_GET['jour'] == "sam"){
+                                    $groups = $db->query('SELECT * FROM GroupSaturday');
+                                    $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSaturday')->fetch_array();
+                                    extract($row);
+                                } else{
+                                    $groups = $db->query('SELECT * FROM GroupSunday');
+                                    $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday')->fetch_array();
+                                    extract($row);
                                 }
-								
-								
-                        for ($i = 1; $i <=$_size; $i++) {
-                            if ($i % 2 != 0){ ?>
-                                <div class="form-group">
+
+                            for ($i = 1; $i <= $numberOfGroups; $i++) {
+                                $group = $groups->fetch_array();
+                                ?> <div class="form-group text-center">
                                     <label for="sel1"><span class="fa fa-users"></span> Match
-                                        <?=ceil($i/2)?>
+                                        <?=$i?>
                                     </label>
-                                </div>
-                                <div class="form-group">
-                                    <select class="form-control" id="sel1">
-                                    	<?php
-											$db = new BDD();
-											$reponse = $db->query('SELECT * FROM Team');
-											while ($donnes = $reponse->fetch_array())
-											{
-												$id1 = $donnes['ID_Player1'];
-												$id2 = $donnes['ID_Player2'];
-												$player1 = $db->query('SELECT * FROM Personne WHERE ID = '.$id1.'')->fetch_array();
-												$player2 = $db->query('SELECT * FROM Personne WHERE ID = '.$id2.'')->fetch_array();
-												echo "<option value=".$donnes['ID'].">".$player1['FirstName']." ".$player1['LastName']." / ".$player2['FirstName']." ".$player2['LastName']."</option>";
-											}
-			 	    					?>
-                                    </select>
-                                </div>
-                                <?php } else{ ?>
-                                    <div class="form-group">
-                                        <select class="form-control" id="sel2">
-                                    	<?php
-											$db = new BDD();
-											$reponse = $db->query('SELECT * FROM Team');
-											while ($donnes = $reponse->fetch_array())
-											{
-												$id1 = $donnes['ID_Player1'];
-												$id2 = $donnes['ID_Player2'];
-												$player1 = $db->query('SELECT * FROM Personne WHERE ID = '.$id1.'')->fetch_array();
-												$player2 = $db->query('SELECT * FROM Personne WHERE ID = '.$id2.'')->fetch_array();
-												echo "<option value=".$donnes['ID'].">".$player1['FirstName']." ".$player1['LastName']." / ".$player2['FirstName']." ".$player2['LastName']."</option>";
-											}
-			 	    					?>
-                                    </select>
-                                    </div>
-                                    <?php
-                                }
-		                        }
-								?>
+                                </div> <?php
+                                for ($j = 1; $j <= 2; $j++){
+                                    $teamID = $group["ID_vic".$j];
+                                    if ($teamID == NULL){ ?>
+                                        <div class="alert alert-danger">
+                                            Au moins un groupe ne contient pas de vainqueur.
+                                        </div>
+                                    <?php $j++; $NumberOfGroups = 0;} else {
+                                    $team = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"")->fetch_array();
+                                    $IDPersonne1 = $team['ID_Player1'];
+                                    $player1 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne1."\"")->fetch_array();
 
-                                 <!-- <input type="submit" name="submit" id="submit" value="Créer" class="btn btn-info pull-right"> -->
+                                    $IDPersonne2 = $team['ID_Player2'];
+                                    $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
+                                ?>
+                                <div class="form-group text-center">
+                                    <label> </label>
+                                        <button class="btn btn-<?="default"?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
+                                            <?=$teamID?>,
+                                            <?=$player1['LastName']?> &
+                                            <?=$player2['LastName']?>
+                                        </button>
+                                </div>
+                                <?php } } } ?>
+
 
                         </div>
 
                         <?php
-                            $i = ceil(($i-1)/2);
                             $matchNum = 1;
                             $iter = 0;
-                            for ($k = $i; $k >= 1; $k = $k/2){
+                            $numberOfPixels = 75;
+                            for ($k = $numberOfGroups; $k >= 1; $k = $k/2){
+                                $position = $numberOfPixels."px";
 	                    ?>
-                            <div class="col-lg-3" style="position: relative; top: 150px;">
+                            <div class="col-lg-2 text-center" style="position: relative; top: <?=$position?>;">
                                 <?php for ($j = 1; $j <= $k; $j++) { ?>
                                     <div class="form-group">
                                         <label for="sel1"><span class="fa fa-users"></span> Match
@@ -144,25 +140,22 @@
                                         <select class="form-control" id="sel1">
 		                                    <?php
 												$db = new BDD();
-												$reponse = $db->query('SELECT * FROM Terrain');
-												while ($donnes = $reponse->fetch_array())
-												{
-													echo "<option value=".$donnes['ID'].">".$donnes['adresse'].", ".$donnes['Note']."</option>";
-												}
+												$terrains = $db->query('SELECT * FROM Terrain');
+												while ($terrain = $terrains->fetch_array())
+												{ ?>
+													<option value=<?=$terrain['ID']?>> <?=$terrain['ID']?> : <?=$terrain['Note']?>, <?=$terrain['adresse']?></option>
+												<?php }
 					 	    				?>
                                 		</select>
                                     </div>
                                     <?php
 			                            $matchNum++;
-				                }
-                            ?>
+				                } ?>
                             </div>
                             <?php
                                 $iter++;
-				                $i = $i + $k/2;
-				            }
-			                ?>
-                    </form>
+                                $numberOfPixels += (int) 75*$k/4;
+				            } ?>
                     <!-- Registration form - END -->
 
                 </div>
@@ -184,6 +177,30 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+
+    <script type="text/javascript">
+        // On click, get html content from url and update the corresponding modal
+        $("[data-toggle='pList']").on("click", function (event) {
+            event.preventDefault();
+            var url = $(this).attr('data-url');
+            var modal_id = $(this).attr('data-target');
+            $.get(url, function (data) {
+                $(modal_id).html(data);
+            });
+        });
+
+        $("[data-toggle='idteam1']").on("click", function (event) {
+            var id = $(this).attr('data-id');
+            if (document.getElementById('idteam1').value == "") {
+                document.getElementById('idteam1').value = id;
+            } else if (document.getElementById('idteam1').value != "" && document.getElementById('idteam2').value != "") {
+                document.getElementById('idteam1').value = id;
+                document.getElementById('idteam2').value = "";
+            } else {
+                document.getElementById('idteam2').value = id;
+            }
+        });
+    </script>
 
 </body>
 
