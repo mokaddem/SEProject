@@ -72,9 +72,8 @@
     $donnees2 = $reponse->fetch_array();
     addHistory( $donnees2["ID"], "Joueur", "Ajout");
 
-    
 
-    // -----------------------------------------------
+    // ---------------------AJOUTER TEAM--------------------------
 	$req = $db->prepare("INSERT INTO Team(ID, ID_player1, ID_player2, ID_Cat, NbWinMatch) VALUES(?, ?, ?, ?, ?)");
 
 //	$req = $db->prepare('INSERT INTO Personne(ID, FirstName, LastName, Title, ZIPCode, PhoneNumber, GSMNumber, Address, BirthDate, Mail, CreationDate, IsPlayer, IsOwner, IsStaff) VALUES('', "bb", "bb", 1, 1234, 12354, 46351, "glkrzjglz e zfzef", 2015-02-02, "lzeijgze@fmezk.com", 2015-02-03, 1, 0, 0)');
@@ -94,7 +93,34 @@
 	
     addHistory( $donnees["ID"], "Equipe", "Ajout");
 
-    // -----------------------------------------------
+    // --------------------AJOUTER PLAYER---------------------------
+
+	$req = $db->prepare("INSERT INTO Player(ID_personne, IsLeader, Paid, AlreadyPart) VALUES(?, ?, ?, ?)");
+
+	//	$req = $db->prepare('INSERT INTO Personne(ID, FirstName, LastName, Title, ZIPCode, PhoneNumber, GSMNumber, Address, BirthDate, Mail, CreationDate, IsPlayer, IsOwner, IsStaff) VALUES('', "bb", "bb", 1, 1234, 12354, 46351, "glkrzjglz e zfzef", 2015-02-02, "lzeijgze@fmezk.com", 2015-02-03, 1, 0, 0)');
+
+	$ID_Personne1=$ID_player1;
+	$ID_Personne2=$ID_player2;
+	$IsLeader=0;
+	$Paid=0;
+	$AlreadyPart=0;
+
+	$req->bind_param("iiii", $ID_Personne1, $IsLeader, $Paid, $AlreadyPart);
+	$req->execute();
+
+	$req = $db->prepare("INSERT INTO Player(ID_personne, IsLeader, Paid, AlreadyPart) VALUES(?, ?, ?, ?)");
+	$req->bind_param("iiii", $ID_Personne2, $IsLeader,$Paid, $AlreadyPart);
+	$req->execute();
+
+	$reponse = $db->query('SELECT * FROM Team WHERE '.$ID_player1.' = ID_Player1 AND '.$ID_player2.' = ID_Player2');
+	$donnees = $reponse->fetch_array();
+
+	addHistory( $donnees["ID"], "Equipe", "Ajout");
+
+
+
+
+
 
 	/*if (array_key_exists($_SESSION)) {*/
 	header("Location: ../list.php?type=player");
