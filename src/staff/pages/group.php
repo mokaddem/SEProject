@@ -41,8 +41,6 @@
 
         $db = new BDD();
 
-        $listNote = $db->query("SELECT * FROM Personne where Note != \"\" ");
-
         ?>
 
 
@@ -99,13 +97,22 @@
                             <div class="row">
                                 <div class="text-center">
                                     <div class="col-lg-2">
-                                        <select class="form-select" multiple="" size="10">
-                                            <?php
-                                        while ($row = $listNote->fetch_object()){ ?>
-                                                <option data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=<?=$row->ID?>">
-                                                    <?=$row->LastName?>
+                                        <select class="form-select" multiple="">
+                                        <?php
+                                            $listTeams = $db->query("SELECT * FROM Team");
+                                        foreach ($listTeams as $team) {
+                                            $IDPersonne = $team['ID_Player1'];
+                                            $player = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne."\"")->fetch_array();
+
+                                            $IDPersonne2 = $team['ID_Player2'];
+                                            $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
+
+                                            if ($player['Note'] || $player2['Note']) {
+                                                ?>
+                                            <option data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=<?=$team['ID']?>">
+                                                <?=$player['LastName']?>, <?=$player2['LastName']?>
                                                 </option>
-                                                <?php }
+                                            <?php } }
                                     ?>
                                         </select>
                                         <br/>
@@ -169,12 +176,22 @@
                                             ?>
                                             <div class="form-group text-center">
                                                 <label> </label>
+                                                <?php $color = "default";
+                                                    if ($player['Note'] || $player2['Note']) {
+                                                        $color = "primary";
 
-                                                <button class="btn btn-default btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
-                                                            <?=$teamID?>,
-                                                                <?=$player['LastName']?> -
-                                                                    <?=$player2['LastName']?>
+                                                    ?>
+                                                <span data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=<?=$teamID?>">
+                                                <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
+                                                            <?=$teamID?>, <?=$player['LastName']?> - <?=$player2['LastName']?>
                                                     </button>
+                                                </span>
+                                                    <?php } else { ?>
+                                                    <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
+                                                        <?=$teamID?>, <?=$player['LastName']?> - <?=$player2['LastName']?>
+                                                    </button>
+
+                                                    <?php } ?>
                                             </div>
 
                                                     <?php
