@@ -29,7 +29,6 @@
                         <a href="#">
                             <div>
                                 <i class="fa fa-user"></i> Profil 
-                                <span class="pull-right text-muted small">Vos informations</span>
                             </div>
                         </a>
                     </li>
@@ -37,7 +36,6 @@
                         <a href="#">
                             <div>
                                 <i class="fa fa-cog"></i> Préférences
-                                <span class="pull-right text-muted small">Vos paramètres</span>
                             </div>
                         </a>
                     </li>
