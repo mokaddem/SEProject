@@ -160,7 +160,7 @@
                                         <a href="input-group-score.php">Saisir un score</a>
                                     </li>
                                     <li>
-                                        <a href="group-overview.php">Vue d'ensemble</a>
+                                        <a href="group-overview.php?jour=sam">Vue d'ensemble</a>
                                     </li>
                                 </ul>
                             </li>

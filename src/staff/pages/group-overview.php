@@ -60,9 +60,19 @@
                         <!-- /.col-lg-12 -->
                     </div>
                     <!-- /.row -->
+                    <div class="row">
+                        <ul class="nav nav-tabs">
+                            <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="group-overview.php?jour=sam">Samedi</a></li>
+                            <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="group-overview.php?jour=dim">Dimanche</a></li>
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <br/>
+                    </div>
 
                     <div class="form-group">
                         <label for="sel1"><span class="fa fa-dot-circle-o"></span> Choix de la poule</label>
+                        Ne sert à rien lol
                         <select class="form-control" id="sel1">
                             <optgroup label="--- Samedi">
                                 <?php 
@@ -102,29 +112,46 @@
                                                     <th>Equipe 3</th>
                                                     <th>Equipe 4</th>
                                                     <th>Equipe 5</th>
-                                                    <th>Equipe 6</th>
-                                                    <th>Vainqueurs</th>
-                                                    <th>Vainqueurs</th>
+                                                    <?php if ($_GET[ 'jour']=="dim"){ ?>
+                                                        <th>Equipe 6</th>
+                                                    <?php } ?>
+                                                    <th>Vainqueurs 1</th>
+                                                    <th>Vainqueurs 2</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <?php $db = new BDD();
-                                            $listDonnees = $db->query('SELECT * FROM GroupSaturday');
-
-                                            foreach ($listDonnees as $donnees) { ?>
-                                                <tr class="odd gradeX">
+                                            <?php
+                                            if ($_GET[ 'jour']=="sam" ){
+                                                $listDonnees = $db->query('SELECT * FROM GroupSaturday');
+                                            }else {
+                                                $listDonnees = $db->query('SELECT * FROM GroupSunday');
+                                            }
+                                            foreach ($listDonnees as $donnees) { $i = 1; ?>
+                                                <tr class="odd gradeX text-center">
                                                     <?php foreach ($donnees as $donnee) { ?>
-                                                        <td><?=$donnee?></td>
-                                                    <?php    } ?>
-                                                </tr>
-                                            <?php    }
+                                                    <td>
+                                                    <?php
+                                                        if ($i == 2 and $donnee != NULL) {
+                                                            $terrain = $db->query("SELECT * FROM Terrain WHERE ID=\"" . $donnee . "\"")->fetch_array();
+                                                            ?> <option value=<?=$terrain[ 'ID']?>>
+                                                                <?=$terrain['ID']?>,
+                                                                <?=$terrain['Note']?>
+                                                            </option>
+                                                            <?php
+                                                        }elseif($i > 2 and $donnee != NULL) {
+                                                            $team = $db->query("SELECT * FROM Team WHERE ID=\"" . $donnee . "\"")->fetch_array();
+                                                            $IDPersonne = $team['ID_Player1'];
+                                                            $player = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne . "\"")->fetch_array();
 
-                                            $listDonnees = $db->query('SELECT * FROM GroupSunday');
-                                            foreach ($listDonnees as $donnees) { ?>
-                                                <tr class="odd gradeX">
-                                                    <?php foreach ($donnees as $donnee) { ?>
-                                                        <td><?=$donnee?></td>
-                                                    <?php    } ?>
+                                                            $IDPersonne2 = $team['ID_Player2'];
+                                                            $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne2 . "\"")->fetch_array();
+                                                            ?> <?=$donnee?>, <?=$player['LastName']?> & <?=$player2['LastName']?> <?php
+                                                        } else{
+                                                            echo $donnee;
+                                                        }
+                                                    ?>
+                                                        </td>
+                                                    <?php    $i++; } ?>
                                                 </tr>
                                             <?php    } ?>
                                             </tbody>

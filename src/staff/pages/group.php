@@ -94,7 +94,7 @@
                     <br/>
                 </div>
                 <div class="row">
-                    <div class="col-lg-2">
+                    <div class="col-lg-8">
                         <select id="listNote" class="form-select" multiple="">
                             <?php
                                             $listTeams = $db->query("SELECT * FROM Team");
@@ -127,22 +127,34 @@
                             $db = new BDD();
                             if ($_GET['jour'] == "sam"){
                                 $groups = $db->query('SELECT * FROM GroupSaturday');
-                                $numberOfGroups = $db->query('SELECT Count(*) FROM GroupSaturday')->fetch_array();
+                                $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSaturday')->fetch_array();
+                                extract($row);
                             } else{
                                 $groups = $db->query('SELECT * FROM GroupSunday');
-                                $numberOfGroups = $db->query('SELECT Count(*) FROM GroupSunday')->fetch_array();
+                                $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday')->fetch_array();
+                                extract($row);
                             }
-                            $lineNum = 5;
-                            for ($k = 1; $k <= (int) $numberOfGroups; $k++) {
-                                if (gmp_mod((int) $numberOfGroups,$lineNum) == 0){ ?>
-                                    <div class="text-center">
+                            $lineNum = 2;
+                            $j = 0;
+                            for ($k = 1; $k <= $numberOfGroups; $k++) {
+                                $j++;
+                                if ($j > $lineNum){ ?>
+                                    <!--</div>
+                                    </div>
+                                    <div class="row text-center">-->
+                                    <?php $j = 0; ?>
+                                    <div class="col-lg-12">
+                                          Pour mettre un espace :p
+                                    </div>
+                                    <div class="col-lg-8">
+                                    </div>
                                 <?php }
-                                for ($j = 1; $j <= $lineNum; $j++) {
+                                //for ($j = 1; $j <= 1; $j++) { // Boucle pour faire plusieurs row... Useless?
                                     $group = $groups->fetch_array();
                                     if ($group != NULL){ ?>
                                         <div class="col-lg-2">
                                             <label><span class="fa fa-users"></span> Groupe
-                                                <?= $j?>
+                                                <?= $k?>
                                             </label>
                                             <div class="form-group">
                                                 <label><span class="fa fa-users"></span> Terrain</label>
@@ -190,7 +202,7 @@
                                                             ?>
                                                         <span data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=<?=$teamID?>">
                                                         <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
-                                                                    <?=$teamID?>, <?=$player['LastName']?> - <?=$player2['LastName']?>
+                                                                    <?=$teamID?>, <?=$player['LastName']?> & <?=$player2['LastName']?>
                                                             </button>
                                                         </span>
                                                         <?php } else { ?>
@@ -208,10 +220,10 @@
                                             }?>
 
                                         </div>
-                                    <?php } } // End of j loop
-                                        if (gmp_mod((int)$numberOfGroups,$lineNum) == 0){ ?>
-                                            </div>
-                                        <?php }
+                                    <?php } //} // End of j loop
+                                        //if (gmp_mod((int)$numberOfGroups,$lineNum) == 0){ ?>
+                                            <!--</div>-->
+                                        <?php //}
                                         } // End k loop. ?>
 
                     </div>
