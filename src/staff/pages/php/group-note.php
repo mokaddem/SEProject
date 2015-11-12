@@ -14,7 +14,7 @@ if (array_key_exists("id", $_GET)) {
 ?>
 <div class="panel panel-primary">
 <div class="panel-heading">
-    <?=$_GET['id']?>
+    Note <?=$_GET['id']?>
 </div>
 <div class="panel-body">
     <p><?=$player['Note']?></p>
