@@ -12,12 +12,15 @@ if (array_key_exists("id", $_GET)) {
     $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne2 . "\"")->fetch_array();
 }
 ?>
-<div class="panel panel-primary">
+<div class="col-lg-8">
+
+<div class="panel panel-default">
 <div class="panel-heading">
     Note <?=$_GET['id']?>
 </div>
 <div class="panel-body">
     <p><?=$player['Note']?></p>
     <p><?=$player2['Note']?></p>
+</div>
 </div>
 </div>

@@ -21,6 +21,11 @@
 	$Score2		= 0;
     $ID_Terrain = $_GET['InputCourt'];
 
+if ($ID_Equipe1 == $ID_Equipe2) {
+    header("Location: ../match.php?error=player");
+    return;
+}
+
 	$req->bind_param("issiiiii", $ID, $Date, $Hour, $ID_Equipe1, $ID_Equipe2, $Score1, $Score2, $ID_Terrain);
 
 	$req->execute();

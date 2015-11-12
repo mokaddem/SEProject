@@ -51,6 +51,16 @@
                     <!-- /.col-lg-12 -->
                 </div>
 
+                <div class="row">
+                    <?php if (array_key_exists("error", $_GET)) {?>
+                        <div class="col-lg-4 alert alert-danger">
+                            <b>Erreur</b>
+                            <?php if ($_GET["error"] == "player") {?>
+                                Vous devez choisir deux joueurs différents.
+                            <?php } ?>
+                        </div>
+                    <?php } ?>
+                </div>
 
                 <!-- Registration form - START -->
                 <div class="row">

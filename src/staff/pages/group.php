@@ -118,9 +118,9 @@
                         <br/>
                         <br/>
                         <br/>
-                        <div id="pList">
+                        <span id="pList">
 
-                        </div>
+                        </span>
                     </div>
                     <div class="text-center">
                         <?php
