@@ -44,6 +44,13 @@
 
         <?php            
             include("./html/header.php");
+
+        include_once('php/BDD.php');
+
+        $db = new BDD();
+        $reponseS = $db->query('SELECT * FROM GroupSaturday');
+        $reponseD = $db->query('SELECT * FROM GroupSunday');
+
         ?>
 
             <div id="page-wrapper">
@@ -58,7 +65,20 @@
                 <div class="form-group">
                     <label for="sel1"><span class="fa fa-dot-circle-o"></span> Choix de la poule</label>
                     <select class="form-control" id="sel1">
-                        <option>[liste des poules]</option>
+                        <optgroup label="--- Samedi">
+                            <?php
+                            while ($donneesS = $reponseS->fetch_array()){
+                                echo '<option value="'.$donneesS['ID'].'">Poule n°'.$donneesS['ID'].'</option>';
+                            }
+                            ?>
+                        </optgroup>
+                        <optgroup label="--- Dimanche">
+                            <?php
+                            while ($donneesD = $reponseD->fetch_array()){
+                                echo '<option value="'.$donneesD['ID'].'">Poule n°'.$donneesD['ID'].'</option>';
+                            }
+                            ?>
+                        </optgroup>
                         <!-- <option>propriétaire</option> -->
                     </select>
                 </div>

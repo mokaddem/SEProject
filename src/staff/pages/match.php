@@ -109,7 +109,6 @@
                                 <label for="sel1"><span class="fa fa-clock-o"></span> Date & Heure</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                    
                                     <?php 
                                         echo '<input type="date" min="'.date("Y-m-d").'" max="2048-10-10" id="InputDate" name="InputDate" value="'.date("Y-m-d").'">';
                                         echo '<input type="time" id="InputHour" name="InputHour" value="'.date("H:i").'">';
