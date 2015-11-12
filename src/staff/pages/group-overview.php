@@ -64,17 +64,17 @@
                     <div class="form-group">
                         <label for="sel1"><span class="fa fa-dot-circle-o"></span> Choix de la poule</label>
                         <select class="form-control" id="sel1">
-                            <optgroup>
+                            <optgroup label="--- Samedi">
                                 <?php 
                                     while ($donneesS = $reponseS->fetch_array()){
-                                        echo '<option value="'.$donneesS['ID'].'">Samedi - Poule n°'.$donneesS['ID'].'</option>';
+                                        echo '<option value="'.$donneesS['ID'].'">Poule n°'.$donneesS['ID'].'</option>';
                                     }
                                 ?>
                             </optgroup>
-                            <optgroup label="-----------------------------------------------">
+                            <optgroup label="--- Dimanche">
                                 <?php
                                     while ($donneesD = $reponseD->fetch_array()){
-                                        echo '<option value="'.$donneesD['ID'].'">Dimanche - Poule n°'.$donneesD['ID'].'</option>';
+                                        echo '<option value="'.$donneesD['ID'].'">Poule n°'.$donneesD['ID'].'</option>';
                                     }
                                 ?>
                             </optgroup>
@@ -102,7 +102,7 @@
                                                     <th>Equipe 3</th>
                                                     <th>Equipe 4</th>
                                                     <th>Equipe 5</th>
-                                                    <th>Points</th>
+                                                    <th>Equipe 6</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -118,9 +118,6 @@
                         <!-- /.col-lg-6 -->
                     </div>
                     <!-- /.row -->
-
-                    <input type="submit" name="submit" id="submit" value="Supprimer cette poule" class="btn btn-danger pull-left">
-
                 </div>
                 <!-- /#page-wrapper -->
 
