@@ -62,7 +62,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">Liste des <?=$titre?>
-                            <a class="btn btn-default btn-outline pull-right" href="./<?=$_GET["type"]?>.php"> Creer</a>
+                            <a class="btn btn-default btn-outline pull-right" href="./<?=$_GET["type"]?>.php"> Créer</a>
                             </h1>
                         </div>
                         <!-- /.col-lg-12 -->

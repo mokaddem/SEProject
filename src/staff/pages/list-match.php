@@ -50,6 +50,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Liste des matchs</h1>
+                        <a class="btn btn-default btn-outline pull-right" href="./match.php"> Créer</a>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
