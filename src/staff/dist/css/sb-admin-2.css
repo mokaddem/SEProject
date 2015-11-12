@@ -1,3 +1,4 @@
+
 #listNote {
     position: fixed;
 }
@@ -376,4 +377,8 @@ table.dataTable thead .sorting:after {
 
 .panel-yellow a:hover {
     color: #df8a13;
+}
+
+.navbar-top-links .dropdown-messages, .navbar-top-links .dropdown-tasks, .navbar-top-links .dropdown-alerts {
+    width: 140px;
 }
