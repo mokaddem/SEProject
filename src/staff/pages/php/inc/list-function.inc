@@ -40,7 +40,7 @@ function getTitreTable($get) {
             return array("ID", "Nom", "Prénom", "Né(e) le", "Créé le", "Action");
 
         case "court":
-            return array("T_ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Jusqu'au", "Crée le", "Note", "Action");
+            return array("ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Jusqu'au", "Crée le", "Note", "Action");
 
         case "extra":
             return array("ID", "Nom", "Prix", "Nombre de personnes", "Description", "Action");
