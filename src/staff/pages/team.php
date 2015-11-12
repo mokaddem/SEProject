@@ -100,6 +100,21 @@
                                     
                                 </select>
                             </div>
+                            
+                            <div class="form-group">
+                                <label for="sel2"><span class="fa fa-user"></span> Catégorie</label>
+                                <select class="form-control" id="InputCat" name="InputCat">
+                                    <?php
+										$db = new BDD();
+										$reponse = $db->query('SELECT * FROM Categorie');
+										while ($donnes = $reponse->fetch_array())
+										{
+										    echo "<option value=".$donnes['ID'].">".$donnes['Designation']." ".$donnes['Year']."</option>";									
+                                        }
+                                    ?>
+                                    
+                                </select>
+                            </div>
 
                             <input type="submit" name="submit" id="submit" value="Créer" class="btn btn-info pull-right">
 

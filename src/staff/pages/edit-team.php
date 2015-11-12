@@ -76,8 +76,8 @@
                                 <label for="sel1"><span class="fa fa-user"></span> Premier joueur</label>
                                 <select class="form-control" id="idp1" name="idp1">
                                     <?php echo "<option value=".$p1['ID']." selected=".$p1final.">".$p1final."</option>";?>
-                                    
-                                    <?php
+
+                                        <?php
                                     $db = new BDD();
                                     $reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
                                     while ($donnes = $reponse->fetch_array())
@@ -86,7 +86,7 @@
                                             echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>"; }
                                     }
                                     ?>
-                                        <!-- <option>propriétaire</option> -->
+                                            <!-- <option>propriétaire</option> -->
                                 </select>
                             </div>
 
@@ -94,17 +94,36 @@
                                 <label for="sel1"><span class="fa fa-user"></span> Second joueur</label>
                                 <select class="form-control" id="idp2" name="idp2">
                                     <?php echo "<option value=".$p2['ID']." selected=".$p2final.">".$p2final."</option>";?>
-                                    
-                                    
+                                        <?php
+                                        $db = new BDD();
+                                        $reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
+                                        while ($donnes = $reponse->fetch_array())
+                                        {				
+                                            if (canDeletePlayer($donnes['ID'])){
+                                                echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";}
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sel2"><span class="fa fa-user"></span> Catégorie</label>
+                                <select class="form-control" id="InputCat" name="InputCat">
                                     <?php
-					$db = new BDD();
-					$reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
-					while ($donnes = $reponse->fetch_array())
-					{				
-                        if (canDeletePlayer($donnes['ID'])){
-                            echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";}
-					}
-			 	    ?>
+										$db = new BDD();
+										$reponse = $db->query('SELECT * FROM Categorie');
+										while ($donnes = $reponse->fetch_array())
+										{
+                                            if ($t['ID_Cat'] == $donnes['ID']) 
+                                            {
+                                                echo "<option selected=\"".$donnes['Designation']." ".$donnes['Year']."\" value=".$donnes['ID'].">".$donnes['Designation']." ".$donnes['Year']."</option>";
+                                            } 
+                                            else 
+                                            { 
+										      echo "<option value=".$donnes['ID'].">".$donnes['Designation']." ".$donnes['Year']."</option>";								  }
+                                        }
+                                    ?>
+
                                 </select>
                             </div>
 
