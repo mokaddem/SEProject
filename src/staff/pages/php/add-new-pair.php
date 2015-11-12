@@ -114,10 +114,10 @@
 	$req->bind_param("iiii", $ID_Personne2, $IsLeader,$Paid, $AlreadyPart);
 	$req->execute();
 
-	$reponse = $db->query('SELECT * FROM Team WHERE '.$ID_player1.' = ID_Player1 AND '.$ID_player2.' = ID_Player2');
-	$donnees = $reponse->fetch_array();
+/*	$reponse = $db->query('SELECT * FROM Team WHERE '.$ID_player1.' = ID_Player1 AND '.$ID_player2.' = ID_Player2');
+	$donnees = $reponse->fetch_array();*/
 
-	addHistory( $donnees["ID"], "Equipe", "Ajout");
+	//addHistory($donnees["ID"], "Equipe", "Ajout");
 
 
 
