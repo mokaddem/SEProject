@@ -42,16 +42,16 @@
 
 		$db = new BDD();
         
-        $ID = $_GET['ID']
+        $ID = $_SESSION['ID'];
 
-        //$reponse = $db->query('SELECT * FROM Personne WHERE '. $ID. ' = ID');
-		//$donnes = $reponse->fetch_array();
+        $reponse = $db->query('SELECT * FROM Personne WHERE '. $ID. ' = ID');
+		$donnes = $reponse->fetch_array();
         ?>
 
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12 noDeco">
-                        <h1 class="page-header"><?php echo $_SESSION['NAME']?></h1>
+                        <h1 class="page-header"><i class="fa fa-user"></i> <?=$_SESSION['NAME']?></h1>
                     </div>
                 </div>
                 <!-- Registration form - START -->
@@ -60,18 +60,68 @@
                         <div class="col-lg-6">
                             <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
                             <div class="form-group">
-                                                                
+                                <!--<label for="InputEmail">Email</label>-->
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    <p type="text" class="form-control">
+                                        <?=$donnes['BirthDate']?>
+                                    </p>
+                                </div>
                             </div>
 
+                            <div class="form-group">
+                                <!--<label for="InputPrenom">Adresse</label>-->
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                    <p type="text" class="form-control">
+                                        <?=$donnes['Rue']?>
+                                    </p>
+                                    <p type="text" class="form-control">
+                                        <?=$donnes['Number']?>
+                                    </p>
+                                    <p type="text" class="form-control">
+                                        <?=$donnes['ZIPCode']?>
+                                    </p>
+                                    <p type="text" class="form-control">
+                                        <?=$donnes['Ville']?>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <!--<label for="InputEmail">Email</label>-->
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-at"></i></span>
+                                    <p type="text" class="form-control">
+                                        <?=$donnes['Mail']?>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <!--<label for="InputPhone">Numéro de téléphone</label>-->
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                    <p type="text" class="form-control">
+                                        <?=$donnes['PhoneNumber']?>
+                                    </p>
+
+                                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                    <p type="text" class="form-control">
+                                        <?=$donnes['GSMNumber']?>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                    </form>
-
-                    <!-- Registration form - END -->
-
                 </div>
-                <!-- /.row -->
+                </form>
+
+                <!-- Registration form - END -->
+
             </div>
-            <!-- /#page-wrapper -->
+            <!-- /.row -->
+    </div>
+    <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->

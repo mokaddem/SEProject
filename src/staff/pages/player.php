@@ -183,10 +183,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label>Préférence</label>
+
                                     <!--<label for="InputMessage">Message</label>-->
                                     <div class="input-group">
-                                        <textarea name="InputMessage" id="InputMessage" name="InputMessage" class="form-control" rows="5"></textarea>
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
+                                        <textarea name="InputMessage1" id="InputMessage1" class="form-control" rows="5"></textarea>
+                                        <span class="input-group-addon"><i class="fa fa-comment"></i></span>
                                     </div>
                                 </div>
 
@@ -322,9 +324,11 @@
                                 </div>
                                 <div class="form-group">
                                     <!--<label for="InputMessage">Message</label>-->
+                                    <label>Préférence</label>
+
                                     <div class="input-group">
-                                        <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" required></textarea>
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
+                                        <textarea name="InputMessage2" id="InputMessage2" class="form-control" rows="5"></textarea>
+                                        <span class="input-group-addon"><i class="fa fa-comment"></i></span>
                                     </div>
                                 </div>
                             </div>
