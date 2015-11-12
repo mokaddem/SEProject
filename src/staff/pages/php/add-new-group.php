@@ -29,9 +29,11 @@
          $req = $db->prepare("SELECT Mail FROM Personne JOIN OWNER ON Owner.ID_Personne = Personne.ID JOIN Terrain ON Terrain.ID_Owner = Owner.ID WHERE Terrain.ID = $ID_terrain");
         $req->execute();
         $to[0] = $req;
-        
-        $subject = ""; // INSERT TXT HERE
-        $message = ""; // INSERT TXT HERE
+	
+	
+
+        $subject = "Utiliation de votre court de tennis pour le samedi au tournoi 'Charles de Lorraine'"; // INSERT TXT HERE
+        $message = "Bonjour, nous vous informons par la présente que votre court de tennis sera utilisé dans le cadre de notre tournoi de tennis 'Charles de Lorraines' ce samedi.\n\n Pour d'éventuelles questions, vous pouvez nous contacter par notre formulaire de contact qui se trouve sur notre site.\n\n Bien à vous, à bientôt\n\nLe Staff 'Charles de Lorraines'"; // INSERT TXT HERE
         
         sendMail($to, $subject, $message);
         
@@ -43,9 +45,12 @@
             $i = î +1;
         }
         
+	$reqAdT = $db->prepare("SELECT adresse FROM Terrain WHERE Terrain.ID = $ID_terrain");
+        $reqAdT->execute();
+        $Adt = $req;
         
-        $subject = ""; // INSERT TXT HERE
-        $message = ""; // INSERT TXT HERE
+        $subject = "Inscription confirmée pour le tournoi 'Charles de Lorraines' ce samedi."; // INSERT TXT HERE
+        $message = "Votre équipe a bien été inscrite au tournoi 'Charles de Lorraine' pour jouer le samedi. Les matchs de votre groupe ce joueront sur le terrain :".$Adt."\n\n Pour d'éventuelles questions, vous pouvez nous contacter par notre formulaire de contact qui se trouve sur notre site.\n\n Bien à vous, à bientôt\n\nLe Staff 'Charles de Lorrains'"; // INSERT TXT HERE
         
         sendMail($to, $subject, $message);
         
@@ -71,10 +76,14 @@ echo "Bind";
          $req = $db->prepare("SELECT Mail FROM Personne JOIN OWNER ON Owner.ID_Personne = Personne.ID JOIN Terrain ON Terrain.ID_Owner = Owner.ID WHERE Terrain.ID = $ID_terrain");
         $req->execute();
         $to[0] = $req;
+	
+	$reqAdT = $db->prepare("SELECT adresse FROM Terrain WHERE Terrain.ID = $ID_terrain");
+        $reqAdT->execute();
+        $Adt = $req;
         
         
-        $subject = ""; // INSERT TXT HERE
-        $message = ""; // INSERT TXT HERE
+        $subject = "Utiliation de votre court de tennis pour le dimanche au tournoi 'Charles de Lorraine'"; // INSERT TXT HERE
+        $message = "Bonjour, nous vous informons par la présente que votre court de tennis sera utilisé dans le cadre de notre tournoi de tennis 'Charles de Lorraines' ce dimanche.\n\n Pour d'éventuelles questions, vous pouvez nous contacter par notre formulaire de contact qui se trouve sur notre site.\n\n Bien à vous, à bientôt\n\nLe Staff 'Charles de Lorraines'"; // INSERT TXT HERE
         
         sendMail($to, $subject, $message);
         
@@ -88,8 +97,8 @@ echo "Bind";
         }
         
         
-        $subject = ""; // INSERT TXT HERE
-        $message = ""; // INSERT TXT HERE
+        $subject = "Inscription confirmée pour le tournoi 'Charles de Lorraines' ce dimanche."; // INSERT TXT HERE
+        $message = "Votre équipe a bien été inscrite au tournoi 'Charles de Lorraine' pour jouer le dimanche. Les matchs de votre groupe ce joueront sur le terrain :".$Adt,"\n\n Pour d'éventuelles questions, vous pouvez nous contacter par notre formulaire de contact qui se trouve sur notre site.\n\n Bien à vous, à bientôt\n\nLe Staff 'Charles de Lorrains'"; // INSERT TXT HERE
         
         sendMail($to, $subject, $message);
         
