@@ -50,7 +50,7 @@
         $Adt = $req;
         
         $subject = "Inscription confirmée pour le tournoi 'Charles de Lorraines' ce samedi."; // INSERT TXT HERE
-        $message = "Votre équipe a bien été inscrite au tournoi 'Charles de Lorraine' pour jouer le samedi. Les matchs de votre groupe ce joueront sur le terrain :".$Adt."\n\n Pour d'éventuelles questions, vous pouvez nous contacter par notre formulaire de contact qui se trouve sur notre site.\n\n Bien à vous, à bientôt\n\nLe Staff 'Charles de Lorrains'"; // INSERT TXT HERE
+        $message = "Votre équipe a bien été inscrite au tournoi 'Charles de Lorraine' pour jouer le samedi. Les matchs de votre groupe se joueront sur le terrain :".$Adt."\n\n Pour d'éventuelles questions, vous pouvez nous contacter par notre formulaire de contact qui se trouve sur notre site.\n\n Bien à vous, à bientôt\n\nLe Staff 'Charles de Lorrains'"; // INSERT TXT HERE
         
         sendMail($to, $subject, $message);
 
@@ -96,8 +96,8 @@ echo "Bind";
         $Adt = $req;
         
         
-        $subject = "Utiliation de votre court de tennis pour le dimanche au tournoi 'Charles de Lorraine'"; // INSERT TXT HERE
-        $message = "Bonjour, nous vous informons par la présente que votre court de tennis sera utilisé dans le cadre de notre tournoi de tennis 'Charles de Lorraines' ce dimanche.\n\n Pour d'éventuelles questions, vous pouvez nous contacter par notre formulaire de contact qui se trouve sur notre site.\n\n Bien à vous, à bientôt\n\nLe Staff 'Charles de Lorraines'"; // INSERT TXT HERE
+        $subject = "Utilisation de votre court de tennis pour le dimanche au tournoi 'Charles de Lorraine'"; // INSERT TXT HERE
+        $message = "Bonjour, nous vous informons par la présente que votre court de tennis sera utilisé dans le cadre de notre tournoi de tennis 'Charles de Lorraines' ce dimanche.\n\n Pour d'éventuelles questions, vous pouvez nous contacter par notre formulaire qui se trouve sur notre site.\n\n Bien à vous, à bientôt.\n\nLe Staff 'Charles de Lorraines'"; // INSERT TXT HERE
         
         sendMail($to, $subject, $message);
         
@@ -111,8 +111,8 @@ echo "Bind";
         }
         
         
-        $subject = "Inscription confirmée pour le tournoi 'Charles de Lorraines' ce dimanche."; // INSERT TXT HERE
-        $message = "Votre équipe a bien été inscrite au tournoi 'Charles de Lorraine' pour jouer le dimanche. Les matchs de votre groupe ce joueront sur le terrain :".$Adt,"\n\n Pour d'éventuelles questions, vous pouvez nous contacter par notre formulaire de contact qui se trouve sur notre site.\n\n Bien à vous, à bientôt\n\nLe Staff 'Charles de Lorrains'"; // INSERT TXT HERE
+        $subject = "Inscription confirmée pour le tournoi 'Charles de Lorraine' ce dimanche."; // INSERT TXT HERE
+        $message = "Votre équipe a bien été inscrite au tournoi 'Charles de Lorraine' pour jouer le dimanche. Les matchs de votre groupe se joueront sur le terrain :".$Adt."\n\n Pour d'éventuelles questions, vous pouvez nous contacter par notre formulaire de contact qui se trouve sur notre site.\n\n Bien à vous, à bientôt\n\nLe Staff 'Charles de Lorrains'"; // INSERT TXT HERE
         
         sendMail($to, $subject, $message);
         
