@@ -53,20 +53,19 @@
                     <!-- /.col-lg-12 -->
                 </div>
 
-                <!-- Registration form - START -->
                 <div class="row">
-                    <?php
-                        if (array_key_exists("generate", $_GET)) {
-                    ?>
-                        <div class='alert alert-success text-center'>
-                            <h3>SUCCESS !!!! WELL DONE DUDE !</h3>
-                            <?php
-                            if ($_GET["generate"] == "true") {
-                        ?>
-                                Génération des groupes terminée. Vous pouvez à présent les modifier à souhait.
-                                <?php } ?>
+                    <?php if (array_key_exists("generate", $_GET)) {?>
+                        <div class="col-lg-8 alert alert-success">
+                            <b>Opération réussite !</b>
+                            <?php if ($_GET["generate"] == "true") {?>
+                                La génération des groupes est terminée. Vous pouvez à présent les modifier à souhait.
+                            <?php } ?>
                         </div>
-                        <?php    }  ?>
+                    <?php } ?>
+                </div>
+
+
+                <!-- Registration form - START -->
                             <div class="row">
                                 <ul class="nav nav-tabs">
                                     <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="group.php?jour=sam">Samedi</a></li>
