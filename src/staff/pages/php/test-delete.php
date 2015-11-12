@@ -9,7 +9,7 @@
         $db = new BDD();
         $reponse = $db->query('SELECT * FROM `Team` WHERE ID_Player1 = '. $id .' OR ID_Player2 = '. $id .'');
         
-        if (!$reponse->fetch_array()){
+        if ($reponse->fetch_array() == NULL){
             return TRUE;
         }
         
@@ -46,21 +46,22 @@
         $db = new BDD();
         $reponse = $db->query('SELECT * FROM `Match` WHERE ID_Terrain = ' . $id . '');
 
-        if (!$reponse->fetch_array()) {
+        if ($reponse->fetch_array() == NULL) {
 
             $reponsegroupsunday = $db->query('SELECT * FROM `GroupSunday` WHERE ID_terrain = ' . $id . '');
 
-            if (!$reponsegroupsunday->fetch_array()) {
+            if ($reponsegroupsunday->fetch_array() == NULL) {
 
                 $reponsegroupsaturday = $db->query('SELECT * FROM `GroupSaturday` WHERE ID_terrain = ' . $id . '');
 
-                if (!$reponsegroupsaturday->fetch_array()) {
+                if ($reponsegroupsaturday->fetch_array() == NULL) {
                     return TRUE;
                 }
             }
 
             return FALSE;
         }
+    }
 
 
         /* Suppression d'un owner s'il n'appartient à aucun terrain */
@@ -72,11 +73,10 @@
             $db = new BDD();
             $reponse = $db->query('SELECT * FROM `Terrain` WHERE ID_Owner = ' . $id . '');
 
-            if (!$reponse->fetch_array()) {
+            if ($reponse->fetch_array() == NULL) {
                 return TRUE;
             }
 
             return FALSE;
         }
-    }
 ?>
