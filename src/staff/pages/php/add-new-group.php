@@ -26,11 +26,11 @@
         addHistory($donnees['ID'], "GroupSaturday", "Ajout");
 
 
-         $req = $db->prepare("SELECT Mail FROM Personne JOIN OWNER ON Owner.ID_Personne = Personne.ID JOIN Terrain ON Terrain.ID_Owner = Owner.ID WHERE Terrain.ID = $ID_terrain");
+        /*$req = $db->prepare("SELECT Mail FROM Personne JOIN OWNER ON Owner.ID_Personne = Personne.ID JOIN Terrain ON Terrain.ID_Owner = Owner.ID WHERE Terrain.ID = $ID_terrain");
         $req->execute();
         $to[0] = $req;
 
-	$subject = "Utiliation de votre court de tennis pour le samedi au tournoi 'Charles de Lorraine'"; // INSERT TXT HERE
+	    $subject = "Utiliation de votre court de tennis pour le samedi au tournoi 'Charles de Lorraine'"; // INSERT TXT HERE
         $message = "Bonjour, nous vous informons par la présente que votre court de tennis sera utilisé dans le cadre de notre tournoi de tennis 'Charles de Lorraines' ce samedi.\n\n Pour d'éventuelles questions, vous pouvez nous contacter par notre formulaire de contact qui se trouve sur notre site.\n\n Bien à vous, à bientôt\n\nLe Staff 'Charles de Lorraines'"; // TXTHERE
 
 
@@ -41,9 +41,9 @@
         $i = 0;
         foreach ($req as $mail) {
             $to[$i] = $mail;
-            $i = î +1;
+            $i++;
         }
-	$reqAdT = $db->prepare("SELECT adresse FROM Terrain WHERE Terrain.ID = $ID_terrain");
+	    $reqAdT = $db->prepare("SELECT adresse FROM Terrain WHERE Terrain.ID = $ID_terrain");
         $reqAdT->execute();
         $Adt = $req;
         
@@ -56,11 +56,9 @@
         $subject = ""; // INSERT TXT HERE
         $message = ""; // INSERT TXT HERE
 
-        sendMail($to, $subject, $message);
-
-
-       
+        sendMail($to, $subject, $message);*/
     }
+
     function insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6){
         $req = $db->prepare("INSERT INTO GroupSunday(ID, ID_terrain, ID_t1, ID_t2, ID_t3, ID_t4, ID_t5, ID_t6, ID_vic1, ID_vic2) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         echo "Prepare";
@@ -70,17 +68,17 @@
         $ID_vic2    = NULL;
 
         $req->bind_param("iiiiiiiiii", $ID, $ID_terrain, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $ID_vic1, $ID_vic2);
-echo "Bind";
+        echo "Bind";
         $req->execute();
 
         $reponse = $db->query("SELECT * FROM GroupSunday WHERE ID_terrain =\"".$ID_terrain ."\" AND ID_t1=\"".$ID_t1 ."\" AND ID_t2=\"".$ID_t2 ."\" AND ID_t3=\"".$ID_t3 ."\" AND ID_t4=\"".$ID_t4 ."\" AND ID_t5=\"".$ID_t5 ."\" AND ID_t6=\"".$ID_t6 ."\"");
         $donnees = $reponse->fetch_array();
         addHistory($donnees['ID'], "GroupSunday", "Ajout");
 
-         $req = $db->prepare("SELECT Mail FROM Personne JOIN OWNER ON Owner.ID_Personne = Personne.ID JOIN Terrain ON Terrain.ID_Owner = Owner.ID WHERE Terrain.ID = $ID_terrain");
+        /*$req = $db->prepare("SELECT Mail FROM Personne JOIN OWNER ON Owner.ID_Personne = Personne.ID JOIN Terrain ON Terrain.ID_Owner = Owner.ID WHERE Terrain.ID = $ID_terrain");
         $req->execute();
         $to[0] = $req;
-	$reqAdT = $db->prepare("SELECT adresse FROM Terrain WHERE Terrain.ID = $ID_terrain");
+	    $reqAdT = $db->prepare("SELECT adresse FROM Terrain WHERE Terrain.ID = $ID_terrain");
         $reqAdT->execute();
         $Adt = $req;
         
@@ -96,7 +94,7 @@ echo "Bind";
         $i = 0;
         foreach ($req as $mail) {
             $to[$i] = $mail;
-            $i = î +1;
+            $i++;
         }
 
         $subject = "Inscription confirmée pour le tournoi 'Charles de Lorraine' ce dimanche."; // INSERT TXT HERE
@@ -104,23 +102,21 @@ echo "Bind";
         
         sendMail($to, $subject, $message);
 
-	$reqPaid = $db->prepare("SELECT DISTINCT Mail FROM Personne JOIN Player ON Player.ID_Personne = Personne.ID where 	Player.Paid = 0 JOIN Team ON Team.ID_Player1 = Player.ID JOIN Team ON Team.ID_Player2 = Player.ID WHERE Team.ID = $ID_t1 OR Team.ID = $ID_t2 OR Team.ID = $ID_t3 OR Team.ID = $ID_t4 OR Team.ID = $ID_t5");
--	$reqPaid->execute();	
--	$i = 0;
--        foreach ($reqPaid as $mail) {
+	    $reqPaid = $db->prepare("SELECT DISTINCT Mail FROM Personne JOIN Player ON Player.ID_Personne = Personne.ID where Player.Paid = 0 JOIN Team ON Team.ID_Player1 = Player.ID JOIN Team ON Team.ID_Player2 = Player.ID WHERE Team.ID = $ID_t1 OR Team.ID = $ID_t2 OR Team.ID = $ID_t3 OR Team.ID = $ID_t4 OR Team.ID = $ID_t5");
+-	    $reqPaid->execute();
+-	    $i = 0;
+-       foreach ($reqPaid as $mail) {
 -            $to[$i] = $mail;
--            $i = î +1;
+-            $i++;
 -        }
 -        
 -        //Quelle addresse mettre pour le quartier général?
 -        $subject = "Adresse du Quartier Général pour le payement du tournoi"; // INSERT TXT HERE
--        $message = "Votre équipe n'a toujours pas effectué le payement pour la partication au tournoi.Veillez vous rendre au quartier général pour effectuer celui-ci avant de vous rendre au terrain. Merci\n\n Pour d'éventuelles questions, vous pouvez nous contacter par notre formulaire de contact qui se trouve sur notre site.\n\n Bien à vous, à bientôt\n\nLe Staff 'Charles de Lorrains'"; // INSERT TXT HERE
+-        $message = "Votre équipe n'a toujours pas effectué le payement pour la partication au tournoi. Veillez vous rendre au quartier général pour effectuer celui-ci avant de vous rendre au terrain. Merci\n\n Pour d'éventuelles questions, vous pouvez nous contacter par notre formulaire de contact qui se trouve sur notre site.\n\n Bien à vous, à bientôt\n\nLe Staff 'Charles de Lorrains'"; // INSERT TXT HERE
 
-	sendMail($to, $subject, $message);
-
-
-       
+	sendMail($to, $subject, $message);*/
     }
+
     if ($_GET['jour']=="sam"){
 
         $reponse = $db->query("SELECT * FROM `GroupSaturday`");

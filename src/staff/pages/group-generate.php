@@ -60,7 +60,7 @@
                     Veuillez selectionner un jour
                 <?php } elseif ($_GET["error"] == "no_sam") { ?>
                         Les groupes du samedi ont déjà été générés
-                    <a class="btn btn-danger" href="./reset.php">Supprimer</a>
+                    <a class="btn btn-danger pull-right" href="./reset.php">Supprimer</a>
                 <?php } elseif ($_GET["error"] == "no_dim") { ?>
                         Les groupes du dimanche ont déjà été générés
                     <a class="btn btn-danger pull-right" href="./reset.php">Supprimer</a>

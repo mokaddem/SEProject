@@ -92,9 +92,10 @@
 
                 <div class="row">
                     <br/>
+                    <br/>
                 </div>
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-4">
                         <select id="listNote" class="form-select" multiple="">
                             <?php
                                             $listTeams = $db->query("SELECT * FROM Team");
@@ -142,11 +143,9 @@
                                     <!--</div>
                                     </div>
                                     <div class="row text-center">-->
+                                    <br/>
                                     <?php $j = 0; ?>
-                                    <div class="col-lg-12">
-                                          Pour mettre un espace :p
-                                    </div>
-                                    <div class="col-lg-8">
+                                    <div class="col-lg-4">
                                     </div>
                                 <?php }
                                 //for ($j = 1; $j <= 1; $j++) { // Boucle pour faire plusieurs row... Useless?

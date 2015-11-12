@@ -70,27 +70,26 @@
                         <br/>
                     </div>
 
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label for="sel1"><span class="fa fa-dot-circle-o"></span> Choix de la poule</label>
                         Ne sert à rien lol
                         <select class="form-control" id="sel1">
                             <optgroup label="--- Samedi">
                                 <?php 
-                                    while ($donneesS = $reponseS->fetch_array()){
-                                        echo '<option value="'.$donneesS['ID'].'">Poule n°'.$donneesS['ID'].'</option>';
-                                    }
+                                //    while ($donneesS = $reponseS->fetch_array()){
+                                //        echo '<option value="'.$donneesS['ID'].'">Poule n°'.$donneesS['ID'].'</option>';
+                                //    }
                                 ?>
                             </optgroup>
                             <optgroup label="--- Dimanche">
                                 <?php
-                                    while ($donneesD = $reponseD->fetch_array()){
-                                        echo '<option value="'.$donneesD['ID'].'">Poule n°'.$donneesD['ID'].'</option>';
-                                    }
+                                //    while ($donneesD = $reponseD->fetch_array()){
+                                //        echo '<option value="'.$donneesD['ID'].'">Poule n°'.$donneesD['ID'].'</option>';
+                                //    }
                                 ?>
                             </optgroup>
-                                <!-- <option>propriétaire</option> -->
                         </select>
-                    </div>
+                    </div> -->
 
                     <div class="row">
                         <div class="col-lg-12">
