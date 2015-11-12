@@ -26,7 +26,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-alerts">
                     <li>
-                        <a href="#">
+                        <a href="../pages/staff.php">
                             <div>
                                 <i class="fa fa-user"></i> Profil 
                             </div>
