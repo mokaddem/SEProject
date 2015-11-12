@@ -63,19 +63,28 @@
                                 <!--<label for="InputEmail">Email</label>-->
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                    <input type="text" value="<?=$donnes['BirthDate']?>" class="form-control">
+                                    <p type="text" class="form-control">
+                                        <?=$donnes['BirthDate']?>
+                                    </p>
                                 </div>
                             </div>
-                            
+
                             <div class="form-group">
                                 <!--<label for="InputPrenom">Adresse</label>-->
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                    <input type="text" value="<?=$donnes['Rue']?>" class="form-control" name="InputAdresse" id="InputAdresse">
-                                    <input type="text" value="<?=$donnes['Number']?>" class="form-control" name="InputBat" id="InputBat">
-                                    <input type="text" value="<?=$donnes['ZIPCode']?>" class="form-control" name="InputCP" id="InputCP">
-                                    <input type="text" value="<?=$donnes['Ville']?>" class="form-control" name="InputLoc" id="InputLoc">
-
+                                    <p type="text" class="form-control">
+                                        <?=$donnes['Rue']?>
+                                    </p>
+                                    <p type="text" class="form-control">
+                                        <?=$donnes['Number']?>
+                                    </p>
+                                    <p type="text" class="form-control">
+                                        <?=$donnes['ZIPCode']?>
+                                    </p>
+                                    <p type="text" class="form-control">
+                                        <?=$donnes['Ville']?>
+                                    </p>
                                 </div>
                             </div>
 
@@ -83,7 +92,9 @@
                                 <!--<label for="InputEmail">Email</label>-->
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-at"></i></span>
-                                    <input type="email" value="<?=$donnes['Mail']?>" class="form-control" id="InputEmailFirst" name="InputEmailFirst">
+                                    <p type="text" class="form-control">
+                                        <?=$donnes['Mail']?>
+                                    </p>
                                 </div>
                             </div>
 
@@ -91,9 +102,14 @@
                                 <!--<label for="InputPhone">Numéro de téléphone</label>-->
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                    <input value="<?=$donnes['PhoneNumber']?>" type="text" class="form-control bfh-phone" name="InputFixe" id="InputFixe">
+                                    <p type="text" class="form-control">
+                                        <?=$donnes['PhoneNumber']?>
+                                    </p>
+
                                     <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                    <input value="<?=$donnes['GSMNumber']?>" type="text" class="form-control bfh-phone" name="InputMob" id="InputMob">
+                                    <p type="text" class="form-control">
+                                        <?=$donnes['GSMNumber']?>
+                                    </p>
                                 </div>
                             </div>
                         </div>
