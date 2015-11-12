@@ -42,15 +42,16 @@ require_once("./php/inc/list-team.inc");
 //
 //                $titre = getTitre("team");
 //            }?>
-                    <p><b>Joueur 1</b> : <?=$finalp1?></p>
-                    <p><b>Joueur 2</b> : <?=$finalp2?></p>
+                    <p><b>ID </b> : <?=$donnees['ID']?></p>
                     <p><b>Catégorie</b> : <?=$donnees['ID_Cat']?></p>
+                    <p><b>Joueur 1</b> : <?=$finalp1?> (<?=$donnees['ID_Player1']?>)</p>
+                    <p><b>Joueur 2</b> : <?=$finalp2?> (<?=$donnees['ID_Player2']?>)</p>
 
 
                 </div>
             </div>
             <div class="modal-footer">
-                <a class="btn btn-danger btn-outline" href="php/delete-team.php?id=<?=$donnees['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce participant ?');">Supprimer</a>
+                <a class="btn btn-danger btn-outline" href="php/delete-team.php?id=<?=$donnees['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer cette équipe ?');">Supprimer</a>
                 <a class="btn btn-success btn-outline" href="./edit-team.php?id=<?=$donnees['ID']?>">Modifier</a>
                 <button type="button" class="btn btn-info btn-outline" data-dismiss="modal">Retour</button>
             </div>
