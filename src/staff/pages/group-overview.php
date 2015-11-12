@@ -103,10 +103,30 @@
                                                     <th>Equipe 4</th>
                                                     <th>Equipe 5</th>
                                                     <th>Equipe 6</th>
+                                                    <th>Vainqueurs</th>
+                                                    <th>Vainqueurs</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php //require_once("./php/inc/list-team.inc"); ?>
+                                            <?php $db = new BDD();
+                                            $listDonnees = $db->query('SELECT * FROM GroupSaturday');
+
+                                            foreach ($listDonnees as $donnees) { ?>
+                                                <tr class="odd gradeX">
+                                                    <?php foreach ($donnees as $donnee) { ?>
+                                                        <td><?=$donnee?></td>
+                                                    <?php    } ?>
+                                                </tr>
+                                            <?php    }
+
+                                            $listDonnees = $db->query('SELECT * FROM GroupSunday');
+                                            foreach ($listDonnees as $donnees) { ?>
+                                                <tr class="odd gradeX">
+                                                    <?php foreach ($donnees as $donnee) { ?>
+                                                        <td><?=$donnee?></td>
+                                                    <?php    } ?>
+                                                </tr>
+                                            <?php    } ?>
                                             </tbody>
                                         </table>
                                     </div>
