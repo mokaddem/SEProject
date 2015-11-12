@@ -99,14 +99,14 @@
                                     <label for="InputFrom">From </label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                        <input class="form-control" name="InputFrom" id="InputFrom" type="date" min="<?=date("Y-m-d")?>" max="2048-10-10" value="<?=date("Y-m-d")?>">
+                                        <input size="10" maxlength="10" class="form-control" name="InputFrom" id="InputFrom" type="date" min="<?=date("Y-m-d")?>" max="2048-10-10" value="<?=date("Y-m-d")?>">
                                     </div>
                                 </div>
                                 <div class="form-group pull-right">
                                     <label for="InputTo">To </label>
                                     <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                        <input class="form-control" name="InputTo" id="InputTo" type="date" min="<?=date("Y-m-d")?>" max="2048-10-10" value="<?=date("Y-m-d")?>">
+                                        <input size="10" maxlength="10" class="form-control" name="InputTo" id="InputTo" type="date" min="<?=date("Y-m-d")?>" max="2048-10-10" value="<?=date("Y-m-d")?>">
                                     </div>
                                 </div>
                             </div>
