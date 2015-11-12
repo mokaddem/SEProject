@@ -1,3 +1,11 @@
+#listNote {
+    position: fixed;
+}
+
+#pList {
+    position: fixed;
+}
+
 .colorDarkBlue a {
     color: #1E476A;
 }
