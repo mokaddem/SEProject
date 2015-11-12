@@ -22,7 +22,7 @@
             <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i><?php echo $_SESSION["NAME"]; ?></i>
+                    <?php echo $_SESSION["NAME"]; ?>
                 </a>
                 <ul class="dropdown-menu dropdown-alerts">
                     <li>
