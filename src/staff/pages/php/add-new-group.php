@@ -30,8 +30,9 @@
         $req->execute();
         $to[0] = $req;
 
-        $subject = ""; // INSERT TXT HERE
-        $message = ""; // INSERT TXT HERE
+	$subject = "Utiliation de votre court de tennis pour le samedi au tournoi 'Charles de Lorraine'"; // INSERT TXT HERE
+        $message = "Bonjour, nous vous informons par la présente que votre court de tennis sera utilisé dans le cadre de notre tournoi de tennis 'Charles de Lorraines' ce samedi.\n\n Pour d'éventuelles questions, vous pouvez nous contacter par notre formulaire de contact qui se trouve sur notre site.\n\n Bien à vous, à bientôt\n\nLe Staff 'Charles de Lorraines'"; // TXTHERE
+
 
         sendMail($to, $subject, $message);
 
@@ -102,6 +103,21 @@ echo "Bind";
         $message = "Votre équipe a bien été inscrite au tournoi 'Charles de Lorraine' pour jouer le dimanche. Les matchs de votre groupe se joueront sur le terrain :".$Adt."\n\n Pour d'éventuelles questions, vous pouvez nous contacter par notre formulaire de contact qui se trouve sur notre site.\n\n Bien à vous, à bientôt\n\nLe Staff 'Charles de Lorrains'"; // INSERT TXT HERE
         
         sendMail($to, $subject, $message);
+
+	$reqPaid = $db->prepare("SELECT DISTINCT Mail FROM Personne JOIN Player ON Player.ID_Personne = Personne.ID where 	Player.Paid = 0 JOIN Team ON Team.ID_Player1 = Player.ID JOIN Team ON Team.ID_Player2 = Player.ID WHERE Team.ID = $ID_t1 OR Team.ID = $ID_t2 OR Team.ID = $ID_t3 OR Team.ID = $ID_t4 OR Team.ID = $ID_t5");
+-	$reqPaid->execute();	
+-	$i = 0;
+-        foreach ($reqPaid as $mail) {
+-            $to[$i] = $mail;
+-            $i = î +1;
+-        }
+-        
+-        //Quelle addresse mettre pour le quartier général?
+-        $subject = "Adresse du Quartier Général pour le payement du tournoi"; // INSERT TXT HERE
+-        $message = "Votre équipe n'a toujours pas effectué le payement pour la partication au tournoi.Veillez vous rendre au quartier général pour effectuer celui-ci avant de vous rendre au terrain. Merci\n\n Pour d'éventuelles questions, vous pouvez nous contacter par notre formulaire de contact qui se trouve sur notre site.\n\n Bien à vous, à bientôt\n\nLe Staff 'Charles de Lorrains'"; // INSERT TXT HERE
+
+	sendMail($to, $subject, $message);
+
 
        
     }
