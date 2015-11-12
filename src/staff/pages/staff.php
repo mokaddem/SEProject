@@ -42,10 +42,10 @@
 
 		$db = new BDD();
         
-        $ID = $_GET['ID']
+        $ID = $_SESSION['ID'];
 
-        //$reponse = $db->query('SELECT * FROM Personne WHERE '. $ID. ' = ID');
-		//$donnes = $reponse->fetch_array();
+        $reponse = $db->query('SELECT * FROM Personne WHERE '. $ID. ' = ID');
+		$donnes = $reponse->fetch_array();
         ?>
 
             <div id="page-wrapper">
@@ -60,18 +60,52 @@
                         <div class="col-lg-6">
                             <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
                             <div class="form-group">
-                                                                
+                                <!--<label for="InputEmail">Email</label>-->
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    <input type="text" value="<?php echo $donnes['BirthDate'];?>" class="form-control">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <!--<label for="InputPrenom">Adresse</label>-->
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                    <input type="text" value="<?php echo $donnes['Rue'];?>" class="form-control" name="InputAdresse" id="InputAdresse">
+                                    <input type="text" value="<?php echo $donnes['Number'];?>" class="form-control" name="InputBat" id="InputBat">
+                                    <input type="text" value="<?php echo $donnes['ZIPCode'];?>" class="form-control" name="InputCP" id="InputCP">
+                                    <input type="text" value="<?php echo $donnes['Ville'];?>" class="form-control" name="InputLoc" id="InputLoc">
+
+                                </div>
                             </div>
 
+                            <div class="form-group">
+                                <!--<label for="InputEmail">Email</label>-->
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-at"></i></span>
+                                    <input type="email" value="<?php echo $donnes['Mail'];?>" class="form-control" id="InputEmailFirst" name="InputEmailFirst">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <!--<label for="InputPhone">Numéro de téléphone</label>-->
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                    <input value="<?php echo $donnes['PhoneNumber'];?>" type="text" class="form-control bfh-phone" name="InputFixe" id="InputFixe">
+                                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                    <input value="<?php echo $donnes['GSMNumber'];?>" type="text" class="form-control bfh-phone" name="InputMob" id="InputMob">
+                                </div>
+                            </div>
                         </div>
-                    </form>
-
-                    <!-- Registration form - END -->
-
                 </div>
-                <!-- /.row -->
+                </form>
+
+                <!-- Registration form - END -->
+
             </div>
-            <!-- /#page-wrapper -->
+            <!-- /.row -->
+    </div>
+    <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
