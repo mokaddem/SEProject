@@ -55,7 +55,7 @@
                 
                 <div class="row">
             <?php if (array_key_exists("error", $_GET)) {?>
-                    <div class="col-lg-4 alert alert-danger">
+                    <div class="col-lg-5 alert alert-danger">
                     <?php if ($_GET["error"] == "no_selection") {?>
                     Veuillez selectionner un jour
                 <?php } elseif ($_GET["error"] == "no_sam") { ?>

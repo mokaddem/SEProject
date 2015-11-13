@@ -223,7 +223,7 @@
         if ($i > 1 and $i <= 5){
             $Poule_ID = insertSam($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $i-1);
         }
-        header("Location: ../group.php?jour=sam&generate=true&poule=".$Poule_ID);
+        header("Location: ../group.php?jour=sam&generate=true&poule=".$_GET['InputCat']);
         return;
     } 
     elseif (array_key_exists("InputCat", $_GET) && $_GET['jour']=="dim"){
@@ -269,7 +269,7 @@
         if ($i > 1 and $i <= 6){
             $Poule_ID = insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $i-1);
         }
-        header("Location: ../group.php?jour=dim&generate=true&poule=".$Poule_ID);
+        header("Location: ../group.php?jour=dim&generate=true&poule=".$_GET['InputCat']);
         return;
     }
 
