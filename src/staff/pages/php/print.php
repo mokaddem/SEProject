@@ -127,12 +127,14 @@ $gsm4 = $t2p2['GSMNumber'];
 
 // Set some content to print
 $html = <<<EOD
-<h1>Match $id</h1>
-<p><b>Equipe 1</b> : $t1final
-<b>Equipe 2</b> : $t2final</p>
-<p><b>Terrain</b> : $terfinal</p>
-<p><b>Date du match</b> : $hour</p>
-<p><b>Heure du match</b> : $date</p>
+<h1 align="center">Match $id</h1>
+<hr/>
+<p></p>
+<p><b>Equipe 1:</b> $t1final</p>
+<p><b>Equipe 2:</b> $t2final</p>
+<p><b>Terrain:</b> $terfinal</p>
+<p><b>Date du match:</b> $hour</p>
+<p><b>Heure du match:</b> $date</p>
 <hr/>
 <p></p>
 <hr/>
@@ -140,23 +142,24 @@ $html = <<<EOD
 <p><b>Nom: </b>$nom1</p>
 <p><b>Prénom: </b>$prenom1</p>
 <p><b>E-mail: </b>$mail1</p>
-<p><b>Adresse: </b>$number1 $rue1, $zipcode1 $ville1</p>
+<p><b>Adresse: </b>$number1 $rue1 - $zipcode1 $ville1</p>
 <p><b>PhoneNumber: </b>$num1</p>
 <p><b>GSMNumber: </b>$gsm1</p>
 <p></p>
 <p><b>Nom: </b>$nom2</p>
 <p><b>Prénom: </b>$prenom2</p>
 <p><b>E-mail: </b>$mail2</p>
-<p><b>Adresse: </b>$number2 $rue2, $zipcode2 $ville2</p>
+<p><b>Adresse: </b>$number2 $rue2 - $zipcode2 $ville2</p>
 <p><b>PhoneNumber: </b>$num2</p>
 <p><b>GSMNumber: </b>$gsm2</p>
 
 <hr/>
-<p></p>
+<p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+
 <p><b>Nom: </b>$nom3</p>
 <p><b>Prénom: </b>$prenom3</p>
 <p><b>E-mail: </b>$mail3</p>
-<p><b>Adresse: </b>$number3 $rue3, $zipcode3 $ville3</p>
+<p><b>Adresse: </b>$number3 $rue3 - $zipcode3 $ville3</p>
 <p><b>PhoneNumber: </b>$num3</p>
 <p><b>GSMNumber: </b>$gsm3</p>
 
@@ -164,9 +167,11 @@ $html = <<<EOD
 <p><b>Nom: </b>$nom4</p>
 <p><b>Prénom: </b>$prenom4</p>
 <p><b>E-mail: </b>$mail4</p>
-<p><b>Adresse: </b>$number4 $rue4, $zipcode4 $ville4</p>
+<p><b>Adresse: </b>$number4 $rue4 - $zipcode4 $ville4</p>
 <p><b>PhoneNumber: </b>$num4</p>
 <p><b>GSMNumber: </b>$gsm4</p>
+<hr/>
+<p></p>
 
 EOD;
 
