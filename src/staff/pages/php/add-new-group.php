@@ -117,7 +117,7 @@
         $datetime->format('Y-m-d');
 
         $ID         = '';
-        $date       = $datetime;
+        $date       = date("Y-m-d");
         $hour       = date("H:i");
         $score1     = NULL;
         $score2     = NULL;
