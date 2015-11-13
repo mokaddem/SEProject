@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `GroupSaturday` (
 -- Contenu de la table `GroupSaturday`
 --
 
-INSERT INTO `groupsaturday` (`ID`, `ID_terrain`, `ID_t1`, `ID_t2`, `ID_t3`, `ID_t4`, `ID_t5`, `ID_vic1`, `ID_vic2`) VALUES
+INSERT INTO `GroupSaturday` (`ID`, `ID_terrain`, `ID_t1`, `ID_t2`, `ID_t3`, `ID_t4`, `ID_t5`, `ID_vic1`, `ID_vic2`) VALUES
 (28, 13, 44, 45, 46, 50, 54, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -247,7 +247,7 @@ CREATE TABLE IF NOT EXISTS `Match` (
 INSERT INTO `Match` (`ID`, `date`, `hour`, `ID_Equipe1`, `ID_Equipe2`, `score1`, `score2`, `ID_Terrain`, `Poule_ID`) VALUES
 (16, '2015-11-11', '16:15', 43, 45, 0, 0, 13, NULL),
 (17, '2015-11-11', '18:00', 45, 44, 0, 0, 14, NULL),
-(18, '2015-11-15', '20:45', 46, 45, 0, 0, 15, NULL),
+(18, '2015-11-15', '20:45', 46, 45, 0, 0, 15, NULL);
 -- --------------------------------------------------------
 
 --
