@@ -85,7 +85,7 @@
             <!-- /.arrows -->
 
             <?php
-            if ($_GET["action"] == "register") { ?>
+            if (array_key_exists("action", $_GET) && $_GET["action"] == "register") { ?>
 
                 <!-- Modal -->
                 <div id="myModal" class="modal fade" role="dialog">

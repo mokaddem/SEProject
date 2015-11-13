@@ -6,7 +6,7 @@ require_once('../../tcpdf/config/tcpdf_config.php');
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 // set document information
-$pdf->SetTitle('Match');
+$pdf->SetTitle('Charles de Lorraine - Match');
 
 // set default header data
 //$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 001', PDF_HEADER_STRING);
@@ -127,7 +127,12 @@ $gsm4 = $t2p2['GSMNumber'];
 
 // Set some content to print
 $html = <<<EOD
-<h1 align="center">Match $id</h1>
+<h3 align="center">Tournoi</h3>
+<h1 align="center">Charles de Lorraine</h1>
+<p></p>
+<hr/>
+<p></p>
+<h2 align="center">Match $id</h2>
 <hr/>
 <p></p>
 <p><b>Equipe 1:</b> $t1final</p>
@@ -154,7 +159,7 @@ $html = <<<EOD
 <p><b>GSMNumber: </b>$gsm2</p>
 
 <hr/>
-<p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+<p></p><p></p><p></p><p></p><p></p>
 
 <p><b>Nom: </b>$nom3</p>
 <p><b>Prénom: </b>$prenom3</p>
