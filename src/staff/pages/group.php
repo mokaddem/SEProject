@@ -54,6 +54,21 @@
                 </div>
 
                 <div class="row">
+                    <?php if (array_key_exists("submitting", $_GET)) {?>
+                        <?php if ($_GET["submitting"] == "correct") {?>
+                            <div class="col-lg-8 alert alert-success text-center">
+                                <b>Opération réussite !</b>
+                                Succès lors de l'enregistrement des groupes.
+                            </div>
+                        <?php } else { ?>
+                            <div class="col-lg-8 alert alert-danger text-center">
+                                <b>Echec de l'opération !</b>
+                                Certains groupes utilisent le même terrain.
+                            </div>
+                    <?php } } ?>
+                </div>
+
+                <div class="row">
                     <?php if (array_key_exists("generate", $_GET)) {?>
                         <div class="col-lg-8 alert alert-success">
                             <b>Opération réussite !</b>
@@ -92,6 +107,19 @@
                         </div>
                     </form>
                 </div>
+
+                <form action="./php/group-submit.php?jour=<?=$_GET['jour']?>" method="post">
+                    <div class="row col-lg-12">
+                        <!-- Ce bouton est là pour procéder à la vérification que tous les terrains sont différents.
+                             Il faut voir comment faire pour éviter qu'il n'interagisse comme il le fait actuellement avec "Echanger"
+                             Voir la fonction utilisée dans php/group-submit.php -->
+                        <input type="submit" class="btn btn-primary pull-right" value="Enregistrer" />
+                    </div>
+                    <div class="row">
+                        <br/>
+                        <br/>
+                    </div>
+
                 <div class="row">
                     <div class="col-lg-4">
                         <select id="listNote" class="form-select" multiple="">
@@ -158,9 +186,9 @@
                                                             $terrains = $db->query('SELECT * FROM Terrain');
                                                             while ($terrain = $terrains->fetch_array())
                                                             { ?>
-                                                        <option value=<?=$terrain[ 'ID']?>>
-                                                            <?=$terrain['ID']?> : <?=$terrain['Note']?>, <?=$terrain['adresse']?>
-                                                        </option>
+                                                                <option value=<?=$terrain[ 'ID']?>>
+                                                                    <?=$terrain['ID']?> : <?=$terrain['Note']?>, <?=$terrain['adresse']?>
+                                                                </option>
                                                         <?php }
                                                         ?>
                                                 </select>
@@ -220,7 +248,7 @@
 
                     </div>
                     <!-- Registration form - END -->
-
+                </form>
                 </div>
                 <!-- /.row -->
             </div>
