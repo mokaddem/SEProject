@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="utf-8" />
@@ -14,6 +14,16 @@
 </head>
 
 <body>
+
+
+    <?php
+    include_once('../../src/staff/pages/php/BDD.php');
+
+    $db = new BDD();
+
+    $tmp = $db->query('SELECT * FROM Extras');
+
+    ?>
 
     <div class="container">
 
@@ -130,13 +140,23 @@
                                         <input id="InputPartNo1" type="radio" name="InputPartNo1">Non
                                     </label>
                                 </div>
-                                <!-- <div class="form-group"> -->
-                                <!--<label for="InputNamePartner">Enter Name Partner</label>-->
-                                <!-- <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                                        <input type="text" class="form-control" name="InputNamePartner" id="InputNamePartner" placeholder="Nom du partenaire" required>
-                                    </div> -->
-                                <!-- </div>                 -->
+
+                                <div class="form-group">
+                                    <!--<label for="sel1">Titre:</label>-->
+                                    <label class="checkbox">Options supplémentaires</label>
+                                    <input name="extraNone1" id="'extraNone1" type="checkbox"> <strong>Aucune options supplémentaires</strong></input>
+                                    <br/>
+                                    <?php
+                                    $i=1;
+                                    while ($extra = $tmp->fetch_array()){?>
+                                        <div class="form-group" id="extra1_<?php echo $i;?>" name="extra1_<?php echo $i;?>">
+                                            <input type="checkbox"> <strong><?php echo $extra['Name'];?></strong>: </input>
+                                            <span><?php echo $extra['Description']?></span>
+                                            <br/>
+                                        </div>
+                                        <?php $i=$i+1;} $extraSize=$i; ?>
+                                </div>
+
                                 <div class="form-group">
                                     <!--<label for="InputCredit">Paiement</label>-->
                                     <label for="InputPhone">Montant à payer</label>
@@ -262,6 +282,24 @@
                                         <input id="InputPartNo2" name="InputPartNo2" type="radio" name="optradio">Non
                                     </label>
                                 </div>
+
+                                <div class="form-group">
+                                    <!--<label for="sel1">Titre:</label>-->
+                                    <label class="checkbox">Options supplémentaires</label>
+                                        <input name="extraNone2" id="'extraNone2" type="checkbox"> <strong>Aucune options supplémentaires</strong></input>
+                                        <br/>
+                                        <?php
+                                            $tmp = $db->query('SELECT * FROM Extras');
+                                            $i=1;
+                                            while ($extra = $tmp->fetch_array()){?>
+                                            <div class="form-group" id="extra2_<?php echo $i;?>" name="extra2_<?php echo $i;?>">
+                                                <input type="checkbox"> <strong><?php echo $extra['Name'];?></strong>: </input>
+                                                <span><?php echo $extra['Description']?></span>
+                                                <br/>
+                                            </div>
+                                            <?php $i=$i+1;} ?>
+                                </div>
+
                                 <div class="form-group">
                                     <label for="InputPhone">Montant à payer</label>
                                     <!--<label for="InputCredit">Paiement</label>-->
@@ -304,5 +342,30 @@
 <!-- SCRIPTS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+
+<script type="text/javascript">
+    function hideExtras(player){
+        var extraName= "extraNone"+player.toString();
+        if(document.getElementsByName(extraName)[0].checked == true){
+            for (i = 1; i < <?php echo $extraSize; ?>; i++) {
+                extraName= "#extra"+player+"_" +i.toString();
+                setTimeout(function() {  $(extraName).fadeOut('fast');},10);
+            }
+        }
+        else{
+            for (i = 1; i < <?php echo $extraSize; ?>; i++) {
+                extraName= "#extra"+player+"_" +i.toString();
+                setTimeout(function() {  $(extraName).fadeIn('fast');}, 10);
+            }
+        }
+    }
+</script>
+
+<script type="text/javascript">  window.onload = function() {
+        document.getElementsByName("extraNone2")[0].addEventListener("click", function(){ hideExtras("2"); });
+        document.getElementsByName("extraNone1")[0].addEventListener("click", function(){ hideExtras("1"); });
+    };
+</script>
+
 
 </html>
