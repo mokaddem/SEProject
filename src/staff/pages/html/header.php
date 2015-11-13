@@ -118,11 +118,11 @@
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-sitemap fa-fw"></i> Tournoi<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
+                        <a href=""><i class="fa fa-sitemap fa-fw"></i> Tournoi</a>
+                    </li>
+                    <li>
                                 <a href="#">Poules<span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level  colorBlue">
+                                <ul class="nav nav-third-level colorBlue">
                                     <li>
                                         <a href="group-generate.php">Génération</a>
                                     </li>
@@ -139,7 +139,7 @@
                             </li>
                             <li>
                                 <a href="#">Knock-Off<span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
+                                <ul class="nav nav-third-level colorBlue">
                                     <li>
                                         <a href="knock-off-generate.php">Création</a>
                                     </li>
@@ -157,7 +157,6 @@
                             <li class="li-danger">
                                 <a href="reset.php">Réinitialiser</a>
                             </li>
-                        </ul>
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
