@@ -18,7 +18,11 @@
     <div class="container">
 
         <div class="page-header">
-            <h1>Formulaire d'inscription</h1>
+            <h1>
+                Formulaire d'inscription
+                <a class="btn btn-default pull-right" href="../index.php">Retour</a>
+            </h1>
+            
         </div>
 
         <!-- Registration form - START -->
@@ -118,13 +122,6 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="sel2">Classement </label>
-                                    <select class="form-control" id="sel2">
-                                        <option>NC</option>
-                                        <option>Trofor</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
                                     <label for="InputPhone">Déjà participé au tournoi?</label>
                                     <label class="radio-inline">
                                         <input id="InputPartYes1" type="radio" name="InputPartYes1">Oui
@@ -159,8 +156,9 @@
                                 <div class="form-group">
                                     <!--<label for="InputMessage">Message</label>-->
                                     <div class="input-group">
-                                        <textarea name="InputMessage" id="InputMessage" name="InputMessage" class="form-control" rows="5" required></textarea>
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
+                                        <span class="input-group-addon"><span class="fa fa-comment"></span></span>
+
+                                        <textarea name="InputMessage" id="InputMessage" name="InputMessage" class="form-control" rows="5"></textarea>
                                     </div>
                                 </div>
 
@@ -256,13 +254,6 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="sel4">Classement </label>
-                                    <select class="form-control" id="sel4">
-                                        <option>NC</option>
-                                        <option>Trofor</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
                                     <label for="InputPhone">Déjà participé au tournoi?</label>
                                     <label class="radio-inline">
                                         <input id="InputPartYes2" name="InputPartYes2" type="radio" name="optradio">Oui
@@ -290,8 +281,9 @@
                                 <div class="form-group">
                                     <!--<label for="InputMessage">Message</label>-->
                                     <div class="input-group">
-                                        <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" required></textarea>
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
+                                        <span class="input-group-addon"><span class="fa fa-comment"></span></span>
+
+                                        <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5"></textarea>
                                     </div>
                                 </div>
                             </div>
