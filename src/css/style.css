@@ -31,9 +31,9 @@
     font-weight: 300;
 }
 
-* {
-    position: relative;
-}
+/** {*/
+    /*position: relative;*/
+/*}*/
 
 .breaker {
     clear: both;
