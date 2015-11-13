@@ -177,7 +177,7 @@
                                 <label>Préférence</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-comment"></i></span>
-                                    <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5"></textarea>
+                                    <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5"><?php echo $donnes["Note"]; ?></textarea>
                                 </div>
                             </div>
 
@@ -222,7 +222,7 @@
             $('#InputEmailFirst').val('<?php echo $donnes["Mail"]; ?>');
             $('#InputFixe').val('<?php echo $donnes["PhoneNumber"]; ?>');
             $('#InputMob').val('<?php echo $donnes["GSMNumber"]; ?>');
-            $('#InputMessage').val('<?php echo $donnes["Note"]; ?>');
+  //          $('#InputMessage').val('<?php echo $donnes["Note"]; ?>');
         });
     </script>
     <?php $reponse->free(); ?>
