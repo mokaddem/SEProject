@@ -12,7 +12,6 @@ if (array_key_exists("id", $_GET)) {
     $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne2 . "\"")->fetch_array();
 }
 ?>
-<div class="col-lg-8">
 
 <div class="panel panel-default">
 <div class="panel-heading">
@@ -21,6 +20,5 @@ if (array_key_exists("id", $_GET)) {
 <div class="panel-body">
     <p><?=$player['Note']?></p>
     <p><?=$player2['Note']?></p>
-</div>
 </div>
 </div>

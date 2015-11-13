@@ -71,6 +71,12 @@
                         <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="group.php?jour=sam">Samedi</a></li>
                         <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="group.php?jour=dim">Dimanche</a></li>
                     </ul>
+                    <ul class="nav nav-tabs nav-justified">
+                        <?php $reponse = $db->query('SELECT * FROM Categorie');
+                            while ($donnes = $reponse->fetch_array()) { ?>
+                                <li <?php if ($_GET['poule']==$donnes['ID'] ) echo 'class="active" ';?>><a href="group.php?jour=<?=$_GET['jour']?>&poule=<?=$donnes['ID']?>"><?=$donnes['Designation']?></a></li>
+                            <?php }?>
+                    </ul>
                 </div>
                 <div class="row">
                     <br/>
@@ -79,12 +85,9 @@
                     <form class="form-horizontal" action="./php/group-switch.php?jour=<?=$_GET['jour']?>" method="post">
                         <div class="col-lg-2">
                             <input type="text" class="form-control" id="idteam1" name="idteam1" placeholder="ID Equipe 1" required>
-                        </div>
-                        <div class="col-lg-2">
-
                             <input type="text" class="form-control" id="idteam2" name="idteam2" placeholder="ID Equipe 2" required>
                         </div>
-                        <div class="col-lg-8">
+                        <div class="col-lg-2">
                             <input type="submit" class="btn btn-primary pull-left" value="Echanger" />
                         </div>
                     </form>
@@ -98,16 +101,16 @@
                     <div class="col-lg-4">
                         <select id="listNote" class="form-select" multiple="">
                             <?php
-                                            $listTeams = $db->query("SELECT * FROM Team");
-                                        foreach ($listTeams as $team) {
-                                            $IDPersonne = $team['ID_Player1'];
-                                            $player = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne."\"")->fetch_array();
+                                $listTeams = $db->query("SELECT * FROM Team");
+                            foreach ($listTeams as $team) {
+                                $IDPersonne = $team['ID_Player1'];
+                                $player = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne."\"")->fetch_array();
 
-                                            $IDPersonne2 = $team['ID_Player2'];
-                                            $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
+                                $IDPersonne2 = $team['ID_Player2'];
+                                $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
 
-                                            if ($player['Note'] || $player2['Note']) {
-                                                ?>
+                                if ($player['Note'] || $player2['Note']) {
+                            ?>
                                 <option data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=<?=$team['ID']?>">
                                     <?=$player['LastName']?>,
                                         <?=$player2['LastName']?>
@@ -123,16 +126,15 @@
 
                         </span>
                     </div>
-                    <div class="text-center">
+                    <div class="col-lg-8 text-center">
                         <?php
                             $db = new BDD();
                             if ($_GET['jour'] == "sam"){
-                                $groups = $db->query('SELECT * FROM GroupSaturday');
+                                $groups = $db->query('SELECT * FROM GroupSaturday, Team WHERE GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['poule'].'');
                                 $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSaturday')->fetch_array();
                                 extract($row);
                             } else{
-                                $groups = $db->query('SELECT * FROM GroupSunday');
-                                $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday')->fetch_array();
+                                $groups = $db->query('SELECT * FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['poule'].'');                                $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday')->fetch_array();
                                 extract($row);
                             }
                             $lineNum = 2;
@@ -143,15 +145,14 @@
                                     <!--</div>
                                     </div>
                                     <div class="row text-center">-->
-                                    <br/>
                                     <?php $j = 0; ?>
-                                    <div class="col-lg-4">
-                                    </div>
+<!--                                    <div class="col-lg-4">-->
+<!--                                    </div>-->
                                 <?php }
                                 //for ($j = 1; $j <= 1; $j++) { // Boucle pour faire plusieurs row... Useless?
                                     $group = $groups->fetch_array();
                                     if ($group != NULL){ ?>
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-4">
                                             <label><span class="fa fa-users"></span> Groupe
                                                 <?= $k?>
                                             </label>
@@ -181,8 +182,8 @@
                                             ?>
                                             <label><span class="fa fa-users"></span> Equipes </label>
                                             <?php
-                                            for ($i = 0; $i <= $teamNum; $i++) {
-                                                if ($i>0){
+                                            for ($i = 1; $i <= $teamNum; $i++) {
+
                                                     $teamID = $group["ID_t".$i];
                                                     $team = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"")->fetch_array();
                                                     $IDPersonne = $team['ID_Player1'];
@@ -213,7 +214,7 @@
                                                 </div>
 
                                                 <?php
-                                                        }
+
                                             }?>
 
                                         </div>
@@ -228,23 +229,6 @@
 
                 </div>
                 <!-- /.row -->
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
             </div>
             <!-- /#page-wrapper -->
 
