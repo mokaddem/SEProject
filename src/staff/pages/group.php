@@ -68,8 +68,8 @@
                 <!-- Registration form - START -->
                 <div class="row">
                     <ul class="nav nav-tabs">
-                        <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="group.php?jour=sam">Samedi</a></li>
-                        <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="group.php?jour=dim">Dimanche</a></li>
+                        <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="group.php?jour=sam&poule=1">Samedi</a></li>
+                        <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="group.php?jour=dim&poule=1">Dimanche</a></li>
                     </ul>
                     <ul class="nav nav-tabs nav-justified">
                         <?php $reponse = $db->query('SELECT * FROM Categorie');
@@ -92,16 +92,11 @@
                         </div>
                     </form>
                 </div>
-
-                <div class="row">
-                    <br/>
-                    <br/>
-                </div>
                 <div class="row">
                     <div class="col-lg-4">
                         <select id="listNote" class="form-select" multiple="">
                             <?php
-                                $listTeams = $db->query("SELECT * FROM Team");
+                                $listTeams = $db->query('SELECT * FROM Team WHERE ID_Cat='.$_GET['poule'].'');
                             foreach ($listTeams as $team) {
                                 $IDPersonne = $team['ID_Player1'];
                                 $player = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne."\"")->fetch_array();
@@ -193,7 +188,6 @@
                                                     $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
                                                     ?>
                                                 <div class="form-group text-center">
-                                                    <label> </label>
                                                     <?php $color = "default";
                                                             if ($player['Note'] || $player2['Note']) {
                                                                 $color = "primary";
