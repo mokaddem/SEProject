@@ -9,7 +9,7 @@
     $database_db = 'SEProjectC';
 	$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
 
-    function insertSam($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5){
+    function insertSam($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $groupSize){
         $reponse = $db->query("SELECT * FROM Terrain");
         $donnees = $reponse->fetch_array();
 
@@ -44,8 +44,8 @@
 
         $ID_Equipes = array($ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5);
 
-        for($i=0; $i<5; $i++){
-            for($j=1+$i; $j<5; $j++){
+        for($i=0; $i<$groupSize; $i++){
+            for($j=1+$i; $j<$groupSize; $j++){
                 $ID_Equipe1 = $ID_Equipes[$i];
                 $ID_Equipe2 = $ID_Equipes[$j];
                 //error_log("Added: ".$ID_Equipe1." + ".$ID_Equipe2." + ".$date." + ".$hour." + ".$score1." + ".$score2." + ".$ID_Terrain." + ".$Poule_ID);
@@ -92,7 +92,7 @@
         sendMail($to, $subject, $message);*/
     }
 
-    function insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6){
+    function insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $groupSize){
         $req = $db->prepare("INSERT INTO GroupSunday(ID, ID_terrain, ID_t1, ID_t2, ID_t3, ID_t4, ID_t5, ID_t6, ID_vic1, ID_vic2) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         echo "Prepare";
         $ID	 	= '';
@@ -126,8 +126,8 @@
 
         $ID_Equipes = array($ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6);
 
-        for($i=0; $i<6; $i++){
-            for($j=1; $j<6-$i; $j++){
+        for($i=0; $i<$groupSize; $i++){
+            for($j=1; $j<$groupSize-$i; $j++){
                 $ID_Equipe1 = $ID_Equipes[$i];
                 $ID_Equipe2 = $ID_Equipes[$j];
 
@@ -185,18 +185,23 @@
 	sendMail($to, $subject, $message);*/
     }
 
-    if ($_GET['jour']=="sam"){
+    if (array_key_exists("InputCat", $_GET) && $_GET['jour']=="sam"){
+
+        $getPoules = $db->query("SELECT ID_t1 FROM `GroupSaturday`");
+        foreach ($getPoules as $poule) {
+            $getTeams = $db->query('SELECT ID_Cat FROM `Team` WHERE Team.ID ='.$poule['ID_t1'].'');
+            $bool = $getTeams->fetch_array();
+            var_dump($bool['ID_Cat']);
+            if ($bool['ID_Cat'] == $_GET['InputCat']) {
+                header("Location: ../group-generate.php?error=no_sam");
+                return;
+            }
+
+        }
 
         $reponse = $db->query("SELECT * FROM `GroupSaturday`");
 
-        $bool = $reponse->fetch_array();
-        if ($bool != NULL) {
-//            var_dump($bool);
-            header("Location: ../group-generate.php?error=no_sam");
-            return;
-        }
-
-        $reponseTeams = $db->query("SELECT * FROM Team WHERE ID_Cat=1");
+        $reponseTeams = $db->query('SELECT * FROM Team WHERE ID_Cat='.$_GET['InputCat'].'');
         $i=1;
         $ID_t1 = NULL; $ID_t2 = NULL; $ID_t3 = NULL; $ID_t4 = NULL; $ID_t5 = NULL;
         foreach ($reponseTeams as $team){
@@ -210,29 +215,36 @@
                 $ID_t4 = $team['ID'];
             } if($i == 5){
                 $ID_t5 = $team['ID'];
-                insertSam($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5);
+                insertSam($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $i);
                 $i = 0;
                 $ID_t1 = NULL; $ID_t2 = NULL; $ID_t3 = NULL; $ID_t4 = NULL; $ID_t5 = NULL;
             }
             $i++;
         }
         if ($i > 1 and $i <= 5){
-            insertSam($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5);
+            insertSam($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $i-1);
         }
         header("Location: ../group.php?jour=sam&generate=true");
         return;
     } 
-    elseif ($_GET['jour']=="dim"){
-        
-        $reponse = $db->query("SELECT * FROM `GroupSunday`");
+    elseif (array_key_exists("InputCat", $_GET) && $_GET['jour']=="dim"){
 
-        $bool = $reponse->fetch_array();
-        if ($bool != NULL) {
-            header("Location: ../group-generate.php?error=no_dim");
-            return;
+        $getPoules = $db->query("SELECT ID_t1 FROM `GroupSunday`");
+        foreach ($getPoules as $poule) {
+            $getTeams = $db->query('SELECT ID_Cat FROM `Team` WHERE Team.ID ='.$poule['ID_t1'].'');
+            $bool = $getTeams->fetch_array();
+            var_dump($bool['ID_Cat']);
+            if ($bool['ID_Cat'] == $_GET['InputCat']) {
+                header("Location: ../group-generate.php?error=no_dim");
+                return;
+            }
+
         }
 
-        $reponseTeams = $db->query("SELECT * FROM Team WHERE ID_Cat=1");
+
+        $reponse = $db->query("SELECT * FROM `GroupSunday`");
+
+        $reponseTeams = $db->query('SELECT * FROM Team WHERE ID_Cat='.$_GET['InputCat'].'');
         $i=1;
         $ID_t1 = NULL; $ID_t2 = NULL; $ID_t3 = NULL; $ID_t4 = NULL; $ID_t5 = NULL; $ID_t6 = NULL;
         foreach ($reponseTeams as $team){
@@ -248,14 +260,14 @@
                 $ID_t5 = $team['ID'];
             } if($i == 6){
                 $ID_t6 = $team['ID'];
-                insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6);
+                insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $i);
                 $i = 0;
                 $ID_t1 = NULL; $ID_t2 = NULL; $ID_t3 = NULL; $ID_t4 = NULL; $ID_t5 = NULL;
             }
             $i++;
         }
         if ($i > 1 and $i <= 6){
-            insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6);
+            insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $i-1);
         }
         header("Location: ../group.php?jour=dim&generate=true");
         return;

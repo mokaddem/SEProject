@@ -80,6 +80,19 @@
                                 <input type="radio" name="jour" value="sam">
                                 <label for="dim">Dimanche</label>
                                 <input type="radio" name="jour" value="dim">
+
+                                <div class="form-group">
+                                    <select class="form-control" id="InputCat" name="InputCat">
+                                        <?php
+                                        $db = new BDD();
+                                        $reponse = $db->query('SELECT * FROM Categorie');
+                                        while ($donnes = $reponse->fetch_array())
+                                        {
+                                            echo "<option value=".$donnes['ID'].">".$donnes['Designation']." ".$donnes['Year']."</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
                                 <input type="submit" name="submit" id="submit" value="Générer" class="btn btn-info pull-right">
                             </fieldset>
                             <hr>
