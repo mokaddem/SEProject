@@ -20,7 +20,7 @@ class BDD extends mysqli
 		if (!self::$db) {
 			die("Database connection failed miserably: " . mysqli_error());
 		}
-		self::$db->query("SET character_set_results=utf8");	 
+		self::$db->query("SET character_set_results=utf8");
 	}
 
 	function query($sql)
