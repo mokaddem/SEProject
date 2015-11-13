@@ -21,13 +21,13 @@
 	$ID	 	= '';
 	$ID_player1	= $_GET['sel1'];
 	$ID_player2	= $_GET['sel2'];
-	$ID_Cat		= '1';
+	$ID_Cat		= $_GET['InputCat'];
 	$NbmatchWin	= '0';
 
 	if ($ID_player1 == $ID_player2) {
 		header("Location: ../team.php?error=player");
 		return;
-	}
+	} 
 
 	$req->bind_param("iiiii", $ID, $ID_player1, $ID_player2, $ID_Cat, $NbmatchWin);
 
