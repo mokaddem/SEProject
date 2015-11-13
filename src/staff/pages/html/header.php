@@ -147,7 +147,7 @@
                                         <a href="knock-off.php?jour=sam">Modification</a>
                                     </li>
                                     <li>
-                                        <a href="input-knock-score.php">Saisir score</a>
+                                        <a href="input-knock-score.php?jour=sam">Saisir score</a>
                                     </li>
                                     <li>
                                         <a href="knock-off-results.php?jour=sam">Résultats</a>

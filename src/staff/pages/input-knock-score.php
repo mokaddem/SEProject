@@ -44,6 +44,7 @@
 
         <?php            
             include("./html/header.php");
+            include_once('php/BDD.php');
         ?>
 
             <div id="page-wrapper">
@@ -55,11 +56,46 @@
                 </div>
                 <!-- /.row -->
 
+                <div class="row">
+                    <ul class="nav nav-tabs">
+                        <li <?php if ($_GET['jour']=="sam" ) echo 'class="active" ' ;?>><a href="input-knock-score.php?jour=sam">Samedi</a></li>
+                        <li <?php if ($_GET['jour']=="dim" ) echo 'class="active" ' ;?>><a href="input-knock-score.php?jour=dim">Dimanche</a></li>
+                    </ul>
+                </div>
+
                 <div class="form-group">
                     <label for="sel1"><span class="fa fa-dot-circle-o"></span> Choix du match</label>
-                    <select class="form-control" id="sel1">
-                        <option>[liste des matchs du knock-off]</option>
-                        <!-- <option>propriétaire</option> -->
+                    <select class="form-control">
+                        <?php
+                        $db = new BDD();
+                        echo $_GET['jour'];
+                        if ($_GET['jour'] == "sam"){
+                            $knockoff_all = $db->query('SELECT * FROM KnockoffSaturday ORDER BY `Position` ASC');
+                            $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSaturday')->fetch_array();
+                            extract($row);
+                        } else{
+                            $knockoff_all = $db->query('SELECT * FROM KnockoffSunday ORDER BY `Position` ASC');
+                            $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday')->fetch_array();
+                            extract($row);
+                        }
+                        for ($i = 1; $i <= $numberOfGroups; $i++) {
+                            $knockoff = $knockoff_all->fetch_array();
+                            $match = $db->query("SELECT * FROM `Match` WHERE ID =".$knockoff['ID_Match'])->fetch_array();
+                            ?> <option value=<?=$knockoff['ID_Match']?>>
+                                    <?=$knockoff['ID_Match']?> : <?php
+                            for ($j = 1; $j <= 2; $j++){
+                                $teamID = $match["ID_Equipe".$j];
+                                $team = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"")->fetch_array();
+                                $IDPersonne1 = $team['ID_Player1'];
+                                $player1 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne1."\"")->fetch_array();
+
+                                $IDPersonne2 = $team['ID_Player2'];
+                                $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
+                                ?>
+                                <?=$player1['FirstName']?> <?=$player1['LastName']?> & <?=$player1['FirstName']?> <?=$player2['LastName']?>
+                                <?php if ($j==1){ ?> VS <?php }
+                            }?> </option> <?php }
+                        ?>
                     </select>
                 </div>
 

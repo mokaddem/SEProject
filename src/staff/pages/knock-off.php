@@ -96,7 +96,7 @@
                                     $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSaturday')->fetch_array();
                                     extract($row);
                                 } else{
-                                    $knockoff_all = $db->query('SELECT * FROM KnockoffSaturday ORDER BY `Position` ASC');
+                                    $knockoff_all = $db->query('SELECT * FROM KnockoffSunday ORDER BY `Position` ASC');
                                     $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday')->fetch_array();
                                     extract($row);
                                 }

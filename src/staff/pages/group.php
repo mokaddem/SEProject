@@ -183,9 +183,9 @@
                                                             $terrains = $db->query('SELECT * FROM Terrain');
                                                             while ($terrain = $terrains->fetch_array())
                                                             { ?>
-                                                        <option value=<?=$terrain[ 'ID']?>>
-                                                            <?=$terrain['ID']?> : <?=$terrain['Note']?>, <?=$terrain['adresse']?>
-                                                        </option>
+                                                                <option value=<?=$terrain[ 'ID']?>>
+                                                                    <?=$terrain['ID']?> : <?=$terrain['Note']?>, <?=$terrain['adresse']?>
+                                                                </option>
                                                         <?php }
                                                         ?>
                                                 </select>
