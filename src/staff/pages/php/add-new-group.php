@@ -185,17 +185,23 @@
 	sendMail($to, $subject, $message);*/
     }
 
-    if ($_GET['jour']=="sam"){
+    if (array_key_exists("InputCat", $_GET) && $_GET['jour']=="sam"){
+
+        $getPoules = $db->query("SELECT ID_t1 FROM `GroupSaturday`");
+        foreach ($getPoules as $poule) {
+            $getTeams = $db->query('SELECT ID_Cat FROM `Team` WHERE Team.ID ='.$poule['ID_t1'].'');
+            $bool = $getTeams->fetch_array();
+            var_dump($bool['ID_Cat']);
+            if ($bool['ID_Cat'] == $_GET['InputCat']) {
+                header("Location: ../group-generate.php?error=no_sam");
+                return;
+            }
+
+        }
 
         $reponse = $db->query("SELECT * FROM `GroupSaturday`");
 
-        $bool = $reponse->fetch_array();
-        if ($bool != NULL) {
-            header("Location: ../group-generate.php?error=no_sam");
-            return;
-        }
-
-        $reponseTeams = $db->query("SELECT * FROM Team WHERE ID_Cat=1");
+        $reponseTeams = $db->query('SELECT * FROM Team WHERE ID_Cat='.$_GET['InputCat'].'');
         $i=1;
         $ID_t1 = NULL; $ID_t2 = NULL; $ID_t3 = NULL; $ID_t4 = NULL; $ID_t5 = NULL;
         foreach ($reponseTeams as $team){
@@ -221,17 +227,24 @@
         header("Location: ../group.php?jour=sam&generate=true");
         return;
     } 
-    elseif ($_GET['jour']=="dim"){
-        
-        $reponse = $db->query("SELECT * FROM `GroupSunday`");
+    elseif (array_key_exists("InputCat", $_GET) && $_GET['jour']=="dim"){
 
-        $bool = $reponse->fetch_array();
-        if ($bool != NULL) {
-            header("Location: ../group-generate.php?error=no_dim");
-            return;
+        $getPoules = $db->query("SELECT ID_t1 FROM `GroupSunday`");
+        foreach ($getPoules as $poule) {
+            $getTeams = $db->query('SELECT ID_Cat FROM `Team` WHERE Team.ID ='.$poule['ID_t1'].'');
+            $bool = $getTeams->fetch_array();
+            var_dump($bool['ID_Cat']);
+            if ($bool['ID_Cat'] == $_GET['InputCat']) {
+                header("Location: ../group-generate.php?error=no_dim");
+                return;
+            }
+
         }
 
-        $reponseTeams = $db->query("SELECT * FROM Team WHERE ID_Cat=1");
+
+        $reponse = $db->query("SELECT * FROM `GroupSunday`");
+
+        $reponseTeams = $db->query('SELECT * FROM Team WHERE ID_Cat='.$_GET['InputCat'].'');
         $i=1;
         $ID_t1 = NULL; $ID_t2 = NULL; $ID_t3 = NULL; $ID_t4 = NULL; $ID_t5 = NULL; $ID_t6 = NULL;
         foreach ($reponseTeams as $team){
