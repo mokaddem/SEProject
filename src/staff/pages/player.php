@@ -144,13 +144,6 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="sel2">Classement </label>
-                                    <select class="form-control" id="sel2">
-                                        <option>NC</option>
-                                        <option>Trofor</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
                                     <label for="InputPhone">Déjà participé au tournoi?</label>
                                     <label class="radio-inline">
                                         <input id="InputPartYes1" type="radio" name="InputPartYes1">Oui
@@ -187,8 +180,8 @@
 
                                     <!--<label for="InputMessage">Message</label>-->
                                     <div class="input-group">
-                                        <textarea name="InputMessage1" id="InputMessage1" class="form-control" rows="5"></textarea>
                                         <span class="input-group-addon"><i class="fa fa-comment"></i></span>
+                                        <textarea name="InputMessage1" id="InputMessage1" class="form-control" rows="5"></textarea>
                                     </div>
                                 </div>
 
@@ -284,13 +277,6 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="sel4">Classement </label>
-                                    <select class="form-control" id="sel4">
-                                        <option>NC</option>
-                                        <option>Trofor</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
                                     <label for="InputPhone">Déjà participé au tournoi?</label>
                                     <label class="radio-inline">
                                         <input id="InputPartYes2" name="InputPartYes2" type="radio" name="optradio">Oui
@@ -327,8 +313,8 @@
                                     <label>Préférence</label>
 
                                     <div class="input-group">
-                                        <textarea name="InputMessage2" id="InputMessage2" class="form-control" rows="5"></textarea>
                                         <span class="input-group-addon"><i class="fa fa-comment"></i></span>
+                                        <textarea name="InputMessage2" id="InputMessage2" class="form-control" rows="5"></textarea>
                                     </div>
                                 </div>
                             </div>

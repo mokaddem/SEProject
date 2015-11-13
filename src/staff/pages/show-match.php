@@ -45,6 +45,7 @@ require_once("./php/inc/list-team.inc");
 
             $terfinal = $ter['adresse'] . " - " . $ter['etat'];
 
+
 //            if (array_key_exists("id", $_GET)) {
 //                $listDonnees = getTeam2();
 //                var_dump($donnees);
@@ -67,6 +68,7 @@ require_once("./php/inc/list-team.inc");
                 </div>
             </div>
             <div class="modal-footer">
+                <a class="btn btn-default pull-left" target="_blank" href="./php/print.php?id=<?=$donnees['ID']?>"><i class="fa fa-print"></i></a>
                 <a class="btn btn-danger btn-outline" href="php/delete-match.php?id=<?=$donnees['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce match ?');">Supprimer</a>
                 <a class="btn btn-success btn-outline" href="./edit-match.php?id=<?=$donnees['ID']?>">Modifier</a>
                 <button type="button" class="btn btn-info btn-outline" data-dismiss="modal">Retour</button>

@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Jeu 12 Novembre 2015 à 16:08
--- Version du serveur: 5.5.46-0ubuntu0.14.04.2
--- Version de PHP: 5.5.9-1ubuntu4.14
+-- Généré le: Ven 13 Novembre 2015 à 01:47
+-- Version du serveur: 5.5.44-0ubuntu0.14.04.1
+-- Version de PHP: 5.6.14-1+deb.sury.org~trusty+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -82,14 +82,14 @@ CREATE TABLE IF NOT EXISTS `GroupSaturday` (
   `ID_vic2` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID` (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Contenu de la table `GroupSaturday`
 --
 
 INSERT INTO `GroupSaturday` (`ID`, `ID_terrain`, `ID_t1`, `ID_t2`, `ID_t3`, `ID_t4`, `ID_t5`, `ID_vic1`, `ID_vic2`) VALUES
-(9, NULL, 43, 44, 45, 46, 50, NULL, NULL);
+(12, NULL, 44, 45, 46, 50, 54, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -131,15 +131,23 @@ CREATE TABLE IF NOT EXISTS `History` (
   UNIQUE KEY `id_3` (`id`),
   UNIQUE KEY `id_4` (`id`),
   KEY `id_2` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=250 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=290 ;
 
 --
 -- Contenu de la table `History`
 --
 
 INSERT INTO `History` (`id`, `idPerson`, `idEntite`, `typeEntite`, `action`, `date`, `hour`) VALUES
-(248, 70, 0, 'Historique', 'Suppression', '2015-11-12', '15:48:32'),
-(249, 70, 123, 'Propriétaire', 'Suppression', '2015-11-12', '16:00:24');
+(280, 70, 0, 'Historique', 'Suppression', '2015-11-12', '23:13:19'),
+(281, 70, 55, 'Equipe', 'Suppression', '2015-11-12', '23:14:48'),
+(282, 70, 56, 'Equipe', 'Suppression', '2015-11-12', '23:15:09'),
+(283, 70, 58, 'Equipe', 'Ajout', '2015-11-12', '23:16:05'),
+(284, 70, 59, 'Equipe', 'Ajout', '2015-11-12', '23:22:10'),
+(285, 70, 142, 'Joueur', 'Ajout', '2015-11-12', '23:26:35'),
+(286, 70, 143, 'Joueur', 'Ajout', '2015-11-12', '23:26:35'),
+(287, 70, 58, 'Equipe', 'Edition', '2015-11-12', '23:27:08'),
+(288, 119, 60, 'Equipe', 'Ajout', '2015-11-13', '01:24:38'),
+(289, 119, 0, 'Groupes', 'Suppression', '2015-11-13', '01:24:47');
 
 -- --------------------------------------------------------
 
@@ -217,27 +225,41 @@ CREATE TABLE IF NOT EXISTS `Personne` (
   `IsOwner` tinyint(1) NOT NULL,
   `IsStaff` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=128 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=144 ;
 
 --
 -- Contenu de la table `Personne`
 --
 
 INSERT INTO `Personne` (`ID`, `Title`, `FirstName`, `LastName`, `Ville`, `ZIPCode`, `Rue`, `Number`, `PhoneNumber`, `GSMNumber`, `BirthDate`, `Mail`, `CreationDate`, `Note`, `IsPlayer`, `IsOwner`, `IsStaff`) VALUES
-(7, 1, 'Super', 'Admin', '', 9413, 'chemin des Bibilou, 14', 0, 413257954, 2147483647, '1964-11-19', 'Billy.Biloup@gmail.c', '2015-08-20', '', 0, 0, 1),
-(70, 1, 'Antoine', 'ROLLIN', 'Bourg-Lès-Valence', 26500, '192, rue des abricotiers', 0, 0, 635434770, '1994-05-06', 'antoine.rollin26@free.fr', '2015-11-05', 'R.A.S.', 0, 0, 1),
-(107, 1, 'John', 'Doeuf', 'Grenoble', 38000, '12 rue des Pins', 450, 9, 6, '1978-11-14', 'j.d@hotmail.fr', '2015-11-11', 'J''aime les barbecues.', 1, 0, 0),
-(108, 0, 'Oussama', 'Faitmal', 'Dijon', 21000, '12, rue du ouille', 0, 99999999, 6898989, '1964-02-12', 'f.o@gmail.com', '2015-11-11', '', 1, 0, 0),
+(7, 1, 'Super', 'Admin', '', 9413, 'chemin des Bibilou', 14, 413257954, 2147483647, '1964-11-19', 'Billy.Biloup@gmail.c', '2015-08-20', '', 0, 0, 1),
+(70, 1, 'Antoine', 'ROLLIN', 'Bourg-Lès-Valence', 26500, 'rue des abricotiers', 192, 0, 635434770, '1994-05-06', 'antoine.rollin26@free.fr', '2015-11-05', 'R.A.S.', 0, 0, 1),
+(107, 1, 'John', 'Doeuf', 'Grenoble', 38000, 'rue des Pins', 450, 9, 6, '1978-11-14', 'j.d@hotmail.fr', '2015-11-11', 'J''aime les barbecues.', 1, 0, 0),
+(108, 0, 'Oussama', 'Faitmal', 'Dijon', 21000, 'rue du ouille', 12, 99999999, 6898989, '1964-02-12', 'f.o@gmail.com', '2015-11-11', '', 1, 0, 0),
 (109, 2, 'Sarah', 'Croche', 'Annecy', 78000, 'Avenue du halo', 0, 9, 689898989, '1945-01-01', 'c.s@gmail.fr', '2015-11-11', '', 0, 1, 0),
-(110, 1, 'Yves', 'Rogne', 'Antibes', 6000, '192 rue des abricotiers', 0, 9, 6, '1970-11-04', 'r.y@gmail.com', '2015-11-11', '', 1, 0, 0),
-(111, 0, 'Aude', 'Javel', 'Romans', 26000, '34, avenue du propre', 9, 4, 6, '1992-08-05', 'j.a@gmail.fr', '2015-11-11', '', 1, 0, 0),
-(112, 0, 'Anna', 'Conda', 'Louvain', 1348, '6, boulevard du python', 35, 8, 6, '1990-03-08', 'c.a@gmail.com', '2015-11-11', '', 1, 0, 0),
-(113, 0, 'Asterix', 'Eperil', 'Louvain', 1348, '90, rue du danger', 98, 0, 6, '1982-03-03', 'e.a@gmail.com', '2015-11-11', '', 1, 0, 0),
-(114, 0, 'Sandra', 'Lacouettegratte', 'Louvain', 1348, '78, avenue de l''épilation', 12, 0, 6, '1997-02-13', 's.l@gmail.fr', '2015-11-11', '', 1, 0, 0),
-(115, 0, 'Sophie', 'Fonfec', 'Lyon', 69000, '67, port de la pénife', 14, 0, 7, '1988-01-01', 'f.s@gmail.be', '2015-11-11', '', 1, 0, 0),
-(116, 1, 'Gérard', 'Remangagner', 'Marseille', 13000, '78 avenue de la défaite', 0, 0, 7, '0000-00-00', 'r.g@gmail.be', '2015-11-11', '', 0, 1, 0),
-(117, 0, 'Anna', 'Lyse', 'Privas', 7000, '56, boulevard de la recherche', 18, 0, 7, '1980-05-12', 'l.a@hotmail.com', '2015-11-11', '', 1, 0, 0),
-(118, 0, 'Mario', 'Net', '0', 49000, 'Angers', 78, 0, 6, '1982-04-05', 'n.m@free.fr', '2015-11-11', '', 1, 0, 0);
+(110, 1, 'Yves', 'Rogne', 'Antibes', 6000, 'rue des abricotiers', 192, 9, 6, '1970-11-04', 'r.y@gmail.com', '2015-11-11', '', 1, 0, 0),
+(111, 0, 'Aude', 'Javel', 'Romans', 26000, 'avenue du propre', 9, 4, 6, '1992-08-05', 'j.a@gmail.fr', '2015-11-11', '', 1, 0, 0),
+(112, 0, 'Anna', 'Conda', 'Louvain', 1348, 'boulevard du python', 35, 8, 6, '1990-03-08', 'c.a@gmail.com', '2015-11-11', '', 1, 0, 0),
+(113, 0, 'Asterix', 'Eperil', 'Louvain', 1348, 'rue du danger', 98, 0, 6, '1982-03-03', 'e.a@gmail.com', '2015-11-11', '', 1, 0, 0),
+(114, 0, 'Sandra', 'Lacouettegratte', 'Louvain', 1348, 'avenue de l''épilation', 78, 0, 6, '1997-02-13', 's.l@gmail.fr', '2015-11-11', '', 1, 0, 0),
+(115, 0, 'Sophie', 'Fonfec', 'Lyon', 69000, 'port de la pénife', 14, 0, 7, '1988-01-01', 'f.s@gmail.be', '2015-11-11', '', 1, 0, 0),
+(116, 1, 'Gérard', 'Remangagner', 'Marseille', 13000, 'avenue de la défaite', 34, 0, 7, '0000-00-00', 'r.g@gmail.be', '2015-11-11', '', 0, 1, 0),
+(117, 0, 'Anna', 'Lyse', 'Privas', 7000, 'boulevard de la recherche', 18, 0, 7, '1980-05-12', 'l.a@hotmail.com', '2015-11-11', '', 1, 0, 0),
+(118, 0, 'Mario', 'Net', 'Nintendo', 49000, 'Angers', 78, 0, 6, '1982-04-05', 'n.m@free.fr', '2015-11-11', '', 1, 0, 0),
+(128, 0, 'Sylvie', 'Bromasseurmarchepastaldoi', 'Is-sur-Tille', 21000, 'rue de la secousse', 700, 2147483647, 678896745, '1971-01-04', 'b.s@gmail.com', '2015-11-12', 'J''aime les frites', 1, 0, 0),
+(129, 0, 'Jean', 'Neymard', 'Cannes', 6000, 'avenue de la paresse', 1, 475676767, 678787889, '1992-06-11', 'n.j@free.fr', '2015-11-12', '', 1, 0, 0),
+(130, 0, 'Alex', 'Terieur', 'Annecy', 74000, 'boulevard du froid', 34, 0, 2147483647, '1978-12-19', 't.a@wanadoo.com', '2015-11-12', '', 1, 0, 0),
+(131, 0, 'Alain', 'Terieur', 'Annecy', 74000, 'rue du chaud', 23, 0, 2147483647, '1982-02-02', 't.a@free.fr', '2015-11-12', '', 1, 0, 0),
+(132, 0, 'Agathe', 'Deblouze', 'Paris', 75000, 'place de la déprime', 89, 0, 645454545, '1959-11-03', 'd.a@wanadoo.com', '2015-11-12', '', 1, 0, 0),
+(133, 0, 'Tony', 'Truand', 'Chabeuil', 26000, 'rue des impasses', 8, 0, 678787878, '1973-04-04', 't.t@free.fr', '2015-11-12', '', 1, 0, 0),
+(136, 0, 'Justin', 'Pticou', 'Dijon', 21000, 'avenue barrée', 39, 0, 634352534, '0000-00-00', 'p.j@free.fr', '2015-11-12', '', 1, 0, 0),
+(137, 0, 'Geoffrey', 'Beinunetitsieste', 'Paris', 75000, 'chemin de la paresse', 134, 0, 677665544, '1992-04-19', 'b.g@gmail.com', '2015-11-12', '', 1, 0, 0),
+(138, 0, 'Joe', 'Bidjoba', 'Saint-Marcel-Les-Valence', 26000, 'avenue holé', 26, 0, 677777755, '1994-07-03', 'b.j@free.fr', '2015-11-12', '', 1, 0, 0),
+(139, 0, 'Odile', 'Atmoilanus', 'Menton', 6000, 'place de l''érosion', 78, 0, 655554444, '1988-03-13', 'a.o@gmail.com', '2015-11-12', '', 1, 0, 0),
+(140, 0, 'Sam', 'Excite', 'Louvain', 1348, 'rue du sport', 2, 0, 600880099, '1985-05-13', 'e.s@gmail.com', '2015-11-12', '', 1, 0, 0),
+(141, 0, 'Donna', 'Memelababal', 'Paris', 75000, 'place du canidé', 2, 0, 677777777, '1984-05-06', 'm.d@gmail.fr', '2015-11-12', '', 1, 0, 0),
+(142, 0, 'Cecile', 'Vaistairstalone', 'Marseille', 13000, 'rue du sport', 194, 0, 2147483647, '1993-01-04', 'v.c@gmail.fr', '2015-11-12', '', 1, 0, 0),
+(143, 0, 'Debby', 'Scott', 'Louvain-La-Neuve', 1348, 'place craquante', 89, 0, 2147483647, '1991-03-17', 's.d@gmail.fr', '2015-11-12', '', 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -269,7 +291,11 @@ INSERT INTO `Player` (`ID_Personne`, `IsLeader`, `Paid`, `AlreadyPart`) VALUES
 (114, 0, 0, 0),
 (115, 0, 0, 0),
 (117, 0, 0, 0),
-(118, 0, 0, 0);
+(118, 0, 0, 0),
+(128, 0, 0, 0),
+(129, 0, 0, 0),
+(130, 0, 0, 0),
+(131, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -313,18 +339,24 @@ CREATE TABLE IF NOT EXISTS `Team` (
   KEY `ID_Player1` (`ID_Player1`),
   KEY `ID_Player2` (`ID_Player2`),
   KEY `ID_Cat` (`ID_Cat`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=53 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=61 ;
 
 --
 -- Contenu de la table `Team`
 --
 
 INSERT INTO `Team` (`ID`, `ID_Player1`, `ID_Player2`, `ID_Cat`, `NbWinMatch`) VALUES
-(43, 107, 108, 1, 0),
+(43, 107, 108, 7, 0),
 (44, 110, 111, 1, 0),
 (45, 112, 113, 1, 0),
 (46, 114, 115, 1, 0),
-(50, 117, 118, 1, 0);
+(50, 117, 118, 1, 0),
+(53, 128, 129, 6, 0),
+(54, 130, 131, 1, 0),
+(57, 137, 132, 6, 0),
+(58, 139, 140, 7, 0),
+(59, 133, 136, 6, 0),
+(60, 138, 141, 1, 0);
 
 -- --------------------------------------------------------
 
