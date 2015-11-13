@@ -133,8 +133,8 @@ $html = <<<EOD
 <p><b>Equipe 1:</b> $t1final</p>
 <p><b>Equipe 2:</b> $t2final</p>
 <p><b>Terrain:</b> $terfinal</p>
-<p><b>Date du match:</b> $hour</p>
-<p><b>Heure du match:</b> $date</p>
+<p><b>Date du match:</b> $date</p>
+<p><b>Heure du match:</b> $hour</p>
 <hr/>
 <p></p>
 <hr/>
