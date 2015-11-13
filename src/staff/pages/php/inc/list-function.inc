@@ -43,7 +43,7 @@ function getTitreTable($get) {
             return array("ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Jusqu'au", "Crée le", "Note", "Action");
 
         case "extra":
-            return array("ID", "Nom", "Prix (€)", "Description", "Action");
+            return array("ID", "Nom", "Nombre de personne" , "Prix (€)", "Description", "Action");
 
         case "owner":
             return array("ID", "Nom", "Prénom", "Créé le", "Action");
@@ -71,7 +71,7 @@ function getParam($get) {
             return array("ID", "adresse", "surface", "FirstName", "etat", "Type", "disponibiliteFrom", "disponibiliteTo","CreationDate", "Note");
 
         case "extra":
-            return array("ID", "Name", "Price", "Description"); // Name à modif (4eme param)
+            return array("ID", "Name", "nbr", "Price", "Description"); // Name à modif (4eme param)
 
         case "owner":
             return array("ID", "LastName", "FirstName", "CreationDate");
@@ -120,7 +120,7 @@ function getCourts() {
 
 function getExtras() {
     $db = new BDD();
-    return $db->query('SELECT * FROM Extras ');
+    return $db->query('SELECT Extras.*, count(PersonneExtra.Extra_ID) as nbr FROM Extras INNER JOIN PersonneExtra ON Extras.ID=PersonneExtra.Extra_ID');
 }
 
 function getHistories() {

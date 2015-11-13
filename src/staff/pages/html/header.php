@@ -127,7 +127,7 @@
                                         <a href="group-generate.php">Génération</a>
                                     </li>
                                     <li>
-                                        <a href="group.php?jour=sam">Modification</a>
+                                        <a href="group.php?jour=sam&poule=1">Modification</a>
                                     </li>
                                     <li>
                                         <a href="input-group-score.php">Saisir un score</a>
