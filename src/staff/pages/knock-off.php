@@ -50,6 +50,17 @@
                     <!-- /.col-lg-12 -->
                 </div>
 
+                <div class="row">
+                    <?php if (array_key_exists("generate", $_GET)) {?>
+                        <div class="col-lg-8 alert alert-success">
+                            <b>Opération réussite !</b>
+                            <?php if ($_GET["generate"] == "true") {?>
+                                La génération du tournoi est terminée. Vous pouvez à présent le modifier comme bon vous semble.
+                            <?php } ?>
+                        </div>
+                    <?php } ?>
+                </div>
+
                 <!-- Registration form - START -->
 
                 <div class="row">
@@ -81,24 +92,25 @@
                             <?php
                                 $db = new BDD();
                                 if ($_GET['jour'] == "sam"){
-                                    $groups = $db->query('SELECT * FROM GroupSaturday');
+                                    $knockoff_all = $db->query('SELECT * FROM KnockoffSaturday ORDER BY `Position` ASC');
                                     $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSaturday')->fetch_array();
                                     extract($row);
                                 } else{
-                                    $groups = $db->query('SELECT * FROM GroupSunday');
+                                    $knockoff_all = $db->query('SELECT * FROM KnockoffSaturday ORDER BY `Position` ASC');
                                     $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday')->fetch_array();
                                     extract($row);
                                 }
 
                             for ($i = 1; $i <= $numberOfGroups; $i++) {
-                                $group = $groups->fetch_array();
+                                $knockoff = $knockoff_all->fetch_array();
+                                $match = $db->query("SELECT * FROM `Match` WHERE ID =".$knockoff['ID_Match'])->fetch_array();
                                 ?> <div class="form-group text-center">
                                     <label for="sel1"><span class="fa fa-users"></span> Match
                                         <?=$i?>
                                     </label>
                                 </div> <?php
                                 for ($j = 1; $j <= 2; $j++){
-                                    $teamID = $group["ID_vic".$j];
+                                    $teamID = $match["ID_Equipe".$j];
                                     if ($teamID == NULL){ ?>
                                         <div class="alert alert-danger">
                                             Au moins un groupe ne contient pas de vainqueur.
@@ -124,7 +136,7 @@
 
                         </div>
 
-                        <?php
+                        <?php // Quand on gèrera les terrains: utiliser $knockoff-all
                             $matchNum = 1;
                             $iter = 0;
                             $numberOfPixels = 75;

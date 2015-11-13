@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Jeu 12 Novembre 2015 à 23:34
--- Version du serveur: 5.5.46-0ubuntu0.14.04.2
--- Version de PHP: 5.5.9-1ubuntu4.14
+-- Client :  localhost
+-- Généré le :  Ven 13 Novembre 2015 à 03:20
+-- Version du serveur :  5.6.17
+-- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `SEProjectC`
+-- Base de données :  `seprojectc`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Categorie`
+-- Structure de la table `categorie`
 --
 
 CREATE TABLE IF NOT EXISTS `Categorie` (
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `Categorie` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
--- Contenu de la table `Categorie`
+-- Contenu de la table `categorie`
 --
 
 INSERT INTO `Categorie` (`ID`, `Year`, `Designation`) VALUES
@@ -45,7 +45,7 @@ INSERT INTO `Categorie` (`ID`, `Year`, `Designation`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Extras`
+-- Structure de la table `extras`
 --
 
 CREATE TABLE IF NOT EXISTS `Extras` (
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `Extras` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Contenu de la table `Extras`
+-- Contenu de la table `extras`
 --
 
 INSERT INTO `Extras` (`ID`, `Name`, `Price`, `Description`) VALUES
@@ -67,48 +67,55 @@ INSERT INTO `Extras` (`ID`, `Name`, `Price`, `Description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `GroupSaturday`
+-- Structure de la table `Groupsaturday`
 --
 
 CREATE TABLE IF NOT EXISTS `GroupSaturday` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `ID_terrain` int(11) DEFAULT NULL,
   `ID_t1` int(11) NOT NULL,
-  `ID_t2` int(11) NOT NULL,
-  `ID_t3` int(11) NOT NULL,
-  `ID_t4` int(11) NOT NULL,
-  `ID_t5` int(11) NOT NULL,
+  `ID_t2` int(11) DEFAULT NULL,
+  `ID_t3` int(11) DEFAULT NULL,
+  `ID_t4` int(11) DEFAULT NULL,
+  `ID_t5` int(11) DEFAULT NULL,
   `ID_vic1` int(11) DEFAULT NULL,
   `ID_vic2` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID` (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+
+--
+-- Contenu de la table `groupsaturday`
+--
+
+INSERT INTO `GroupSaturday` (`ID`, `ID_terrain`, `ID_t1`, `ID_t2`, `ID_t3`, `ID_t4`, `ID_t5`, `ID_vic1`, `ID_vic2`) VALUES
+(27, NULL, 44, 45, 46, 50, 54, 45, 54);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `GroupSunday`
+-- Structure de la table `Groupsunday`
 --
 
 CREATE TABLE IF NOT EXISTS `GroupSunday` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `ID_terrain` int(11) DEFAULT NULL,
   `ID_t1` int(11) NOT NULL,
-  `ID_t2` int(11) NOT NULL,
-  `ID_t3` int(11) NOT NULL,
-  `ID_t4` int(11) NOT NULL,
-  `ID_t5` int(11) NOT NULL,
-  `ID_t6` int(11) NOT NULL,
+  `ID_t2` int(11) DEFAULT NULL,
+  `ID_t3` int(11) DEFAULT NULL,
+  `ID_t4` int(11) DEFAULT NULL,
+  `ID_t5` int(11) DEFAULT NULL,
+  `ID_t6` int(11) DEFAULT NULL,
   `ID_vic1` int(11) DEFAULT NULL,
   `ID_vic2` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID` (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `History`
+-- Structure de la table `history`
 --
 
 CREATE TABLE IF NOT EXISTS `History` (
@@ -124,10 +131,10 @@ CREATE TABLE IF NOT EXISTS `History` (
   UNIQUE KEY `id_3` (`id`),
   UNIQUE KEY `id_4` (`id`),
   KEY `id_2` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=288 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=324 ;
 
 --
--- Contenu de la table `History`
+-- Contenu de la table `history`
 --
 
 INSERT INTO `History` (`id`, `idPerson`, `idEntite`, `typeEntite`, `action`, `date`, `hour`) VALUES
@@ -138,40 +145,116 @@ INSERT INTO `History` (`id`, `idPerson`, `idEntite`, `typeEntite`, `action`, `da
 (284, 70, 59, 'Equipe', 'Ajout', '2015-11-12', '23:22:10'),
 (285, 70, 142, 'Joueur', 'Ajout', '2015-11-12', '23:26:35'),
 (286, 70, 143, 'Joueur', 'Ajout', '2015-11-12', '23:26:35'),
-(287, 70, 58, 'Equipe', 'Edition', '2015-11-12', '23:27:08');
+(287, 70, 58, 'Equipe', 'Edition', '2015-11-12', '23:27:08'),
+(288, 7, 15, 'Match', 'Ajout', '2015-11-13', '01:34:40'),
+(289, 7, 1, 'Match-knock-off-Samedi', 'Ajout', '2015-11-13', '01:34:40'),
+(290, 7, 0, 'Groupes', 'Suppression', '2015-11-13', '01:36:02'),
+(291, 7, 0, 'Groupes', 'Suppression', '2015-11-13', '01:37:55'),
+(292, 7, 34, 'Match', 'Ajout', '2015-11-13', '01:42:23'),
+(293, 7, 2, 'Match-knock-off-Samedi', 'Ajout', '2015-11-13', '01:42:23'),
+(294, 7, 0, 'Groupes', 'Suppression', '2015-11-13', '01:51:41'),
+(295, 7, 36, 'Match', 'Ajout', '2015-11-13', '01:52:14'),
+(296, 7, 3, 'Match-knock-off-Samedi', 'Ajout', '2015-11-13', '01:52:14'),
+(297, 7, 0, 'Groupes', 'Suppression', '2015-11-13', '01:55:46'),
+(298, 7, 37, 'Match', 'Ajout', '2015-11-13', '01:56:21'),
+(299, 7, 4, 'Match-knock-off-Samedi', 'Ajout', '2015-11-13', '01:56:21'),
+(300, 7, 0, 'Groupes & Knock-Off', 'Suppression', '2015-11-13', '02:17:00'),
+(301, 7, 0, 'Groupes & Knock-Off', 'Suppression', '2015-11-13', '02:17:14'),
+(302, 7, 0, 'Groupes & Knock-Off', 'Suppression', '2015-11-13', '02:17:31'),
+(303, 7, 39, 'Match', 'Ajout', '2015-11-13', '02:19:13'),
+(304, 7, 5, 'Match-knock-off-Samedi', 'Ajout', '2015-11-13', '02:19:13'),
+(305, 7, 0, 'Groupes & Knock-Off', 'Suppression', '2015-11-13', '02:21:12'),
+(306, 7, 0, 'Groupes & Knock-Off', 'Suppression', '2015-11-13', '02:25:11'),
+(307, 7, 40, 'Match', 'Ajout', '2015-11-13', '02:25:23'),
+(308, 7, 6, 'Match-knock-off-Samedi', 'Ajout', '2015-11-13', '02:25:23'),
+(309, 7, 0, 'Groupes & Knock-Off', 'Suppression', '2015-11-13', '02:26:13'),
+(310, 7, 0, 'Groupes & Knock-Off', 'Suppression', '2015-11-13', '02:28:10'),
+(311, 7, 0, 'Groupes & Knock-Off', 'Suppression', '2015-11-13', '02:32:07'),
+(312, 7, 0, 'Groupes & Knock-Off', 'Suppression', '2015-11-13', '02:32:58'),
+(313, 7, 0, 'Groupes & Knock-Off', 'Suppression', '2015-11-13', '02:49:09'),
+(314, 7, 0, 'Groupes & Knock-Off', 'Suppression', '2015-11-13', '02:55:33'),
+(315, 7, 15, 'Match', 'Ajout', '2015-11-13', '03:01:02'),
+(316, 7, 7, 'Match-knock-off-Samedi', 'Ajout', '2015-11-13', '03:01:02'),
+(317, 7, 0, 'Groupes & Knock-Off', 'Suppression', '2015-11-13', '03:02:57'),
+(318, 7, 0, 'Groupes & Knock-Off', 'Suppression', '2015-11-13', '03:10:59'),
+(319, 7, 50, 'Match', 'Ajout', '2015-11-13', '03:13:42'),
+(320, 7, 8, 'Match-knock-off-Samedi', 'Ajout', '2015-11-13', '03:13:42'),
+(321, 7, 0, 'Groupes & Knock-Off', 'Suppression', '2015-11-13', '03:15:28'),
+(322, 7, 51, 'Match', 'Ajout', '2015-11-13', '03:15:55'),
+(323, 7, 9, 'Match-knock-off-Samedi', 'Ajout', '2015-11-13', '03:15:56');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Match`
+-- Structure de la table `knockoffsaturday`
+--
+
+CREATE TABLE IF NOT EXISTS `Knockoffsaturday` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_Match` int(11) NOT NULL,
+  `Position` int(11) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Contenu de la table `knockoffsaturday`
+--
+
+INSERT INTO `KnockoffSaturday` (`ID`, `ID_Match`, `Position`) VALUES
+(9, 51, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `KnockoffSunday`
+--
+
+CREATE TABLE IF NOT EXISTS `KnockoffSunday` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_Match` int(11) NOT NULL,
+  `Position` int(11) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `match`
 --
 
 CREATE TABLE IF NOT EXISTS `Match` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `date` date NOT NULL,
-  `hour` text NOT NULL,
+  `date` date DEFAULT NULL,
+  `hour` text,
   `ID_Equipe1` int(11) NOT NULL,
   `ID_Equipe2` int(11) NOT NULL,
   `score1` int(11) DEFAULT NULL,
   `score2` int(11) DEFAULT NULL,
-  `ID_Terrain` int(11) NOT NULL,
+  `ID_Terrain` int(11) DEFAULT NULL,
+  `Poule_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=52 ;
 
 --
--- Contenu de la table `Match`
+-- Contenu de la table `match`
 --
 
-INSERT INTO `Match` (`ID`, `date`, `hour`, `ID_Equipe1`, `ID_Equipe2`, `score1`, `score2`, `ID_Terrain`) VALUES
-(15, '2015-12-13', '17:15', 43, 44, 0, 0, 14),
-(16, '2015-11-11', '16:15', 43, 45, 0, 0, 13),
-(17, '2015-11-11', '18:00', 45, 44, 0, 0, 14),
-(18, '2015-11-15', '20:45', 46, 45, 0, 0, 15);
+INSERT INTO `Match` (`ID`, `date`, `hour`, `ID_Equipe1`, `ID_Equipe2`, `score1`, `score2`, `ID_Terrain`, `Poule_ID`) VALUES
+(16, '2015-11-11', '16:15', 43, 45, 0, 0, 13, NULL),
+(17, '2015-11-11', '18:00', 45, 44, 0, 0, 14, NULL),
+(18, '2015-11-15', '20:45', 46, 45, 0, 0, 15, NULL),
+(44, NULL, NULL, 45, 54, 0, 0, 1, NULL),
+(45, NULL, NULL, 45, 54, 0, 0, 1, NULL),
+(46, NULL, NULL, 45, 54, 0, 0, 1, NULL),
+(47, NULL, NULL, 45, 54, 0, 0, 1, NULL),
+(48, NULL, NULL, 45, 54, 0, 0, 1, NULL),
+(49, NULL, NULL, 45, 54, 0, 0, 1, NULL),
+(51, NULL, NULL, 45, 54, 0, 0, 13, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Owner`
+-- Structure de la table `owner`
 --
 
 CREATE TABLE IF NOT EXISTS `Owner` (
@@ -184,7 +267,7 @@ CREATE TABLE IF NOT EXISTS `Owner` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
--- Contenu de la table `Owner`
+-- Contenu de la table `owner`
 --
 
 INSERT INTO `Owner` (`ID`, `ID_Personne`, `ID_Staff`) VALUES
@@ -194,7 +277,7 @@ INSERT INTO `Owner` (`ID`, `ID_Personne`, `ID_Staff`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Personne`
+-- Structure de la table `personne`
 --
 
 CREATE TABLE IF NOT EXISTS `Personne` (
@@ -219,7 +302,7 @@ CREATE TABLE IF NOT EXISTS `Personne` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=144 ;
 
 --
--- Contenu de la table `Personne`
+-- Contenu de la table `personne`
 --
 
 INSERT INTO `Personne` (`ID`, `Title`, `FirstName`, `LastName`, `Ville`, `ZIPCode`, `Rue`, `Number`, `PhoneNumber`, `GSMNumber`, `BirthDate`, `Mail`, `CreationDate`, `Note`, `IsPlayer`, `IsOwner`, `IsStaff`) VALUES
@@ -255,7 +338,7 @@ INSERT INTO `Personne` (`ID`, `Title`, `FirstName`, `LastName`, `Ville`, `ZIPCod
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Player`
+-- Structure de la table `player`
 --
 
 CREATE TABLE IF NOT EXISTS `Player` (
@@ -291,7 +374,7 @@ INSERT INTO `Player` (`ID_Personne`, `IsLeader`, `Paid`, `AlreadyPart`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Staff`
+-- Structure de la table `staff`
 --
 
 CREATE TABLE IF NOT EXISTS `Staff` (
@@ -307,7 +390,7 @@ CREATE TABLE IF NOT EXISTS `Staff` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=101 ;
 
 --
--- Contenu de la table `Staff`
+-- Contenu de la table `staff`
 --
 
 INSERT INTO `Staff` (`ID`, `ID_Personne`, `Level`, `ID_Cat`, `Password`, `Username`) VALUES
@@ -317,7 +400,7 @@ INSERT INTO `Staff` (`ID`, `ID_Personne`, `Level`, `ID_Cat`, `Password`, `Userna
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Team`
+-- Structure de la table `team`
 --
 
 CREATE TABLE IF NOT EXISTS `Team` (
@@ -333,7 +416,7 @@ CREATE TABLE IF NOT EXISTS `Team` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=60 ;
 
 --
--- Contenu de la table `Team`
+-- Contenu de la table `team`
 --
 
 INSERT INTO `Team` (`ID`, `ID_Player1`, `ID_Player2`, `ID_Cat`, `NbWinMatch`) VALUES
@@ -351,7 +434,7 @@ INSERT INTO `Team` (`ID`, `ID_Player1`, `ID_Player2`, `ID_Cat`, `NbWinMatch`) VA
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Terrain`
+-- Structure de la table `terrain`
 --
 
 CREATE TABLE IF NOT EXISTS `Terrain` (
@@ -369,7 +452,7 @@ CREATE TABLE IF NOT EXISTS `Terrain` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
--- Contenu de la table `Terrain`
+-- Contenu de la table `terrain`
 --
 
 INSERT INTO `Terrain` (`ID`, `adresse`, `surface`, `ID_Owner`, `etat`, `disponibiliteFrom`, `disponibiliteTo`, `CreationDate`, `Type`, `Note`) VALUES
@@ -384,27 +467,27 @@ INSERT INTO `Terrain` (`ID`, `adresse`, `surface`, `ID_Owner`, `etat`, `disponib
 --
 
 --
--- Contraintes pour la table `Owner`
+-- Contraintes pour la table `owner`
 --
 ALTER TABLE `Owner`
   ADD CONSTRAINT `Owner_ibfk_1` FOREIGN KEY (`ID_Personne`) REFERENCES `Personne` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Owner_ibfk_2` FOREIGN KEY (`ID_Staff`) REFERENCES `Staff` (`ID_Personne`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Contraintes pour la table `Player`
+-- Contraintes pour la table `player`
 --
 ALTER TABLE `Player`
   ADD CONSTRAINT `PersonneFK` FOREIGN KEY (`ID_Personne`) REFERENCES `Personne` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `Staff`
+-- Contraintes pour la table `staff`
 --
 ALTER TABLE `Staff`
   ADD CONSTRAINT `Staff_ibfk_1` FOREIGN KEY (`ID_Personne`) REFERENCES `Personne` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Staff_ibfk_2` FOREIGN KEY (`ID_Cat`) REFERENCES `Categorie` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Contraintes pour la table `Team`
+-- Contraintes pour la table `team`
 --
 ALTER TABLE `Team`
   ADD CONSTRAINT `Team_ibfk_1` FOREIGN KEY (`ID_Player1`) REFERENCES `Personne` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,

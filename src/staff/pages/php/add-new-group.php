@@ -1,7 +1,7 @@
 <?php
 	include_once('BDD.php');
     require_once('add-new-history.php');
-        include("../../../mail/mail_helper.php");
+    //include("../../../mail/mail_helper.php");
 
     $database_host = 'localhost';
     $database_user = 'root';
