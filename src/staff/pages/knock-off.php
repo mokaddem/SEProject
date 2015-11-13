@@ -39,13 +39,15 @@
         <?php            
             include("./html/header.php");
             include_once('php/BDD.php');
+
+            $db = new BDD();
         ?>
 
 
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Créer un tournois de knock-off</h1>
+                        <h1 class="page-header">Modifier le knock-off</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -66,15 +68,21 @@
                 <div class="row">
                         <div class="row">
                             <ul class="nav nav-tabs">
-                                <li <?php if ($_GET['jour']=="sam" ) echo 'class="active" ' ;?>><a href="knock-off.php?jour=sam">Samedi</a></li>
-                                <li <?php if ($_GET['jour']=="dim" ) echo 'class="active" ' ;?>><a href="knock-off.php?jour=dim">Dimanche</a></li>
+                                <li <?php if ($_GET['jour']=="sam" ) echo 'class="active" ' ;?>><a href="knock-off.php?jour=sam&poule=1">Samedi</a></li>
+                                <li <?php if ($_GET['jour']=="dim" ) echo 'class="active" ' ;?>><a href="knock-off.php?jour=dim&poule=1">Dimanche</a></li>
+                            </ul>
+                            <ul class="nav nav-tabs nav-justified">
+                                <?php $reponse = $db->query('SELECT * FROM Categorie');
+                                while ($donnes = $reponse->fetch_array()) { ?>
+                                    <li <?php if ($_GET['poule']==$donnes['ID'] ) echo 'class="active" ';?>><a href="knock-off.php?jour=<?=$_GET['jour']?>&poule=<?=$donnes['ID']?>"><?=$donnes['Designation']?></a></li>
+                                <?php }?>
                             </ul>
                         </div>
                         <div class="row">
                             <br/>
                         </div>
                         <div class="row">
-                            <form class="form-horizontal" action="./php/group-switch.php?jour=<?=$_GET['jour']?>" method="post">
+                            <form class="form-horizontal" action="./php/knock-off-switch.php?jour=<?=$_GET['jour']?>" method="post">
                                 <div class="col-lg-2">
                                     <input type="text" class="form-control" id="idteam1" name="idteam1" placeholder="ID Equipe 1" required>
                                 </div>
@@ -95,7 +103,7 @@
                                     $knockoff_all = $db->query('SELECT * FROM KnockoffSaturday ORDER BY `Position` ASC');
                                     $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSaturday')->fetch_array();
                                     extract($row);
-                                } else{
+                                } elseif ($_GET['jour'] == "dim") {
                                     $knockoff_all = $db->query('SELECT * FROM KnockoffSunday ORDER BY `Position` ASC');
                                     $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday')->fetch_array();
                                     extract($row);
@@ -114,23 +122,30 @@
                                         <div class="alert alert-danger">
                                             Au moins un groupe ne contient pas de vainqueur.
                                         </div>
-                                    <?php $j++; $NumberOfGroups = 0;} else {
-                                    $team = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"")->fetch_array();
-                                    $IDPersonne1 = $team['ID_Player1'];
-                                    $player1 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne1."\"")->fetch_array();
+                                        <?php $j++; $NumberOfGroups = 0;
+                                    } else {
+                                        $team = $db->query('SELECT * FROM Team WHERE ID= '.$teamID.' AND ID_Cat='.$_GET['poule'].' ')->fetch_array();
+                                        $IDPersonne1 = $team['ID_Player1'];
+                                        $player1 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne1."\"")->fetch_array();
 
-                                    $IDPersonne2 = $team['ID_Player2'];
-                                    $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
-                                ?>
+                                        $IDPersonne2 = $team['ID_Player2'];
+                                        $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
+                                            if ($player1['LastName'] != NULL) {
+                                        ?>
                                 <div class="form-group text-center">
-                                    <label> </label>
-                                        <button class="btn btn-<?="default"?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
-                                            <?=$teamID?>,
-                                            <?=$player1['LastName']?> &
-                                            <?=$player2['LastName']?>
-                                        </button>
+                                <?php $color = "default";
+                                if ($player1['Note'] || $player2['Note']) {
+                                    $color = "primary";
+                                }   ?>
+
+                                <label> </label>
+                                <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
+                                    <?=$teamID?>,
+                                    <?=$player1['LastName']?> &
+                                    <?=$player2['LastName']?>
+                                </button>
                                 </div>
-                                <?php } } } ?>
+                                <?php } } } }?>
 
 
                         </div>
@@ -190,18 +205,9 @@
     <script src="../dist/js/sb-admin-2.js"></script>
 
     <script type="text/javascript">
-        // On click, get html content from url and update the corresponding modal
-        $("[data-toggle='pList']").on("click", function (event) {
-            event.preventDefault();
-            var url = $(this).attr('data-url');
-            var modal_id = $(this).attr('data-target');
-            $.get(url, function (data) {
-                $(modal_id).html(data);
-            });
-        });
-
         $("[data-toggle='idteam1']").on("click", function (event) {
             var id = $(this).attr('data-id');
+            console.log("ok");
             if (document.getElementById('idteam1').value == "") {
                 document.getElementById('idteam1').value = id;
             } else if (document.getElementById('idteam1').value != "" && document.getElementById('idteam2').value != "") {

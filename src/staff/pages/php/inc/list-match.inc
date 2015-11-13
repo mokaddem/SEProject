@@ -55,10 +55,10 @@ function printListMatch($id) {
 
     $t2final = $t2p1['FirstName']." ".$t2p1['LastName']." & ".$t2p2['FirstName']." ".$t2p2['LastName'];
 
-    $t = $db->query('SELECT * FROM `Terrain` WHERE '.$donnees['ID_Terrain'].' = ID');
-    $ter = $t->fetch_array();
+//    $t = $db->query('SELECT * FROM `Terrain` WHERE '.$donnees['ID_Terrain'].' = ID');
+//    $ter = $t->fetch_array();
 
-    $terfinal = $ter['adresse'] . " - " . $ter['etat'];
+//    $terfinal = $ter['adresse'] . " - " . $ter['etat'];
 
     echo "<tr class=\"odd gradeX\">";
 
