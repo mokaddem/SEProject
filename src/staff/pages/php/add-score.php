@@ -18,7 +18,7 @@ $MatchID = $_POST['matchsID'];
 $curTeamID = $_POST['curTeamID'];
 $flip = $_POST['flip'];
 
-$req = $db->prepare("UPDATE SEProjectC.Match SET score1=?, score2=? WHERE `Match`.ID=?");
+$req = $db->prepare("UPDATE SEProjectC.`Match` SET score1=?, score2=? WHERE `Match`.ID=?");
 
 for ($i = 0; $i < $MatchNumber; $i++){
     $sc = explode(",", $Scores[$i]);
