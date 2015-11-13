@@ -13,6 +13,15 @@
 		$match = $db->query("DELETE FROM `Match` WHERE ID=".$knock['ID_Match']);
 	}
 
+	$groupsSam = $db->query("SELECT * FROM GroupSaturday");
+	foreach($groupsSam as $groupSam) {
+		$match = $db->query("DELETE FROM `Match` WHERE Poule_ID=".$groupSam['ID']);
+	}
+	$groupsSun = $db->query("SELECT * FROM GroupSunday");
+	foreach($groupsSun as $groupSun) {
+		$match = $db->query("DELETE FROM `Match` WHERE Poule_ID=".$groupSun['ID']);
+	}
+
 
 	$db->query('DELETE FROM GroupSunday');
 	$db->query('DELETE FROM GroupSaturday');
