@@ -77,7 +77,7 @@
                             <div class="form-group">
                                 <!--<label for="InputMessage">Message</label>-->
                                 <div class="input-group">
-                                    <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" placeholder="Description" required></textarea>
+                                    <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" placeholder="Description" required><?php echo $donnes["Description"]; ?></textarea>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
                                 </div>
                             </div>
@@ -113,7 +113,7 @@
         $(document).ready(function () {
             $('#InputNom').val('<?php echo $donnes["Name"]; ?>');
             $('#InputPrice').val('<?php echo $donnes["Price"]; ?>');
-            $('#InputMessage').val('<?php echo $donnes["Description"]; ?>');
+            //<$('#InputMessage').val("<?php echo $donnes["Description"]; ?>");
 
         });
     </script>
