@@ -28,6 +28,10 @@ require_once("./php/inc/list-team.inc");
 
                 $finalp1 = $p1['FirstName']. " " .$p1['LastName'];
                 $finalp2 = $p2['FirstName']. " " .$p2['LastName'];
+                    
+                $rcat = $db->query('SELECT * FROM Categorie WHERE ID = '.$donnees['ID_Cat'].'');
+                $cat = $rcat->fetch_array();
+                $catFinal = $cat['Designation']." ".$cat['Year'];
 
 //            if (array_key_exists("id", $_GET)) {
 //                $listDonnees = getTeam2();
@@ -43,7 +47,7 @@ require_once("./php/inc/list-team.inc");
 //                $titre = getTitre("team");
 //            }?>
                     <p><b>ID </b> : <?=$donnees['ID']?></p>
-                    <p><b>Catégorie</b> : <?=$donnees['ID_Cat']?></p>
+                    <p><b>Catégorie</b> : <?=$catFinal?></p>
                     <p><b>Joueur 1</b> : <?=$finalp1?> (<?=$donnees['ID_Player1']?>)</p>
                     <p><b>Joueur 2</b> : <?=$finalp2?> (<?=$donnees['ID_Player2']?>)</p>
 

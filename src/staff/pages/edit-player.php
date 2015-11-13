@@ -156,13 +156,6 @@
                                     <input type="radio" name="optradio">Non
                                 </label>
                             </div>
-                            <!--<div class="form-group">
-                                    <!--<label for="InputNamePartner">Enter Name Partner</label>-->
-                            <!--<div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                                        <input type="text" class="form-control" name="InputNamePartner" id="InputNamePartner" placeholder="Nom du partenaire" required>
-                                    </div>
-                                </div>-->
                             <div class="form-group">
                                 <!--<label for="InputCredit">Paiement</label>-->
                                 <label for="InputPhone">Montant à payer</label>
@@ -181,9 +174,10 @@
                             </div>
                             <div class="form-group">
                                 <!--<label for="InputMessage">Message</label>-->
+                                <label>Préférence</label>
                                 <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-comment"></i></span>
                                     <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5"></textarea>
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
                                 </div>
                             </div>
 

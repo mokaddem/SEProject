@@ -53,22 +53,21 @@
                     <!-- /.col-lg-12 -->
                 </div>
                 
-                 
-        
+                <div class="row">
             <?php if (array_key_exists("error", $_GET)) {?>
-                    <p class="alert alert-danger">
-                <?php if ($_GET["error"] == "no_selection") {?>
+                    <div class="col-lg-4 alert alert-danger">
+                    <?php if ($_GET["error"] == "no_selection") {?>
                     Veuillez selectionner un jour
                 <?php } elseif ($_GET["error"] == "no_sam") { ?>
                         Les groupes du samedi ont déjà été générés
-                    <a class="btn btn-danger" href="./reset.php">Supprimer</a>
+                    <a class="btn btn-danger pull-right" href="./reset.php">Supprimer</a>
                 <?php } elseif ($_GET["error"] == "no_dim") { ?>
                         Les groupes du dimanche ont déjà été générés
-                    <a class="btn btn-danger" href="./reset.php">Supprimer</a>
+                    <a class="btn btn-danger pull-right" href="./reset.php">Supprimer</a>
                 <?php } ?>
-                    </p><br>
+                    </div>
             <?php } ?>
-                
+                </div>
 
                 <!-- Registration form - START -->
                 <div class="row">

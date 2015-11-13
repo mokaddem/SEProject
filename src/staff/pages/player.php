@@ -138,17 +138,10 @@
                                     <!--<label for="InputPhone">Numéro de téléphone</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                        <input type="text" class="form-control bfh-phone" name="InputFixe1" id="InputFixe1" placeholder="+33 fixe">
+                                        <input size="12" pattern=".{9,12}" maxlength="12" type="text" class="form-control bfh-phone" name="InputFixe1" id="InputFixe1" placeholder="+33 fixe">
                                         <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                        <input type="text" class="form-control bfh-phone" name="InputMob1" id="InputMob1" placeholder="+33 mobile" required>
+                                        <input size="12" pattern=".{9,12}" maxlength="12" type="text" class="form-control bfh-phone" name="InputMob1" id="InputMob1" placeholder="+33 mobile" required>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="sel2">Classement </label>
-                                    <select class="form-control" id="sel2">
-                                        <option>NC</option>
-                                        <option>Trofor</option>
-                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="InputPhone">Déjà participé au tournoi?</label>
@@ -183,10 +176,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label>Préférence</label>
+
                                     <!--<label for="InputMessage">Message</label>-->
                                     <div class="input-group">
-                                        <textarea name="InputMessage" id="InputMessage" name="InputMessage" class="form-control" rows="5"></textarea>
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
+                                        <span class="input-group-addon"><i class="fa fa-comment"></i></span>
+                                        <textarea name="InputMessage1" id="InputMessage1" class="form-control" rows="5"></textarea>
                                     </div>
                                 </div>
 
@@ -276,17 +271,10 @@
                                     <!--<label for="InputPhone">Numéro de téléphone</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                        <input type="text" class="form-control bfh-phone" name="InputFixe2" id="InputFixe2" placeholder="+33 fixe">
+                                        <input size="12" pattern=".{9,12}" maxlength="12" type="text" class="form-control bfh-phone" name="InputFixe2" id="InputFixe2" placeholder="+33 fixe">
                                         <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                        <input type="text" class="form-control bfh-phone" name="InputMob2" id="InputMob2" placeholder="+33 mobile" required>
+                                        <input size="12" pattern=".{9,12}" maxlength="12" type="text" class="form-control bfh-phone" name="InputMob2" id="InputMob2" placeholder="+33 mobile" required>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="sel4">Classement </label>
-                                    <select class="form-control" id="sel4">
-                                        <option>NC</option>
-                                        <option>Trofor</option>
-                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="InputPhone">Déjà participé au tournoi?</label>
@@ -322,9 +310,11 @@
                                 </div>
                                 <div class="form-group">
                                     <!--<label for="InputMessage">Message</label>-->
+                                    <label>Préférence</label>
+
                                     <div class="input-group">
-                                        <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" required></textarea>
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
+                                        <span class="input-group-addon"><i class="fa fa-comment"></i></span>
+                                        <textarea name="InputMessage2" id="InputMessage2" class="form-control" rows="5"></textarea>
                                     </div>
                                 </div>
                             </div>

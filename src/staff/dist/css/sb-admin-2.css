@@ -1,3 +1,12 @@
+
+#listNote {
+    position: fixed;
+}
+
+#pList {
+    position: fixed;
+}
+
 .colorDarkBlue a {
     color: #1E476A;
 }
@@ -372,4 +381,7 @@ table.dataTable thead .sorting:after {
 
 .input-group-addon, .input-group-btn{
     width: 0%
+}
+.navbar-top-links .dropdown-messages, .navbar-top-links .dropdown-tasks, .navbar-top-links .dropdown-alerts {
+    width: 140px;
 }

@@ -39,6 +39,7 @@
         <?php            
             include("./html/header.php");
 	    	include_once('php/BDD.php');
+            include_once('php/test-delete.php');
         ?>
 
 
@@ -50,6 +51,16 @@
                     <!-- /.col-lg-12 -->
                 </div>
 
+                <div class="row">
+                    <?php if (array_key_exists("error", $_GET)) {?>
+                        <div class="col-lg-4 alert alert-danger">
+                            <b>Erreur</b>
+                            <?php if ($_GET["error"] == "player") {?>
+                                Vous devez choisir deux joueurs différents.
+                            <?php } ?>
+                        </div>
+                    <?php } ?>
+                </div>
 
                 <!-- Registration form - START -->
                 <div class="row">
@@ -63,7 +74,9 @@
 										$reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
 										while ($donnes = $reponse->fetch_array())
 										{
-											echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
+                                            if (canDeletePlayer($donnes['ID'])){
+                                                echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
+                                            }
 										}
 			 	    				?>
                                         <!-- <option>propriétaire</option> -->
@@ -78,9 +91,28 @@
 										$reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
 										while ($donnes = $reponse->fetch_array())
 										{
-											echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
-										}
-							 	    ?>
+                                            if (canDeletePlayer($donnes['ID'])){
+											     echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
+										
+                                            }
+                                        }
+                                    ?>
+                                    
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="sel2"><span class="fa fa-user"></span> Catégorie</label>
+                                <select class="form-control" id="InputCat" name="InputCat">
+                                    <?php
+										$db = new BDD();
+										$reponse = $db->query('SELECT * FROM Categorie');
+										while ($donnes = $reponse->fetch_array())
+										{
+										    echo "<option value=".$donnes['ID'].">".$donnes['Designation']." ".$donnes['Year']."</option>";									
+                                        }
+                                    ?>
+                                    
                                 </select>
                             </div>
 

@@ -68,7 +68,7 @@ function printListMatch($id) {
     echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".$donnees['date']."</td>";
     echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".$donnees['hour']."</td>";
 
-    echo "<td><a href=\"./edit-match.php?id=".$donnees['ID']."\" ><i class=\"fa fa-edit fa-fw\"></i></a> <a href=\"./php/delete-match.php?id=".$donnees['ID']."\" onclick=\"return confirm('Voulez-vous vraiment supprimer cette entrée ?');\"><i class=\"fa fa-trash-o\"></i></a></td>";
+    echo "<td><a href=\"./edit-match.php?id=".$donnees['ID']."\" ><i class=\"fa fa-edit fa-fw\"></i></a> <a href=\"./php/delete-match.php?id=".$donnees['ID']."\" onclick=\"return confirm('Voulez-vous vraiment supprimer cette entrée ?');\"><i class=\"fa fa-trash-o\"></i></a> <a target=\"_blank\" href=\"./php/print.php?id=".$donnees['ID']."\"><i class=\"fa fa-print\"></i></a></td>";
     echo "</tr>";
 }
 ?>
