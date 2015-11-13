@@ -18,7 +18,10 @@
     <div class="container">
 
         <div class="page-header">
-            <h1>Formulaire d'inscription</h1>
+            <h1>
+                Formulaire d'inscription
+                <a class="btn btn-default pull-center" href="../index.php">Retour</a>
+            </h1>
         </div>
 
         <!-- Registration form - START -->
@@ -167,8 +170,9 @@
                                 </br>
                                 <div class="form-group">
                                     <!--<label for="InputMessage">Message</label>-->
-                                    
-                                    <label></br>Remarques</label>
+
+                                    <label>
+                                        </br>Remarques</label>
 
                                     <div class="input-group">
                                         <textarea name="InputMessage" id="InputMessage" name="InputMessage" class="form-control" rows="5" placeholder="N'hésitez pas à entrer d'autres informations ou demande ci-dessous" required></textarea>
@@ -195,12 +199,12 @@
 
 <script type="text/javascript">
     /*   function AddCourtInput(){
-                              for (i = 1; i < document.getElementById("size").value; i++) {
-                                  var mydiv = document.getElementById('mydiv');
-                                  var mydiv2 = mydiv.cloneNode(true);
-                                  mydiv.appendChild(mydiv2);
-                            }
-                        }*/
+                                  for (i = 1; i < document.getElementById("size").value; i++) {
+                                      var mydiv = document.getElementById('mydiv');
+                                      var mydiv2 = mydiv.cloneNode(true);
+                                      mydiv.appendChild(mydiv2);
+                                }
+                            }*/
 </script>
 
 <script type="text/javascript">
