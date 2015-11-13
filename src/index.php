@@ -85,7 +85,7 @@
             <!-- /.arrows -->
 
             <?php
-            if ($_GET["action"] == "register") { ?>
+            if (array_key_exists("action", $_GET) && $_GET["action"] == "register") { ?>
 
                 <!-- Modal -->
                 <div id="myModal" class="modal fade" role="dialog">
@@ -242,7 +242,19 @@
                     <!-- /row -->
                     <div class="row row-content">
                         <div class="col-sm-1 hidden-sm">&nbsp;</div>
-                        <iframe class="col-xs-10 col-xs-offset-1" width="100%" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10114.823419260181!2d4.6149338!3d50.6697217!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xfa60a1ea8f163970!2sUniversit%C3%A9+catholique+de+Louvain!5e0!3m2!1sfr!2sbe!4v1444218871953"></iframe>
+                        <img src="images/maps.png" class="img-responsive" data-toggle="modal" data-target="#myMap"/>
+                        <div id="myMap" class="modal fade" role="dialog">
+                            <div class="modal-dialog modal-lg">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <iframe class="col-xs-10 col-xs-offset-1" width="100%" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10114.823419260181!2d4.6149338!3d50.6697217!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xfa60a1ea8f163970!2sUniversit%C3%A9+catholique+de+Louvain!5e0!3m2!1sfr!2sbe!4v1444218871953"></iframe>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
                         <div class="col-sm-1 hidden-sm">&nbsp;</div>
                     </div>
                     <!-- /row -->
@@ -316,28 +328,28 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name.">
+                                            <input type="text" class="form-control" placeholder="Votre Nom *" id="name" required data-validation-required-message="Please enter your name.">
                                             <p class="help-block text-danger"></p>
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address.">
+                                            <input type="email" class="form-control" placeholder="Votre Email *" id="email" required data-validation-required-message="Please enter your email address.">
                                             <p class="help-block text-danger"></p>
                                         </div>
                                         <div class="form-group">
-                                            <input type="tel" class="form-control" placeholder="Your Phone *" id="phone" required data-validation-required-message="Please enter your phone number.">
+                                            <input type="tel" class="form-control" placeholder="Votre Téléphone *" id="phone" required data-validation-required-message="Please enter your phone number.">
                                             <p class="help-block text-danger"></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <textarea class="form-control" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                                            <textarea class="form-control" placeholder="Votre Message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
                                             <p class="help-block text-danger"></p>
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="col-lg-12 text-center">
                                         <div id="success"></div>
-                                        <button type="submit" class="btn btn-xl">Send Message</button>
+                                        <button type="submit" class="btn btn-xl">Evoyer Message</button>
                                     </div>
                                 </div>
                             </form>

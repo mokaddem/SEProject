@@ -166,6 +166,12 @@
                             <li>
                                 <a href="contact.php"> Envoyer un mail</a>
                             </li>
+                            <li>
+                                <a href="adresse.php"> Récupérer les adresses</a>
+                            </li>
+                            <li>
+                                <a href="email.php"> Récupérer les e-mails</a>
+                            </li>
                             <!--<li>
                                     <a href="login.php">Login Page</a>
                                 </li>-->

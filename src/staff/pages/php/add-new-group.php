@@ -10,21 +10,54 @@
 	$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
 
     function insertSam($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5){
+        $reponse = $db->query("SELECT * FROM Terrain");
+        $donnees = $reponse->fetch_array();
+
         $req = $db->prepare("INSERT INTO GroupSaturday(ID, ID_terrain, ID_t1, ID_t2, ID_t3, ID_t4, ID_t5, ID_vic1, ID_vic2) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         $ID	 	= '';
-        $ID_terrain = NULL;
+        $ID_terrain = $donnees['ID'];
         $ID_vic1    = NULL;
         $ID_vic2    = NULL;
 
         $req->bind_param("iiiiiiiii", $ID, $ID_terrain, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_vic1, $ID_vic2);
-
         $req->execute();
 
         $reponse = $db->query("SELECT * FROM GroupSaturday WHERE ID_terrain =\"".$ID_terrain ."\" AND ID_t1=\"".$ID_t1 ."\" AND ID_t2=\"".$ID_t2 ."\" AND ID_t3=\"".$ID_t3 ."\" AND ID_t4=\"".$ID_t4 ."\" AND ID_t5=\"".$ID_t5 ."\"");
         $donnees = $reponse->fetch_array();
         addHistory($donnees['ID'], "GroupSaturday", "Ajout");
 
+        /* Add Matchs */
+
+        $req = $db->prepare("INSERT INTO `Match`(ID,`date`,`hour`,ID_Equipe1,ID_Equipe2,score1,score2,ID_Terrain,Poule_ID) VALUES(?,?,?,?,?,?,?,?,?)");
+
+        $datetime = new DateTime('tomorrow');
+        $datetime->format('Y-m-d');
+
+        $ID         = '';
+        $date       = date('Y-m-d');
+        $hour       = date("H:i");
+        $score1     = NULL;
+        $score2     = NULL;
+        $ID_Terrain = $ID_terrain;
+        $Poule_ID   = $donnees['ID'];
+
+        $ID_Equipes = array($ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5);
+
+        for($i=0; $i<5; $i++){
+            for($j=1+$i; $j<5; $j++){
+                $ID_Equipe1 = $ID_Equipes[$i];
+                $ID_Equipe2 = $ID_Equipes[$j];
+                //error_log("Added: ".$ID_Equipe1." + ".$ID_Equipe2." + ".$date." + ".$hour." + ".$score1." + ".$score2." + ".$ID_Terrain." + ".$Poule_ID);
+                $req->bind_param("issiiiiii", $ID,$date,$hour,$ID_Equipe1,$ID_Equipe2,$score1,$score2,$ID_Terrain,$Poule_ID);
+                $req->execute();
+
+                $reponse = $db->query("SELECT * FROM `Match` WHERE ID_Equipe1=".$ID_Equipe1." AND ID_Equipe2=".$ID_Equipe2);
+                $donnees = $reponse->fetch_array();
+                addHistory($donnees['ID'], "Match", "Ajout");
+
+            }
+        }
 
         /*$req = $db->prepare("SELECT Mail FROM Personne JOIN OWNER ON Owner.ID_Personne = Personne.ID JOIN Terrain ON Terrain.ID_Owner = Owner.ID WHERE Terrain.ID = $ID_terrain");
         $req->execute();
@@ -74,6 +107,41 @@
         $reponse = $db->query("SELECT * FROM GroupSunday WHERE ID_terrain =\"".$ID_terrain ."\" AND ID_t1=\"".$ID_t1 ."\" AND ID_t2=\"".$ID_t2 ."\" AND ID_t3=\"".$ID_t3 ."\" AND ID_t4=\"".$ID_t4 ."\" AND ID_t5=\"".$ID_t5 ."\" AND ID_t6=\"".$ID_t6 ."\"");
         $donnees = $reponse->fetch_array();
         addHistory($donnees['ID'], "GroupSunday", "Ajout");
+
+
+        /* Add Matchs */
+
+        $req = $db->prepare("INSERT INTO `Match`(ID,`date`,`hour`,ID_Equipe1,ID_Equipe2,score1,score2,ID_Terrain,Poule_ID) VALUES(?,?,?,?,?,?,?,?,?)");
+
+        $datetime = new DateTime('tomorrow');
+        $datetime->format('Y-m-d');
+
+        $ID         = '';
+        $date       = $datetime;
+        $hour       = date("H:i");
+        $score1     = NULL;
+        $score2     = NULL;
+        $ID_Terrain = $ID_terrain;
+        $Poule_ID   = $donnees['ID'];
+
+        $ID_Equipes = array($ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6);
+
+        for($i=0; $i<6; $i++){
+            for($j=1; $j<6-$i; $j++){
+                $ID_Equipe1 = $ID_Equipes[$i];
+                $ID_Equipe2 = $ID_Equipes[$j];
+
+                $req->bind_param("issiiiiii", $ID,$date,$hour,$ID_Equipe1,$ID_Equipe2,$score1,$score2,$ID_Terrain,$Poule_ID);
+                $req->execute();
+
+                $reponse = $db->query("SELECT * FROM `Match` WHERE ID_Equipe1=".$ID_Equipe1." AND ID_Equipe2=".$ID_Equipe2);
+                $donnees = $reponse->fetch_array();
+                addHistory($donnees['ID'], "Match", "Ajout");
+
+            }
+        }
+
+
 
         /*$req = $db->prepare("SELECT Mail FROM Personne JOIN OWNER ON Owner.ID_Personne = Personne.ID JOIN Terrain ON Terrain.ID_Owner = Owner.ID WHERE Terrain.ID = $ID_terrain");
         $req->execute();
