@@ -18,8 +18,8 @@
 		extract($rowDistinct);
 	}
 	if ($numberOfGroups != $distinctGroups){
-		header("Location: ../group.php?jour=".$_GET['jour']."&submitting=incorrect");
+		header("Location: ../group.php?jour=".$_GET['jour']."&poule=".$_GET['poule']."&submitting=incorrect");
 	} else{
-		header("Location: ../group.php?jour=".$_GET['jour']."&submitting=correct");
+		header("Location: ../group.php?jour=".$_GET['jour']."&poule=".$_GET['poule']."&submitting=correct");
 	}
 ?>

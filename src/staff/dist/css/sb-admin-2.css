@@ -1,11 +1,13 @@
+#echanger input[type="text"], textarea { background-color : #d1d1d1; }
 
-#listNote {
-    position: fixed;
-}
 
-#pList {
-    position: fixed;
-}
+/*#listNote {*/
+    /*position: fixed;*/
+/*}*/
+
+/*#pList {*/
+    /*position: fixed;*/
+/*}*/
 
 .colorDarkBlue a {
     color: #1E476A;

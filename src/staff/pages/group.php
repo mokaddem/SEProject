@@ -97,32 +97,32 @@
                     <br/>
                 </div>
                 <div class="row">
-                    <form class="form-horizontal" action="./php/group-switch.php?jour=<?=$_GET['jour']?>" method="post">
-                        <div class="col-lg-2">
-                            <input type="text" class="form-control" id="idteam1" name="idteam1" placeholder="ID Equipe 1" required>
-                            <input type="text" class="form-control" id="idteam2" name="idteam2" placeholder="ID Equipe 2" required>
+                    <form id="echanger" class="navbar-form navbar-fixed-bottom" action="./php/group-switch.php?jour=<?=$_GET['jour']?>&poule=<?=$_GET['poule']?>" method="post">
+                        <input type="submit" class="btn btn-success pull-right" value="Echanger" />
+                        <p class="pull-right"> </p><input type="text" class="form-control pull-right" id="idteam1" name="idteam1" placeholder="ID Equipe 1" required>
+                        <span class="pull-right"> . </span><input type="text" class="form-control pull-right" id="idteam2" name="idteam2" placeholder="ID Equipe 2" required>
+
+                    </form>
+                    <form class="navbar-form navbar-left" action="./php/group-submit.php?jour=<?=$_GET['jour']?>&poule=<?=$_GET['poule']?>" method="post">
+                        <div class="row">
+                            <div class="col-lg-12">
+                            <!-- Ce bouton est là pour procéder à la vérification que tous les terrains sont différents.
+                                 Il faut voir comment faire pour éviter qu'il n'interagisse comme il le fait actuellement avec "Echanger"
+                                 Voir la fonction utilisée dans php/group-submit.php -->
+                            <input type="submit" class="btn btn-primary pull-right" value="Enregistrer Terrain" />
                         </div>
-                        <div class="col-lg-2">
-                            <input type="submit" class="btn btn-primary pull-left" value="Echanger" />
                         </div>
                     </form>
-                </div>
 
-                <form action="./php/group-submit.php?jour=<?=$_GET['jour']?>" method="post">
-                    <div class="row col-lg-12">
-                        <!-- Ce bouton est là pour procéder à la vérification que tous les terrains sont différents.
-                             Il faut voir comment faire pour éviter qu'il n'interagisse comme il le fait actuellement avec "Echanger"
-                             Voir la fonction utilisée dans php/group-submit.php -->
-                        <input type="submit" class="btn btn-primary pull-right" value="Enregistrer" />
-                    </div>
-                    <div class="row">
+                </div>
+                <div class="row">
                         <br/>
                         <br/>
                     </div>
 
                 <div class="row">
-                    <div class="col-lg-4">
-                        <select id="listNote" class="form-select" multiple="">
+                    <div class="col-lg-3">
+                        <select class="input-small" multiple="">
                             <?php
                                 $listTeams = $db->query('SELECT * FROM Team WHERE ID_Cat='.$_GET['poule'].'');
                             foreach ($listTeams as $team) {
@@ -145,11 +145,11 @@
                         <br/>
                         <br/>
                         <br/>
-                        <span id="pList">
+                        <div id="pList">
 
-                        </span>
+                        </div>
                     </div>
-                    <div class="col-lg-8 text-center">
+                    <div class="col-lg-9 text-center">
                         <?php
                             $db = new BDD();
                             if ($_GET['jour'] == "sam"){
@@ -250,6 +250,8 @@
                     <!-- Registration form - END -->
                 </form>
                 </div>
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <!-- /.row -->
             </div>
             <!-- /#page-wrapper -->
