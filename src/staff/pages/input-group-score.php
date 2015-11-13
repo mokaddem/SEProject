@@ -233,7 +233,7 @@
             var js_arrayTeamId = [<?php echo '"'.implode('","',  $arrayTeamId ).'"' ?>];
             var js_curTeamID = <?php echo $TeamID; ?>;
             var js_arrayMatchID= [<?php echo '"'.implode('","',  $arrayMatchID ).'"' ?>];
-            var js_matchNumber= <?php echo $i-1; ?>;
+            var js_matchNumber= <?php echo $i; ?>;
             var js_flip= [<?php echo '"'.implode('","',  $flip ).'"' ?>];
             var js_arrayResult=[];
 
