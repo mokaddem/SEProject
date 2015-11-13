@@ -113,15 +113,35 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="sel1"><span class="fa fa-clock-o"></span> Date & Heure</label>
-                                    <div class="input-group">
-                                        Avaible from: <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                        <?php echo '<input type="date" min="'.date("Y-m-d").'" max="2048-10-10" name="calendarF" id="calendarF" value="'.date("Y-m-d").'">';?>
-                                        Avaible until: <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                        <?php echo '<input type="date" min="'.date("Y-m-d").'" max="2048-10-10" name="calendarT" id="calendarT" value="'.date("Y-m-d").'">';?>
+<!--                                <div class="form-group">-->
+<!--                                    <label for="sel1"><span class="fa fa-clock-o"></span> Date & Heure</label>-->
+<!--                                    <div class="input-group">-->
+<!--                                        Avaible from: <span class="input-group-addon"><i class="fa fa-calendar"></i></span>-->
+<!--                                        --><?php //echo '<input type="date" min="'.date("Y-m-d").'" max="2048-10-10" name="calendarF" id="calendarF" value="'.date("Y-m-d").'">';?>
+<!--                                        Avaible until: <span class="input-group-addon"><i class="fa fa-calendar"></i></span>-->
+<!--                                        --><?php //echo '<input type="date" min="'.date("Y-m-d").'" max="2048-10-10" name="calendarT" id="calendarT" value="'.date("Y-m-d").'">';?>
+<!--                                    </div>-->
+<!--                                </div>-->
+
+                                <label for="sel1"><span class="fa fa-clock-o"></span> Dates</label>
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <label for="InputFrom">From </label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            <input size="10" maxlength="10" class="form-control" name="InputFrom" id="InputFrom" type="date" min="<?=date("Y-m-d")?>" max="2048-10-10" value="<?=$dataCourt['disponibiliteFrom']?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group pull-right">
+                                        <label for="InputTo">To </label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            <input size="10" maxlength="10" class="form-control" name="InputTo" id="InputTo" type="date" min="<?=date("Y-m-d")?>" max="2048-10-10" value="<?=$dataCourt['disponibiliteTo']?>">
+                                        </div>
                                     </div>
                                 </div>
+                                <br/>
+
 
                                 <div class="form-group">
                                     <!--<label for="InputMessage">Message</label>-->
