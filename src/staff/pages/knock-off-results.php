@@ -38,6 +38,7 @@
 
         <?php            
             include("./html/header.php");
+            include_once('php/BDD.php');
         ?>
 
 
@@ -55,9 +56,61 @@
                         <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="knock-off-results.php?jour=sam">Samedi</a></li>
                         <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="knock-off-results.php?jour=dim">Dimanche</a></li>
                     </ul>
-                    <!-- Registration form - END -->
-
                 </div>
+                    <?php
+                    $db = new BDD();
+                    if ($_GET['jour'] == "sam"){
+                        $knockoff_all = $db->query('SELECT * FROM KnockoffSaturday ORDER BY `Position` ASC');
+                        $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSaturday')->fetch_array();
+                        extract($row);
+                    } else{
+                        $knockoff_all = $db->query('SELECT * FROM KnockoffSunday ORDER BY `Position` ASC');
+                        $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday')->fetch_array();
+                        extract($row);
+                    }
+                $matchNum = 1;
+                $iter = 0;
+                $numberOfPixels = 25;
+                for ($k = $numberOfGroups; $k >= 1; $k = $k/2){
+                    $position = $numberOfPixels."px";
+                    ?>
+                    <div class="col-lg-3 text-center" style="position: relative; top: <?=$position?>;">
+                        <?php for ($i = 1; $i <= $k; $i++) {
+                            $knockoff = $knockoff_all->fetch_array();
+                            $match = $db->query("SELECT * FROM `Match` WHERE ID =".$knockoff['ID_Match'])->fetch_array();
+                            ?> <div class="form-group text-center">
+                                <label for="sel1"><span class="fa fa-users"></span> Match
+                                    <?=$matchNum?>
+                                </label>
+                                <option name="ID_Match" value=<?=$knockoff['ID_Match']?>>
+                                    <?php $matchNum++;
+                                    for ($j = 1; $j <= 2; $j++){
+                                        $teamID = $match["ID_Equipe".$j];
+                                        if ($teamID == NULL){ ?>
+                                            <div class="alert alert-danger">
+                                                Au moins un groupe ne contient pas de vainqueur.
+                                            </div>
+                                            <?php $j++; $NumberOfGroups = 0;} else {
+                                            $team = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"")->fetch_array();
+                                            $IDPersonne1 = $team['ID_Player1'];
+                                            $player1 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne1."\"")->fetch_array();
+
+                                            $IDPersonne2 = $team['ID_Player2'];
+                                            $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
+                                            ?>
+                                            <?=$player1['FirstName']?> <?=$player1['LastName']?> & <?=$player2['FirstName']?> <?=$player2['LastName']?>
+                                            <?php if ($j==1){ ?> <br/> VS <br/> <?php }
+                                        }}?> </option>
+                                </div>
+                            <br/>
+                            <br/>
+                            <?php
+                        } ?>
+                    </div>
+                    <?php
+                    $iter++;
+                    $numberOfPixels += (int) 125*$k/4;
+                } ?>
                 <!-- /.row -->
             </div>
             <!-- /#page-wrapper -->

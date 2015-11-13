@@ -64,7 +64,7 @@
                         Ils doivent être généré préalablement.
                         <!--<a class="btn btn-danger pull-right" href="./reset.php">Supprimer</a>-->
                     <?php } elseif ($_GET["error"] == "yes_sam") { ?>
-                        Le tournoi du dimanche a déjà été généré.
+                        Le tournoi du samedi a déjà été généré.
                         <!--<a class="btn btn-danger pull-right" href="./reset.php">Supprimer</a>-->
                         <?php } elseif ($_GET["error"] == "yes_dim") { ?>
                         Le tournoi du dimanche a déjà été généré.

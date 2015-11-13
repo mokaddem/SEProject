@@ -17,8 +17,8 @@
 
         $ID	 	= '';
         $ID_terrain = $donnees['ID'];
-        $ID_vic1    = NULL;
-        $ID_vic2    = NULL;
+        $ID_vic1    = 0;
+        $ID_vic2    = 0;
 
         $req->bind_param("iiiiiiiii", $ID, $ID_terrain, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_vic1, $ID_vic2);
         $req->execute();
@@ -37,8 +37,8 @@
         $ID         = '';
         $date       = date('Y-m-d');
         $hour       = date("H:i");
-        $score1     = NULL;
-        $score2     = NULL;
+        $score1     = 0;
+        $score2     = 0;
         $ID_Terrain = $ID_terrain;
         $Poule_ID   = $donnees['ID'];
 

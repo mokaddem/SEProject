@@ -100,7 +100,6 @@
                                     $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday')->fetch_array();
                                     extract($row);
                                 }
-
                             for ($i = 1; $i <= $numberOfGroups; $i++) {
                                 $knockoff = $knockoff_all->fetch_array();
                                 $match = $db->query("SELECT * FROM `Match` WHERE ID =".$knockoff['ID_Match'])->fetch_array();

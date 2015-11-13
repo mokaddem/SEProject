@@ -18,10 +18,10 @@
         $reponse = $db->query("SELECT * FROM ".$table);
         $bool = $reponse->fetch_array();
         if ($bool != NULL) {
-            header("Location: ../knock-off-generate.php?error=yes_sam");
+            header("Location: ../knock-off-generate.php?error=yes_sam&jour=".$_GET['jour']);
             return;
         } elseif ($numberOfGroups == 0) {
-            header("Location: ../knock-off-generate.php?error=no_sam");
+            header("Location: ../knock-off-generate.php?error=no_sam&jour=".$_GET['jour']);
             return;
         }
     } else{
@@ -32,26 +32,31 @@
         $reponse = $db->query("SELECT * FROM ".$table);
         $bool = $reponse->fetch_array();
         if ($bool != NULL) {
-            header("Location: ../knock-off-generate.php?error=yes_dim");
+            header("Location: ../knock-off-generate.php?error=yes_dim&jour=".$_GET['jour']);
             return;
         } elseif ($numberOfGroups == 0) {
-            header("Location: ../knock-off-generate.php?error=no_dim");
+            header("Location: ../knock-off-generate.php?error=no_dim&jour=".$_GET['jour']);
             return;
         }
     }
 
     for ($i = 1; $i <= ($numberOfGroups*2)-1; $i++) {
-        $group = $groups->fetch_array();
-        $teamID1 = $group["ID_vic1"];
-        $teamID2 = $group["ID_vic2"];
-        if ($teamID1 == NULL or $teamID2 == NULL){
-            header("Location: ../knock-off-generate.php?error=no_team");
-            return;
+        if ($i <= $numberOfGroups) {
+            $group = $groups->fetch_array();
+            $teamID1 = $group["ID_vic1"];
+            $teamID2 = $group["ID_vic2"];
+            if ($teamID1 == 0 or $teamID2 == 0){
+                header("Location: ../knock-off-generate.php?error=no_team&jour=".$_GET['jour']);
+                return;
+            }
+        } else{
+            $teamID1 = 0;
+            $teamID2 = 0;
         }
         $reqMatch = $db->prepare('INSERT INTO `Match`(ID, `date`, `hour`, ID_Equipe1, ID_Equipe2, score1, score2, ID_Terrain, Poule_ID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)');
         $ID	 	= '';
-        $date = NULL;
-        $hour = NULL;
+        $date = date('Y-m-d');
+        $hour = date("H:i");
         $score1 = 0;
         $score2 = 0;
         $ID_Terrain = $db->query("SELECT * FROM Terrain")->fetch_array();
