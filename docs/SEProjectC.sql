@@ -191,7 +191,7 @@ INSERT INTO `History` (`id`, `idPerson`, `idEntite`, `typeEntite`, `action`, `da
 -- Structure de la table `knockoffsaturday`
 --
 
-CREATE TABLE IF NOT EXISTS `Knockoffsaturday` (
+CREATE TABLE IF NOT EXISTS `KnockoffSaturday` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `ID_Match` int(11) NOT NULL,
   `Position` int(11) NOT NULL,
