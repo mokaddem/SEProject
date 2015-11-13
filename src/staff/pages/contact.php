@@ -52,18 +52,8 @@
                     <div class="col-lg-6">
                         <form role="form" method="POST" id="conStaff" action="php/contact-send.php">
                             <div class="row">
-                                <div class="col-lg-8">
-                                    <input class="form-control" id="dest" placeholder="Destinataire" type="text">
+                                <div class="col-lg-8"><input class="form-control" id="dest" placeholder="Destinataire" type="text">
                                 </div>
-                                <div class="col-lg-4">
-                                    <button type="button" class="btn btn-default btn-outline pull-right" data-toggle="collapse" data-target="#groupeSelec" data-toggle="tooltip" data-placement="top" title="Selectionner des groupes">
-                                        <i class="fa fa-long-arrow-down"></i> <i class="fa fa-list"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div id="groupeSelec" class="collapse">
-                                <input type="checkbox" id="part" value="Participants" data-toggle="collapse" data-target="#listPart" />Participants
-                                <input type="checkbox" id="prop" value="Propriétaires" data-toggle="collapse" data-target="#listProp" />Propriétaires
                             </div>
                             <div id="listPart" class="collapse">
                                 <p>

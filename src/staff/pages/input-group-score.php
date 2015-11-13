@@ -107,7 +107,7 @@
                             $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player2'].' = ID');
                             $p2 = $p->fetch_array();
                             $TeamName=$p1['FirstName']." ".$p1['LastName']." & ".$p2['FirstName']." ".$p2['LastName'];
-                            if ($donnes['T_ID'] != $_GET['team']) {
+                            if ($donnes['T_ID'] != $TeamID) {
                                 echo "<option value=" . $donnes['T_ID'] . ">" . $TeamName . "</option>";
                             }
                             else {
