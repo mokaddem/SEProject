@@ -14,7 +14,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php"><i class="fa fa-home"></i> Admin Mode</a>
+            <a class="navbar-brand" href="index.php"><i class="fa fa-home"></i> Staff Mode - Charles de Lorraine</a>
         </div>
         <!-- /.navbar-header -->
 
