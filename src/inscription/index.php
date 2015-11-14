@@ -151,7 +151,7 @@
                                     while ($extra = $tmp->fetch_array()){?>
                                         <div class="form-group" id="extra1_<?php echo $i;?>" name="extra1_<?php echo $i;?>">
                                             <input type="checkbox"> <strong><?php echo $extra['Name'];?></strong>: </input>
-                                            <span><?php echo $extra['Description']?></span>
+                                            <span><?php echo $extra['Description']." (".$extra['Price']."€)"?></span>
                                             <br/>
                                         </div>
                                         <?php $i=$i+1;} $extraSize=$i; ?>
@@ -294,7 +294,7 @@
                                             while ($extra = $tmp->fetch_array()){?>
                                             <div class="form-group" id="extra2_<?php echo $i;?>" name="extra2_<?php echo $i;?>">
                                                 <input type="checkbox"> <strong><?php echo $extra['Name'];?></strong>: </input>
-                                                <span><?php echo $extra['Description']?></span>
+                                                <span><?php echo $extra['Description']." (".$extra['Price']."€)"?></span>
                                                 <br/>
                                             </div>
                                             <?php $i=$i+1;} ?>
