@@ -66,7 +66,7 @@
                                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                             <input type="text" class="form-control" Nom="InputNom" name="InputNom1" id="InputNom1" placeholder="Nom" required>
                                             <input type="text" class="form-control" Prenom="InputPrenom" name="InputPrenom1" id="InputPrenom1" placeholder="Prenom" required>
-                                            <span>Née le </span>
+                                            <span>Né(e) le </span>
                                             <select name='birth_day1' id='birth_day1'>
                                                 <option value="na">Jour</option>
                                                 <?php
@@ -99,7 +99,7 @@
                                                   }
                                             ?>
                                             </select>
-                                            <!--<input type="date" class="form-control" name="InputBirth1" id="InputBirth1" placeholder="Née le jj/mm/aaaa" required>-->
+                                            <!--<input type="date" class="form-control" name="InputBirth1" id="InputBirth1" placeholder="Né(e)le jj/mm/aaaa" required>-->
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -143,7 +143,7 @@
                                     <div class="form-group">
                                         <!--<label for="sel1">Titre:</label>-->
                                         <label class="checkbox">Options supplémentaires</label>
-                                        <input name="extraNone1" id="'extraNone1" type="checkbox"> <strong>Aucune options supplémentaires</strong></input>
+                                        <input name="extraNone1" id="'extraNone1" type="checkbox"> <strong>Aucune option supplémentaire</strong></input>
                                         <br/>
                                         <?php
                                     $i=1;
@@ -173,7 +173,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label><span class="fa fa-edit"></span> Information complémentaire</label>
+                                        <label><span class="fa fa-edit"></span> Information(s) complémentaire(s)</label>
 
                                         <!--<label for="InputMessage">Message</label>-->
                                         <div class="input-group">
@@ -210,7 +210,7 @@
                                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                             <input type="text" class="form-control" Nom="InputNom" name="InputNom2" id="InputNom2" placeholder="Nom" required>
                                             <input type="text" class="form-control" Prenom="InputPrenom" name="InputPrenom2" id="InputPrenom2" placeholder="Prenom" required>
-                                            <span>Née le </span>
+                                            <span>Né(e) le </span>
                                             <select name='birth_day2' id='birth_day2'>
                                                 <option value="na">Jour</option>
                                                 <?php
@@ -287,7 +287,7 @@
                                     <div class="form-group">
                                         <!--<label for="sel1">Titre:</label>-->
                                         <label class="checkbox">Options supplémentaires</label>
-                                        <input name="extraNone2" id="'extraNone2" type="checkbox"> <strong>Aucune options supplémentaires</strong></input>
+                                        <input name="extraNone2" id="'extraNone2" type="checkbox"> <strong>Aucune option supplémentaire</strong></input>
                                         <br/>
                                         <?php
                                             $tmp = $db->query('SELECT * FROM Extras');
@@ -318,7 +318,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label><span class="fa fa-edit"></span> Information complémentaire</label>
+                                        <label><span class="fa fa-edit"></span> Information(s) complémentaire(s)</label>
 
                                         <!--<label for="InputMessage">Message</label>-->
                                         <div class="input-group">
