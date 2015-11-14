@@ -13,7 +13,7 @@
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body style="background : url(../images/owner-back2.jpg) 0 0 fixed no-repeat;">
 
     <div class="container">
 
