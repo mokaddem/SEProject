@@ -194,29 +194,29 @@
             <!-- === SLide 3 - Portfolio -->
             <div class="slide story" id="slide-3" data-slide="3">
                 <div class="row">
-                    <div class="col-12 col-sm-6 col-lg-2">
-                        <a data-fancybox-group="portfolio" class="fancybox" href="images/portfolio/01-large.jpg"><img class="thumb" src="images/portfolio/01-small.jpg" alt=""></a>
+                    <div class="col-12 col-sm-6 col-lg-2">  
+                        <a data-fancybox-group="portfolio" class="fancybox" href="images/portfolio/p8.jpg"><img class="thumb" src="images/portfolio/p8-s.jpg" alt=""></a>
                     </div>
                     <div class="col-12 col-sm-6 col-lg-2">
-                        <a data-fancybox-group="portfolio" class="fancybox" href="images/portfolio/02-large.jpg"><img class="thumb" src="images/portfolio/02-small.jpg" alt=""></a>
+                        <a data-fancybox-group="portfolio" class="fancybox" href="images/portfolio/p2.jpg"><img class="thumb" src="images/portfolio/p2-s.jpg" alt=""></a>
                     </div>
                     <div class="col-12 col-sm-6 col-lg-2">
-                        <a data-fancybox-group="portfolio" class="fancybox" href="images/portfolio/03-large.jpg"><img class="thumb" src="images/portfolio/03-small.jpg" alt=""></a>
+                        <a data-fancybox-group="portfolio" class="fancybox" href="images/portfolio/p3.jpg"><img class="thumb" src="images/portfolio/p3-s.jpg" alt=""></a>
                     </div>
                     <div class="col-12 col-sm-6 col-lg-2">
-                        <a data-fancybox-group="portfolio" class="fancybox" href="images/portfolio/04-large.jpg"><img class="thumb" src="images/portfolio/04-small.jpg" alt=""></a>
+                        <a data-fancybox-group="portfolio" class="fancybox" href="images/portfolio/p5.jpg"><img class="thumb" src="images/portfolio/p5-s.jpg" alt=""></a>
                     </div>
                     <div class="col-12 col-sm-6 col-lg-2">
-                        <a data-fancybox-group="portfolio" class="fancybox" href="images/portfolio/04-large.jpg"><img class="thumb" src="images/portfolio/04-small.jpg" alt=""></a>
+                        <a data-fancybox-group="portfolio" class="fancybox" href="images/portfolio/p4.jpg"><img class="thumb" src="images/portfolio/p4-s.jpg" alt=""></a>
                     </div>
                     <div class="col-12 col-sm-6 col-lg-2">
-                        <a data-fancybox-group="portfolio" class="fancybox" href="images/portfolio/03-large.jpg"><img class="thumb" src="images/portfolio/03-small.jpg" alt=""></a>
+                        <a data-fancybox-group="portfolio" class="fancybox" href="images/portfolio/p6.jpg"><img class="thumb" src="images/portfolio/p6-s.jpg" alt=""></a>
                     </div>
                     <div class="col-12 col-sm-6 col-lg-2">
-                        <a data-fancybox-group="portfolio" class="fancybox" href="images/portfolio/02-large.jpg"><img class="thumb" src="images/portfolio/02-small.jpg" alt=""></a>
+                        <a data-fancybox-group="portfolio" class="fancybox" href="images/portfolio/p7.jpg"><img class="thumb" src="images/portfolio/p7-s.jpg" alt=""></a>
                     </div>
                     <div class="col-12 col-sm-6 col-lg-2">
-                        <a data-fancybox-group="portfolio" class="fancybox" href="images/portfolio/01-large.jpg"><img class="thumb" src="images/portfolio/01-small.jpg" alt=""></a>
+                        <a data-fancybox-group="portfolio" class="fancybox" href="images/portfolio/p1.jpg"><img class="thumb" src="images/portfolio/p1-s.jpg" alt=""></a>
                     </div>
                 </div>
                 <!-- /row -->
