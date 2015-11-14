@@ -82,7 +82,7 @@
                                     <input type="text" class="form-control" Nom="InputNom" id="InputNom" name="InputNom" placeholder="Nom" value="<?php $donnes['FirstName']  ?>" required>
                                     <input type="text" class="form-control" Prenom="InputPrenom" id="InputPrenom" name="InputPrenom" placeholder="Prenom" value="<?=$donnes['FirstName'] ?>" required>
 
-                                    <span>Née le</span>
+                                    <span>Né(e)le</span>
                                     <select name='birth_day' id='birth_day1'>
                                         <option value="na">Jour</option>
                                         <?php

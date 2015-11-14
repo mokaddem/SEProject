@@ -58,7 +58,7 @@
                                         <input type="text" class="form-control" Nom="InputNom" name="InputNom" id="InputNom" placeholder="Nom" required>
                                         <input type="text" class="form-control" Prenom="InputPrenom" name="InputPrenom" id="InputPrenom" placeholder="Prenom" required>
 
-                                        <span>Née le </span>
+                                        <span>Né(e) le </span>
                                         <select name='birth_day' id='birth_day'>
                                             <option value="na">Jour</option>
                                             <?php
@@ -91,7 +91,7 @@
                                         }
                                         ?>
                                         </select>
-                                        <!--<input type="date" class="form-control" name="InputBirth1" id="InputBirth1" placeholder="Née le jj/mm/aaaa" required>-->
+                                        <!--<input type="date" class="form-control" name="InputBirth1" id="InputBirth1" placeholder="Né(e)le jj/mm/aaaa" required>-->
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -181,7 +181,7 @@
                                         </br>Remarques</label>
 
                                     <div class="input-group">
-                                        <textarea name="InputMessage" id="InputMessage" name="InputMessage" class="form-control" rows="5" placeholder="N'hésitez pas à entrer d'autres informations ou demande ci-dessous" required></textarea>
+                                        <textarea name="InputMessage" id="InputMessage" name="InputMessage" class="form-control" rows="5" placeholder="N'hésitez pas à entrer d'autres informations ou remarques" required></textarea>
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
                                     </div>
                                 </div>
