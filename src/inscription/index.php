@@ -13,7 +13,7 @@
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 </head>
 
-<body style="background : url(../images/player-back2.jpg) 0 0 fixed no-repeat;">
+<body style="background : url(../images/player-back.jpg) 0 0 fixed no-repeat;">
 
 
     <?php
