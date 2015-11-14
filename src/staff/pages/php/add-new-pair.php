@@ -124,11 +124,11 @@
 
 
 
-	/*if (array_key_exists($_SESSION)) {*/
+	if (array_key_exists($_SESSION)) {
 	header("Location: ../list.php?type=player");
-	/*} else {
-		header( "refresh:5;url=../../../../index.php?action=register" );
-    }*/
+	} else {
+		header("Location: ../../../index.php?action=register" );
+    }
 
 
 ?>
