@@ -68,6 +68,9 @@
                     <li>
                         <a href="../pages/me.php"><i class="fa fa-user fa-fw"></i> Mes Infos</a>
                     </li>
+                    <li>
+                        <a href="../../index.php?action=logout"><i class="fa fa-home fa-fw"></i> Retour au site</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->

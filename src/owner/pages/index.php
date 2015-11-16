@@ -62,100 +62,25 @@
                     <!-- /.row -->
                     <div class="row">
                         <div class="col-lg-12">
-                            <label for="sel1"><span class="fa fa-history"></span> Historique des modifications</label>
-                            <div class="panel panel-default">
-
-                                <!-- <div class="panel-heading">
-                            DataTables Advanced Tables
-                        </div> -->
-                                <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <div class="dataTable_wrapper">
-                                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                            <thead>
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Admin</th>
-                                                    <th>ID Entité modifiée</th>
-                                                    <th>Type Entité</th>
-                                                    <th>Action effectuée</th>
-                                                    <th>Date</th>
-                                                    <th>Heure</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                foreach (getHistories() as $histo){
-                                                    $color = "";
-                                                    switch ($histo['action']) {
-                                                        case "Ajout":
-                                                            $color = "success";
-                                                            break;
-                                                        case "Suppression":
-                                                            $color = "danger";
-                                                            break;
-                                                        case "Edition":
-                                                            $color = "info";
-                                                            break;
-                                                    }
-                                                    ?>
-                                                    <tr class="odd gradeX <?=$color?>">
-                                                        <td>
-                                                            <?=$histo['id']?>
-                                                        </td>
-                                                        <td>
-                                                            <?=getStaffName($histo['idPerson'])?>
-                                                        </td>
-                                                        <td>
-                                                            <?=$histo['idEntite']?>
-                                                        </td>
-                                                        <td>
-                                                            <?=$histo['typeEntite']?>
-                                                        </td>
-                                                        <td>
-                                                            <?=$histo['action']?>
-                                                        </td>
-                                                        <td>
-                                                            <?=$histo['date']?>
-                                                        </td>
-                                                        <td>
-                                                            <?=$histo['hour']?>
-                                                        </td>
-                                                    </tr>
-                                                    <?php } ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <!-- /.panel-body -->
-                            </div>
-                            <!-- /.panel -->
+                            <p>Bienvenue sur votre espace propriétaire. Ici vous disposez de la gestion des vos terrains et de vos informations.</p>
+                        </div>
+                        <!-- /.col-lg-6 -->
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <a href="#" class="btn btn-info btn-outline"><i class="fa fa-table fa-fw"></i> Mes Terrains</a>
+                        </div>
+                        
+                        <div class="col-lg-12">
+                            <a href="#" class="btn btn-info btn-outline"><i class="fa fa-plus fa-fw"></i> Ajouter Terrain</a>
+                        </div>
+                        
+                        <div class="col-lg-12">
+                            <a href="./me.php" class="btn btn-info btn-outline"><i class="fa fa-user fa-fw"></i> Mes Informations</a>
                         </div>
                         <!-- /.col-lg-6 -->
                     </div>
                     
-                    <div>
-                        <a href="./php/delete-history.php" class="btn btn-danger">Effacer</a>
-                    </div>
-                    
-                    <div class="row text-center">
-                        <a class="twitter-timeline" href="https://twitter.com/SimonsCat" data-widget-id="661635155916890112">Tweets de @SimonsCat</a>
-                        <script>
-                            ! function (d, s, id) {
-                                var js, fjs = d.getElementsByTagName(s)[0],
-                                    p = /^http:/.test(d.location) ? 'http' : 'https';
-                                if (!d.getElementById(id)) {
-                                    js = d.createElement(s);
-                                    js.id = id;
-                                    js.src = p + "://platform.twitter.com/widgets.js";
-                                    fjs.parentNode.insertBefore(js, fjs);
-                                }
-                            }(document, "script", "twitter-wjs");
-                        </script>
-
-
-                    </div>
-                    <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-6 -->
             </div>
