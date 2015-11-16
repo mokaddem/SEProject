@@ -67,71 +67,58 @@
                                         <option>Usé</option>
                                     </select>
                                     <input type="number" class="form-control" name="surface" id="surface" placeholder="Surface (m²)" min="0" step="1" required>
-                                    
-                                </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="sel1"><span class="fa fa-user"></span> Propriétaire</label>
-                                    <select class="form-control" id="sel3" name="sel3">
-                                        <?php
-                                            $db = new BDD();
-                                            $reponse = $db->query('SELECT *, Owner.ID as O_id FROM Personne, Owner WHERE Personne.ID=Owner.ID_Personne');
-                                            while ($donnes = $reponse->fetch_array())
-                                            {										
-                                                echo "<option value=".$donnes['O_id'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
-                                            }
-                                        ?>
-                                    </select>
-                                </div>
 
-                                <div class="form-group">
-                                    <!--<label for="InputPrenom">Adresse</label>-->
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                        <input type="text" class="form-control" id="InputAdresse" name="InputAdresse" placeholder="Adresse" required>
-                                    </div>
                                 </div>
+                            </div>
 
-                            <label for="sel1"><span class="fa fa-clock-o"></span> Dates</label>
+                            <div class="form-group">
+                                <!--<label for="InputPrenom">Adresse</label>-->
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                    <input type="text" class="form-control" id="InputAdresse" name="InputAdresse" placeholder="Adresse" required>
+                                </div>
+                            </div>
+
+                            <label for="sel1"><span class="fa fa-clock-o"></span> Disponibilités</label>
                             <div class="form-inline">
                                 <div class="form-group">
-                                    <label for="InputFrom">From </label>
+                                    <label for="InputFrom">Du </label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                        <input size="10" maxlength="10" class="form-control" name="InputFrom" id="InputFrom" type="date" min="<?=date("Y-m-d")?>" max="2048-10-10" value="<?=date("Y-m-d")?>">
+                                        <input size="10" maxlength="10" class="form-control" name="InputFrom" id="InputFrom" type="date" min="<?=date(" Y-m-d ")?>" max="2048-10-10" value="<?=date(" Y-m-d ")?>">
                                     </div>
                                 </div>
                                 <div class="form-group pull-right">
-                                    <label for="InputTo">To </label>
+                                    <label for="InputTo">Au </label>
                                     <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                        <input size="10" maxlength="10" class="form-control" name="InputTo" id="InputTo" type="date" min="<?=date("Y-m-d")?>" max="2048-10-10" value="<?=date("Y-m-d")?>">
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        <input size="10" maxlength="10" class="form-control" name="InputTo" id="InputTo" type="date" min="<?=date(" Y-m-d ")?>" max="2048-10-10" value="<?=date(" Y-m-d ")?>">
                                     </div>
                                 </div>
                             </div>
                             <br/>
 
-                                <div class="form-group">
-                                    <!--<label for="InputMessage">Message</label>-->
-                                    <div class="input-group">
-                                        <textarea name="InputNote" id="InputNote" class="form-control" rows="5" required></textarea>
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
-                                    </div>
+                            <div class="form-group">
+                                <label for="InputMessage">Remarque</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
+
+                                    <textarea name="InputNote" id="InputNote" class="form-control" rows="5" required></textarea>
                                 </div>
-
-                                <input type="submit" name="submit" id="submit" value="Ajouter" class="btn btn-info pull-right">
-
                             </div>
+
+                            <input type="submit" name="submit" id="submit" value="Ajouter" class="btn btn-info pull-right">
+
                         </div>
-                    </form>
-
-                    <!-- Registration form - END -->
-
                 </div>
-                <!-- /.row -->
+                </form>
+
+                <!-- Registration form - END -->
+
             </div>
-            <!-- /#page-wrapper -->
+            <!-- /.row -->
+    </div>
+    <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->

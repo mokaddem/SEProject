@@ -14,7 +14,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php"><i class="fa fa-home"></i> Owner Mode</a>
+            <a class="navbar-brand" href="../index.php"><i class="fa fa-home"></i> Owner Mode</a>
         </div>
         <!-- /.navbar-header -->
 
@@ -60,10 +60,10 @@
                         <a href="index.php"><i class="fa fa-home fa-fw"></i> Accueil</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-table fa-fw"></i> Mes Terrains</a>
+                        <a href="list.php?type=court"><i class="fa fa-table fa-fw"></i> Mes Terrains</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-plus fa-fw"></i> Ajouter Terrain</a>
+                        <a href="court.php"><i class="fa fa-plus fa-fw"></i> Ajouter Terrain</a>
                     </li>
                     <li>
                         <a href="../pages/me.php"><i class="fa fa-user fa-fw"></i> Mes Infos</a>

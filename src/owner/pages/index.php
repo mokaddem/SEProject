@@ -68,11 +68,11 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <a href="#" class="btn btn-info btn-outline"><i class="fa fa-table fa-fw"></i> Mes Terrains</a>
+                            <a href="list.php?type=court" class="btn btn-info btn-outline"><i class="fa fa-table fa-fw"></i> Mes Terrains</a>
                         </div>
                         
                         <div class="col-lg-12">
-                            <a href="#" class="btn btn-info btn-outline"><i class="fa fa-plus fa-fw"></i> Ajouter Terrain</a>
+                            <a href="court.php" class="btn btn-info btn-outline"><i class="fa fa-plus fa-fw"></i> Ajouter Terrain</a>
                         </div>
                         
                         <div class="col-lg-12">

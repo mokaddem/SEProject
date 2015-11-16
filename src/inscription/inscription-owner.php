@@ -155,17 +155,17 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="sel1"><span class="fa fa-clock-o"></span> Dates</label>
+                                    <label for="sel1"><span class="fa fa-clock-o"></span> Disponibilités</label>
                                     <div class="form-group">
                                         <!--<div class="input-group">-->
-                                        <label class="pull-left" for="InputFrom">From </label>
+                                        <label class="pull-left" for="InputFrom">Du </label>
                                         <div class="input-group pull-right">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                             <input size="10" maxlength="10" class="form-control" name="InputFrom" id="InputFrom" type="date" min="<?=date(" Y-m-d ")?>" max="2048-10-10" value="<?=date(" Y-m-d ")?>">
                                         </div>
                                         <!--</div>-->
                                         <!--<div class="input-group">-->
-                                        <label class="pull-left" for="InputTo">To </label>
+                                        <label class="pull-left" for="InputTo">Au </label>
                                         <div class="input-group pull-right">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                             <input size="10" maxlength="10" class="form-control" name="InputTo" id="InputTo" type="date" min="<?=date(" Y-m-d ")?>" max="2048-10-10" value="<?=date(" Y-m-d ")?>">

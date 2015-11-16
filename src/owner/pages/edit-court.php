@@ -88,23 +88,8 @@
                                     </select>
                                     <input type="number" class="form-control" name="surface" id="surface" placeholder="Surface (m²)" min="0" step="1" value="<?php echo $dataCourt['surface'] ?>" required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="sel1"><span class="fa fa-user"></span> Propriétaire</label>
-                                    <select class="form-control" id="owner" name="owner">
-                                        <?php
-                                            $reponse = $db->query('SELECT *, Owner.ID as O_id FROM Personne, Owner WHERE Personne.ID = Owner.ID_Personne');
-                                            while ($donnes = $reponse->fetch_array())
-                                            {
-                                                if ($dataCourt['ID_Owner'] == $donnes['O_id']){
-                                                    echo "<option value=".$donnes['O_id']." selected=\"selected\">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
-                                                }
-                                                else
-                                                    echo "<option value=".$donnes['O_id'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
-                                            }
-                                        ?>
-                                    </select>
-                                </div>
-
+                                
+                                
                                 <div class="form-group">
                                     <!--<label for="InputPrenom">Adresse</label>-->
                                     <div class="input-group">
@@ -123,17 +108,17 @@
 <!--                                    </div>-->
 <!--                                </div>-->
 
-                                <label for="sel1"><span class="fa fa-clock-o"></span> Dates</label>
+                                <label for="sel1"><span class="fa fa-clock-o"></span> Disponibilités</label>
                                 <div class="form-inline">
                                     <div class="form-group">
-                                        <label for="InputFrom">From </label>
+                                        <label for="InputFrom">Du </label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                             <input size="10" maxlength="10" class="form-control" name="InputFrom" id="InputFrom" type="date" min="<?=date("Y-m-d")?>" max="2048-10-10" value="<?=$dataCourt['disponibiliteFrom']?>">
                                         </div>
                                     </div>
                                     <div class="form-group pull-right">
-                                        <label for="InputTo">To </label>
+                                        <label for="InputTo">Au </label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                             <input size="10" maxlength="10" class="form-control" name="InputTo" id="InputTo" type="date" min="<?=date("Y-m-d")?>" max="2048-10-10" value="<?=$dataCourt['disponibiliteTo']?>">
