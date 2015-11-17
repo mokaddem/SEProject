@@ -1,30 +1,22 @@
 <?php
 	error_reporting(E_ALL ^ E_STRICT);
 // CLASS A VERIFIER !!!!!!!! Surement des choses à changer
-class BDD extends mysqli
-{
-	public static $db = false;
-	private $database_host = 'localhost';
-	private $database_user = 'root';
-	private $database_pass = '123';
-	private $database_db = 'SEProjectC';
-	function __construct()
-	{
-		if (self::$db === false) {
-		    $this->connect();
-		}
-	}
-	public function connect()
-	{
-		self::$db = new mysqli($this->database_host, $this->database_user, $this->database_pass, $this->database_db);
-		if (!self::$db) {
-			die("Database connection failed miserably: " . mysqli_error());
-		}
-		self::$db->query("SET character_set_results=utf8");
+	function BDconnect(){
+                $database_host = 'localhost';
+                $database_user = 'root';
+                $database_pass = '123';
+                $database_db = 'SEProjectC';	
+                $db = new mysqli($database_host, $database_user, $database_pass, $database_db);
+                if ($db->connect_error) {
+                        $database_host = 'test.pydehon.me';
+                        $database_user = 'team';
+                        $database_pass = 'seprojectc';
+                        $database_db = 'SEProjectC';
+                        $db = new mysqli($database_host, $database_user, $database_pass, $database_db);
+                        if ($db->connect_error) {
+                            die("Database connection failed miserably: " . $db->connect_error);
+                        }
+                }
+		return $db;
 	}
 
-	function query($sql)
-	{ 
-		return self::$db->query($sql);
-	}
-}

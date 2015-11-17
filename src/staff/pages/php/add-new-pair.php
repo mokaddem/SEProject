@@ -1,15 +1,15 @@
 <?php
 	include_once('BDD.php');
     require_once('add-new-history.php');
-//	$db = new BDD();
+//	$db = BDconnect();
 
-	$database_host = 'localhost';
-	$database_user = 'root';
-	$database_pass = '123';
+	//$database_host = 'localhost';
+	//$database_user = 'root';
+	//$database_pass = '123';
 
-	$database_db = 'SEProjectC';
-	$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
-	
+	//$database_db = 'SEProjectC';
+	//$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
+	$db = BDconnect();
 	$req = $db->prepare("INSERT INTO Personne(ID, Title, FirstName, LastName, Ville, ZIPCode, Rue, Number, PhoneNumber, GSMNumber, BirthDate, Mail, CreationDate, Note, IsPlayer, IsOwner, IsStaff) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 	$ID1	 	= '';

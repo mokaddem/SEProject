@@ -3,12 +3,12 @@
     require_once('add-new-history.php');
     //include("../../../mail/mail_helper.php");
 
-    $database_host = 'localhost';
-    $database_user = 'root';
-    $database_pass = '123';
-    $database_db = 'SEProjectC';
-	$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
-
+    //$database_host = 'localhost';
+    //$database_user = 'root';
+    //$database_pass = '123';
+    //$database_db = 'SEProjectC';
+	//$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
+$db = BDconnect();
     function insertSam($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $groupSize){
         $reponse = $db->query("SELECT * FROM Terrain");
         $donnees = $reponse->fetch_array();
