@@ -389,8 +389,11 @@ table.dataTable thead .sorting:after {
 }
 
 .navbar-perso {
-    background-color: #81C0F3;
     border-color: #81C0F3;
+    background-color: transparent;
+    background-image: linear-gradient(to bottom, #81C0F3 10%, #C3DDF3 80%);
+    background-repeat: repeat;
+
 }
 
 .panel-border-perso {
@@ -400,4 +403,18 @@ table.dataTable thead .sorting:after {
     background-color: #6EB3EB;
     border-color: #6EB3EB;
 
+}
+
+.panel-grey {
+    background-color: #dddddd;
+    border-color: #cccccc;
+
+}
+
+.server-action-menu {
+    background-color: transparent;
+    background-image: linear-gradient(to bottom, rgba(30, 87, 153, 0.2) 0%, rgba(125, 185, 232, 0) 100%);
+    background-repeat: repeat;
+    border-radius:10px;
+    padding: 5px;
 }

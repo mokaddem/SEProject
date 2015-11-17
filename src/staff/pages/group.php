@@ -157,7 +157,7 @@
 <!---->
 <!--                        </div>-->
 <!--                    </div>-->
-                    <div class="col-lg-9 text-center">
+                    <div class="text-center">
                         <?php
                             $db = BDconnect();
                             if ($_GET['jour'] == "sam"){
@@ -183,7 +183,7 @@
                                 //for ($j = 1; $j <= 1; $j++) { // Boucle pour faire plusieurs row... Useless?
                                     $group = $groups->fetch_array();
                                     if ($group != NULL){ ?>
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-3 server-action-menu">
                                             <label><span class="fa fa-users"></span> Groupe
                                                 <?= $k?>
                                             </label>
