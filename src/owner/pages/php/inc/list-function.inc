@@ -119,7 +119,7 @@ function getCourts() {
     $d = $db->query('SELECT * FROM `Owner` WHERE ID_Personne = '.$_SESSION['ID'].'');
     $res = $d->fetch_array();
     
-    return $db->query('SELECT *, Terrain.ID as ID, Terrain.Note as Note, Owner.ID as O_id FROM `Terrain`, `Personne`, `Owner` WHERE '.$res['ID'].' = Terrain.ID_Owner AND Personne.ID = '.$_SESSION['ID'].'');
+    return $db->query('SELECT *, Terrain.ID as ID, Terrain.Note as Note, Owner.ID as O_id FROM `Terrain`, `Personne`, `Owner` WHERE '.$res['ID'].' = Terrain.ID_Owner AND Personne.ID = '.$_SESSION['ID'].' GROUP BY Terrain.ID');
 
 }
 
