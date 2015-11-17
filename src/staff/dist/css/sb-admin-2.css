@@ -389,15 +389,15 @@ table.dataTable thead .sorting:after {
 }
 
 .navbar-perso {
-    background-color: #cccccc;
-    border-color: #aaaaaa;
+    background-color: #81C0F3;
+    border-color: #81C0F3;
 }
 
 .panel-border-perso {
-    border: 1px solid #bbbbbb;
+    border: 1px solid #6AADE3;
 }
 .panel-perso {
-    background-color: #dddddd;
-    border-color: #dddddd;
+    background-color: #6EB3EB;
+    border-color: #6EB3EB;
 
 }
