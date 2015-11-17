@@ -74,7 +74,7 @@ function getParam($get) {
             return array("ID", "Name", "nbr", "Price", "Description"); // Name à modif (4eme param)
 
         case "owner":
-            return array("ID", "LastName", "FirstName", "CreationDate");
+            return array("ID_O", "LastName", "FirstName", "CreationDate");
 
         case "team":
 //            return getTeams();
@@ -161,7 +161,7 @@ function getCategories() {
 
 function getOwners() {
     $db = BDconnect();
-    return $db->query('SELECT * FROM Personne WHERE isOwner=1');
+    return $db->query('SELECT *, Owner.ID_Personne as ID, Owner.ID as ID_O FROM Personne, Owner WHERE isOwner=1 GROUP BY Owner.ID');
 }
 
 function getPlayers() {
