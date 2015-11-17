@@ -97,58 +97,66 @@
                     <br/>
                 </div>
                 <div class="row">
-                    <form id="echanger" class="navbar-form navbar-fixed-bottom" action="./php/group-switch.php?jour=<?=$_GET['jour']?>&poule=<?=$_GET['poule']?>" method="post">
-                        <input type="submit" class="btn btn-success pull-right" value="Echanger" />
-                        <span class="pull-right"> . </span><input type="text" class="form-control pull-right" id="idteam2" name="idteam2" placeholder="ID Equipe 2" required>
-                        <p class="pull-right"> </p><input type="text" class="form-control pull-right" id="idteam1" name="idteam1" placeholder="ID Equipe 1" required>
+                    <nav class="navbar navbar-inverse navbar-perso navbar-fixed-bottom">
+                        <div class="container">
+                            <form id="echanger" class="navbar-form" action="./php/group-switch.php?jour=<?=$_GET['jour']?>&poule=<?=$_GET['poule']?>" method="post">
+                                <input type="submit" class="btn btn-success pull-right" value="Echanger" />
+                                <span class="pull-right"> . </span><input type="text" class="form-control pull-right" id="idteam2" name="idteam2" placeholder="ID Equipe 2" required>
+                                <p class="pull-right"> </p><input type="text" class="form-control pull-right" id="idteam1" name="idteam1" placeholder="ID Equipe 1" required>
 
-                    </form>
-                    <form class="navbar-form navbar-left" action="./php/group-submit.php?jour=<?=$_GET['jour']?>&poule=<?=$_GET['poule']?>" method="post">
-                        <div class="row">
-                            <div class="col-lg-12">
-                            <!-- Ce bouton est là pour procéder à la vérification que tous les terrains sont différents.
-                                 Il faut voir comment faire pour éviter qu'il n'interagisse comme il le fait actuellement avec "Echanger"
-                                 Voir la fonction utilisée dans php/group-submit.php -->
-                            <input type="submit" class="btn btn-primary pull-right" value="Enregistrer Terrain" />
-                        </div>
-                        </div>
-                    </form>
+                                <span class="pull-right" data-toggle="pList" data-target="#pList" data-url="./php/group-note-vide.php">
+                                <button class="btn btn-default">
+                                    <i class="fa fa-times-circle"></i>
+                                </button>
+                            </span>
 
+                            </form>
+
+
+                            <form class="navbar-left" action="./php/group-submit.php?jour=<?=$_GET['jour']?>&poule=<?=$_GET['poule']?>" method="post">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <!-- Ce bouton est là pour procéder à la vérification que tous les terrains sont différents.
+                                             Il faut voir comment faire pour éviter qu'il n'interagisse comme il le fait actuellement avec "Echanger"
+                                             Voir la fonction utilisée dans php/group-submit.php -->
+                                        <input type="submit" class="btn btn-primary pull-right" value="Enregistrer Terrain" />
+                                    </div>
+                                </div>
+                            </form>
+                            <br/><br/>
+                            <div id="pList"></div>
+                        </div>
+                    </nav>
                 </div>
                 <div class="row">
-                        <br/>
-                        <br/>
-                    </div>
-
-                <div class="row">
-                    <div class="col-lg-3">
-                        <select class="form-select" multiple="">
-                            <?php
-                                $listTeams = $db->query('SELECT * FROM Team WHERE ID_Cat='.$_GET['poule'].'');
-                            foreach ($listTeams as $team) {
-                                $IDPersonne = $team['ID_Player1'];
-                                $player = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne."\"")->fetch_array();
-
-                                $IDPersonne2 = $team['ID_Player2'];
-                                $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
-
-                                if ($player['Note'] || $player2['Note']) {
-                            ?>
-                                <option data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=<?=$team['ID']?>">
-                                    <?=$player['LastName']?>,
-                                        <?=$player2['LastName']?>
-                                </option>
-                                <?php } }
-                                    ?>
-                        </select>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <div id="pList">
-
-                        </div>
-                    </div>
+<!--                    <div class="col-lg-3">-->
+<!--                        <select class="form-select" multiple="">-->
+<!--                            --><?php
+//                                $listTeams = $db->query('SELECT * FROM Team WHERE ID_Cat='.$_GET['poule'].'');
+//                            foreach ($listTeams as $team) {
+//                                $IDPersonne = $team['ID_Player1'];
+//                                $player = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne."\"")->fetch_array();
+//
+//                                $IDPersonne2 = $team['ID_Player2'];
+//                                $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
+//
+//                                if ($player['Note'] || $player2['Note']) {
+//                            ?>
+<!--                                <option data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=--><?//=$team['ID']?><!--">-->
+<!--                                    --><?//=$player['LastName']?><!--,-->
+<!--                                        --><?//=$player2['LastName']?>
+<!--                                </option>-->
+<!--                                --><?php //} }
+//                                    ?>
+<!--                        </select>-->
+<!--                        <br/>-->
+<!--                        <br/>-->
+<!--                        <br/>-->
+<!--                        <br/>-->
+<!--                        <div id="pList">-->
+<!---->
+<!--                        </div>-->
+<!--                    </div>-->
                     <div class="col-lg-9 text-center">
                         <?php
                             $db = BDconnect();

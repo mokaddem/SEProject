@@ -1,4 +1,4 @@
-#echanger input[type="text"], textarea { background-color : #d1d1d1; }
+/*#echanger input[type="text"], textarea { background-color : #d1d1d1; }*/
 
 
 /*#listNote {*/
@@ -386,4 +386,18 @@ table.dataTable thead .sorting:after {
 }
 .navbar-top-links .dropdown-messages, .navbar-top-links .dropdown-tasks, .navbar-top-links .dropdown-alerts {
     width: 140px;
+}
+
+.navbar-perso {
+    background-color: #bbbbbb;
+    border-color: #aaaaaa;
+}
+
+.panel-border-perso {
+    border: 1px solid #bbbbbb;
+}
+.panel-perso {
+    background-color: #dddddd;
+    border-color: #dddddd;
+
 }
