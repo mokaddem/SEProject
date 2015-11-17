@@ -58,7 +58,7 @@
                     </ul>
                 </div>
                     <?php
-                    $db = new BDD();
+                    $db = BDconnect();
                     if ($_GET['jour'] == "sam"){
                         $knockoff_all = $db->query('SELECT * FROM KnockoffSaturday ORDER BY `Position` ASC');
                         $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSaturday')->fetch_array();

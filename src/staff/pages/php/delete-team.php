@@ -2,7 +2,7 @@
 	include_once('BDD.php');
 require_once('test-delete.php');
 
-$db = new BDD();
+$db = BDconnect();
 
 	var_dump(canDeleteTeam($_GET['id']));
 	if (!canDeleteTeam($_GET['id'])) {

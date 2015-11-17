@@ -117,47 +117,47 @@ function getTitre($get) {
 
 
 function getCourt($id) {
-    $db = new BDD();
+    $db = BDconnect();
     return $db->query('SELECT * FROM `Terrain` WHERE ID = '.$id.'');
 }
 
 function getExtra($id) {
-    $db = new BDD();
+    $db = BDconnect();
     return $db->query('SELECT * FROM Extras WHERE ID = '.$id.'');
 }
 
 function getHistories() {
-    $db = new BDD(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
+    $db = BDconnect(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
     return $db->query('SELECT * FROM History');
 }
 
 function getHistory($id) {
-    $db = new BDD(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
+    $db = BDconnect(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
     return $db->query('SELECT * FROM History WHERE id = '.$id.'');
 }
 
 function getMatch($id) {
-    $db = new BDD();
+    $db = BDconnect();
     return $db->query('SELECT * FROM `Match` WHERE ID = '.$id.'');
 }
 
 function getCategory($id) {
-    $db = new BDD();
+    $db = BDconnect();
     return $db->query('SELECT * FROM `Categorie` WHERE ID = '.$id.'');
 }
 
 function getOwner($id) {
-    $db = new BDD();
+    $db = BDconnect();
     return $db->query('SELECT * FROM Personne WHERE isOwner=1 and ID = '.$id.'');
 }
 
 function getPlayer($id) {
-    $db = new BDD(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
+    $db = BDconnect(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
     return $db->query('SELECT * FROM Personne, Player WHERE Personne.ID = '.$id.'');
 }
 
 function getStaff($id) {
-    $db = new BDD();
+    $db = BDconnect();
     $reponse = $db->query('SELECT * FROM Personne, Staff WHERE isStaff=1 and Personne.ID = '.$id.'');
 
     return $reponse;
@@ -165,12 +165,12 @@ function getStaff($id) {
 
 
 function getTeam1() {
-    $db = new BDD();
+    $db = BDconnect();
     return $db->query('SELECT Team.ID, FirstName as F, LastName as L, Team.ID_Player1 as id1, Team.ID_Player2 as id2 FROM Team, Personne WHERE Personne.ID = Team.ID_Player1 ');
 }
 
 function getTeam2($id) {
-    $db = new BDD();
+    $db = BDconnect();
     return $db->query('SELECT Team.ID, FirstName as F, LastName as L FROM Team, Personne WHERE Personne.ID = '.$id.'');
 }
 

@@ -75,7 +75,7 @@
                                     <label for="sel1"><span class="fa fa-user"></span> Propriétaire</label>
                                     <select class="form-control" id="sel3" name="sel3">
                                         <?php
-                                            $db = new BDD();
+                                            $db = BDconnect();
                                             $reponse = $db->query('SELECT *, Owner.ID as O_id FROM Personne, Owner WHERE Personne.ID=Owner.ID_Personne');
                                             while ($donnes = $reponse->fetch_array())
                                             {										

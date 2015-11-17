@@ -39,7 +39,7 @@
         <?php            
             include("./html/header.php");
 	    include_once('php/BDD.php');  
-	    $db = new BDD();
+	    $db = BDconnect();
 
         ?>
 

@@ -40,7 +40,7 @@
             include("./html/header.php");
             include_once('php/BDD.php');
             
-            $db = new BDD();
+            $db = BDconnect();
             $reponse = $db->query('SELECT * FROM Categorie WHERE '. $_GET['id']. ' = ID');
             $donnees = $reponse->fetch_array();
         ?>

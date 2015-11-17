@@ -6,7 +6,7 @@
         include_once('BDD.php');
     
         
-        $db = new BDD();
+        $db = BDconnect();
         $reponse = $db->query('SELECT * FROM `Team` WHERE ID_Player1 = '. $id .' OR ID_Player2 = '. $id .'');
         
         if ($reponse->fetch_array() == NULL){
@@ -20,7 +20,7 @@
     function canDeleteTeam($id) {
 
         include_once('BDD.php');
-        $db = new BDD();
+        $db = BDconnect();
         $reponsematch = $db->query('SELECT * FROM `Match` WHERE ID_Equipe1 = '. $id .' OR ID_Equipe2 = '. $id .'');
 
 
@@ -43,7 +43,7 @@
 
         include_once('BDD.php');
 
-        $db = new BDD();
+        $db = BDconnect();
         $reponse = $db->query('SELECT * FROM `Match` WHERE ID_Terrain = ' . $id . '');
 
         if ($reponse->fetch_array() == NULL) {
@@ -70,7 +70,7 @@
 
             include_once('BDD.php');
 
-            $db = new BDD();
+            $db = BDconnect();
             $reponse = $db->query('SELECT * FROM `Terrain` WHERE ID_Owner = ' . $id . '');
 
             if ($reponse->fetch_array() == NULL) {

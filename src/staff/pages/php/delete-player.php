@@ -6,7 +6,7 @@
 	if (!canDeletePlayer($_GET['id'])) {
 		header("Location: ../list.php?type=player&error=creation");
 	} else {
-		$db = new BDD();
+		$db = BDconnect();
 
 		$db->query('DELETE FROM Personne WHERE ID='.$_GET['id']);
 		$db->query('DELETE FROM Player WHERE ID_Personne='.$_GET['id']);

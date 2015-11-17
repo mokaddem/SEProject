@@ -46,7 +46,7 @@
             <?php            
             include("./html/header.php");
         
-            $db = new BDD();
+            $db = BDconnect();
             $reponseS = $db->query('SELECT * FROM GroupSaturday');
             $reponseD = $db->query('SELECT * FROM GroupSunday');
 

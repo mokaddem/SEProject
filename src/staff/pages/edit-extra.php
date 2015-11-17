@@ -39,7 +39,7 @@
         <?php            
             include("./html/header.php");
             include_once('php/BDD.php');
-            $db = new BDD();
+            $db = BDconnect();
             $reponse = $db->query('SELECT * FROM Extras WHERE '. $_GET['id']. ' = Extras.ID');
             $donnes = $reponse->fetch_array();
         ?>

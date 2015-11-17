@@ -2,7 +2,7 @@
 ?>
 <?php
 if (array_key_exists("id", $_GET)) {
-    $db = new BDD(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
+    $db = BDconnect(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
 
     $team = $db->query("SELECT * FROM Team WHERE ID=\"" . $_GET['id'] . "\"")->fetch_array();
     $IDPersonne = $team['ID_Player1'];

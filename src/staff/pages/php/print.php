@@ -49,7 +49,7 @@ $pdf->SetFont('dejavusans', '', 11, '', true);
 $pdf->AddPage();
 
 include_once('BDD.php');
-$db = new BDD();
+$db = BDconnect();
 $id = $_GET['id'];
 $reponse = $db->query('SELECT * FROM `Match` WHERE '.$id.' = ID');
 $donnees = $reponse->fetch_array();

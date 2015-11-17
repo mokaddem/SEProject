@@ -43,7 +43,7 @@
 
             
         
-            $db = new BDD();
+            $db = BDconnect();
             
             $tmp = $db->query('SELECT * FROM Team WHERE '.$_GET['id'].' = ID ');
             $t = $tmp->fetch_array();
@@ -78,7 +78,7 @@
                                     <?php echo "<option value=".$p1['ID']." selected=".$p1final.">".$p1final."</option>";?>
 
                                         <?php
-                                    $db = new BDD();
+                                    $db = BDconnect();
                                     $reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
                                     while ($donnes = $reponse->fetch_array())
                                     {
@@ -95,7 +95,7 @@
                                 <select class="form-control" id="idp2" name="idp2">
                                     <?php echo "<option value=".$p2['ID']." selected=".$p2final.">".$p2final."</option>";?>
                                         <?php
-                                        $db = new BDD();
+                                        $db = BDconnect();
                                         $reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
                                         while ($donnes = $reponse->fetch_array())
                                         {				
@@ -110,7 +110,7 @@
                                 <label for="sel2"><span class="fa fa-user"></span> Catégorie</label>
                                 <select class="form-control" id="InputCat" name="InputCat">
                                     <?php
-										$db = new BDD();
+										$db = BDconnect();
 										$reponse = $db->query('SELECT * FROM Categorie');
 										while ($donnes = $reponse->fetch_array())
 										{

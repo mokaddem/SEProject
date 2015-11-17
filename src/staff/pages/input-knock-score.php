@@ -65,7 +65,7 @@
 
                 <div class="form-group" action="./php/add-knock-off-score.php?jour=<?=$_GET['jour']?>" method="GET">
                     <?php
-                    $db = new BDD();
+                    $db = BDconnect();
                     if ($_GET['jour'] == "sam"){
                         $knockoff_all = $db->query('SELECT * FROM KnockoffSaturday ORDER BY `Position` ASC');
                         $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM KnockoffSaturday')->fetch_array();

@@ -19,7 +19,7 @@
     <?php
     include_once('../../src/staff/pages/php/BDD.php');
 
-    $db = new BDD();
+    $db = BDconnect();
 
     $tmp = $db->query('SELECT * FROM Extras');
 

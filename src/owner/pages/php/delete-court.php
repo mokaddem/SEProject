@@ -2,7 +2,7 @@
 	include_once('BDD.php');
 require_once('test-delete.php');
 
-$db = new BDD();
+$db = BDconnect();
 
 	if (!canDeleteCourt($_GET['id'])) {
 		header("Location: ../list.php?type=court&error=creation");

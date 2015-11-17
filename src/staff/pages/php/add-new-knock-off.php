@@ -3,12 +3,12 @@
     require_once('add-new-history.php');
     //include("../../../mail/mail_helper.php");
 
-    $database_host = 'localhost';
-    $database_user = 'root';
-    $database_pass = '123';
-    $database_db = 'SEProjectC';
-	$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
-
+    //$database_host = 'localhost';
+    //$database_user = 'root';
+    //$database_pass = '123';
+    //$database_db = 'SEProjectC';
+	//$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
+$db = BDconnect();
 
     if ($_GET['jour'] == "sam"){
         $table = "KnockoffSaturday";

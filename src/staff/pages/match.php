@@ -70,7 +70,7 @@
                                 <label for="sel1"><span class="fa fa-users"></span> Première équipe</label>
                                 <select class="form-control" name="InputEq1" id="InputEq1">
                                     <?php
-										$db = new BDD();
+										$db = BDConnect();
 										$reponse = $db->query('SELECT * FROM Team');
 										while ($donnes = $reponse->fetch_array())
 										{
@@ -88,7 +88,7 @@
                                 <label for="sel1"><span class="fa fa-users"></span> Seconde équipe</label>
                                 <select class="form-control" name="InputEq2" id="InputEq2">
                                     <?php
-										$db = new BDD();
+										$db = BDconnect();
 										$reponse = $db->query('SELECT * FROM Team');
 										while ($donnes = $reponse->fetch_array())
 										{
@@ -107,7 +107,7 @@
                                 
                                 <select class="form-control" name="InputCourt" id="InputCourt">
                                     <?php
-										$db = new BDD();
+										$db = BDconnect();
 										$reponse = $db->query('SELECT * FROM Terrain');
 										while ($donnes = $reponse->fetch_array())
 										{

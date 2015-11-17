@@ -84,7 +84,7 @@
                                 <div class="form-group">
                                     <select class="form-control" id="InputCat" name="InputCat">
                                         <?php
-                                        $db = new BDD();
+                                        $db = BDconnect();
                                         $reponse = $db->query('SELECT * FROM Categorie');
                                         while ($donnes = $reponse->fetch_array())
                                         {

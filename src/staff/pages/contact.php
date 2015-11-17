@@ -34,7 +34,7 @@
             include("./html/header.php");
         include_once('php/BDD.php');
 
-        $db = new BDD();
+        $db = BDconnect();
 
         $listPart = $db->query("SELECT * FROM Personne where isPlayer = 1 ");
         $listProp = $db->query("SELECT * FROM Personne where isOwner = 1 ");

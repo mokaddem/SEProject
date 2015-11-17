@@ -39,7 +39,7 @@
             include("./html/header.php");
             include_once('php/BDD.php');
 
-        $db = new BDD();
+        $db = BDconnect();
 
         ?>
 
@@ -151,7 +151,7 @@
                     </div>
                     <div class="col-lg-9 text-center">
                         <?php
-                            $db = new BDD();
+                            $db = BDconnect();
                             if ($_GET['jour'] == "sam"){
                                 $groups = $db->query('SELECT * FROM GroupSaturday, Team WHERE GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['poule'].'');
                                 $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSaturday')->fetch_array();

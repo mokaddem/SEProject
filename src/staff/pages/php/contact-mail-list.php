@@ -1,7 +1,7 @@
 <?php
 include_once('BDD.php');
 
-    $db = new BDD();
+    $db = BDconnect();
 /*    $reponse = $db->query('SELECT * FROM Personne');
     $donnes = $reponse->fetch_array();
 

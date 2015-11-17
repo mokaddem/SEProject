@@ -47,7 +47,7 @@
             include_once('php/BDD.php');
 
 
-            $db = new BDD();
+            $db = BDconnect();
 
             $grpSattmp = $db->query('SELECT * FROM GroupSaturday');
             $grpSuntmp = $db->query('SELECT * FROM GroupSunday');

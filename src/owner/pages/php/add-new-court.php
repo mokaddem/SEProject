@@ -3,19 +3,13 @@
 	include_once('BDD.php');
     //include("../../../mail/mail_helper.php");
 
-//	$db = new BDD();
+//	$db = BDconnect();
 
 //	$database_host = 'test.pydehon.me';
 //	$database_user = 'team';
 //	$database_pass = 'seprojectc';
-	$database_host = 'localhost';
-	$database_user = 'root';
-	$database_pass = '123';
-
-
-	$database_db = 'SEProjectC';
-	$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
-
+	$db = BDconnect();
+        
     $d = $db->query('SELECT * FROM `Owner` WHERE ID_Personne = '.$_SESSION['ID'].'');
     $res = $d->fetch_array();
 

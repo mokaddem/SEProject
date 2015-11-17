@@ -14,7 +14,7 @@ require_once("./php/inc/list-team.inc");
             <?php
                 $id = $_GET['id'];
 
-            $db = new BDD();
+            $db = BDconnect();
             $reponse = $db->query('SELECT * FROM `Match` WHERE '.$id.' = ID');
             $donnees = $reponse->fetch_array();
 

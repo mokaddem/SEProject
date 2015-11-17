@@ -114,24 +114,24 @@ function getTitre($get) {
 }
 
 function getCourts() {
-    $db = new BDD();
+    $db = BDconnect();
     return $db->query('SELECT *, Terrain.ID as ID, Terrain.Note as Note, Owner.ID as O_id FROM `Terrain`, `Personne`, `Owner` WHERE Owner.ID = Terrain.ID_Owner AND Personne.ID = Owner.ID_Personne');
 }
 
 function getExtras() {
-    $db = new BDD();
+    $db = BDconnect();
     return $db->query('SELECT Extras.*, count(PersonneExtra.Extra_ID) as nbr FROM Extras INNER JOIN PersonneExtra ON Extras.ID=PersonneExtra.Extra_ID');
 }
 
 function getHistories() {
-    $db = new BDD(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
+    $db = BDconnect(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
 
     return $db->query('SELECT * FROM History');
 
 }
 
 function getStaffName($idPerson) {
-    $db = new BDD(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
+    $db = BDconnect(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
     
     $rep = $db->query('SELECT * FROM Personne WHERE '.$idPerson.' = ID');
     $donnees = $rep->fetch_array();
@@ -144,38 +144,38 @@ function getStaffName($idPerson) {
 
 
 function getHistory($id) {
-    $db = new BDD(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
+    $db = BDconnect(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
     return $db->query('SELECT * FROM History WHERE id = '.$id.'');
 }
 
 function getMatchs() {
-    $db = new BDD();
+    $db = BDconnect();
     return $db->query('SELECT * FROM `Match`');
 }
 
 function getCategories() {
-    $db = new BDD();
+    $db = BDconnect();
     return $db->query('SELECT * FROM `Categorie`');
 }
 
 
 function getOwners() {
-    $db = new BDD();
+    $db = BDconnect();
     return $db->query('SELECT * FROM Personne WHERE isOwner=1');
 }
 
 function getPlayers() {
-    $db = new BDD(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
+    $db = BDconnect(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
     return $db->query('SELECT * FROM Personne WHERE isPlayer=1');
 }
 
 function getPlayer($id) {
-    $db = new BDD(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
+    $db = BDconnect(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
     return $db->query('SELECT * FROM Personne WHERE ID = '.$id.'');
 }
 
 function getStaffs() {
-    $db = new BDD();
+    $db = BDconnect();
     $reponse = $db->query('SELECT * FROM Personne WHERE isStaff=1');
 
     return $reponse;

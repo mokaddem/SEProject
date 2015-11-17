@@ -40,7 +40,7 @@
             include("./html/header.php");
             include_once('php/BDD.php');
 
-            $db = new BDD();
+            $db = BDconnect();
         ?>
 
 
@@ -98,7 +98,7 @@
                         <div class="col-lg-2">
                             <hr>
                             <?php
-                                $db = new BDD();
+                                $db = BDconnect();
                                 if ($_GET['jour'] == "sam"){
                                     $knockoff_all = $db->query('SELECT * FROM KnockoffSaturday ORDER BY `Position` ASC');
                                     $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSaturday')->fetch_array();
@@ -165,7 +165,7 @@
                                         </label>
                                         <select class="form-control" id="sel1">
 		                                    <?php
-												$db = new BDD();
+												$db = BDconnect();
 												$terrains = $db->query('SELECT * FROM Terrain');
 												while ($terrain = $terrains->fetch_array())
 												{ ?>

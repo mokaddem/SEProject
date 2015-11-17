@@ -40,7 +40,7 @@
             include("./html/header.php");
             include_once('php/BDD.php');
             
-            $db = new BDD();
+            $db = BDconnect();
             $reponse = $db->query('SELECT * FROM `Match` WHERE '. $_GET['id']. ' = ID');
             $donnees = $reponse->fetch_array();
         
@@ -93,7 +93,7 @@
     echo '<option value="'.$donnees['ID_Equipe1'].'" selected="'.$t1final.'">'.$t1final.'</option>'; ?>
                                 
                                 <?php
-										$db = new BDD();
+										$db = BDconnect();
 										$reponse = $db->query('SELECT * FROM Team');
 										while ($donnes = $reponse->fetch_array())
 										{
@@ -113,7 +113,7 @@
                                     <?php                  
     echo '<option value="'.$donnees['ID_Equipe2'].'" selected="'.$t2final.'">'.$t2final.'</option>'; ?>
                                     <?php
-										$db = new BDD();
+										$db = BDconnect();
 										$reponse = $db->query('SELECT * FROM Team');
 										while ($donnes = $reponse->fetch_array())
 										{
@@ -134,7 +134,7 @@
                                     <?php                  
     echo '<option value="'.$donnees['ID_Terrain'].'" selected="'.$terfinal.'">'.$terfinal.'</option>'; ?>
                                     <?php
-										$db = new BDD();
+										$db = BDconnect();
 										$reponse = $db->query('SELECT * FROM Terrain');
 										while ($donnes = $reponse->fetch_array())
 										{

@@ -2,7 +2,7 @@
 	include_once('BDD.php');
     require_once('add-new-history.php');
 
-	$db = new BDD();
+	$db = BDconnect();
 
 	if ($_GET['jour'] == "sam"){
 		//$groups = $db->query('SELECT * FROM GroupSaturday');

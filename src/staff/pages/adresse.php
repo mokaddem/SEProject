@@ -32,9 +32,9 @@
 
         <?php
             include("./html/header.php");
-        include_once('php/BDD.php');
+        include_once('./php/BDD.php');
 
-        $db = new BDD();
+        $db = BDconnect();
 
 //        array_unique(my_array, SORT_REGULAR)
 

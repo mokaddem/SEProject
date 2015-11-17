@@ -1,6 +1,6 @@
 <?php
 	include_once('BDD.php');
-	$db = new BDD();
+	$db = BDconnect();
 
 	$db->query('DELETE FROM History');
 

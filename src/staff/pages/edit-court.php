@@ -39,7 +39,7 @@
         <?php            
             include("./html/header.php");
 	    include_once('php/BDD.php');
-	    $db = new BDD();
+	    $db = BDconnect();
         $reponse = $db->query('SELECT * FROM Terrain WHERE Terrain.ID ='.$_GET['id']);
         $dataCourt = $reponse->fetch_array();
         ?>
