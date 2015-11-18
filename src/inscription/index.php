@@ -144,17 +144,15 @@
                                 <div class="form-group">
                                     <!--<label for="sel1">Titre:</label>-->
                                     <label class="checkbox">Options supplémentaires</label>
-                                    <input name="extraNone1" id="'extraNone1" type="checkbox"> <strong>Aucune options supplémentaires</strong></input>
-                                    <br/>
                                     <?php
+                                    $tmp = $db->query('SELECT * FROM Extras');
                                     $i=1;
                                     while ($extra = $tmp->fetch_array()){?>
-                                        <div class="form-group" id="extra1_<?php echo $i;?>" name="extra1_<?php echo $i;?>">
-                                            <input type="checkbox"> <strong><?php echo $extra['Name'];?></strong>: </input>
+                                        <div class="form-group" id="extraD1_<?php echo $i;?>" name="extraD1_<?php echo $i;?>">
+                                            <input id="extra1_<?php echo $i;?>" name="extra1_<?php echo $i;?>" value=<?=$extra['ID']?> type="checkbox"> <strong><?php echo $extra['Name'];?></strong>: </input>
                                             <span><?php echo $extra['Description']?></span>
-                                            <br/>
                                         </div>
-                                        <?php $i=$i+1;} $extraSize=$i; ?>
+                                        <?php $i=$i+1;} $extraSize = $i; ?>
                                 </div>
 
                                 <div class="form-group">
@@ -286,16 +284,13 @@
                                 <div class="form-group">
                                     <!--<label for="sel1">Titre:</label>-->
                                     <label class="checkbox">Options supplémentaires</label>
-                                        <input name="extraNone2" id="'extraNone2" type="checkbox"> <strong>Aucune options supplémentaires</strong></input>
-                                        <br/>
                                         <?php
                                             $tmp = $db->query('SELECT * FROM Extras');
                                             $i=1;
                                             while ($extra = $tmp->fetch_array()){?>
-                                            <div class="form-group" id="extra2_<?php echo $i;?>" name="extra2_<?php echo $i;?>">
-                                                <input type="checkbox"> <strong><?php echo $extra['Name'];?></strong>: </input>
+                                            <div class="form-group" id="extraD2_<?php echo $i;?>" name="extraD2_<?php echo $i;?>">
+                                                <input id="extra2_<?php echo $i;?>" name="extra2_<?php echo $i;?>" value=<?=$extra['ID']?> type="checkbox"> <strong><?php echo $extra['Name'];?></strong>: </input>
                                                 <span><?php echo $extra['Description']?></span>
-                                                <br/>
                                             </div>
                                             <?php $i=$i+1;} ?>
                                 </div>
@@ -343,27 +338,53 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if(document.getElementsByName("extra1_1")[0].checked == true){
+            for (i = 2; i < <?php echo $extraSize; ?>; i++) {
+                extraName= "extraD1_" +i.toString();
+                $(extraName).hide();
+            }
+        }
+
+        if(document.getElementsByName("extra2_1")[0].checked == true){
+            for (i = 2; i < <?php echo $extraSize; ?>; i++) {
+                extraName= "extraD2_" +i.toString();
+                $(extraName).hide();
+            }
+        }
+    });
+</script>
+
 <script type="text/javascript">
     function hideExtras(player){
-        var extraName= "extraNone"+player.toString();
-        if(document.getElementsByName(extraName)[0].checked == true){
-            for (i = 1; i < <?php echo $extraSize; ?>; i++) {
-                extraName= "#extra"+player+"_" +i.toString();
-                setTimeout(function() {  $(extraName).fadeOut('fast');},10);
+        var nameExtra="extra"+ player.toString()+ "_";
+        var nameDivExtra="extraD"+ player.toString() +"_";
+        if(document.getElementsByName(nameExtra.toString()+ "1")[0].checked == true){
+            for (i = 2; i < <?php echo $extraSize; ?>; i++) {
+                var extraDivName= nameDivExtra.toString() +i.toString();
+//                console.log("extraDivName="+extraDivName.toString());
+                var extraName= nameExtra.toString() +i.toString();
+//                console.log("trying to access1: " + extraDivName.toString() + " and " + extraName.toString());
+                setTimeout(function() {  $("#"+extraDivName).fadeOut('fast');},10);
+                document.getElementsByName(extraName.toString())[0].checked = false;
             }
         }
         else{
-            for (i = 1; i < <?php echo $extraSize; ?>; i++) {
-                extraName= "#extra"+player+"_" +i.toString();
-                setTimeout(function() {  $(extraName).fadeIn('fast');}, 10);
+            for (i = 2; i < <?php echo $extraSize; ?>; i++) {
+                var extraDivName= nameDivExtra.toString() +i.toString();
+                var extraName= nameExtra.toString() +i.toString();
+//                console.log("trying to access2: " + extraDivName.toString() + " and " + extraName.toString());
+                setTimeout(function() {  $("#"+extraDivName).fadeIn('fast');}, 10);
             }
         }
     }
 </script>
 
 <script type="text/javascript">  window.onload = function() {
-        document.getElementsByName("extraNone2")[0].addEventListener("click", function(){ hideExtras("2"); });
-        document.getElementsByName("extraNone1")[0].addEventListener("click", function(){ hideExtras("1"); });
+        document.getElementsByName("extra1_1")[0].addEventListener("click",function(){hideExtras(1); });
+        document.getElementsByName("extra2_1")[0].addEventListener("click",function(){hideExtras(2); });
     };
 </script>
 
