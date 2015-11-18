@@ -75,7 +75,7 @@
 
 
     // ---------------------AJOUTER TEAM--------------------------
-/*	$req = $db->prepare("INSERT INTO Team(ID, ID_player1, ID_player2, ID_Cat, NbWinMatch) VALUES(?, ?, ?, ?, ?)");
+	$req = $db->prepare("INSERT INTO Team(ID, ID_player1, ID_player2, ID_Cat, NbWinMatch) VALUES(?, ?, ?, ?, ?)");
 
 //	$req = $db->prepare('INSERT INTO Personne(ID, FirstName, LastName, Title, ZIPCode, PhoneNumber, GSMNumber, Address, BirthDate, Mail, CreationDate, IsPlayer, IsOwner, IsStaff) VALUES('', "bb", "bb", 1, 1234, 12354, 46351, "glkrzjglz e zfzef", 2015-02-02, "lzeijgze@fmezk.com", 2015-02-03, 1, 0, 0)');
 
@@ -93,7 +93,7 @@
     $donnees = $reponse->fetch_array();
 	
     addHistory( $donnees["ID"], "Equipe", "Ajout");
-*/
+
 
     // --------------------AJOUTER PLAYER---------------------------
 
@@ -114,18 +114,45 @@
 	$req->bind_param("iiii", $ID_Personne2, $IsLeader,$Paid, $AlreadyPart);
 	$req->execute();
 
-/*	$reponse = $db->query('SELECT * FROM Team WHERE '.$ID_player1.' = ID_Player1 AND '.$ID_player2.' = ID_Player2');
-	$donnees = $reponse->fetch_array();*/
+	$reponse = $db->query('SELECT * FROM Team WHERE '.$ID_player1.' = ID_Player1 AND '.$ID_player2.' = ID_Player2');
+	$donnees = $reponse->fetch_array();
 
-	//addHistory($donnees["ID"], "Equipe", "Ajout");
+	addHistory($donnees["ID"], "Equipe", "Ajout");
 
 
+	// -------------------AJOUTER EXTRAS FOR PLAYER 1----------------------------
+	$extraIDs = $db->query('SELECT ID as id FROM Extras');
+	//error_log(serialize($_GET));
+	//for($i=1; $i<=$nbrIter; $i++){
+	while($extraID = $extraIDs->fetch_array()){
+		$extraName="extra1_".(String) ($extraID['id']);
+		if(isset($_GET[$extraName])) {
+			$extra = $_GET[$extraName];
+				$db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extraID['id'].",".$ID_Personne1.")");
+		} else{
+			// Do Nothing
+		}
+	}
+
+	// -------------------AJOUTER EXTRAS FOR PLAYER 2----------------------------
+	$extraIDs = $db->query('SELECT ID as id FROM Extras');
+	//error_log(serialize($_GET));
+	//for($i=1; $i<=$nbrIter; $i++){
+	while($extraID = $extraIDs->fetch_array()){
+		$extraName="extra2_".(String) ($extraID['id']);
+		if(isset($_GET[$extraName])) {
+			$extra = $_GET[$extraName];
+			$db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extraID['id'].",".$ID_Personne2.")");
+		} else{
+			// Do Nothing
+		}
+	}
 
 
 
 
 	/*if (array_key_exists($_SESSION)) {*/
-	header("Location: ../list.php?type=player");
+	//header("Location: ../list.php?type=player");
 	/*} else {
 		header( "refresh:5;url=../../../../index.php?action=register" );
     }*/
