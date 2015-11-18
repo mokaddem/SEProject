@@ -104,16 +104,16 @@
                                                             <?=$histo['id']?>
                                                         </td>
                                                         <td>
-                                                            <?=getStaffName($histo['idPerson'])?>
+                                                            <?=utf8_encode(getStaffName($histo['idPerson']))?>
                                                         </td>
                                                         <td>
                                                             <?=$histo['idEntite']?>
                                                         </td>
                                                         <td>
-                                                            <?=$histo['typeEntite']?>
+                                                            <?=utf8_encode($histo['typeEntite'])?>
                                                         </td>
                                                         <td>
-                                                            <?=$histo['action']?>
+                                                            <?=utf8_encode($histo['action'])?>
                                                         </td>
                                                         <td>
                                                             <?=$histo['date']?>
