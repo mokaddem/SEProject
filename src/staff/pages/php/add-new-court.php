@@ -3,19 +3,19 @@
         include("../../../mail/mail_helper.php");
     require_once('add-new-history.php');
 
-//	$db = new BDD();
+//	$db = BDconnect();
 
 //	$database_host = 'test.pydehon.me';
 //	$database_user = 'team';
 //	$database_pass = 'seprojectc';
-	$database_host = 'localhost';
-	$database_user = 'root';
-	$database_pass = '123';
+	//$database_host = 'localhost';
+	//$database_user = 'root';
+	//$database_pass = '123';
 
 
-	$database_db = 'SEProjectC';
-	$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
-
+	//$database_db = 'SEProjectC';
+	//$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
+        $db = BDconnect();
 	$req = $db->prepare("INSERT INTO Terrain(ID, adresse, surface, ID_Owner, etat, disponibiliteFrom, disponibiliteTo, CreationDate, type, Note) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 

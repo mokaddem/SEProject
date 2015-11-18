@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin Mode - Equipe</title>
+    <title>Staff - Charles de Lorraine - Equipe</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -70,7 +70,7 @@
                                 <label for="sel1"><span class="fa fa-user"></span> Premier joueur</label>
                                 <select class="form-control" id="sel1" name="sel1">
                                     <?php
-										$db = new BDD();
+										$db = BDconnect();
 										$reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
 										while ($donnes = $reponse->fetch_array())
 										{
@@ -87,7 +87,7 @@
                                 <label for="sel2"><span class="fa fa-user"></span> Second joueur</label>
                                 <select class="form-control" id="sel2" name="sel2">
                                     <?php
-										$db = new BDD();
+										$db = BDconnect();
 										$reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
 										while ($donnes = $reponse->fetch_array())
 										{
@@ -105,7 +105,7 @@
                                 <label for="sel2"><span class="fa fa-user"></span> Catégorie</label>
                                 <select class="form-control" id="InputCat" name="InputCat">
                                     <?php
-										$db = new BDD();
+										$db = BDconnect();
 										$reponse = $db->query('SELECT * FROM Categorie');
 										while ($donnes = $reponse->fetch_array())
 										{

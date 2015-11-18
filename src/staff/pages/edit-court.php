@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Staff - Charles de Lorraine - Terrain</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -39,7 +39,7 @@
         <?php            
             include("./html/header.php");
 	    include_once('php/BDD.php');
-	    $db = new BDD();
+	    $db = BDconnect();
         $reponse = $db->query('SELECT * FROM Terrain WHERE Terrain.ID ='.$_GET['id']);
         $dataCourt = $reponse->fetch_array();
         ?>
@@ -88,6 +88,8 @@
                                     </select>
                                     <input type="number" class="form-control" name="surface" id="surface" placeholder="Surface (m²)" min="0" step="1" value="<?php echo $dataCourt['surface'] ?>" required>
                                 </div>
+                            </div>
+                            <div class="form-group">
                                 <div class="form-group">
                                     <label for="sel1"><span class="fa fa-user"></span> Propriétaire</label>
                                     <select class="form-control" id="owner" name="owner">
@@ -96,10 +98,10 @@
                                             while ($donnes = $reponse->fetch_array())
                                             {
                                                 if ($dataCourt['ID_Owner'] == $donnes['O_id']){
-                                                    echo "<option value=".$donnes['O_id']." selected=\"selected\">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
+                                                    echo "<option value=".$donnes['O_id']." selected=\"selected\">".utf8_encode($donnes['FirstName'])." ".utf8_encode($donnes['LastName'])."</option>";
                                                 }
                                                 else
-                                                    echo "<option value=".$donnes['O_id'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
+                                                    echo "<option value=".$donnes['O_id'].">".utf8_encode($donnes['FirstName'])." ".utf8_encode($donnes['LastName'])."</option>";
                                             }
                                         ?>
                                     </select>
@@ -123,17 +125,17 @@
 <!--                                    </div>-->
 <!--                                </div>-->
 
-                                <label for="sel1"><span class="fa fa-clock-o"></span> Dates</label>
+                                <label for="sel1"><span class="fa fa-clock-o"></span> Disponibilités</label>
                                 <div class="form-inline">
                                     <div class="form-group">
-                                        <label for="InputFrom">From </label>
+                                        <label for="InputFrom">Du </label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                             <input size="10" maxlength="10" class="form-control" name="InputFrom" id="InputFrom" type="date" min="<?=date("Y-m-d")?>" max="2048-10-10" value="<?=$dataCourt['disponibiliteFrom']?>">
                                         </div>
                                     </div>
                                     <div class="form-group pull-right">
-                                        <label for="InputTo">To </label>
+                                        <label for="InputTo">Au </label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                             <input size="10" maxlength="10" class="form-control" name="InputTo" id="InputTo" type="date" min="<?=date("Y-m-d")?>" max="2048-10-10" value="<?=$dataCourt['disponibiliteTo']?>">

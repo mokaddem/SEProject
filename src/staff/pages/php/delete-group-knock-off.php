@@ -2,7 +2,7 @@
 	include_once('BDD.php');
     
 
-	$db = new BDD();
+	$db = BDconnect();
 
 	$knockoffSam = $db->query("SELECT * FROM KnockoffSaturday");
 	foreach($knockoffSam as $knock) {

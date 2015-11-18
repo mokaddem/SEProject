@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Staff - Charles de Lorraine - Poule</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -55,7 +55,7 @@
                 
                 <div class="row">
             <?php if (array_key_exists("error", $_GET)) {?>
-                    <div class="col-lg-4 alert alert-danger">
+                    <div class="col-lg-5 alert alert-danger">
                     <?php if ($_GET["error"] == "no_selection") {?>
                     Veuillez selectionner un jour
                 <?php } elseif ($_GET["error"] == "no_sam") { ?>
@@ -84,7 +84,7 @@
                                 <div class="form-group">
                                     <select class="form-control" id="InputCat" name="InputCat">
                                         <?php
-                                        $db = new BDD();
+                                        $db = BDconnect();
                                         $reponse = $db->query('SELECT * FROM Categorie');
                                         while ($donnes = $reponse->fetch_array())
                                         {

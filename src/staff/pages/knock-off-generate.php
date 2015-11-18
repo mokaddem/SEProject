@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Staff - Charles de Lorraine - Knock-off</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -64,7 +64,7 @@
                         Ils doivent être généré préalablement.
                         <!--<a class="btn btn-danger pull-right" href="./reset.php">Supprimer</a>-->
                     <?php } elseif ($_GET["error"] == "yes_sam") { ?>
-                        Le tournoi du dimanche a déjà été généré.
+                        Le tournoi du samedi a déjà été généré.
                         <!--<a class="btn btn-danger pull-right" href="./reset.php">Supprimer</a>-->
                         <?php } elseif ($_GET["error"] == "yes_dim") { ?>
                         Le tournoi du dimanche a déjà été généré.
@@ -88,6 +88,19 @@
                                 <input type="radio" name="jour" value="sam">
                                 <label for="dim">Dimanche</label>
                                 <input type="radio" name="jour" value="dim">
+                                <div class="form-group">
+                                <select class="form-control" id="InputCat" name="InputCat">
+                                    <?php
+                                    $db = BDconnect();
+                                    $reponse = $db->query('SELECT * FROM Categorie');
+                                    while ($donnes = $reponse->fetch_array())
+                                    {
+                                        echo "<option value=".$donnes['ID'].">".$donnes['Designation']." ".$donnes['Year']."</option>";
+                                    }
+                                    ?>
+                                </select>
+                                </div>
+
                                 <input type="submit" name="submit" id="submit" value="Générer" class="btn btn-info pull-right">
                             </fieldset>
                             <hr>

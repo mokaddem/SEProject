@@ -3,12 +3,12 @@
     require_once('add-new-history.php');
     //include("../../../mail/mail_helper.php");
 
-    $database_host = 'localhost';
-    $database_user = 'root';
-    $database_pass = '123';
-    $database_db = 'SEProjectC';
-	$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
-
+    //$database_host = 'localhost';
+    //$database_user = 'root';
+    //$database_pass = '123';
+    //$database_db = 'SEProjectC';
+	//$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
+$db = BDconnect();
     function insertSam($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $groupSize){
         $reponse = $db->query("SELECT * FROM Terrain");
         $donnees = $reponse->fetch_array();
@@ -17,13 +17,13 @@
 
         $ID	 	= '';
         $ID_terrain = $donnees['ID'];
-        $ID_vic1    = NULL;
-        $ID_vic2    = NULL;
+        $ID_vic1    = 0;
+        $ID_vic2    = 0;
 
         $req->bind_param("iiiiiiiii", $ID, $ID_terrain, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_vic1, $ID_vic2);
         $req->execute();
 
-        $reponse = $db->query("SELECT * FROM GroupSaturday WHERE ID_terrain =\"".$ID_terrain ."\" AND ID_t1=\"".$ID_t1 ."\" AND ID_t2=\"".$ID_t2 ."\" AND ID_t3=\"".$ID_t3 ."\" AND ID_t4=\"".$ID_t4 ."\" AND ID_t5=\"".$ID_t5 ."\"");
+        $reponse = $db->query("SELECT * FROM GroupSaturday WHERE ID_t1=".$ID_t1." AND ID_t2=".$ID_t2);
         $donnees = $reponse->fetch_array();
         addHistory($donnees['ID'], "GroupSaturday", "Ajout");
 
@@ -37,8 +37,8 @@
         $ID         = '';
         $date       = date('Y-m-d');
         $hour       = date("H:i");
-        $score1     = NULL;
-        $score2     = NULL;
+        $score1     = 0;
+        $score2     = 0;
         $ID_Terrain = $ID_terrain;
         $Poule_ID   = $donnees['ID'];
 
@@ -58,7 +58,7 @@
 
             }
         }
-
+        return $Poule_ID;
         /*$req = $db->prepare("SELECT Mail FROM Personne JOIN OWNER ON Owner.ID_Personne = Personne.ID JOIN Terrain ON Terrain.ID_Owner = Owner.ID WHERE Terrain.ID = $ID_terrain");
         $req->execute();
         $to[0] = $req;
@@ -104,7 +104,7 @@
         echo "Bind";
         $req->execute();
 
-        $reponse = $db->query("SELECT * FROM GroupSunday WHERE ID_terrain =\"".$ID_terrain ."\" AND ID_t1=\"".$ID_t1 ."\" AND ID_t2=\"".$ID_t2 ."\" AND ID_t3=\"".$ID_t3 ."\" AND ID_t4=\"".$ID_t4 ."\" AND ID_t5=\"".$ID_t5 ."\" AND ID_t6=\"".$ID_t6 ."\"");
+        $reponse = $db->query("SELECT * FROM GroupSunday WHERE ID_t1=".$ID_t1." AND ID_t2=".$ID_t2);
         $donnees = $reponse->fetch_array();
         addHistory($donnees['ID'], "GroupSunday", "Ajout");
 
@@ -140,8 +140,7 @@
 
             }
         }
-
-
+        return $Poule_ID;
 
         /*$req = $db->prepare("SELECT Mail FROM Personne JOIN OWNER ON Owner.ID_Personne = Personne.ID JOIN Terrain ON Terrain.ID_Owner = Owner.ID WHERE Terrain.ID = $ID_terrain");
         $req->execute();
@@ -215,16 +214,16 @@
                 $ID_t4 = $team['ID'];
             } if($i == 5){
                 $ID_t5 = $team['ID'];
-                insertSam($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $i);
+                $Poule_ID = insertSam($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $i);
                 $i = 0;
                 $ID_t1 = NULL; $ID_t2 = NULL; $ID_t3 = NULL; $ID_t4 = NULL; $ID_t5 = NULL;
             }
             $i++;
         }
         if ($i > 1 and $i <= 5){
-            insertSam($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $i-1);
+            $Poule_ID = insertSam($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $i-1);
         }
-        header("Location: ../group.php?jour=sam&generate=true");
+        header("Location: ../group.php?jour=sam&generate=true&poule=".$_GET['InputCat']);
         return;
     } 
     elseif (array_key_exists("InputCat", $_GET) && $_GET['jour']=="dim"){
@@ -260,16 +259,17 @@
                 $ID_t5 = $team['ID'];
             } if($i == 6){
                 $ID_t6 = $team['ID'];
-                insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $i);
+                $Poule_ID = insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $i);
                 $i = 0;
+                $Poule_ID = $db->query("SELECT ID FROM GroupeSunday WHERE ID_t1=\"".$ID_t1 ."\" AND ID_t2=\"".$ID_t2 ."\" AND ID_t3=\"".$ID_t3 ."\" AND ID_t4=\"".$ID_t4 ."\" AND ID_t5=\"".$ID_t5 ."\"")->fetch_array();
                 $ID_t1 = NULL; $ID_t2 = NULL; $ID_t3 = NULL; $ID_t4 = NULL; $ID_t5 = NULL;
             }
             $i++;
         }
         if ($i > 1 and $i <= 6){
-            insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $i-1);
+            $Poule_ID = insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $i-1);
         }
-        header("Location: ../group.php?jour=dim&generate=true");
+        header("Location: ../group.php?jour=dim&generate=true&poule=".$_GET['InputCat']);
         return;
     }
 

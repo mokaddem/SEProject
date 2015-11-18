@@ -3,7 +3,7 @@ include_once('php/BDD.php');
 
 /*
 function dbAndPrint() {
-    $db = new BDD();
+    $db = BDconnect();
     $reponse1 = $db->query('SELECT Team.ID, FirstName as F, LastName as L, Team.ID_Player1 as id1, Team.ID_Player2 as id2, Team.ID_Cat as ID_Cat FROM Team, Personne WHERE Personne.ID = Team.ID_Player1 ');
     while ($donnes1 = $reponse1->fetch_array())
     {
@@ -16,12 +16,12 @@ function dbAndPrint() {
 */
 
 function getTeam1() {
-    $db = new BDD();
+    $db = BDconnect();
     return $db->query('SELECT Team.ID, FirstName as F, LastName as L, Team.ID_Player1 as id1, Team.ID_Player2 as id2 FROM Team, Personne WHERE Personne.ID = Team.ID_Player1 ');
 }
 
 function getTeam2($id) {
-  $db = new BDD();
+  $db = BDconnect();
   return $db->query('SELECT Team.ID, FirstName as F, LastName as L FROM Team, Personne WHERE Personne.ID = '.$id.'');
 }
 
@@ -29,7 +29,7 @@ function printListMatch($id) {
     
     include_once('php/BDD.php');
             
-    $db = new BDD();
+    $db = BDconnect();
     $reponse = $db->query('SELECT * FROM `Match` WHERE '.$id.' = ID');
     $donnees = $reponse->fetch_array();
 
@@ -55,18 +55,18 @@ function printListMatch($id) {
 
     $t2final = $t2p1['FirstName']." ".$t2p1['LastName']." & ".$t2p2['FirstName']." ".$t2p2['LastName'];
 
-    $t = $db->query('SELECT * FROM `Terrain` WHERE '.$donnees['ID_Terrain'].' = ID');
-    $ter = $t->fetch_array();
+//    $t = $db->query('SELECT * FROM `Terrain` WHERE '.$donnees['ID_Terrain'].' = ID');
+//    $ter = $t->fetch_array();
 
-    $terfinal = $ter['adresse'] . " - " . $ter['etat'];
+//    $terfinal = $ter['adresse'] . " - " . $ter['etat'];
 
     echo "<tr class=\"odd gradeX\">";
 
-    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".$donnees['ID']."</td>";
-    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".$t1final."</td>";
-    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".$t2final."</td>";
-    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".$donnees['date']."</td>";
-    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".$donnees['hour']."</td>";
+    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".utf8_encode($donnees['ID'])."</td>";
+    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".utf8_encode($t1final)."</td>";
+    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".utf8_encode($t2final)."</td>";
+    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".utf8_encode($donnees['date'])."</td>";
+    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".utf8_encode($donnees['hour'])."</td>";
 
     echo "<td><a href=\"./edit-match.php?id=".$donnees['ID']."\" ><i class=\"fa fa-edit fa-fw\"></i></a> <a href=\"./php/delete-match.php?id=".$donnees['ID']."\" onclick=\"return confirm('Voulez-vous vraiment supprimer cette entrée ?');\"><i class=\"fa fa-trash-o\"></i></a> <a target=\"_blank\" href=\"./php/print.php?id=".$donnees['ID']."\"><i class=\"fa fa-print\"></i></a></td>";
     echo "</tr>";

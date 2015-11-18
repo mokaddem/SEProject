@@ -1,11 +1,13 @@
+/*#echanger input[type="text"], textarea { background-color : #d1d1d1; }*/
 
-#listNote {
-    position: fixed;
-}
 
-#pList {
-    position: fixed;
-}
+/*#listNote {*/
+    /*position: fixed;*/
+/*}*/
+
+/*#pList {*/
+    /*position: fixed;*/
+/*}*/
 
 .colorDarkBlue a {
     color: #1E476A;
@@ -384,4 +386,35 @@ table.dataTable thead .sorting:after {
 }
 .navbar-top-links .dropdown-messages, .navbar-top-links .dropdown-tasks, .navbar-top-links .dropdown-alerts {
     width: 140px;
+}
+
+.navbar-perso {
+    border-color: #81C0F3;
+    background-color: transparent;
+    background-image: linear-gradient(to bottom, #81C0F3 10%, #C3DDF3 80%);
+    background-repeat: repeat;
+
+}
+
+.panel-border-perso {
+    border: 1px solid #6AADE3;
+}
+.panel-perso {
+    background-color: #6EB3EB;
+    border-color: #6EB3EB;
+
+}
+
+.panel-grey {
+    background-color: #dddddd;
+    border-color: #cccccc;
+
+}
+
+.server-action-menu {
+    background-color: transparent;
+    background-image: linear-gradient(to bottom, rgba(30, 87, 153, 0.2) 0%, rgba(125, 185, 232, 0) 100%);
+    background-repeat: repeat;
+    border-radius:10px;
+    padding: 5px;
 }

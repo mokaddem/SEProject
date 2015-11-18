@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Staff - Charles de Lorraine - Poules</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -39,7 +39,7 @@
             include("./html/header.php");
             include_once('php/BDD.php');
 
-        $db = new BDD();
+        $db = BDconnect();
 
         ?>
 
@@ -89,7 +89,7 @@
                     <ul class="nav nav-tabs nav-justified">
                         <?php $reponse = $db->query('SELECT * FROM Categorie');
                             while ($donnes = $reponse->fetch_array()) { ?>
-                                <li <?php if ($_GET['poule']==$donnes['ID'] ) echo 'class="active" ';?>><a href="group.php?jour=<?=$_GET['jour']?>&poule=<?=$donnes['ID']?>"><?=$donnes['Designation']?></a></li>
+                                <li <?php if ($_GET['poule']==$donnes['ID'] ) echo 'class="active" ';?>><a href="group.php?jour=<?=$_GET['jour']?>&poule=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation']);?></a></li>
                             <?php }?>
                     </ul>
                 </div>
@@ -97,61 +97,69 @@
                     <br/>
                 </div>
                 <div class="row">
-                    <form class="form-horizontal" action="./php/group-switch.php?jour=<?=$_GET['jour']?>" method="post">
-                        <div class="col-lg-2">
-                            <input type="text" class="form-control" id="idteam1" name="idteam1" placeholder="ID Equipe 1" required>
-                            <input type="text" class="form-control" id="idteam2" name="idteam2" placeholder="ID Equipe 2" required>
+                    <nav class="navbar navbar-inverse navbar-perso navbar-fixed-bottom">
+                        <div class="container">
+                            <form id="echanger" class="navbar-form" action="./php/group-switch.php?jour=<?=$_GET['jour']?>&poule=<?=$_GET['poule']?>" method="post">
+                                <input type="submit" class="btn btn-success pull-right" value="Echanger" />
+                                <span class="pull-right"> . </span><input type="text" class="form-control pull-right" id="idteam2" name="idteam2" placeholder="ID Equipe 2" required>
+                                <p class="pull-right"> </p><input type="text" class="form-control pull-right" id="idteam1" name="idteam1" placeholder="ID Equipe 1" required>
+
+                                <span class="pull-right" data-toggle="pList" data-target="#pList" data-url="./php/group-note-vide.php">
+                                <button class="btn btn-default">
+                                    <i class="fa fa-times-circle"></i>
+                                </button>
+                            </span>
+
+                            </form>
+
+
+                            <form class="navbar-left" action="./php/group-submit.php?jour=<?=$_GET['jour']?>&poule=<?=$_GET['poule']?>" method="post">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <!-- Ce bouton est là pour procéder à la vérification que tous les terrains sont différents.
+                                             Il faut voir comment faire pour éviter qu'il n'interagisse comme il le fait actuellement avec "Echanger"
+                                             Voir la fonction utilisée dans php/group-submit.php -->
+                                        <input type="submit" class="btn btn-primary pull-right" value="Enregistrer Terrain" />
+                                    </div>
+                                </div>
+                            </form>
+                            <br/><br/>
+                            <div id="pList"></div>
                         </div>
-                        <div class="col-lg-2">
-                            <input type="submit" class="btn btn-primary pull-left" value="Echanger" />
-                        </div>
-                    </form>
+                    </nav>
                 </div>
-
-                <form action="./php/group-submit.php?jour=<?=$_GET['jour']?>" method="post">
-                    <div class="row col-lg-12">
-                        <!-- Ce bouton est là pour procéder à la vérification que tous les terrains sont différents.
-                             Il faut voir comment faire pour éviter qu'il n'interagisse comme il le fait actuellement avec "Echanger"
-                             Voir la fonction utilisée dans php/group-submit.php -->
-                        <input type="submit" class="btn btn-primary pull-right" value="Enregistrer" />
-                    </div>
-                    <div class="row">
-                        <br/>
-                        <br/>
-                    </div>
-
                 <div class="row">
-                    <div class="col-lg-4">
-                        <select id="listNote" class="form-select" multiple="">
-                            <?php
-                                $listTeams = $db->query('SELECT * FROM Team WHERE ID_Cat='.$_GET['poule'].'');
-                            foreach ($listTeams as $team) {
-                                $IDPersonne = $team['ID_Player1'];
-                                $player = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne."\"")->fetch_array();
-
-                                $IDPersonne2 = $team['ID_Player2'];
-                                $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
-
-                                if ($player['Note'] || $player2['Note']) {
-                            ?>
-                                <option data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=<?=$team['ID']?>">
-                                    <?=$player['LastName']?>,
-                                        <?=$player2['LastName']?>
-                                </option>
-                                <?php } }
-                                    ?>
-                        </select>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <span id="pList">
-
-                        </span>
-                    </div>
-                    <div class="col-lg-8 text-center">
+<!--                    <div class="col-lg-3">-->
+<!--                        <select class="form-select" multiple="">-->
+<!--                            --><?php
+//                                $listTeams = $db->query('SELECT * FROM Team WHERE ID_Cat='.$_GET['poule'].'');
+//                            foreach ($listTeams as $team) {
+//                                $IDPersonne = $team['ID_Player1'];
+//                                $player = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne."\"")->fetch_array();
+//
+//                                $IDPersonne2 = $team['ID_Player2'];
+//                                $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
+//
+//                                if ($player['Note'] || $player2['Note']) {
+//                            ?>
+<!--                                <option data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=--><?//=$team['ID']?><!--">-->
+<!--                                    --><?//=$player['LastName']?><!--,-->
+<!--                                        --><?//=$player2['LastName']?>
+<!--                                </option>-->
+<!--                                --><?php //} }
+//                                    ?>
+<!--                        </select>-->
+<!--                        <br/>-->
+<!--                        <br/>-->
+<!--                        <br/>-->
+<!--                        <br/>-->
+<!--                        <div id="pList">-->
+<!---->
+<!--                        </div>-->
+<!--                    </div>-->
+                    <div class="text-center">
                         <?php
-                            $db = new BDD();
+                            $db = BDconnect();
                             if ($_GET['jour'] == "sam"){
                                 $groups = $db->query('SELECT * FROM GroupSaturday, Team WHERE GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['poule'].'');
                                 $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSaturday')->fetch_array();
@@ -162,7 +170,13 @@
                             }
                             $lineNum = 2;
                             $j = 0;
+                            $s_a_m = "";
                             for ($k = 1; $k <= $numberOfGroups; $k++) {
+                                if ($s_a_m == "server-action-menu") {
+                                    $s_a_m = "";
+                                } else {
+                                    $s_a_m = "server-action-menu";
+                                }
                                 $j++;
                                 if ($j > $lineNum){ ?>
                                     <!--</div>
@@ -174,8 +188,8 @@
                                 <?php }
                                 //for ($j = 1; $j <= 1; $j++) { // Boucle pour faire plusieurs row... Useless?
                                     $group = $groups->fetch_array();
-                                    if ($group != NULL){ ?>
-                                        <div class="col-lg-4">
+                                    if ($group != NULL){?>
+                                        <div class="col-lg-3 <?=$s_a_m?>">
                                             <label><span class="fa fa-users"></span> Groupe
                                                 <?= $k?>
                                             </label>
@@ -187,7 +201,7 @@
                                                             while ($terrain = $terrains->fetch_array())
                                                             { ?>
                                                                 <option value=<?=$terrain[ 'ID']?>>
-                                                                    <?=$terrain['ID']?> : <?=$terrain['Note']?>, <?=$terrain['adresse']?>
+                                                                    <?=$terrain['ID']?> : <?=utf8_encode($terrain['Note']);?>, <?=utf8_encode($terrain['adresse']);?>
                                                                 </option>
                                                         <?php }
                                                         ?>
@@ -217,19 +231,22 @@
                                                     ?>
                                                 <div class="form-group text-center">
                                                     <?php $color = "default";
-                                                            if ($player['Note'] || $player2['Note']) {
+                                                            // N'AFFICHE RIEN SI LE NOM DU PREMIER JOUEUR EST VIDE
+                                                            // MET EN BLEU ET UN LIEN VERS LA NOTE SI LE JOUEUR EN A UNE
+                                                            if (($player['Note'] || $player2['Note']) && !empty($player['LastName'])) {
                                                                 $color = "primary";
                                                             ?>
                                                         <span data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=<?=$teamID?>">
                                                         <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
-                                                                    <?=$teamID?>, <?=$player['LastName']?> & <?=$player2['LastName']?>
+                                                                    <?=$teamID?>, <?=utf8_encode($player['LastName'])?> & <?=utf8_encode($player2['LastName'])?>
                                                             </button>
                                                         </span>
-                                                        <?php } else { ?>
+                                                            <?php // N'AFFICHE RIEN SI LE NOM DU PREMIER JOUEUR EST VIDE
+                                                            } elseif (!empty($player['LastName'])) { ?>
                                                             <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
                                                                 <?=$teamID?>,
-                                                                    <?=$player['LastName']?> -
-                                                                        <?=$player2['LastName']?>
+                                                                    <?=utf8_encode($player['LastName'])?> -
+                                                                        <?=utf8_encode($player2['LastName'])?>
                                                             </button>
 
                                                             <?php } ?>
@@ -250,6 +267,8 @@
                     <!-- Registration form - END -->
                 </form>
                 </div>
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <!-- /.row -->
             </div>
             <!-- /#page-wrapper -->

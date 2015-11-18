@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin Mode - Match</title>
+    <title>Staff - Charles de Lorraine - Match</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -40,7 +40,7 @@
             include("./html/header.php");
             include_once('php/BDD.php');
             
-            $db = new BDD();
+            $db = BDconnect();
             $reponse = $db->query('SELECT * FROM `Match` WHERE '. $_GET['id']. ' = ID');
             $donnees = $reponse->fetch_array();
         
@@ -77,7 +77,7 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12 noDeco">
-                        <h1 class="page-header"><a href="list.php?type=match"> Liste des matchs</a>> Modifier</h1>
+                        <h1 class="page-header"><a href="list.php?type=match"> Liste des matchs </a>> Modifier</h1>
                     </div>
                 </div>
                 <!-- Registration form - START -->
@@ -90,10 +90,10 @@
                                 <label for="sel1"><span class="fa fa-users"></span> Première équipe</label>
                                 <select class="form-control" name="InputEq1" id="InputEq1">
                                     <?php                  
-    echo '<option value="'.$donnees['ID_Equipe1'].'" selected="'.$t1final.'">'.$t1final.'</option>'; ?>
+    echo '<option value="'.$donnees['ID_Equipe1'].'" selected="'.$t1final.'">'.utf8_encode($t1final).'</option>'; ?>
                                 
                                 <?php
-										$db = new BDD();
+										$db = BDconnect();
 										$reponse = $db->query('SELECT * FROM Team');
 										while ($donnes = $reponse->fetch_array())
 										{
@@ -101,7 +101,7 @@
                                             $p1 = $p->fetch_array();
                                             $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player2'].' = ID');
 											$p2 = $p->fetch_array();
-                                            echo "<option value=".$donnes['ID'].">".$p1['FirstName']." ".$p1['LastName']." & ".$p2['FirstName']." ".$p2['LastName']."</option>";
+                                            echo "<option value=".$donnes['ID'].">".utf8_encode($p1['FirstName'])." ".utf8_encode($p1['LastName'])." & ".utf8_encode($p2['FirstName'])." ".utf8_encode($p2['LastName'])."</option>";
 										}
 			 	    				?>
                                 </select>
@@ -111,9 +111,9 @@
                                 <label for="sel1"><span class="fa fa-users"></span> Seconde équipe</label>
                                 <select class="form-control" name="InputEq2" id="InputEq2">
                                     <?php                  
-    echo '<option value="'.$donnees['ID_Equipe2'].'" selected="'.$t2final.'">'.$t2final.'</option>'; ?>
+    echo '<option value="'.$donnees['ID_Equipe2'].'" selected="'.$t2final.'">'.utf8_encode($t2final).'</option>'; ?>
                                     <?php
-										$db = new BDD();
+										$db = BDconnect();
 										$reponse = $db->query('SELECT * FROM Team');
 										while ($donnes = $reponse->fetch_array())
 										{
@@ -121,7 +121,7 @@
                                             $p1 = $p->fetch_array();
                                             $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player2'].' = ID');
 											$p2 = $p->fetch_array();
-                                            echo "<option value=".$donnes['ID'].">".$p1['FirstName']." ".$p1['LastName']." & ".$p2['FirstName']." ".$p2['LastName']."</option>";
+                                            echo "<option value=".$donnes['ID'].">".utf8_encode($p1['FirstName'])." ".utf8_encode($p1['LastName'])." & ".utf8_encode($p2['FirstName'])." ".utf8_encode($p2['LastName'])."</option>";
 										}
 			 	    				?>
                                 </select>
@@ -132,13 +132,13 @@
                                 
                                 <select class="form-control" name="InputCourt" id="InputCourt">
                                     <?php                  
-    echo '<option value="'.$donnees['ID_Terrain'].'" selected="'.$terfinal.'">'.$terfinal.'</option>'; ?>
+                                        echo '<option value="'.$donnees['ID_Terrain'].'" selected="'.$terfinal.'">'.utf8_encode($terfinal).'</option>'; ?>
                                     <?php
-										$db = new BDD();
+										$db = BDconnect();
 										$reponse = $db->query('SELECT * FROM Terrain');
 										while ($donnes = $reponse->fetch_array())
 										{
-											echo "<option value=".$donnes['ID'].">".$donnes['adresse']." - ".$donnes['etat']."</option>";
+											echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['adresse'])." - ".utf8_encode($donnes['etat'])."</option>";
 										}
 			 	    				?>
                                 </select>

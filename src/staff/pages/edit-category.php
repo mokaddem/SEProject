@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin Mode - Catégorie</title>
+    <title>Staff - Charles de Lorraine - Catégorie</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -40,7 +40,7 @@
             include("./html/header.php");
             include_once('php/BDD.php');
             
-            $db = new BDD();
+            $db = BDconnect();
             $reponse = $db->query('SELECT * FROM Categorie WHERE '. $_GET['id']. ' = ID');
             $donnees = $reponse->fetch_array();
         ?>
@@ -103,8 +103,8 @@
 
             <script type="text/javascript">
                 $(document).ready(function () {
-                    $('#InputYear').val('<?php echo $donnees["Year"]; ?>');
-                    $('#InputDesignation').val('<?php echo $donnees["Designation"]; ?>');
+                    $('#InputYear').val('<?=utf8_encode($donnees["Year"])?>');
+                    $('#InputDesignation').val('<?=utf8_encode($donnees["Designation"])?>');
 
                 });
             </script>

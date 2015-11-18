@@ -1,7 +1,7 @@
 <?php
 	include_once('BDD.php');
 	require_once('test-delete.php');
-	$db = new BDD();
+	$db = BDconnect();
 
 	if (!canDeleteOwner($_GET['id'])) {
 		header("Location: ../list.php?type=owner&error=creation");

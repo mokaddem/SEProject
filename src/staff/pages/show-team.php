@@ -16,7 +16,7 @@ require_once("./php/inc/list-team.inc");
 
                 include_once('php/BDD.php');
 
-                $db = new BDD();
+                $db = BDconnect();
                 $reponse = $db->query('SELECT * FROM `Team` WHERE '. $_GET['id']. ' = ID');
                 $donnees = $reponse->fetch_array();
 

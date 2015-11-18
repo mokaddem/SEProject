@@ -8,7 +8,7 @@ include_once('BDD.php');
 
 // $id = Team.ID
 function switch_players($id1, $id2, $day) {
-    $db = new BDD();
+    $db = BDconnect();
 
     if ($day == "sam" ) {
         $req1 = 'SELECT * FROM GroupSaturday WHERE '.$id1.' = ID_t1 or '.$id1.' = ID_t2 or '.$id1.'=  ID_t3 or '.$id1.'= ID_t4 or '.$id1.'= ID_t5';
@@ -84,7 +84,7 @@ function switch_players($id1, $id2, $day) {
 if (array_key_exists("idteam1", $_POST) && array_key_exists("idteam2", $_POST) && array_key_exists("jour", $_GET)) {
     // je sais pas pq mais faut garder inverser
     switch_players($_POST["idteam2"], $_POST["idteam1"], $_GET["jour"]);
-    header("Location: ../group.php?jour=".$_GET["jour"]);
+    header("Location: ../group.php?jour=".$_GET["jour"]."&poule=".$_GET['poule']);
 } else {
     echo "no data";
 }

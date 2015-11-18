@@ -13,14 +13,14 @@
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body style="background : url(../images/owner-back.jpg) 0 0 fixed no-repeat;">
 
     <div class="container">
 
         <div class="page-header">
             <h1>
                 Formulaire d'inscription
-                <a class="btn btn-default pull-center" href="../index.php">Retour</a>
+                <a class="btn btn-default pull-right" href="../index.php">Retour</a>
             </h1>
         </div>
 
@@ -29,7 +29,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <form role="form" method="Get" action="../staff/pages/php/add-new-owner+terrain.php">
-
+                        
                         <div class="col-lg-6">
                             <div class="col-lg-9">
                                 <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
@@ -42,6 +42,8 @@
                               </select>
                             </div> -->
                                 <div class="form-group">
+                                    <label><span class="fa fa-user"></span> Propriétaire</label>
+
                                     <!--<label for="sel1">Titre:</label>-->
                                     <select class="form-control" id="title" name="title">
                                         <option>M.</option>
@@ -56,7 +58,7 @@
                                         <input type="text" class="form-control" Nom="InputNom" name="InputNom" id="InputNom" placeholder="Nom" required>
                                         <input type="text" class="form-control" Prenom="InputPrenom" name="InputPrenom" id="InputPrenom" placeholder="Prenom" required>
 
-                                        <span>Née le </span>
+                                        <span>Né(e) le </span>
                                         <select name='birth_day' id='birth_day'>
                                             <option value="na">Jour</option>
                                             <?php
@@ -89,7 +91,7 @@
                                         }
                                         ?>
                                         </select>
-                                        <!--<input type="date" class="form-control" name="InputBirth1" id="InputBirth1" placeholder="Née le jj/mm/aaaa" required>-->
+                                        <!--<input type="date" class="form-control" name="InputBirth1" id="InputBirth1" placeholder="Né(e)le jj/mm/aaaa" required>-->
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -127,9 +129,13 @@
                                     <input type="number" class="form-control" name="size" id="size" placeholder="Nombre d'équipes" min="1" step="1"  style="width: 60px;" required>
                                 </div>
                             </div>-->
-
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="col-lg-9">
                                 <div id="mydiv">
                                     <div class="form-group">
+                                        <label><span class="fa fa-circle-o"></span> Terrain</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-map"></i></span>
                                             <input type="text" class="form-control" name="InputAdresseCourt" id="InputAdresseCourt" placeholder="Adresse" required>
@@ -149,17 +155,17 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="sel1"><span class="fa fa-clock-o"></span> Dates</label>
+                                    <label for="sel1"><span class="fa fa-clock-o"></span> Disponibilités</label>
                                     <div class="form-group">
                                         <!--<div class="input-group">-->
-                                        <label class="pull-left" for="InputFrom">From </label>
+                                        <label class="pull-left" for="InputFrom">Du </label>
                                         <div class="input-group pull-right">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                             <input size="10" maxlength="10" class="form-control" name="InputFrom" id="InputFrom" type="date" min="<?=date(" Y-m-d ")?>" max="2048-10-10" value="<?=date(" Y-m-d ")?>">
                                         </div>
                                         <!--</div>-->
                                         <!--<div class="input-group">-->
-                                        <label class="pull-left" for="InputTo">To </label>
+                                        <label class="pull-left" for="InputTo">Au </label>
                                         <div class="input-group pull-right">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                             <input size="10" maxlength="10" class="form-control" name="InputTo" id="InputTo" type="date" min="<?=date(" Y-m-d ")?>" max="2048-10-10" value="<?=date(" Y-m-d ")?>">
@@ -175,12 +181,12 @@
                                         </br>Remarques</label>
 
                                     <div class="input-group">
-                                        <textarea name="InputMessage" id="InputMessage" name="InputMessage" class="form-control" rows="5" placeholder="N'hésitez pas à entrer d'autres informations ou demande ci-dessous" required></textarea>
+                                        <textarea name="InputMessage" id="InputMessage" name="InputMessage" class="form-control" rows="5" placeholder="N'hésitez pas à entrer d'autres informations ou remarques" required></textarea>
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
                                     </div>
                                 </div>
 
-                                <input type="submit" name="submit" id="submit" value="Valider" class="btn btn-info">
+                                <input type="submit" name="submit" id="submit" value="Valider" class="btn btn-info pull-right">
                             </div>
                         </div>
                     </form>
@@ -199,12 +205,12 @@
 
 <script type="text/javascript">
     /*   function AddCourtInput(){
-                                  for (i = 1; i < document.getElementById("size").value; i++) {
-                                      var mydiv = document.getElementById('mydiv');
-                                      var mydiv2 = mydiv.cloneNode(true);
-                                      mydiv.appendChild(mydiv2);
-                                }
-                            }*/
+                                      for (i = 1; i < document.getElementById("size").value; i++) {
+                                          var mydiv = document.getElementById('mydiv');
+                                          var mydiv2 = mydiv.cloneNode(true);
+                                          mydiv.appendChild(mydiv2);
+                                    }
+                                }*/
 </script>
 
 <script type="text/javascript">

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin Mode - Extras</title>
+    <title>Staff - Charles de Lorraine - Extras</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -39,7 +39,7 @@
         <?php            
             include("./html/header.php");
             include_once('php/BDD.php');
-            $db = new BDD();
+            $db = BDconnect();
             $reponse = $db->query('SELECT * FROM Extras WHERE '. $_GET['id']. ' = Extras.ID');
             $donnes = $reponse->fetch_array();
         ?>

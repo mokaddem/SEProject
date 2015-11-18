@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin Mode - Poules - Saisir Score</title>
+    <title>Staff - Charles de Lorraine - Poules - Saisir Score</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -47,7 +47,7 @@
             include_once('php/BDD.php');
 
 
-            $db = new BDD();
+            $db = BDconnect();
 
             $grpSattmp = $db->query('SELECT * FROM GroupSaturday');
             $grpSuntmp = $db->query('SELECT * FROM GroupSunday');

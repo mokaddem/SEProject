@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Staff - Charles de Lorraine - Knock-off</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -90,7 +90,7 @@
                                 <div class="form-group">
                                     <select class="form-control" id="sel1">
                                     	<?php
-											$db = new BDD();
+											$db = BDconnect();
 											$reponse = $db->query('SELECT * FROM Team');
 											while ($donnes = $reponse->fetch_array())
 											{
@@ -107,7 +107,7 @@
                                     <div class="form-group">
                                         <select class="form-control" id="sel2">
                                     	<?php
-											$db = new BDD();
+											$db = BDconnect();
 											$reponse = $db->query('SELECT * FROM Team');
 											while ($donnes = $reponse->fetch_array())
 											{
@@ -143,7 +143,7 @@
                                         </label>
                                         <select class="form-control" id="sel1">
 		                                    <?php
-												$db = new BDD();
+												$db = BDconnect();
 												$reponse = $db->query('SELECT * FROM Terrain');
 												while ($donnes = $reponse->fetch_array())
 												{

@@ -1,6 +1,6 @@
 <?php
 	include_once('BDD.php');
-	$db = new BDD();
+	$db = BDconnect();
 
 	$db->query('DELETE FROM Extras WHERE ID='.$_GET['id']);
     require_once('add-new-history.php');

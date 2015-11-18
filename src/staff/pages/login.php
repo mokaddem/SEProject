@@ -25,7 +25,7 @@
             <meta name="description" content="">
             <meta name="author" content="">
 
-            <title>Admin Mode - Login</title>
+            <title>Staff - Charles de Lorraine - Login</title>
 
             <!-- Bootstrap Core CSS -->
             <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">

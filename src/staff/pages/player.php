@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin Mode - Participant</title>
+    <title>Staff - Charles de Lorraine - Participant</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -79,7 +79,7 @@
                                         <input type="text" class="form-control" Nom="InputNom" name="InputNom1" id="InputNom1" placeholder="Nom" required>
                                         <input type="text" class="form-control" Prenom="InputPrenom" name="InputPrenom1" id="InputPrenom1" placeholder="Prenom" required>
 
-                                        <span>Née le </span>
+                                        <span>Né(e)le </span>
                                         <select name='birth_day1' id='birth_day1'>
                                             <option value="na">Jour</option>
                                             <?php
@@ -112,7 +112,7 @@
                                                   }
                                             ?>
                                         </select>
-                                        <!--<input type="date" class="form-control" name="InputBirth1" id="InputBirth1" placeholder="Née le jj/mm/aaaa" required>-->
+                                        <!--<input type="date" class="form-control" name="InputBirth1" id="InputBirth1" placeholder="Né(e)le jj/mm/aaaa" required>-->
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -212,7 +212,7 @@
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                         <input type="text" class="form-control" Nom="InputNom" name="InputNom2" id="InputNom2" placeholder="Nom" required>
                                         <input type="text" class="form-control" Prenom="InputPrenom" name="InputPrenom2" id="InputPrenom2" placeholder="Prenom" required>
-                                        <span>Née le </span>
+                                        <span>Né(e)le </span>
                                         <select name='birth_day2' id='birth_day2'>
                                             <option value="na">Jour</option>
                                             <?php

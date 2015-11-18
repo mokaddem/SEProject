@@ -10,7 +10,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Admin Mode - Poules - Vue d'ensemble</title>
+        <title>Staff - Charles de Lorraine - Poules - Vue d'ensemble</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -46,7 +46,7 @@
             <?php            
             include("./html/header.php");
         
-            $db = new BDD();
+            $db = BDconnect();
             $reponseS = $db->query('SELECT * FROM GroupSaturday');
             $reponseD = $db->query('SELECT * FROM GroupSunday');
 

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin Mode - Joueur</title>
+    <title>Staff - Charles de Lorraine - Joueur</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -40,7 +40,7 @@
 		include("./html/header.php");
 		include_once('php/BDD.php');
 
-		$db = new BDD();
+		$db = BDconnect();
 
         $reponse = $db->query('SELECT * FROM Personne pers, Player play WHERE '. $_GET['id']. ' = pers.ID');
 		$donnes = $reponse->fetch_array();
@@ -72,7 +72,7 @@
                                     <input type="text" class="form-control" id="InputNom" name="InputNom" placeholder="Nom" required>
                                     <input type="text" class="form-control" id="InputPrenom" name="InputPrenom" placeholder="Prenom" required>
 
-                                    <span>Née le</span>
+                                    <span>Né(e)le</span>
                                     <select name='birth_day' id='birth_day1'>
                                         <option value="na">Jour</option>
                                         <?php
@@ -256,7 +256,6 @@
                     $(extraName).hide();
                 }
             }
-
         });
     </script>
 
