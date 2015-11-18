@@ -156,6 +156,33 @@
                                     <input type="radio" name="optradio">Non
                                 </label>
                             </div>
+
+                            <div class="form-group">
+                                <label class="checkbox">Options supplémentaires</label>
+<!--                                <input name="extraNone" id="'extraNone" type="checkbox"> <strong>Aucune options supplémentaires</strong></input>-->
+<!--                                <br/>-->
+                                <?php
+                                $arrayIdExtrasPers = array();
+                                $searchforchecked = $db->query("SELECT * FROM PersonneExtra WHERE Personne_ID=".$_GET['id']);
+                                while($resultforchecked = $searchforchecked->fetch_array()){
+                                    array_push($arrayIdExtrasPers, $resultforchecked['Extra_ID']);
+                                }
+                                $i=1;
+                                $tmp = $db->query('SELECT * FROM Extras');
+                                while ($extra = $tmp->fetch_array()){
+                                    $flagChecked=false;
+                                    if(in_array($extra['ID'], $arrayIdExtrasPers)){
+                                        $flagChecked=true;
+                                    }
+                                ?>
+                                    <div class="form-group" id="extraD_<?php echo $i;?>" name="extraD_<?php echo $i;?>">
+                                        <input id="extra_<?php echo $i;?>" name="extra_<?php echo $i;?>" value=<?=$extra['ID']?> type="checkbox" <?php if($flagChecked==true){ echo "checked";} ?>> <strong><?php echo $extra['Name'];?></strong>: </input>
+                                        <span><?php echo $extra['Description']?></span>
+                                        <br/>
+                                    </div>
+                                    <?php $i=$i+1;} $extraSize=$i; ?>
+                            </div>
+
                             <div class="form-group">
                                 <!--<label for="InputCredit">Paiement</label>-->
                                 <label for="InputPhone">Montant à payer</label>
@@ -222,9 +249,42 @@
             $('#InputEmailFirst').val('<?php echo $donnes["Mail"]; ?>');
             $('#InputFixe').val('<?php echo $donnes["PhoneNumber"]; ?>');
             $('#InputMob').val('<?php echo $donnes["GSMNumber"]; ?>');
-  //          $('#InputMessage').val('<?php echo $donnes["Note"]; ?>');
+
+            if(document.getElementsByName("extra_1")[0].checked == true){
+                for (i = 2; i < <?php echo $extraSize; ?>; i++) {
+                    extraName= "#extraD_" +i.toString();
+                    $(extraName).hide();
+                }
+            }
+
         });
     </script>
+
+    <script type="text/javascript">
+        function hideExtras(){
+            if(document.getElementsByName("extra_1")[0].checked == true){
+                for (i = 2; i < <?php echo $extraSize; ?>; i++) {
+                    extraDivName= "#extraD_" +i.toString();
+                    extraName= "extra_" +i.toString();
+                    setTimeout(function() {  $(extraDivName).fadeOut('fast');},10);
+                    document.getElementsByName(extraName)[0].checked = false;
+                }
+            }
+            else{
+                for (i = 2; i < <?php echo $extraSize; ?>; i++) {
+                    extraName= "#extraD_" +i.toString();
+                    setTimeout(function() {  $(extraName).fadeIn('fast');}, 10);
+                }
+            }
+        }
+    </script>
+
+    <script type="text/javascript">  window.onload = function() {
+            document.getElementsByName("extra_1")[0].addEventListener("click",hideExtras);
+        };
+    </script>
+
+
     <?php $reponse->free(); ?>
 </body>
 
