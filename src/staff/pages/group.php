@@ -89,7 +89,7 @@
                     <ul class="nav nav-tabs nav-justified">
                         <?php $reponse = $db->query('SELECT * FROM Categorie');
                             while ($donnes = $reponse->fetch_array()) { ?>
-                                <li <?php if ($_GET['poule']==$donnes['ID'] ) echo 'class="active" ';?>><a href="group.php?jour=<?=$_GET['jour']?>&poule=<?=$donnes['ID']?>"><?=$donnes['Designation']?></a></li>
+                                <li <?php if ($_GET['poule']==$donnes['ID'] ) echo 'class="active" ';?>><a href="group.php?jour=<?=$_GET['jour']?>&poule=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation']);?></a></li>
                             <?php }?>
                     </ul>
                 </div>
@@ -170,7 +170,13 @@
                             }
                             $lineNum = 2;
                             $j = 0;
+                            $s_a_m = "";
                             for ($k = 1; $k <= $numberOfGroups; $k++) {
+                                if ($s_a_m == "server-action-menu") {
+                                    $s_a_m = "";
+                                } else {
+                                    $s_a_m = "server-action-menu";
+                                }
                                 $j++;
                                 if ($j > $lineNum){ ?>
                                     <!--</div>
@@ -182,8 +188,8 @@
                                 <?php }
                                 //for ($j = 1; $j <= 1; $j++) { // Boucle pour faire plusieurs row... Useless?
                                     $group = $groups->fetch_array();
-                                    if ($group != NULL){ ?>
-                                        <div class="col-lg-3 server-action-menu">
+                                    if ($group != NULL){?>
+                                        <div class="col-lg-3 <?=$s_a_m?>">
                                             <label><span class="fa fa-users"></span> Groupe
                                                 <?= $k?>
                                             </label>
@@ -195,7 +201,7 @@
                                                             while ($terrain = $terrains->fetch_array())
                                                             { ?>
                                                                 <option value=<?=$terrain[ 'ID']?>>
-                                                                    <?=$terrain['ID']?> : <?=$terrain['Note']?>, <?=$terrain['adresse']?>
+                                                                    <?=$terrain['ID']?> : <?=utf8_encode($terrain['Note']);?>, <?=utf8_encode($terrain['adresse']);?>
                                                                 </option>
                                                         <?php }
                                                         ?>
@@ -225,19 +231,22 @@
                                                     ?>
                                                 <div class="form-group text-center">
                                                     <?php $color = "default";
-                                                            if ($player['Note'] || $player2['Note']) {
+                                                            // N'AFFICHE RIEN SI LE NOM DU PREMIER JOUEUR EST VIDE
+                                                            // MET EN BLEU ET UN LIEN VERS LA NOTE SI LE JOUEUR EN A UNE
+                                                            if (($player['Note'] || $player2['Note']) && !empty($player['LastName'])) {
                                                                 $color = "primary";
                                                             ?>
                                                         <span data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=<?=$teamID?>">
                                                         <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
-                                                                    <?=$teamID?>, <?=$player['LastName']?> & <?=$player2['LastName']?>
+                                                                    <?=$teamID?>, <?=utf8_encode($player['LastName'])?> & <?=utf8_encode($player2['LastName'])?>
                                                             </button>
                                                         </span>
-                                                        <?php } else { ?>
+                                                            <?php // N'AFFICHE RIEN SI LE NOM DU PREMIER JOUEUR EST VIDE
+                                                            } elseif (!empty($player['LastName'])) { ?>
                                                             <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
                                                                 <?=$teamID?>,
-                                                                    <?=$player['LastName']?> -
-                                                                        <?=$player2['LastName']?>
+                                                                    <?=utf8_encode($player['LastName'])?> -
+                                                                        <?=utf8_encode($player2['LastName'])?>
                                                             </button>
 
                                                             <?php } ?>

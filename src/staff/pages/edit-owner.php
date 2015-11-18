@@ -185,16 +185,16 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#InputNom').val('<?=$donnes['LastName']?>');
-            $('#InputPrenom').val('<?=$donnes['FirstName']?>');
-            $('#InputBirth').val('<?php echo $donnes['BirthDate']; ?>');
-            $('#InputAdresse').val('<?php echo $donnes['Rue']; ?>');
-            $('#InputBat').val('<?php echo $donnes['Number']; ?>');
-            $('#InputCP').val('<?php echo $donnes['ZIPCode']; ?>');
-            $('#InputLoc').val('<?php echo $donnes['Ville']; ?>');
-            $('#InputEmailFirst').val('<?php echo $donnes['Mail']; ?>');
-            $('#InputFixe').val('<?php echo $donnes['PhoneNumber']; ?>');
-            $('#InputMob').val('<?php echo $donnes['GSMNumber']; ?>');
+            $('#InputNom').val('<?=utf8_encode($donnes['LastName'])?>');
+            $('#InputPrenom').val('<?=utf8_encode($donnes['FirstName'])?>');
+            $('#InputBirth').val('<?=utf8_encode($donnes['BirthDate'])?>');
+            $('#InputAdresse').val('<?=utf8_encode($donnes['Rue'])?>');
+            $('#InputBat').val('<?=utf8_encode($donnes['Number'])?>');
+            $('#InputCP').val('<?=utf8_encode($donnes['ZIPCode'])?>');
+            $('#InputLoc').val('<?=utf8_encode($donnes['Ville'])?>');
+            $('#InputEmailFirst').val('<?=utf8_encode($donnes['Mail'])?>');
+            $('#InputFixe').val('<?=utf8_encode($donnes['PhoneNumber'])?>');
+            $('#InputMob').val('<?=utf8_encode($donnes['GSMNumber'])?>');
         });
     </script>
 </body>

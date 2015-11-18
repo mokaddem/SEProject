@@ -161,7 +161,8 @@ function getCategories() {
 
 function getOwners() {
     $db = BDconnect();
-    return $db->query('SELECT *, Owner.ID_Personne as ID, Owner.ID as ID_O FROM Personne, Owner WHERE isOwner=1 GROUP BY Owner.ID');
+//    return $db->query('SELECT *, Owner.ID_Personne as ID, Owner.ID as ID_O FROM Personne, Owner WHERE isOwner=1');//     GROUP BY Owner.ID');
+    return $db->query('SELECT *, Owner.ID_Personne as ID, Owner.ID as ID_O FROM Owner, Personne WHERE Owner.ID_Personne = Personne.ID');//     GROUP BY Owner.ID');
 }
 
 function getPlayers() {

@@ -98,10 +98,10 @@
                                             while ($donnes = $reponse->fetch_array())
                                             {
                                                 if ($dataCourt['ID_Owner'] == $donnes['O_id']){
-                                                    echo "<option value=".$donnes['O_id']." selected=\"selected\">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
+                                                    echo "<option value=".$donnes['O_id']." selected=\"selected\">".utf8_encode($donnes['FirstName'])." ".utf8_encode($donnes['LastName'])."</option>";
                                                 }
                                                 else
-                                                    echo "<option value=".$donnes['O_id'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
+                                                    echo "<option value=".$donnes['O_id'].">".utf8_encode($donnes['FirstName'])." ".utf8_encode($donnes['LastName'])."</option>";
                                             }
                                         ?>
                                     </select>

@@ -103,8 +103,8 @@
 
             <script type="text/javascript">
                 $(document).ready(function () {
-                    $('#InputYear').val('<?php echo $donnees["Year"]; ?>');
-                    $('#InputDesignation').val('<?php echo $donnees["Designation"]; ?>');
+                    $('#InputYear').val('<?=utf8_encode($donnees["Year"])?>');
+                    $('#InputDesignation').val('<?=utf8_encode($donnees["Designation"])?>');
 
                 });
             </script>

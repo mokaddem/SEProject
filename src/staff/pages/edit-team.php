@@ -75,7 +75,7 @@
                             <div class="form-group">
                                 <label for="sel1"><span class="fa fa-user"></span> Premier joueur</label>
                                 <select class="form-control" id="idp1" name="idp1">
-                                    <?php echo "<option value=".$p1['ID']." selected=".$p1final.">".$p1final."</option>";?>
+                                    <?php echo "<option value=".$p1['ID']." selected=".$p1final.">".utf8_encode($p1final)."</option>";?>
 
                                         <?php
                                     $db = BDconnect();
@@ -83,7 +83,7 @@
                                     while ($donnes = $reponse->fetch_array())
                                     {
                                         if (canDeletePlayer($donnes['ID'])){
-                                            echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>"; }
+                                            echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['FirstName'])." ".utf8_encode($donnes['LastName'])."</option>"; }
                                     }
                                     ?>
                                             <!-- <option>propriétaire</option> -->
@@ -93,14 +93,14 @@
                             <div class="form-group">
                                 <label for="sel1"><span class="fa fa-user"></span> Second joueur</label>
                                 <select class="form-control" id="idp2" name="idp2">
-                                    <?php echo "<option value=".$p2['ID']." selected=".$p2final.">".$p2final."</option>";?>
+                                    <?php echo "<option value=".$p2['ID']." selected=".$p2final.">".utf8_encode($p2final)."</option>";?>
                                         <?php
                                         $db = BDconnect();
                                         $reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
                                         while ($donnes = $reponse->fetch_array())
                                         {				
                                             if (canDeletePlayer($donnes['ID'])){
-                                                echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";}
+                                                echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['FirstName'])." ".utf8_encode($donnes['LastName'])."</option>";}
                                         }
                                     ?>
                                 </select>
@@ -116,11 +116,11 @@
 										{
                                             if ($t['ID_Cat'] == $donnes['ID']) 
                                             {
-                                                echo "<option selected=\"".$donnes['Designation']." ".$donnes['Year']."\" value=".$donnes['ID'].">".$donnes['Designation']." ".$donnes['Year']."</option>";
+                                                echo "<option selected=\"".$donnes['Designation']." ".$donnes['Year']."\" value=".$donnes['ID'].">".utf8_encode($donnes['Designation'])." ".utf8_encode($donnes['Year'])."</option>";
                                             } 
                                             else 
                                             { 
-										      echo "<option value=".$donnes['ID'].">".$donnes['Designation']." ".$donnes['Year']."</option>";								  }
+										      echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['Designation'])." ".utf8_encode($donnes['Year'])."</option>";								  }
                                         }
                                     ?>
 

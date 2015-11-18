@@ -62,11 +62,11 @@ function printListMatch($id) {
 
     echo "<tr class=\"odd gradeX\">";
 
-    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".$donnees['ID']."</td>";
-    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".$t1final."</td>";
-    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".$t2final."</td>";
-    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".$donnees['date']."</td>";
-    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".$donnees['hour']."</td>";
+    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".utf8_encode($donnees['ID'])."</td>";
+    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".utf8_encode($t1final)."</td>";
+    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".utf8_encode($t2final)."</td>";
+    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".utf8_encode($donnees['date'])."</td>";
+    echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-match.php?id=$id\">".utf8_encode($donnees['hour'])."</td>";
 
     echo "<td><a href=\"./edit-match.php?id=".$donnees['ID']."\" ><i class=\"fa fa-edit fa-fw\"></i></a> <a href=\"./php/delete-match.php?id=".$donnees['ID']."\" onclick=\"return confirm('Voulez-vous vraiment supprimer cette entrée ?');\"><i class=\"fa fa-trash-o\"></i></a> <a target=\"_blank\" href=\"./php/print.php?id=".$donnees['ID']."\"><i class=\"fa fa-print\"></i></a></td>";
     echo "</tr>";

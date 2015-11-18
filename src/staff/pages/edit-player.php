@@ -212,17 +212,17 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#InputNom').val('<?php echo $donnes["LastName"]; ?>');
-            $('#InputPrenom').val('<?php echo $donnes["FirstName"]; ?>');
-            $('#InputBirth').val('<?php echo $donnes["BirthDate"]; ?>');
-            $('#InputAdresse').val('<?php echo $donnes["Rue"]; ?>');
-            $('#InputCP').val('<?php echo $donnes["ZIPCode"]; ?>');
-            $('#InputBat').val('<?php echo $donnes["Number"]; ?>');
-            $('#InputLoc').val('<?php echo $donnes["Ville"]; ?>');
-            $('#InputEmailFirst').val('<?php echo $donnes["Mail"]; ?>');
-            $('#InputFixe').val('<?php echo $donnes["PhoneNumber"]; ?>');
-            $('#InputMob').val('<?php echo $donnes["GSMNumber"]; ?>');
-  //          $('#InputMessage').val('<?php echo $donnes["Note"]; ?>');
+            $('#InputNom').val('<?=utf8_encode($donnes["LastName"])?>');
+            $('#InputPrenom').val('<?=utf8_encode($donnes["FirstName"])?>');
+            $('#InputBirth').val('<?=utf8_encode($donnes["BirthDate"])?>');
+            $('#InputAdresse').val('<?=utf8_encode($donnes["Rue"])?>');
+            $('#InputCP').val('<?=utf8_encode($donnes["ZIPCode"])?>');
+            $('#InputBat').val('<?=utf8_encode($donnes["Number"])?>');
+            $('#InputLoc').val('<?=utf8_encode($donnes["Ville"])?>');
+            $('#InputEmailFirst').val('<?=utf8_encode($donnes["Mail"])?>');
+            $('#InputFixe').val('<?=utf8_encode($donnes["PhoneNumber"])?>');
+            $('#InputMob').val('<?=utf8_encode($donnes["GSMNumber"])?>');
+  //          $('#InputMessage').val('<?=utf8_encode($donnes["Note"])?>');
         });
     </script>
     <?php $reponse->free(); ?>
