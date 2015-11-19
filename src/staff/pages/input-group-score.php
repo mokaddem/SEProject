@@ -166,9 +166,9 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><?= $currentTeamName ?></span>
                                 <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" min="0"
-                                       step="1" style="width: 60px;" value=<?=$arrayResult[$j-2] ?> required>
+                                       step="1" style="width: 60px;" value=<?php echo $flip[$i-1] == 0 ? $arrayResult[$j-2] : $arrayResult[$j-1]; ?> required>
                                 <input type="number" class="form-control" name=<?=$nameField?>-2 id=<?=$nameField?>-2 placeholder="0" min="0"
-                                       step="1" style="width: 60px;" value=<?=$arrayResult[$j-1] ?> required>
+                                       step="1" style="width: 60px;" value=<?php echo $flip[$i-1] == 0 ? $arrayResult[$j-1] : $arrayResult[$j-2]; ?> required>
                                 <span class="input-group-addon"><?= $p1 . " & " . $p2 ?></span>
                             </div>
                         <?php } else { $i--; }
@@ -241,6 +241,7 @@
             var js_curTeamID = <?php echo $TeamID; ?>;
             var js_arrayMatchID= [<?php echo '"'.implode('","',  $arrayMatchID ).'"' ?>];
             var js_matchNumber= <?php echo $i; ?>;
+            var js_pouleID= <?php echo $PouleID; ?>;
             var js_flip= [<?php echo '"'.implode('","',  $flip ).'"' ?>];
             var js_arrayResult=[];
 
@@ -252,7 +253,7 @@
                 js_temp_array[1] = document.getElementById("score"+(i+1)+"-2").value;
                 js_arrayResult[i] = js_temp_array;
             }
-            var data={ 'curTeamID':js_curTeamID, 'matchNumber':js_matchNumber, 'matchs[]':js_arrayTeamId , 'scores[]':js_arrayResult, 'matchsID[]':js_arrayMatchID, 'flip[]':js_flip};
+            var data={ 'curTeamID':js_curTeamID, 'matchNumber':js_matchNumber, 'pouleID':js_pouleID, 'matchs[]':js_arrayTeamId , 'scores[]':js_arrayResult, 'matchsID[]':js_arrayMatchID, 'flip[]':js_flip};
 
             $.ajax({
                 type: "POST",
@@ -263,7 +264,8 @@
 
             setTimeout(function() {  $('#popup').fadeIn('slow');}, 0);
             setTimeout(function() {  $('#popup').fadeOut('slow');},3000);
-            setTimeout(function() {  refreshMatchs();}, 500+3000);
+            setTimeout(function() {  location.reload();;}, 500+3000);
+
         }
     </script>
 

@@ -16,23 +16,30 @@ $Scores = $_POST['scores'];
 $MatchNumber = $_POST['matchNumber'];
 $MatchID = $_POST['matchsID'];
 $curTeamID = $_POST['curTeamID'];
+$PouleID = $_POST['pouleID'];
 $flip = $_POST['flip'];
 
 $req = $db->prepare("UPDATE SEProjectC.`Match` SET score1=?, score2=? WHERE `Match`.ID=?");
 
 for ($i = 0; $i < $MatchNumber; $i++){
     $sc = explode(",", $Scores[$i]);
-    $sc1=$sc[0];
-    $sc2=$sc[1];
+    if($flip[$i] == 0) {
+        $sc1 = $sc[0];
+        $sc2 = $sc[1];
+    }
+    else{
+        $sc1 = $sc[1];
+        $sc2 = $sc[0];
+    }
 
     $req->bind_param("iii", $sc1, $sc2, $MatchID[$i]);
     $req->execute();
     addHistory($MatchID[$i], "Match", "Ajout");
 }
 
-$req = $db->query("SELECT count(ID) as count FROM `Match` WHERE ( `score1` > `score2` AND `ID_Equipe1`=".$curTeamID." ) OR ( `score2` > `score1` AND `ID_Equipe2` =".$curTeamID.")");
+$req = $db->query("SELECT count(ID) as count FROM `Match` WHERE ( `score1` > `score2` AND `ID_Equipe1`=".$curTeamID." ) OR ( `score2` > `score1` AND `ID_Equipe2` =".$curTeamID.") AND Poule_ID=".$PouleID);
 $rep = $req->fetch_array();
-
+error_log("winmacht=".$rep['count']);
 $db->query("UPDATE SEProjectC.Team SET NbWinMatch=".$rep['count']." WHERE `Team`.ID=".$curTeamID);
 
 // Then we update the victorious teams in the corresponding group.
