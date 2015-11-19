@@ -25,7 +25,7 @@ $db = BDconnect();
 
         $reponse = $db->query("SELECT * FROM GroupSaturday WHERE ID_t1=".$ID_t1." AND ID_t2=".$ID_t2);
         $donnees = $reponse->fetch_array();
-        addHistory($donnees['ID'], "GroupSaturday", "Ajout");
+        addHistory($donnees['ID'], "Poules (Samedi)", "Ajout");
 
         /* Add Matchs */
 
@@ -106,7 +106,7 @@ $db = BDconnect();
 
         $reponse = $db->query("SELECT * FROM GroupSunday WHERE ID_t1=".$ID_t1." AND ID_t2=".$ID_t2);
         $donnees = $reponse->fetch_array();
-        addHistory($donnees['ID'], "GroupSunday", "Ajout");
+        addHistory($donnees['ID'], "Poules (Dimanche)", "Ajout");
 
 
         /* Add Matchs */

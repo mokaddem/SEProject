@@ -134,7 +134,7 @@
                                                             $terrain = $db->query("SELECT * FROM Terrain WHERE ID=\"" . $donnee . "\"")->fetch_array();
                                                             ?> <option value=<?=$terrain[ 'ID']?>>
                                                                 <?=$terrain['ID']?>,
-                                                                <?=$terrain['Note']?>
+                                                                <?=utf8_encode($terrain['Note'])?>
                                                             </option>
                                                             <?php
                                                         }elseif($i > 2 and $donnee != NULL) {
@@ -144,7 +144,7 @@
 
                                                             $IDPersonne2 = $team['ID_Player2'];
                                                             $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne2 . "\"")->fetch_array();
-                                                            ?> <?=$donnee?>, <?=$player['LastName']?> & <?=$player2['LastName']?> <?php
+                                                            ?> <?=$donnee?>, <?= utf8_encode($player['LastName'])?> & <?=utf8_encode($player2['LastName'])?> <?php
                                                         } else{
                                                             echo $donnee;
                                                         }

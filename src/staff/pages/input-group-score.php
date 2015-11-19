@@ -236,7 +236,7 @@
 
     <script type="text/javascript">
         function saveScore(){
-            var url="../pages/php/add-score.php";
+            var url="../pages/php/add-score.php?jour=";
             var js_arrayTeamId = [<?php echo '"'.implode('","',  $arrayTeamId ).'"' ?>];
             var js_curTeamID = <?php echo $TeamID; ?>;
             var js_arrayMatchID= [<?php echo '"'.implode('","',  $arrayMatchID ).'"' ?>];
