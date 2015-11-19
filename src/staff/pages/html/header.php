@@ -161,7 +161,7 @@
                                         <a href="knock-off-generate.php">Création</a>
                                     </li>
                                     <li>
-                                        <a href="knock-off.php?jour=sam">Modification</a>
+                                        <a href="knock-off.php?jour=sam&cat=1">Modification</a>
                                     </li>
                                     <li>
                                         <a href="input-knock-score.php?jour=sam">Saisir score</a>

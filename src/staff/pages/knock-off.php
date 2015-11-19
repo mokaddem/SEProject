@@ -68,13 +68,13 @@
                 <div class="row">
                         <div class="row">
                             <ul class="nav nav-tabs">
-                                <li <?php if ($_GET['jour']=="sam" ) echo 'class="active" ' ;?>><a href="knock-off.php?jour=sam&poule=1">Samedi</a></li>
-                                <li <?php if ($_GET['jour']=="dim" ) echo 'class="active" ' ;?>><a href="knock-off.php?jour=dim&poule=1">Dimanche</a></li>
+                                <li <?php if ($_GET['jour']=="sam" ) echo 'class="active" ' ;?>><a href="knock-off.php?jour=sam&cat=1">Samedi</a></li>
+                                <li <?php if ($_GET['jour']=="dim" ) echo 'class="active" ' ;?>><a href="knock-off.php?jour=dim&cat=1">Dimanche</a></li>
                             </ul>
                             <ul class="nav nav-tabs nav-justified">
                                 <?php $reponse = $db->query('SELECT * FROM Categorie');
                                 while ($donnes = $reponse->fetch_array()) { ?>
-                                    <li <?php if ($_GET['poule']==$donnes['ID'] ) echo 'class="active" ';?>><a href="knock-off.php?jour=<?=$_GET['jour']?>&poule=<?=$donnes['ID']?>"><?=$donnes['Designation']?></a></li>
+                                    <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="knock-off.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=$donnes['Designation']?></a></li>
                                 <?php }?>
                             </ul>
                         </div>
@@ -82,7 +82,7 @@
                             <br/>
                         </div>
                         <div class="row">
-                            <form class="form-horizontal" action="./php/knock-off-switch.php?jour=<?=$_GET['jour']?>" method="post">
+                            <form class="form-horizontal" action="./php/knock-off-switch.php?jour=<?=$_GET['jour']?>&cat=<?=$_GET['cat']?>" method="post">
                                 <div class="col-lg-2">
                                     <input type="text" class="form-control" id="idteam1" name="idteam1" placeholder="ID Equipe 1" required>
                                 </div>
@@ -98,7 +98,6 @@
                         <div class="col-lg-2">
                             <hr>
                             <?php
-                                $db = BDconnect();
                                 if ($_GET['jour'] == "sam"){
                                     $knockoff_all = $db->query('SELECT * FROM KnockoffSaturday ORDER BY `Position` ASC');
                                     $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSaturday')->fetch_array();
@@ -124,7 +123,7 @@
                                         </div>
                                         <?php $j++; $NumberOfGroups = 0;
                                     } else {
-                                        $team = $db->query('SELECT * FROM Team WHERE ID= '.$teamID.' AND ID_Cat='.$_GET['poule'].' ')->fetch_array();
+                                        $team = $db->query('SELECT * FROM Team WHERE ID= '.$teamID.' AND ID_Cat='.$_GET['cat'].' ')->fetch_array();
                                         $IDPersonne1 = $team['ID_Player1'];
                                         $player1 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne1."\"")->fetch_array();
 
