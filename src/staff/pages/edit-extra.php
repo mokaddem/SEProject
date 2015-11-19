@@ -111,8 +111,8 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#InputNom').val('<?php echo $donnes["Name"]; ?>');
-            $('#InputPrice').val('<?php echo $donnes["Price"]; ?>');
+            $('#InputNom').val("<?php echo $donnes["Name"]; ?>");
+            $('#InputPrice').val("<?php echo $donnes["Price"]; ?>");
             //<$('#InputMessage').val("<?php echo $donnes["Description"]; ?>");
 
         });
