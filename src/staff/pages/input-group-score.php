@@ -136,11 +136,11 @@
                         $arrayTeamId[$i]  = $otherTeam;
                         $arrayMatchID[$i] = $donnesMatch['ID'];
 
-                        $reponse2_1 = $db->query("SELECT score1, score2 FROM `Match` WHERE ID_Equipe1=" . $TeamID . " AND ID_Equipe2=" . $otherTeam);
+                        $reponse2_1 = $db->query("SELECT score1, score2 FROM `Match` WHERE ID_Equipe1=" . $TeamID . " AND ID_Equipe2=" . $otherTeam. " AND Poule_ID=".$PouleID);
                         $donnes2_1 = $reponse2_1->fetch_array();
                         //error_log("Score1=" .$donnes2_1['score1']." score2=".$donnes2_1['score2']);
 
-                        if ($donnes2_1['score2'] != 0) {
+                        if (count($donnes2_1['score2']) != 0) {
                             $arrayResult[$j] = $donnes2_1['score1'];
                             $arrayResult[$j + 1] = $donnes2_1['score2'];
                             $flip[$i]=0;
@@ -151,12 +151,12 @@
                             $reponse2_2 = $db->query("SELECT score1, score2 FROM `Match` WHERE ID_Equipe1=" . $otherTeam . " AND ID_Equipe2=" . $TeamID);
                             $donnes2_2 = $reponse2_2->fetch_array();
 
-                            $arrayResult[$j] = $donnes2_2['score2'];
-                            $arrayResult[$j + 1] = $donnes2_2['score1'];
+                            $arrayResult[$j] = $donnes2_2['score1'];
+                            $arrayResult[$j + 1] = $donnes2_2['score2'];
                             $flip[$i]=1;
                         }
-                        $toAdd1=$arrayResult[$j]; $toAdd2=$arrayResult[$j+1];
-                        error_log("flip=".$flip[$i].", score1=".$toAdd1.", score2=".$toAdd2);
+//                        $toAdd1=$arrayResult[$j]; $toAdd2=$arrayResult[$j+1];
+//                        error_log("flip=".$flip[$i].", score1=".$toAdd1.", score2=".$toAdd2);
                         $j = $j + 2;
                         $i = $i + 1;
                         $nameField = "score".$i;
@@ -166,9 +166,9 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><?= $currentTeamName ?></span>
                                 <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" min="0"
-                                       step="1" style="width: 60px;" value=<?php echo $flip[$i-1]==1 ? $toAdd2 : $toAdd1; ?> required>
+                                       step="1" style="width: 60px;" value=<?=$arrayResult[$j-2] ?> required>
                                 <input type="number" class="form-control" name=<?=$nameField?>-2 id=<?=$nameField?>-2 placeholder="0" min="0"
-                                       step="1" style="width: 60px;" value=<?php echo $flip[$i-1]==1 ? $toAdd1 : $toAdd2; ?> required>
+                                       step="1" style="width: 60px;" value=<?=$arrayResult[$j-1] ?> required>
                                 <span class="input-group-addon"><?= $p1 . " & " . $p2 ?></span>
                             </div>
                         <?php } else { $i--; }
@@ -236,7 +236,7 @@
 
     <script type="text/javascript">
         function saveScore(){
-            var url="../pages/php/add-score.php?jour=";
+            var url="../pages/php/add-score.php";
             var js_arrayTeamId = [<?php echo '"'.implode('","',  $arrayTeamId ).'"' ?>];
             var js_curTeamID = <?php echo $TeamID; ?>;
             var js_arrayMatchID= [<?php echo '"'.implode('","',  $arrayMatchID ).'"' ?>];
