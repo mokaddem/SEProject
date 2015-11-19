@@ -43,7 +43,7 @@ function getTitreTable($get) {
             return array("ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Jusqu'au", "Crée le", "Note", "Action");
 
         case "extra":
-            return array("ID", "Nom", "Nombre de personne" , "Prix (€)", "Description", "Action");
+            return array("ID", "Nom", "Prix (€)", "Description","Nombre de personne", "Action");
 
         case "owner":
             return array("ID", "Nom", "Prénom", "Créé le", "Action");
@@ -120,7 +120,7 @@ function getCourts() {
 
 function getExtras() {
     $db = BDconnect();
-    return $db->query('SELECT Extras.*, count(PersonneExtra.Extra_ID) as nbr FROM Extras INNER JOIN PersonneExtra ON Extras.ID=PersonneExtra.Extra_ID');
+    return $db->query('SELECT Extras.*, NULL as nbr FROM Extras');
 }
 
 function getHistories() {
