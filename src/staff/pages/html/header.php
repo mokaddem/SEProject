@@ -130,7 +130,24 @@
                                         <a href="group.php?jour=sam&poule=1">Modification</a>
                                     </li>
                                     <li>
-                                        <a href="input-group-score.php">Saisir un score</a>
+                                        <?php
+                                        include_once('./php/BDD.php');
+                                        $db = BDconnect();
+
+                                        $grpSattmp = $db->query('SELECT * FROM GroupSaturday');
+                                        $grpSuntmp = $db->query('SELECT * FROM GroupSunday');
+
+                                        if (!empty($grpSattmp)) {
+                                            $row=$grpSattmp->fetch_array();
+                                            $PouleID = $row['ID'];
+                                            $TeamID = $row['ID_t1'];
+                                            $url = "input-group-score.php?poule=".$PouleID."&team=".$TeamID?>
+                                            <a href=<?=$url?>>Saisir un score</a>
+                                        <?php }else{ ?>
+                                            <a href="input-group-score.php">Saisir un score</a>
+                                        <?php }
+                                        ?>
+
                                     </li>
                                     <li>
                                         <a href="group-overview.php?jour=sam">Vue d'ensemble</a>
@@ -144,7 +161,7 @@
                                         <a href="knock-off-generate.php">Création</a>
                                     </li>
                                     <li>
-                                        <a href="knock-off.php?jour=sam">Modification</a>
+                                        <a href="knock-off.php?jour=sam&cat=1">Modification</a>
                                     </li>
                                     <li>
                                         <a href="input-knock-score.php?jour=sam">Saisir score</a>

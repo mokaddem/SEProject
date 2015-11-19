@@ -165,13 +165,14 @@
                                 $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSaturday')->fetch_array();
                                 extract($row);
                             } else{
-                                $groups = $db->query('SELECT * FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['poule'].'');                                $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday')->fetch_array();
+                                $groups = $db->query('SELECT * FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['poule'].'');
+                                $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday')->fetch_array();
                                 extract($row);
                             }
                             $lineNum = 2;
                             $j = 0;
                             $s_a_m = "";
-                            for ($k = 1; $k <= $numberOfGroups; $k++) {
+                            for ($k = 1; $k <= max($numberOfGroups, 4); $k++) {
                                 if ($s_a_m == "server-action-menu") {
                                     $s_a_m = "";
                                 } else {
