@@ -343,6 +343,17 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 
+<script type="text/javascript">
+    function hideDispElem(extraDivName, time, disp){
+        if (disp){
+            setTimeout(function() {  $(extraDivName).fadeIn('fast');}, time);
+        }
+        else{
+            setTimeout(function() { $(extraDivName).fadeOut('fast');}, time);
+        }
+    }
+</script>
+
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -372,7 +383,8 @@
 //                console.log("extraDivName="+extraDivName.toString());
                 var extraName= nameExtra.toString() +i.toString();
 //                console.log("trying to access1: " + extraDivName.toString() + " and " + extraName.toString());
-                setTimeout(function() {  $("#"+extraDivName).fadeOut('fast');},10);
+//                setTimeout(function() {  $("#"+extraDivName).fadeOut('fast');},10);
+                hideDispElem("#"+extraDivName, 100*(i-2), false);
                 document.getElementsByName(extraName.toString())[0].checked = false;
             }
         }
@@ -381,7 +393,8 @@
                 var extraDivName= nameDivExtra.toString() +i.toString();
                 var extraName= nameExtra.toString() +i.toString();
 //                console.log("trying to access2: " + extraDivName.toString() + " and " + extraName.toString());
-                setTimeout(function() {  $("#"+extraDivName).fadeIn('fast');}, 10);
+//                setTimeout(function() {  $("#"+extraDivName).fadeIn('fast');}, 10);
+                    hideDispElem("#"+extraDivName, 100*(i-2), true);
             }
         }
     }
