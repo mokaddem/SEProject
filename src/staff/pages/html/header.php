@@ -81,7 +81,7 @@
                                 <a href="list.php?type=category"> Catégories</a>
                             </li>
                             <li>
-                                <a href="list.php?type=extra"> Extras</a>
+                                <a href="list-extras.php"> Extras</a>
                             </li>
                             <li>
                                 <a href="list.php?type=staff"> Staff</a>

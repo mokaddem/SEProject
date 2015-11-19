@@ -113,8 +113,6 @@
         $(document).ready(function () {
             $('#InputNom').val("<?php echo $donnes["Name"]; ?>");
             $('#InputPrice').val("<?php echo $donnes["Price"]; ?>");
-            //<$('#InputMessage').val("<?php echo $donnes["Description"]; ?>");
-
         });
     </script>
 

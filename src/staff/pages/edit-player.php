@@ -260,19 +260,30 @@
     </script>
 
     <script type="text/javascript">
+        function hideDispElem(extraDivName, time, disp){
+            if (disp){
+                setTimeout(function() {  $(extraDivName).fadeIn('fast');}, time);
+            }
+            else{
+                setTimeout(function() { $(extraDivName).fadeOut('fast');}, time);
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
         function hideExtras(){
             if(document.getElementsByName("extra_1")[0].checked == true){
                 for (i = 2; i < <?php echo $extraSize; ?>; i++) {
                     extraDivName= "#extraD_" +i.toString();
                     extraName= "extra_" +i.toString();
-                    setTimeout(function() {  $(extraDivName).fadeOut('fast');},10);
                     document.getElementsByName(extraName)[0].checked = false;
+                    hideDispElem(extraDivName, 100*(i-2), false);
                 }
             }
             else{
                 for (i = 2; i < <?php echo $extraSize; ?>; i++) {
-                    extraName= "#extraD_" +i.toString();
-                    setTimeout(function() {  $(extraName).fadeIn('fast');}, 10);
+                    extraDivName= "#extraD_" +i.toString();
+                    hideDispElem(extraDivName, 100*(i-2), true);
                 }
             }
         }
