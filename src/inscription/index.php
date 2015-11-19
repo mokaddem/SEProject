@@ -380,10 +380,7 @@
         if(document.getElementsByName(nameExtra.toString()+ "1")[0].checked == true){
             for (i = 2; i < <?php echo $extraSize; ?>; i++) {
                 var extraDivName= nameDivExtra.toString() +i.toString();
-//                console.log("extraDivName="+extraDivName.toString());
                 var extraName= nameExtra.toString() +i.toString();
-//                console.log("trying to access1: " + extraDivName.toString() + " and " + extraName.toString());
-//                setTimeout(function() {  $("#"+extraDivName).fadeOut('fast');},10);
                 hideDispElem("#"+extraDivName, 100*(i-2), false);
                 document.getElementsByName(extraName.toString())[0].checked = false;
             }
@@ -392,8 +389,6 @@
             for (i = 2; i < <?php echo $extraSize; ?>; i++) {
                 var extraDivName= nameDivExtra.toString() +i.toString();
                 var extraName= nameExtra.toString() +i.toString();
-//                console.log("trying to access2: " + extraDivName.toString() + " and " + extraName.toString());
-//                setTimeout(function() {  $("#"+extraDivName).fadeIn('fast');}, 10);
                     hideDispElem("#"+extraDivName, 100*(i-2), true);
             }
         }

@@ -122,34 +122,41 @@
                 <div class="form-group">
                 <label for="sel1"><span class="fa fa-dot-circle-o"></span> Matchs VS</label>
                     <?php
-                    $reponse = $db->query('SELECT FirstName, LastName, R2.ID as TeamID, R2.M_id as MatchID FROM (SELECT * FROM (SELECT ID_Equipe1, ID_Equipe2, `Match`.ID as M_id FROM `Match`, Team WHERE `Match`.Poule_ID ='.$PouleID.' AND `Match`.ID_Equipe1 ='.$TeamID.' OR `Match`.ID_Equipe2 ='.$TeamID.' GROUP BY ID_Equipe1 ) AS R1, Team WHERE R1.ID_Equipe1 = Team.ID OR R1.ID_Equipe2 = Team.ID GROUP BY Team.ID ) AS R2, Personne WHERE R2.ID_Player1 = Personne.ID OR R2.ID_Player2 = Personne.ID');
+                    //$reponse = $db->query('SELECT FirstName, LastName, R2.ID as TeamID, R2.M_id as MatchID FROM (SELECT * FROM (SELECT ID_Equipe1, ID_Equipe2, `Match`.ID as M_id FROM `Match`, Team WHERE `Match`.Poule_ID ='.$PouleID.' AND `Match`.ID_Equipe1 ='.$TeamID.' OR `Match`.ID_Equipe2 ='.$TeamID.' GROUP BY ID_Equipe1 ) AS R1, Team WHERE R1.ID_Equipe1 = Team.ID OR R1.ID_Equipe2 = Team.ID GROUP BY Team.ID ) AS R2, Personne WHERE R2.ID_Player1 = Personne.ID OR R2.ID_Player2 = Personne.ID');
+                    $reponseMatch = $db->query("SELECT * FROM `Match` WHERE `Poule_ID`=".$PouleID." and (`ID_Equipe1`=".$TeamID." or `ID_Equipe2`=".$TeamID.")");
                     $i=0; $j=0;
                     $flip;
-                    while ($donnes = $reponse->fetch_array()) {
-                        $p1 = $donnes['FirstName'] . " " . $donnes['LastName'];
-                        $donnes = $reponse->fetch_array();
-                        $p2 = $donnes['FirstName'] . " " . $donnes['LastName'];
-                        $arrayTeamId[$i] = $donnes['TeamID'];
-                        $arrayMatchID[$i] = $donnes['MatchID'];
+                    while ($donnesMatch = $reponseMatch->fetch_array()) {
+                        $otherTeam = $donnesMatch['ID_Equipe1']== $TeamID ? $donnesMatch['ID_Equipe2'] : $donnesMatch['ID_Equipe1'];
+                        $reponsePers  = $db->query("SELECT Personne.FirstName, Personne.LastName FROM `Team`, Personne WHERE Team.ID=".$otherTeam." AND `ID_Player1`=Personne.ID UNION SELECT Personne.FirstName, Personne.LastName FROM `Team`, Personne WHERE Team.ID=".$otherTeam." AND `ID_Player2`=Personne.ID");
+                        $donnesPers = $reponsePers->fetch_array();
+                        $p1 = $donnesPers['FirstName'] . " " . $donnesPers['LastName'];
+                        $donnesPers = $reponsePers->fetch_array();
+                        $p2 = $donnesPers['FirstName'] . " " . $donnesPers['LastName'];
+                        $arrayTeamId[$i]  = $otherTeam;
+                        $arrayMatchID[$i] = $donnesMatch['ID'];
 
-                        $reponse2_1 = $db->query("SELECT score1, score2 FROM `Match` WHERE ID_Equipe1=" . $TeamID . " AND ID_Equipe2=" . $donnes['TeamID']);
+                        $reponse2_1 = $db->query("SELECT score1, score2 FROM `Match` WHERE ID_Equipe1=" . $TeamID . " AND ID_Equipe2=" . $otherTeam. " AND Poule_ID=".$PouleID);
                         $donnes2_1 = $reponse2_1->fetch_array();
+                        //error_log("Score1=" .$donnes2_1['score1']." score2=".$donnes2_1['score2']);
 
-                        if (count($donnes2_1) != 0) {
+                        if (count($donnes2_1['score2']) != 0) {
                             $arrayResult[$j] = $donnes2_1['score1'];
                             $arrayResult[$j + 1] = $donnes2_1['score2'];
                             $flip[$i]=0;
+                            error_log("enter if");
                         }
-                    else{
-                            $reponse2_2 = $db->query("SELECT score1, score2 FROM `Match` WHERE ID_Equipe1=" . $donnes['TeamID'] . " AND ID_Equipe2=" . $TeamID);
+                        else{
+                            error_log("enter else");
+                            $reponse2_2 = $db->query("SELECT score1, score2 FROM `Match` WHERE ID_Equipe1=" . $otherTeam . " AND ID_Equipe2=" . $TeamID);
                             $donnes2_2 = $reponse2_2->fetch_array();
 
-                            $arrayResult[$j] = $donnes2_2['score2'];
-                            $arrayResult[$j + 1] = $donnes2_2['score1'];
+                            $arrayResult[$j] = $donnes2_2['score1'];
+                            $arrayResult[$j + 1] = $donnes2_2['score2'];
                             $flip[$i]=1;
                         }
-                        $toAdd1=$arrayResult[$j]; $toAdd2=$arrayResult[$j+1];
-
+//                        $toAdd1=$arrayResult[$j]; $toAdd2=$arrayResult[$j+1];
+//                        error_log("flip=".$flip[$i].", score1=".$toAdd1.", score2=".$toAdd2);
                         $j = $j + 2;
                         $i = $i + 1;
                         $nameField = "score".$i;
@@ -159,9 +166,9 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><?= $currentTeamName ?></span>
                                 <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" min="0"
-                                       step="1" style="width: 60px;" value=<?= $toAdd1 ?> required>
+                                       step="1" style="width: 60px;" value=<?=$arrayResult[$j-2] ?> required>
                                 <input type="number" class="form-control" name=<?=$nameField?>-2 id=<?=$nameField?>-2 placeholder="0" min="0"
-                                       step="1" style="width: 60px;" value=<?= $toAdd2 ?> required>
+                                       step="1" style="width: 60px;" value=<?=$arrayResult[$j-1] ?> required>
                                 <span class="input-group-addon"><?= $p1 . " & " . $p2 ?></span>
                             </div>
                         <?php } else { $i--; }
@@ -229,7 +236,7 @@
 
     <script type="text/javascript">
         function saveScore(){
-            var url="../pages/php/add-score.php?jour=";
+            var url="../pages/php/add-score.php";
             var js_arrayTeamId = [<?php echo '"'.implode('","',  $arrayTeamId ).'"' ?>];
             var js_curTeamID = <?php echo $TeamID; ?>;
             var js_arrayMatchID= [<?php echo '"'.implode('","',  $arrayMatchID ).'"' ?>];
