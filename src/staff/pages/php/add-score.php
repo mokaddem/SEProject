@@ -39,7 +39,6 @@ for ($i = 0; $i < $MatchNumber; $i++){
 
 $req = $db->query("SELECT count(ID) as count FROM `Match` WHERE ( `score1` > `score2` AND `ID_Equipe1`=".$curTeamID." ) OR ( `score2` > `score1` AND `ID_Equipe2` =".$curTeamID.") AND Poule_ID=".$PouleID);
 $rep = $req->fetch_array();
-error_log("winmacht=".$rep['count']);
 $db->query("UPDATE SEProjectC.Team SET NbWinMatch=".$rep['count']." WHERE `Team`.ID=".$curTeamID);
 
 // Then we update the victorious teams in the corresponding group.

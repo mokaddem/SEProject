@@ -138,16 +138,13 @@
 
                         $reponse2_1 = $db->query("SELECT score1, score2 FROM `Match` WHERE ID_Equipe1=" . $TeamID . " AND ID_Equipe2=" . $otherTeam. " AND Poule_ID=".$PouleID);
                         $donnes2_1 = $reponse2_1->fetch_array();
-                        //error_log("Score1=" .$donnes2_1['score1']." score2=".$donnes2_1['score2']);
 
                         if (count($donnes2_1['score2']) != 0) {
                             $arrayResult[$j] = $donnes2_1['score1'];
                             $arrayResult[$j + 1] = $donnes2_1['score2'];
                             $flip[$i]=0;
-                            error_log("enter if");
                         }
                         else{
-                            error_log("enter else");
                             $reponse2_2 = $db->query("SELECT score1, score2 FROM `Match` WHERE ID_Equipe1=" . $otherTeam . " AND ID_Equipe2=" . $TeamID);
                             $donnes2_2 = $reponse2_2->fetch_array();
 
@@ -155,8 +152,6 @@
                             $arrayResult[$j + 1] = $donnes2_2['score2'];
                             $flip[$i]=1;
                         }
-//                        $toAdd1=$arrayResult[$j]; $toAdd2=$arrayResult[$j+1];
-//                        error_log("flip=".$flip[$i].", score1=".$toAdd1.", score2=".$toAdd2);
                         $j = $j + 2;
                         $i = $i + 1;
                         $nameField = "score".$i;

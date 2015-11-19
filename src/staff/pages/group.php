@@ -190,7 +190,7 @@
                                 //for ($j = 1; $j <= 1; $j++) { // Boucle pour faire plusieurs row... Useless?
                                     $group = $groups->fetch_array();
                                     if ($group != NULL){?>
-                                        <div class="col-lg-3 <?=$s_a_m?>">
+                                        <div class="col-lg-3 server-action-menu <?=$s_a_m?>">
                                             <label><span class="fa fa-users"></span> Groupe
                                                 <?= $k?>
                                             </label>
