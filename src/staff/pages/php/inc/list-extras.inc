@@ -26,7 +26,7 @@ function printListExtras($donnes1,$donnes2) {
     echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-extras.php?id=$id\">".utf8_encode($donnes1['Price'])."</td>";
     echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-extras.php?id=$id\">".utf8_encode($donnes1['Description'])."</td>";
     echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-extras.php?id=$id\">".utf8_encode($donnes2['nbr'])."</td>";
-    echo "<td><a href=\"./edit-extras.php?id=".$donnes1['ID']."\"><i class=\"fa fa-edit fa-fw\"></i></a> <a href=\"./php/delete-extras.php?id=".$donnes1['ID']."\" onclick=\"return confirm('Voulez-vous vraiment supprimer cette entrée ?');\"><i class=\"fa fa-trash-o\"></i></a></td>";
+    echo "<td><a href=\"./edit-extra.php?id=".$donnes1['ID']."\"><i class=\"fa fa-edit fa-fw\"></i></a> <a href=\"./php/delete-extra.php?id=".$donnes1['ID']."\" onclick=\"return confirm('Voulez-vous vraiment supprimer cette entrée ?');\"><i class=\"fa fa-trash-o\"></i></a></td>";
     echo "</tr>";
 }
 ?>
