@@ -24,11 +24,8 @@ for ($i = 0; $i < $MatchNumber; $i++){
     $sc = explode(",", $Scores[$i]);
     $sc1=$sc[0];
     $sc2=$sc[1];
-   // if($flip[$i]==0) {
-        $req->bind_param("iii", $sc1, $sc2, $MatchID[$i]);
-  //  }else{
-   //     $req->bind_param("iii", $sc2, $sc1, $MatchID[$i]);
-  //  }
+
+    $req->bind_param("iii", $sc1, $sc2, $MatchID[$i]);
     $req->execute();
     addHistory($MatchID[$i], "Match", "Ajout");
 }
