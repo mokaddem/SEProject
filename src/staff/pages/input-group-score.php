@@ -68,7 +68,7 @@
 
             $temp = $db->query('SELECT NbWinMatch FROM Team WHERE Team.ID='.$TeamID);
             $row=$temp->fetch_array();
-            $winnumber =$row['NbWinMatch'];
+            $winnumber = $row['NbWinMatch'];
         ?>
 
 
@@ -223,13 +223,13 @@
             var Poule = document.getElementById('selectedPoule').value;
             var Team = document.getElementById('selectedTeam').value;
 
-            window.location.replace("http://localhost/staff/pages/input-group-score.php?poule="+ Poule +"&team=" + Team);
+            window.location.replace("../pages/input-group-score.php?poule="+ Poule +"&team=" + Team);
         }
     </script>
 
     <script type="text/javascript">
         function saveScore(){
-            var url="http://localhost/staff/pages/php/add-score.php";
+            var url="../pages/php/add-score.php";
             var js_arrayTeamId = [<?php echo '"'.implode('","',  $arrayTeamId ).'"' ?>];
             var js_curTeamID = <?php echo $TeamID; ?>;
             var js_arrayMatchID= [<?php echo '"'.implode('","',  $arrayMatchID ).'"' ?>];
@@ -256,6 +256,7 @@
 
             setTimeout(function() {  $('#popup').fadeIn('slow');}, 0);
             setTimeout(function() {  $('#popup').fadeOut('slow');},3000);
+            setTimeout(function() {  refreshMatchs();}, 500+3000);
         }
     </script>
 
