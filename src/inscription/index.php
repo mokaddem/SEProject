@@ -386,7 +386,7 @@
             }
         }
         else{
-            for (i = 2; i < <?php echo $extraSize; ?>; i++) {
+            for (i = <?php echo $extraSize; ?>; i > 1 ; i--) {
                 var extraDivName= nameDivExtra.toString() +i.toString();
                 var extraName= nameExtra.toString() +i.toString();
                     hideDispElem("#"+extraDivName, 100*(i-2), true);
