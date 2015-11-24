@@ -4,7 +4,7 @@
 
 
 function PopulateDB(){
-    include_once("./BDD.php");
+    include_once("../../staff/pages/php/BDD.php");
     
     $db = BDconnect();
     

@@ -63,7 +63,7 @@
                         <!-- /.row -->
                         
                             <div class="form-group">
-                                <a class="btn btn-danger pull-center" href="./php/auto-populate.php">REMPLIR LA BASE DE DONNEES AUTOMATIQUEMENT</a> 
+                                <a class="btn btn-danger pull-center" href="../../addons/Populate/populateDB.php">REMPLIR LA BASE DE DONNEES AUTOMATIQUEMENT</a> 
                             </div>
                         
                         <div class="row">
