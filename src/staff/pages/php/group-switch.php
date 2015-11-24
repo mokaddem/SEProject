@@ -84,7 +84,7 @@ function switch_players($id1, $id2, $day) {
 if (array_key_exists("idteam1", $_POST) && array_key_exists("idteam2", $_POST) && array_key_exists("jour", $_GET)) {
     // je sais pas pq mais faut garder inverser
     switch_players($_POST["idteam2"], $_POST["idteam1"], $_GET["jour"]);
-    header("Location: ../group.php?jour=".$_GET["jour"]."&poule=".$_GET['poule']);
+    header("Location: ../group.php?jour=".$_GET["jour"]."&cat=".$_GET['cat']);
 } else {
     echo "no data";
 }

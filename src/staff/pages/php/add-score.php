@@ -60,10 +60,10 @@ if ($reponseSam != FALSE) {
             $vic2 = $vic_teams->fetch_array();
             if ($newWonNum > $vic1['NbWinMatch']){
                 $db->query("UPDATE SEProjectC.GroupSaturday SET ID_vic1=".$curTeamID.", ID_vic2=".$vic1['ID']." WHERE GroupSaturday.ID=".$groupSam['ID']);
-                addHistory($groupSam['ID'], "Groupe Samedi", "Changement de vainqueur");
+                addHistory($groupSam['ID'], "Poules (Samedi)", "Changement de vainqueur");
             } elseif($newWonNum > $vic2['NbWinMatch']){
                 $db->query("UPDATE SEProjectC.GroupSaturday SET ID_vic1=".$vic1['ID'].", ID_vic2=".$curTeamID." WHERE GroupSaturday.ID=".$groupSam['ID']);
-                addHistory($groupSam['ID'], "Groupe Samedi", "Changement de vainqueur");
+                addHistory($groupSam['ID'], "Poules (Samedi)", "Changement de vainqueur");
             }
         } else{ // Une seule team victorieuse dans la poule.
             $vic_team = $db->query('SELECT * FROM TEAM WHERE ID='.$groupSam['ID_vic1'].'or ID='.$groupSam['ID_vic2']);
@@ -73,11 +73,11 @@ if ($reponseSam != FALSE) {
             } else{
                 $db->query("UPDATE SEProjectC.GroupSaturday SET ID_vic1=".$vic1['ID'].", ID_vic2=".$curTeamID." WHERE GroupSaturday.ID=".$groupSam['ID']);
             }
-            addHistory($groupSam['ID'], "Groupe Samedi", "Nouveau vainqueur");
+            addHistory($groupSam['ID'], "Poules (Samedi)", "Nouveau vainqueur");
         }
     } else{ // Pas de team victorieuse dans la poule
         $db->query("UPDATE SEProjectC.GroupSaturday SET ID_vic1=".$curTeamID." WHERE GroupSaturday.ID=".$groupSam['ID']);
-        addHistory($groupSam['ID'], "Groupe Samedi", "Nouveau vainqueur");
+        addHistory($groupSam['ID'], "Poules (Samedi)", "Nouveau vainqueur");
     }
 }
 
@@ -92,10 +92,10 @@ if ($reponseDim != FALSE) {
             $vic2 = $vic_teams->fetch_array();
             if ($newWonNum > $vic1['NbWinMatch']){
                 $db->query("UPDATE SEProjectC.GroupSunday SET ID_vic1=".$curTeamID.", ID_vic2=".$vic1['ID']." WHERE GroupSunday.ID=".$groupDim['ID']);
-                addHistory($groupDim['ID'], "Groupe Dimanche", "Changement de vainqueur");
+                addHistory($groupDim['ID'], "Poules (Dimanche)", "Changement de vainqueur");
             } elseif($newWonNum > $vic2['NbWinMatch']){
                 $db->query("UPDATE SEProjectC.GroupSunday SET ID_vic1=".$vic1['ID'].", ID_vic2=".$curTeamID." WHERE GroupSunday.ID=".$groupDim['ID']);
-                addHistory($groupDim['ID'], "Groupe Dimanche", "Changement de vainqueur");
+                addHistory($groupDim['ID'], "Poules (Dimanche)", "Changement de vainqueur");
             }
         } else{ // Une seule team victorieuse dans la poule.
             $vic_team = $db->query('SELECT * FROM TEAM WHERE ID='.$groupDim['ID_vic1'].'or ID='.$groupDim['ID_vic2']);
@@ -105,11 +105,11 @@ if ($reponseDim != FALSE) {
             } else{
                 $db->query("UPDATE SEProjectC.GroupSunday SET ID_vic1=".$vic1['ID'].", ID_vic2=".$curTeamID." WHERE GroupSunday.ID=".$groupDim['ID']);
             }
-            addHistory($groupDim['ID'], "Groupe Dimanche", "Nouveau vainqueur");
+            addHistory($groupDim['ID'], "Poules (Dimanche)", "Nouveau vainqueur");
         }
     } else{
         $db->query("UPDATE SEProjectC.GroupSunday SET ID_vic1=".$curTeamID." WHERE GroupSunday.ID=".$groupDim['ID']);
-        addHistory($groupDim['ID'], "Groupe Dimanche", "Nouveau vainqueur");
+        addHistory($groupDim['ID'], "Poules (Dimanche)", "Nouveau vainqueur");
     }
 }
 

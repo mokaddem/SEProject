@@ -127,7 +127,7 @@
                                         <a href="group-generate.php">Génération</a>
                                     </li>
                                     <li>
-                                        <a href="group.php?jour=sam&poule=1">Modification</a>
+                                        <a href="group.php?jour=sam&cat=1">Modification</a>
                                     </li>
                                     <li>
                                         <?php

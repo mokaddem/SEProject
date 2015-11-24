@@ -24,7 +24,7 @@
               $next = $titreDonnees[0];
               foreach ($paramDonnees as $param){ ?>
                     <p><b><?=$next?>:</b>
-                        <?=$donnees[$param]?>
+                        <?=utf8_encode($donnees[$param])?>
                     </p>
                     <?php $next = next($titreDonnees);?>
               <?php } ?>

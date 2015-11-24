@@ -4,7 +4,7 @@
 
 
 function PopulateDB(){
-    include_once("./BDD.php");
+    include_once("../../staff/pages/php/BDD.php");
     
     $db = BDconnect();
     
@@ -80,7 +80,7 @@ function PopulateDB(){
         $req->execute();
         
         $IDOwner[$i] = $db->insert_id;
-    }
+    }   
 
     for ($i = 1; $i < 50; $i++) {
         $req = $db->prepare("INSERT INTO Team(ID_Player1, ID_Player2, ID_Cat, NbWinMatch) VALUES(".$IDPlayers[($i*2)-1].", ".$IDPlayers[$i*2].", 1,0)");
