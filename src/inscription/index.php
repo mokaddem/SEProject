@@ -17,7 +17,7 @@
 
 
     <?php
-    include_once('../../src/staff/pages/php/BDD.php');
+    include('../staff/pages/php/BDD.php');
 
     $db = BDconnect();
 
