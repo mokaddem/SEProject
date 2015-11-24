@@ -176,8 +176,8 @@
                                     }
                                 ?>
                                     <div class="form-group" id="extraD_<?php echo $i;?>" name="extraD_<?php echo $i;?>">
-                                        <input id="extra_<?php echo $i;?>" name="extra_<?php echo $i;?>" value=<?=$extra['ID']?> type="checkbox" <?php if($flagChecked==true){ echo "checked";} ?>> <strong><?php echo $extra['Name'];?></strong>: </input>
-                                        <span><?php echo $extra['Description']?></span>
+                                        <input id="extra_<?php echo $i;?>" name="extra_<?php echo $i;?>" value=<?=$extra['ID']?> type="checkbox" <?php if($flagChecked==true){ echo "checked";} ?>> <strong><?php echo utf8_encode($extra['Name']);?></strong>: </input>
+                                        <span><?php echo utf8_encode($extra['Description'])?></span>
                                         <br/>
                                     </div>
                                     <?php $i=$i+1;} $extraSize=$i; ?>
