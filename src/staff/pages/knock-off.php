@@ -65,7 +65,7 @@
 
                 <!-- Registration form - START -->
 
-                <div class="row">
+                    <div class="row">
                         <div class="row">
                             <ul class="nav nav-tabs">
                                 <li <?php if ($_GET['jour']=="sam" ) echo 'class="active" ' ;?>><a href="knock-off.php?jour=sam&cat=1">Samedi</a></li>
@@ -107,83 +107,94 @@
                                     $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday')->fetch_array();
                                     extract($row);
                                 }
-                            for ($i = 1; $i <= $numberOfGroups; $i++) {
-                                $knockoff = $knockoff_all->fetch_array();
-                                $match = $db->query("SELECT * FROM `Match` WHERE ID =".$knockoff['ID_Match'])->fetch_array();
-                                ?> <div class="form-group text-center">
-                                    <label for="sel1"><span class="fa fa-users"></span> Match
-                                        <?=$i?>
-                                    </label>
-                                </div> <?php
-                                for ($j = 1; $j <= 2; $j++){
-                                    $teamID = $match["ID_Equipe".$j];
-                                    if ($teamID == NULL){ ?>
-                                        <div class="alert alert-danger">
-                                            Au moins un groupe ne contient pas de vainqueur.
-                                        </div>
-                                        <?php $j++; $NumberOfGroups = 0;
-                                    } else {
-                                        $team = $db->query('SELECT * FROM Team WHERE ID= '.$teamID.' AND ID_Cat='.$_GET['cat'].' ')->fetch_array();
-                                        $IDPersonne1 = $team['ID_Player1'];
-                                        $player1 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne1."\"")->fetch_array();
-
-                                        $IDPersonne2 = $team['ID_Player2'];
-                                        $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
-                                            if ($player1['LastName'] != NULL) {
-                                        ?>
-                                <div class="form-group text-center">
-                                <?php $color = "default";
-                                if ($player1['Note'] || $player2['Note']) {
-                                    $color = "primary";
-                                }   ?>
-
-                                <label> </label>
-                                <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
-                                    <?=$teamID?>,
-                                    <?=$player1['LastName']?> &
-                                    <?=$player2['LastName']?>
-                                </button>
+                            $knockoff = $knockoff_all->fetch_array();
+                            if ($knockoff == NULL){ ?>
+                                <div class="alert alert-danger">
+                                    Le tournoi n'a pas encore été généré.
                                 </div>
-                                <?php } } } }?>
-
-
-                        </div>
-
-                        <?php // Quand on gèrera les terrains: utiliser $knockoff-all
-                            $matchNum = 1;
-                            $iter = 0;
-                            $numberOfPixels = 75;
-                            for ($k = $numberOfGroups; $k >= 1; $k = $k/2){
-                                $position = $numberOfPixels."px";
-	                    ?>
-                            <div class="col-lg-2 text-center" style="position: relative; top: <?=$position?>;">
-                                <?php for ($j = 1; $j <= $k; $j++) { ?>
-                                    <div class="form-group">
+                            <?php } else {
+                                for ($i = 1; $i <= $numberOfGroups; $i++) {
+                                    $match = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match'])->fetch_array();
+                                    ?>
+                                    <div class="form-group text-center">
                                         <label for="sel1"><span class="fa fa-users"></span> Match
-                                            <?=$matchNum?>
+                                            <?= $i ?>
                                         </label>
-                                        <select class="form-control" id="sel1">
-		                                    <?php
-												$db = BDconnect();
-												$terrains = $db->query('SELECT * FROM Terrain');
-												while ($terrain = $terrains->fetch_array())
-												{ ?>
-													<option value=<?=$terrain['ID']?>> <?=$terrain['ID']?> : <?=utf8_encode($terrain['Note'])?>, <?=$terrain['adresse']?></option>
-												<?php }
-					 	    				?>
-                                		</select>
-                                    </div>
-                                    <?php
-			                            $matchNum++;
-				                } ?>
-                            </div>
-                            <?php
-                                $iter++;
-                                $numberOfPixels += (int) 75*$k/4;
-				            } ?>
-                    <!-- Registration form - END -->
+                                    </div> <?php
+                                    for ($j = 1; $j <= 2; $j++) {
+                                        $teamID = $match["ID_Equipe" . $j];
+                                        if ($teamID == NULL) { ?>
+                                            <div class="alert alert-danger">
+                                                Au moins un groupe ne contient pas de vainqueur.
+                                            </div>
+                                            <?php $j++;
+                                            $NumberOfGroups = 0;
+                                        } else {
+                                            $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'] . ' ')->fetch_array();
+                                            $IDPersonne1 = $team['ID_Player1'];
+                                            $player1 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne1 . "\"")->fetch_array();
 
-                </div>
+                                            $IDPersonne2 = $team['ID_Player2'];
+                                            $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne2 . "\"")->fetch_array();
+                                            if ($player1['LastName'] != NULL) {
+                                                ?>
+                                                <div class="form-group text-center">
+                                                    <?php $color = "default";
+                                                    if ($player1['Note'] || $player2['Note']) {
+                                                        $color = "primary";
+                                                    } ?>
+
+                                                    <label> </label>
+                                                    <button class="btn btn-<?= $color ?> btn-outline"
+                                                            data-toggle="idteam1" data-target="#idteam1"
+                                                            data-id="<?= $teamID ?>">
+                                                        <?= $teamID ?>,
+                                                        <?= $player1['LastName'] ?> &
+                                                        <?= $player2['LastName'] ?>
+                                                    </button>
+                                                </div>
+                                            <?php }
+                                        }
+                                    }
+                                    $knockoff = $knockoff_all->fetch_array();
+                                } ?>
+
+                                </div>
+                                    <?php // Quand on gèrera les terrains: utiliser $knockoff_all
+                                        $matchNum = 1;
+                                        $iter = 0;
+                                        $numberOfPixels = 75;
+                                        for ($k = $numberOfGroups; $k >= 1; $k = $k/2){
+                                            $position = $numberOfPixels."px";
+                                    ?>
+                                        <div class="col-lg-2 text-center" style="position: relative; top: <?=$position?>;">
+                                            <?php for ($j = 1; $j <= $k; $j++) { ?>
+                                                <div class="form-group">
+                                                    <label for="sel1"><span class="fa fa-users"></span> Match
+                                                        <?=$matchNum?>
+                                                    </label>
+                                                    <select class="form-control" id="sel1">
+                                                        <?php
+                                                            $db = BDconnect();
+                                                            $terrains = $db->query('SELECT * FROM Terrain');
+                                                            while ($terrain = $terrains->fetch_array())
+                                                            { ?>
+                                                                <option value=<?=$terrain['ID']?>> <?=$terrain['ID']?> : <?=utf8_encode($terrain['Note'])?>, <?=utf8_encode($terrain['adresse'])?></option>
+                                                            <?php }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                                <?php
+                                                    $matchNum++;
+                                            } ?>
+                                        </div>
+                                        <?php
+                                            $iter++;
+                                            $numberOfPixels += (int) 75*$k/4;
+                                        } ?>
+                                <!-- Registration form - END -->
+                            </div>
+                    <?php } ?>
                 <!-- /.row -->
             </div>
             <!-- /#page-wrapper -->
