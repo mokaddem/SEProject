@@ -75,7 +75,7 @@
 										while ($donnes = $reponse->fetch_array())
 										{
                                             if (canDeletePlayer($donnes['ID'])){
-                                                echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
+                                                echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['FirstName'])." ".utf8_encode($donnes['LastName'])."</option>";
                                             }
 										}
 			 	    				?>
@@ -92,7 +92,7 @@
 										while ($donnes = $reponse->fetch_array())
 										{
                                             if (canDeletePlayer($donnes['ID'])){
-											     echo "<option value=".$donnes['ID'].">".$donnes['FirstName']." ".$donnes['LastName']."</option>";
+											     echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['FirstName'])." ".utf8_encode($donnes['LastName'])."</option>";
 										
                                             }
                                         }
@@ -109,7 +109,7 @@
 										$reponse = $db->query('SELECT * FROM Categorie');
 										while ($donnes = $reponse->fetch_array())
 										{
-										    echo "<option value=".$donnes['ID'].">".$donnes['Designation']." ".$donnes['Year']."</option>";									
+										    echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['Designation'])." ".$donnes['Year']."</option>";									
                                         }
                                     ?>
                                     

@@ -75,7 +75,13 @@ $db = BDconnect();
         $reqKnock->execute();
         $reponseKnock = $db->query("SELECT * FROM ".$table." WHERE ID_Match =".$ID_Match." AND `Position`=".$i);
         $donneesKnock = $reponseKnock->fetch_array();
-        addHistory($donneesKnock['ID'], "Match-knock-off-Samedi", "Ajout");
+        
+        if ($_GET['jour'] == "sam"){
+            addHistory($donneesKnock['ID'], "Knock-Off (Samedi)", "Ajout");
+        }
+        elseif ($_GET['jour'] == "dim") {
+                addHistory($donneesKnock['ID'], "Knock-Off (Dimanche)", "Ajout");    
+        }
 
     }
     if ($_GET['jour']=="sam"){
