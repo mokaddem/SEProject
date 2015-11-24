@@ -57,16 +57,16 @@
                             <?php
                                  while ($row = $listPlayer->fetch_object()){ ?>
                                     <?php
-                                            $nom = $row->LastName." ".$row->FirstName;
-                                            $adresse = $row->Number." ".$row->Rue." ".$row->ZIPCode." ".$row->Ville;
+                                            $nom = $row->LastName." ".utf8_encode($row->FirstName);
+                                            $adresse = $row->Number." ".utf8_encode($row->Rue)." ".$row->ZIPCode." ".utf8_encode($row->Ville);
                                             $liste1[$adresse] = $nom;
 
                                     ?>
                             <?php }
                                 while ($row = $listOwner->fetch_object()){ ?>
                                     <?php
-                                    $nom = $row->LastName." ".$row->FirstName;
-                                    $adresse = $row->Number." ".$row->Rue." ".$row->ZIPCode." ".$row->Ville;
+                                    $nom = utf8_encode($row->LastName)." ".utf8_encode($row->FirstName);
+                                    $adresse = $row->Number." ".utf8_encode($row->Rue)." ".$row->ZIPCode." ".utf8_encode($row->Ville);
                                     $liste2[$adresse] = $nom;
 
                                     ?>
