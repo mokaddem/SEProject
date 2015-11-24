@@ -108,7 +108,7 @@
                                     extract($row);
                                 }
                             $knockoff = $knockoff_all->fetch_array();
-                            if ($knockoff == NULL){ ?>
+                            if ($knockoff == NULL or $_GET['cat'] != 1){ // ATTENTION A MODIFIER POUR LES CATEGORIES ! ?>
                                 <div class="alert alert-danger">
                                     Le tournoi n'a pas encore été généré.
                                 </div>
