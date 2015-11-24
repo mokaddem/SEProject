@@ -83,13 +83,13 @@
                 <!-- Registration form - START -->
                 <div class="row">
                     <ul class="nav nav-tabs">
-                        <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="group.php?jour=sam&poule=1">Samedi</a></li>
-                        <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="group.php?jour=dim&poule=1">Dimanche</a></li>
+                        <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="group.php?jour=sam&cat=1">Samedi</a></li>
+                        <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="group.php?jour=dim&cat=1">Dimanche</a></li>
                     </ul>
                     <ul class="nav nav-tabs nav-justified">
                         <?php $reponse = $db->query('SELECT * FROM Categorie');
                             while ($donnes = $reponse->fetch_array()) { ?>
-                                <li <?php if ($_GET['poule']==$donnes['ID'] ) echo 'class="active" ';?>><a href="group.php?jour=<?=$_GET['jour']?>&poule=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation']);?></a></li>
+                                <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="group.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation']);?></a></li>
                             <?php }?>
                     </ul>
                 </div>
@@ -99,7 +99,7 @@
                 <div class="row">
                     <nav class="navbar navbar-inverse navbar-perso navbar-fixed-bottom">
                         <div class="container">
-                            <form id="echanger" class="navbar-form" action="./php/group-switch.php?jour=<?=$_GET['jour']?>&poule=<?=$_GET['poule']?>" method="post">
+                            <form id="echanger" class="navbar-form" action="./php/group-switch.php?jour=<?=$_GET['jour']?>&cat=<?=$_GET['cat']?>" method="post">
                                 <input type="submit" class="btn btn-success pull-right" value="Echanger" />
                                 <span class="pull-right"> </span><input type="text" class="form-control pull-right" id="idteam2" name="idteam2" placeholder="ID Equipe 2" required>
                                 <p class="pull-right"> </p><input type="text" class="form-control pull-right" id="idteam1" name="idteam1" placeholder="ID Equipe 1" required>   
@@ -113,7 +113,7 @@
                             </form>
 
 
-                            <form class="navbar-left" action="./php/group-submit.php?jour=<?=$_GET['jour']?>&poule=<?=$_GET['poule']?>" method="post">
+                            <form class="navbar-left" action="./php/group-submit.php?jour=<?=$_GET['jour']?>&cat=<?=$_GET['cat']?>" method="post">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <!-- Ce bouton est là pour procéder à la vérification que tous les terrains sont différents.
@@ -132,7 +132,7 @@
 <!--                    <div class="col-lg-3">-->
 <!--                        <select class="form-select" multiple="">-->
 <!--                            --><?php
-//                                $listTeams = $db->query('SELECT * FROM Team WHERE ID_Cat='.$_GET['poule'].'');
+//                                $listTeams = $db->query('SELECT * FROM Team WHERE ID_Cat='.$_GET['cat'].'');
 //                            foreach ($listTeams as $team) {
 //                                $IDPersonne = $team['ID_Player1'];
 //                                $player = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne."\"")->fetch_array();
@@ -161,17 +161,22 @@
                         <?php
                             $db = BDconnect();
                             if ($_GET['jour'] == "sam"){
-                                $groups = $db->query('SELECT * FROM GroupSaturday, Team WHERE GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['poule'].'');
+                                $groups = $db->query('SELECT * FROM GroupSaturday, Team WHERE GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'');
                                 $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSaturday')->fetch_array();
                                 extract($row);
                             } else{
-                                $groups = $db->query('SELECT * FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['poule'].'');
+                                $groups = $db->query('SELECT * FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'');
                                 $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday')->fetch_array();
                                 extract($row);
                             }
                             $lineNum = 2;
                             $j = 0;
                             $s_a_m = "";
+                        if ($numberOfGroups == 0 or $_GET['cat'] != 1){ // ATTENTION A MODIFIER POUR LES CATEGORIES ! ?>
+                            <div class="col-lg-3 alert alert-danger">
+                                Les groupes n'ont pas encore été générés pour cette catégorie et/ou ce jour.
+                            </div>
+                        <?php }
                             for ($k = 1; $k <= max($numberOfGroups, 4); $k++) {
                                 if ($s_a_m == "server-action-menu") {
                                     $s_a_m = "server-other-menu";
