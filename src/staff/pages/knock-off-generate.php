@@ -95,7 +95,7 @@
                                     $reponse = $db->query('SELECT * FROM Categorie');
                                     while ($donnes = $reponse->fetch_array())
                                     {
-                                        echo "<option value=".$donnes['ID'].">".$donnes['Designation']." ".$donnes['Year']."</option>";
+                                        echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['Designation'])." ".$donnes['Year']."</option>";
                                     }
                                     ?>
                                 </select>
