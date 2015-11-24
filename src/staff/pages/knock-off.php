@@ -74,7 +74,7 @@
                             <ul class="nav nav-tabs nav-justified">
                                 <?php $reponse = $db->query('SELECT * FROM Categorie');
                                 while ($donnes = $reponse->fetch_array()) { ?>
-                                    <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="knock-off.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=$donnes['Designation']?></a></li>
+                                    <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="knock-off.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation'])?></a></li>
                                 <?php }?>
                             </ul>
                         </div>
@@ -168,7 +168,7 @@
 												$terrains = $db->query('SELECT * FROM Terrain');
 												while ($terrain = $terrains->fetch_array())
 												{ ?>
-													<option value=<?=$terrain['ID']?>> <?=$terrain['ID']?> : <?=$terrain['Note']?>, <?=$terrain['adresse']?></option>
+													<option value=<?=$terrain['ID']?>> <?=$terrain['ID']?> : <?=utf8_encode($terrain['Note'])?>, <?=$terrain['adresse']?></option>
 												<?php }
 					 	    				?>
                                 		</select>
