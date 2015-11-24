@@ -79,10 +79,10 @@ $db = BDconnect();
 
     }
     if ($_GET['jour']=="sam"){
-        header("Location: ../knock-off.php?jour=sam&generate=true");
+        header("Location: ../knock-off.php?jour=sam&generate=true&cat=1");
     }
     elseif ($_GET['jour']=="dim"){
-        header("Location: ../knock-off.php?jour=dim&generate=true");
+        header("Location: ../knock-off.php?jour=dim&generate=true&cat=1");
     }
     return;
 
