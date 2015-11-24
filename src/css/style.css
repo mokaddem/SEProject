@@ -16,6 +16,15 @@
     padding-bottom: 200px;
 }
 
+/*
+ * Author: Carlos Alvarez
+ * URL: http://alvarez.is
+ *
+ * Project Name: Munter - Free Bootstrap 3 Theme
+ * Version: 1.0
+ * URL: http://blacktie.co
+ */
+
 .font-thin {
     font-family: "Titillium Web", sans-serif;
     font-weight: 200;
@@ -31,9 +40,9 @@
     font-weight: 300;
 }
 
-/** {*/
-    /*position: relative;*/
-/*}*/
+* {
+    position: relative;
+}
 
 .breaker {
     clear: both;
@@ -42,8 +51,7 @@
     height: 1px;
 }
 
-html,
-body {
+html, body {
     height: 100%;
     width: 100%;
 }
@@ -62,14 +70,14 @@ body {
 
 .navbar {
     background-color: #e4e6e5;
-    background-color: rgba( 228, 230, 229, .85);
+    background-color: rgba( 228, 230, 229, .85 );
     border-bottom: 0 none;
     font-size: 12px;
     transition: .25s all linear;
 }
 
 .navbar.inv {
-    background-color: rgba( 0, 0, 0, .5);
+    background-color: rgba( 0, 0, 0, .5 );
     border-bottom: 1px solid #bfbfbf;
 }
 
@@ -83,6 +91,7 @@ body {
 .navbar.inv a {
     color: #e4e6e5;
 }
+
 
 .navbar-responsive-collapse {
     margin: 0 auto;
@@ -153,63 +162,68 @@ body {
 }
 
 @media (max-width: 767px) {
+
     .nav li {
         text-align: left;
         white-space: nowrap;
     }
-    .navbar-responsive-collapse {
+
+    .navbar-responsive-collapse  {
         width: 100%;
     }
+
     .active-menu {
         display: none !important;
     }
+
     .navbar-toggle {
         margin-right: 10px;
     }
+
     .navbar {
         background-color: #e4e6e5 !important;
         padding: 0;
     }
+
     .navbar .nav a {
         color: #e4e6e5;
         font-size: 16px;
         padding-left: 0;
     }
+
     .icon {
         margin-right: 12px;
     }
+
     .nav li[data-slide="1"],
     .nav li[data-slide="6"] {
         background-color: #2f2f2f;
     }
+
     .nav li[data-slide="2"] {
         background-color: #1abc9c;
     }
+
     .nav li[data-slide="3"] {
         background-color: #e74c3c;
     }
+
     .nav li[data-slide="4"] {
         background-color: #34495e;
     }
+
     .nav li[data-slide="5"] {
         background-color: #e67e22;
     }
-    .nav li[data-slide="7"] {
-        background-color: #eee;
-    }
+
     .navbar-brand {
         margin: 0;
         text-align: left;
     }
 }
 
-:focus {
-    outline: none;
-}
-
-::-moz-focus-inner {
-    border: 0;
-}
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
 
 .slide {
     background-position: center center;
@@ -226,6 +240,7 @@ body {
     -moz-background-size: 100%;
     -o-background-size: 100%;
     background-size: 100%;
+
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -277,7 +292,7 @@ body {
     height: 166px;
     overflow: hidden;
     padding-top: 26px;
-    transition: all ease-in .2s;
+    transition: all ease-in .5s;
 }
 
 #home-row-2 .col-12 .home-hover:hover {
@@ -290,12 +305,15 @@ body {
     #home-row-2 {
         padding-top: 16px;
     }
+
     #home-row-1 h1 {
         font-size: 35px;
     }
+
     #home-row-1 h4 {
         font-size: 21px;
     }
+
     #home-row-2 {
         font-size: 16px;
     }
@@ -353,23 +371,28 @@ i {
     color: white;
 }
 
+
 @media (max-width: 767px) {
     .title-row {
         font-size: 34px;
         padding-bottom: 33px;
     }
+
     .subtitle-row {
         font-size: 26px;
         padding-bottom: 26px;
         padding-top: 26px;
     }
+
     .content-row {
         padding-top: 29px;
     }
+
     .content-row h2 {
         font-size: 24px;
         padding-bottom: 26px;
     }
+
     .content-row h4 {
         font-size: 20px;
     }
@@ -405,15 +428,18 @@ i {
         text-align: center;
         width: 100%;
     }
+
     #slide-3 .row {
         left: 0 !important;
         margin: 0;
         width: 100% !important;
     }
+
     #slide-3 .col-12 {
         height: auto;
         width: 50%
     }
+
     #slide-3 a,
     #slide-3 img {
         height: auto;
@@ -440,6 +466,7 @@ i {
     color: white;
 }
 
+
 #slide-5 {
     background-color: #f39c12;
     color: #e4e6e5;
@@ -449,7 +476,7 @@ i {
 #slide-6 {
     background-color: #2f2f2f;
     color: #e4e6e5;
-    padding-bottom: 50px;
+    padding-bottom: 350px;
     padding-top: 90px;
 }
 
@@ -471,7 +498,7 @@ i {
 }
 
 @media (max-width: 767px) {
-    .with-hover-text {
+    .with-hover-text{
         margin-bottom: 2em;
         margin-top: 1em;
     }
@@ -514,7 +541,7 @@ i {
 }
 
 #lightbox-out {
-    background-color: rgba( 0, 0, 0, 0.7);
+    background-color: rgba( 0, 0, 0, 0.7 );
     height: 100%;
     position: fixed;
     width: 100%;

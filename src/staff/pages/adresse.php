@@ -85,6 +85,7 @@
 
                     <!-- Registration form - END -->
                 </div>
+                <br/><br/><br/>
                 <!-- /.row -->
             </div>
             <!-- /#page-wrapper -->

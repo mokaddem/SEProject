@@ -48,6 +48,8 @@ $pdf->SetFont('dejavusans', '', 11, '', true);
 // This method has several options, check the source code documentation for more information.
 $pdf->AddPage();
 
+
+
 include_once('BDD.php');
 $db = BDconnect();
 $id = $_GET['id'];
@@ -137,7 +139,7 @@ $html = <<<EOD
 <p></p>
 <p><b>Equipe 1:</b> $t1final</p>
 <p><b>Equipe 2:</b> $t2final</p>
-<p><b>Terrain:</b> $terfinal</p>
+<p><b>Terrain:</b> </p>
 <p><b>Date du match:</b> $date</p>
 <p><b>Heure du match:</b> $hour</p>
 <hr/>
@@ -173,6 +175,60 @@ $html = <<<EOD
 <p><b>Prénom: </b>$prenom4</p>
 <p><b>E-mail: </b>$mail4</p>
 <p><b>Adresse: </b>$number4 $rue4 - $zipcode4 $ville4</p>
+<p><b>PhoneNumber: </b>$num4</p>
+<p><b>GSMNumber: </b>$gsm4</p>
+<hr/>
+<p></p>
+
+EOD;
+
+$html = <<<EOD
+<h3 align="center">Tournoi</h3>
+<h1 align="center">Charles de Lorraine</h1>
+<p></p>
+<hr/>
+<p></p>
+<h2 align="center">Match $id</h2>
+<hr/>
+<p></p>
+<p><b>Equipe 1:</b> $t1final</p>
+<p><b>Equipe 2:</b> $t2final</p>
+<p><b>Terrain:</b> </p>
+<p><b>Date du match:</b> $date</p>
+<p><b>Heure du match:</b> $hour</p>
+<hr/>
+<p></p>
+<hr/>
+<p></p>
+<p><b>Nom: </b>$nom1</p>
+<p><b>Prénom: </b>$prenom1</p>
+<p><b>E-mail: </b>$mail1</p>
+<p><b>Adresse: </b></p>
+<p><b>PhoneNumber: </b>$num1</p>
+<p><b>GSMNumber: </b>$gsm1</p>
+<p></p>
+<p><b>Nom: </b>$nom2</p>
+<p><b>Prénom: </b>$prenom2</p>
+<p><b>E-mail: </b>$mail2</p>
+<p><b>Adresse: </b></p>
+<p><b>PhoneNumber: </b>$num2</p>
+<p><b>GSMNumber: </b>$gsm2</p>
+
+<hr/>
+<p></p><p></p><p></p><p></p><p></p>
+
+<p><b>Nom: </b>$nom3</p>
+<p><b>Prénom: </b>$prenom3</p>
+<p><b>E-mail: </b>$mail3</p>
+<p><b>Adresse: </b></p>
+<p><b>PhoneNumber: </b>$num3</p>
+<p><b>GSMNumber: </b>$gsm3</p>
+
+<p></p>
+<p><b>Nom: </b>$nom4</p>
+<p><b>Prénom: </b>$prenom4</p>
+<p><b>E-mail: </b>$mail4</p>
+<p><b>Adresse: </b></p>
 <p><b>PhoneNumber: </b>$num4</p>
 <p><b>GSMNumber: </b>$gsm4</p>
 <hr/>
