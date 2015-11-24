@@ -108,7 +108,7 @@
                     <input class="form-control" id="score2" placeholder="ex: 164" required data-validation-required-message="Veuillez entrer le score de la seconde équipe." />
                     <!--<input type="submit" name="submit" id="submit" value="Enregistrer" class="btn btn-success pull-left">-->
                     
-                </div>
+                </div>  
                 <button class="btn btn-success pull-left" type="submit" name="ID_Match" id="ID_Match" value=<?=0?>>Sauvegarder</button>
 
 
