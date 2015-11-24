@@ -27,7 +27,7 @@ require_once("./php/inc/list-team.inc");
             $t1p = $db->query('SELECT * FROM `Personne` WHERE '.$t1['ID_Player2'].' = ID');
             $t1p2 = $t1p->fetch_array();
 
-            $t1final = $t1p1['FirstName']." ".$t1p1['LastName']." & ".$t1p2['FirstName']." ".$t1p2['LastName'];
+            $t1final = utf8_encode($t1p1['FirstName'])." ".utf8_encode($t1p1['LastName'])." & ".utf8_encode($t1p2['FirstName'])." ".utf8_encode($t1p2['LastName']);
 
             $t = $db->query('SELECT * FROM `Team` WHERE '.$donnees['ID_Equipe2'].' = ID');
             $t2 = $t->fetch_array();

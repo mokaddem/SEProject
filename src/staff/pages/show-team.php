@@ -26,12 +26,12 @@ require_once("./php/inc/list-team.inc");
                 $reponse = $db->query('SELECT * FROM `Personne` WHERE '. $donnees['ID_Player2']. ' = ID');
                 $p2 = $reponse->fetch_array();
 
-                $finalp1 = $p1['FirstName']. " " .$p1['LastName'];
-                $finalp2 = $p2['FirstName']. " " .$p2['LastName'];
+                $finalp1 = utf8_encode($p1['FirstName']). " " .utf8_encode($p1['LastName']);
+                $finalp2 = utf8_encode($p2['FirstName']). " " .utf8_encode($p2['LastName']);
                     
                 $rcat = $db->query('SELECT * FROM Categorie WHERE ID = '.$donnees['ID_Cat'].'');
                 $cat = $rcat->fetch_array();
-                $catFinal = $cat['Designation']." ".$cat['Year'];
+                $catFinal = utf8_encode($cat['Designation'])." ".$cat['Year'];
 
 //            if (array_key_exists("id", $_GET)) {
 //                $listDonnees = getTeam2();

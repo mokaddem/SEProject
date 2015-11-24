@@ -78,7 +78,7 @@
                                             $p1 = $p->fetch_array();
                                             $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player2'].' = ID');
 											$p2 = $p->fetch_array();
-                                            echo "<option value=".$donnes['ID'].">".$p1['FirstName']." ".$p1['LastName']." & ".$p2['FirstName']." ".$p2['LastName']."</option>";
+                                            echo "<option value=".$donnes['ID'].">".utf8_encode($p1['FirstName'])." ".utf8_encode($p1['LastName'])." & ".utf8_encode($p2['FirstName'])." ".utf8_encode($p2['LastName'])."</option>";
 										}
 			 	    				?>
                                 </select>
@@ -96,7 +96,7 @@
                                             $p1 = $p->fetch_array();
                                             $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player2'].' = ID');
 											$p2 = $p->fetch_array();
-                                            echo "<option value=".$donnes['ID'].">".$p1['FirstName']." ".$p1['LastName']." & ".$p2['FirstName']." ".$p2['LastName']."</option>";
+                                            echo "<option value=".$donnes['ID'].">".utf8_encode($p1['FirstName'])." ".utf8_encode($p1['LastName'])." & ".utf8_encode($p2['FirstName'])." ".utf8_encode($p2['LastName'])."</option>";
 										}
 			 	    				?>
                                 </select>
@@ -111,7 +111,7 @@
 										$reponse = $db->query('SELECT * FROM Terrain');
 										while ($donnes = $reponse->fetch_array())
 										{
-											echo "<option value=".$donnes['ID'].">".$donnes['adresse']." - ".$donnes['etat']."</option>";
+											echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['adresse'])." - ".utf8_encode($donnes['etat'])."</option>";
 										}
 			 	    				?>
                                 </select>
