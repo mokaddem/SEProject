@@ -74,43 +74,51 @@
                         $knockoff_all = $db->query('SELECT * FROM KnockoffSunday ORDER BY `Position` ASC');
                         $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM KnockoffSunday')->fetch_array();
                         extract($row);
-                    }?>
-                    <label for="sel1"><span class="fa fa-dot-circle-o"></span> Choix du match</label>
-                    <select class="form-control">
-                        <?php
-                        for ($i = 1; $i <= $numberOfGroups; $i++) {
-                            $knockoff = $knockoff_all->fetch_array();
-                            $match = $db->query("SELECT * FROM `Match` WHERE ID =".$knockoff['ID_Match'])->fetch_array();
-                            ?> <option name="ID_Match" value=<?=$knockoff['ID_Match']?>>
-                                    <?=$knockoff['ID_Match']?> : <?php
-                            for ($j = 1; $j <= 2; $j++){
-                                $teamID = $match["ID_Equipe".$j];
-                                if ($teamID == NULL){ ?>
-                                    <div class="alert alert-danger">
-                                        Au moins un groupe ne contient pas de vainqueur.
-                                    </div>
-                                <?php $j++; $NumberOfGroups = 0;} else {
-                                $team = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"")->fetch_array();
-                                $IDPersonne1 = $team['ID_Player1'];
-                                $player1 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne1."\"")->fetch_array();
+                    }
+                    if ($numberOfGroups == 0){ ?>
+                        <br/>
+                        <div class="col-lg-3 alert alert-danger">
+                            Le tournoi n'a pas encore été généré pour cette catégorie et/ou ce jour.
+                            <br/>
+                            Il n'y a donc aucun score à saisir.
+                        </div>
+                    <?php } else { ?>
+                        <label for="sel1"><span class="fa fa-dot-circle-o"></span> Choix du match</label>
+                        <select class="form-control">
+                            <?php
+                            for ($i = 1; $i <= $numberOfGroups; $i++) {
+                                $knockoff = $knockoff_all->fetch_array();
+                                $match = $db->query("SELECT * FROM `Match` WHERE ID =".$knockoff['ID_Match'])->fetch_array();
+                                ?> <option name="ID_Match" value=<?=$knockoff['ID_Match']?>>
+                                        <?=$knockoff['ID_Match']?> : <?php
+                                for ($j = 1; $j <= 2; $j++){
+                                    $teamID = $match["ID_Equipe".$j];
+                                    if ($teamID == NULL){ ?>
+                                        <div class="alert alert-danger">
+                                            Au moins un groupe ne contient pas de vainqueur.
+                                        </div>
+                                    <?php $j++; $NumberOfGroups = 0;} else {
+                                    $team = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"")->fetch_array();
+                                    $IDPersonne1 = $team['ID_Player1'];
+                                    $player1 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne1."\"")->fetch_array();
 
-                                $IDPersonne2 = $team['ID_Player2'];
-                                $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
-                                ?>
-                                <?=$player1['FirstName']?> <?=$player1['LastName']?> & <?=$player1['FirstName']?> <?=$player2['LastName']?>
-                                <?php if ($j==1){ ?> VS <?php }
-                            }}?> </option> <?php }
-                        ?>
-                    </select>
-                    <label for="sel1"><span class="fa fa-edit"></span> Score [Noms joueurs équipe 1]:</label>
-                    <input class="form-control" id="score1" placeholder="ex: 636" required data-validation-required-message="Veuillez entrer le score de la première équipe." />
-                    <label for="sel1"><span class="fa fa-edit"></span> Score [Noms joueurs équipe 2]:</label>
-                    <input class="form-control" id="score2" placeholder="ex: 164" required data-validation-required-message="Veuillez entrer le score de la seconde équipe." />
-                    <!--<input type="submit" name="submit" id="submit" value="Enregistrer" class="btn btn-success pull-left">-->
-                    
-                </div>  
-                <button class="btn btn-success pull-left" type="submit" name="ID_Match" id="ID_Match" value=<?=0?>>Sauvegarder</button>
+                                    $IDPersonne2 = $team['ID_Player2'];
+                                    $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
+                                    ?>
+                                    <?=$player1['FirstName']?> <?=$player1['LastName']?> & <?=$player1['FirstName']?> <?=$player2['LastName']?>
+                                    <?php if ($j==1){ ?> VS <?php }
+                                }}?> </option> <?php }
+                            ?>
+                        </select>
+                        <label for="sel1"><span class="fa fa-edit"></span> Score [Noms joueurs équipe 1]:</label>
+                        <input class="form-control" id="score1" placeholder="ex: 636" required data-validation-required-message="Veuillez entrer le score de la première équipe." />
+                        <label for="sel1"><span class="fa fa-edit"></span> Score [Noms joueurs équipe 2]:</label>
+                        <input class="form-control" id="score2" placeholder="ex: 164" required data-validation-required-message="Veuillez entrer le score de la seconde équipe." />
+                        <!--<input type="submit" name="submit" id="submit" value="Enregistrer" class="btn btn-success pull-left">-->
 
+                    </div>
+                    <button class="btn btn-success pull-left" type="submit" name="ID_Match" id="ID_Match" value=<?=0?>>Sauvegarder</button>
+                <?php } ?>
 
 
             </div>
