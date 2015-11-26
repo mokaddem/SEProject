@@ -50,12 +50,16 @@
                 <!-- Registration form - START -->
                 <div class="row">
                     <div class="col-lg-6">
-                        <form role="form" method="POST" id="conStaff" action="php/contact-send.php">
+                        <form role="form" name="conStaff"  id="conStaff" novalidate>
                             <div class="row">
                                 <div class="col-lg-8"><input class="form-control" id="dest" placeholder="Destinataire" type="text">
                                 </div>
                             </div>
-                            <div id="listPart" class="collapse">
+                        <!--<label for="sel1">Titre:</label>-->
+			<input type="checkbox" name="participant" value="partici">Participants</br>
+			<input type="checkbox" name="proprio" value="proprio">Propriétaires<br/>
+
+                            <!--<div id="listPart" class="collapse">
                                 <p>
                                     <?php
                   while ($row = $listPart->fetch_object()){ ?>
@@ -73,7 +77,7 @@
                                             <?php }
                       ?>
                                 </p>
-                            </div>
+                            </div>-->
 
                             <br/>
                             <div class="form-group">
@@ -116,8 +120,8 @@
             $('[data-toggle="tooltip"]').tooltip();
         });
     </script>
-    <script src="js/contactStaff.js"></script>
-    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="../../js/contactStaff.js"></script>
+    <script src="../../js/jqBootstrapValidation.js"></script>
 </body>
 
 </html>
