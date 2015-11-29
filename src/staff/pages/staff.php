@@ -51,7 +51,7 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12 noDeco">
-                        <h1 class="page-header"><i class="fa fa-user"></i> <?=$_SESSION['NAME']?></h1>
+                        <h1 class="page-header"><i class="fa fa-user"></i> <?=utf8_encode($_SESSION['NAME'])?></h1>
                     </div>
                 </div>
                 <!-- Registration form - START -->
@@ -74,16 +74,16 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
                                     <p type="text" class="form-control">
-                                        <?=$donnes['Rue']?>
+                                        <?=utf8_encode($donnes['Rue'])?>
                                     </p>
                                     <p type="text" class="form-control">
-                                        <?=$donnes['Number']?>
+                                        <?=utf8_encode($donnes['Number'])?>
                                     </p>
                                     <p type="text" class="form-control">
-                                        <?=$donnes['ZIPCode']?>
+                                        <?=utf8_encode($donnes['ZIPCode'])?>
                                     </p>
                                     <p type="text" class="form-control">
-                                        <?=$donnes['Ville']?>
+                                        <?=utf8_encode($donnes['Ville'])?>
                                     </p>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-at"></i></span>
                                     <p type="text" class="form-control">
-                                        <?=$donnes['Mail']?>
+                                        <?=utf8_encode($donnes['Mail'])?>
                                     </p>
                                 </div>
                             </div>

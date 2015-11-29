@@ -21,10 +21,10 @@
         <ul class="nav navbar-top-links navbar-right">
             <!-- /.dropdown -->
             <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <a class="dropdown-toggle" href="../pages/staff.php">
                     <?php echo $_SESSION["NAME"]; ?>
                 </a>
-                <ul class="dropdown-menu dropdown-alerts">
+                <!--<ul class="dropdown-menu dropdown-alerts">
                     <li>
                         <a href="../pages/staff.php">
                             <div>
@@ -32,14 +32,7 @@
                             </div>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <i class="fa fa-cog"></i> Préférences
-                            </div>
-                        </a>
-                    </li>
-                </ul>
+                </ul>-->
                 <!-- /.dropdown-alerts -->
             </li>
             <!-- /.dropdown -->
