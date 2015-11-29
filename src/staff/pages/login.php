@@ -38,6 +38,8 @@
 
             <!-- Custom Fonts -->
             <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        
+
 
             <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
             <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -47,8 +49,9 @@
     <![endif]-->
 
     </head>
-
-    <body>
+        
+    <body style="background : url(../../images/log_back.jpg) 0 0 fixed;">
+    <!--<body>-->
 
         <div class="container">
             <div class="row">
