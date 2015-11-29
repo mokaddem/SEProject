@@ -47,17 +47,16 @@
                         <h1>Envoyer un mail</h1>
                     </div>
                 </div>
-                <!-- Registration form - START -->
                 <div class="row">
                     <div class="col-lg-6">
+                    <!-- Registration form - START -->
                         <form role="form" name="conStaff"  id="conStaff" novalidate>
                             <div class="row">
                                 <div class="col-lg-8"><input class="form-control" id="dest" placeholder="Destinataire" type="text">
                                 </div>
                             </div>
-                        <!--<label for="sel1">Titre:</label>-->
-			<input type="checkbox" name="participant" value="partici">Participants</br>
-			<input type="checkbox" name="proprio" value="proprio">Propriétaires<br/>
+            			<input type="checkbox" name="participant" value="partici">Participants</br>
+            			<input type="checkbox" name="proprio" value="proprio">Propriétaires<br/>
 
                             <!--<div id="listPart" class="collapse">
                                 <p>
@@ -81,7 +80,6 @@
 
                             <br/>
                             <div class="form-group">
-                                <!-- <label for="sel1"><span class="fa fa-user"></span> Message à tous les propriétaires</label> -->
                                 <input type="text" class="form-control" placeholder="Sujet" id="sujet" required data-validation-required-message="Veuillez entrer le sujet.">
                                 <br>
                                 <textarea rows="15" cols="50" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Veuillez entrer votre message."></textarea>
