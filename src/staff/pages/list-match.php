@@ -98,6 +98,7 @@
                     <!-- /.col-lg-6 -->
                 </div>
                 <!-- /.row -->
+                <a class="btn btn-danger" href="./php/delete-all-matchs.php">Supprimer tous les matchs</a>
                 <!-- Modal -->
                 <div id="myModal" class="modal fade" role="dialog">
                 </div>
