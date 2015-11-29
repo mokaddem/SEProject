@@ -1,6 +1,7 @@
 <?php
 	include_once('BDD.php');
     require_once('add-new-history.php');
+	include_once('simple_html_dom.php');
 //	$db = BDconnect();
 
 	//$database_host = 'localhost';
@@ -107,6 +108,9 @@
 	$Paid=0;
 	$AlreadyPart=0;
 
+	// Get player classement
+
+
 	$req->bind_param("iiii", $ID_Personne1, $IsLeader, $Paid, $AlreadyPart);
 	$req->execute();
 
@@ -149,9 +153,9 @@
 	}
 
 	if (array_key_exists($_SESSION)) {
-	header("Location: ../list.php?type=player");
+//	header("Location: ../list.php?type=player");
 	} else {
-		header("Location: ../../../index.php?action=register" );
+//		header("Location: ../../../index.php?action=register" );
     }
 
 ?>
