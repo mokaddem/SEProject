@@ -45,14 +45,14 @@
 
     <body>
 
-        <div id="wrapper">
+        <div id="wrapper" >
 
             <?php
             include("./html/header.php");
         ?>
 
                 <!-- Page Content -->
-                <div id="page-wrapper">
+                <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">

@@ -50,7 +50,7 @@
 
     </head>
         
-    <body style="background : url(../../images/log_back.jpg) 0 0 fixed;">
+    <body style="background : url(../../images/log-back.jpg) 0 0 fixed;">
     <!--<body>-->
 
         <div class="container">
