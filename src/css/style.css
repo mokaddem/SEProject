@@ -7,15 +7,6 @@
  * URL: http://blacktie.co
  */
 
-#crayon {
-    color: #1abc9c;
-    text-decoration: none;
-}
-
-#contact {
-    padding-bottom: 200px;
-}
-
 .font-thin {
     font-family: "Titillium Web", sans-serif;
     font-weight: 200;
@@ -600,4 +591,24 @@ i {
 
 .navigation-slide {
     cursor: pointer;
+}
+
+#crayon {
+    color: #1abc9c;
+    text-decoration: none;
+}
+
+#contact {
+    padding-bottom: 200px;
+}
+
+
+
+a:hover {
+    text-decoration: none;
+    color: #ccc;
+}
+
+a {
+    color: white;
 }

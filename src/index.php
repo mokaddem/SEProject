@@ -122,6 +122,28 @@
                             <br>
                             <br>
                         </div>
+                        <div class="col-12 col-lg-3 col-sm-6">
+                            <a href="./inscription/index.php" onclick="self.location.href='./inscription/index.php'">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i id="crayon" class="fa fa-pencil fa-stack-1x"></i>
+                                </span>
+                            
+                            <h2>Inscription<br/>Participant</h2>
+                            </a>
+                        </div>
+                        <!-- /col12 -->
+                        <div class="col-12 col-lg-offset-6 col-lg-3 col-sm-6">
+                            <a href="./inscription/inscription-owner.php" onclick="self.location.href='./inscription/inscription-owner.php'">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i id="crayon" class="fa fa-suitcase fa-stack-1x"></i>
+                                </span>
+                            
+                            <h2>Inscription<br/>Propriétaire</h2>
+                            </a>
+                        </div>
+
                         <!-- /col-12 -->
                     </div>
                     <!-- /row -->
