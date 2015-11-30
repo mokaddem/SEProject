@@ -48,7 +48,7 @@
 		$donnes = $reponse->fetch_array();
         ?>
 
-            <div id="page-wrapper">
+            <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
                     <div class="col-lg-12 noDeco">
                         <h1 class="page-header"><i class="fa fa-user"></i> <?=utf8_encode($_SESSION['NAME'])?></h1>

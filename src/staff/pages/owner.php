@@ -42,7 +42,7 @@
         ?>
 
 
-            <div id="page-wrapper">
+            <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="container">
 
                     <div class="page-header">

@@ -41,7 +41,7 @@
     ?>
 
 
-            <div id="page-wrapper">
+            <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
                     <div class="page-header">
                         <h1>Envoyer un mail</h1>
@@ -50,14 +50,16 @@
                 <!-- Registration form - START -->
                 <div class="row">
                     <div class="col-lg-6">
-                        <form role="form" name="conStaff"  id="conStaff" novalidate>
+                        <form role="form" name="conStaff" id="conStaff" novalidate>
                             <div class="row">
-                                <div class="col-lg-8"><input class="form-control" id="dest" placeholder="Destinataire" type="text">
+                                <div class="col-lg-8">
+                                    <input class="form-control" id="dest" placeholder="Destinataire" type="text">
                                 </div>
                             </div>
-                        <!--<label for="sel1">Titre:</label>-->
-			<input type="checkbox" name="participant" value="partici">Participants</br>
-			<input type="checkbox" name="proprio" value="proprio">Propriétaires<br/>
+                            <!--<label for="sel1">Titre:</label>-->
+                            <input type="checkbox" name="participant" value="partici">Participants</br>
+                            <input type="checkbox" name="proprio" value="proprio">Propriétaires
+                            <br/>
 
                             <!--<div id="listPart" class="collapse">
                                 <p>

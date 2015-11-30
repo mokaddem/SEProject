@@ -63,10 +63,10 @@
 
 
 
-            <div id="page-wrapper">
+            <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
                     <div class="page-header">
-                        <h1>Adresse</h1>
+                        <h1>Adresses</h1>
                     </div>
                 </div>
                 <!-- Affichage des adresse - START -->

@@ -2,11 +2,20 @@
 
 
 /*#listNote {*/
-    /*position: fixed;*/
+
+
+/*position: fixed;*/
+
+
 /*}*/
 
+
 /*#pList {*/
-    /*position: fixed;*/
+
+
+/*position: fixed;*/
+
+
 /*}*/
 
 .colorDarkBlue a {
@@ -381,10 +390,14 @@ table.dataTable thead .sorting:after {
     color: #df8a13;
 }
 
-.input-group-addon, .input-group-btn{
+.input-group-addon,
+.input-group-btn {
     width: 0%
 }
-.navbar-top-links .dropdown-messages, .navbar-top-links .dropdown-tasks, .navbar-top-links .dropdown-alerts {
+
+.navbar-top-links .dropdown-messages,
+.navbar-top-links .dropdown-tasks,
+.navbar-top-links .dropdown-alerts {
     width: 140px;
 }
 
@@ -393,22 +406,20 @@ table.dataTable thead .sorting:after {
     background-color: transparent;
     background-image: linear-gradient(to bottom, #81C0F3 10%, #C3DDF3 80%);
     background-repeat: repeat;
-
 }
 
 .panel-border-perso {
     border: 1px solid #6AADE3;
 }
+
 .panel-perso {
     background-color: #6EB3EB;
     border-color: #6EB3EB;
-
 }
 
 .panel-grey {
     background-color: #dddddd;
     border-color: #cccccc;
-
 }
 
 .server-action-menu {
@@ -417,8 +428,7 @@ table.dataTable thead .sorting:after {
     background-repeat: repeat;
     padding: 5px;
     border: 3px white solid;
-
-    border-radius:10px;
+    border-radius: 10px;
 }
 
 .server-other-menu {
@@ -427,7 +437,5 @@ table.dataTable thead .sorting:after {
     background-repeat: repeat;
     padding: 5px;
     border: 3px white solid;
-    border-radius:10px;
-
-
+    border-radius: 10px;
 }
