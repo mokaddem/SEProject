@@ -49,27 +49,15 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-<<<<<<< HEAD
                     <!-- Registration form - START -->
                         <form role="form" name="conStaff"  id="conStaff" novalidate>
-=======
-                        <form role="form" name="conStaff" id="conStaff" novalidate>
->>>>>>> 3a031092d7f3a68c247b678e66c541c6e5667b84
                             <div class="row">
                                 <div class="col-lg-8">
                                     <input class="form-control" id="dest" placeholder="Destinataire" type="text">
                                 </div>
                             </div>
-<<<<<<< HEAD
             			<input type="checkbox" name="participant" value="partici">Participants</br>
             			<input type="checkbox" name="proprio" value="proprio">Propriétaires<br/>
-=======
-                            <!--<label for="sel1">Titre:</label>-->
-                            <input type="checkbox" name="participant" value="partici">Participants</br>
-                            <input type="checkbox" name="proprio" value="proprio">Propriétaires
-                            <br/>
->>>>>>> 3a031092d7f3a68c247b678e66c541c6e5667b84
-
                             <!--<div id="listPart" class="collapse">
                                 <p>
                                     <?php
