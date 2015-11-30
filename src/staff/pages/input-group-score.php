@@ -185,7 +185,7 @@
                 <button type="submit" name="submit" id="submit" value="Enregistrer" class="btn btn-info pull-left">Enregistrer</button>
                 </div>
                 <div class="col-lg-2 text-center">
-                    <div class="alert alert-success" id="popup" >Score enregistré.</div>
+                    <div class="alert alert-success" id="popup" >Scores enregistrés</div>
                 </div>
             </div>
 
