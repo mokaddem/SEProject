@@ -59,9 +59,9 @@ require_once("./php/inc/list-team.inc");
 //
 //                $titre = getTitre("team");
 //            }?>
-                    <p><b>Equipe 1</b> : <?=$t1final?></p>
-                    <p><b>Equipe 2</b> : <?=$t2final?></p>
-                    <p><b>Terrain</b> : <?=$terfinal?></p>
+                    <p><b>Equipe 1</b> : <?=utf8_encode($t1final)?></p>
+                    <p><b>Equipe 2</b> : <?=utf8_encode($t2final)?></p>
+                    <p><b>Terrain</b> : <?=utf8_encode($terfinal)?></p>
                     <p><b>Date du match</b> : <?=$donnees["hour"]?></p>
                     <p><b>Heure du match</b> : <?=$donnees["date"]?></p>
 
