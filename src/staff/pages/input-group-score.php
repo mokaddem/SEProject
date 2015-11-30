@@ -85,7 +85,7 @@
 
                 <div class="form-group">
                     <label for="sel1"><span class="fa fa-dot-circle-o" ></span> Choix de la poule</label>
-                    <select class="form-control" id="selectedPoule" name="selectedPoule" style="width: 60px;">
+                    <select class="form-control" id="selectedPoule" name="selectedPoule" style="width: 80px;">
                         <?php
                             while ($row = $grpSattmp->fetch_array())
                             {
@@ -97,7 +97,7 @@
 
                 <div class="form-group">
                     <label for="sel1"><span class="fa fa-dot-circle-o"></span> Choix de l'équipe</label>
-                    <select class="form-control" id="selectedTeam" name="selectedTeam" style="width: 600px;">
+                    <select class="form-control" id="selectedTeam" name="selectedTeam" style="width: 400px;">
                     <?php
                         $reponse = $db->query('SELECT *, Team.ID as T_ID FROM Team, GroupSaturday WHERE GroupSaturday.ID='.$PouleID.' AND (Team.ID=GroupSaturday.ID_t1 OR Team.ID=GroupSaturday.ID_t2 OR Team.ID=GroupSaturday.ID_t3 OR Team.ID=GroupSaturday.ID_t4 OR Team.ID=GroupSaturday.ID_t5)');
                         while ($donnes = $reponse->fetch_array())
@@ -173,9 +173,9 @@
 
 
 
-                <div class="col-lg-2">
+                <div class="col-lg-6">
                 <div class="form-group">
-                    <label for="sel1"><span class="fa fa-edit" id="nbrwin"></span> Nombre victoire(s)</label>
+                    <label for="sel1"><span class="fa fa-edit" id="nbrwin"></span> Nombre de victoire(s)</label>
                     <span class="form-control text-center" style="width: 70px;"><p><?=$winnumber ?></p></span>
                 </div>
 
