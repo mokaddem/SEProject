@@ -47,9 +47,9 @@ require_once("./php/inc/list-team.inc");
 //                $titre = getTitre("team");
 //            }?>
                     <p><b>ID </b> : <?=$donnees['ID']?></p>
-                    <p><b>Catégorie</b> : <?=$catFinal?></p>
-                    <p><b>Joueur 1</b> : <?=$finalp1?> (<?=$donnees['ID_Player1']?>)</p>
-                    <p><b>Joueur 2</b> : <?=$finalp2?> (<?=$donnees['ID_Player2']?>)</p>
+                    <p><b>Catégorie</b> : <?=utf8_encode($catFinal)?></p>
+                    <p><b>Joueur 1</b> : <?=utf8_encode($finalp1)?> (<?=$donnees['ID_Player1']?>)</p>
+                    <p><b>Joueur 2</b> : <?=utf8_encode($finalp2)?> (<?=$donnees['ID_Player2']?>)</p>
 
 
                 </div>
