@@ -265,12 +265,10 @@
                 for(var j=4; j<Div.childNodes.length; j++){ //inside the main div
                     var insideDiv = Div.childNodes[j];
                     var Elem = typeof insideDiv.childNodes[1] !== 'undefined' ? insideDiv.childNodes[1].nodeName : "x" ;
-                    console.log(Elem);
                     if((Elem.localeCompare("BUTTON")==0) || (Elem.localeCompare("SPAN")==0)){
                         numberOfTeamPresent++;
                     }
                 }
-                console.log("NUMBER   :  "+numberOfTeamPresent);
                 if(numberOfTeamPresent < 2){
                     HighlightTheDiv(document.getElementsByName("divGroup")[i]);
                 }
