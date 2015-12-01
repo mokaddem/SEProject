@@ -53,23 +53,29 @@
                 <!-- Registration form - START -->
                 <div class="row">
                     <ul class="nav nav-tabs">
-                        <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="knock-off-results.php?jour=sam">Samedi</a></li>
-                        <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="knock-off-results.php?jour=dim">Dimanche</a></li>
+                        <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="knock-off-results.php?jour=sam&cat=1">Samedi</a></li>
+                        <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="knock-off-results.php?jour=dim&cat=1">Dimanche</a></li>
+                    </ul>
+                    <ul class="nav nav-tabs nav-justified">
+                        <?php $reponse = $db->query('SELECT * FROM Categorie');
+                        while ($donnes = $reponse->fetch_array()) { ?>
+                            <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="knock-off-results.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation']);?></a></li>
+                        <?php }?>
                     </ul>
                 </div>
                 <?php
                 $db = BDconnect();
                 if ($_GET['jour'] == "sam"){
                     $knockoff_all = $db->query('SELECT * FROM KnockoffSaturday ORDER BY `Position` ASC');
-                    $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSaturday')->fetch_array();
+                    $row = $db->query('SELECT COUNT(*) as numberOfGroups FROM GroupSaturday, Team WHERE GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'')->fetch_array();
                     extract($row);
                 } else{
                     $knockoff_all = $db->query('SELECT * FROM KnockoffSunday ORDER BY `Position` ASC');
-                    $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday')->fetch_array();
+                    $row = $db->query('SELECT COUNT(*) as numberOfGroups FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'')->fetch_array();
                     extract($row);
                 }
                 $knockoff = $knockoff_all->fetch_array();
-                if ($knockoff == NULL){ ?>
+                if ($knockoff == NULL or $numberOfGroups == 0){ ?>
                     <br/>
                     <div class="col-lg-3 alert alert-danger">
                         Le tournoi n'a pas encore été généré.

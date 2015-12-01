@@ -92,15 +92,15 @@
                             <?php
                                 if ($_GET['jour'] == "sam"){
                                     $knockoff_all = $db->query('SELECT * FROM KnockoffSaturday ORDER BY `Position` ASC');
-                                    $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSaturday')->fetch_array();
+                                    $row = $db->query('SELECT COUNT(*) as numberOfGroups FROM GroupSaturday, Team WHERE GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'')->fetch_array();
                                     extract($row);
                                 } elseif ($_GET['jour'] == "dim") {
                                     $knockoff_all = $db->query('SELECT * FROM KnockoffSunday ORDER BY `Position` ASC');
-                                    $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday')->fetch_array();
+                                    $row = $db->query('SELECT COUNT(*) as numberOfGroups FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'')->fetch_array();
                                     extract($row);
                                 }
                             $knockoff = $knockoff_all->fetch_array();
-                            if ($knockoff == NULL or $_GET['cat'] != 1){ // ATTENTION A MODIFIER POUR LES CATEGORIES ! ?>
+                            if ($numberOfGroups == 0){ ?>
                                 <div class="alert alert-danger">
                                     Le tournoi n'a pas encore été généré pour cette catégorie et/ou ce jour.
                                 </div>
@@ -135,8 +135,6 @@
                                                     if ($player1['Note'] || $player2['Note']) {
                                                         $color = "primary";
                                                     } ?>
-
-                                                    <label> </label>
                                                     <button class="btn btn-<?= $color ?> btn-outline"
                                                             data-toggle="idteam1" data-target="#idteam1"
                                                             data-id="<?= $teamID ?>">

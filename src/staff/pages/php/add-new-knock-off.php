@@ -6,39 +6,30 @@ Mise à jour de l'historique
  -->
 <?php
 	include_once('BDD.php');
-  require_once('add-new-history.php');
+    require_once('add-new-history.php');
 
 	// Generation du knock-off
-		$db = BDconnect();
+    $db = BDconnect();
 
     if ($_GET['jour'] == "sam"){
         $table = "KnockoffSaturday";
-        $groups = $db->query('SELECT * FROM GroupSaturday');
-        $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSaturday')->fetch_array();
+        $groups = $db->query('SELECT * FROM GroupSaturday, Team WHERE GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['InputCat'].'');
+        $row = $db->query('SELECT COUNT(*) as numberOfGroups FROM GroupSaturday, Team WHERE GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['InputCat'].'')->fetch_array();
         extract($row);
-        $reponse = $db->query("SELECT * FROM ".$table);
-        $bool = $reponse->fetch_array();
-        if ($bool != NULL) {
-            header("Location: ../knock-off-generate.php?error=yes_sam&jour=".$_GET['jour']);
-            return;
-        } elseif ($numberOfGroups == 0) {
-            header("Location: ../knock-off-generate.php?error=no_sam&jour=".$_GET['jour']);
-            return;
-        }
     } else{
         $table = "KnockoffSunday";
         $groups = $db->query('SELECT * FROM GroupSunday');
         $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday')->fetch_array();
         extract($row);
-        $reponse = $db->query("SELECT * FROM ".$table);
-        $bool = $reponse->fetch_array();
-        if ($bool != NULL) {
-            header("Location: ../knock-off-generate.php?error=yes_dim&jour=".$_GET['jour']);
-            return;
-        } elseif ($numberOfGroups == 0) {
-            header("Location: ../knock-off-generate.php?error=no_dim&jour=".$_GET['jour']);
-            return;
-        }
+    }
+    $reponse = $db->query("SELECT * FROM ".$table);
+    $bool = $reponse->fetch_array();
+    if ($bool != NULL) {
+        header("Location: ../knock-off-generate.php?error=yes_".$_GET['jour']."&jour=".$_GET['jour']);
+        return;
+    } elseif ($numberOfGroups == 0) {
+        header("Location: ../knock-off-generate.php?error=no_".$_GET['jour']."&jour=".$_GET['jour']);
+        return;
     }
 
     for ($i = 1; $i <= ($numberOfGroups*2)-1; $i++) {

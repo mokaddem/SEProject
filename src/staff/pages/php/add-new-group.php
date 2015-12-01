@@ -78,7 +78,7 @@ Mise à jour de l'historique
         echo "Bind";
         $req->execute();
 
-        $reponse = $db->query("SELECT * FROM GroupSunday WHERE ID_t1=".$ID_t1." AND ID_t2=".$ID_t2);
+        $reponse = $db->query("SELECT * FROM GroupSunday WHERE ID_t1=".$ID_t1);
         $donnees = $reponse->fetch_array();
 				// Mise à jour de l'historique
         addHistory($donnees['ID'], "Poules (Dimanche)", "Ajout");
