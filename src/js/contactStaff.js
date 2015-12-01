@@ -23,12 +23,12 @@ $(function() {
                 cache: false,
                 success: function() {
                     // Success message
-                    $('#contactStaff').html("<div class='alert alert-success'>");
-                    $('#contactStaff > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                    $('#success').html("<div class='alert alert-success'>");
+                    $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
                         .append("</button>");
-                    $('#contactStaff > .alert-success')
+                    $('#success > .alert-success')
                         .append("<strong>Votre message à été envoyé. </strong>");
-                    $('#contactStaff > .alert-success')
+                    $('#success > .alert-success')
                         .append('</div>');
 
                     //clear all fields
@@ -36,11 +36,11 @@ $(function() {
                 },
                 error: function() {
                     // Fail message
-                    $('#contactStaff').html("<div class='alert alert-danger'>");
-                    $('#contactStaff > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                    $('#success').html("<div class='alert alert-danger'>");
+                    $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
                         .append("</button>");
-                    $('#contactStaff > .alert-danger').append("<strong>Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!");
-                    $('#contactStaff > .alert-danger').append('</div>');
+                    $('#success > .alert-danger').append("<strong> Sorry, it seems that my mail server is not responding. Please try again later! </strong>");
+                    $('#success > .alert-danger').append('</div>');
                     //clear all fields
                     $('#conStaff').trigger("reset");
                 },
@@ -60,5 +60,5 @@ $(function() {
 
 /*When clicking on Full hide fail/success boxes */
 $('#dest').focus(function() {
-    $('#contactStaff').html('');
+    $('#success').html('');
 });

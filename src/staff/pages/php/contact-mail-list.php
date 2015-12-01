@@ -1,5 +1,5 @@
 <!-- Fonction envoie de mail appelée dans le formulaire de contact.php
- -->
+
 <?php
 include_once('BDD.php');
 
@@ -31,4 +31,4 @@ include_once('BDD.php');
              echo json_encode($user_arr1);
          }
      }
-?>
+?> -->
