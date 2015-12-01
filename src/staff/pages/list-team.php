@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- Page affichant toutes les équipes existantes -->
 <head>
 
     <meta charset="utf-8">
@@ -42,7 +42,7 @@
 
     <div id="wrapper">
 
-        <?php            
+        <?php
             include("./html/header.php");
         ?>
 

@@ -1,15 +1,14 @@
-<?php
+<!-- Mise à jour du score dans la page input-group-score.php,
+fonction appelée en dynamique dans le formulaire de input-group-score.php
+
+Mise à jour de l'historique
+ -->
+ <?php
 include_once('BDD.php');
+// Mise à jour de l'historique
 require_once('add-new-history.php');
 
-//$db = BDconnect();
-
-
-//$database_host = 'localhost';
-//$database_user = 'root';
-//$database_pass = '123';
-//$database_db = 'SEProjectC';
-//$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
+// Mise à jour du score
 $db = BDconnect();
 $IDs = $_POST['matchs'];
 $Scores = $_POST['scores'];
@@ -34,6 +33,7 @@ for ($i = 0; $i < $MatchNumber; $i++){
 
     $req->bind_param("iii", $sc1, $sc2, $MatchID[$i]);
     $req->execute();
+    // Mise à jour de l'historique
     addHistory($MatchID[$i], "Match", "Ajout");
 }
 
@@ -60,9 +60,11 @@ if ($reponseSam != FALSE) {
             $vic2 = $vic_teams->fetch_array();
             if ($newWonNum > $vic1['NbWinMatch']){
                 $db->query("UPDATE SEProjectC.GroupSaturday SET ID_vic1=".$curTeamID.", ID_vic2=".$vic1['ID']." WHERE GroupSaturday.ID=".$groupSam['ID']);
+                // Mise à jour de l'historique
                 addHistory($groupSam['ID'], "Poules (Samedi)", "Changement de vainqueur");
             } elseif($newWonNum > $vic2['NbWinMatch']){
                 $db->query("UPDATE SEProjectC.GroupSaturday SET ID_vic1=".$vic1['ID'].", ID_vic2=".$curTeamID." WHERE GroupSaturday.ID=".$groupSam['ID']);
+                // Mise à jour de l'historique
                 addHistory($groupSam['ID'], "Poules (Samedi)", "Changement de vainqueur");
             }
         } else{ // Une seule team victorieuse dans la poule.
@@ -73,10 +75,12 @@ if ($reponseSam != FALSE) {
             } else{
                 $db->query("UPDATE SEProjectC.GroupSaturday SET ID_vic1=".$vic1['ID'].", ID_vic2=".$curTeamID." WHERE GroupSaturday.ID=".$groupSam['ID']);
             }
+            // Mise à jour de l'historique
             addHistory($groupSam['ID'], "Poules (Samedi)", "Nouveau vainqueur");
         }
     } else{ // Pas de team victorieuse dans la poule
         $db->query("UPDATE SEProjectC.GroupSaturday SET ID_vic1=".$curTeamID." WHERE GroupSaturday.ID=".$groupSam['ID']);
+        // Mise à jour de l'historique
         addHistory($groupSam['ID'], "Poules (Samedi)", "Nouveau vainqueur");
     }
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
+<!-- Page de modification des groupes (transfert de joueur ou changement de terrain) -->
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -35,7 +35,7 @@
 
     <div id="wrapper">
 
-        <?php            
+        <?php
             include("./html/header.php");
             include_once('php/BDD.php');
 
@@ -102,7 +102,7 @@
                             <form id="echanger" class="navbar-form" action="./php/group-switch.php?jour=<?=$_GET['jour']?>&cat=<?=$_GET['cat']?>" method="post">
                                 <input type="submit" class="btn btn-success pull-right" value="Echanger" />
                                 <span class="pull-right"> </span><input type="text" class="form-control pull-right" id="idteam2" name="idteam2" placeholder="ID Equipe 2" required>
-                                <p class="pull-right"> </p><input type="text" class="form-control pull-right" id="idteam1" name="idteam1" placeholder="ID Equipe 1" required>   
+                                <p class="pull-right"> </p><input type="text" class="form-control pull-right" id="idteam1" name="idteam1" placeholder="ID Equipe 1" required>
 
                                 <span class="pull-right" data-toggle="pList" data-target="#pList" data-url="./php/group-note-vide.php">
                                 <button class="btn btn-default">
@@ -194,8 +194,8 @@
                                                         $terrains = $db->query('SELECT * FROM Terrain');
                                                         while ($terrain = $terrains->fetch_array())
                                                         { ?>
-                                                            <option value=<?=$terrain[ 'ID']?>>
-                                                                <?=$terrain['ID']?> : <?=utf8_encode($terrain['Note']);?>, <?=utf8_encode($terrain['adresse']);?>
+                                                            <option value=<?=$terrain['ID']?> <?php if ($group['ID_terrain']==$terrain['ID']) { echo "selected=\"selected\""; }?> >
+                                                                    <?=$terrain['ID']?> : [<?=utf8_encode($terrain['Type']);?>/<?=utf8_encode($terrain['etat']);?>] <?=utf8_encode($terrain['Note']);?> (<?=utf8_encode($terrain['adresse']);?>)
                                                             </option>
                                                     <?php }
                                                     ?>
@@ -225,36 +225,32 @@
                                                 ?>
                                             <div class="form-group text-center">
                                                 <?php $color = "default";
-                                                        // N'AFFICHE RIEN SI LE NOM DU PREMIER JOUEUR EST VIDE
-                                                        // MET EN BLEU ET UN LIEN VERS LA NOTE SI LE JOUEUR EN A UNE
-                                                        if (($player['Note'] || $player2['Note']) && !empty($player['LastName'])) {
-                                                            $color = "primary";
-                                                        ?>
+                                                // N'AFFICHE RIEN SI LE NOM DU PREMIER JOUEUR EST VIDE
+                                                // MET EN BLEU ET UN LIEN VERS LA NOTE SI LE JOUEUR EN A UNE
+                                                if (($player['Note'] || $player2['Note']) && !empty($player['LastName'])) {
+                                                    $color = "primary";
+                                                    ?>
                                                     <span data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=<?=$teamID?>">
-                                                    <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
-                                                                <?=$teamID?>, <?=utf8_encode($player['LastName'])?> & <?=utf8_encode($player2['LastName'])?>
-                                                        </button>
-                                                    </span>
-                                                        <?php // N'AFFICHE RIEN SI LE NOM DU PREMIER JOUEUR EST VIDE
-                                                        } elseif (!empty($player['LastName'])) { ?>
                                                         <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
-                                                            <?=$teamID?>,
-                                                                <?=utf8_encode($player['LastName'])?> -
-                                                                    <?=utf8_encode($player2['LastName'])?>
+                                                            [<?=$teamID?>] <?=utf8_encode($player['LastName'])?> & <?=utf8_encode($player2['LastName'])?>
                                                         </button>
+                                                        </span>
+                                                    <?php // N'AFFICHE RIEN SI LE NOM DU PREMIER JOUEUR EST VIDE
+                                                } elseif (!empty($player['LastName'])) { ?>
+                                                    <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
+                                                        [<?=$teamID?>]
+                                                        <?=utf8_encode($player['LastName'])?> -
+                                                        <?=utf8_encode($player2['LastName'])?>
+                                                    </button>
 
-                                                        <?php } ?>
+                                                <?php } ?>
                                             </div>
 
                                             <?php
 
                                         }?>
-
                                     </div>
                                     <?php }
-                                        //if (gmp_mod((int)$numberOfGroups,$lineNum) == 0){ ?>
-                                            <!--</div>-->
-                                        <?php //}
                                         } // End of k loop.
                                     if ($k == 0){ ?>
                                         <div class="col-lg-3 alert alert-danger">

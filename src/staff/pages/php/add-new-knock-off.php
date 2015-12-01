@@ -1,14 +1,24 @@
+<!-- Generation des knock-off,
+fonction appelée dans le formulaire de knock-off-generate.php
+Redirection vers knock-off.php
+
+Mise à jour de l'historique
+ -->
 <?php
 	include_once('BDD.php');
-    require_once('add-new-history.php');
-    //include("../../../mail/mail_helper.php");
+  require_once('add-new-history.php');
 
+<<<<<<< HEAD
     //$database_host = 'localhost';
     //$database_user = 'root';
     //$database_pass = '123';
     //$database_db = 'SEProjectC';
 	//$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
     $db = BDconnect();
+=======
+	// Generation du knock-off
+		$db = BDconnect();
+>>>>>>> d3373c569b6cd4fe94832a423a18fa922a59abe6
 
     if ($_GET['jour'] == "sam"){
         $table = "KnockoffSaturday";
@@ -57,6 +67,7 @@
         $reqMatch->execute();
         $reponseMatch = $db->query("SELECT * FROM `Match` WHERE ID_Terrain =".$ID_Terrain['ID']." AND ID_Equipe1=".$teamID1." AND ID_Equipe2=".$teamID2);
         $donneesMatch = $reponseMatch->fetch_array();
+				// Mise à jour de l'historique
         addHistory($donneesMatch['ID'], "Match", "Ajout");
 
         $reqKnock = $db->prepare("INSERT INTO ".$table."(ID, ID_Match, `Position`) VALUES(?, ?, ?)");
@@ -66,12 +77,14 @@
         $reqKnock->execute();
         $reponseKnock = $db->query("SELECT * FROM ".$table." WHERE ID_Match =".$ID_Match." AND `Position`=".$i);
         $donneesKnock = $reponseKnock->fetch_array();
-        
+
         if ($_GET['jour'] == "sam"){
+					// Mise à jour de l'historique
             addHistory($donneesKnock['ID'], "Knock-Off (Samedi)", "Ajout");
         }
         elseif ($_GET['jour'] == "dim") {
-                addHistory($donneesKnock['ID'], "Knock-Off (Dimanche)", "Ajout");    
+					// Mise à jour de l'historique
+          addHistory($donneesKnock['ID'], "Knock-Off (Dimanche)", "Ajout");
         }
 
     }
@@ -82,7 +95,4 @@
         header("Location: ../knock-off.php?jour=dim&generate=true&cat=1");
     }
     return;
-
-    //header("Location: ../group-generate.php?error=no_selection");
-
 ?>

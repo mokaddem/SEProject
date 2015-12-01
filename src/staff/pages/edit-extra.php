@@ -1,6 +1,6 @@
 <!DOCTYPE html>
+<!-- Page de modification d'extra selectionné dans la liste -->
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -36,7 +36,7 @@
 
     <div id="wrapper">
 
-        <?php            
+        <?php
             include("./html/header.php");
             include_once('php/BDD.php');
             $db = BDconnect();
@@ -63,7 +63,7 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                     <input type="text" class="form-control" name="InputNom" id="InputNom" placeholder="Nom" required>
-                                </div>  
+                                </div>
                             </div>
 
                             <div class="form-group">

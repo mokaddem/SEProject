@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Page permettant d'envoyer des e-mails (se trouvant dans la catégorie commmunication) -->
 <html lang="en">
 
 <head>
@@ -58,26 +59,6 @@
                             </div>
             			<input type="checkbox" name="participant" value="partici">Participants</br>
             			<input type="checkbox" name="proprio" value="proprio">Propriétaires<br/>
-                            <!--<div id="listPart" class="collapse">
-                                <p>
-                                    <?php
-                  while ($row = $listPart->fetch_object()){ ?>
-                                        <?php echo $row->Mail; ?>,
-                                            <?php }
-                  ?>
-                                </p>
-
-                            </div>
-                            <div id="listProp" class="collapse">
-                                <p>
-                                    <?php
-                      while ($row = $listProp->fetch_object()){ ?>
-                                        <?php echo $row->Mail; ?>,
-                                            <?php }
-                      ?>
-                                </p>
-                            </div>-->
-
                             <br/>
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Sujet" id="sujet" required data-validation-required-message="Veuillez entrer le sujet.">

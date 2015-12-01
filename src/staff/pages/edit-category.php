@@ -1,6 +1,6 @@
 <!DOCTYPE html>
+<!-- Page d'edition d'une catégorie selectionnée dans la liste -->
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -28,10 +28,10 @@
 
     <div id="wrapper">
 
-        <?php            
+        <?php
             include("./html/header.php");
             include_once('php/BDD.php');
-            
+
             $db = BDconnect();
             $reponse = $db->query('SELECT * FROM Categorie WHERE '. $_GET['id']. ' = ID');
             $donnees = $reponse->fetch_array();
@@ -63,7 +63,7 @@
                                                 ?>
                                             </select>
                                             <input type="text" class="form-control" id="InputDesignation" name="InputDesignation" placeholder="Nom" required>
-                                            
+
                                         </div>
                                     </div>
 
