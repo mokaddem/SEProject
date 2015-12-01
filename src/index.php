@@ -98,7 +98,7 @@
                             <div class="modal-body">
                                 <p>Félicitation !</p>
                                 <p>Vous avez bien été enregistré !</p>
-                                <p>Vous recevrez un e-mail de confirmation sous peu</p>
+                                <p>Vous recevrez un e-mail de confirmation sous peu.</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
