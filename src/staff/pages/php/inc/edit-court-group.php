@@ -2,13 +2,13 @@
 include_once('../BDD.php');
 
 $db = BDconnect();
-$ID_G = $_GET['idG'];
-$ID_T = $_GET['idT'];
-$ID_C = $_GET['idC'];
+$ID_G = $_POST['idG'];
+$ID_T = $_POST['idT'];
+$ID_C = $_POST['idC'];
 
-if ($_GET['jour'] == "sam") {
+if ($_POST['jour'] == "sam") {
     $table = "GroupSaturday";
-} elseif ($_GET['jour'] == "dim") {
+} elseif ($_POST['jour'] == "dim") {
     $table = "GroupSunday";    
 }
 

@@ -201,7 +201,7 @@
                                             </label>
                                             <div class="form-group">
                                                 <label><span class="fa fa-users"></span> Terrain</label>
-                                                <select class="form-control" id="terrain">
+                                                <select class="form-control" id="terrain<?= $k?>" name="ExpandableListTerrain">
                                                     <?php
                                                             $terrains = $db->query('SELECT * FROM Terrain');
                                                             while ($terrain = $terrains->fetch_array())
@@ -317,6 +317,51 @@
             }
         });
     </script>
+
+    <script type="text/javascript">
+        function saveCourt(terrainID){
+            var url="../pages/php/inc/edit-court-group.php";
+            var js_idG =  ;
+            var js_idT = terrainID ;
+            var js_idC =  ;
+            var js_jour=  ;
+
+            for (i = 0; i < js_matchNumber; i++) {
+                console.log("score"+(i+1)+"-1");
+                var js_temp_array=[];
+                js_temp_array[0] = document.getElementById("score"+(i+1)+"-1").value;
+                js_temp_array[1] = document.getElementById("score"+(i+1)+"-2").value;
+                js_arrayResult[i] = js_temp_array;
+            }
+            var data={ 'idG':js_idG, 'idT':js_idT, 'idC':js_idC, 'jour': js_jour };
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: data
+
+            });
+
+//            setTimeout(function() {  $('#popup').fadeIn('slow');}, 0);
+//            setTimeout(function() {  $('#popup').fadeOut('slow');},3000);
+//            setTimeout(function() {  location.reload();;}, 500+3000);
+
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var i=0;
+            while((List = document.getElementsByName("ExpandableListTerrain")[i]) != null){
+                i++;
+                List.addEventListener("change", function(){saveCourt(List.value); });
+            }
+        });
+
+    </script>
+
+
 
 
 </body>
