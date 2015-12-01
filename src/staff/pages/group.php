@@ -268,25 +268,17 @@
     </script>
 
     <script>
-//        function saveCourt(ListID, groupID, CatID, Day){
           function saveCourt(e){
             var dropDownList = document.getElementById(e.target.id);
 
             var groupID = dropDownList .parentNode.parentNode.getAttribute('data-groupID');
             var CatID = dropDownList .parentNode.parentNode.getAttribute('data-category');
             var Day = dropDownList .parentNode.parentNode.getAttribute('data-day');
-//            var ListID = dropDownList .getAttribute('id');
 
             var js_idT = dropDownList.options[dropDownList.selectedIndex].value;
             var js_idG = groupID ;
             var js_idC = CatID ;
             var js_jour=  Day;
-
-//            console.log("ListID=" + dropDownList .getAttribute('id'));
-//            console.log("groupid=" + js_idG);
-//            console.log("CatID=" + js_idC);
-//            console.log("Day=" + js_jour);
-//            console.log("TerrainID=" + js_idT);
             var url="../pages/php/inc/edit-court-group.php";
 
             var data={ 'idG':js_idG, 'idT':js_idT, 'idC':js_idC, 'jour': js_jour };
