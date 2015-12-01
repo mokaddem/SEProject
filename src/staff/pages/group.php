@@ -150,7 +150,7 @@
                                     $j = 0;
                                 }
                                 if ($group != NULL){?>
-                                    <div class="col-lg-3 <?=$s_a_m?>" data-groupID="<?=$group['Gid']?>" data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>">
+                                    <div class="col-lg-3 <?=$s_a_m?>"  name="divGroup" id="divGroup<?=$k?>" data-groupID="<?=$group['Gid']?>" data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>">
                                         <label><span class="fa fa-users"></span> Groupe
                                             <?= $k?>
                                         </label>
@@ -252,7 +252,35 @@
     <script>
         $(document).ready(function () {
             $('#popupSave').hide();
+            checkForInvalideGroups();
         });
+    </script>
+
+    <script>
+        function checkForInvalideGroups(){
+            var i=0;
+            while(document.getElementsByName("divGroup")[i] != null){
+                var Div = document.getElementsByName("divGroup")[i];
+                var numberOfTeamPresent = 0;
+                for(var j=4; j<Div.childNodes.length; j++){ //inside the main div
+                    var insideDiv = Div.childNodes[j];
+                    var Elem = typeof insideDiv.childNodes[1] !== 'undefined' ? insideDiv.childNodes[1].nodeName : "x" ;
+                    if((Elem.localeCompare("BUTTON")==0) || (Elem.localeCompare("SPAN")==0)){
+                        numberOfTeamPresent++;
+                    }
+                }
+                if(numberOfTeamPresent < 2){
+                    HighlightTheDiv(document.getElementsByName("divGroup")[i]);
+                }
+                i++;
+            }
+        }
+    </script>
+
+    <script>
+        function HighlightTheDiv(Div){
+            Div.className = "col-lg-3 server-invalide-menu";
+        }
     </script>
 
     <script type="text/javascript">
