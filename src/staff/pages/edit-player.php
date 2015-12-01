@@ -186,7 +186,7 @@
                                 <label>Préférence</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-comment"></i></span>
-                                    <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5"><?php echo $donnes["Note"]; ?></textarea>
+                                    <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5"><?php echo utf8_encode($donnes["Note"]); ?></textarea>
                                 </div>
                             </div>
 
@@ -223,13 +223,13 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#InputNom').val('<?php echo $donnes["LastName"]; ?>');
-            $('#InputPrenom').val('<?php echo $donnes["FirstName"]; ?>');
+            $('#InputNom').val('<?php echo utf8_encode($donnes["LastName"]); ?>');
+            $('#InputPrenom').val('<?php echo utf8_encode($donnes["FirstName"]); ?>');
             $('#InputBirth').val('<?php echo $donnes["BirthDate"]; ?>');
-            $('#InputAdresse').val('<?php echo $donnes["Rue"]; ?>');
+            $('#InputAdresse').val('<?php echo utf8_encode($donnes["Rue"]); ?>');
             $('#InputCP').val('<?php echo $donnes["ZIPCode"]; ?>');
-            $('#InputBat').val('<?php echo $donnes["Number"]; ?>');
-            $('#InputLoc').val('<?php echo $donnes["Ville"]; ?>');
+            $('#InputBat').val('<?php echo utf8_encode($donnes["Number"]); ?>');
+            $('#InputLoc').val('<?php echo utf8_encode($donnes["Ville"]); ?>');
             $('#InputEmailFirst').val('<?php echo $donnes["Mail"]; ?>');
             $('#InputFixe').val('<?php echo $donnes["PhoneNumber"]; ?>');
             $('#InputMob').val('<?php echo $donnes["GSMNumber"]; ?>');

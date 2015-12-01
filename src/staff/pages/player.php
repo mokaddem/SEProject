@@ -167,12 +167,16 @@
                                         <span class="input-group-addon">€</span>
                                     </div>
                                     <div class="input-group">
+                                        <label class="radio-inline"><input type="radio" name="group1" value="1"> CB</label>  
+                                        <label class="radio-inline"><input type="radio" name="group1" value="2" checked> Paypal</label> 
+                                        <label class="radio-inline"><input type="radio" name="group1" value="3"> Chèque</label>
+<!--                                        
                                         <label class="radio-inline">
                                             <input type="radio" name="CB1" id="CB1">CB</label>
                                         <label class="radio-inline">
                                             <input type="radio" name="Paypal1" id="Paypal1">Paypal</label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="Chèque1" id="Chèque1">Chèque</label>
+                                            <input type="radio" name="Chèque1" id="Chèque1">Chèque</label>-->
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -300,12 +304,9 @@
                                         <span class="input-group-addon">€</span>
                                     </div>
                                     <div class="input-group">
-                                        <label class="radio-inline">
-                                            <input type="radio" name="CB2" id="CB2">CB</label>
-                                        <label class="radio-inline">
-                                            <input type="radio" name="Paypal2" id="Paypal2">Paypal</label>
-                                        <label class="radio-inline">
-                                            <input type="radio" name="Chèque2" id="Chèque2">Chèque</label>
+                                        <label class="radio-inline"><input type="radio" name="group2" value="1"> CB</label>  
+                                        <label class="radio-inline"><input type="radio" name="group2" value="2" checked> Paypal</label> 
+                                        <label class="radio-inline"><input type="radio" name="group2" value="3"> Chèque</label>
                                     </div>
                                 </div>
                                 <div class="form-group">

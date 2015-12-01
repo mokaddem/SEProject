@@ -43,15 +43,6 @@
 
                             <div class="col-lg-6">
                                 <div class="col-lg-9">
-                                    <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
-
-                                    <!-- <div class="form-group">
-                                  <label for="sel1">Je m'inscire en tant que </label>
-                                  <select class="form-control" id="sel1">
-                                    <option>participant</option>
-                                    <option>propriétaire</option>
-                                  </select>
-                                </div> -->
                                     <div class="form-group">
                                         <!--<label for="sel1">Titre:</label>-->
                                         <select class="form-control" id="title1" name="title1">
@@ -73,7 +64,7 @@
                                                   for ($i = 1; $i <= 31; $i++) {
                                                         echo "<option>$i</option>\n";
                                                       }
-                                        
+
                                                 ?>
                                             </select>
                                             <select name='birth_month1' id='birth_month1'>
@@ -162,12 +153,10 @@
                                             <span class="input-group-addon">€</span>
                                         </div>
                                         <div class="input-group">
-                                            <label class="radio-inline">
-                                                <input type="radio" name="CB1" id="CB1">CB</label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="Paypal1" id="Paypal1">Paypal</label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="Chèque1" id="Chèque1">Chèque</label>
+                                            
+                                        <label class="radio-inline"><input type="radio" name="group1" value="1"> CB</label>  
+                                        <label class="radio-inline"><input type="radio" name="group1" value="2" checked> Paypal</label> 
+                                        <label class="radio-inline"><input type="radio" name="group1" value="3"> Chèque</label>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -215,7 +204,7 @@
                                                   for ($i = 1; $i <= 31; $i++) {
                                                         echo "<option>$i</option>\n";
                                                       }
-                                        
+
                                                 ?>
                                             </select>
                                             <select name='birth_month2' id='birth_month2'>
@@ -305,12 +294,10 @@
                                             <span class="input-group-addon">€</span>
                                         </div>
                                         <div class="input-group">
-                                            <label class="radio-inline">
-                                                <input type="radio" name="CB2" id="CB2">CB</label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="Paypal2" id="Paypal2">Paypal</label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="Chèque2" id="Chèque2">Chèque</label>
+                                        <label class="radio-inline"><input type="radio" name="group2" value="1"> CB</label>  
+                                        <label class="radio-inline"><input type="radio" name="group2" value="2" checked> Paypal</label> 
+                                        <label class="radio-inline"><input type="radio" name="group2" value="3"> Chèque</label>
+                                        
                                         </div>
                                     </div>
                                     <div class="form-group">

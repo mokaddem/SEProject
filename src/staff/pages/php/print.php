@@ -65,8 +65,7 @@ $t1p1 = $t1p->fetch_array();
 $t1p = $db->query('SELECT * FROM `Personne` WHERE '.$t1['ID_Player2'].' = ID');
 $t1p2 = $t1p->fetch_array();
 
-$t1final = $t1p1['FirstName']." ".$t1p1['LastName']." & ".$t1p2['FirstName']." ".$t1p2['LastName'];
-
+$t1final = utf8_encode($t1p1['FirstName'])." ".utf8_encode($t1p1['LastName'])." & ".utf8_encode($t1p2['FirstName'])." ".utf8_encode($t1p2['LastName']);
 $t = $db->query('SELECT * FROM `Team` WHERE '.$donnees['ID_Equipe2'].' = ID');
 $t2 = $t->fetch_array();
 
@@ -76,56 +75,55 @@ $t2p1 = $t2p->fetch_array();
 $t2p = $db->query('SELECT * FROM `Personne` WHERE '.$t2['ID_Player2'].' = ID');
 $t2p2 = $t2p->fetch_array();
 
-$t2final = $t2p1['FirstName']." ".$t2p1['LastName']." & ".$t2p2['FirstName']." ".$t2p2['LastName'];
+$t2final = utf8_encode($t2p1['FirstName'])." ".utf8_encode($t2p1['LastName'])." & ".utf8_encode($t2p2['FirstName'])." ".utf8_encode($t2p2['LastName']);
 
 $t = $db->query('SELECT * FROM `Terrain` WHERE '.$donnees['ID_Terrain'].' = ID');
 $ter = $t->fetch_array();
 
-$terfinal = $ter['adresse'] . " - " . $ter['etat'];
-
+$terfinal = utf8_encode($ter['adresse']) . " - " . utf8_encode($ter['etat']);
 
 $hour = $donnees['hour'];
 $date = $donnees['date'];
 
-$nom1 = $t1p1['LastName'];
-$prenom1 = $t1p1['FirstName'];
-$mail1 = $t1p1['Mail'];
-$ville1 = $t1p1['Ville'];
-$rue1 = $t1p1['Rue'];
-$number1 = $t1p1['Number'];
-$zipcode1 = $t1p1['ZIPCode'];
-$num1 = $t1p1['PhoneNumber'];
-$gsm1 = $t1p1['GSMNumber'];
+$nom1 = utf8_encode($t1p1['LastName']);
+$prenom1 = utf8_encode($t1p1['FirstName']);
+$mail1 = utf8_encode($t1p1['Mail']);
+$ville1 = utf8_encode($t1p1['Ville']);
+$rue1 = utf8_encode($t1p1['Rue']);
+$number1 = utf8_encode($t1p1['Number']);
+$zipcode1 = utf8_encode($t1p1['ZIPCode']);
+$num1 = utf8_encode($t1p1['PhoneNumber']);
+$gsm1 = utf8_encode($t1p1['GSMNumber']);
 
-$nom2 = $t1p2['LastName'];
-$prenom2 = $t1p2['FirstName'];
-$mail2 = $t1p2['Mail'];
-$ville2 = $t1p2['Ville'];
-$rue2 = $t1p2['Rue'];
-$number2 = $t1p2['Number'];
-$zipcode2 = $t1p2['ZIPCode'];
-$num2 = $t1p2['PhoneNumber'];
-$gsm2 = $t1p2['GSMNumber'];
+$nom2 = utf8_encode($t1p2['LastName']);
+$prenom2 = utf8_encode($t1p2['FirstName']);
+$mail2 = utf8_encode($t1p2['Mail']);
+$ville2 = utf8_encode($t1p2['Ville']);
+$rue2 = utf8_encode($t1p2['Rue']);
+$number2 = utf8_encode($t1p2['Number']);
+$zipcode2 = utf8_encode($t1p2['ZIPCode']);
+$num2 = utf8_encode($t1p2['PhoneNumber']);
+$gsm2 = utf8_encode($t1p2['GSMNumber']);
 
-$nom3 = $t2p1['LastName'];
-$prenom3 = $t2p1['FirstName'];
-$mail3 = $t2p1['Mail'];
-$ville3 = $t2p1['Ville'];
-$rue3 = $t2p1['Rue'];
-$number3 = $t2p1['Number'];
-$zipcode3 = $t2p1['ZIPCode'];
-$num3 = $t2p1['PhoneNumber'];
-$gsm3 = $t2p1['GSMNumber'];
+$nom3 = utf8_encode($t2p1['LastName']);
+$prenom3 = utf8_encode($t2p1['FirstName']);
+$mail3 = utf8_encode($t2p1['Mail']);
+$ville3 = utf8_encode($t2p1['Ville']);
+$rue3 = utf8_encode($t2p1['Rue']);
+$number3 = utf8_encode($t2p1['Number']);
+$zipcode3 = utf8_encode($t2p1['ZIPCode']);
+$num3 = utf8_encode($t2p1['PhoneNumber']);
+$gsm3 = utf8_encode($t2p1['GSMNumber']);
 
-$nom4 = $t2p2['LastName'];
-$prenom4 = $t2p2['FirstName'];
-$mail4 = $t2p2['Mail'];
-$ville4 = $t2p2['Ville'];
-$rue4 = $t2p2['Rue'];
-$number4 = $t2p2['Number'];
-$zipcode4 = $t2p2['ZIPCode'];
-$num4 = $t2p2['PhoneNumber'];
-$gsm4 = $t2p2['GSMNumber'];
+$nom4 = utf8_encode($t2p2['LastName']);
+$prenom4 = utf8_encode($t2p2['FirstName']);
+$mail4 = utf8_encode($t2p2['Mail']);
+$ville4 = utf8_encode($t2p2['Ville']);
+$rue4 = utf8_encode($t2p2['Rue']);
+$number4 = utf8_encode($t2p2['Number']);
+$zipcode4 = utf8_encode($t2p2['ZIPCode']);
+$num4 = utf8_encode($t2p2['PhoneNumber']);
+$gsm4 = utf8_encode($t2p2['GSMNumber']);
 
 // Set some content to print
 $html = <<<EOD
@@ -139,7 +137,7 @@ $html = <<<EOD
 <p></p>
 <p><b>Equipe 1:</b> $t1final</p>
 <p><b>Equipe 2:</b> $t2final</p>
-<p><b>Terrain:</b> </p>
+<p><b>Terrain:</b> $terfinal</p>
 <p><b>Date du match:</b> $date</p>
 <p><b>Heure du match:</b> $hour</p>
 <hr/>
@@ -175,60 +173,6 @@ $html = <<<EOD
 <p><b>Prénom: </b>$prenom4</p>
 <p><b>E-mail: </b>$mail4</p>
 <p><b>Adresse: </b>$number4 $rue4 - $zipcode4 $ville4</p>
-<p><b>PhoneNumber: </b>$num4</p>
-<p><b>GSMNumber: </b>$gsm4</p>
-<hr/>
-<p></p>
-
-EOD;
-
-$html = <<<EOD
-<h3 align="center">Tournoi</h3>
-<h1 align="center">Charles de Lorraine</h1>
-<p></p>
-<hr/>
-<p></p>
-<h2 align="center">Match $id</h2>
-<hr/>
-<p></p>
-<p><b>Equipe 1:</b> $t1final</p>
-<p><b>Equipe 2:</b> $t2final</p>
-<p><b>Terrain:</b> </p>
-<p><b>Date du match:</b> $date</p>
-<p><b>Heure du match:</b> $hour</p>
-<hr/>
-<p></p>
-<hr/>
-<p></p>
-<p><b>Nom: </b>$nom1</p>
-<p><b>Prénom: </b>$prenom1</p>
-<p><b>E-mail: </b>$mail1</p>
-<p><b>Adresse: </b></p>
-<p><b>PhoneNumber: </b>$num1</p>
-<p><b>GSMNumber: </b>$gsm1</p>
-<p></p>
-<p><b>Nom: </b>$nom2</p>
-<p><b>Prénom: </b>$prenom2</p>
-<p><b>E-mail: </b>$mail2</p>
-<p><b>Adresse: </b></p>
-<p><b>PhoneNumber: </b>$num2</p>
-<p><b>GSMNumber: </b>$gsm2</p>
-
-<hr/>
-<p></p><p></p><p></p><p></p><p></p>
-
-<p><b>Nom: </b>$nom3</p>
-<p><b>Prénom: </b>$prenom3</p>
-<p><b>E-mail: </b>$mail3</p>
-<p><b>Adresse: </b></p>
-<p><b>PhoneNumber: </b>$num3</p>
-<p><b>GSMNumber: </b>$gsm3</p>
-
-<p></p>
-<p><b>Nom: </b>$nom4</p>
-<p><b>Prénom: </b>$prenom4</p>
-<p><b>E-mail: </b>$mail4</p>
-<p><b>Adresse: </b></p>
 <p><b>PhoneNumber: </b>$num4</p>
 <p><b>GSMNumber: </b>$gsm4</p>
 <hr/>

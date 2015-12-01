@@ -61,10 +61,10 @@ Mise à jour de l'historique
 				// Mise à jour de l'historique
         addHistory($donneesMatch['ID'], "Match", "Ajout");
 
-        $reqKnock = $db->prepare("INSERT INTO ".$table."(ID, ID_Match, `Position`) VALUES(?, ?, ?)");
+        $reqKnock = $db->prepare("INSERT INTO ".$table."(ID, ID_Match, `Position`, Category) VALUES(?, ?, ?, ?)");
         $ID = '';
         $ID_Match = $donneesMatch['ID'];
-        $reqKnock->bind_param("iii", $ID, $ID_Match, $i);
+        $reqKnock->bind_param("iiii", $ID, $ID_Match, $i, $_GET['InputCat']);
         $reqKnock->execute();
         $reponseKnock = $db->query("SELECT * FROM ".$table." WHERE ID_Match =".$ID_Match." AND `Position`=".$i);
         $donneesKnock = $reponseKnock->fetch_array();
