@@ -6,7 +6,6 @@ Mise à jour de l'historique
  -->
 <?php
 	include_once('BDD.php');
-	// Mise à jour de l'historique
   require_once('add-new-history.php');
 
 	// Generation du knock-off
@@ -68,6 +67,7 @@ Mise à jour de l'historique
         $reqMatch->execute();
         $reponseMatch = $db->query("SELECT * FROM `Match` WHERE ID_Terrain =".$ID_Terrain['ID']." AND ID_Equipe1=".$teamID1." AND ID_Equipe2=".$teamID2);
         $donneesMatch = $reponseMatch->fetch_array();
+				// Mise à jour de l'historique
         addHistory($donneesMatch['ID'], "Match", "Ajout");
 
         $reqKnock = $db->prepare("INSERT INTO ".$table."(ID, ID_Match, `Position`) VALUES(?, ?, ?)");
@@ -79,10 +79,12 @@ Mise à jour de l'historique
         $donneesKnock = $reponseKnock->fetch_array();
 
         if ($_GET['jour'] == "sam"){
+					// Mise à jour de l'historique
             addHistory($donneesKnock['ID'], "Knock-Off (Samedi)", "Ajout");
         }
         elseif ($_GET['jour'] == "dim") {
-                addHistory($donneesKnock['ID'], "Knock-Off (Dimanche)", "Ajout");
+					// Mise à jour de l'historique
+          addHistory($donneesKnock['ID'], "Knock-Off (Dimanche)", "Ajout");
         }
 
     }

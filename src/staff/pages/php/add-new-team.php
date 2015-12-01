@@ -30,6 +30,7 @@ Mise à jour de l'historique
     $reponse = $db->query('SELECT * FROM Team WHERE '.$ID_player1.' = ID_Player1 AND '.$ID_player2.' = ID_Player2');
     $donnees = $reponse->fetch_array();
 
+		// Mise à jour de l'historique
     addHistory( $donnees["ID"], "Equipe", "Ajout");
 	header("Location: ../list-team.php");
 ?>

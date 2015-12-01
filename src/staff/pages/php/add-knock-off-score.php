@@ -5,7 +5,6 @@ Mise à jour de l'historique
 -->
 <?php
 include_once('../BDD.php');
-// Mise à jour de l'historique
 require_once('../add-new-history.php');
 
 // Ajout du score
@@ -22,7 +21,7 @@ $score2 = $_GET['score2'];
 
 
 $reponse = $db->query("UPDATE SEProjectC.Match SET score2 = \"".$score2."\", score1=\"" .$score1. "\" WHERE ".$ID."= ID");
-
+// Mise à jour de l'historique
 addHistory($ID, "Match-Knock", "Score");
 
 header("Location: ../input-knock-score.php?jour=".$_GET['id']);

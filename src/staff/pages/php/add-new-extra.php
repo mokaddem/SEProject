@@ -6,7 +6,6 @@ Mise à jour de l'historique
  -->
  <?php
 	include_once('BDD.php');
-  // Mise à jour de l'historique
   require_once('add-new-history.php');
 
   // Ajout de l'extra
@@ -24,6 +23,7 @@ Mise à jour de l'historique
 
     $reponse = $db->query("SELECT * FROM Extras WHERE Name=\"".$Name ."\" AND Description=\"" . $Description ."\"");
     $donnees = $reponse->fetch_array();
+    // Mise à jour de l'historique
     addHistory($donnees["ID"], "Extra", "Ajout");
 
 	header("Location: ../list.php?type=extra");
