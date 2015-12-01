@@ -113,16 +113,6 @@
                             </form>
 
 
-                            <form class="navbar-left" action="./php/group-submit.php?jour=<?=$_GET['jour']?>&cat=<?=$_GET['cat']?>" method="post">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <!-- Ce bouton est là pour procéder à la vérification que tous les terrains sont différents.
-                                             Il faut voir comment faire pour éviter qu'il n'interagisse comme il le fait actuellement avec "Echanger"
-                                             Voir la fonction utilisée dans php/group-submit.php -->
-                                        <input type="submit" class="btn btn-primary pull-right" value="Enregistrer Terrains" />
-                                    </div>
-                                </div>
-                            </form>
                             <br/><br/>
                             <div id="pList"></div>
                         </div>
@@ -161,9 +151,9 @@
                         <?php
                             $db = BDconnect();
                             if ($_GET['jour'] == "sam"){
-                                $groups = $db->query('SELECT * FROM GroupSaturday, Team WHERE GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'');
+                                $groups = $db->query('SELECT *, GroupSaturday.ID as IDG FROM GroupSaturday, Team WHERE GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'');
                             } else{
-                                $groups = $db->query('SELECT * FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'');
+                                $groups = $db->query('SELECT *, GroupSunday.ID FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'');
                                 //$row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'')->fetch_array();
                                 //extract($row);
                             }
@@ -187,9 +177,12 @@
                                         <label><span class="fa fa-users"></span> Groupe
                                             <?= $k?>
                                         </label>
-                                        <div class="form-group">
+                                        <form class="form-group" method="get" action="./php/inc/edit-court-group.php?">
+                                            <input class="hidden" id="idG" value="<?=$group['IDG']?>" name="idG"></input>
+                                            <input class="hidden" id="idC" value="<?=$_GET['cat']?>" name="idC"></input>
+                                            <input class="hidden" id="jour" value="<?=$_GET['jour']?>" name="jour"></input>
                                             <label><span class="fa fa-users"></span> Terrain</label>
-                                            <select class="form-control" id="terrain">
+                                            <select class="form-control" name="idT" id="idT">
                                                 <?php
                                                         $terrains = $db->query('SELECT * FROM Terrain');
                                                         while ($terrain = $terrains->fetch_array())
@@ -200,7 +193,9 @@
                                                     <?php }
                                                     ?>
                                             </select>
-                                        </div>
+                                            <button type="submit" class="btn btn-default"><i class="fa fa-save"></i></button>
+
+                                        </form>
 
                                         <?php
                                             if ($_GET['jour']=="sam"){
@@ -260,7 +255,7 @@
 
                     </div>
                     <!-- Registration form - END -->
-                </form>
+                <!--</form>-->
                 </div>
                 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
