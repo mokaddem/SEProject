@@ -207,7 +207,7 @@
                                                             while ($terrain = $terrains->fetch_array())
                                                             { ?>
                                                                 <option value=<?=$terrain['ID']?> <?php if ($group['ID_terrain']==$terrain['ID']) { echo "selected=\"selected\""; }?> >
-                                                                    <?=$terrain['ID']?> : <?=utf8_encode($terrain['Note']);?>, <?=utf8_encode($terrain['adresse']);?>
+                                                                    <?=$terrain['ID']?> : [<?=utf8_encode($terrain['Type']);?>/<?=utf8_encode($terrain['etat']);?>] <?=utf8_encode($terrain['Note']);?> (<?=utf8_encode($terrain['adresse']);?>)
                                                                 </option>
                                                         <?php }
                                                         ?>
@@ -244,13 +244,13 @@
                                                             ?>
                                                         <span data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=<?=$teamID?>">
                                                         <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
-                                                                    <?=$teamID?>, <?=utf8_encode($player['LastName'])?> & <?=utf8_encode($player2['LastName'])?>
+                                                                    [<?=$teamID?>] <?=utf8_encode($player['LastName'])?> & <?=utf8_encode($player2['LastName'])?>
                                                             </button>
                                                         </span>
                                                             <?php // N'AFFICHE RIEN SI LE NOM DU PREMIER JOUEUR EST VIDE
                                                             } elseif (!empty($player['LastName'])) { ?>
                                                             <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
-                                                                <?=$teamID?>,
+                                                                [<?=$teamID?>]
                                                                     <?=utf8_encode($player['LastName'])?> -
                                                                         <?=utf8_encode($player2['LastName'])?>
                                                             </button>

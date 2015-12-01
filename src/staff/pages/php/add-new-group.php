@@ -196,7 +196,7 @@ Mise à jour de l'historique
                 $ID_t6 = $team['ID'];
                 $Poule_ID = insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $i);
                 $i = 0;
-                $Poule_ID = $db->query("SELECT ID FROM GroupeSunday WHERE ID_t1=\"".$ID_t1 ."\" AND ID_t2=\"".$ID_t2 ."\" AND ID_t3=\"".$ID_t3 ."\" AND ID_t4=\"".$ID_t4 ."\" AND ID_t5=\"".$ID_t5 ."\"")->fetch_array();
+                $Poule_ID = $db->query("SELECT ID FROM GroupeSunday WHERE ID_t1=".$ID_t1 ." AND ID_t2=".$ID_t2 ." AND ID_t3=".$ID_t3 ." AND ID_t4=".$ID_t4 ." AND ID_t5=".$ID_t5)->fetch_array();
                 $ID_t1 = NULL; $ID_t2 = NULL; $ID_t3 = NULL; $ID_t4 = NULL; $ID_t5 = NULL;
             }
             $i++;
