@@ -8,12 +8,12 @@ $(function() {
         submitSuccess: function($form, event) {
             event.preventDefault(); // prevent default submit behaviour
             // get values from FORM
-            var email = $("input#dest").val();
-            var phone = $("input#sujet").val();
+            var dest = $("input#dest").val();
+            var sujet = $("input#sujet").val();
             var message = $("textarea#message").val();
              // For Success/Failure Message
             $.ajax({
-                url: "../mail/contact_staff.php",
+                url: "././mail/contact_staff.php",
                 type: "POST",
                 data: {
                     dest: dest,
@@ -27,7 +27,7 @@ $(function() {
                     $('#contactStaff > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
                         .append("</button>");
                     $('#contactStaff > .alert-success')
-                        .append("<strong>Your message has been sent. </strong>");
+                        .append("<strong>Votre message à été envoyé. </strong>");
                     $('#contactStaff > .alert-success')
                         .append('</div>');
 

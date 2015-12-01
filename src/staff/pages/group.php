@@ -22,13 +22,6 @@
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
 
 <body>
@@ -48,7 +41,6 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Modifier les poules</h1>
-
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -85,6 +77,9 @@
                     <ul class="nav nav-tabs">
                         <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="group.php?jour=sam&cat=1">Samedi</a></li>
                         <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="group.php?jour=dim&cat=1">Dimanche</a></li>
+                        <div class="col-lg-2 text-center">
+                            <div class="alert alert-success" id="popupSave" >Terrain enregistré</div>
+                        </div>
                     </ul>
                     <ul class="nav nav-tabs nav-justified">
                         <?php $reponse = $db->query('SELECT * FROM Categorie');
@@ -129,41 +124,13 @@
                     </nav>
                 </div>
                 <div class="row">
-<!--                    <div class="col-lg-3">-->
-<!--                        <select class="form-select" multiple="">-->
-<!--                            --><?php
-//                                $listTeams = $db->query('SELECT * FROM Team WHERE ID_Cat='.$_GET['cat'].'');
-//                            foreach ($listTeams as $team) {
-//                                $IDPersonne = $team['ID_Player1'];
-//                                $player = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne."\"")->fetch_array();
-//
-//                                $IDPersonne2 = $team['ID_Player2'];
-//                                $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
-//
-//                                if ($player['Note'] || $player2['Note']) {
-//                            ?>
-<!--                                <option data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=--><?//=$team['ID']?><!--">-->
-<!--                                    --><?//=$player['LastName']?><!--,-->
-<!--                                        --><?//=$player2['LastName']?>
-<!--                                </option>-->
-<!--                                --><?php //} }
-//                                    ?>
-<!--                        </select>-->
-<!--                        <br/>-->
-<!--                        <br/>-->
-<!--                        <br/>-->
-<!--                        <br/>-->
-<!--                        <div id="pList">-->
-<!---->
-<!--                        </div>-->
-<!--                    </div>-->
                     <div class="text-center">
                         <?php
                             $db = BDconnect();
                             if ($_GET['jour'] == "sam"){
-                                $groups = $db->query('SELECT * FROM GroupSaturday, Team WHERE GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'');
+                                $groups = $db->query('SELECT *, GroupSaturday.ID as Gid FROM GroupSaturday, Team WHERE GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'');
                             } else{
-                                $groups = $db->query('SELECT * FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'');
+                                $groups = $db->query('SELECT *, GroupSunday.ID as Gid FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'');
                                 //$row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'')->fetch_array();
                                 //extract($row);
                             }
@@ -183,13 +150,13 @@
                                     $j = 0;
                                 }
                                 if ($group != NULL){?>
-                                    <div class="col-lg-3 <?=$s_a_m?>">
+                                    <div class="col-lg-3 <?=$s_a_m?>" data-groupID="<?=$group['Gid']?>" data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>">
                                         <label><span class="fa fa-users"></span> Groupe
                                             <?= $k?>
                                         </label>
-                                        <div class="form-group">
+                                        <div class="form-group" >
                                             <label><span class="fa fa-users"></span> Terrain</label>
-                                            <select class="form-control" id="terrain">
+                                            <select class="form-control" id="terrain <?=$k?>" name="ExpandableListTerrain">
                                                 <?php
                                                         $terrains = $db->query('SELECT * FROM Terrain');
                                                         while ($terrain = $terrains->fetch_array())
@@ -231,7 +198,7 @@
                                                     $color = "primary";
                                                     ?>
                                                     <span data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=<?=$teamID?>">
-                                                        <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
+                                                        <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>" value="<?=$teamID ?>">
                                                             [<?=$teamID?>] <?=utf8_encode($player['LastName'])?> & <?=utf8_encode($player2['LastName'])?>
                                                         </button>
                                                         </span>
@@ -263,7 +230,6 @@
                 </form>
                 </div>
                 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <!-- /.row -->
             </div>
             <!-- /#page-wrapper -->
@@ -282,6 +248,12 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#popupSave').hide();
+        });
+    </script>
 
     <script type="text/javascript">
         // On click, get html content from url and update the corresponding modal
@@ -307,6 +279,47 @@
         });
     </script>
 
+    <script>
+          function saveCourt(e){
+            var dropDownList = document.getElementById(e.target.id);
+
+            var groupID = dropDownList .parentNode.parentNode.getAttribute('data-groupID');
+            var CatID = dropDownList .parentNode.parentNode.getAttribute('data-category');
+            var Day = dropDownList .parentNode.parentNode.getAttribute('data-day');
+
+            var js_idT = dropDownList.options[dropDownList.selectedIndex].value;
+            var js_idG = groupID ;
+            var js_idC = CatID ;
+            var js_jour=  Day;
+            var url="../pages/php/inc/edit-court-group.php";
+
+            var data={ 'idG':js_idG, 'idT':js_idT, 'idC':js_idC, 'jour': js_jour };
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: data
+
+            });
+
+            setTimeout(function() {  $('#popupSave').fadeIn('slow');}, 0);
+            setTimeout(function() {  $('#popupSave').fadeOut('slow');},3000);
+            console.log("tim");
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var i=0;
+            while(document.getElementsByName("ExpandableListTerrain")[i] != null){
+                var List = document.getElementsByName("ExpandableListTerrain")[i];
+                i++;
+                List.addEventListener("change", saveCourt);
+            }
+        });
+
+    </script>
 
 </body>
 

@@ -18,7 +18,7 @@ $message = $_POST['message'];
 // Create the email and send the message
 $to[0] = $dest; 
 $email_subject = $sujetMail;
-$email_body = "You have received a new message from the staff \n\n"."Here are the details:\n\nSujet: $sujetMail\n\nMessage:\n$message";
+$email_body = "Vous avez reçu un email du Staff du tournoi Charles de Lorraine. \n\n"."Voiçi les détails:\n\nSujet: $sujetMail\n\nMessage:\n$message";
 
 sendMail($to, $email_body, $email_subject)	
 ?>

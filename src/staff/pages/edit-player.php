@@ -123,7 +123,6 @@
                             <div class="form-group">
                                     <span class="input-group-addon"><i class="fa fa-at"></i></span>
                                     <input type="email" class="form-control" id="InputEmailFirst" name="InputEmailFirst" placeholder="Email" required>
-                                </div>
                             </div>
 
                             <div class="form-group">
@@ -161,7 +160,7 @@
                                     }
                                 ?>
                                     <div class="form-group" id="extraD_<?php echo $i;?>" name="extraD_<?php echo $i;?>">
-                                        <input id="extra_<?php echo $i;?>" name="extra_<?php echo $i;?>" value=<?=$extra['ID']?> type="checkbox" <?php if($flagChecked==true){ echo "checked";} ?>> <strong><?php echo utf8_encode($extra['Name']);?></strong>: </input>
+                                        <input id="extra_<?php echo $i;?>" name="extra_<?php echo $i;?>" value=<?=$extra['ID']?> type="checkbox" <?php if($flagChecked==true){ echo "checked";} ?>/> <strong><?php echo utf8_encode($extra['Name']);?></strong>:
                                         <span><?php echo utf8_encode($extra['Description'])?></span>
                                         <br/>
                                     </div>
@@ -196,7 +195,9 @@
                             <br/>
                             <br/>
                         </div>
-                    </form>
+
+                        </form>
+                </div>
 
                     <!-- Registration form - END -->
 

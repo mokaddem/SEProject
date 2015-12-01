@@ -39,6 +39,7 @@
 
         $listPart = $db->query("SELECT * FROM Personne where isPlayer = 1 ");
         $listProp = $db->query("SELECT * FROM Personne where isOwner = 1 ");
+	
     ?>
 
 
@@ -62,8 +63,10 @@
                             <br/>
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Sujet" id="sujet" required data-validation-required-message="Veuillez entrer le sujet.">
+				<p class="help-block text-danger"></p>
                                 <br>
                                 <textarea rows="15" cols="50" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Veuillez entrer votre message."></textarea>
+				<p class="help-block text-danger"></p>
                             </div>
                             <div id="contactStaff"></div>
                             <input type="submit" value="Envoyer" class="btn btn-primary pull-right" />
@@ -101,6 +104,34 @@
     </script>
     <script src="../../js/contactStaff.js"></script>
     <script src="../../js/jqBootstrapValidation.js"></script>
+ 	<script>
+                $(document).ready(function (e) {
+                    var lis = $('.nav > li');
+                    menu_focus(lis[0], 1);
+
+                    $(".fancybox").fancybox({
+                        padding: 10,
+                        helpers: {
+                            overlay: {
+                                locked: false
+                            }
+                        }
+                    });
+
+                });
+            </script>
+	    <script type="text/javascript">
+                <!--
+                $('#myModal').modal('show');
+                //-->
+            </script>
+	    <script src="../../js/html5shiv.js"></script>
+            <script src="../../js/jquery-1.10.2.min.js"></script>
+            <script src="../../js/jquery-migrate-1.2.1.min.js"></script>
+            <script src="../../js/bootstrap.min.js"></script>
+            <script src="../../js/jquery.easing.1.3.js"></script>
+            <script type="text/javascript" src="../../../fancybox/jquery.fancybox.pack-v=2.1.5.js"></script>
+            <script src="../../js/script.js"></script>
 </body>
 
 </html>
