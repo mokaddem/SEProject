@@ -1,7 +1,7 @@
 <?php
 	include_once('BDD.php');
     require_once('add-new-history.php');
-	include_once('simple_html_dom.php');
+	include_once('get-ranking.php');
 //	$db = BDconnect();
 
 	//$database_host = 'localhost';
@@ -75,10 +75,39 @@
     addHistory( $donnees2["ID"], "Joueur", "Ajout");
 
 
-    // ---------------------AJOUTER TEAM--------------------------
-	$req = $db->prepare("INSERT INTO Team(ID, ID_player1, ID_player2, ID_Cat, NbWinMatch) VALUES(?, ?, ?, ?, ?)");
+    // --------------------AJOUTER PLAYER---------------------------
 
-//	$req = $db->prepare('INSERT INTO Personne(ID, FirstName, LastName, Title, ZIPCode, PhoneNumber, GSMNumber, Address, BirthDate, Mail, CreationDate, IsPlayer, IsOwner, IsStaff) VALUES('', "bb", "bb", 1, 1234, 12354, 46351, "glkrzjglz e zfzef", 2015-02-02, "lzeijgze@fmezk.com", 2015-02-03, 1, 0, 0)');
+	$req = $db->prepare("INSERT INTO Player(ID_personne, IsLeader, Paid, AlreadyPart, Ranking) VALUES(?, ?, ?, ?, ?)");
+
+	//	$req = $db->prepare('INSERT INTO Personne(ID, FirstName, LastName, Title, ZIPCode, PhoneNumber, GSMNumber, Address, BirthDate, Mail, CreationDate, IsPlayer, IsOwner, IsStaff) VALUES('', "bb", "bb", 1, 1234, 12354, 46351, "glkrzjglz e zfzef", 2015-02-02, "lzeijgze@fmezk.com", 2015-02-03, 1, 0, 0)');
+
+	$ID_Personne1=$donnees1['ID'];
+	$ID_Personne2=$donnees2['ID'];
+	$IsLeader=0;
+	$Paid=0;
+	$AlreadyPart=0;
+
+	// Get player classement
+	$Birth1	= date('d',mktime (0, 0, 0, 0, $_GET['birth_day1']))."/".date('m', mktime (0, 0, 0, $_GET['birth_month1']))."/".$_GET['birth_year1'];
+	$Birth2	= date('d',mktime (0, 0, 0, 0, $_GET['birth_day2']))."/".date('m', mktime (0, 0, 0, $_GET['birth_month2']))."/".$_GET['birth_year2'];
+
+
+	$ranking1 = getRanking($FirstName1, $LastName1, $Birth1);
+	$ranking2 = getRanking($FirstName2, $LastName2, $Birth2);
+	$req->bind_param("iiiis", $ID_Personne1, $IsLeader, $Paid, $AlreadyPart, $ranking1[4]);
+	$req->execute();
+
+	$req = $db->prepare("INSERT INTO Player(ID_personne, IsLeader, Paid, AlreadyPart, Ranking) VALUES(?, ?, ?, ?, ?)");
+	$req->bind_param("iiiis", $ID_Personne2, $IsLeader,$Paid, $AlreadyPart, $ranking2[4]);
+	$req->execute();
+
+	$reponse = $db->query('SELECT * FROM Team WHERE '.$ID_Personne1.' = ID_Player1 AND '.$ID_Personne2.' = ID_Player2');
+	$donnees = $reponse->fetch_array();
+
+	addHistory($donnees["ID"], "Equipe", "Ajout");
+
+	// ---------------------AJOUTER TEAM--------------------------
+	$req = $db->prepare("INSERT INTO Team(ID, ID_player1, ID_player2, ID_Cat, NbWinMatch, AvgRanking) VALUES(?, ?, ?, ?, ?, ?)");
 
 	$ID	 	= '';
 	$ID_player1	= $donnees1['ID'];
@@ -86,42 +115,26 @@
 	$ID_Cat		= '1';
 	$NbmatchWin	= '0';
 
-	$req->bind_param("iiiii", $ID, $ID_player1, $ID_player2, $ID_Cat, $NbmatchWin);
+	$query = 'SELECT RankingInt FROM RankingTextToIntBelgian WHERE "'.$ranking1[4].'" = RankingText OR "'.$ranking2[4].'" = RankingText';
+	$RankingReponse = $db->query($query);
+	$rankings = $RankingReponse->fetch_array();
+	$rankInt1 = $rankings['RankingInt'];
+	$rankings = $RankingReponse->fetch_array();
+	$rankInt2 = $rankings['RankingInt'];
+	$rankingAvgInt = round(($rankInt1 + $rankInt2)/2);
+	$RankingReponse = $db->query('SELECT RankingText FROM RankingTextToIntBelgian WHERE '.$rankingAvgInt.' = RankingInt ');
+	$rankingAvgText = ($RankingReponse->fetch_array());
+	$rankingAvgText = $rankingAvgText['RankingText'];
 
-	$req->execute();
+	$req->bind_param("iiiiis", $ID, $ID_player1, $ID_player2, $ID_Cat, $NbmatchWin, $rankingAvgText);
 
-    $reponse = $db->query('SELECT * FROM Team WHERE '.$ID_player1.' = ID_Player1 AND '.$ID_player2.' = ID_Player2');
-    $donnees = $reponse->fetch_array();
-	
-    addHistory( $donnees["ID"], "Equipe", "Ajout");
-
-
-    // --------------------AJOUTER PLAYER---------------------------
-
-	$req = $db->prepare("INSERT INTO Player(ID_personne, IsLeader, Paid, AlreadyPart) VALUES(?, ?, ?, ?)");
-
-	//	$req = $db->prepare('INSERT INTO Personne(ID, FirstName, LastName, Title, ZIPCode, PhoneNumber, GSMNumber, Address, BirthDate, Mail, CreationDate, IsPlayer, IsOwner, IsStaff) VALUES('', "bb", "bb", 1, 1234, 12354, 46351, "glkrzjglz e zfzef", 2015-02-02, "lzeijgze@fmezk.com", 2015-02-03, 1, 0, 0)');
-
-	$ID_Personne1=$ID_player1;
-	$ID_Personne2=$ID_player2;
-	$IsLeader=0;
-	$Paid=0;
-	$AlreadyPart=0;
-
-	// Get player classement
-
-
-	$req->bind_param("iiii", $ID_Personne1, $IsLeader, $Paid, $AlreadyPart);
-	$req->execute();
-
-	$req = $db->prepare("INSERT INTO Player(ID_personne, IsLeader, Paid, AlreadyPart) VALUES(?, ?, ?, ?)");
-	$req->bind_param("iiii", $ID_Personne2, $IsLeader,$Paid, $AlreadyPart);
 	$req->execute();
 
 	$reponse = $db->query('SELECT * FROM Team WHERE '.$ID_player1.' = ID_Player1 AND '.$ID_player2.' = ID_Player2');
 	$donnees = $reponse->fetch_array();
 
-	addHistory($donnees["ID"], "Equipe", "Ajout");
+	addHistory( $donnees["ID"], "Equipe", "Ajout");
+
 
 
 	// -------------------AJOUTER EXTRAS FOR PLAYER 1----------------------------
@@ -153,9 +166,9 @@
 	}
 
 	if (array_key_exists($_SESSION)) {
-//	header("Location: ../list.php?type=player");
+	header("Location: ../list.php?type=player");
 	} else {
-//		header("Location: ../../../index.php?action=register" );
+		header("Location: ../../../index.php?action=register" );
     }
 
 ?>
