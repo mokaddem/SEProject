@@ -23,7 +23,7 @@ $db = BDconnect();
         $req->bind_param("iiiiiiiii", $ID, $ID_terrain, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_vic1, $ID_vic2);
         $req->execute();
 
-        $reponse = $db->query("SELECT * FROM GroupSaturday WHERE ID_t1=".$ID_t1." AND ID_t2=".$ID_t2);
+        $reponse = $db->query("SELECT * FROM GroupSaturday WHERE ID_t1=".$ID_t1);
         $donnees = $reponse->fetch_array();
         addHistory($donnees['ID'], "Poules (Samedi)", "Ajout");
 
@@ -104,7 +104,7 @@ $db = BDconnect();
         echo "Bind";
         $req->execute();
 
-        $reponse = $db->query("SELECT * FROM GroupSunday WHERE ID_t1=".$ID_t1." AND ID_t2=".$ID_t2);
+        $reponse = $db->query("SELECT * FROM GroupSunday WHERE ID_t1=".$ID_t1);
         $donnees = $reponse->fetch_array();
         addHistory($donnees['ID'], "Poules (Dimanche)", "Ajout");
 

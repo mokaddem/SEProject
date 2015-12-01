@@ -157,10 +157,10 @@
                                         <a href="knock-off.php?jour=sam&cat=1">Modification</a>
                                     </li>
                                     <li>
-                                        <a href="input-knock-score.php?jour=sam">Saisir score</a>
+                                        <a href="input-knock-score.php?jour=sam&cat=1">Saisir score</a>
                                     </li>
                                     <li>
-                                        <a href="knock-off-results.php?jour=sam">Résultats</a>
+                                        <a href="knock-off-results.php?jour=sam&cat=1">Résultats</a>
                                     </li>
                                 </ul>
                             </li>
