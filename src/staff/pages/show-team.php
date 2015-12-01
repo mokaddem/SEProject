@@ -32,20 +32,7 @@ require_once("./php/inc/list-team.inc");
                 $rcat = $db->query('SELECT * FROM Categorie WHERE ID = '.$donnees['ID_Cat'].'');
                 $cat = $rcat->fetch_array();
                 $catFinal = utf8_encode($cat['Designation'])." ".$cat['Year'];
-
-//            if (array_key_exists("id", $_GET)) {
-//                $listDonnees = getTeam2();
-//                var_dump($donnees);
-//
-//                $listDonnees2 = getTeam2($donnees['id1']);
-//                $listDonnees2 = getTeam2($donnees['id2']);
-//                $donnees2 = $listDonnees2->fetch_array();
-//                //$donnees  = getTeam1($_GET['id']);
-//                $titreDonnees = getTitreTable("team");
-//                $paramDonnees = getParam("team");
-//
-//                $titre = getTitre("team");
-//            }?>
+                ?>
                     <p><b>ID </b> : <?=$donnees['ID']?></p>
                     <p><b>Catégorie</b> : <?=utf8_encode($catFinal)?></p>
                     <p><b>Joueur 1</b> : <?=utf8_encode($finalp1)?> (<?=$donnees['ID_Player1']?>)</p>
@@ -62,3 +49,4 @@ require_once("./php/inc/list-team.inc");
 
         </div>
     </div>
+    <?php $reponse->free(); $rcat->free(); ?>

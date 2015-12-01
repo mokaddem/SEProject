@@ -74,6 +74,7 @@
             </div>
        <!-- Registration form - END -->
     </div>
+    <br/><br/>
     <!-- /.row -->
 </div>
 <!-- /#page-wrapper -->
@@ -104,5 +105,7 @@
 <script src="js/contactStaff.js"></script>
 <script src="js/jqBootstrapValidation.js"></script>
 </body>
+<?php $listProp->free(); ?>
+<?php $listPart->free(); ?>
 
 </html>

@@ -87,6 +87,8 @@
                                 <?=$nom?> - <?=$adresse?><br/>
                             <?php } ?>
                             <!-- Affichage des adresse propriétaire - END -->
+                            <br/>
+                            <br/>
                             </div>
                     </div>
 
@@ -123,5 +125,6 @@
     <script src="js/contactStaff.js"></script>
     <script src="js/jqBootstrapValidation.js"></script>
 </body>
-
+<?php $listPlayer->free(); ?>
+<?php $listOwner->free(); ?>
 </html>

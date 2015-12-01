@@ -174,14 +174,6 @@ list.php?type=staff
                     });
                 </script>
                 <script type="text/javascript">
-                    // Stop click on last td in a data-toggle=modal
-                    /*
-                                        $("[data-toggle='modal'] td:last-child").on("click", function (event) {
-                                            $(this).preventDefault();
-                                            $(this).stopPropagation();
-                                        });
-                    */
-
                     // On click, get html content from url and update the corresponding modal
                     $("[data-toggle='modal']").on("click", function (event) {
                         event.preventDefault();

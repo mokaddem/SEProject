@@ -270,5 +270,5 @@
     <script type="text/javascript"> document.getElementById("submit").addEventListener("click", saveScore);</script>
 
 </body>
-
+<?php $grpSattmp->free(); $grpSuntmp->free(); $temp->free(); $reponse->free(); $p->free(); $reponseMatch->free(); $reponsePers->free(); $reponse2_1->free();?>
 </html>

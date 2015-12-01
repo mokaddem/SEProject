@@ -62,3 +62,4 @@ require_once("./php/inc/list-team.inc");
 
         </div>
     </div>
+    <?php $reponse->free(); $t->free(); $t1p->free(); $t2p->free();?>

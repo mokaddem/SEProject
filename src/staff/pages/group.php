@@ -350,5 +350,5 @@
     </script>
 
 </body>
-
+<?php $reponse->free(); $groups->free(); ?>
 </html>

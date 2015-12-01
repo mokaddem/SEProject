@@ -154,5 +154,6 @@
     <script src="../dist/js/sb-admin-2.js"></script>
 
 </body>
+<?php $reponse->free(); $p->free(); ?>
 
 </html>

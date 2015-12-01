@@ -22,14 +22,6 @@
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
 
 <body>
@@ -53,25 +45,16 @@
                         <div class="row">
                             <form role="form" method="Get" action="php/add-new-extra.php">
                                 <div class="col-lg-6">
-                                    <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
-
                                     <div class="form-group">
-                                        <!--<label for="InputNom">Nom</label>-->
                                         <input type="text" class="form-control" name="InputNom" id="InputNom" placeholder="Nom" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <!--<label for="InputPrice">Prix</label>-->
                                         <div class="input-group">
                                             <input type="price" class="form-control" id="InputPrice" name="InputPrice" placeholder="Prix" required>
                                             <span class="input-group-addon">€</span>
                                         </div>
                                     </div>
-
-                                    <!-- Number = 0 --!>
-
-                                <div class="form-group">
-                                    <!--<label for="InputMessage">Message</label>-->
                                     <div class="input-group">
                                         <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" placeholder="Description" required></textarea>
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>

@@ -279,7 +279,7 @@
     </script>
 
 
-    <?php $reponse->free(); ?>
+    <?php $reponse->free(); $searchforchecked->free(); $tmp->free(); ?>
 </body>
 
 </html>

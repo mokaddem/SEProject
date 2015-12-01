@@ -58,7 +58,7 @@
             			<input type="checkbox" name="participant" value="partici">Participants</br>
             			<input type="checkbox" name="proprio" value="proprio">Propriétaires<br/>
                             <br/>
-				
+
                                         <!--<label for="sel1">Titre:</label>-->
                                         <?php
                                         $tmp = $db->query('SELECT * FROM Categorie');
@@ -145,5 +145,5 @@
             <script type="text/javascript" src="../../../fancybox/jquery.fancybox.pack-v=2.1.5.js"></script>
             <script src="../../js/script.js"></script>
 </body>
-
+<!-- <?php $tmp->free(); ?> -->
 </html>

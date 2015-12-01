@@ -39,7 +39,10 @@ Mise à jour de l'historique
 
         $ID         = '';
         $date       = date('Y-m-d');
-        $hour       = date("H:i");
+        $hour       = date("8:30");
+				echo $hour;
+        // $hour       = "8:30" //date("H:i");
+				// echo $hour;
         $score1     = 0;
         $score2     = 0;
         $ID_Terrain = $ID_terrain;
@@ -93,7 +96,8 @@ Mise à jour de l'historique
 
         $ID         = '';
         $date       = date("Y-m-d");
-        $hour       = date("H:i");
+				$hour       = date("8:30");
+				//$hour       = date("H:i");
         $score1     = NULL;
         $score2     = NULL;
         $ID_Terrain = $ID_terrain;
