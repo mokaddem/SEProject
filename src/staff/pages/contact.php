@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <!-- Page permettant d'envoyer des e-mails (se trouvant dans la catégorie commmunication) -->
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,16 +27,20 @@
 
 <body>
 
+
+
+    <div id="wrapper">
+    
     <?php
-    include('BDD.php');
+    include("html/header.php");
+    include('php/BDD.php');
 
     $db = BDconnect();
 
     $tmp = $db->query('SELECT * FROM Categorie');
 
     ?>
-
-    <div id="wrapper">
+    
                <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
                     <div class="page-header">
@@ -55,19 +57,19 @@
                                 </div>
                             </div>
 				<div class="form-group">
-            			<input type="checkbox" name="participant" value="partici">Participants</br>
-            			<input type="checkbox" name="proprio" value="proprio">Propriétaires<br/>
+            			<input type="checkbox" name="participant" value="partici"><strong>Participants</strong></br>
+            			<input type="checkbox" name="proprio" value="proprio"><strong>Propriétaires</strong><br/>
                             <br/>
 
                                         <!--<label for="sel1">Titre:</label>-->
-                                        <?php
+                                     <?php
                                         $tmp = $db->query('SELECT * FROM Categorie');
                                         $i=1;
                                         while ($cat = $tmp->fetch_array()){?>
-                                        <div class="form-group" id="catD1_<?php echo $i;?>" name="catD1_<?php echo $i;?>">
-                                                <input id="cat1_<?php echo $i;?>" name="cat1_<?php echo $i;?>" value=<?=$cat['ID']?> type="checkbox"> <strong><?php echo utf8_encode($cat['Designation']);?></strong>: </input>
+                                        <div id="catD1_<?php echo $i;?>" name="catD1_<?php echo $i;?>">
+                                                <input id="cat1_<?php echo $i;?>" name="cat1_<?php echo $i;?>" value=<?=$cat['ID']?> type="checkbox"> <strong><?php echo utf8_encode($cat['Designation']);?></strong></input>
                                             </div>
-                                            <?php $i=$i+1;}?>
+                                            <?php $i=$i+1;}?> 
                                     </div>
 
                             <div class="form-group">
@@ -80,7 +82,7 @@
 			    <div class="clearfix"></div>
 			    <div class="col-lg-12 text-right">
                             <div id="success"></div>
-                            <button type="submit" class="btn btn-primary pull-right" >Evoyer Message</button>
+                            <button type="submit" class="btn btn-primary pull-right" >Envoyer Message</button>
 			  </div>
                         </form>
                     </div>
