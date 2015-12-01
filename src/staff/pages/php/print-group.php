@@ -111,6 +111,7 @@ $html = <<<EOD
 <p><b>Terrain:</b> $terfinal</p>
 <p><b>Date du match:</b> $date</p>
 <p><b>Heure du match:</b> $hour</p>
+<p><b>Score:</b> |___________________|--------------|___________________|</p>
 <hr/>
 EOD;
 
