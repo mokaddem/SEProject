@@ -7,7 +7,6 @@ Mise à jour de l'historique
 <?php
 	include_once('BDD.php');
 
-		// Mise à jour de l'historique
     require_once('add-new-history.php');
 
 		// Generation de la poule
@@ -28,6 +27,7 @@ Mise à jour de l'historique
 
         $reponse = $db->query("SELECT * FROM GroupSaturday WHERE ID_t1=".$ID_t1);
         $donnees = $reponse->fetch_array();
+				// Mise à jour de l'historique
         addHistory($donnees['ID'], "Poules (Samedi)", "Ajout");
 
         /* Add Matchs */
@@ -57,6 +57,7 @@ Mise à jour de l'historique
 
                 $reponse = $db->query("SELECT * FROM `Match` WHERE ID_Equipe1=".$ID_Equipe1." AND ID_Equipe2=".$ID_Equipe2);
                 $donnees = $reponse->fetch_array();
+								// Mise à jour de l'historique
                 addHistory($donnees['ID'], "Match", "Ajout");
 
             }
@@ -77,8 +78,9 @@ Mise à jour de l'historique
         echo "Bind";
         $req->execute();
 
-        $reponse = $db->query("SELECT * FROM GroupSunday WHERE ID_t1=".$ID_t1." AND ID_t2=".$ID_t2);
+        $reponse = $db->query("SELECT * FROM GroupSunday WHERE ID_t1=".$ID_t1);
         $donnees = $reponse->fetch_array();
+				// Mise à jour de l'historique
         addHistory($donnees['ID'], "Poules (Dimanche)", "Ajout");
 
 
@@ -109,6 +111,7 @@ Mise à jour de l'historique
 
                 $reponse = $db->query("SELECT * FROM `Match` WHERE ID_Equipe1=".$ID_Equipe1." AND ID_Equipe2=".$ID_Equipe2);
                 $donnees = $reponse->fetch_array();
+								// Mise à jour de l'historique
                 addHistory($donnees['ID'], "Match", "Ajout");
 
             }

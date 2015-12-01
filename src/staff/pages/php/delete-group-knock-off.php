@@ -1,6 +1,12 @@
-<?php
+<!-- Suppression des knock off,
+fonction appelée dans le formulaire de reset.php
+Redirection vers group-generate.php
+
+Mise à jour de l'historique
+ -->
+ <?php
 	include_once('BDD.php');
-    
+
 
 	$db = BDconnect();
 
@@ -23,14 +29,16 @@
 	}
 
 
+	// Suppression
 	$db->query('DELETE FROM GroupSunday');
 	$db->query('DELETE FROM GroupSaturday');
 	$db->query('DELETE FROM KnockoffSaturday');
 	$db->query('DELETE FROM KnockoffSunday');
 
 
+	// Mise à jour de l'historique
     require_once('add-new-history.php');
     addHistory( 0, "Groupes & Knock-Off", "Suppression");
-    
+
 	header("Location: ../group-generate.php?jour=sam");
 ?>

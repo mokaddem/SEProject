@@ -42,6 +42,7 @@ Mise à jour de l'historique
 
     $reponse = $db->query('SELECT * FROM Personne WHERE "'.$FirstName1.'" = FirstName AND "'.$LastName1.'" = LastName');
     $donnees1 = $reponse->fetch_array();
+    // Mise à jour de l'historique
     addHistory( $donnees1["ID"], "Joueur", "Ajout");
 
 
@@ -74,6 +75,7 @@ Mise à jour de l'historique
 
     $reponse = $db->query('SELECT * FROM Personne WHERE "'.$FirstName2.'" = FirstName AND "'.$LastName2.'" = LastName');
     $donnees2 = $reponse->fetch_array();
+    // Mise à jour de l'historique
     addHistory( $donnees2["ID"], "Joueur", "Ajout");
 
 
@@ -106,6 +108,7 @@ Mise à jour de l'historique
 	$reponse = $db->query('SELECT * FROM Team WHERE '.$ID_Personne1.' = ID_Player1 AND '.$ID_Personne2.' = ID_Player2');
 	$donnees = $reponse->fetch_array();
 
+  // Mise à jour de l'historique
 	addHistory($donnees["ID"], "Equipe", "Ajout");
 
 	// ---------------------AJOUTER TEAM--------------------------
@@ -135,8 +138,8 @@ Mise à jour de l'historique
 	$reponse = $db->query('SELECT * FROM Team WHERE '.$ID_player1.' = ID_Player1 AND '.$ID_player2.' = ID_Player2');
 	$donnees = $reponse->fetch_array();
 
-	addHistory( $donnees["ID"], "Equipe", "Ajout");
-
+  // Mise à jour de l'historique
+	addHistory($donnees["ID"], "Equipe", "Ajout");
 
 
 	// -------------------AJOUTER EXTRAS FOR PLAYER 1----------------------------

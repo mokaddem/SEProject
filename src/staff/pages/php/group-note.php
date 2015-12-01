@@ -1,3 +1,5 @@
+<!-- note appelée dans la group.php lorsque l'on veut afficher sa note
+sa note sera affiché tout en bas de la page -->
 <?php require_once("./BDD.php");
 ?>
 <?php

@@ -47,6 +47,7 @@ Mise à jour de l'historique
 
 	$req->execute();
 
+	// Mise à jour de l'historique
     addHistory( $ID_inserted, utf8_decode("Propriétaire"), "Ajout");
 
 	header("Location: ../list.php?type=owner");

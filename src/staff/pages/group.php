@@ -48,7 +48,6 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Modifier les poules</h1>
-
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -85,6 +84,9 @@
                     <ul class="nav nav-tabs">
                         <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="group.php?jour=sam&cat=1">Samedi</a></li>
                         <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="group.php?jour=dim&cat=1">Dimanche</a></li>
+                        <div class="col-lg-2 text-center">
+                            <div class="alert alert-success" id="popupSave" >Terrain enregistré</div>
+                        </div>
                     </ul>
                     <ul class="nav nav-tabs nav-justified">
                         <?php $reponse = $db->query('SELECT * FROM Categorie');
@@ -123,6 +125,8 @@
                                     </div>
                                 </div>
                             </form>
+
+
                             <br/><br/>
                             <div id="pList"></div>
                         </div>
@@ -161,113 +165,102 @@
                         <?php
                             $db = BDconnect();
                             if ($_GET['jour'] == "sam"){
-                                $groups = $db->query('SELECT * FROM GroupSaturday, Team WHERE GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'');
-                                $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSaturday')->fetch_array();
-                                extract($row);
+                                $groups = $db->query('SELECT *, GroupSaturday.ID as Gid FROM GroupSaturday, Team WHERE GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'');
                             } else{
-                                $groups = $db->query('SELECT * FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'');
-                                $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday')->fetch_array();
-                                extract($row);
+                                $groups = $db->query('SELECT *, GroupSunday.ID as Gid FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'');
+                                //$row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'')->fetch_array();
+                                //extract($row);
                             }
                             $lineNum = 2;
                             $j = 0;
                             $s_a_m = "";
-                        if ($numberOfGroups == 0 or $_GET['cat'] != 1){ // ATTENTION A MODIFIER POUR LES CATEGORIES ! ?>
-                            <div class="col-lg-3 alert alert-danger">
-                                Les groupes n'ont pas encore été générés pour cette catégorie et/ou ce jour.
-                            </div>
-                        <?php }
-                            for ($k = 1; $k <= max($numberOfGroups, 4); $k++) {
+                            $k = 0;
+                            while($group = $groups->fetch_array()){
+                                $k++;
                                 if ($s_a_m == "server-action-menu") {
                                     $s_a_m = "server-other-menu";
                                 } else {
                                     $s_a_m = "server-action-menu";
                                 }
                                 $j++;
-                                if ($j > $lineNum){ ?>
-                                    <!--</div>
-                                    </div>
-                                    <div class="row text-center">-->
-                                    <?php $j = 0; ?>
-<!--                                    <div class="col-lg-4">-->
-<!--                                    </div>-->
-                                <?php }
-                                //for ($j = 1; $j <= 1; $j++) { // Boucle pour faire plusieurs row... Useless?
-                                    $group = $groups->fetch_array();
-                                    if ($group != NULL){?>
-                                        <div class="col-lg-3 <?=$s_a_m?>">
-                                            <label><span class="fa fa-users"></span> Groupe
-                                                <?= $k?>
-                                            </label>
-                                            <div class="form-group">
-                                                <label><span class="fa fa-users"></span> Terrain</label>
-                                                <select class="form-control" id="terrain<?= $k?>" name="ExpandableListTerrain">
-                                                    <?php
-                                                            $terrains = $db->query('SELECT * FROM Terrain');
-                                                            while ($terrain = $terrains->fetch_array())
-                                                            { ?>
-                                                                <option value=<?=$terrain['ID']?> <?php if ($group['ID_terrain']==$terrain['ID']) { echo "selected=\"selected\""; }?> >
+                                if ($j > $lineNum){
+                                    $j = 0;
+                                }
+                                if ($group != NULL){?>
+                                    <div class="col-lg-3 <?=$s_a_m?>" data-groupID="<?=$group['Gid']?>" data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>">
+                                        <label><span class="fa fa-users"></span> Groupe
+                                            <?= $k?>
+                                        </label>
+                                        <div class="form-group" >
+                                            <label><span class="fa fa-users"></span> Terrain</label>
+                                            <select class="form-control" id="terrain <?=$k?>" name="ExpandableListTerrain">
+                                                <?php
+                                                        $terrains = $db->query('SELECT * FROM Terrain');
+                                                        while ($terrain = $terrains->fetch_array())
+                                                        { ?>
+                                                            <option value=<?=$terrain['ID']?> <?php if ($group['ID_terrain']==$terrain['ID']) { echo "selected=\"selected\""; }?> >
                                                                     <?=$terrain['ID']?> : [<?=utf8_encode($terrain['Type']);?>/<?=utf8_encode($terrain['etat']);?>] <?=utf8_encode($terrain['Note']);?> (<?=utf8_encode($terrain['adresse']);?>)
-                                                                </option>
-                                                        <?php }
-                                                        ?>
-                                                </select>
+                                                            </option>
+                                                    <?php }
+                                                    ?>
+                                            </select>
+                                        </div>
+
+                                        <?php
+                                            if ($_GET['jour']=="sam"){
+                                                $teamNum = 5;
+                                            } elseif($_GET['jour']=="dim"){
+                                                $teamNum = 6;
+                                            } else{
+                                                $teamNum = 0;
+                                            }
+                                        ?>
+                                        <label><span class="fa fa-users"></span> Equipes </label>
+                                        <?php
+                                        for ($i = 1; $i <= $teamNum; $i++) {
+
+                                                $teamID = $group["ID_t".$i];
+                                                $team = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"")->fetch_array();
+                                                $IDPersonne = $team['ID_Player1'];
+                                                $player = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne."\"")->fetch_array();
+
+                                                $IDPersonne2 = $team['ID_Player2'];
+                                                $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
+                                                ?>
+                                            <div class="form-group text-center">
+                                                <?php $color = "default";
+                                                // N'AFFICHE RIEN SI LE NOM DU PREMIER JOUEUR EST VIDE
+                                                // MET EN BLEU ET UN LIEN VERS LA NOTE SI LE JOUEUR EN A UNE
+                                                if (($player['Note'] || $player2['Note']) && !empty($player['LastName'])) {
+                                                    $color = "primary";
+                                                    ?>
+                                                    <span data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=<?=$teamID?>">
+                                                        <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>" value="<?=$teamID ?>">
+                                                            [<?=$teamID?>] <?=utf8_encode($player['LastName'])?> & <?=utf8_encode($player2['LastName'])?>
+                                                        </button>
+                                                        </span>
+                                                    <?php // N'AFFICHE RIEN SI LE NOM DU PREMIER JOUEUR EST VIDE
+                                                } elseif (!empty($player['LastName'])) { ?>
+                                                    <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
+                                                        [<?=$teamID?>]
+                                                        <?=utf8_encode($player['LastName'])?> -
+                                                        <?=utf8_encode($player2['LastName'])?>
+                                                    </button>
+
+                                                <?php } ?>
                                             </div>
 
                                             <?php
-                                                if ($_GET['jour']=="sam"){
-                                                    $teamNum = 5;
-                                                } elseif($_GET['jour']=="dim"){
-                                                    $teamNum = 6;
-                                                } else{
-                                                    $teamNum = 0;
-                                                }
-                                            ?>
-                                            <label><span class="fa fa-users"></span> Equipes </label>
-                                            <?php
-                                            for ($i = 1; $i <= $teamNum; $i++) {
 
-                                                    $teamID = $group["ID_t".$i];
-                                                    $team = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"")->fetch_array();
-                                                    $IDPersonne = $team['ID_Player1'];
-                                                    $player = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne."\"")->fetch_array();
-
-                                                    $IDPersonne2 = $team['ID_Player2'];
-                                                    $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
-                                                    ?>
-                                                <div class="form-group text-center">
-                                                    <?php $color = "default";
-                                                            // N'AFFICHE RIEN SI LE NOM DU PREMIER JOUEUR EST VIDE
-                                                            // MET EN BLEU ET UN LIEN VERS LA NOTE SI LE JOUEUR EN A UNE
-                                                            if (($player['Note'] || $player2['Note']) && !empty($player['LastName'])) {
-                                                                $color = "primary";
-                                                            ?>
-                                                        <span data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=<?=$teamID?>">
-                                                        <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
-                                                                    [<?=$teamID?>] <?=utf8_encode($player['LastName'])?> & <?=utf8_encode($player2['LastName'])?>
-                                                            </button>
-                                                        </span>
-                                                            <?php // N'AFFICHE RIEN SI LE NOM DU PREMIER JOUEUR EST VIDE
-                                                            } elseif (!empty($player['LastName'])) { ?>
-                                                            <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
-                                                                [<?=$teamID?>]
-                                                                    <?=utf8_encode($player['LastName'])?> -
-                                                                        <?=utf8_encode($player2['LastName'])?>
-                                                            </button>
-
-                                                            <?php } ?>
-                                                </div>
-
-                                                <?php
-
-                                            }?>
-
+                                        }?>
+                                    </div>
+                                    <?php }
+                                        } // End of k loop.
+                                    if ($k == 0){ ?>
+                                        <div class="col-lg-3 alert alert-danger">
+                                            Les groupes n'ont pas encore été générés pour cette catégorie et/ou ce jour.
                                         </div>
-                                    <?php } //} // End of j loop
-                                        //if (gmp_mod((int)$numberOfGroups,$lineNum) == 0){ ?>
-                                            <!--</div>-->
-                                        <?php //}
-                                        } // End k loop. ?>
+                                    <?php } ?>
 
                     </div>
                     <!-- Registration form - END -->
@@ -294,6 +287,12 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
+    <script>
+        $(document).ready(function () {
+            $('#popupSave').hide();
+        });
+    </script>
+
     <script type="text/javascript">
         // On click, get html content from url and update the corresponding modal
         $("[data-toggle='pList']").on("click", function (event) {
@@ -318,21 +317,28 @@
         });
     </script>
 
-    <script type="text/javascript">
-        function saveCourt(terrainID){
-            var url="../pages/php/inc/edit-court-group.php";
-            var js_idG =  ;
-            var js_idT = terrainID ;
-            var js_idC =  ;
-            var js_jour=  ;
+    <script>
+//        function saveCourt(ListID, groupID, CatID, Day){
+          function saveCourt(e){
+            var dropDownList = document.getElementById(e.target.id);
 
-            for (i = 0; i < js_matchNumber; i++) {
-                console.log("score"+(i+1)+"-1");
-                var js_temp_array=[];
-                js_temp_array[0] = document.getElementById("score"+(i+1)+"-1").value;
-                js_temp_array[1] = document.getElementById("score"+(i+1)+"-2").value;
-                js_arrayResult[i] = js_temp_array;
-            }
+            var groupID = dropDownList .parentNode.parentNode.getAttribute('data-groupID');
+            var CatID = dropDownList .parentNode.parentNode.getAttribute('data-category');
+            var Day = dropDownList .parentNode.parentNode.getAttribute('data-day');
+//            var ListID = dropDownList .getAttribute('id');
+
+            var js_idT = dropDownList.options[dropDownList.selectedIndex].value;
+            var js_idG = groupID ;
+            var js_idC = CatID ;
+            var js_jour=  Day;
+
+//            console.log("ListID=" + dropDownList .getAttribute('id'));
+//            console.log("groupid=" + js_idG);
+//            console.log("CatID=" + js_idC);
+//            console.log("Day=" + js_jour);
+//            console.log("TerrainID=" + js_idT);
+            var url="../pages/php/inc/edit-court-group.php";
+
             var data={ 'idG':js_idG, 'idT':js_idT, 'idC':js_idC, 'jour': js_jour };
 
             $.ajax({
@@ -342,10 +348,9 @@
 
             });
 
-//            setTimeout(function() {  $('#popup').fadeIn('slow');}, 0);
-//            setTimeout(function() {  $('#popup').fadeOut('slow');},3000);
-//            setTimeout(function() {  location.reload();;}, 500+3000);
-
+            setTimeout(function() {  $('#popupSave').fadeIn('slow');}, 0);
+            setTimeout(function() {  $('#popupSave').fadeOut('slow');},3000);
+            console.log("tim");
         }
 
     </script>
@@ -353,16 +358,14 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var i=0;
-            while((List = document.getElementsByName("ExpandableListTerrain")[i]) != null){
+            while(document.getElementsByName("ExpandableListTerrain")[i] != null){
+                var List = document.getElementsByName("ExpandableListTerrain")[i];
                 i++;
-                List.addEventListener("change", function(){saveCourt(List.value); });
+                List.addEventListener("change", saveCourt);
             }
         });
 
     </script>
-
-
-
 
 </body>
 

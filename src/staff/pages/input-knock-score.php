@@ -58,8 +58,14 @@
 
                 <div class="row">
                     <ul class="nav nav-tabs">
-                        <li <?php if ($_GET['jour']=="sam" ) echo 'class="active" ' ;?>><a href="input-knock-score.php?jour=sam">Samedi</a></li>
-                        <li <?php if ($_GET['jour']=="dim" ) echo 'class="active" ' ;?>><a href="input-knock-score.php?jour=dim">Dimanche</a></li>
+                        <li <?php if ($_GET['jour']=="sam" ) echo 'class="active" ' ;?>><a href="input-knock-score.php?jour=sam&cat=1">Samedi</a></li>
+                        <li <?php if ($_GET['jour']=="dim" ) echo 'class="active" ' ;?>><a href="input-knock-score.php?jour=dim&cat=1">Dimanche</a></li>
+                    </ul>
+                    <ul class="nav nav-tabs nav-justified">
+                        <?php $reponse = $db->query('SELECT * FROM Categorie');
+                        while ($donnes = $reponse->fetch_array()) { ?>
+                            <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="input-knock-score.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation']);?></a></li>
+                        <?php }?>
                     </ul>
                 </div>
 
@@ -67,12 +73,12 @@
                     <?php
                     $db = BDconnect();
                     if ($_GET['jour'] == "sam"){
-                        $knockoff_all = $db->query('SELECT * FROM KnockoffSaturday ORDER BY `Position` ASC');
-                        $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM KnockoffSaturday')->fetch_array();
+                        $knockoff_all = $db->query('SELECT * FROM KnockoffSaturday WHERE Category = '.$_GET['cat'].' ORDER BY `Position` ASC');
+                        $row = $db->query('SELECT COUNT(*) as numberOfGroups FROM KnockoffSaturday WHERE Category = '.$_GET['cat'].'')->fetch_array();
                         extract($row);
                     } else{
-                        $knockoff_all = $db->query('SELECT * FROM KnockoffSunday ORDER BY `Position` ASC');
-                        $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM KnockoffSunday')->fetch_array();
+                        $knockoff_all = $db->query('SELECT * FROM KnockoffSunday WHERE Category = '.$_GET['cat'].' ORDER BY `Position` ASC');
+                        $row = $db->query('SELECT COUNT(*) as numberOfGroups FROM KnockoffSunday WHERE Category = '.$_GET['cat'].'')->fetch_array();
                         extract($row);
                     }
                     if ($numberOfGroups == 0){ ?>

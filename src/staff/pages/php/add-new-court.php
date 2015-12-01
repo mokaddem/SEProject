@@ -7,7 +7,6 @@ Mise à jour de l'historique
 <?php
 	include_once('BDD.php');
   include("../../../mail/mail_helper.php");
-	// Mise à jour de l'historique
   require_once('add-new-history.php');
 	// Ajout du terrain
   $db = BDconnect();
@@ -31,6 +30,7 @@ Mise à jour de l'historique
 
     $reponse = $db->query('SELECT * FROM Terrain WHERE "'.$Adresse.'" = Adresse AND '.$ID_Owner.' = ID_Owner');
     $donnees = $reponse->fetch_array();
+		// Mise à jour de l'historique
     addHistory($donnees["ID"], "Terrain", "Ajout");
 
 	header("Location: ../list.php?type=court");

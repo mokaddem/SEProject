@@ -6,7 +6,6 @@ Mise à jour de l'historique
  -->
 <?php
 	include_once('BDD.php');
-	// Mise à jour de l'historique
   require_once('add-new-history.php');
 
 	// Ajout de la catégorie
@@ -31,6 +30,7 @@ Mise à jour de l'historique
 	$donnees = $reponse->fetch_array();
 	$ID_inserted = $donnees['ID'];
 
+	// Mise à jour de l'historique
 	addHistory( $donnees["ID"], utf8_decode("Catégorie"), "Ajout");
 
 	header("Location: ../list.php?type=category");

@@ -18,6 +18,6 @@ $req = $db->prepare("UPDATE SEProjectC.".$table." SET ID_terrain = ? WHERE ".$ID
 $req->bind_param("i", $ID_T);
 $req->execute();
 
-header("Location: ../../group.php?jour=".$_GET['jour']."&cat=".$ID_C);
+header("Location: ../../group.php?jour=".$_POST['jour']."&cat=".$ID_C);
 
 ?>

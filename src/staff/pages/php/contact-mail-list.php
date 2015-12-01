@@ -1,15 +1,9 @@
+<!-- Fonction envoie de mail appelée dans le formulaire de contact.php
+ -->
 <?php
 include_once('BDD.php');
 
     $db = BDconnect();
-/*    $reponse = $db->query('SELECT * FROM Personne');
-    $donnes = $reponse->fetch_array();
-
-    foreach ($reponse as $d) {
-             $user_arr2[] = $d;
-    }
-     $reponse->close();
-     echo json_encode($user_arr2);*/
      if (array_key_exists('query', $_GET)) {
 
     $result = $db->query("SELECT ID, Mail FROM Personne where Personne.Mail like '%{$_GET['query']}%'");
@@ -20,7 +14,6 @@ include_once('BDD.php');
      $result->close();
      echo json_encode($user_arr1);
    } else if (array_key_exists('list', $_GET)) {
-         //$result = $db->query("SELECT ID, Mail FROM Personne where Personne.Mail like '%{$_GET['query']}%'");
          if ($_GET['list'] == "part") {
 
              $result = $db->query("SELECT * FROM Personne where isPlayer = 1 ");

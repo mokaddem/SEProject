@@ -6,40 +6,30 @@ Mise à jour de l'historique
  -->
 <?php
 	include_once('BDD.php');
-	// Mise à jour de l'historique
-  require_once('add-new-history.php');
+    require_once('add-new-history.php');
 
 	// Generation du knock-off
-		$db = BDconnect();
+    $db = BDconnect();
 
     if ($_GET['jour'] == "sam"){
         $table = "KnockoffSaturday";
-        $groups = $db->query('SELECT * FROM GroupSaturday');
-        $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSaturday')->fetch_array();
+        $groups = $db->query('SELECT * FROM GroupSaturday, Team WHERE GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['InputCat'].'');
+        $row = $db->query('SELECT COUNT(*) as numberOfGroups FROM GroupSaturday, Team WHERE GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['InputCat'].'')->fetch_array();
         extract($row);
-        $reponse = $db->query("SELECT * FROM ".$table);
-        $bool = $reponse->fetch_array();
-        if ($bool != NULL) {
-            header("Location: ../knock-off-generate.php?error=yes_sam&jour=".$_GET['jour']);
-            return;
-        } elseif ($numberOfGroups == 0) {
-            header("Location: ../knock-off-generate.php?error=no_sam&jour=".$_GET['jour']);
-            return;
-        }
     } else{
         $table = "KnockoffSunday";
         $groups = $db->query('SELECT * FROM GroupSunday');
         $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday')->fetch_array();
         extract($row);
-        $reponse = $db->query("SELECT * FROM ".$table);
-        $bool = $reponse->fetch_array();
-        if ($bool != NULL) {
-            header("Location: ../knock-off-generate.php?error=yes_dim&jour=".$_GET['jour']);
-            return;
-        } elseif ($numberOfGroups == 0) {
-            header("Location: ../knock-off-generate.php?error=no_dim&jour=".$_GET['jour']);
-            return;
-        }
+    }
+    $reponse = $db->query("SELECT * FROM ".$table);
+    $bool = $reponse->fetch_array();
+    if ($bool != NULL) {
+        header("Location: ../knock-off-generate.php?error=yes_".$_GET['jour']."&jour=".$_GET['jour']);
+        return;
+    } elseif ($numberOfGroups == 0) {
+        header("Location: ../knock-off-generate.php?error=no_".$_GET['jour']."&jour=".$_GET['jour']);
+        return;
     }
 
     for ($i = 1; $i <= ($numberOfGroups*2)-1; $i++) {
@@ -68,6 +58,7 @@ Mise à jour de l'historique
         $reqMatch->execute();
         $reponseMatch = $db->query("SELECT * FROM `Match` WHERE ID_Terrain =".$ID_Terrain['ID']." AND ID_Equipe1=".$teamID1." AND ID_Equipe2=".$teamID2);
         $donneesMatch = $reponseMatch->fetch_array();
+				// Mise à jour de l'historique
         addHistory($donneesMatch['ID'], "Match", "Ajout");
 
         $reqKnock = $db->prepare("INSERT INTO ".$table."(ID, ID_Match, `Position`) VALUES(?, ?, ?)");
@@ -79,10 +70,12 @@ Mise à jour de l'historique
         $donneesKnock = $reponseKnock->fetch_array();
 
         if ($_GET['jour'] == "sam"){
+					// Mise à jour de l'historique
             addHistory($donneesKnock['ID'], "Knock-Off (Samedi)", "Ajout");
         }
         elseif ($_GET['jour'] == "dim") {
-                addHistory($donneesKnock['ID'], "Knock-Off (Dimanche)", "Ajout");
+					// Mise à jour de l'historique
+          addHistory($donneesKnock['ID'], "Knock-Off (Dimanche)", "Ajout");
         }
 
     }
