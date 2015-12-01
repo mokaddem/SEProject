@@ -206,7 +206,7 @@
                                                             $terrains = $db->query('SELECT * FROM Terrain');
                                                             while ($terrain = $terrains->fetch_array())
                                                             { ?>
-                                                                <option value=<?=$terrain[ 'ID']?>>
+                                                                <option value=<?=$terrain['ID']?> <?php if ($group['ID_terrain']==$terrain['ID']) { echo "selected=\"selected\""; }?> >
                                                                     <?=$terrain['ID']?> : <?=utf8_encode($terrain['Note']);?>, <?=utf8_encode($terrain['adresse']);?>
                                                                 </option>
                                                         <?php }
