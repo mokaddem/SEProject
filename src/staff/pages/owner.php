@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- Page d'ajout d'un propriétaire -->
 <head>
 
     <meta charset="utf-8">
@@ -36,7 +36,7 @@
 
     <div id="wrapper">
 
-        <?php            
+        <?php
             include("./html/header.php");
 	    include_once('php/BDD.php');
         ?>
@@ -76,7 +76,7 @@
                                                   for ($i = 1; $i <= 31; $i++) {
                                                         echo "<option>$i</option>\n";
                                                       }
-                                        
+
                                                 ?>
                                                 </select>
                                                 <select name='birth_month' id='birth_month1'>

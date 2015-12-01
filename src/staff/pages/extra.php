@@ -1,6 +1,6 @@
 <!DOCTYPE html>
+<!-- Page d'ajout d'extra -->
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -36,7 +36,7 @@
 
     <div id="wrapper">
 
-        <?php            
+        <?php
             include("./html/header.php");
         ?>
 
@@ -69,7 +69,7 @@
                                     </div>
 
                                     <!-- Number = 0 --!>
-                                
+
                                 <div class="form-group">
                                     <!--<label for="InputMessage">Message</label>-->
                                     <div class="input-group">

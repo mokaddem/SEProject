@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- Page de saisie de score pour les poules -->
 <head>
 
     <meta charset="utf-8">

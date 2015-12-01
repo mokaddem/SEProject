@@ -1,7 +1,7 @@
 <?php require_once("./php/inc/show-function.inc");
 ?>
       <div class="modal-dialog modal-sm">
-
+<!-- Page de détail qui apparait lorsque l'on clique sur un participants/matchs/propriétaires/catégories/staff dans la liste -->
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">

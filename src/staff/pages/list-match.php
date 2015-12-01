@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- Page affichant tous les matchs existants -->
 <head>
 
     <meta charset="utf-8">
@@ -42,7 +42,7 @@
 
     <div id="wrapper">
 
-        <?php            
+        <?php
             include("./html/header.php");
         ?>
 

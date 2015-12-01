@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- Page d'ajout d'une équipe en selectionnant deux joueurs qui n'ont pas d'équipe -->
 <head>
 
     <meta charset="utf-8">
@@ -36,7 +36,7 @@
 
     <div id="wrapper">
 
-        <?php            
+        <?php
             include("./html/header.php");
 	    	include_once('php/BDD.php');
             include_once('php/test-delete.php');
@@ -93,14 +93,14 @@
 										{
                                             if (canDeletePlayer($donnes['ID'])){
 											     echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['FirstName'])." ".utf8_encode($donnes['LastName'])."</option>";
-										
+
                                             }
                                         }
                                     ?>
-                                    
+
                                 </select>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="sel2"><span class="fa fa-user"></span> Catégorie</label>
                                 <select class="form-control" id="InputCat" name="InputCat">
@@ -109,10 +109,10 @@
 										$reponse = $db->query('SELECT * FROM Categorie');
 										while ($donnes = $reponse->fetch_array())
 										{
-										    echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['Designation'])." ".$donnes['Year']."</option>";									
+										    echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['Designation'])." ".$donnes['Year']."</option>";
                                         }
                                     ?>
-                                    
+
                                 </select>
                             </div>
 

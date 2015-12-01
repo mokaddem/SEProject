@@ -1,6 +1,7 @@
-<?php include_once('php/BDD.php'); ?>
-    <!DOCTYPE html>
+<!DOCTYPE html>
+<!-- Page de vue d'ensemble des poules existantes (se trouvant dans l'onglet Poules)-->
     <html lang="en">
+<?php include_once('php/BDD.php'); ?>
 
     <head>
 
@@ -43,9 +44,9 @@
 
         <div id="wrapper">
 
-            <?php            
+            <?php
             include("./html/header.php");
-        
+
             $db = BDconnect();
             $reponseS = $db->query('SELECT * FROM GroupSaturday');
             $reponseD = $db->query('SELECT * FROM GroupSunday');
@@ -67,41 +68,13 @@
                                 <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="group-overview.php?jour=dim">Dimanche</a></li>
                             </ul>
                         </div>
-                    
+
                         <div class="row">
                             <div class="panel panel-default">
                             <br/>
-                        
-
-                        <!--<div class="form-group">
-                        <label for="sel1"><span class="fa fa-dot-circle-o"></span> Choix de la poule</label>
-                        Ne sert à rien lol
-                        <select class="form-control" id="sel1">
-                            <optgroup label="--- Samedi">
-                                <?php 
-                                //    while ($donneesS = $reponseS->fetch_array()){
-                                //        echo '<option value="'.$donneesS['ID'].'">Poule n°'.$donneesS['ID'].'</option>';
-                                //    }
-                                ?>
-                            </optgroup>
-                            <optgroup label="--- Dimanche">
-                                <?php
-                                //    while ($donneesD = $reponseD->fetch_array()){
-                                //        echo '<option value="'.$donneesD['ID'].'">Poule n°'.$donneesD['ID'].'</option>';
-                                //    }
-                                ?>
-                            </optgroup>
-                        </select>
-                    </div> -->
-
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="panel panel-default">
-
-                                    <!-- <div class="panel-heading">
-                            DataTables Advanced Tables
-                        </div> -->
-                                    <!-- /.panel-heading -->
                                     <div class="panel-body">
                                         <div class="dataTable_wrapper">
                                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">

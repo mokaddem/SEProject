@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Ajout de terrain -->
 <html lang="en">
 
 <head>
@@ -30,9 +31,9 @@
 
     <div id="wrapper">
 
-        <?php            
+        <?php
             include("./html/header.php");
-		include_once('php/BDD.php');        
+		include_once('php/BDD.php');
 	?>
 
 
@@ -61,10 +62,10 @@
                                         <option>Usé</option>
                                     </select>
                                     <input type="number" class="form-control" name="surface" id="surface" placeholder="Surface (m²)" min="0" step="1" required>
-                                    
+
                                 </div>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="sel1"><span class="fa fa-user"></span> Propriétaire</label>
                                     <select class="form-control" id="sel3" name="sel3">
@@ -73,7 +74,7 @@
                                             $db = BDconnect();
                                             $reponse = $db->query('SELECT *, Owner.ID as O_id FROM Personne, Owner WHERE Personne.ID=Owner.ID_Personne');
                                             while ($donnes = $reponse->fetch_array())
-                                            {										
+                                            {
                                                 echo "<option value=".$donnes['O_id'].">".utf8_encode($donnes['FirstName'])." ".utf8_encode($donnes['LastName'])."</option>";
                                             }
                                         ?>

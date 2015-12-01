@@ -1,6 +1,6 @@
 <!DOCTYPE html>
+<!-- Page de modification des groupes (transfert de joueur ou changement de terrain) -->
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -35,7 +35,7 @@
 
     <div id="wrapper">
 
-        <?php            
+        <?php
             include("./html/header.php");
             include_once('php/BDD.php');
 
@@ -102,7 +102,7 @@
                             <form id="echanger" class="navbar-form" action="./php/group-switch.php?jour=<?=$_GET['jour']?>&cat=<?=$_GET['cat']?>" method="post">
                                 <input type="submit" class="btn btn-success pull-right" value="Echanger" />
                                 <span class="pull-right"> </span><input type="text" class="form-control pull-right" id="idteam2" name="idteam2" placeholder="ID Equipe 2" required>
-                                <p class="pull-right"> </p><input type="text" class="form-control pull-right" id="idteam1" name="idteam1" placeholder="ID Equipe 1" required>   
+                                <p class="pull-right"> </p><input type="text" class="form-control pull-right" id="idteam1" name="idteam1" placeholder="ID Equipe 1" required>
 
                                 <span class="pull-right" data-toggle="pList" data-target="#pList" data-url="./php/group-note-vide.php">
                                 <button class="btn btn-default">

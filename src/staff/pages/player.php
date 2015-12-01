@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- Page d'ajout d'un joueur -->
 <head>
 
     <meta charset="utf-8">
