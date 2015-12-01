@@ -43,15 +43,6 @@
 
                             <div class="col-lg-6">
                                 <div class="col-lg-9">
-                                    <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
-
-                                    <!-- <div class="form-group">
-                                  <label for="sel1">Je m'inscire en tant que </label>
-                                  <select class="form-control" id="sel1">
-                                    <option>participant</option>
-                                    <option>propriétaire</option>
-                                  </select>
-                                </div> -->
                                     <div class="form-group">
                                         <!--<label for="sel1">Titre:</label>-->
                                         <select class="form-control" id="title1" name="title1">
@@ -73,7 +64,7 @@
                                                   for ($i = 1; $i <= 31; $i++) {
                                                         echo "<option>$i</option>\n";
                                                       }
-                                        
+
                                                 ?>
                                             </select>
                                             <select name='birth_month1' id='birth_month1'>
@@ -215,7 +206,7 @@
                                                   for ($i = 1; $i <= 31; $i++) {
                                                         echo "<option>$i</option>\n";
                                                       }
-                                        
+
                                                 ?>
                                             </select>
                                             <select name='birth_month2' id='birth_month2'>
