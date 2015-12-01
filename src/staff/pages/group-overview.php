@@ -92,6 +92,7 @@
                                                                 <?php } ?>
                                                                     <th>Vainqueurs 1</th>
                                                                     <th>Vainqueurs 2</th>
+                                                            <th>Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -110,7 +111,7 @@
                                                             $terrain = $db->query("SELECT * FROM Terrain WHERE ID=\"" . $donnee . "\"")->fetch_array();
                                                             ?>
                                                                             <option value=<?=$terrain[ 'ID']?>>
-                                                                                <?=$terrain['ID']?> - 
+                                                                                <?=$terrain['ID']?> -
                                                                                     <?=utf8_encode($terrain['Note'])?>
                                                                             </option>
                                                                             <?php
@@ -122,14 +123,14 @@
                                                             $IDPersonne2 = $team['ID_Player2'];
                                                             $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne2 . "\"")->fetch_array();
                                                             ?>
-                                                            
-                                                            <?php 
+
+                                                            <?php
                                                             if ($donnee != 0) { ?>
-                                                                <?=$donnee?> - 
+                                                                <?=$donnee?> -
                                                                     <?= utf8_encode($player['LastName'])?> &
                                                                         <?=utf8_encode($player2['LastName'])?>
                                                             <?php } else { ?>
-                                                                Aucun            
+                                                                Aucun
                                                             <?php } ?>
                                                                         <?php
                                                         } else{
@@ -137,7 +138,14 @@
                                                         }
                                                     ?>
                                                                     </td>
-                                                                    <?php    $i++; } ?>
+                                                                    <?php    $i++; }
+                                                                    $matchID = $donnees['ID'];
+                                                                    $theDay = $_GET['jour'];
+                                                                    ?>
+                                                              <td>
+                                                                  <a href="./group.php?jour=<?=$theDay?>&cat=1"><i class="fa fa-edit fa-fw"></i></a>
+                                                                  <a target="_blank" href="./php/print-group.php?id=<?=$matchID?>"><i class="fa fa-print"></i></a>
+                                                              </td>
                                                             </tr>
                                                             <?php    } ?>
                                                     </tbody>

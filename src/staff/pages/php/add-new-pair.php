@@ -170,8 +170,8 @@ Mise à jour de l'historique
 		}
 	}
 
-	if (array_key_exists($_SESSION)) {
-	header("Location: ../list.php?type=player");
+	if (array_key_exists('ID', $_SESSION)) {
+	   header("Location: ../list.php?type=player");
 	} else {
 		header("Location: ../../../index.php?action=register" );
     }
