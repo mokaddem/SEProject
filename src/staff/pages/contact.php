@@ -29,21 +29,17 @@
 
 <body>
 
-    <div id="wrapper">
+    <?php
+    include('BDD.php');
 
-        <?php
-            include("./html/header.php");
-        include_once('php/BDD.php');
+    $db = BDconnect();
 
-        $db = BDconnect();
+    $tmp = $db->query('SELECT * FROM Categorie');
 
-        $listPart = $db->query("SELECT * FROM Personne where isPlayer = 1 ");
-        $listProp = $db->query("SELECT * FROM Personne where isOwner = 1 ");
-	
     ?>
 
-
-            <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
+    <div id="wrapper">
+               <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
                     <div class="page-header">
                         <h1>Envoyer un mail</h1>
@@ -58,9 +54,22 @@
                                     <input class="form-control" id="dest" placeholder="Destinataire" type="text">
                                 </div>
                             </div>
+				<div class="form-group">
             			<input type="checkbox" name="participant" value="partici">Participants</br>
             			<input type="checkbox" name="proprio" value="proprio">Propriétaires<br/>
                             <br/>
+				
+                                        <!--<label for="sel1">Titre:</label>-->
+                                        <?php
+                                        $tmp = $db->query('SELECT * FROM Categorie');
+                                        $i=1;
+                                        while ($cat = $tmp->fetch_array()){?>
+                                        <div class="form-group" id="catD1_<?php echo $i;?>" name="catD1_<?php echo $i;?>">
+                                                <input id="cat1_<?php echo $i;?>" name="cat1_<?php echo $i;?>" value=<?=$cat['ID']?> type="checkbox"> <strong><?php echo utf8_encode($cat['Designation']);?></strong>: </input>
+                                            </div>
+                                            <?php $i=$i+1;}?>
+                                    </div>
+
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Sujet" id="sujet" required data-validation-required-message="Veuillez entrer le sujet.">
 				<p class="help-block text-danger"></p>
@@ -68,8 +77,11 @@
                                 <textarea rows="15" cols="50" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Veuillez entrer votre message."></textarea>
 				<p class="help-block text-danger"></p>
                             </div>
-                            <div id="contactStaff"></div>
-                            <input type="submit" value="Envoyer" class="btn btn-primary pull-right" />
+			    <div class="clearfix"></div>
+			    <div class="col-lg-12 text-right">
+                            <div id="success"></div>
+                            <button type="submit" class="btn btn-primary pull-right" >Evoyer Message</button>
+			  </div>
                         </form>
                     </div>
 
