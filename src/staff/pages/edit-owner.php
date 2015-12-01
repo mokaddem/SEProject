@@ -1,6 +1,6 @@
 <!DOCTYPE html>
+<!-- Page de modification d'un propriétaire selectionné dans la liste -->
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -36,15 +36,15 @@
 
     <div id="wrapper">
 
-        <?php            
+        <?php
             include("./html/header.php");
-	    include_once('php/BDD.php');  
+	    include_once('php/BDD.php');
 	    $db = BDconnect();
 
         ?>
 
 
-            <div id="page-wrapper">
+            <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
                     <div class="col-lg-12 noDeco">
                         <h1 class="page-header"><a href="list.php?type=owner"> Liste des propriétaires</a> > Modifier</h1>
@@ -94,7 +94,7 @@
 									echo "<option>$i</option>\n";
 								}
 							}
-                                        
+
                                                 ?>
                                     </select>
                                     <select name='birth_month' id='birth_month1'>

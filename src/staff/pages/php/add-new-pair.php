@@ -1,15 +1,17 @@
-<?php
+<!-- Ajout d'un nouveau duo de joueur,
+fonction appelée dans le formulaire de player.php
+ et dans le formulaire d'inscription de la page d'accueil utilisateur
+Redirection vers list.php?type=player ou la page d'accueil utilisateur
+
+Mise à jour de l'historique
+ -->
+ <?php
 	include_once('BDD.php');
     require_once('add-new-history.php');
 	include_once('get-ranking.php');
 //	$db = BDconnect();
 
-	//$database_host = 'localhost';
-	//$database_user = 'root';
-	//$database_pass = '123';
-
-	//$database_db = 'SEProjectC';
-	//$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
+	// Ajout du duo de joueur
 	$db = BDconnect();
 	$req = $db->prepare("INSERT INTO Personne(ID, Title, FirstName, LastName, Ville, ZIPCode, Rue, Number, PhoneNumber, GSMNumber, BirthDate, Mail, CreationDate, Note, IsPlayer, IsOwner, IsStaff) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
@@ -31,7 +33,7 @@
 	$IsOwner1	= 0;
 	$IsStaff1	= 0;
 
-    
+
 
 	$req->bind_param("iisssisiiissssiii", $ID1, $Title1, $FirstName1, $LastName1, $Ville1, $ZIPCode1, $Rue1, $Number1, $PhoneNumber1, $GSMNumber1, $BirthDate1, $Mail1, $CreationDate, $Note1, $IsPlayer1, $IsOwner1, $IsStaff1);
 
@@ -41,8 +43,8 @@
     $reponse = $db->query('SELECT * FROM Personne WHERE "'.$FirstName1.'" = FirstName AND "'.$LastName1.'" = LastName');
     $donnees1 = $reponse->fetch_array();
     addHistory( $donnees1["ID"], "Joueur", "Ajout");
-	
-    
+
+
 
     $req = $db->prepare("INSERT INTO Personne(ID, Title, FirstName, LastName, Ville, ZIPCode, Rue, Number, PhoneNumber, GSMNumber, BirthDate, Mail, CreationDate, Note, IsPlayer, IsOwner, IsStaff) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
@@ -70,7 +72,7 @@
 	$req->execute();
 
 
-    $reponse = $db->query('SELECT * FROM Personne WHERE "'.$FirstName2.'" = FirstName AND "'.$LastName2.'" = LastName');    
+    $reponse = $db->query('SELECT * FROM Personne WHERE "'.$FirstName2.'" = FirstName AND "'.$LastName2.'" = LastName');
     $donnees2 = $reponse->fetch_array();
     addHistory( $donnees2["ID"], "Joueur", "Ajout");
 

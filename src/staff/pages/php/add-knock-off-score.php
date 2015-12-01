@@ -1,14 +1,14 @@
+<!-- Ajout d'un score dans la BDD
+Fonction appelée dans le formulaire de input-knock-score.php
+
+Mise à jour de l'historique
+-->
 <?php
 include_once('../BDD.php');
+// Mise à jour de l'historique
 require_once('../add-new-history.php');
 
-//	$db = BDconnect();
-
-//$database_host = 'localhost';
-//$database_user = 'root';
-//$database_pass = '123';
-//$database_db = 'SEProjectC';
-//$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
+// Ajout du score
 $db = BDconnect();
 
 $ID	 	= $_GET['ID_Match'];

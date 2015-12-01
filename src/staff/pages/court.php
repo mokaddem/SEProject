@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Ajout de terrain -->
 <html lang="en">
 
 <head>
@@ -23,12 +24,6 @@
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
 </head>
 
@@ -36,21 +31,21 @@
 
     <div id="wrapper">
 
-        <?php            
+        <?php
             include("./html/header.php");
-		include_once('php/BDD.php');        
+		include_once('php/BDD.php');
 	?>
 
 
-            <div id="page-wrapper">
+            <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Ajouter un terrain</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
-                <!-- Registration form - START -->
                 <div class="row">
+                    <!-- Registration form - START -->
                     <form role="form" method="Get" action="php/add-new-court.php">
                         <div class="col-lg-6">
                             <div class="form-group">
@@ -67,18 +62,19 @@
                                         <option>Usé</option>
                                     </select>
                                     <input type="number" class="form-control" name="surface" id="surface" placeholder="Surface (m²)" min="0" step="1" required>
-                                    
+
                                 </div>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="sel1"><span class="fa fa-user"></span> Propriétaire</label>
                                     <select class="form-control" id="sel3" name="sel3">
                                         <?php
+                                        // Liste des Propriétaires enregistrés
                                             $db = BDconnect();
                                             $reponse = $db->query('SELECT *, Owner.ID as O_id FROM Personne, Owner WHERE Personne.ID=Owner.ID_Personne');
                                             while ($donnes = $reponse->fetch_array())
-                                            {										
+                                            {
                                                 echo "<option value=".$donnes['O_id'].">".utf8_encode($donnes['FirstName'])." ".utf8_encode($donnes['LastName'])."</option>";
                                             }
                                         ?>
@@ -86,7 +82,6 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <!--<label for="InputPrenom">Adresse</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
                                         <input type="text" class="form-control" id="InputAdresse" name="InputAdresse" placeholder="Adresse" required>
@@ -113,7 +108,6 @@
                             <br/>
 
                                 <div class="form-group">
-                                    <!--<label for="InputMessage">Message</label>-->
                                     <div class="input-group">
                                         <textarea name="InputNote" id="InputNote" class="form-control" rows="5" required></textarea>
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
@@ -125,7 +119,6 @@
                             </div>
                         </div>
                     </form>
-
                     <!-- Registration form - END -->
 
                 </div>

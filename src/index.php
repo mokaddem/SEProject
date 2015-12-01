@@ -56,7 +56,6 @@
                             <li data-slide="2" class="col-12 col-sm-2"><a id="menu-link-2" href="#slide-2"><span class="icon icon-user"></span> <span class="text">INSCRIPTION</span></a></li>
                             <li data-slide="3" class="col-12 col-sm-2"><a id="menu-link-3" href="#slide-3"><span class="icon icon-picture"></span> <span class="text">PHOTOS</span></a></li>
                             <li data-slide="4" class="col-12 col-sm-2"><a id="menu-link-4" href="#slide-4"><span class="icon icon-map-marker"></span> <span class="text">NOUS TROUVER</span></a></li>
-                            <!-- <li data-slide="5" class="col-12 col-sm-2"><a id="menu-link-5" href="#slide-5" title="Next Section"><span class="icon icon-heart"></span> <span class="text">PARTENAIRES</span></a></li> -->
                             <li data-slide="6" class="col-12 col-sm-2"><a id="menu-link-6" href="#slide-6"><span class="icon icon-envelope"></span> <span class="text">NOUS CONTACTER</span></a></li>
                             <ul class="nav pull-right">
                                 <li class="col-12 col-sm-2"><a href='./staff/pages/login.php' onclick="self.location.href='./staff/pages/login.php'"><span class='fa fa-sign-in' style='font-size: 10pt;'></span> <span class="text">LOG IN</span></a></li>
@@ -123,6 +122,28 @@
                             <br>
                             <br>
                         </div>
+                        <div class="col-12 col-lg-3 col-sm-6">
+                            <a href="./inscription/index.php" onclick="self.location.href='./inscription/index.php'">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i id="crayon" class="fa fa-pencil fa-stack-1x"></i>
+                                </span>
+                            
+                            <h2>Inscription<br/>Participant</h2>
+                            </a>
+                        </div>
+                        <!-- /col12 -->
+                        <div class="col-12 col-lg-offset-6 col-lg-3 col-sm-6">
+                            <a href="./inscription/inscription-owner.php" onclick="self.location.href='./inscription/inscription-owner.php'">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i id="crayon" class="fa fa-suitcase fa-stack-1x"></i>
+                                </span>
+                            
+                            <h2>Inscription<br/>Propriétaire</h2>
+                            </a>
+                        </div>
+
                         <!-- /col-12 -->
                     </div>
                     <!-- /row -->
@@ -262,38 +283,6 @@
                 <!-- /container -->
             </div>
             <!-- /slide4 -->
-
-            <!-- === Slide 5 === -->
-            <!-- <div class="slide story" id="slide-5" data-slide="5">
-		<div class="container">
-			<div class="row title-row">
-				<div class="col-12 font-thin"><span class="font-semibold">Partenaires</span> we’ve worked with</div>
-			</div> -->
-            <!-- /row -->
-            <!-- <div class="row line-row">
-				<div class="hr">&nbsp;</div>
-			</div> -->
-            <!-- /row -->
-            <!-- <div class="row subtitle-row">
-				<div class="col-sm-1 hidden-sm">&nbsp;</div>
-				<div class="col-12 col-sm-10 font-light">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. <br/><br/> The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero.</div>
-				<div class="col-sm-1 hidden-sm">&nbsp;</div>
-			</div> -->
-            <!-- /row -->
-            <!-- <div class="row content-row">
-				<div class="col-1 col-sm-1 hidden-sm">&nbsp;</div>
-				<div class="col-12 col-sm-2"><img src="images/client01.png" alt=""></div>
-				<div class="col-12 col-sm-2"><img src="images/client02.png" alt=""></div>
-				<div class="col-12 col-sm-2"><img src="images/client03.png" alt=""></div>
-				<div class="col-12 col-sm-2"><img src="images/client04.png" alt=""></div>
-				<div class="col-12 col-sm-2"><img src="images/client05.png" alt=""></div>
-				<div class="col-1 col-sm-1 hidden-sm">&nbsp;</div>
-			</div> -->
-            <!-- /row -->
-            <!-- </div> -->
-            <!-- /container -->
-            <!-- </div> -->
-            <!-- /slide5 -->
 
             <!-- === Slide 6 / Contact === -->
             <div class="slide story" id="slide-6" data-slide="6">

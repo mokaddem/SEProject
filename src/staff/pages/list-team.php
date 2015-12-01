@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- Page affichant toutes les équipes existantes -->
 <head>
 
     <meta charset="utf-8">
@@ -42,11 +42,11 @@
 
     <div id="wrapper">
 
-        <?php            
+        <?php
             include("./html/header.php");
         ?>
 
-            <div id="page-wrapper">
+            <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Liste des équipes
@@ -59,47 +59,47 @@
                 <?php
                 if (array_key_exists("error", $_GET)) {?>
                     <p class="alert alert-danger"> Vous ne pouvez pas supprimer cette équipe car elle est utilisée ailleurs</p>
-                <?php }
+                    <?php }
                 ?>
 
-                <!-- /.row -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="panel panel-default">
-                            <!-- <div class="panel-heading">
+                        <!-- /.row -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="panel panel-default">
+                                    <!-- <div class="panel-heading">
                             DataTables Advanced Tables
                         </div> -->
-                            <!-- /.panel-heading -->
-                            <div class="panel-body">
-                                <div class="dataTable_wrapper">
-                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Premier joueur</th>
-                                                <th>Second joueur</th>
-                                                <th>Catégorie</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php require_once("./php/inc/list-team.inc");
+                                    <!-- /.panel-heading -->
+                                    <div class="panel-body">
+                                        <div class="dataTable_wrapper">
+                                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Premier joueur</th>
+                                                        <th>Second joueur</th>
+                                                        <th>Catégorie</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php require_once("./php/inc/list-team.inc");
                                             dbAndPrint();
                                             ?>
-                                        </tbody>
-                                    </table>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- /.panel-body -->
                                 </div>
+                                <!-- /.panel -->
                             </div>
-                            <!-- /.panel-body -->
+                            <!-- /.col-lg-6 -->
                         </div>
-                        <!-- /.panel -->
-                    </div>
-                    <!-- /.col-lg-6 -->
-                </div>
-                <!-- /.row -->
-                <!-- Modal -->
-                <div id="myModal" class="modal fade" role="dialog">
-                </div>
+                        <!-- /.row -->
+                        <!-- Modal -->
+                        <div id="myModal" class="modal fade" role="dialog">
+                        </div>
 
             </div>
             <!-- /#page-wrapper -->

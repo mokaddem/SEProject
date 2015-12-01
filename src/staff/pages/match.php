@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- Page d'ajout d'un match -->
 <head>
 
     <meta charset="utf-8">
@@ -36,13 +36,13 @@
 
     <div id="wrapper">
 
-        <?php            
+        <?php
             include("./html/header.php");
 	    include_once('php/BDD.php');
         ?>
 
 
-            <div id="page-wrapper">
+            <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Créer un match</h1>
@@ -104,7 +104,7 @@
 
                             <div class="form-group">
                                 <label for="sel1"><span class="fa fa-map-marker"></span> Lieu</label>
-                                
+
                                 <select class="form-control" name="InputCourt" id="InputCourt">
                                     <?php
 										$db = BDconnect();
@@ -120,7 +120,7 @@
                                 <label for="sel1"><span class="fa fa-clock-o"></span> Date & Heure</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                    <?php 
+                                    <?php
                                         echo '<input type="date" min="'.date("Y-m-d").'" max="2048-10-10" id="InputDate" name="InputDate" value="'.date("Y-m-d").'">';
                                         echo '<input type="time" id="InputHour" name="InputHour" value="'.date("H:i").'">';
                                     ?>

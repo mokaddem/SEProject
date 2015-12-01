@@ -1,6 +1,13 @@
 <?php require_once("./php/inc/list-function.inc");
 ?>
     <!DOCTYPE html>
+<!-- Page affichant tous les participants/matchs/propriétaires/catégories/staff existants aux URLs suivant
+list.php?type=player
+list.php?type=match
+list.php?type=owner
+list.php?type=category
+list.php?type=staff
+ -->
     <html lang="en">
 
     <head>
@@ -58,7 +65,7 @@
             if (!empty($listDonnees)) {
             ?>
 
-                <div id="page-wrapper">
+                <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                     <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">Liste des <?=$titre?>
@@ -69,60 +76,62 @@
                     </div>
                     <?php
                         if (array_key_exists("error", $_GET)) {?>
-                            <p class="alert alert-danger"> Vous ne pouvez pas supprimer <?=$_GET['type']?> car utilisé ailleurs</p>
+                        <p class="alert alert-danger"> Vous ne pouvez pas supprimer
+                            <?=$_GET['type']?> car utilisé dans une autre rubrique</p>
                         <?php }
                     ?>
-                    <!-- /.row -->
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <!--<div class="panel panel-default">
-                                <div class="panel-heading">
+                            <!-- /.row -->
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="panel panel-default">
+                                        <!--<div class="panel-heading">
                                 </div>-->
-                            <!-- /.panel-heading -->
-                            <div class="panel-body">
-                                <div class="dataTable_wrapper">
-                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                        <!-- /.panel-heading -->
+                                        <div class="panel-body">
+                                            <div class="dataTable_wrapper">
+                                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
 
-                                        <thead>
+                                                    <thead>
 
-                                            <tr>
-                                                <?php foreach ($titreDonnees as $titreD){ ?>
-                                                    <th>
-                                                        <?=$titreD?>
-                                                    </th>
-                                                    <?php } ?>
+                                                        <tr>
+                                                            <?php foreach ($titreDonnees as $titreD){ ?>
+                                                                <th>
+                                                                    <?=$titreD?>
+                                                                </th>
+                                                                <?php } ?>
 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php foreach ($listDonnees as $donnee){?>
-                                                <tr class="odd gradeX">
-                                                    <?php foreach ($paramDonnees as $param){ ?>
-                                                        <td data-toggle="modal" data-target="#myModal" data-url="./show.php?type=<?=$_GET['type']?>&id=<?=$donnee['ID']?>">
-                                                            <?=utf8_encode($donnee[$param])?>
-                                                        </td>
-                                                        <?php } ?>
-                                                            <td>
-                                                                <a href="./edit-<?=$_GET['type']?>.php?id=<?=$donnee['ID']?>"><i class="fa fa-edit fa-fw"></i></a>
-                                                                <a href="php/delete-<?=$_GET['type']?>.php?id=<?=$donnee['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer cette entrée ?');"><i class="fa fa-trash-o"></i></a>
-                                                            </td>
-                                                </tr>
-                                                <?php } ?>
-                                        </tbody>
-                                    </table>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php foreach ($listDonnees as $donnee){?>
+                                                            <tr class="odd gradeX">
+                                                                <?php foreach ($paramDonnees as $param){ ?>
+                                                                    <td data-toggle="modal" data-target="#myModal" data-url="./show.php?type=<?=$_GET['type']?>&id=<?=$donnee['ID']?>">
+                                                                        <?=utf8_encode($donnee[$param])?>
+                                                                    </td>
+                                                                    <?php } ?>
+                                                                        <td>
+                                                                            <a href="./edit-<?=$_GET['type']?>.php?id=<?=$donnee['ID']?>"><i class="fa fa-edit fa-fw"></i></a>
+                                                                            <a href="php/delete-<?=$_GET['type']?>.php?id=<?=$donnee['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer cette entrée ?');"><i class="fa fa-trash-o"></i></a>
+                                                                        </td>
+                                                            </tr>
+                                                            <?php } ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.panel-body -->
                                 </div>
+                                <!-- /.panel -->
                             </div>
-                            <!-- /.panel-body -->
-                        </div>
-                        <!-- /.panel -->
-                    </div>
-                    <!-- /.col-lg-6 -->
+                            <!-- /.col-lg-6 -->
                 </div>
                 <!-- /.row -->
 
                 <!-- Modal -->
                 <div id="myModal" class="modal fade" role="dialog">
-                  </div>
+                </div>
 
 
         </div>

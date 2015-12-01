@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Annuaire d'adresses postales des participants et propriétaitres (se trouvant dans l'onglet commmunication) -->
 <html lang="en">
 
 <head>
@@ -40,50 +41,56 @@
 
         $listPlayer = $db->query("SELECT * FROM Personne WHERE isPlayer = 1");
         $listOwner = $db->query("SELECT * FROM Personne WHERE isOwner = 1");
-//        $listProp = $db->query("SELECT * FROM Personne where isOwner = 1 ");
     ?>
+    <?php
+    // Recupération des données des participants
+         while ($row = $listPlayer->fetch_object()){ ?>
+            <?php
+                    $nom = $row->LastName." ".utf8_encode($row->FirstName);
+                    $adresse = $row->Number." ".utf8_encode($row->Rue)." ".$row->ZIPCode." ".utf8_encode($row->Ville);
+                    $liste1[$adresse] = $nom;
+
+            ?>
+    <?php }
+    // Recupération des données des propriétaire
+        while ($row = $listOwner->fetch_object()){ ?>
+            <?php
+            $nom = utf8_encode($row->LastName)." ".utf8_encode($row->FirstName);
+            $adresse = $row->Number." ".utf8_encode($row->Rue)." ".$row->ZIPCode." ".utf8_encode($row->Ville);
+            $liste2[$adresse] = $nom;
+
+            ?>
+        <?php } ?>
 
 
-            <div id="page-wrapper">
+
+            <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
                     <div class="page-header">
-                        <h1>Adresse</h1>
+                        <h1>Adresses</h1>
                     </div>
                 </div>
-                <!-- Registration form - START -->
+                <!-- Affichage des adresse - START -->
                 <div class="row">
                     <div class="col-lg-6">
                             <div id="listPart">
-                            <?php
-                                 while ($row = $listPlayer->fetch_object()){ ?>
-                                    <?php
-                                            $nom = $row->LastName." ".utf8_encode($row->FirstName);
-                                            $adresse = $row->Number." ".utf8_encode($row->Rue)." ".$row->ZIPCode." ".utf8_encode($row->Ville);
-                                            $liste1[$adresse] = $nom;
-
-                                    ?>
-                            <?php }
-                                while ($row = $listOwner->fetch_object()){ ?>
-                                    <?php
-                                    $nom = utf8_encode($row->LastName)." ".utf8_encode($row->FirstName);
-                                    $adresse = $row->Number." ".utf8_encode($row->Rue)." ".$row->ZIPCode." ".utf8_encode($row->Ville);
-                                    $liste2[$adresse] = $nom;
-
-                                    ?>
-                                <?php } ?>
                             <h3><i class="fa fa-users"></i> Particpants</h3>
+                            <!-- Affichage des adresse des participants - END -->
                             <?php foreach (array_unique($liste1) as $adresse => $nom) {?>
                                             <?=$nom?> - <?=$adresse?><br/>
                                     <?php } ?>
+                            <!-- Affichage des adresse participant - END -->
+
+                            <!-- Affichage des adresse propriétaire - START -->
                             <h3><i class="fa fa-suitcase"></i> Propriétaires</h3>
                             <?php foreach (array_unique($liste2) as $adresse => $nom) {?>
                                 <?=$nom?> - <?=$adresse?><br/>
                             <?php } ?>
-
+                            <!-- Affichage des adresse propriétaire - END -->
                             </div>
                     </div>
 
-                    <!-- Registration form - END -->
+                    <!-- Affichage des adresses - END -->
                 </div>
                 <br/><br/><br/>
                 <!-- /.row -->

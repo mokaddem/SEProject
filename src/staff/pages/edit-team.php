@@ -1,6 +1,6 @@
 <!DOCTYPE html>
+<!-- Page de modification d'une équipe selectionnée dans la liste -->
 <html lang="en">
-
 <head>
 
 
@@ -37,32 +37,32 @@
 
     <div id="wrapper">
 
-        <?php            
+        <?php
             include("./html/header.php");
             include_once('php/BDD.php');
             include_once('php/test-delete.php');
 
-            
-        
+
+
             $db = BDconnect();
-            
+
             $tmp = $db->query('SELECT * FROM Team WHERE '.$_GET['id'].' = ID ');
             $t = $tmp->fetch_array();
-        
+
             $p = $db->query('SELECT * FROM Personne WHERE '.$t['ID_Player1'].' = ID ');
             $p1 = $p->fetch_array();
-        
-            $p1final = $p1['FirstName']. " " . $p1['LastName']; 
-        
+
+            $p1final = $p1['FirstName']. " " . $p1['LastName'];
+
             $p = $db->query('SELECT * FROM Personne WHERE '.$t['ID_Player2'].' = ID ');
             $p2 = $p->fetch_array();
-        
+
             $p2final = $p2['FirstName']. " " . $p2['LastName'];
-                
+
         ?>
 
 
-            <div id="page-wrapper">
+            <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
                     <div class="col-lg-12 noDeco">
                         <h1 class="page-header"><a href="list-team.php"> Liste des équipes</a> > Modifier</h1>
@@ -99,7 +99,7 @@
                                         $db = BDconnect();
                                         $reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
                                         while ($donnes = $reponse->fetch_array())
-                                        {				
+                                        {
                                             if (canDeletePlayer($donnes['ID'])){
                                                 echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['FirstName'])." ".utf8_encode($donnes['LastName'])."</option>";}
                                         }
@@ -115,12 +115,12 @@
 										$reponse = $db->query('SELECT * FROM Categorie');
 										while ($donnes = $reponse->fetch_array())
 										{
-                                            if ($t['ID_Cat'] == $donnes['ID']) 
+                                            if ($t['ID_Cat'] == $donnes['ID'])
                                             {
                                                 echo "<option selected=\"".$donnes['Designation']." ".$donnes['Year']."\" value=".$donnes['ID'].">".utf8_encode($donnes['Designation'])." ".utf8_encode($donnes['Year'])."</option>";
-                                            } 
-                                            else 
-                                            { 
+                                            }
+                                            else
+                                            {
 										      echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['Designation'])." ".utf8_encode($donnes['Year'])."</option>";								  }
                                         }
                                     ?>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
+<!-- Page de modification d'un match selectionné dans la liste -->
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -36,45 +36,45 @@
 
     <div id="wrapper">
 
-        <?php            
+        <?php
             include("./html/header.php");
             include_once('php/BDD.php');
-            
+
             $db = BDconnect();
             $reponse = $db->query('SELECT * FROM `Match` WHERE '. $_GET['id']. ' = ID');
             $donnees = $reponse->fetch_array();
-        
+
             $t = $db->query('SELECT * FROM `Team` WHERE '.$donnees['ID_Equipe1'].' = ID');
             $t1 = $t->fetch_array();
-            
+
             $t1p = $db->query('SELECT * FROM `Personne` WHERE '.$t1['ID_Player1'].' = ID');
             $t1p1 = $t1p->fetch_array();
-        
+
             $t1p = $db->query('SELECT * FROM `Personne` WHERE '.$t1['ID_Player2'].' = ID');
             $t1p2 = $t1p->fetch_array();
-        
+
             $t1final = $t1p1['FirstName']." ".$t1p1['LastName']." & ".$t1p2['FirstName']." ".$t1p2['LastName'];
-        
+
             $t = $db->query('SELECT * FROM `Team` WHERE '.$donnees['ID_Equipe2'].' = ID');
             $t2 = $t->fetch_array();
-            
+
             $t2p = $db->query('SELECT * FROM `Personne` WHERE '.$t2['ID_Player1'].' = ID');
             $t2p1 = $t2p->fetch_array();
-        
+
             $t2p = $db->query('SELECT * FROM `Personne` WHERE '.$t2['ID_Player2'].' = ID');
             $t2p2 = $t2p->fetch_array();
-        
+
             $t2final = $t2p1['FirstName']." ".$t2p1['LastName']." & ".$t2p2['FirstName']." ".$t2p2['LastName'];
-        
+
             $t = $db->query('SELECT * FROM `Terrain` WHERE '.$donnees['ID_Terrain'].' = ID');
             $ter = $t->fetch_array();
-        
-            $terfinal = $ter['adresse'] . " - " . $ter['etat']; 
-             
+
+            $terfinal = $ter['adresse'] . " - " . $ter['etat'];
+
         ?>
 
 
-            <div id="page-wrapper">
+            <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
                     <div class="col-lg-12 noDeco">
                         <h1 class="page-header"><a href="list.php?type=match"> Liste des matchs </a>> Modifier</h1>
@@ -89,9 +89,9 @@
                             <div class="form-group">
                                 <label for="sel1"><span class="fa fa-users"></span> Première équipe</label>
                                 <select class="form-control" name="InputEq1" id="InputEq1">
-                                    <?php                  
+                                    <?php
     echo '<option value="'.$donnees['ID_Equipe1'].'" selected="'.$t1final.'">'.utf8_encode($t1final).'</option>'; ?>
-                                
+
                                 <?php
 										$db = BDconnect();
 										$reponse = $db->query('SELECT * FROM Team');
@@ -110,7 +110,7 @@
                             <div class="form-group">
                                 <label for="sel1"><span class="fa fa-users"></span> Seconde équipe</label>
                                 <select class="form-control" name="InputEq2" id="InputEq2">
-                                    <?php                  
+                                    <?php
     echo '<option value="'.$donnees['ID_Equipe2'].'" selected="'.$t2final.'">'.utf8_encode($t2final).'</option>'; ?>
                                     <?php
 										$db = BDconnect();
@@ -129,9 +129,9 @@
 
                             <div class="form-group">
                                 <label for="sel1"><span class="fa fa-map-marker"></span> Lieu</label>
-                                
+
                                 <select class="form-control" name="InputCourt" id="InputCourt">
-                                    <?php                  
+                                    <?php
                                         echo '<option value="'.$donnees['ID_Terrain'].'" selected="'.$terfinal.'">'.utf8_encode($terfinal).'</option>'; ?>
                                     <?php
 										$db = BDconnect();
@@ -147,8 +147,8 @@
                                 <label for="sel1"><span class="fa fa-clock-o"></span> Date & Heure</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                    
-                                    <?php 
+
+                                    <?php
                                         echo '<input type="date" min="'.date("Y-m-d").'" max="2048-10-10" id="InputDate" name="InputDate" value="'.$donnees['date'].'">';
                                         echo '<input type="time" id="InputHour" name="InputHour" value="'.$donnees['hour'].'">';
                                     ?>

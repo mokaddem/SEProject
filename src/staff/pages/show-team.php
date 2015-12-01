@@ -2,7 +2,7 @@
 require_once("./php/inc/list-team.inc");
 ?>
       <div class="modal-dialog modal-sm">
-
+<!-- Page de détail qui apparait lorsque l'on clique sur une équipe dans la liste -->
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
@@ -28,7 +28,7 @@ require_once("./php/inc/list-team.inc");
 
                 $finalp1 = utf8_encode($p1['FirstName']). " " .utf8_encode($p1['LastName']);
                 $finalp2 = utf8_encode($p2['FirstName']). " " .utf8_encode($p2['LastName']);
-                    
+
                 $rcat = $db->query('SELECT * FROM Categorie WHERE ID = '.$donnees['ID_Cat'].'');
                 $cat = $rcat->fetch_array();
                 $catFinal = utf8_encode($cat['Designation'])." ".$cat['Year'];
@@ -47,9 +47,9 @@ require_once("./php/inc/list-team.inc");
 //                $titre = getTitre("team");
 //            }?>
                     <p><b>ID </b> : <?=$donnees['ID']?></p>
-                    <p><b>Catégorie</b> : <?=$catFinal?></p>
-                    <p><b>Joueur 1</b> : <?=$finalp1?> (<?=$donnees['ID_Player1']?>)</p>
-                    <p><b>Joueur 2</b> : <?=$finalp2?> (<?=$donnees['ID_Player2']?>)</p>
+                    <p><b>Catégorie</b> : <?=utf8_encode($catFinal)?></p>
+                    <p><b>Joueur 1</b> : <?=utf8_encode($finalp1)?> (<?=$donnees['ID_Player1']?>)</p>
+                    <p><b>Joueur 2</b> : <?=utf8_encode($finalp2)?> (<?=$donnees['ID_Player2']?>)</p>
 
 
                 </div>

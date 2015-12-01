@@ -1,6 +1,6 @@
 <!DOCTYPE html>
+<!-- Annuaire d'adresses e-mail des participants et propriétaitres (se trouvant dans l'onglet commmunication) -->
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -41,10 +41,10 @@
     ?>
 
 
-    <div id="page-wrapper">
+    <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
         <div class="row">
             <div class="page-header">
-                <h1>E-mail</h1>
+                <h1>E-mails</h1>
             </div>
         </div>
         <!-- Registration form - START -->

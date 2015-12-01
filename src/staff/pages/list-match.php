@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- Page affichant tous les matchs existants -->
 <head>
 
     <meta charset="utf-8">
@@ -42,11 +42,11 @@
 
     <div id="wrapper">
 
-        <?php            
+        <?php
             include("./html/header.php");
         ?>
 
-            <div id="page-wrapper">
+            <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Liste des matchs
@@ -98,6 +98,7 @@
                     <!-- /.col-lg-6 -->
                 </div>
                 <!-- /.row -->
+                <a class="btn btn-danger" href="./php/delete-all-matchs.php">Supprimer tous les matchs</a>
                 <!-- Modal -->
                 <div id="myModal" class="modal fade" role="dialog">
                 </div>
