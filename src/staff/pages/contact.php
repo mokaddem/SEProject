@@ -27,16 +27,20 @@
 
 <body>
 
-<?php
+
+
+    <div id="wrapper">
+    
+    <?php
+    include("html/header.php");
     include('php/BDD.php');
 
     $db = BDconnect();
 
     $tmp = $db->query('SELECT * FROM Categorie');
 
-?>
-
-    <div id="wrapper">
+    ?>
+    
                <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
                     <div class="page-header">
@@ -78,7 +82,7 @@
 			    <div class="clearfix"></div>
 			    <div class="col-lg-12 text-right">
                             <div id="success"></div>
-                            <button type="submit" class="btn btn-primary pull-right" >Evoyer Message</button>
+                            <button type="submit" class="btn btn-primary pull-right" >Envoyer Message</button>
 			  </div>
                         </form>
                     </div>
