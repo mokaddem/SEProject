@@ -1,6 +1,13 @@
 <?php require_once("./php/inc/list-function.inc");
 ?>
     <!DOCTYPE html>
+<!-- Page affichant tous les participants/matchs/propriétaires/catégories/staff existants aux URLs suivant
+list.php?type=player
+list.php?type=match
+list.php?type=owner
+list.php?type=category
+list.php?type=staff
+ -->
     <html lang="en">
 
     <head>

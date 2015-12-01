@@ -1,6 +1,6 @@
 <!DOCTYPE html>
+<!-- Ajout d'une catégorie -->
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -29,7 +29,7 @@
 
     <div id="wrapper">
 
-        <?php            
+        <?php
             include("./html/header.php");
         ?>
 
@@ -58,7 +58,7 @@
                                                 ?>
                                             </select>
                                             <input type="text" class="form-control" id="Designation" name="Designation" placeholder="Nom" required>
-                                    
+
                                         </div>
                                     </div>
 

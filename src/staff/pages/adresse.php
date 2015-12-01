@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Annuaire d'adresses postales des participants et propriétaitres (se trouvant dans l'onglet commmunication) -->
 <html lang="en">
 
 <head>
@@ -74,13 +75,13 @@
                     <div class="col-lg-6">
                             <div id="listPart">
                             <h3><i class="fa fa-users"></i> Particpants</h3>
-                            <!-- Affichage des adresse des participants - END -->                            
+                            <!-- Affichage des adresse des participants - END -->
                             <?php foreach (array_unique($liste1) as $adresse => $nom) {?>
                                             <?=$nom?> - <?=$adresse?><br/>
                                     <?php } ?>
-                            <!-- Affichage des adresse participant - END -->                            
-                            
-                            <!-- Affichage des adresse propriétaire - START -->                            
+                            <!-- Affichage des adresse participant - END -->
+
+                            <!-- Affichage des adresse propriétaire - START -->
                             <h3><i class="fa fa-suitcase"></i> Propriétaires</h3>
                             <?php foreach (array_unique($liste2) as $adresse => $nom) {?>
                                 <?=$nom?> - <?=$adresse?><br/>

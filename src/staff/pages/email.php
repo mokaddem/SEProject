@@ -1,6 +1,6 @@
 <!DOCTYPE html>
+<!-- Annuaire d'adresses e-mail des participants et propriétaitres (se trouvant dans l'onglet commmunication) -->
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">

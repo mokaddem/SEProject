@@ -1,6 +1,6 @@
 <!DOCTYPE html>
+<!-- Page de modification d'un propriétaire selectionné dans la liste -->
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -36,9 +36,9 @@
 
     <div id="wrapper">
 
-        <?php            
+        <?php
             include("./html/header.php");
-	    include_once('php/BDD.php');  
+	    include_once('php/BDD.php');
 	    $db = BDconnect();
 
         ?>
@@ -94,7 +94,7 @@
 									echo "<option>$i</option>\n";
 								}
 							}
-                                        
+
                                                 ?>
                                     </select>
                                     <select name='birth_month' id='birth_month1'>

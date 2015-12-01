@@ -1,6 +1,6 @@
 <!DOCTYPE html>
+<!-- Page de modification d'un terrain selectionné dans la liste -->
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -36,7 +36,7 @@
 
     <div id="wrapper">
 
-        <?php            
+        <?php
             include("./html/header.php");
 	    include_once('php/BDD.php');
 	    $db = BDconnect();

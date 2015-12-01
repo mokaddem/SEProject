@@ -1,6 +1,6 @@
 <!DOCTYPE html>
+<!-- Page de modification d'un joueur selectionné dans la liste -->
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -23,20 +23,13 @@
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
 
 <body>
 
     <div id="wrapper">
 
-        <?php            
+        <?php
 		include("./html/header.php");
 		include_once('php/BDD.php');
 
@@ -56,9 +49,7 @@
                 <div class="row">
                     <form role="form" method="GET" action="php/inc/edit-player.php">
                         <div class="col-lg-6">
-                            <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
                             <div class="form-group">
-                                <!--<label for="sel1">Titre:</label>-->
                                 <select class="form-control" id="title" name="title">
                                     <option value="1">M.</option>
                                     <option value="2">Mme.</option>
@@ -66,7 +57,6 @@
                             </div>
 
                             <div class="form-group">
-                                <!--<label for="InputNom">Nom</label>-->
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                     <input type="text" class="form-control" id="InputNom" name="InputNom" placeholder="Nom" required>
@@ -131,15 +121,12 @@
                             </div>
 
                             <div class="form-group">
-                                <!--<label for="InputEmail">Email</label>-->
-                                <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-at"></i></span>
                                     <input type="email" class="form-control" id="InputEmailFirst" name="InputEmailFirst" placeholder="Email" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <!--<label for="InputPhone">Numéro de téléphone</label>-->
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-phone"></i></span>
                                     <input type="text" class="form-control bfh-phone" placeholder="+33 fixe" id="InputFixe" name="InputFixe">
@@ -159,8 +146,6 @@
 
                             <div class="form-group">
                                 <label class="checkbox">Options supplémentaires</label>
-<!--                                <input name="extraNone" id="'extraNone" type="checkbox"> <strong>Aucune options supplémentaires</strong></input>-->
-<!--                                <br/>-->
                                 <?php
                                 $arrayIdExtrasPers = array();
                                 $searchforchecked = $db->query("SELECT * FROM PersonneExtra WHERE Personne_ID=".$_GET['id']);
@@ -184,7 +169,6 @@
                             </div>
 
                             <div class="form-group">
-                                <!--<label for="InputCredit">Paiement</label>-->
                                 <label for="InputPhone">Montant à payer</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="15" disabled>
@@ -200,7 +184,6 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <!--<label for="InputMessage">Message</label>-->
                                 <label>Préférence</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-comment"></i></span>

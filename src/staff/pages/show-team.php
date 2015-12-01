@@ -2,7 +2,7 @@
 require_once("./php/inc/list-team.inc");
 ?>
       <div class="modal-dialog modal-sm">
-
+<!-- Page de détail qui apparait lorsque l'on clique sur une équipe dans la liste -->
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
@@ -28,7 +28,7 @@ require_once("./php/inc/list-team.inc");
 
                 $finalp1 = utf8_encode($p1['FirstName']). " " .utf8_encode($p1['LastName']);
                 $finalp2 = utf8_encode($p2['FirstName']). " " .utf8_encode($p2['LastName']);
-                    
+
                 $rcat = $db->query('SELECT * FROM Categorie WHERE ID = '.$donnees['ID_Cat'].'');
                 $cat = $rcat->fetch_array();
                 $catFinal = utf8_encode($cat['Designation'])." ".$cat['Year'];

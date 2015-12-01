@@ -2,7 +2,7 @@
 require_once("./php/inc/list-team.inc");
 ?>
       <div class="modal-dialog">
-
+<!-- Page de détail qui apparait lorsque l'on clique sur un match dans la liste -->
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
@@ -44,21 +44,7 @@ require_once("./php/inc/list-team.inc");
             $ter = $t->fetch_array();
 
             $terfinal = $ter['adresse'] . " - " . $ter['etat'];
-
-
-//            if (array_key_exists("id", $_GET)) {
-//                $listDonnees = getTeam2();
-//                var_dump($donnees);
-//
-//                $listDonnees2 = getTeam2($donnees['id1']);
-//                $listDonnees2 = getTeam2($donnees['id2']);
-//                $donnees2 = $listDonnees2->fetch_array();
-//                //$donnees  = getTeam1($_GET['id']);
-//                $titreDonnees = getTitreTable("team");
-//                $paramDonnees = getParam("team");
-//
-//                $titre = getTitre("team");
-//            }?>
+?>
                     <p><b>Equipe 1</b> : <?=utf8_encode($t1final)?></p>
                     <p><b>Equipe 2</b> : <?=utf8_encode($t2final)?></p>
                     <p><b>Terrain</b> : <?=utf8_encode($terfinal)?></p>

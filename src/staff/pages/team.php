@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- Page d'ajout d'une équipe en selectionnant deux joueurs qui n'ont pas d'équipe -->
 <head>
 
     <meta charset="utf-8">
@@ -22,21 +22,13 @@
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
 
 <body>
 
     <div id="wrapper">
 
-        <?php            
+        <?php
             include("./html/header.php");
 	    	include_once('php/BDD.php');
             include_once('php/test-delete.php');
@@ -93,14 +85,14 @@
 										{
                                             if (canDeletePlayer($donnes['ID'])){
 											     echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['FirstName'])." ".utf8_encode($donnes['LastName'])."</option>";
-										
+
                                             }
                                         }
                                     ?>
-                                    
+
                                 </select>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="sel2"><span class="fa fa-user"></span> Catégorie</label>
                                 <select class="form-control" id="InputCat" name="InputCat">
@@ -109,10 +101,10 @@
 										$reponse = $db->query('SELECT * FROM Categorie');
 										while ($donnes = $reponse->fetch_array())
 										{
-										    echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['Designation'])." ".$donnes['Year']."</option>";									
+										    echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['Designation'])." ".$donnes['Year']."</option>";
                                         }
                                     ?>
-                                    
+
                                 </select>
                             </div>
 
