@@ -117,8 +117,8 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <!-- Ce bouton est là pour procéder à la vérification que tous les terrains sont différents.
-                                             Il faut voir comment faire pour éviter qu'il n'interagisse comme il le fait actuellement avec "Echanger"
-                                             Voir la fonction utilisée dans php/group-submit.php -->
+                                             Voir la fonction utilisée dans php/group-submit.php
+                                             Est-ce que ça fonctionne? -->
                                         <input type="submit" class="btn btn-primary pull-right" value="Enregistrer Terrains" />
                                     </div>
                                 </div>
