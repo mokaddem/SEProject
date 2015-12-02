@@ -11,22 +11,23 @@ Mise à jour de l'historique
 	// Ajout de la catégorie
 	$db = BDconnect();
 
-	$req = $db->prepare("INSERT INTO Categorie(ID, `Year`, Designation) VALUES(?, ?, ?)");
+	$req = $db->prepare("INSERT INTO Categorie(ID, `Age`, Designation) VALUES(?, ?, ?)");
 
 	$ID	 	= '';
-	$Year	=  $_GET['Year'];
+	$Age   = $_GET['De']." - ".$_GET['A'];
+//	$Age	=  $_GET['Age'];
 	$Designation	= $_GET['Designation'];
 
 	var_dump($req);
 
 	var_dump($ID);
-	var_dump($Year);
+	var_dump($Age);
 	var_dump($Designation);
-	$req->bind_param("iis", $ID, $Year, $Designation);
+	$req->bind_param("iss", $ID, $Age, utf8_decode($Designation));
 
 	$req->execute();
 
-	$reponse = $db->query("SELECT * FROM Categorie WHERE Year = \"$Year\" AND Designation=\"$Designation\"");
+	$reponse = $db->query("SELECT * FROM Categorie WHERE Age = \"$Age\" AND Designation=\"$Designation\"");
 	$donnees = $reponse->fetch_array();
 	$ID_inserted = $donnees['ID'];
 

@@ -15,14 +15,12 @@ Mise à jour de l'historique
         $reponse = $db->query("SELECT * FROM Terrain");
         $donnees = $reponse->fetch_array();
 
-        $req = $db->prepare("INSERT INTO GroupSaturday(ID, ID_terrain, ID_t1, ID_t2, ID_t3, ID_t4, ID_t5, ID_vic1, ID_vic2) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $req = $db->prepare("INSERT INTO GroupSaturday(ID, ID_terrain, ID_t1, ID_t2, ID_t3, ID_t4, ID_t5) VALUES(?, ?, ?, ?, ?, ?, ?)");
 
         $ID	 	= '';
         $ID_terrain = $donnees['ID'];
-        $ID_vic1    = 0;
-        $ID_vic2    = 0;
 
-        $req->bind_param("iiiiiiiii", $ID, $ID_terrain, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_vic1, $ID_vic2);
+        $req->bind_param("iiiiiii", $ID, $ID_terrain, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5);
         $req->execute();
 
         $reponse = $db->query("SELECT * FROM GroupSaturday WHERE ID_t1=".$ID_t1);
@@ -71,14 +69,12 @@ Mise à jour de l'historique
     }
 
     function insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $groupSize){
-        $req = $db->prepare("INSERT INTO GroupSunday(ID, ID_terrain, ID_t1, ID_t2, ID_t3, ID_t4, ID_t5, ID_t6, ID_vic1, ID_vic2) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $req = $db->prepare("INSERT INTO GroupSunday(ID, ID_terrain, ID_t1, ID_t2, ID_t3, ID_t4, ID_t5, ID_t6) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
         echo "Prepare";
         $ID	 	= '';
         $ID_terrain = NULL;
-        $ID_vic1    = NULL;
-        $ID_vic2    = NULL;
 
-        $req->bind_param("iiiiiiiiii", $ID, $ID_terrain, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $ID_vic1, $ID_vic2);
+        $req->bind_param("iiiiiiii", $ID, $ID_terrain, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6);
         echo "Bind";
         $req->execute();
 
@@ -206,7 +202,6 @@ Mise à jour de l'historique
                 $ID_t6 = $team['ID'];
                 $Poule_ID = insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $i);
                 $i = 0;
-                $Poule_ID = $db->query("SELECT ID FROM GroupeSunday WHERE ID_t1=".$ID_t1 ." AND ID_t2=".$ID_t2 ." AND ID_t3=".$ID_t3 ." AND ID_t4=".$ID_t4 ." AND ID_t5=".$ID_t5)->fetch_array();
                 $ID_t1 = NULL; $ID_t2 = NULL; $ID_t3 = NULL; $ID_t4 = NULL; $ID_t5 = NULL;
             }
             $i++;

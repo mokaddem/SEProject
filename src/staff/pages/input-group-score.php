@@ -99,7 +99,7 @@
                     <label for="sel1"><span class="fa fa-dot-circle-o"></span> Choix de l'équipe</label>
                     <select class="form-control" id="selectedTeam" name="selectedTeam" style="width: 400px;">
                     <?php
-                        $reponse = $db->query('SELECT *, Team.ID as T_ID FROM Team, GroupSaturday WHERE GroupSaturday.ID='.$PouleID.' AND (Team.ID=GroupSaturday.ID_t1 OR Team.ID=GroupSaturday.ID_t2 OR Team.ID=GroupSaturday.ID_t3 OR Team.ID=GroupSaturday.ID_t4 OR Team.ID=GroupSaturday.ID_t5)');
+                        $reponse = $db->query('SELECT *, Team.ID as T_ID FROM Team, GroupSaturday WHERE GroupSaturday.ID='.$PouleID.' AND (Team.ID=GroupSaturday.ID_t1 OR Team.ID=GroupSaturday.ID_t2 OR Team.ID=GroupSaturday.ID_t3 OR Team.ID=GroupSaturday.ID_t4 OR Team.ID=GroupSaturday.ID_t5 OR Team.ID=GroupSaturday.ID_t6 OR Team.ID=GroupSaturday.ID_t7 OR Team.ID=GroupSaturday.ID_t8)');
                         while ($donnes = $reponse->fetch_array())
                         {
                             $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player1'].' = ID');

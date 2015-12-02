@@ -8,6 +8,12 @@ Mise à jour de l'historique
 	include_once('BDD.php');
 	$db = BDconnect();
 
+  if ($_GET['id'] == 1) {
+    // vous ne devez pas supprimer l'extra id=1
+    header("Location: ../list.php?type=category");
+    return;
+  }
+
   // Suppression
 	$db->query('DELETE FROM Categorie WHERE ID='.$_GET['id']);
 

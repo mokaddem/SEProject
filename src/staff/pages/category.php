@@ -49,14 +49,12 @@
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-edit"></i></span>
-                                            <select class="form-control" name='Year' id='Year'>
-                                                <option value="na">Année</option>
-                                                <?php
-                                                      for ($i = date("Y"); $i <= 2500; $i++) {
-                                                        echo "<option>$i</option>\n";
-                                                      }
-                                                ?>
-                                            </select>
+                                            <div class="input-group">
+                                              <span class="input-group-addon" id="basic-addon1">De: </span>
+                                              <input type="number" class="form-control" id="De" name="De" placeholder="(âge min)"/>
+                                              <span class="input-group-addon" id="basic-addon1">À: </span>
+                                              <input type="number" class="form-control" id="A" name="A" placeholder="(âge max)"/>
+                                            </div>
                                             <input type="text" class="form-control" id="Designation" name="Designation" placeholder="Nom" required>
 
                                         </div>

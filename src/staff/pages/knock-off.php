@@ -92,20 +92,20 @@
                             <?php
                                 if ($_GET['jour'] == "sam"){
                                     $knockoff_all = $db->query('SELECT * FROM KnockoffSaturday ORDER BY `Position` ASC');
-                                    $row = $db->query('SELECT COUNT(*) as numberOfGroups FROM GroupSaturday, Team WHERE GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'')->fetch_array();
+                                    $row = $db->query('SELECT COUNT(ID) as numberOfMatch FROM KnockoffSaturday')->fetch_array();
                                     extract($row);
                                 } elseif ($_GET['jour'] == "dim") {
                                     $knockoff_all = $db->query('SELECT * FROM KnockoffSunday ORDER BY `Position` ASC');
-                                    $row = $db->query('SELECT COUNT(*) as numberOfGroups FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'')->fetch_array();
+                                    $row = $db->query('SELECT COUNT(ID) as numberOfMatch FROM KnockoffSunday')->fetch_array();
                                     extract($row);
                                 }
                             $knockoff = $knockoff_all->fetch_array();
-                            if ($numberOfGroups == 0){ ?>
+                            if ($numberOfMatch == 0){ ?>
                                 <div class="alert alert-danger">
                                     Le tournoi n'a pas encore été généré pour cette catégorie et/ou ce jour.
                                 </div>
                             <?php } else {
-                                for ($i = 1; $i <= $numberOfGroups; $i++) {
+                                for ($i = 1; $i <= $numberOfMatch; $i++) {
                                     $match = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match'])->fetch_array();
                                     ?>
                                     <div class="form-group text-center">
@@ -120,7 +120,7 @@
                                                 Au moins un groupe ne contient pas de vainqueur.
                                             </div>
                                             <?php $j++;
-                                            $NumberOfGroups = 0;
+                                            $numberOfMatch = 0;
                                         } else {
                                             $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'] . ' ')->fetch_array();
                                             $IDPersonne1 = $team['ID_Player1'];
@@ -154,7 +154,7 @@
                                         $matchNum = 1;
                                         $iter = 0;
                                         $numberOfPixels = 75;
-                                        for ($k = $numberOfGroups; $k >= 1; $k = $k/2){
+                                        for ($k = $numberOfMatch; $k >= 1; $k = $k/2){
                                             $position = $numberOfPixels."px";
                                     ?>
                                         <div class="col-lg-2 text-center" style="position: relative; top: <?=$position?>;">
