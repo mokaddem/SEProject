@@ -182,7 +182,7 @@ EOD;
 
 // Print text using writeHTMLCell()
 $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
-
+$reponse->free(); $t->free(); $t1p->free(); $t2p->free();
 // ---------------------------------------------------------
 
 // Close and output PDF document

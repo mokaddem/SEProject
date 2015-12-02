@@ -34,6 +34,7 @@ Mise à jour de l'historique
     addHistory($donnees["ID"], "Terrain", "Ajout");
 
 	header("Location: ../list.php?type=court");
+	$reponse->free();
 
 	$req = $db->prepare("SELECT Mail FROM Owner JOIN Personne ON Owner.ID_Personne = Personne.ID WHERE ID = $ID_Owner");
         sendMail($req[0],"Bonjour,\n\n\t Nous vous informons que l'inscription de votre court pour le tournoi de tennis 'Charles de Lorraine' a bien été prise en compte.\n\n\t Nous vous remercions et nous vous tiendrons au courant en ce qui concerne l'utilisation de celui-ci lors du tournoi.\n\n PS:Vous pouvez à tout moment nous joindre via le formulaire de contact se trouvant sur notre site.\n\nBien à vous,\n\nle Staff du tournoi 'Charles de Lorraine' ","Enregistrement de votre court");

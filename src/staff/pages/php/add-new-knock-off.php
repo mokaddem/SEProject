@@ -16,11 +16,14 @@ Mise à jour de l'historique
         $groups = $db->query('SELECT * FROM GroupSaturday, Team WHERE GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['InputCat'].'');
         $row = $db->query('SELECT COUNT(*) as numberOfGroups FROM GroupSaturday, Team WHERE GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['InputCat'].'')->fetch_array();
         extract($row);
+
+				$row->free();
     } else{
         $table = "KnockoffSunday";
         $groups = $db->query('SELECT * FROM GroupSunday');
         $row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday')->fetch_array();
         extract($row);
+				$row->free();
     }
     $reponse = $db->query("SELECT * FROM ".$table);
     $bool = $reponse->fetch_array();
@@ -85,5 +88,7 @@ Mise à jour de l'historique
     elseif ($_GET['jour']=="dim"){
         header("Location: ../knock-off.php?jour=dim&generate=true&cat=1");
     }
+
+		// $reponse->free(); $ID_Terrain->free(); $reponseMatch->free(); $reqKnock->free(); $reponseKnock->free();
     return;
 ?>

@@ -65,6 +65,7 @@ Mise à jour de l'historique
 
             }
         }
+				$reponse->free();
         return $Poule_ID;
 
     }
@@ -120,6 +121,8 @@ Mise à jour de l'historique
 
             }
         }
+				$reponse->free();
+
         return $Poule_ID;
     }
 
@@ -162,6 +165,9 @@ Mise à jour de l'historique
         if ($i > 1 and $i <= 5){
             $Poule_ID = insertSam($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $i-1);
         }
+				$getPoules->free();
+				$reponse->free();
+
         header("Location: ../group.php?jour=sam&generate=true&cat=".$_GET['InputCat']);
         return;
     }
@@ -208,6 +214,8 @@ Mise à jour de l'historique
         if ($i > 1 and $i <= 6){
             $Poule_ID = insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $i-1);
         }
+				$getPoules->free();
+				$reponse->free();
         header("Location: ../group.php?jour=dim&generate=true&cat=".$_GET['InputCat']);
         return;
     }

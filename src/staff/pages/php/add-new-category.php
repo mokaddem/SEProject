@@ -33,5 +33,6 @@ Mise à jour de l'historique
 	// Mise à jour de l'historique
 	addHistory( $donnees["ID"], utf8_decode("Catégorie"), "Ajout");
 
+	$reponse->free();
 	header("Location: ../list.php?type=category");
 ?>

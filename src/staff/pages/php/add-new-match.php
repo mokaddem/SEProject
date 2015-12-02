@@ -35,7 +35,7 @@ $donnees = $reponse->fetch_array();
 // Mise à jour de l'historique
 addHistory($donnees["ID"], "Match", "Ajout");
 
+  $reponse->free();
 	header("Location: ../list-match.php");
-
 
 ?>

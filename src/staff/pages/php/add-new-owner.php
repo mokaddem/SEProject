@@ -50,5 +50,6 @@ Mise à jour de l'historique
 	// Mise à jour de l'historique
     addHistory( $ID_inserted, utf8_decode("Propriétaire"), "Ajout");
 
+	$reponse->free();
 	header("Location: ../list.php?type=owner");
 ?>

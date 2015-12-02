@@ -24,6 +24,6 @@ $reponse = $db->query("UPDATE SEProjectC.Match SET score2 = \"".$score2."\", sco
 // Mise à jour de l'historique
 addHistory($ID, "Match-Knock", "Score");
 
+$reponse->free();
 header("Location: ../input-knock-score.php?jour=".$_GET['id']);
-
 ?>

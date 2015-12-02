@@ -120,6 +120,8 @@ EOD;
   $numMatch++;
 }
 
+$reponse->free(); $t->free(); $t1p->free(); $t2p->free();
+
 // ---------------------------------------------------------
 
 // Close and output PDF document

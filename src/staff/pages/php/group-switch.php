@@ -55,6 +55,8 @@ function switch_players($id1, $id2, $day) {
             $req = $db->prepare($query);
             $req->bind_param("issiiiiii", $newID, $Date, $Hour, intval($id2), $team2ID, $score, $score, $terrain, $group_ID);
             $req->execute();
+
+            $req->free();
         }
         if ($i == 5 && $day=="sam") {
             break;
@@ -108,6 +110,7 @@ function switch_players($id1, $id2, $day) {
         echo "Error updating record: " . $db->error;
     }
 
+    $reponse->free();
 }
 
 //if (array_key_exists("idteam1", $_POST) && array_key_exists("idteam2", $_POST) && is_int($_POST["idteam1"]) && is_int($_POST["idteam2"])) {

@@ -170,6 +170,9 @@ Mise à jour de l'historique
 		}
 	}
 
+  $reponse->free();
+  $RankingReponse->free();
+
 	if (array_key_exists('ID', $_SESSION)) {
 	   header("Location: ../list.php?type=player");
 	} else {

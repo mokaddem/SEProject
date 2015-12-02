@@ -32,5 +32,6 @@ Mise à jour de l'historique
 
 		// Mise à jour de l'historique
     addHistory( $donnees["ID"], "Equipe", "Ajout");
+	$reponse->free();
 	header("Location: ../list-team.php");
 ?>
