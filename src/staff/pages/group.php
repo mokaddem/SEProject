@@ -106,7 +106,7 @@
                             </span>
 
                             </form>
-                            
+
                             <br/><br/>
                             <div id="pList"></div>
                         </div>
@@ -218,10 +218,11 @@
                     <!-- Registration form - END -->
                 <!--</form>-->
                 </div>
-                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <!-- /.row -->
             </div>
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
             <!-- /#page-wrapper -->
 
     </div>
