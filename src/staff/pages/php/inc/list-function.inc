@@ -53,7 +53,7 @@ function getTitreTable($get) {
         case "staff":
             return array("ID", "Nom", "Prénom", "Né(e) le", "Créé le", "Action");
         case "category":
-            return array("ID", "Année", "Désignation", "Action");
+            return array("ID", "Tranche d'âge", "Désignation", "Action");
 
     }
 }
@@ -83,7 +83,7 @@ function getParam($get) {
         case "staff":
             return array("ID", "LastName", "FirstName", "BirthDate", "CreationDate");
         case "category":
-            return array("ID", "Year", "Designation");
+            return array("ID", "Age", "Designation");
 
     }
 }
@@ -132,12 +132,12 @@ function getHistories() {
 
 function getStaffName($idPerson) {
     $db = BDconnect(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
-    
+
     $rep = $db->query('SELECT * FROM Personne WHERE '.$idPerson.' = ID');
     $donnees = $rep->fetch_array();
-    
+
     $res = $donnees['FirstName'] . " " . $donnees['LastName'];
-    
+
     return $res;
 }
 

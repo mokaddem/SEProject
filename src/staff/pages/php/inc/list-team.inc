@@ -5,7 +5,7 @@ include_once('php/BDD.php');
 function dbAndPrint() {
     $db = BDconnect();
     $reponse1 = $db->query('SELECT Team.ID, FirstName as F, LastName as L, Team.ID_Player1 as id1, Team.ID_Player2 as id2, Team.ID_Cat as ID_Cat FROM Team, Personne WHERE Personne.ID = Team.ID_Player1 ');
-    
+
     while ($donnes1 = $reponse1->fetch_array())
     {
       $reponse2 = $db->query('SELECT Team.ID, FirstName as F, LastName as L FROM Team, Personne WHERE Personne.ID = '.$donnes1['id2'].'');
@@ -16,7 +16,7 @@ function dbAndPrint() {
 
 	   $donnes2 = $reponse2->fetch_array();
         $cat = $reponse3->fetch_array();
-        $catFinal = $cat['Designation']." ".$cat['Year'];
+        $catFinal = $cat['Designation']." ".$cat['Age'];
 
         printListTeam($donnes1, $donnes2, $catFinal);
     }

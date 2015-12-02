@@ -53,20 +53,26 @@
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-edit"></i></span>
-                                            <select class="form-control" name="InputYear" id="InputYear">
+                                            <div class="input-group">
+                                              <span class="input-group-addon" id="basic-addon1">De: </span>
+                                              <input type="number" class="form-control" id="De" name="De" placeholder="(âge min)"/>
+                                              <span class="input-group-addon" id="basic-addon1">À: </span>
+                                              <input type="number" class="form-control" id="A" name="A" placeholder="(âge max)"/>
+                                            </div>
+                                            <!-- <select class="form-control" name="InputYear" id="InputYear">
                                                 <?php // Liste des années
                                                 echo '<option value="'.$donnees['Year'].'" selected="'.$donnees['Year'].'">'.$donnees['Year'].'</option>'; ?>
                                                 <?php
+
                                                       for ($i = date("Y"); $i <= 2500; $i++) {
                                                         echo "<option>$i</option>\n";
                                                       }
                                                 ?>
-                                            </select>
+                                            </select> -->
                                             <input type="text" class="form-control" id="InputDesignation" name="InputDesignation" placeholder="Nom" required>
 
                                         </div>
                                     </div>
-
                                     <button class="btn btn-success pull-right" type="submit" name="id" id="id" value=<?=$_GET['id']?>>Sauvegarder</button>
                             </form>
                             <!-- Registration form - END -->
@@ -91,9 +97,12 @@
 
             <!-- Custom Theme JavaScript -->
             <script src="../dist/js/sb-admin-2.js"></script>
-
+            <?php $age = explode(" - ", $donnees["Age"])
+             ?>
             <script type="text/javascript">
                 $(document).ready(function () {
+                    $('#De').val('<?=utf8_encode($age[0])?>');
+                    $('#A').val('<?=utf8_encode($age[1])?>');
                     $('#InputYear').val('<?=utf8_encode($donnees["Year"])?>');
                     $('#InputDesignation').val('<?=utf8_encode($donnees["Designation"])?>');
 

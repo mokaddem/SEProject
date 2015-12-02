@@ -55,7 +55,7 @@ function getTitreTable($get) {
         case "staff":
             return array("ID", "Nom", "Prénom", "Resp. cat","Né(e) le", "Créé le", "Action");
         case "category":
-            return array("ID", "Année", "Désignation", "Action");
+            return array("ID", "Tranche d'âge", "Désignation", "Action");
 
     }
 }
@@ -85,7 +85,7 @@ function getParam($get) {
         case "staff":
             return array("ID", "LastName", "FirstName", "ID_Cat", "BirthDate", "CreationDate");
         case "category":
-            return array("ID", "Year", "Designation");
+            return array("ID", "Age", "Designation");
 
     }
 }
@@ -175,4 +175,3 @@ function getTeam2($id) {
 }
 
 ?>
-
