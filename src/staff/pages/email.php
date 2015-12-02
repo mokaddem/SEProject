@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!-- Annuaire d'adresses e-mail des participants et propriétaitres (se trouvant dans l'onglet commmunication) -->
 <html lang="en">
+
 <head>
 
     <meta charset="utf-8">
@@ -28,9 +29,9 @@
 
 <body>
 
-<div id="wrapper">
+    <div id="wrapper">
 
-    <?php
+        <?php
     include("./html/header.php");
     include_once('php/BDD.php');
 
@@ -41,71 +42,73 @@
     ?>
 
 
-    <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
-        <div class="row">
-            <div class="page-header">
-                <h1>E-mails</h1>
-            </div>
-        </div>
-        <!-- Registration form - START -->
-        <div class="row">
-            <h3><i class="fa fa-users"></i> Particpants</h3>
-            <div id="listPart">
-                <p>
-                    <?php
-                    while ($row = $listPart->fetch_object()){ ?>
-                        <?php echo $row->Mail; ?>,
-                    <?php }
-                    ?>
-                </p>
+            <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
+                <div class="row">
+                    <div class="page-header">
+                        <h1>E-mails</h1>
+                    </div>
+                </div>
+                <!-- Registration form - START -->
 
-            </div>
-        </div>
-        <div class="row">
-            <h3><i class="fa fa-suitcase"></i> Propriétaires</h3>
-            <div id="listProp">
-                <p>
-                    <?php
+                <div class="row">
+                    <h3><i class="fa fa-suitcase"></i> Propriétaires</h3>
+                    <div id="listProp">
+                        <p>
+                            <?php
                     while ($row = $listProp->fetch_object()){ ?>
-                        <?php echo $row->Mail; ?>,
-                    <?php }
+                                <?php echo $row->Mail; ?>,
+                                    <?php }
                     ?>
-                </p>
+                        </p>
+                    </div>
+                    <!-- Registration form - END -->
+                </div>
+                <div class="row">
+                    <h3><i class="fa fa-users"></i> Particpants</h3>
+                    <div id="listPart">
+                        <p>
+                            <?php
+                    while ($row = $listPart->fetch_object()){ ?>
+                                <?php echo $row->Mail; ?>,
+                                    <?php }
+                    ?>
+                        </p>
+
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <!-- /.row -->
             </div>
-       <!-- Registration form - END -->
+            <!-- /#page-wrapper -->
+
     </div>
-    <br/><br/>
-    <!-- /.row -->
-</div>
-<!-- /#page-wrapper -->
+    <!-- /#wrapper -->
 
-</div>
-<!-- /#wrapper -->
+    <!-- jQuery -->
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
-<!-- jQuery -->
-<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
-<!-- Metis Menu Plugin JavaScript -->
-<script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="../dist/js/alicia.js"></script>
 
-<!-- Custom Theme JavaScript -->
-<script src="../dist/js/sb-admin-2.js"></script>
-<script src="../dist/js/alicia.js"></script>
+    <script src="http://cdn.jsdelivr.net/typeahead.js/0.9.3/typeahead.min.js"></script>
 
-<script src="http://cdn.jsdelivr.net/typeahead.js/0.9.3/typeahead.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-</script>
-<script src="js/contactStaff.js"></script>
-<script src="js/jqBootstrapValidation.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+    <script src="js/contactStaff.js"></script>
+    <script src="js/jqBootstrapValidation.js"></script>
 </body>
 <?php $listProp->free(); ?>
-<?php $listPart->free(); ?>
+    <?php $listPart->free(); ?>
 
 </html>
