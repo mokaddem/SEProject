@@ -44,8 +44,8 @@ $db->query("UPDATE SEProjectC.Team SET NbWinMatch=".$rep['count']." WHERE `Team`
 // Then we update the victorious teams in the corresponding group.
 $newWonNum = $rep['count'];
 
-$req1 = 'SELECT * FROM GroupSaturday WHERE '.$id1.' = ID_t1 or '.$id1.' = ID_t2 or '.$id1.'=  ID_t3 or '.$id1.'= ID_t4 or '.$id1.'= ID_t5';
-$req2 = 'SELECT * FROM GroupSunday WHERE '.$id1.' = ID_t1 or '.$id1.' = ID_t2 or '.$id1.'=  ID_t3 or '.$id1.'= ID_t4 or '.$id1.'= ID_t5 or '.$id1.'= ID_t6';
+$req1 = 'SELECT * FROM GroupSaturday WHERE '.$id1.' = ID_t1 or '.$id1.' = ID_t2 or '.$id1.'=  ID_t3 or '.$id1.'= ID_t4 or '.$id1.'= ID_t5 or '.$id1.' = ID_t6 or '.$id1.' = ID_t7 or '.$id1.' = ID_t8';
+$req2 = 'SELECT * FROM GroupSunday WHERE '.$id1.' = ID_t1 or '.$id1.' = ID_t2 or '.$id1.'=  ID_t3 or '.$id1.'= ID_t4 or '.$id1.'= ID_t5 or '.$id1.'= ID_t6 or '.$id1.' = ID_t7 or '.$id1.' = ID_t8';
 $reponseSam = $db->query($req1);
 $reponseDim = $db->query($req1);
 // Get ID_GS t1 t2 t3 ...

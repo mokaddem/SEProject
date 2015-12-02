@@ -140,7 +140,9 @@
                                             <a href="input-group-score.php">Saisir un score</a>
                                         <?php }
                                         ?>
-
+                                    </li>
+                                    <li>
+                                        <a href="group-winner.php?jour=sam&cat=1">Sélectionner les vainqueurs</a>
                                     </li>
                                     <li>
                                         <a href="group-overview.php?jour=sam">Vue d'ensemble</a>

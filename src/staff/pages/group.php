@@ -123,7 +123,7 @@
                                 //$row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'')->fetch_array();
                                 //extract($row);
                             }
-                            $lineNum = 2;
+                            $lineNum = 4;
                             $j = 0;
                             $s_a_m = "";
                             $k = 0;
