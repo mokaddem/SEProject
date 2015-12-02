@@ -55,8 +55,6 @@ function switch_players($id1, $id2, $day) {
             $req = $db->prepare($query);
             $req->bind_param("issiiiiii", $newID, $Date, $Hour, intval($id2), $team2ID, $score, $score, $terrain, $group_ID);
             $req->execute();
-
-            $req->free();
         }
         if ($i == 5 && $day=="sam") {
             break;
