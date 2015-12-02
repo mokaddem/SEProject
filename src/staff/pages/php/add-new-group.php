@@ -39,7 +39,7 @@ Mise à jour de l'historique
 
         $ID         = '';
         $date       = date('Y-m-d');
-        $hour       = date("8:30");
+        $hour       = date("08:30");
 				echo $hour;
         // $hour       = "8:30" //date("H:i");
 				// echo $hour;
@@ -97,7 +97,7 @@ Mise à jour de l'historique
 
         $ID         = '';
         $date       = date("Y-m-d");
-				$hour       = date("8:30");
+				$hour       = date("08:30");
 				//$hour       = date("H:i");
         $score1     = NULL;
         $score2     = NULL;
