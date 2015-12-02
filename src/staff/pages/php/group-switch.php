@@ -13,9 +13,9 @@ function switch_players($id1, $id2, $day) {
 
     // Getting group1
     if ($day == "sam" ) {
-        $req1 = 'SELECT * FROM GroupSaturday WHERE '.$id1.' = ID_t1 or '.$id1.' = ID_t2 or '.$id1.'=  ID_t3 or '.$id1.'= ID_t4 or '.$id1.'= ID_t5';
+        $req1 = 'SELECT * FROM GroupSaturday WHERE '.$id1.' = ID_t1 or '.$id1.' = ID_t2 or '.$id1.'=  ID_t3 or '.$id1.'= ID_t4 or '.$id1.'= ID_t5 or '.$id1.'= ID_t6 or '.$id1.'= ID_t7 or '.$id1.'= ID_t8';
     } elseif ($day == "dim") {
-        $req1 = 'SELECT * FROM GroupSunday WHERE '.$id1.' = ID_t1 or '.$id1.' = ID_t2 or '.$id1.'=  ID_t3 or '.$id1.'= ID_t4 or '.$id1.'= ID_t5 or '.$id1.'= ID_t6';
+        $req1 = 'SELECT * FROM GroupSunday WHERE '.$id1.' = ID_t1 or '.$id1.' = ID_t2 or '.$id1.'=  ID_t3 or '.$id1.'= ID_t4 or '.$id1.'= ID_t5 or '.$id1.'= ID_t6 or '.$id1.'= ID_t7 or '.$id1.'= ID_t8';
     }
     $reponse = $db->query($req1);
     // Get ID_GS t1 t2 t3 ...
@@ -23,9 +23,9 @@ function switch_players($id1, $id2, $day) {
 
     // Getting group2
     if ($day == "sam" ) {
-        $req2 = 'SELECT * FROM GroupSaturday WHERE '.$id2.' = ID_t1 or '.$id2.' = ID_t2 or '.$id2.'= ID_t3 or '.$id2.'= ID_t4 or '.$id2.'= ID_t5';
+        $req2 = 'SELECT * FROM GroupSaturday WHERE '.$id2.' = ID_t1 or '.$id2.' = ID_t2 or '.$id2.'= ID_t3 or '.$id2.'= ID_t4 or '.$id2.'= ID_t5 or '.$id2.'= ID_t6 or '.$id2.'= ID_t7 or '.$id2.'= ID_t8';
     } elseif ($day == "dim") {
-        $req2 = 'SELECT * FROM GroupSunday WHERE '.$id2.' = ID_t1 or '.$id2.' = ID_t2 or '.$id2.'= ID_t3 or '.$id2.'= ID_t4 or '.$id2.'= ID_t5 or '.$id2.'= ID_t6';
+        $req2 = 'SELECT * FROM GroupSunday WHERE '.$id2.' = ID_t1 or '.$id2.' = ID_t2 or '.$id2.'= ID_t3 or '.$id2.'= ID_t4 or '.$id2.'= ID_t5 or '.$id2.'= ID_t6 or '.$id2.'= ID_t7 or '.$id2.'= ID_t8';
     }
     $reponse = $db->query($req2);
     $group2 = $reponse ->fetch_array();
