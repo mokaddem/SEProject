@@ -60,15 +60,8 @@
                     <?php //} } ?>
                 </div> -->
 
-                <div class="row">
-                    <?php if (array_key_exists("generate", $_GET)) {?>
-                        <div class="col-lg-8 alert alert-success">
-                            <b>Opération réussite !</b>
-                            <?php if ($_GET["generate"] == "true") {?>
-                                Vos changements sont enregistrés. Vous pouvez à présent générer le tournoi de knock-off.
-                                <?php } ?>
-                        </div>
-                        <?php } ?>
+                <div>
+                    <div class="alert alert-success" id="popup" >Vos changements sont enregistrés. Vous pouvez à présent générer le tournoi de knock-off.</div>
                 </div>
 
 
@@ -91,7 +84,10 @@
                 <div class="row">
                     <nav class="navbar navbar-inverse navbar-perso navbar-fixed-bottom">
                         <div class="container">
-                                <input form="valider" type="submit" class="btn btn-info pull-right" value="Confirmer les vainqueurs" />
+                            <div class="navbar-form">
+                                <input id="confirmWinner" data-toggle="pList" data-target="#pList" form="valider" type="submit" class="btn btn-info pull-right" value="Confirmer les vainqueurs" />
+                            </div>
+                            <div id="pList"></div>
                         </div>
                     </nav>
                 </div>
@@ -186,9 +182,24 @@
     <script src="../dist/js/sb-admin-2.js"></script>
 
 
-    <script type="text/javascript">
-
+    <script>
+        $(document).ready(function () {
+            $('#popup').hide();
+            var generate = <?php if (isset($_GET['generate'])){ if($_GET['generate']==true){echo "true";}else{echo "false";}}else{echo "false";}  ?>;
+            if(generate==true){
+                saveWinner();
+            }
+        });
     </script>
+
+    <script>
+        function saveWinner(){
+            setTimeout(function() {  $('#popup').fadeIn('slow');}, 0);
+            setTimeout(function() {  $('#popup').fadeOut('slow');},3000);
+        }
+    </script>
+
+    <script type="text/javascript"> //document.getElementById("confirmWinner").addEventListener("click", saveWinner);</script>
 
 </body>
 <?php $reponse->free(); $groups->free(); ?>
