@@ -106,18 +106,7 @@
                             </span>
 
                             </form>
-
-
-                            <form class="navbar-left" action="./php/group-submit.php?jour=<?=$_GET['jour']?>&cat=<?=$_GET['cat']?>" method="post">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <!-- Ce bouton est là pour procéder à la vérification que tous les terrains sont différents.
-                                             Voir la fonction utilisée dans php/group-submit.php
-                                             Est-ce que ça fonctionne? -->
-                                        <input type="submit" class="btn btn-primary pull-right" value="Enregistrer Terrains" />
-                                    </div>
-                                </div>
-                            </form>
+                            
                             <br/><br/>
                             <div id="pList"></div>
                         </div>
@@ -229,7 +218,6 @@
                     <!-- Registration form - END -->
                 <!--</form>-->
                 </div>
-                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <!-- /.row -->
             </div>
             <!-- /#page-wrapper -->
