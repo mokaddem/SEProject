@@ -11,10 +11,11 @@ require_once('../add-new-history.php');
 //$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
 $db = BDconnect();
 $ID	 	= $_GET['id'];
-$Year   = $_GET['InputYear'];
+$Age   = $_GET['De']." - ".$_GET['A'];
+//$Year   = $_GET['InputYear'];
 $Designation = utf8_decode($_GET['InputDesignation']);
 
-$reponse = $db->query("UPDATE SEProjectC.Categorie SET Year = \"".$Year."\", Designation=\"" .$Designation. "\" WHERE ".$ID."= ID");
+$reponse = $db->query("UPDATE SEProjectC.Categorie SET Age = \"".$Age."\", Designation=\"" .$Designation. "\" WHERE ".$ID."= ID");
 
 addHistory($ID, utf8_decode("Catégorie"), "Edition");
 
