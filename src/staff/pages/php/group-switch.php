@@ -34,6 +34,7 @@ function switch_players($id1, $id2, $day) {
     $reponse = $db->query($req2);
     $group2 = $reponse->fetch_array();
 
+    if($id1<0 and $id2<0){return;}
     if($id1<0 or $id2<0) {
         $posId = $id1 > 0 ? $id1 : $id2;
         $posGroup = $id1 > 0 ? $group1 : $group2;
