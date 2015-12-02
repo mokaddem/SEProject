@@ -192,30 +192,30 @@
                                                 ?>
                                             <div class="form-group text-center">
                                                 <?php $color = "default";
+                                                $videOrNot = "-vide";
                                                 // N'AFFICHE RIEN SI LE NOM DU PREMIER JOUEUR EST VIDE
                                                 // MET EN BLEU ET UN LIEN VERS LA NOTE SI LE JOUEUR EN A UNE
-                                                if (($player['Note'] || $player2['Note']) && !empty($player['LastName'])) {
+                                                if (!empty($player['LastName'])) {
+                                                if (($player['Note'] || $player2['Note'])) {
                                                     $color = "primary";
-                                                    ?>
-                                                    <span data-toggle="pList" data-target="#pList" data-url="./php/group-note.php?id=<?=$teamID?>">
-                                                        <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>" value="<?=$teamID ?>">
-                                                            [<?=$teamID?>] <?=utf8_encode($player['LastName'])?> & <?=utf8_encode($player2['LastName'])?>
-                                                        </button>
-                                                        </span>
+                                                    $videOrNot = "";
+                                                }?>
                                                     <?php // N'AFFICHE RIEN SI LE NOM DU PREMIER JOUEUR EST VIDE
-                                                } elseif (!empty($player['LastName'])) { ?>
+                                                 ?>
+                                                  <span data-toggle="pList" data-target="#pList" data-url="./php/group-note<?=$videOrNot?>.php?id=<?=$teamID?>">
                                                     <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
                                                         [<?=$teamID?>]
                                                         <?=utf8_encode($player['LastName'])?> -
                                                         <?=utf8_encode($player2['LastName'])?>
                                                     </button>
+                                                  </span>
 
-                                                <?php } ?>
                                             </div>
 
                                             <?php
 
-                                        }?>
+                                        }
+                                        } ?>
                                     </div>
                                     <?php }
                                         } // End of k loop.
@@ -229,6 +229,7 @@
                     <!-- Registration form - END -->
                 <!--</form>-->
                 </div>
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <!-- /.row -->
             </div>
