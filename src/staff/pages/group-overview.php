@@ -79,11 +79,9 @@
                                                             <th>Equipe 3</th>
                                                             <th>Equipe 4</th>
                                                             <th>Equipe 5</th>
-                                                            <?php if ($_GET[ 'jour']=="dim"){ ?>
-                                                                <th>Equipe 6</th>
-                                                                <?php } ?>
-                                                                    <th>Vainqueurs 1</th>
-                                                                    <th>Vainqueurs 2</th>
+                                                            <th>Equipe 6</th>
+                                                            <th>Equipe 7</th>
+                                                            <th>Equipe 8</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -117,7 +115,7 @@
                                                             ?>
 
                                                             <?php
-                                                            if ($donnee != 0) { ?>
+                                                            if ($donnee != 0 and $donnee != NULL) { ?>
                                                                 <?=$donnee?> -
                                                                     <?= utf8_encode($player['LastName'])?> &
                                                                         <?=utf8_encode($player2['LastName'])?>

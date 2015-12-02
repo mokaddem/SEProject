@@ -38,8 +38,9 @@ Mise à jour de l'historique
     for ($i = 1; $i <= ($numberOfGroups*2)-1; $i++) {
         if ($i <= $numberOfGroups) {
             $group = $groups->fetch_array();
-            $teamID1 = $group["ID_vic1"];
-            $teamID2 = $group["ID_vic2"];
+            // ATTENTION: changer la manière dont on récupère les victorieux !!
+            //$teamID1 = $group["ID_vic1"];
+            //$teamID2 = $group["ID_vic2"];
             if ($teamID1 == 0 or $teamID2 == 0){
                 header("Location: ../knock-off-generate.php?error=no_team&jour=".$_GET['jour']);
                 return;
