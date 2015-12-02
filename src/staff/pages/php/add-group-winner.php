@@ -19,22 +19,18 @@ Mise à jour de l'historique
 	}
  	$groups = $db->query($req);
  	while($group = $groups->fetch_array()){
-		$db->query('UPDATE Team SET Group_Vic = 0 WHERE Team.ID.='.$group['ID_t1'].' or Team.ID.='.$group['ID_t2'].' or Team.ID.='.$group['ID_t3'].' or Team.ID.='.$group['ID_t4'].' or Team.ID.='.$group['ID_t5'].' or Team.ID.='.$group['ID_t6'].' or Team.ID.='.$group['ID_t7'].' or Team.ID.='.$group['ID_t8']);
+		// Les inval sont là parce que intval(NULL) = 0. Permet de comparer avec les groupe non complet.
+		$rep = $db->query('UPDATE Team SET Group_Vic = 0 WHERE ID='.intval($group['ID_t1']).' OR ID='.intval($group['ID_t2']).' OR ID='.intval($group['ID_t3']).' OR ID='.intval($group['ID_t4']).' OR ID='.intval($group['ID_t5']).' OR ID='.intval($group['ID_t6']).' OR ID='.intval($group['ID_t7']).' OR ID='.intval($group['ID_t8']));
+		// Pour chaque winner sélectionné dans group-winner, on met à jour.
+		$teamNum = 8;
+		for ($i = 1; $i <= $teamNum; $i++) {
+			if (isset($_GET["winner".$i."_".$group['ID']])) {
+				$teamID = $_GET["winner".$i."_".$group['ID']];
+				$db->query('UPDATE Team SET Group_Vic = 1 WHERE '.$teamID.'=ID');
+				// Mise à jour de l'historique
+				addHistory( $teamID, "Vainqueur - Team ".$teamID, "Ajout");
+			}
+		}
 	}
-
-	// Pour chaque winner sélectionné dans group-winner, on met à jour.
- 	$teamNum = 8;
- 	for ($i = 1; $i <= $teamNum; $i++) {
-		if (isset($_GET["winner".$i])) {
-			$teamID = $_GET["winner".$i];
-			$db->query('UPDATE Team SET Group_Vic = 1 WHERE '.$teamID.'=ID');
-			// Mise à jour de l'historique
-			addHistory( $teamID, "Vainqueur - Team ".$teamID, "Ajout");
-		} else {
-			$i = $teamNum;
-		} // On arrete la boucle.
-	}
-
-
- 	$sql1 = 'UPDATE Team SET Group_Vic = 1 WHERE '.$teamID.'=ID';
+ header("Location: ../group-winner.php?jour=".$_GET['jour']."&cat=".$_GET['cat']."&generate=true");
 ?>

@@ -65,7 +65,7 @@
                         <div class="col-lg-8 alert alert-success">
                             <b>Opération réussite !</b>
                             <?php if ($_GET["generate"] == "true") {?>
-                                Le choix des vainqueurs est terminé. Vous pouvez à présent générer le tournoi de knock-off.
+                                Vos changements sont enregistrés. Vous pouvez à présent générer le tournoi de knock-off.
                                 <?php } ?>
                         </div>
                         <?php } ?>
@@ -91,7 +91,6 @@
                 <div class="row">
                     <nav class="navbar navbar-inverse navbar-perso navbar-fixed-bottom">
                         <div class="container">
-                                <div></div>
                                 <input form="valider" type="submit" class="btn btn-info pull-right" value="Confirmer les vainqueurs" />
                         </div>
                     </nav>
@@ -137,10 +136,13 @@
 
                                                     $IDPersonne2 = $team['ID_Player2'];
                                                     $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne2 . "\"")->fetch_array();
-                                                    ?>
+                                                    $checked = "";
+                                                    if ($team['Group_Vic'] == 1){
+                                                        $checked = "checked";
+                                                    }                                                    ?>
                                                     <div class="form-group text-center">
-                                                        <?php $nameWin = "winner".$i;?>
-                                                        <label class="checkbox"><input type="checkbox" name=<?=$nameWin?> value=<?=$teamID?>>
+                                                        <?php $nameWin = "winner".$i."_".$group['ID'];?>
+                                                        <label class="checkbox"><input type="checkbox" name=<?=$nameWin?> value=<?=$teamID?> <?=$checked?>>
                                                             [<?= $teamID ?>] <?= utf8_encode($player['LastName']) ?>
                                                             & <?= utf8_encode($player2['LastName']) ?>
                                                         </label>

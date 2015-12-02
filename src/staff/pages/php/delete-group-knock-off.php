@@ -28,6 +28,8 @@ Mise à jour de l'historique
 		$match = $db->query("DELETE FROM `Match` WHERE Poule_ID=".$groupSun['ID']);
 	}
 
+ 	// None of the team is a victorious one now:
+ 	$db -> query("UPDATE TEAM SET Group_Vic = 0 WHERE Group_Vic = 1");
 
 	// Suppression
 	$db->query('DELETE FROM GroupSunday');
