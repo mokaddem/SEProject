@@ -91,7 +91,10 @@
                 <div class="row">
                     <nav class="navbar navbar-inverse navbar-perso navbar-fixed-bottom">
                         <div class="container">
-                                <input form="valider" type="submit" class="btn btn-info pull-right" value="Confirmer les vainqueurs" />
+                            <div class="navbar-form">
+                                <input data-toggle="pList" data-target="#pList" form="valider" type="submit" class="btn btn-info pull-right" value="Confirmer les vainqueurs" />
+                            </div>
+                            <div id="pList"></div>
                         </div>
                     </nav>
                 </div>
