@@ -20,7 +20,7 @@ Mise à jour de l'historique
         $ID	 	= '';
         $ID_terrain = $donnees['ID'];
 
-        $req->bind_param("iiiiiiiii", $ID, $ID_terrain, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5);
+        $req->bind_param("iiiiiii", $ID, $ID_terrain, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5);
         $req->execute();
 
         $reponse = $db->query("SELECT * FROM GroupSaturday WHERE ID_t1=".$ID_t1);
@@ -74,7 +74,7 @@ Mise à jour de l'historique
         $ID	 	= '';
         $ID_terrain = NULL;
 
-        $req->bind_param("iiiiiiiiii", $ID, $ID_terrain, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6);
+        $req->bind_param("iiiiiiii", $ID, $ID_terrain, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6);
         echo "Bind";
         $req->execute();
 

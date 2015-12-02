@@ -56,22 +56,17 @@
                     <?php if ($_GET["error"] == "no_selection") {?>
                     Veuillez selectionner un jour.
                 <?php } elseif ($_GET["error"] == "no_sam") { ?>
-                        Aucun groupe du samedi trouvé.
-                        Ils doivent être généré préalablement.
-                    <!--<a class="btn btn-danger pull-right" href="./reset.php">Supprimer</a>-->
+                        Aucun vainqueur du samedi trouvé. <br/>
+                        Ils doivent être choisis préalablement.
                 <?php } elseif ($_GET["error"] == "no_dim") { ?>
-                        Aucun groupe du dimanche trouvé.
-                        Ils doivent être généré préalablement.
-                        <!--<a class="btn btn-danger pull-right" href="./reset.php">Supprimer</a>-->
+                        Aucun vainqueur du dimanche trouvé. <br/>
+                        Ils doivent être choisis préalablement.
                     <?php } elseif ($_GET["error"] == "yes_sam") { ?>
                         Le tournoi du samedi a déjà été généré.
-                        <!--<a class="btn btn-danger pull-right" href="./reset.php">Supprimer</a>-->
                         <?php } elseif ($_GET["error"] == "yes_dim") { ?>
                         Le tournoi du dimanche a déjà été généré.
-                        <!--<a class="btn btn-danger pull-right" href="./reset.php">Supprimer</a>-->
                         <?php } elseif ($_GET["error"] == "no_team") { ?>
                         Au moins un des groupe n'a pas de vainqueur.
-                        <!--<a class="btn btn-danger pull-right" href="./reset.php">Supprimer</a>-->
                         <?php } ?>
                     </div>
             <?php } ?>
