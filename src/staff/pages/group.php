@@ -191,6 +191,10 @@
                                                 $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
                                                 ?>
                                             <div class="form-group text-center">
+                                            <?php $captainText = $teamID == $group['ID_Leader'] ? "fa fa-user text-success " : "fa fa-arrow-circle-o-up"; ?>
+                                            <?php if($group['ID_t1']>0){?>
+                                            <a href="php/promote-leader.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&teamID=<?=$teamID?>&cat=<?=$_GET['cat']?>" ><i class="<?=$captainText?>"></i></a>
+                                            <?php }?>
                                                 <?php $color = "default";
                                                 $videOrNot = "-vide";
                                                 // N'AFFICHE RIEN SI LE NOM DU PREMIER JOUEUR EST VIDE
@@ -391,7 +395,8 @@
             });
 
             setTimeout(function() {  $('#popupCreate').fadeIn('slow');}, 0);
-            setTimeout(function() {  $('#popupCreate').fadeOut('slow');},3000);
+            setTimeout(function() {  $('#popupCreate').fadeOut('slow');},2000);
+            setTimeout(function() {  location.reload();}, 500+2000);
         }
 
     </script>

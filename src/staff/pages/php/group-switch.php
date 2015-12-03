@@ -194,15 +194,29 @@ function addTeam($posId, $group, $day, $db)
 {
     $textDay = $day == "sam" ? "GroupSaturday" : "GroupSunday";
 
-    for ($i = 1; $i < 9; $i += 1) {
-        if ($group['ID_t' . $i] == null) {
-            $sql = 'UPDATE ' . $textDay . ' SET ID_t' . $i . ' = ' . $posId . ' WHERE ' . $group['ID'] . '=ID';
-            if ($db->query($sql) === TRUE) {
-                echo "Record Nullified successfully";
-            } else {
-                echo "Error updating record: " . $db->error;
+    if ($group['ID_t1'] == -1) {
+        $sql = 'UPDATE ' . $textDay . ' SET ID_t1' . ' = ' . $posId . ' WHERE ' . $group['ID'] . '=ID';
+        if ($db->query($sql) === TRUE) {
+            echo "Record Nullified successfully";
+            promote_leader($group['ID'], $posId, $db, $textDay);
+        } else {
+            echo "Error updating record: " . $db->error;
+        }
+    }
+    else {
+        for ($i = 1; $i < 9; $i += 1) {
+            if ($group['ID_t' . $i] == null) {
+                $sql = 'UPDATE ' . $textDay . ' SET ID_t' . $i . ' = ' . $posId . ' WHERE ' . $group['ID'] . '=ID';
+                if ($db->query($sql) === TRUE) {
+                    if ($i == 1) {//set the first team to the team Leader
+                        error_log("entered !!");
+                    }
+                    echo "Record Nullified successfully";
+                } else {
+                    echo "Error updating record: " . $db->error;
+                }
+                break;
             }
-            break;
         }
     }
 }
@@ -244,5 +258,9 @@ function removeGroup($posGroup, $db, $textDay){
     }
 }
 
+function promote_leader($idGroup, $teamID, $db, $textDay){
+    $sql = 'UPDATE '.$textDay.' SET ID_Leader='.$teamID.' WHERE '. $idGroup .'= ID';
+    $db->query($sql);
+}
 
 ?>
