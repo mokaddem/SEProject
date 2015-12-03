@@ -74,6 +74,13 @@
                 <div class="row">
                     <div class="col-lg-6">
                             <div id="listPart">
+                            <!-- Affichage des adresse propriétaire - START -->
+                            <h3><i class="fa fa-suitcase"></i> Propriétaires</h3>
+                            <?php foreach (array_unique($liste2) as $adresse => $nom) {?>
+                                <?=$nom?> - <?=$adresse?><br/>
+                            <?php } ?>
+                            
+                            <!-- Affichage des adresse propriétaire - END -->
                             <h3><i class="fa fa-users"></i> Particpants</h3>
                             <!-- Affichage des adresse des participants - END -->
                             <?php foreach (array_unique($liste1) as $adresse => $nom) {?>
@@ -81,13 +88,8 @@
                                     <?php } ?>
                             <!-- Affichage des adresse participant - END -->
 
-                            <!-- Affichage des adresse propriétaire - START -->
-                            <h3><i class="fa fa-suitcase"></i> Propriétaires</h3>
-                            <?php foreach (array_unique($liste2) as $adresse => $nom) {?>
-                                <?=$nom?> - <?=$adresse?><br/>
-                            <?php } ?>
-                            <!-- Affichage des adresse propriétaire - END -->
-                            <br/>
+                                
+                                <br/>
                             <br/>
                             </div>
                     </div>

@@ -95,7 +95,7 @@
                     <nav class="navbar navbar-inverse navbar-perso navbar-fixed-bottom">
                         <div class="container">
                             <form id="echanger" class="navbar-form" action="./php/group-switch.php?jour=<?=$_GET['jour']?>&cat=<?=$_GET['cat']?>" method="post">
-                                <input type="submit" class="btn btn-success pull-right" value="Echanger" />
+                                <input type="submit" class="btn btn-success pull-right" value="Echanger"/>
                                 <span class="pull-right"> </span><input type="text" class="form-control pull-right" id="idteam2" name="idteam2" placeholder="ID Equipe 2" required>
                                 <p class="pull-right"> </p><input type="text" class="form-control pull-right" id="idteam1" name="idteam1" placeholder="ID Equipe 1" required>
 
@@ -104,7 +104,10 @@
                                     <i class="fa fa-chevron-down"></i>
                                 </button>
                             </span>
-
+                                <input name="teamNumberG1" id="teamNumberG1" class="hidden" value="" />
+                                <input name="teamNumberG2" id="teamNumberG2" class="hidden" value="" />
+                                <input name="groupID1" id="groupID1" class="hidden" value="" />
+                                <input name="groupID2" id="groupID2" class="hidden" value="" />
                             </form>
 
                             <br/><br/>
@@ -139,9 +142,16 @@
                                     $j = 0;
                                 }
                                 if ($group != NULL){?>
-                                    <div class="col-lg-3 <?=$s_a_m?>"  name="divGroup" id="divGroup<?=$k?>" data-groupID="<?=$group['Gid']?>" data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>">
+                                    <?php
+                                    $teamNum=8;
+                                    error_log($group["ID_t".$teamNum]);
+                                    while($group["ID_t".$teamNum] == null){
+                                        $teamNum--;
+                                    }
+                                    ?>
+                                    <div class="col-lg-3 <?=$s_a_m?>"  name="divGroup" id="divGroup<?=$k?>" data-groupID="<?=$group['Gid']?>" data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>" data-teamNum="<?=$teamNum?>">
                                         <label><span class="fa fa-users"></span> Groupe
-                                            <?= $k?>
+                                            <?= $k;?> {<?=$group['Gid'];?>}
                                         </label>
                                         <div class="form-group" >
                                             <label><span class="fa fa-users"></span> Terrain</label>
@@ -158,15 +168,6 @@
                                             </select>
                                         </div>
 
-                                        <?php
-                                            if ($_GET['jour']=="sam"){
-                                                $teamNum = 5;
-                                            } elseif($_GET['jour']=="dim"){
-                                                $teamNum = 6;
-                                            } else{
-                                                $teamNum = 0;
-                                            }
-                                        ?>
                                         <label><span class="fa fa-users"></span> Equipes </label>
                                         <?php
                                         for ($i = 1; $i <= $teamNum; $i++) {
@@ -192,9 +193,9 @@
                                                     <?php // N'AFFICHE RIEN SI LE NOM DU PREMIER JOUEUR EST VIDE
                                                  ?>
                                                   <span data-toggle="pList" data-target="#pList" data-url="./php/group-note<?=$videOrNot?>.php?id=<?=$teamID?>">
-                                                    <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
+                                                    <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"];?>">
                                                         [<?=$teamID?>]
-                                                        <?=utf8_encode($player['LastName'])?> -
+                                                        <?=utf8_encode($player['LastName'])?> &
                                                         <?=utf8_encode($player2['LastName'])?>
                                                     </button>
                                                   </span>
@@ -205,6 +206,13 @@
 
                                         }
                                         } ?>
+
+                                        <?php
+                                            if($teamNum<8){ ?>
+                                                    <div class="form-group text-center">
+                                                        <button class="btn btn-default" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"]?>">Vide</button>
+                                                    </div>
+                                        <?php } ?>
                                     </div>
                                     <?php }
                                         } // End of k loop.
@@ -251,7 +259,7 @@
 
     <script>
         function checkForInvalideGroups(){
-            var i=0;
+           /* var i=0;
             while(document.getElementsByName("divGroup")[i] != null){
                 var Div = document.getElementsByName("divGroup")[i];
                 var numberOfTeamPresent = 0;
@@ -264,6 +272,14 @@
                 }
                 if(numberOfTeamPresent < 2){
                     HighlightTheDiv(document.getElementsByName("divGroup")[i]);
+                }
+                i++;
+            }*/
+            var i=0;
+            while(document.getElementsByName("divGroup")[i] != null){
+                var Div = document.getElementsByName("divGroup")[i];
+                if(Div.getAttribute('data-teamNum')<3){
+                    HighlightTheDiv(Div);
                 }
                 i++;
             }
@@ -289,13 +305,23 @@
 
         $("[data-toggle='idteam1']").on("click", function (event) {
             var id = $(this).attr('data-id');
+            var teamNum = $(this).attr('data-teamNum');
+            var groupNum = $(this).attr('data-groupNum');
             if (document.getElementById('idteam1').value == "") {
                 document.getElementById('idteam1').value = id;
+                document.getElementById('teamNumberG1').value = teamNum;
+                document.getElementById('groupID1').value = groupNum;
             } else if (document.getElementById('idteam1').value != "" && document.getElementById('idteam2').value != "") {
                 document.getElementById('idteam1').value = id;
+                document.getElementById('teamNumberG1').value = teamNum;
+                document.getElementById('groupID1').value = groupNum;
                 document.getElementById('idteam2').value = "";
+                document.getElementById('teamNumberG2').value = "";
+                document.getElementById('groupID2').value = "";
             } else {
                 document.getElementById('idteam2').value = id;
+                document.getElementById('teamNumberG2').value = teamNum;
+                document.getElementById('groupID2').value = groupNum;
             }
         });
     </script>

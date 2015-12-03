@@ -35,10 +35,12 @@ Mise à jour de l'historique
     }
 
     $terrains = $db->query("SELECT * FROM Terrain");
-    $terrain = $terrains->fetch_array(); // ATTENTION mettre différents terrains.
     $i = 1;
     $k = 0;
+    $teamID1 = 0;
+    $teamID2 = 0;
     $donneesKnock = 0;
+    $position = 1;
     foreach($vicTeams as $team){
         if ($k == 0){
             $team1 = $team;
@@ -55,15 +57,17 @@ Mise à jour de l'historique
             $hour = date("H:i");
             $score1 = 0;
             $score2 = 0;
-            //var_dump($terrains);
-
+            $terrain = $terrains->fetch_array();
+            if ($terrain == NULL){ // Si on a pas assez de terrains pour tous les matches.
+                $terrains = $db->query("SELECT * FROM Terrain");
+                $terrain = $terrains->fetch_array();
+            }
             $ID_Terrain = $terrain['ID'];
             $Poule_ID = 0;
 
             $reqMatch->bind_param("issiiiiii", $ID, $date, $hour, $teamID1, $teamID2, $score1, $score2, $ID_Terrain, $Poule_ID);
             $reqMatch->execute();
-            var_dump($reqMatch->fetch());
-            $reponseMatch = $db->query("SELECT * FROM `Match` WHERE ID_Terrain =".$ID_Terrain." AND ID_Equipe1=".$teamID1." AND ID_Equipe2=".$teamID2);
+            $reponseMatch = $db->query("SELECT * FROM `Match` WHERE ID_Terrain =".$ID_Terrain." AND ID_Equipe1=".$teamID1." AND ID_Equipe2=".$teamID2.' AND Poule_ID = 0');
             $donneesMatch = $reponseMatch->fetch_array();
                     // Mise à jour de l'historique
             addHistory($donneesMatch['ID'], "Match - Knock-off", "Ajout");
@@ -71,12 +75,58 @@ Mise à jour de l'historique
             $reqKnock = $db->prepare("INSERT INTO ".$table."(ID, ID_Match, `Position`, Category) VALUES(?, ?, ?, ?)");
             $ID = '';
             $ID_Match = $donneesMatch['ID'];
-            $reqKnock->bind_param("iiii", $ID, $ID_Match, $i, $_GET['InputCat']);
+            $reqKnock->bind_param("iiii", $ID, $ID_Match, $position, $_GET['InputCat']);
             $reqKnock->execute();
             $reponseKnock = $db->query("SELECT * FROM ".$table." WHERE ID_Match =".$ID_Match." AND `Position`=".$i);
             $donneesKnock = $reponseKnock->fetch_array();
+            $teamID1 = 0;
+            $teamID2 = 0;
+            $position++;
         }
     }
+
+    // On génère les matches des autres tours du tournoi.
+    // Dans un tournois à 16 équipes, il y en aura 15.
+    for ($k = $numberOfTeams/2; $k >= 1; $k = ceil($k/2)){
+        $reqMatch = $db->prepare('INSERT INTO `Match`(ID, `date`, `hour`, ID_Equipe1, ID_Equipe2, score1, score2, ID_Terrain, Poule_ID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)');
+        $ID	 	= '';
+        $date = date('Y-m-d');
+        $hour = date("H:i");
+        $score1 = 0;
+        $score2 = 0;
+        $terrain = $terrains->fetch_array();
+        if ($terrain == NULL){
+            $terrains = $db->query("SELECT * FROM Terrain");
+            $terrain = $terrains->fetch_array();
+        }
+        $ID_Terrain = $terrain['ID'];
+        $Poule_ID = 0;
+
+        $reqMatch->bind_param("issiiiiii", $ID, $date, $hour, $teamID1, $teamID2, $score1, $score2, $ID_Terrain, $Poule_ID);
+        $reqMatch->execute();
+        $reponseMatch = $db->query("SELECT * FROM `Match` WHERE ID_Terrain =".$ID_Terrain." AND ID_Equipe1=".$teamID1." AND ID_Equipe2=".$teamID2);
+        $donneesMatch = $reponseMatch->fetch_array();
+        // Mise à jour de l'historique
+        addHistory($donneesMatch['ID'], "Match - Knock-off", "Ajout");
+
+        $reqKnock = $db->prepare("INSERT INTO ".$table."(ID, ID_Match, `Position`, Category) VALUES(?, ?, ?, ?)");
+        $ID = '';
+        $ID_Match = $donneesMatch['ID'];
+        $reqKnock->bind_param("iiii", $ID, $ID_Match, $position, $_GET['InputCat']);
+        $reqKnock->execute();
+        $reponseKnock = $db->query("SELECT * FROM ".$table." WHERE ID_Match =".$ID_Match." AND `Position`=".$i);
+        $donneesKnock = $reponseKnock->fetch_array();
+
+        // Dans le cas où on a un nombre impaire d'équipe:
+        if ($teamID1 != 0){
+            $teamID1 = 0;
+        }
+        $position++;
+        if ($k == 1){ // To stop the infinite loop !
+            $k = 0;
+        }
+    }
+
     if ($_GET['jour'] == "sam"){
         // Mise à jour de l'historique
         addHistory($donneesKnock['ID'], "Knock-Off (Samedi)", "Création");
