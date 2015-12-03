@@ -33,33 +33,33 @@ L'architecture du site web est découpée en trois grande partie
 
 \begin{itemize}
 \item[$\bullet$] La page d'accueil est dans le dossier 'src'
-\item Les formulaires d'inscription sont dans 'src/inscription'
-\item L'interface staff est dans 'src/staff'
+\item[$\bullet$] Les formulaires d'inscription sont dans 'src/inscription'
+\item[$\bullet$] L'interface staff est dans 'src/staff'
 \end{itemize}\\
 
 Langages utilisés
 \begin{itemize}
-\item Côté Client: \begin{itemize}
-        \item HTML
-        \item CSS
-        \item Javascript
+\item[$\bullet$] Côté Client: \begin{itemize}
+        \item[$\bullet$] HTML
+        \item[$\bullet$] CSS
+        \item[$\bullet$] Javascript
     \end{itemize}
-\item Côté Serveur: \begin{itemize}
-        \item PHP
-        \item MySQL
+\item[$\bullet$] Côté Serveur: \begin{itemize}
+        \item[$\bullet$] PHP
+        \item[$\bullet$] MySQL
     \end{itemize}
 \end{itemize}\\
 
 Framework utilisés
 \begin{itemize}
-\item CSS: \begin{itemize}
-        \item Bootstrap
-        \item Font-Awesome
+\item[$\bullet$] CSS: \begin{itemize}
+        \item[$\bullet$] Bootstrap
+        \item[$\bullet$] Font-Awesome
     \end{itemize}
-\item JS: \begin{itemize}
-        \item Bootstrap
-        \item Datatable
-        \item jquery
+\item[$\bullet$] JS: \begin{itemize}
+        \item[$\bullet$] Bootstrap
+        \item[$\bullet$] Datatable
+        \item[$\bullet$] jquery
     \end{itemize}
 \end{itemize}\\
 La page d'accueil est directement située dans le dossier 'src' et correspond au fichier 'src/index.php'.
@@ -70,22 +70,35 @@ La page d'accueil est directement située dans le dossier 'src' et correspond au
 \section{Page d'accueil}
 
 \begin{itemize}
-\item Lien : src/index.php
-\item Style : 'src/css'
-\item JS : 'src/js'
-\item Images 'src/images'
+\item[$\bullet$] Lien : src/index.php
+\item[$\bullet$] Style : 'src/css'
+\item[$\bullet$] JS : 'src/js'
+\item[$\bullet$] Images 'src/images'
 \end{itemize}
 
 Le framework css utilisé bootstrap (bootstrap.min.css), et le template style.css\\
 Le css personnalisés sont et monStyle.css\\
-\fbox{CSS Accueil.png}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=1]{CSSAccueil.png}
+\caption{Styles utilisés pour la page d'accueil utilisateur}
+\end{figure}
+
 \\
 Les frameworks javascript utilisés sont bootstrap, jquery, jqBootstrapValidation.js, html5shiv.js
 et le template script.js\\
-\fbox{JS Accueil.png}\\
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=1]{JSAccueil.png}
+\caption{Scripts utilisés pour la page d'accueil utilisateur}
+\end{figure}
 
 Les fichiers contact\_me.js, contactStaff.js sont les fichiers permettant de faire fonctionner l'envoie de mail via la page d'accueil.\\
-\fbox{mail accueil.png}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=1]{mailAccueil.png}
+\caption{Interface pour envoie du mail au staff}
+\end{figure}
 
 \section{Inscription Joueurs \& Propriétaire}
 Les formulaires d'inscription pour les joueurs et les propriétaires sont situés dans le dossier 'src/inscription'. Ce sont les formulaires que les visiteurs utiliseront pour s'inscrire.\\
@@ -98,11 +111,11 @@ Le formulaire d'inscription de joueurs correspond au fichier 'src/inscription/in
 \subsection{Présentation}
 
 \begin{itemize}
-\item Lien : src/staff/pages
-\item Librairies/Dépendances : src/staff/bower\_components
-\item Style : 'src/staff/dist/css'
-\item JS : 'src/staff/dist/js'
-\item Outil génération PDF : 'src/staff/tcpdf'
+\item[$\bullet$] Lien : src/staff/pages
+\item[$\bullet$] Librairies/Dépendances : src/staff/bower\_components
+\item[$\bullet$] Style : 'src/staff/dist/css'
+\item[$\bullet$] JS : 'src/staff/dist/js'
+\item[$\bullet$] Outil génération PDF : 'src/staff/tcpdf'
 \end{itemize}
 
 Les librairies Bootstrap, font-awesome, et datatables ont été essentiellement utilisées.
@@ -130,16 +143,33 @@ Toutes les pages affichées se trouvent dans le dossier src/staff/pages/
 
 Le dossier 'html' contient un fichier 'header.php' qui correspond à l'en-tête visible sur toutes les pages de l'interface Staff.
 
-\fbox{header.png}
+% \begin{figure}[h!]
+% \centering
+% \includegraphics[scale=1]{liste.png}
+% \caption{En-tête visible sur toutes les pages de l'interface Staff}
+% \end{figure}
 
 
-\fbox{liste.png}
-\fbox{tableau.png}
-\fbox{modal.png}
-\fbox{form.png}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=1]{tableau.png}
+\caption{Exemple d'un tableau d'affichage list.php}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=1]{modal.png}
+\caption{Exemple d'une vue sur les détails (show.php)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=1]{form.png}
+\caption{Exemple d'une vue sur un ajout (player.php, owner.php...)}
+\end{figure}
 
 \begin{itemize}
-\item{\textbf{Participant: }}
+\item[$\bullet$]{\textbf{Participant: }}
 \begin{tabular}{ccc}
  Ajout & Edition & Affichage \\
  \hline
@@ -147,7 +177,7 @@ player.php & edit-player.php & list.php?=player\\
   &  & show.php?=player
 \end{tabular}
 
-\item{\textbf{Equipe: }}
+\item[$\bullet$]{\textbf{Equipe: }}
 \begin{tabular}{ccc}
  Ajout & Edition & Affichage \\
  \hline
@@ -155,7 +185,7 @@ team.php & edit-team.php & list-team.php\\
   & show-team.php
 \end{tabular}
 
-\item{\textbf{Match: }}
+\item[$\bullet$]{\textbf{Match: }}
 \begin{tabular}{ccc}
  Ajout & Edition & Affichage \\
  \hline
@@ -163,7 +193,7 @@ match.php & edit-match.php & list-match.php\\
   & & show-match.php
 \end{tabular}
 
-\item{\textbf{Catégorie: }}
+\item[$\bullet$]{\textbf{Catégorie: }}
 \begin{tabular}{ccc}
  Ajout & Edition & Affichage \\
  \hline
@@ -171,7 +201,7 @@ category.php & edit-category.php & list.php?=category\\
   &  & show.php?=category
 \end{tabular}
 
-\item{\textbf{Propriétaire: }
+\item[$\bullet$]{\textbf{Propriétaire: }
 \begin{tabular}{ccc}
  Ajout & Edition & Affichage \\
  \hline
@@ -179,7 +209,7 @@ owner.php & edit-owner.php & list.php?=owner\\
   &  & show.php?=owner
 \end{tabular}
 
-\item{\textbf{Terrain: }
+\item[$\bullet$]{\textbf{Terrain: }
 \begin{tabular}{ccc}
  Ajout & Edition & Affichage \\
  \hline
@@ -187,7 +217,7 @@ court.php & edit-court.php & list.php?=court\\
   &  & show.php?=court
 \end{tabular}
 
-\item{\textbf{Staff: }
+\item[$\bullet$]{\textbf{Staff: }
 \begin{tabular}{ccc}
  Ajout & Edition & Affichage \\
  \hline
@@ -195,7 +225,7 @@ court.php & edit-court.php & list.php?=court\\
   &  & show.php?=court
 \end{tabular}
 
-\item{\textbf{Extra: }}
+\item[$\bullet$]{\textbf{Extra: }}
 \begin{tabular}{ccc}
  Ajout & Edition & Affichage \\
  \hline
@@ -215,56 +245,56 @@ Toutes les modifications de la base de donnée affichées se trouvent dans le do
 
 
 \begin{itemize}
-\item{\textbf{Participant: }}
+\item[$\bullet$]{\textbf{Participant: }}
 \begin{tabular}{ccc}
  Ajout & Edition & Suppresion \\
  \hline
 add-new-pair.php & edit-player.php & delete-player.php\\
 \end{tabular}
 
-\item{\textbf{Equipe: }}
+\item[$\bullet$]{\textbf{Equipe: }}
 \begin{tabular}{ccc}
  Ajout & Edition & Suppresion \\
  \hline
 add-new-team.php & edit-team.php & delete-team.php\\
 \end{tabular}
 
-\item{\textbf{Match: }}
+\item[$\bullet$]{\textbf{Match: }}
 \begin{tabular}{ccc}
  Ajout & Edition & Suppresion \\
  \hline
 add-new-match.php & edit-match.php & delete-match.php\\
 \end{tabular}
 
-\item{\textbf{Catégorie: }}
+\item[$\bullet$]{\textbf{Catégorie: }}
 \begin{tabular}{ccc}
  Ajout & Edition & Suppresion \\
  \hline
 add-new-category.php & edit-category.php & delete-category.php\\
 \end{tabular}
 
-\item{\textbf{Propriétaire: }
+\item[$\bullet$]{\textbf{Propriétaire: }
 \begin{tabular}{ccc}
  Ajout & Edition & Suppresion \\
  \hline
 add-new-owner.php & edit-owner.php & delete-owner.php\\
 \end{tabular}
 
-\item{\textbf{Terrain: }
+\item[$\bullet$]{\textbf{Terrain: }
 \begin{tabular}{ccc}
  Ajout & Edition & Suppresion \\
  \hline
 add-new-court.php & edit-court.php & delete-court.php\\
 \end{tabular}
 
-\item{\textbf{Staff:}
+\item[$\bullet$]{\textbf{Staff:}
 \begin{tabular}{ccc}
  Ajout & Edition & Suppresion \\
  \hline
 - & - & - \\
 \end{tabular}
 
-\item{\textbf{Extra: }
+\item[$\bullet$]{\textbf{Extra: }
 \begin{tabular}{ccc}
  Ajout & Edition & Suppresion \\
  \hline
@@ -280,13 +310,62 @@ fonctions pour avoir un code plus découpé
 \fbox{arborescence inc.png}
 
 \section{Base de données}
-La Base de données utilisées et en MySQL
+La Base de données utilisées est en MySQL
 \fbox{diagramme classe.png}
+\fbox{phpMyAdmin.png}
+
+La  base  de  données  est  de  type SQL. Elle  correspond  au  fichier  de  format  ‘.sql’  dans  le dossier ‘docs’.
+
+La  base  de  données  contient  les  différentes  tables  nécessaires  au  fonctionnement  de l’application :
+
+\begin{itemize}
+\item[$\bullet$]{\textbf{Categorie :}} contient les différentes catégories possibles (une catégorie est attribuée
+ à une équipe en fonction de l’âge du plus vieux des membres)
+
+\item[$\bullet$]{\textbf{Extras :}} contient les extras (activités annexes proposées au joueurs)
+
+\item[$\bullet$]{\textbf{GlobalVariables :}} contient différentes variables (telles que les contenus de mail ou le prix du tournoi)
+
+\item[$\bullet$]{\textbf{GroupSaturday :}} contient les poules pour le samedi
+
+\item[$\bullet$]{\textbf{GroupSunday :}} contient les poules pour le dimanche
+
+\item[$\bullet$]{\textbf{History  :}}  contient  toutes  les  modifications  apportées  à  la  base  de  données (ajout, édition, suppression)
+
+\item[$\bullet$]{\textbf{KnockoffSaturday :}} contient tous les matchs de Knock­Off du samedi (liée à la table Match)
+
+\item[$\bullet$]{\textbf{KnockoffSunday  :}}  contient  tous  les  matchs  de  Knock­Off  du  dimanche  (liée  à  la table Match)
+
+\item[$\bullet$]{\textbf{Match :}} contient tous les matchs du tournoi
+
+\item[$\bullet$]{\textbf{Owner :}} contient toutes les informations relatives aux propriétaires inscrits (liée à la table Personne)
+
+\item[$\bullet$]{\textbf{Personne  :}}  contient  toutes  les  informations  relatives  aux  personnes  inscrites (joueurs, propriétaires, staff)
+
+\item[$\bullet$]{\textbf{PersonneExtra :}} contient les choix d’extras des joueurs (liée à la table Personne)
+
+\item[$\bullet$]{\textbf{Player :}} contient toutes les informations relatives aux joueurs inscrits
+
+\item[$\bullet$]{\textbf{RankingTextToIntBelgian :}} contient tous les rangs officiels possibles pour un joueur classé
+
+\item[$\bullet$]{\textbf{Staff  :}}  contient  toutes  les  informations  relatives  aux  membres  du  staff  enregistrés (liée à la table Personne)
+
+\item[$\bullet$]{\textbf{Team :}} contient toutes les équipes inscrites
+
+\item[$\bullet$]{\textbf{Terrain :}} contient tous les terrains enregistrés (liée à la table Owner)
+\end{itemize}
+
 
 \section{Test}
+\subsection{Ghost Inspector}
+
+Logiciel payant limité à 100 test par mois. Facilité de générer des scripts\\
+\fbox{ghost.png}
+
 \subsection{Selenium}
 
-\subsection{Ghost Inspector}
+Executer un script\\
+\fbox{selenium.png}
 
 \section{Conclusion}
 ``I always thought something was fundamentally wrong with the universe'' \citep{adams1995hitchhiker}
