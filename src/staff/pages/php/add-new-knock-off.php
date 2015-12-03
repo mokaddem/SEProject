@@ -13,15 +13,15 @@ Mise à jour de l'historique
 
     if ($_GET['jour'] == "sam"){
         $table = "KnockoffSaturday";
-        $vicTeams = $db->query('SELECT * FROM GroupSaturday, Team WHERE Team.Group_Vic = 1 AND Team.ID_Cat = '.$_GET['InputCat'].' AND (GroupSaturday.ID_t1 = Team.ID OR GroupSaturday.ID_t2 = Team.ID OR GroupSaturday.ID_t3 = Team.ID OR GroupSaturday.ID_t4 = Team.ID OR GroupSaturday.ID_t5 = Team.ID OR GroupSaturday.ID_t6 = Team.ID OR GroupSaturday.ID_t7 = Team.ID OR GroupSaturday.ID_t8 = Team.ID)');
+        $vicTeams = $db->query('SELECT * FROM GroupSaturday, Team WHERE Team.Group_Vic = 1 AND Team.ID_Cat = '.$_GET['InputCat'].' AND (GroupSaturday.ID_t1 = Team.ID OR GroupSaturday.ID_t2 = Team.ID OR GroupSaturday.ID_t3 = Team.ID OR GroupSaturday.ID_t4 = Team.ID OR GroupSaturday.ID_t5 = Team.ID OR GroupSaturday.ID_t6 = Team.ID OR GroupSaturday.ID_t7 = Team.ID OR GroupSaturday.ID_t8 = Team.ID) ORDER BY Team.AvgRanking');
         $row = $db->query('SELECT COUNT(Team.ID) as numberOfTeams FROM GroupSaturday, Team WHERE Team.Group_Vic = 1 AND Team.ID_Cat = '.$_GET['InputCat'].' AND (GroupSaturday.ID_t1 = Team.ID OR GroupSaturday.ID_t2 = Team.ID OR GroupSaturday.ID_t3 = Team.ID OR GroupSaturday.ID_t4 = Team.ID OR GroupSaturday.ID_t5 = Team.ID OR GroupSaturday.ID_t6 = Team.ID OR GroupSaturday.ID_t7 = Team.ID OR GroupSaturday.ID_t8 = Team.ID)');
         extract($row->fetch_array());
         $row->free();
     } else{
         $table = "KnockoffSunday";
-        $vicTeams = $db->query('SELECT * FROM GroupSunday, Team WHERE ');
-        $row = $db->query('SELECT COUNT(ID) as numberOfTeams FROM Team WHERE Group_Vic = 1')->fetch_array();
-        extract($row);
+        $vicTeams = $db->query('SELECT * FROM GroupSunday, Team WHERE Team.Group_Vic = 1 AND Team.ID_Cat = '.$_GET['InputCat'].' AND (GroupSunday.ID_t1 = Team.ID OR GroupSunday.ID_t2 = Team.ID OR GroupSunday.ID_t3 = Team.ID OR GroupSunday.ID_t4 = Team.ID OR GroupSunday.ID_t5 = Team.ID OR GroupSunday.ID_t6 = Team.ID OR GroupSunday.ID_t7 = Team.ID OR GroupSunday.ID_t8 = Team.ID) ORDER BY Team.AvgRanking');
+        $row = $db->query('SELECT COUNT(Team.ID) as numberOfTeams FROM GroupSunday, Team WHERE Team.Group_Vic = 1 AND Team.ID_Cat = '.$_GET['InputCat'].' AND (GroupSunday.ID_t1 = Team.ID OR GroupSunday.ID_t2 = Team.ID OR GroupSunday.ID_t3 = Team.ID OR GroupSunday.ID_t4 = Team.ID OR GroupSunday.ID_t5 = Team.ID OR GroupSunday.ID_t6 = Team.ID OR GroupSunday.ID_t7 = Team.ID OR GroupSunday.ID_t8 = Team.ID)');
+        extract($row->fetch_array());
         $row->free();
     }
     $reponse = $db->query("SELECT * FROM ".$table);
@@ -34,14 +34,29 @@ Mise à jour de l'historique
         return;
     }
 
+    $vicTeamsGoodOrder = array($numberOfTeams);
+    $i = 0;
+    $k = 0;
+    foreach($vicTeams as $team){
+        if ($k == 0){
+            $vicTeamsGoodOrder[$i] = $team;
+            $k = 1;
+        } elseif ($k == 1){
+            $vicTeamsGoodOrder[$numberOfTeams-1-$i] = $team;
+            $i++;
+            $k = 0;
+        }
+    }
+
+
     $terrains = $db->query("SELECT * FROM Terrain");
-    $i = 1;
     $k = 0;
     $teamID1 = 0;
     $teamID2 = 0;
     $donneesKnock = 0;
     $position = 1;
-    foreach($vicTeams as $team){
+    for($i = 0; $i < $numberOfTeams; $i++){
+        $team = $vicTeamsGoodOrder[$i];
         if ($k == 0){
             $team1 = $team;
             $teamID1 = $team1['ID'];

@@ -80,14 +80,14 @@
                                                         <tr>
                                                             <th>ID</th>
                                                             <th>Terrain</th>
-                                                            <th>Equipe 1</th>
-                                                            <th>Equipe 2</th>
-                                                            <th>Equipe 3</th>
-                                                            <th>Equipe 4</th>
-                                                            <th>Equipe 5</th>
-                                                            <th>Equipe 6</th>
-                                                            <th>Equipe 7</th>
-                                                            <th>Equipe 8</th>
+                                                            <th>1</th>
+                                                            <th>2</th>
+                                                            <th>3</th>
+                                                            <th>4</th>
+                                                            <th>5</th>
+                                                            <th>6</th>
+                                                            <th>7</th>
+                                                            <th>8</th>
                                                             <th>Leader</th>
                                                             <th>Action</th>
                                                         </tr>
@@ -101,9 +101,9 @@ if ($_GET[ 'jour']=="sam" ){
 }
 foreach ($listDonnees as $donnees) { $i = 1; ?>
                 <tr class="odd gradeX text-center">
-                    <?php foreach ($donnees as $donnee) { ?>
-                        <td>
-                            <?php
+                    <?php foreach ($donnees as $donnee) {
+                    if ($i != 12) {
+                        echo "<td>";
             if ($i == 2 and $donnee != NULL) {
                 $terrain = $db->query("SELECT * FROM Terrain WHERE ID=\"" . $donnee . "\"")->fetch_array();
                 ?>
@@ -112,7 +112,7 @@ foreach ($listDonnees as $donnees) { $i = 1; ?>
                                         <?=utf8_encode($terrain['Note'])?>
                                 </option>
                                 <?php
-            }elseif($i > 2 and $donnee != NULL) {
+            }elseif($i > 2 and $donnee != NULL and $i < 12) {
                 $team = $db->query("SELECT * FROM Team WHERE ID=\"" . $donnee . "\"")->fetch_array();
                 $IDPersonne = $team['ID_Player1'];
                 $player = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne . "\"")->fetch_array();
@@ -123,8 +123,8 @@ foreach ($listDonnees as $donnees) { $i = 1; ?>
 
                 <?php
                 if ($donnee != 0 and $donnee != NULL) { ?>
-                    <?=$donnee?> -
-                        <?= utf8_encode($player['LastName'])?> &
+                    <!--<?=$donnee?> -
+-->                        <?= utf8_encode($player['LastName'])?> &
                             <?=utf8_encode($player2['LastName'])?>
                 <?php } else { ?>
                     Aucun
@@ -132,7 +132,7 @@ foreach ($listDonnees as $donnees) { $i = 1; ?>
                             <?php
             } else{
                 echo $donnee;
-            }
+            }}
         ?>
                         </td>
                         <?php    $i++; }
