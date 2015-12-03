@@ -80,14 +80,14 @@
                                                         <tr>
                                                             <th>ID</th>
                                                             <th>Terrain</th>
-                                                            <th>Equipe 1</th>
-                                                            <th>Equipe 2</th>
-                                                            <th>Equipe 3</th>
-                                                            <th>Equipe 4</th>
-                                                            <th>Equipe 5</th>
-                                                            <th>Equipe 6</th>
-                                                            <th>Equipe 7</th>
-                                                            <th>Equipe 8</th>
+                                                            <th>1</th>
+                                                            <th>2</th>
+                                                            <th>3</th>
+                                                            <th>4</th>
+                                                            <th>5</th>
+                                                            <th>6</th>
+                                                            <th>7</th>
+                                                            <th>8</th>
                                                             <th>Leader</th>
                                                             <th>Action</th>
                                                         </tr>
