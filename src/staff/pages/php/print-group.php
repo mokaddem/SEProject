@@ -54,8 +54,6 @@ include_once('BDD.php');
 $db = BDconnect();
 $id = $_GET['id'];
 
-
-
 $html = <<<EOD
 <h3 align="center">Tournoi</h3>
 <h1 align="center">Charles de Lorraine</h1>
