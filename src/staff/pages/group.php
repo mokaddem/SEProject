@@ -151,7 +151,7 @@
                                     ?>
                                     <div class="col-lg-3 <?=$s_a_m?>"  name="divGroup" id="divGroup<?=$k?>" data-groupID="<?=$group['Gid']?>" data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>" data-teamNum="<?=$teamNum?>">
                                         <label><span class="fa fa-users"></span> Groupe
-                                            <?= $k?>
+                                            <?= $k;?> {<?=$group['Gid'];?>}
                                         </label>
                                         <div class="form-group" >
                                             <label><span class="fa fa-users"></span> Terrain</label>
