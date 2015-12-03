@@ -11,14 +11,11 @@ Mise à jour de l'historique
 
 		// Generation de la poule
 		$db = BDconnect();
-    function insertSam($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $groupSize){
-        $reponse = $db->query("SELECT * FROM Terrain");
-        $donnees = $reponse->fetch_array();
+    function insertSam($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $groupSize, $ID_Terrain){
 
         $req = $db->prepare("INSERT INTO GroupSaturday(ID, ID_terrain, ID_t1, ID_t2, ID_t3, ID_t4, ID_t5, ID_Cat) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
 
         $ID	 	= '';
-        $ID_terrain = $donnees['ID'];
 
         $req->bind_param("iiiiiiii", $ID, $ID_terrain, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $_GET['InputCat']);
         $req->execute();
@@ -43,7 +40,6 @@ Mise à jour de l'historique
 				// echo $hour;
         $score1     = 0;
         $score2     = 0;
-        $ID_Terrain = $ID_terrain;
         $Poule_ID   = $donnees['ID'];
 
         $ID_Equipes = array($ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5);
@@ -72,7 +68,6 @@ Mise à jour de l'historique
         $req = $db->prepare("INSERT INTO GroupSunday(ID, ID_terrain, ID_t1, ID_t2, ID_t3, ID_t4, ID_t5, ID_t6, ID_Cat) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
         echo "Prepare";
         $ID	 	= '';
-        $ID_terrain = NULL;
 
         $req->bind_param("iiiiiiiii", $ID, $ID_terrain, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $_GET['InputCat']);
         echo "Bind";
@@ -97,7 +92,6 @@ Mise à jour de l'historique
 				//$hour       = date("H:i");
         $score1     = NULL;
         $score2     = NULL;
-        $ID_Terrain = $ID_terrain;
         $Poule_ID   = $donnees['ID'];
 
         $ID_Equipes = array($ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6);
@@ -136,8 +130,7 @@ Mise à jour de l'historique
 
         }
 
-        $reponse = $db->query("SELECT * FROM `GroupSaturday`");
-
+        $terrains = $db->query("SELECT * FROM Terrain");
         $reponseTeams = $db->query('SELECT * FROM Team WHERE ID_Cat='.$_GET['InputCat'].'');
         $i=1;
         $ID_t1 = NULL; $ID_t2 = NULL; $ID_t3 = NULL; $ID_t4 = NULL; $ID_t5 = NULL;
@@ -152,17 +145,31 @@ Mise à jour de l'historique
                 $ID_t4 = $team['ID'];
             } if($i == 5){
                 $ID_t5 = $team['ID'];
-                $Poule_ID = insertSam($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $i);
+
+                $terrain = $terrains->fetch_array();
+                if ($terrain == NULL){ // Si on a pas assez de terrains pour tous les matches.
+                    $terrains = $db->query("SELECT * FROM Terrain");
+                    $terrain = $terrains->fetch_array();
+                }
+                $ID_Terrain = $terrain['ID'];
+
+                $Poule_ID = insertSam($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $i, $ID_Terrain);
                 $i = 0;
                 $ID_t1 = NULL; $ID_t2 = NULL; $ID_t3 = NULL; $ID_t4 = NULL; $ID_t5 = NULL;
             }
             $i++;
         }
         if ($i > 1 and $i <= 5){
-            $Poule_ID = insertSam($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $i-1);
+            $terrain = $terrains->fetch_array();
+            if ($terrain == NULL){ // Si on a pas assez de terrains pour tous les matches.
+                $terrains = $db->query("SELECT * FROM Terrain");
+                $terrain = $terrains->fetch_array();
+            }
+            $ID_Terrain = $terrain['ID'];
+
+            $Poule_ID = insertSam($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $i-1, $ID_Terrain);
         }
 				$getPoules->free();
-				$reponse->free();
 
         header("Location: ../group.php?jour=sam&generate=true&cat=".$_GET['InputCat']);
         return;
@@ -181,8 +188,7 @@ Mise à jour de l'historique
 
         }
 
-
-        $reponse = $db->query("SELECT * FROM `GroupSunday`");
+        $terrains = $db->query("SELECT * FROM Terrain");
 
         $reponseTeams = $db->query('SELECT * FROM Team WHERE ID_Cat='.$_GET['InputCat'].'');
         $i=1;
@@ -200,17 +206,31 @@ Mise à jour de l'historique
                 $ID_t5 = $team['ID'];
             } if($i == 6){
                 $ID_t6 = $team['ID'];
-                $Poule_ID = insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $i);
+
+                $terrain = $terrains->fetch_array();
+                if ($terrain == NULL){ // Si on a pas assez de terrains pour tous les matches.
+                    $terrains = $db->query("SELECT * FROM Terrain");
+                    $terrain = $terrains->fetch_array();
+                }
+                $ID_Terrain = $terrain['ID'];
+
+                $Poule_ID = insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $i, $ID_Terrain);
                 $i = 0;
                 $ID_t1 = NULL; $ID_t2 = NULL; $ID_t3 = NULL; $ID_t4 = NULL; $ID_t5 = NULL;
             }
             $i++;
         }
         if ($i > 1 and $i <= 6){
-            $Poule_ID = insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $i-1);
+            $terrain = $terrains->fetch_array();
+            if ($terrain == NULL){ // Si on a pas assez de terrains pour tous les matches.
+                $terrains = $db->query("SELECT * FROM Terrain");
+                $terrain = $terrains->fetch_array();
+            }
+            $ID_Terrain = $terrain['ID'];
+
+            $Poule_ID = insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $i-1, $ID_Terrain);
         }
 				$getPoules->free();
-				$reponse->free();
         header("Location: ../group.php?jour=dim&generate=true&cat=".$_GET['InputCat']);
         return;
     }
