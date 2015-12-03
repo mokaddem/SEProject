@@ -136,7 +136,6 @@
                             $s_a_m = "";
                             $k = 0;
                             while($group = $groups->fetch_array()){//k loop
-                                error_log($group["Gid"]);
                                 $k++;
                                 if ($s_a_m == "server-action-menu") {
                                     $s_a_m = "server-other-menu";
@@ -152,7 +151,6 @@
                                 }
                                 if ($group != NULL){?>
                                     <?php
-                                    error_log("group not null");
                                     $teamNum=8;
                                     while($group["ID_t".$teamNum] == null){
                                         $teamNum--;
@@ -181,7 +179,6 @@
                                         <label><span class="fa fa-users"></span> Equipes </label>
                                         <?php
                                         for ($i = 1; $i <= $teamNum; $i++) {
-                                                error_log("i=".$i);
                                                 $teamID = $group["ID_t".$i];
                                                 $team = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"")->fetch_array();
                                                 $IDPersonne = $team['ID_Player1'];

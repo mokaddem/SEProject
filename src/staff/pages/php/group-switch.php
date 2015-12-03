@@ -42,9 +42,9 @@ function switch_players($id1, $id2, $day) {
         $teamNumberNeg = $id1 > 0 ? $teamNumberG2 : $teamNumberG1;
         $teamNumberPos = $id1 > 0 ? $teamNumberG1 : $teamNumberG2;
 
-        $PositionNumber = removeTeam($posId, $posGroup, $day, $teamNumberPos, $db);
+        $arrayRep = removeTeam($posId, $posGroup, $day, $teamNumberPos, $db);
         deleteMatch($posId, $posGroup, $db);
-        shiftTeams($PositionNumber,  $posGroup, $day, $teamNumberPos, $db);
+        shiftTeams($arrayRep[0],  $posGroup, $day, $teamNumberPos, $arrayRep[1], $db);
         addTeam($posId, $negGroup, $day, $db);
         addMatch($posId, $negGroup, $teamNumberNeg, $db);
     }
@@ -162,11 +162,14 @@ function removeTeam($posId, $group, $day, $teamNumberPos, $db){
     } else {
         echo "Error updating record: " . $db->error;
     }
-
-    return $savedi;
+    $flagLeaderMoved = false;
+    if($group['ID_Leader']==$posId) {//we moved the leader
+       $flagLeaderMoved = true;
+    }
+    return array($savedi, $flagLeaderMoved);
 }
 
-function shiftTeams($PositionNumber, $posGroup, $day, $teamNumberPos, $db){
+function shiftTeams($PositionNumber, $posGroup, $day, $teamNumberPos, $flagLeaderMoved, $db){
     $textDay = $day == "sam" ? "GroupSaturday" : "GroupSunday";
     $queryT="SELECT * FROM ".$textDay." WHERE ID=".$posGroup['ID'];
     $qer = $db->query($queryT);
@@ -187,6 +190,10 @@ function shiftTeams($PositionNumber, $posGroup, $day, $teamNumberPos, $db){
     $newGroup = $reponse->fetch_array();
     if($newGroup['ID_t1'] == 0){
         removeGroup($posGroup, $db, $textDay);
+    }
+    else{
+        $sql = 'UPDATE '.$textDay.' SET ID_Leader='.$newGroup['ID_t1'].' WHERE '. $posGroup['ID'] .'= ID';
+        $db->query($sql);
     }
 }
 
@@ -209,7 +216,6 @@ function addTeam($posId, $group, $day, $db)
                 $sql = 'UPDATE ' . $textDay . ' SET ID_t' . $i . ' = ' . $posId . ' WHERE ' . $group['ID'] . '=ID';
                 if ($db->query($sql) === TRUE) {
                     if ($i == 1) {//set the first team to the team Leader
-                        error_log("entered !!");
                     }
                     echo "Record Nullified successfully";
                 } else {
