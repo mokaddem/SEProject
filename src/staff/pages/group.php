@@ -144,7 +144,6 @@
                                 if ($group != NULL){?>
                                     <?php
                                     $teamNum=8;
-                                    error_log($group["ID_t".$teamNum]);
                                     while($group["ID_t".$teamNum] == null){
                                         $teamNum--;
                                     }
