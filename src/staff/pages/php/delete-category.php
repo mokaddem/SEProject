@@ -10,7 +10,7 @@ Mise à jour de l'historique
 
   if ($_GET['id'] == 1) {
     // vous ne devez pas supprimer l'extra id=1
-    header("Location: ../list.php?type=category");
+    header("Location: ../list.php?type=category&error=1");
     return;
   }
 

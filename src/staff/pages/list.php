@@ -75,10 +75,15 @@ list.php?type=staff
                         <!-- /.col-lg-12 -->
                     </div>
                     <?php
-                        if (array_key_exists("error", $_GET)) {?>
-                        <p class="alert alert-danger"> Vous ne pouvez pas supprimer
-                            <?=$_GET['type']?> car utilisé dans une autre rubrique</p>
-                        <?php }
+                        if (array_key_exists("error", $_GET)) {
+                          if ($_GET['error'] == "creation") {?>
+                            <p class="alert alert-danger"> Vous ne pouvez pas supprimer
+                                <?=$_GET['type']?> car utilisé dans une autre rubrique</p>
+                        <?php } elseif ($_GET['error'] == "1") { ?>
+                          <p class="alert alert-danger"> Vous ne pouvez pas supprimer l'id=1 de
+                              <?=$_GET['type']?></p>
+                    <?php }
+                      }
                     ?>
                             <!-- /.row -->
                             <div class="row">
