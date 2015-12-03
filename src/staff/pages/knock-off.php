@@ -98,14 +98,14 @@
                             <hr>
                             <?php
                                 if ($_GET['jour'] == "sam"){
-                                    $knockoff_all = $db->query('SELECT * FROM KnockoffSaturday WHERE Category = '.$_GET['cat'].' ORDER BY `Position` ASC');
-                                    $row = $db->query('SELECT COUNT(ID) as numberOfMatch FROM KnockoffSaturday WHERE Category = '.$_GET['cat'])->fetch_array();
-                                    extract($row);
-                                } elseif ($_GET['jour'] == "dim") {
-                                    $knockoff_all = $db->query('SELECT * FROM KnockoffSunday WHERE Category = '.$_GET['cat'].' ORDER BY `Position` ASC');
-                                    $row = $db->query('SELECT COUNT(ID) as numberOfMatch FROM KnockoffSunday WHERE Category = '.$_GET['cat'])->fetch_array();
-                                    extract($row);
-                                }
+                                $knockoff_all = $db->query('SELECT * FROM KnockoffSaturday WHERE Category = '.$_GET['cat'].' ORDER BY `Position` ASC');
+                                $row = $db->query('SELECT COUNT(ID) as numberOfMatch FROM KnockoffSaturday WHERE Category = '.$_GET['cat'])->fetch_array();
+                                extract($row);
+                            } elseif ($_GET['jour'] == "dim") {
+                                $knockoff_all = $db->query('SELECT * FROM KnockoffSunday WHERE Category = '.$_GET['cat'].' ORDER BY `Position` ASC');
+                                $row = $db->query('SELECT COUNT(ID) as numberOfMatch FROM KnockoffSunday WHERE Category = '.$_GET['cat'])->fetch_array();
+                                extract($row);
+                            }
                             if ($numberOfMatch == 0){ ?>
                                 <div class="alert alert-danger">
                                     Le tournoi n'a pas encore été généré pour cette catégorie et/ou ce jour.

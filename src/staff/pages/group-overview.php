@@ -82,6 +82,7 @@
                                                             <th>Equipe 6</th>
                                                             <th>Equipe 7</th>
                                                             <th>Equipe 8</th>
+                                                            <th>Leader</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -115,7 +116,7 @@
                                                             ?>
 
                                                             <?php
-                                                            if ($donnee != 0 and $donnee != NULL) { ?>
+                                                            if ($donnee != 0) { ?>
                                                                 <?=$donnee?> -
                                                                     <?= utf8_encode($player['LastName'])?> &
                                                                         <?=utf8_encode($player2['LastName'])?>
