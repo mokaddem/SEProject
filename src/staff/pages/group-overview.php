@@ -45,7 +45,7 @@
 
         ?>
 
-                <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
+                <div id="page-wrapper">
                     <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">Poules - Vue d'ensemble</h1>
@@ -55,11 +55,17 @@
                     <!-- /.row -->
 
                     <div class="row">
-                        <ul class="nav nav-tabs">
-                            <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="group-overview.php?jour=sam">Samedi</a></li>
-                            <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="group-overview.php?jour=dim">Dimanche</a></li>
-                        </ul>
-                    </div>
+                    <ul class="nav nav-tabs">
+                        <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="group-overview.php?jour=sam&cat=1">Samedi</a></li>
+                        <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="group-overview.php?jour=dim&cat=1">Dimanche</a></li>
+                    </ul>
+                    <ul class="nav nav-tabs nav-justified">
+                        <?php $reponse = $db->query('SELECT * FROM Categorie');
+                            while ($donnes = $reponse->fetch_array()) { ?>
+                                <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="group-overview.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation']);?></a></li>
+                            <?php }?>
+                    </ul>
+                </div>
 
                     <div class="row">
                         <div class="panel panel-default">
@@ -87,58 +93,58 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <?php
-                                            if ($_GET[ 'jour']=="sam" ){
-                                                $listDonnees = $db->query('SELECT * FROM GroupSaturday');
-                                            }else {
-                                                $listDonnees = $db->query('SELECT * FROM GroupSunday');
-                                            }
-                                            foreach ($listDonnees as $donnees) { $i = 1; ?>
-                                                            <tr class="odd gradeX text-center">
-                                                                <?php foreach ($donnees as $donnee) { ?>
-                                                                    <td>
-                                                                        <?php
-                                                        if ($i == 2 and $donnee != NULL) {
-                                                            $terrain = $db->query("SELECT * FROM Terrain WHERE ID=\"" . $donnee . "\"")->fetch_array();
-                                                            ?>
-                                                                            <option value=<?=$terrain[ 'ID']?>>
-                                                                                <?=$terrain['ID']?> -
-                                                                                    <?=utf8_encode($terrain['Note'])?>
-                                                                            </option>
-                                                                            <?php
-                                                        }elseif($i > 2 and $donnee != NULL) {
-                                                            $team = $db->query("SELECT * FROM Team WHERE ID=\"" . $donnee . "\"")->fetch_array();
-                                                            $IDPersonne = $team['ID_Player1'];
-                                                            $player = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne . "\"")->fetch_array();
+            <?php
+if ($_GET[ 'jour']=="sam" ){
+    $listDonnees = $db->query('SELECT * FROM GroupSaturday WHERE ID_Cat='.$_GET['cat']);
+}else {
+    $listDonnees = $db->query('SELECT * FROM GroupSunday WHERE ID_Cat='.$_GET['cat']);
+}
+foreach ($listDonnees as $donnees) { $i = 1; ?>
+                <tr class="odd gradeX text-center">
+                    <?php foreach ($donnees as $donnee) { ?>
+                        <td>
+                            <?php
+            if ($i == 2 and $donnee != NULL) {
+                $terrain = $db->query("SELECT * FROM Terrain WHERE ID=\"" . $donnee . "\"")->fetch_array();
+                ?>
+                                <option value=<?=$terrain[ 'ID']?>>
+                                    <?=$terrain['ID']?> -
+                                        <?=utf8_encode($terrain['Note'])?>
+                                </option>
+                                <?php
+            }elseif($i > 2 and $donnee != NULL) {
+                $team = $db->query("SELECT * FROM Team WHERE ID=\"" . $donnee . "\"")->fetch_array();
+                $IDPersonne = $team['ID_Player1'];
+                $player = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne . "\"")->fetch_array();
 
-                                                            $IDPersonne2 = $team['ID_Player2'];
-                                                            $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne2 . "\"")->fetch_array();
-                                                            ?>
+                $IDPersonne2 = $team['ID_Player2'];
+                $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne2 . "\"")->fetch_array();
+                ?>
 
-                                                            <?php
-                                                            if ($donnee != 0) { ?>
-                                                                <?=$donnee?> -
-                                                                    <?= utf8_encode($player['LastName'])?> &
-                                                                        <?=utf8_encode($player2['LastName'])?>
-                                                            <?php } else { ?>
-                                                                Aucun
-                                                            <?php } ?>
-                                                                        <?php
-                                                        } else{
-                                                            echo $donnee;
-                                                        }
-                                                    ?>
-                                                                    </td>
-                                                                    <?php    $i++; }
-                                                                    $matchID = $donnees['ID'];
-                                                                    $theDay = $_GET['jour'];
-                                                                    ?>
-                                                              <td>
-                                                                  <a href="./group.php?jour=<?=$theDay?>&cat=1"><i class="fa fa-edit fa-fw"></i></a>
-                                                                  <a target="_blank" href="./php/print-group.php?id=<?=$matchID?>"><i class="fa fa-print"></i></a>
-                                                              </td>
-                                                            </tr>
-                                                            <?php    } ?>
+                <?php
+                if ($donnee != 0 and $donnee != NULL) { ?>
+                    <?=$donnee?> -
+                        <?= utf8_encode($player['LastName'])?> &
+                            <?=utf8_encode($player2['LastName'])?>
+                <?php } else { ?>
+                    Aucun
+                <?php } ?>
+                            <?php
+            } else{
+                echo $donnee;
+            }
+        ?>
+                        </td>
+                        <?php    $i++; }
+                        $matchID = $donnees['ID'];
+                        $theDay = $_GET['jour'];
+                        ?>
+                  <td>
+                      <a href="./group.php?jour=<?=$theDay?>&cat=1"><i class="fa fa-edit fa-fw"></i></a>
+                      <a target="_blank" href="./php/print-group.php?id=<?=$matchID?>"><i class="fa fa-print"></i></a>
+                  </td>
+                </tr>
+                <?php    } ?>
                                                     </tbody>
                                                 </table>
                                             </div>
