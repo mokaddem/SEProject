@@ -19,7 +19,7 @@ function switch_players($id1, $id2, $day) {
     if ($day == "sam") {
         $req1 = 'SELECT * FROM GroupSaturday WHERE ID=' . $groupID1;
     } elseif ($day == "dim") {
-        $req1 = 'SELECT * FROM GroupSaturday WHERE ID=' . $groupID1;
+        $req1 = 'SELECT * FROM GroupSunday WHERE ID=' . $groupID1;
     }
     $reponse = $db->query($req1);
     // Get ID_GS t1 t2 t3 ...
@@ -152,6 +152,7 @@ if (array_key_exists("idteam1", $_POST) && array_key_exists("idteam2", $_POST) &
 function removeTeam($posId, $group, $day, $teamNumberPos, $db){
     $empty="NULL";
     for ($i = 1; $i < 9; $i += 1) {
+//        error_log("group['ID_t' . i] == posId \t =".$group['ID_t' . $i] ." and ". $posId);
         if ($group['ID_t' . $i] == $posId) {
             $savedi=$i;
             if ($day == "sam") {

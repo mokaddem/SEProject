@@ -125,15 +125,13 @@
                             $db = BDconnect();
                             $nullAp = "''";
                             if ($_GET['jour'] == "sam"){
-//                                $groups = $db->query('SELECT *, GroupSaturday.ID as Gid FROM GroupSaturday, Team WHERE GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'');
                                 $q1='SELECT * , GroupSaturday.ID AS Gid FROM GroupSaturday, Team WHERE (GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].') UNION ALL SELECT GroupSaturday.*, '.$nullAp.' as ID,'.$nullAp.' as ID_Player1,'.$nullAp.' as ID_Player2,'.$nullAp.' as ID_Cat,'.$nullAp.' as NbWinMatch,'.$nullAp.' as AvgRanking,'.$nullAp.' as Group_Vic, GroupSaturday.ID AS Gid FROM GroupSaturday WHERE GroupSaturday.ID_t1 = -1';
-//                                error_log("q1===".$q1);
                                 $groups = $db->query($q1);
                             } else{
-//                                $groups = $db->query('SELECT *, GroupSunday.ID as Gid FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'');
-                                $groups = $db->query('SELECT *, GroupSunday.ID as Gid FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].') OR (GroupSunday.ID_t1=-1 AND GroupSunday.ID_t2=NULL');
-                                //$row = $db->query('SELECT COUNT(ID) as numberOfGroups FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'')->fetch_array();
-                                //extract($row);
+                                $q1='SELECT * , GroupSunday.ID AS Gid FROM GroupSunday, Team WHERE (GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].') UNION ALL SELECT GroupSunday.*, '.$nullAp.' as ID,'.$nullAp.' as ID_Player1,'.$nullAp.' as ID_Player2,'.$nullAp.' as ID_Cat,'.$nullAp.' as NbWinMatch,'.$nullAp.' as AvgRanking,'.$nullAp.' as Group_Vic, GroupSunday.ID AS Gid FROM GroupSunday WHERE GroupSunday.ID_t1 = -1';
+                                $groups = $db->query($q1);
+//                                $groups = $db->query('SELECT *, GroupSunday.ID as Gid FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].') OR (GroupSunday.ID_t1=-1 AND GroupSunday.ID_t2=NULL');
+
                             }
                             $lineNum = 4;
                             $j = 0;
