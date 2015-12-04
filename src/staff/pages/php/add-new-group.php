@@ -64,7 +64,7 @@ Mise à jour de l'historique
 
     }
 
-    function insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $groupSize){
+    function insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $groupSize, $ID_Terrain){
         $req = $db->prepare("INSERT INTO GroupSunday(ID, ID_terrain, ID_t1, ID_t2, ID_t3, ID_t4, ID_t5, ID_t6, ID_Leader, ID_Cat) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         echo "Prepare";
         $ID	 	= '';
@@ -90,8 +90,8 @@ Mise à jour de l'historique
         $date       = date("Y-m-d");
 				$hour       = date("08:30");
 				//$hour       = date("H:i");
-        $score1     = NULL;
-        $score2     = NULL;
+        $score1     = 0;
+        $score2     = 0;
         $Poule_ID   = $donnees['ID'];
 
         $ID_Equipes = array($ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6);
@@ -216,7 +216,7 @@ Mise à jour de l'historique
 
                 $Poule_ID = insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $i, $ID_Terrain);
                 $i = 0;
-                $ID_t1 = NULL; $ID_t2 = NULL; $ID_t3 = NULL; $ID_t4 = NULL; $ID_t5 = NULL;
+                $ID_t1 = NULL; $ID_t2 = NULL; $ID_t3 = NULL; $ID_t4 = NULL; $ID_t5 = NULL; $ID_t6 = NULL;
             }
             $i++;
         }

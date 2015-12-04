@@ -146,6 +146,8 @@ if (array_key_exists("idteam1", $_POST) && array_key_exists("idteam2", $_POST) &
     header("Location: ../group.php?jour=".$_GET["jour"]."&cat=".$_GET['cat']);
 } else {
     echo "no data";
+    header("Location: ../group.php?jour=".$_GET["jour"]."&cat=".$_GET['cat']."&error=nodata");
+    return;
 }
 
 
