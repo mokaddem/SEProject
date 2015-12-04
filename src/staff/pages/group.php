@@ -194,7 +194,7 @@
                                             <div class="form-group text-center">
                                             <?php $captainText = $teamID == $group['ID_Leader'] ? "fa fa-user text-success " : "fa fa-arrow-circle-o-up"; ?>
                                             <?php if($group['ID_t1']>0){?>
-                                            <a href="php/promote-leader.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&teamID=<?=$teamID?>&cat=<?=$_GET['cat']?>" ><i class="<?=$captainText?>"></i></a>
+                                            <a  data-toggle="tooltip" data-placement="left" title="<?php if($teamID == $group['ID_Leader']){echo "Leader de poule";} else{echo "Assigner cette équipe en tant que leader de poule";}?>" href="php/promote-leader.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&teamID=<?=$teamID?>&cat=<?=$_GET['cat']?>" ><i class="<?=$captainText?>"></i></a>
                                             <?php }?>
                                                 <?php $color = "default";
                                                 $videOrNot = "-vide";
@@ -279,6 +279,12 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 
     <script>
         $(document).ready(function () {
