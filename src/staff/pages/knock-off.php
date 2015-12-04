@@ -94,7 +94,7 @@
                                 </div>
                             </nav>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-12 text-center">
                             <hr>
                             <?php
                                 if ($_GET['jour'] == "sam"){
@@ -111,67 +111,129 @@
                                     Le tournoi n'a pas encore été généré pour cette catégorie et/ou ce jour.
                                 </div>
                             <?php } else {
+                                ?> <label> Modifier les équipes et les terrains pour le tour 1. </label>
+                            <div class="col-lg-12 text-center">
+                            <?php
+                                $impairTeam = 0;
+                                $s_a_m = "server-other-menu";
                                 for ($i = 1; $i <= $numberOfMatch; $i++) {
+                                ?> <div class="col-lg-3 text-center"> <?php
+                                    if ($s_a_m == "server-action-menu") {
+                                        $s_a_m = "server-other-menu";
+                                    } else {
+                                        $s_a_m = "server-action-menu";
+                                    }
                                     $knockoff = $knockoff_all->fetch_array();
                                     $match = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match'])->fetch_array();
-                                    if ($match['ID_Equipe2'] == 0) {
-                                        $numberFirstRound = $i-1;
+                                    if ($match['ID_Equipe1'] == 0 and $match['ID_Equipe2'] == 0) {
+                                        $numberFirstRound = $i - 1;
                                         $i = $numberOfMatch;
                                     } else{
-                                    ?>
-                                    <div class="form-group text-center">
-                                        <label for="sel1"><span class="fa fa-users"></span> Match
-                                            <?= $i ?>
-                                        </label>
-                                    </div> <?php
-                                    for ($j = 1; $j <= 2; $j++) {
-                                        $teamID = $match["ID_Equipe" . $j];
-                                        $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'] . ' ')->fetch_array();
-                                        $IDPersonne1 = $team['ID_Player1'];
-                                        $player1 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne1 . "\"")->fetch_array();
+                                        ?>
+                                        <div class="form-group text-center <?=$s_a_m?>">
+                                            <label for="sel1"><span class="fa fa-users"></span> Match
+                                                <?= $i ?>
+                                            </label>
+                                            <?php
+                                            if ($match['ID_Equipe2'] == 0) {
+                                                $numberFirstRound = $i - 1;
+                                                $i = $numberOfMatch;
+                                                $impairTeam = 1;
+                                                ?> <label class="text-center">Cette équipe commence au second
+                                                    tour</label> <?php
+                                            } else{
+                                            ?>
+                                                <select class="form-control" id="sel1">
+                                                    <?php
+                                                    $terrains = $db->query('SELECT * FROM Terrain');
+                                                    while ($terrain = $terrains->fetch_array())
+                                                    { ?>
+                                                        <option value=<?=$terrain['ID']?>> <?=$terrain['ID']?> : <?=utf8_encode($terrain['Note'])?>, <?=utf8_encode($terrain['adresse'])?></option>
+                                                    <?php }
+                                                    ?>
+                                                </select>
+                                                <?php }?>
+                                         <?php
+                                        for ($j = 1; $j <= 2; $j++) {
+                                            $teamID = $match["ID_Equipe" . $j];
+                                            $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'] . ' ')->fetch_array();
+                                            $IDPersonne1 = $team['ID_Player1'];
+                                            $player1 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne1 . "\"")->fetch_array();
 
-                                        $IDPersonne2 = $team['ID_Player2'];
-                                        $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne2 . "\"")->fetch_array();
-
+                                            $IDPersonne2 = $team['ID_Player2'];
+                                            $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne2 . "\"")->fetch_array();
+                                            if ($match['ID_Equipe2'] == 0) {
+                                                $j++;
+                                            }
                                             ?>
                                             <div class="form-group text-center">
-                                                <?php $color = "default";
-                                                $videOrNot = "-vide";
-                                                if (!empty($player1['LastName'])) {
+                                            <?php $color = "default";
+                                            $videOrNot = "-vide";
+                                            if (!empty($player1['LastName'])) {
                                                 if ($player1['Note'] || $player2['Note']) {
                                                     $color = "primary";
                                                     $videOrNot = "";
                                                 } ?>
-                                                <span data-toggle="pList" data-target="#pList" data-url="./php/knock-off-note<?=$videOrNot?>.php?id=<?=$teamID?>">
-                                                    <button class="btn btn-<?=$color?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>">
+                                                <span data-toggle="pList" data-target="#pList"
+                                                      data-url="./php/knock-off-note<?= $videOrNot ?>.php?id=<?= $teamID ?>">
+                                                    <button class="btn btn-<?= $color ?> btn-outline"
+                                                            data-toggle="idteam1" data-target="#idteam1"
+                                                            data-id="<?= $teamID ?>">
                                                         [<?= $teamID ?> - <?= $team['AvgRanking'] ?>]
                                                         <?= utf8_encode($player1['LastName']) ?> &
                                                         <?= utf8_encode($player2['LastName']) ?>
                                                     </button>
                                                 <span/>
-                                            </div>
-                                        <?php }
-                                        }
-                                    }
+                                                </div>
+                                            <?php }
+                                        } ?>
+                                         </div>
+                                    <?php }
+                                    ?> </div> <?php
                                 } ?>
 
                                 </div>
+                                <div class="col-lg-12 text-center">
+                                    <label> Modifier les terrains pour les tours suivants. </label>
+                                </div>
+                                <div class="col-lg-12 text-center">
                                     <?php // ATTENTION: montrer le bon terrain
-                                        $matchNum = 1;
+                                        $matchNum = $numberFirstRound + $impairTeam;
                                         $iter = 0;
-                                        $numberOfPixels = 75;
-                                        for ($k = $numberFirstRound; $k >= 1; $k = ceil($k/2)){
+                                        $numberOfPixels = (int) -75/2;
+                                        $numberOfTeams = $numberFirstRound + $impairTeam;
+                                        $stop = False;
+                                        while ($numberOfTeams > 1 and !$stop){
+                                            $impairTeam = $numberOfTeams % 2;
+                                            //echo $numberOfTeams." team(s).\n";
+                                            $numberOfPixels += (int) 75*$numberOfTeams/4 - $impairTeam*(75/2);
                                             $position = $numberOfPixels."px";
                                     ?>
-                                        <div class="col-lg-2 text-center" style="position: relative; top: <?=$position?>;">
-                                            <?php for ($j = 1; $j <= $k; $j++) { ?>
-                                                <div class="form-group">
+                                        <div class="col-lg-3 text-center" style="position: relative; top: <?=$position?>;">
+                                             <label> Tour <?=$iter+2?> </label>
+                                            <?php if($impairTeam == 1 and $numberOfTeams != 3) { ?>
+                                                <label> Une team n'aura pas de match à ce tour. </label >
+                                            <?php } elseif ($numberOfTeams == 3){
+                                                    ?> </br> <label> Il reste 3 équipes en finale. </label>
+                                                     <?php
+                                                     $numberOfTeams = 7;
+                                                     $stop = True;
+                                                  } elseif ($numberOfTeams == 2){
+                                                    ?> </br> <label> FINALE </label> <?php
+                                                  }
+                                            for ($j = $impairTeam; $j < $numberOfTeams/2; $j++) {
+                                                // We need one less match if we have a surplus of 1 team.
+                                                if ($s_a_m == "server-action-menu") {
+                                                    $s_a_m = "server-other-menu";
+                                                } else {
+                                                    $s_a_m = "server-action-menu";
+                                                }?>
+                                                <div class="form-group <?=$s_a_m?>">
                                                     <label for="sel1"><span class="fa fa-users"></span> Match
                                                         <?=$matchNum?>
                                                     </label>
                                                     <select class="form-control" id="sel1">
                                                         <?php
-                                                            $db = BDconnect();
                                                             $terrains = $db->query('SELECT * FROM Terrain');
                                                             while ($terrain = $terrains->fetch_array())
                                                             { ?>
@@ -186,10 +248,13 @@
                                         </div>
                                         <?php
                                             $iter++;
-                                            $numberOfPixels += (int) 75*$k/4;
-                                        if ($k == 1){ // To stop the loop
-                                            $k = 0;
-                                        }} ?>
+                                        if ($numberOfTeams == 1){ // To stop the loop
+                                            $stop = True;
+                                        } else {
+                                            $numberOfTeams = intval($numberOfTeams / 2) + $impairTeam;
+                                        }
+                                        } ?>
+                                    </div>
                                 <!-- Registration form - END -->
                             </div>
                     <?php }?>
@@ -198,7 +263,7 @@
             <!-- /#page-wrapper -->
 
     </div>
-    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     <!-- /#wrapper -->
 
     <!-- jQuery -->
