@@ -13,9 +13,13 @@
     font-weight: 300;
 }
 
-/** {*/
-    /*position: relative;*/
-/*}*/
+* {
+    position: relative;
+}
+
+.modal-dialog {
+  margin-left: -25%;
+}
 
 .breaker {
     clear: both;
