@@ -191,7 +191,7 @@ body {
     background-color: transparent;
     /*background-color: rgba(255, 181, 45, 0.6);*/
     transition: all .3s;
-    width: 18em;
+    width: 15em;
 }
 
 .btn-primary.btn-outline {
