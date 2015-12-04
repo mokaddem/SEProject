@@ -14,9 +14,9 @@
          ?>
 
         <head lang="fr">
-            
+
             <link rel="shortcut icon" href="./images/icon.ico">
-            
+
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -29,7 +29,7 @@
             <link rel="stylesheet" href="css/font-awesome.min.css" rel="stylesheet">
 
             <link rel="stylesheet" type="text/css" href="css/style.css">
-            <link rel="stylesheet" type="text/css" href="css/alicia.css">
+            <link rel="stylesheet" type="text/css" href="css/monStyle.css">
 
             <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,300,200&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
@@ -128,7 +128,7 @@
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                     <i id="crayon" class="fa fa-pencil fa-stack-1x"></i>
                                 </span>
-                            
+
                             <h2>Inscription<br/>Participant</h2>
                             </a>
                         </div>
@@ -139,7 +139,7 @@
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                     <i id="crayon" class="fa fa-suitcase fa-stack-1x"></i>
                                 </span>
-                            
+
                             <h2>Inscription<br/>Propriétaire</h2>
                             </a>
                         </div>
@@ -215,7 +215,7 @@
             <!-- === SLide 3 - Portfolio -->
             <div class="slide story" id="slide-3" data-slide="3">
                 <div class="row">
-                    <div class="col-12 col-sm-6 col-lg-2">  
+                    <div class="col-12 col-sm-6 col-lg-2">
                         <a data-fancybox-group="portfolio" class="fancybox" href="images/portfolio/p8.jpg"><img class="thumb" src="images/portfolio/p8-s.jpg" alt=""></a>
                     </div>
                     <div class="col-12 col-sm-6 col-lg-2">

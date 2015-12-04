@@ -1,151 +1,160 @@
 <!DOCTYPE html>
-<!-- Page permettant d'envoyer des e-mails (se trouvant dans la catégorie commmunication) -->
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>Staff - Charles de Lorraine - Contact</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <!-- Bootstrap Core CSS -->
-    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Admin Mode - Contact</title>
 
-    <!-- MetisMenu CSS -->
-    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+  <!-- Bootstrap Core CSS -->
+  <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-    <link href="../dist/css/alicia.css" rel="stylesheet">
+  <!-- MetisMenu CSS -->
+  <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
-    <!-- Custom Fonts -->
-    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Custom CSS -->
+  <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+  <link href="../dist/css/alicia.css" rel="stylesheet">
+
+  <!-- Custom Fonts -->
+  <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 </head>
 
 <body>
 
+  <div id="wrapper">
 
-
-    <div id="wrapper">
-    
     <?php
-    include("html/header.php");
-    include('php/BDD.php');
+    		include_once('php/BDD.php');
+    		include "../../mail/mail_helper.php";	
+            include("./html/header.php");
+            $db = BDconnect();
 
-    $db = BDconnect();
+        ?>
 
-    $tmp = $db->query('SELECT * FROM Categorie');
 
-    ?>
-    
-               <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
-                <div class="row">
-                    <div class="page-header">
-                        <h1>Envoyer un mail</h1>
-                    </div>
+      <div id="page-wrapper">
+        <div class="row">
+          <div class="page-header">
+            <h1>Envoyer un mail</h1>
+          </div>
+        </div>
+        <!-- Registration form - START -->
+        <div class="row">
+          <form role="form" id="contact" method="post" action="contact_Staff.php">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <div class="input-group">
+                  <input class="form-control" autocomplete="off" name="dest" id="dest" placeholder="Destinataire" type="text">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-default btn-outline" data-toggle="collapse" data-target="#demo" ata-toggle="tooltip" data-placement="top" title="Selectionner des groupes">
+                      <i class="fa fa-long-arrow-down"></i> <i class="fa fa-users"></i>
+                    </button>
+                  </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                    <!-- Registration form - START -->
-                        <form role="form" name="conStaff"  id="conStaff" novalidate>
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <input class="form-control" id="dest" placeholder="Destinataire" type="text">
-                                </div>
-                            </div>
-				<div class="form-group">
-            			<input type="checkbox" name="participant" value="partici"><strong>Participants</strong></br>
-            			<input type="checkbox" name="proprio" value="proprio"><strong>Propriétaires</strong><br/>
-                            <br/>
-
-                                        <!--<label for="sel1">Titre:</label>-->
-                                     <?php
-                                        $tmp = $db->query('SELECT * FROM Categorie');
-                                        $i=1;
-                                        while ($cat = $tmp->fetch_array()){?>
-                                        <div id="catD1_<?php echo $i;?>" name="catD1_<?php echo $i;?>">
-                                                <input id="cat1_<?php echo $i;?>" name="cat1_<?php echo $i;?>" value=<?=$cat['ID']?> type="checkbox"> <strong><?php echo utf8_encode($cat['Designation']);?></strong></input>
-                                            </div>
-                                            <?php $i=$i+1;}?> 
-                                    </div>
-
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Sujet" id="sujet" required data-validation-required-message="Veuillez entrer le sujet.">
-				<p class="help-block text-danger"></p>
-                                <br>
-                                <textarea rows="15" cols="50" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Veuillez entrer votre message."></textarea>
-				<p class="help-block text-danger"></p>
-                            </div>
-			    <div class="clearfix"></div>
-			    <div class="col-lg-12 text-right">
-                            <div id="success"></div>
-                            <button type="submit" class="btn btn-primary pull-right" >Envoyer Message</button>
-			  </div>
-                        </form>
-                    </div>
-
-                    <!-- Registration form - END -->
+                  <p>
+                  <div id="demo" class="collapse">
+                  <input type="checkbox" name="parti" value="Participants"> Tous les participants
+                  <input type="checkbox" name="proprio" value="Propriétaires"> Tous les propriétaires
+                  </p>
+                  <p>
+                  <h4> Groupes Samedi </h4>
+                  </p>
+                  <input type="checkbox" name="leaderSam" value="Participants"> Tous les leaders
+                  <input type="checkbox" name="NPSam" value="Propriétaires"> Tous les non-payés
+                  <input type="checkbox" name="tousSam" value="Participants"> Tous les joueurs
+                  </p>
+                  <h4> Groupes Dimanche </h4>
+                  </p>
+                  <input type="checkbox" name="leaderDim" value="Participants"> Tous les leaders
+                  <input type="checkbox" name="NPDim" value="Propriétaires"> Tous les non-payés
+                  <input type="checkbox" name="tousDim" value="Participants"> Tous les joueurs
+                  </p>
+                  <p> 
+                  <h4> Catégories </h4>
+                  </p>
+                  </p>
+                  <?php
+                  $categorie = $db->query('SELECT Designation FROM Categorie');
+                  $listCat;
+                  $i=0;
+                  while($lcat = $categorie -> fetch_array())
+                  {
+                  	  $listCat[$i] = $lcat['Designation'];
+                  	 ?>
+                  	 <input type="checkbox" name="cat_<?php echo $i ?>" value="<?php echo $listCat[$i] ?>"> <?php echo $listCat[$i] ?>
+                <?php
+                  $i++;
+                  }
+                  ?>
+                  </p>
                 </div>
-                <!-- /.row -->
+
+                <br/>
+                <div class="form-group">
+                  <!-- <label for="sel1"><span class="fa fa-user"></span> Message à tous les propriétaires</label> -->
+                  <input type="text" class="form-control" placeholder="Sujet" name="sujet" id="sujet" required data-validation-required-message="Veuillez entrer le sujet.">
+                  <br>
+                  <textarea rows="15" cols="50" class="form-control" placeholder="Message" name="message" id="message" required data-validation-required-message="Veuillez entrer votre message."></textarea>
+                  <div class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-outline" data-toggle="collapse" data-target="#demo1" ata-toggle="tooltip" data-placement="top" title="Selectionner des messages">
+                  <i class="fa fa-long-arrow-down"></i> <i class="fa fa-users"></i>
+                  </button>
+                  </div>
+                  <p>
+                  <div id="demo1" class="collapse">
+                  <input type="checkbox" name="mesLeader" value="Participants"> Messages des leaders
+                  <input type="checkbox" name="mesTous" value="Propriétaires"> Messages pour tous
+                  <input type="checkbox" name="mesNP" value="Propriétaires"> Messages des non-payés
+                  </p>
+                  </div>
+                <input type="submit" name="envoi" id="submitPlayers" value="Envoyer" class="btn btn-primary pull-right" />
+              </div>
             </div>
-            <!-- /#page-wrapper -->
+          </form>
+          <!-- Registration form - END -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /#page-wrapper -->
 
-    </div>
-    <!-- /#wrapper -->
+  </div>
+  <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <!-- jQuery -->
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+  <!-- Metis Menu Plugin JavaScript -->
+  <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-    <script src="../dist/js/alicia.js"></script>
+  <!-- Custom Theme JavaScript -->
+  <script src="../dist/js/sb-admin-2.js"></script>
+  <script src="../dist/js/alicia.js"></script>
 
-    <script src="http://cdn.jsdelivr.net/typeahead.js/0.9.3/typeahead.min.js"></script>
+  <script src="http://cdn.jsdelivr.net/typeahead.js/0.9.3/typeahead.min.js"></script>
 
-    <script>
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
-    <script src="../../js/contactStaff.js"></script>
-    <script src="../../js/jqBootstrapValidation.js"></script>
- 	<script>
-                $(document).ready(function (e) {
-                    var lis = $('.nav > li');
-                    menu_focus(lis[0], 1);
+  <script>
+    $(document).ready(function() {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+  </script>
 
-                    $(".fancybox").fancybox({
-                        padding: 10,
-                        helpers: {
-                            overlay: {
-                                locked: false
-                            }
-                        }
-                    });
-
-                });
-            </script>
-	    <script type="text/javascript">
-                <!--
-                $('#myModal').modal('show');
-                //-->
-            </script>
-	    <script src="../../js/html5shiv.js"></script>
-            <script src="../../js/jquery-1.10.2.min.js"></script>
-            <script src="../../js/jquery-migrate-1.2.1.min.js"></script>
-            <script src="../../js/bootstrap.min.js"></script>
-            <script src="../../js/jquery.easing.1.3.js"></script>
-            <script type="text/javascript" src="../../../fancybox/jquery.fancybox.pack-v=2.1.5.js"></script>
-            <script src="../../js/script.js"></script>
 </body>
-<!-- <?php $tmp->free(); ?> -->
+
 </html>

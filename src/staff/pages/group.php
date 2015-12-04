@@ -206,7 +206,7 @@
                                                   <span data-toggle="pList" data-target="#pList" data-url="./php/group-note<?=$videOrNot?>.php?id=<?=$teamID?>">
                                                     <button class="btn btn-<?=$color?> btn-outlineW" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"];?>">
                                                         [<?=$teamID?>]
-                                                        <?=utf8_encode($player['LastName'])?> -
+                                                        <?=utf8_encode($player['LastName'])?> &
                                                         <?=utf8_encode($player2['LastName'])?>
                                                     </button>
                                                   </span>
@@ -259,8 +259,8 @@
             <!-- /#page-wrapper -->
     </div>
     </div>
-                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
     <!-- /#wrapper -->
 
