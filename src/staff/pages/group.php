@@ -281,13 +281,12 @@
 
             </div>
             <!-- /.row -->
-        </div>
 
         <!-- /#page-wrapper -->
-    </div>
-    </div>
     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        </div>
+    </div>
 
     <!-- /#wrapper -->
 
