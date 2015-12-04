@@ -158,7 +158,7 @@
                                     ?>
                                     <div class="col-lg-3 <?=$s_a_m?>"  name="divGroup" id="divGroup<?=$k?>" data-groupID="<?=$group['Gid']?>" data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>" data-teamNum="<?=$teamNum?>">
                                         <label>
-                                            <span class="fa fa-users"></span> Groupe <?= $k?>
+                                            <span class="fa fa-users"></span> Groupe <?= $k?> [<?=$group['Gid']?>]
                                             <a href="php/delete-group.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&cat=<?=$_GET['cat']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce groupe ?');"><i class="fa fa-trash-o"></i></a>
                                         </label>
                                         <div class="form-group" >

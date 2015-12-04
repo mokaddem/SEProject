@@ -51,6 +51,13 @@ function switch_players($id1, $id2, $day) {
     else {
         $db->query('DELETE FROM `Match` WHERE (' . $id1 . ' = ID_Equipe1 or ' . $id1 . ' = ID_Equipe2) and ' . $group1['ID'] . '=  Poule_ID');
         $db->query('DELETE FROM `Match` WHERE (' . $id2 . ' = ID_Equipe1 or ' . $id2 . ' = ID_Equipe2) and ' . $group2['ID'] . '=  Poule_ID');
+        $textDay = $textDay = $day == "sam" ? "GroupSaturday" : "GroupSunday";
+        if($group1['ID_Leader']==$id1) {//we moved the leader
+            promote_leader($group1['ID'], $id2, $db, $textDay);
+        }
+        if($group2['ID_Leader']==$id2) {//we moved the leader
+            promote_leader($group2['ID'], $id1, $db, $textDay);
+        }
 
         // First team moved to second group.
         // Pour chaque team (du groupe)
