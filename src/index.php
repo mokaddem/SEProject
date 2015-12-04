@@ -35,7 +35,6 @@
 
 
             <link rel="prefetch" href="images/zoom.png">
-
         </head>
 
         <body>
@@ -96,7 +95,7 @@
                                 <h4 class="modal-title">Inscription réussite</h4>
                             </div>
                             <div class="modal-body">
-                                <p>Félicitation !</p>
+                                <p>Félicitations !</p>
                                 <p>Vous avez bien été enregistré !</p>
                                 <p>Vous recevrez un e-mail de confirmation sous peu.</p>
                             </div>
@@ -338,7 +337,7 @@
                                     <div class="clearfix"></div>
                                     <div class="col-lg-12 text-center">
                                         <div id="success"></div>
-                                        <button type="submit" class="btn btn-xl">Evoyer Message</button>
+                                        <button type="submit" class="btn btn-xl">Envoyer Message</button>
                                     </div>
                                 </div>
                             </form>
