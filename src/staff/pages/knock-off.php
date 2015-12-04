@@ -67,7 +67,7 @@
                                 <?php $reponse = $db->query('SELECT * FROM Categorie');
                                 while ($donnes = $reponse->fetch_array()) { ?>
                                     <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="knock-off.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation'])?></a></li>
-                                <?php }?>
+                                <?php} ?>
                             </ul>
                         </div>
                         <div class="row">

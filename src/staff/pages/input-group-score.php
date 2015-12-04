@@ -259,7 +259,7 @@
 
             setTimeout(function() {  $('#popup').fadeIn('slow');}, 0);
             setTimeout(function() {  $('#popup').fadeOut('slow');},3000);
-            setTimeout(function() {  location.reload();;}, 500+3000);
+            setTimeout(function() {  location.reload();}, 500+3000);
 
         }
     </script>

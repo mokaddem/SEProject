@@ -54,7 +54,7 @@
         </div>
         <!-- Registration form - START -->
         <div class="row">
-          <form role="form" id="contact" method="post" action="contact_Staff.php">
+          <form role="form" id="contact" method="post" action="../../mail/contact_new.php">
             <div class="col-lg-6">
               <div class="form-group">
                 <div class="input-group">
@@ -93,9 +93,9 @@
                   $i=0;
                   while($lcat = $categorie -> fetch_array())
                   {
-                  	  $listCat[$i] = $lcat['Designation'];
+                  	  $listCat[$i] = utf8_encode($lcat['Designation']);
                   	 ?>
-                  	 <input type="checkbox" name="cat_<?php echo $i ?>" value="<?php echo $listCat[$i] ?>"> <?php echo $listCat[$i] ?>
+                  	 <input type="checkbox" name="cat_<?php echo $i ?>" value="<?php echo $listCat[$i] ?>"> <?php echo utf8_encode(utf8_decode($listCat[$i])); ?>
                 <?php
                   $i++;
                   }

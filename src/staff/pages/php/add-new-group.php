@@ -13,11 +13,11 @@ Mise à jour de l'historique
 		$db = BDconnect();
     function insertSam($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $groupSize, $ID_Terrain){
 
-        $req = $db->prepare("INSERT INTO GroupSaturday(ID, ID_terrain, ID_t1, ID_t2, ID_t3, ID_t4, ID_t5, ID_Cat) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+        $req = $db->prepare("INSERT INTO GroupSaturday(ID, ID_terrain, ID_t1, ID_t2, ID_t3, ID_t4, ID_t5, ID_Leader, ID_Cat) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         $ID	 	= '';
 
-        $req->bind_param("iiiiiiii", $ID, $ID_terrain, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $_GET['InputCat']);
+        $req->bind_param("iiiiiiiii", $ID, $ID_Terrain, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t1, $_GET['InputCat']);
         $req->execute();
 
         $reponse = $db->query("SELECT * FROM GroupSaturday WHERE ID_t1=".$ID_t1);
@@ -65,12 +65,12 @@ Mise à jour de l'historique
     }
 
     function insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $groupSize){
-        $req = $db->prepare("INSERT INTO GroupSunday(ID, ID_terrain, ID_t1, ID_t2, ID_t3, ID_t4, ID_t5, ID_t6, ID_Cat) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $req = $db->prepare("INSERT INTO GroupSunday(ID, ID_terrain, ID_t1, ID_t2, ID_t3, ID_t4, ID_t5, ID_t6, ID_Leader, ID_Cat) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         echo "Prepare";
         $ID	 	= '';
 
-        $req->bind_param("iiiiiiiii", $ID, $ID_terrain, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $_GET['InputCat']);
         echo "Bind";
+        $req->bind_param("iiiiiiiiii", $ID, $ID_Terrain, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $ID_t1, $_GET['InputCat']);
         $req->execute();
 
         $reponse = $db->query("SELECT * FROM GroupSunday WHERE ID_t1=".$ID_t1);

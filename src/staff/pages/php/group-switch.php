@@ -19,7 +19,7 @@ function switch_players($id1, $id2, $day) {
     if ($day == "sam") {
         $req1 = 'SELECT * FROM GroupSaturday WHERE ID=' . $groupID1;
     } elseif ($day == "dim") {
-        $req1 = 'SELECT * FROM GroupSaturday WHERE ID=' . $groupID1;
+        $req1 = 'SELECT * FROM GroupSunday WHERE ID=' . $groupID1;
     }
     $reponse = $db->query($req1);
     // Get ID_GS t1 t2 t3 ...
@@ -40,15 +40,24 @@ function switch_players($id1, $id2, $day) {
         $posGroup = $id1 > 0 ? $group1 : $group2;
         $negGroup = $id1 > 0 ? $group2 : $group1;
         $teamNumberNeg = $id1 > 0 ? $teamNumberG2 : $teamNumberG1;
-        $PositionNumber = removeTeam($posId, $posGroup, $day, $db);
+        $teamNumberPos = $id1 > 0 ? $teamNumberG1 : $teamNumberG2;
+
+        $arrayRep = removeTeam($posId, $posGroup, $day, $teamNumberPos, $db);
         deleteMatch($posId, $posGroup, $db);
-        shiftTeams($PositionNumber, $posGroup, $day, $db);
+        shiftTeams($arrayRep[0],  $posGroup, $day, $teamNumberPos, $arrayRep[1], $db);
         addTeam($posId, $negGroup, $day, $db);
         addMatch($posId, $negGroup, $teamNumberNeg, $db);
     }
     else {
         $db->query('DELETE FROM `Match` WHERE (' . $id1 . ' = ID_Equipe1 or ' . $id1 . ' = ID_Equipe2) and ' . $group1['ID'] . '=  Poule_ID');
         $db->query('DELETE FROM `Match` WHERE (' . $id2 . ' = ID_Equipe1 or ' . $id2 . ' = ID_Equipe2) and ' . $group2['ID'] . '=  Poule_ID');
+        $textDay = $textDay = $day == "sam" ? "GroupSaturday" : "GroupSunday";
+        if($group1['ID_Leader']==$id1) {//we moved the leader
+            promote_leader($group1['ID'], $id2, $db, $textDay);
+        }
+        if($group2['ID_Leader']==$id2) {//we moved the leader
+            promote_leader($group2['ID'], $id1, $db, $textDay);
+        }
 
         // First team moved to second group.
         // Pour chaque team (du groupe)
@@ -137,12 +146,15 @@ if (array_key_exists("idteam1", $_POST) && array_key_exists("idteam2", $_POST) &
     header("Location: ../group.php?jour=".$_GET["jour"]."&cat=".$_GET['cat']);
 } else {
     echo "no data";
+    header("Location: ../group.php?jour=".$_GET["jour"]."&cat=".$_GET['cat']."&error=nodata");
+    return;
 }
 
 
-function removeTeam($posId, $group, $day, $db){
+function removeTeam($posId, $group, $day, $teamNumberPos, $db){
     $empty="NULL";
     for ($i = 1; $i < 9; $i += 1) {
+//        error_log("group['ID_t' . i] == posId \t =".$group['ID_t' . $i] ." and ". $posId);
         if ($group['ID_t' . $i] == $posId) {
             $savedi=$i;
             if ($day == "sam") {
@@ -151,49 +163,76 @@ function removeTeam($posId, $group, $day, $db){
                 $sql = 'UPDATE GroupSunday SET ID_t' . $i . ' = ' . $empty . ' WHERE ' . $group['ID'] . '=ID';
             }
         }
+        if ($i == $teamNumberPos+1) {
+            break;
+        }
     }
     if ($db->query($sql) === TRUE) {
         echo "Record Nullified successfully";
     } else {
         echo "Error updating record: " . $db->error;
     }
-    return $savedi;
+    $flagLeaderMoved = false;
+    if($group['ID_Leader']==$posId) {//we moved the leader
+       $flagLeaderMoved = true;
+    }
+    return array($savedi, $flagLeaderMoved);
 }
 
-function shiftTeams($PositionNumber, $posGroup, $day, $db){
-    error_log("entered shift!");
+function shiftTeams($PositionNumber, $posGroup, $day, $teamNumberPos, $flagLeaderMoved, $db){
     $textDay = $day == "sam" ? "GroupSaturday" : "GroupSunday";
     $queryT="SELECT * FROM ".$textDay." WHERE ID=".$posGroup['ID'];
     $qer = $db->query($queryT);
     $rep = $qer->fetch_array();
     for ($i = $PositionNumber; $i < 8; $i += 1) {
-        error_log("positionNumber=" . $i);
         $iNext = $i + 1;
         $teamID = $rep["ID_t" . $iNext] == null ? "NULL" : $rep["ID_t" . $iNext];
         $sql = 'UPDATE ' . $textDay . ' SET ID_t' . $i . ' = ' . $teamID . ' WHERE ' . $posGroup['ID'] . '=ID';
-        error_log($sql);
         if ($db->query($sql) === TRUE) {
             echo "Record Nullified successfully";
         } else {
             echo "Error updating record: " . $db->error;
         }
     }
+    //check if group is empty
+    $request = 'SELECT * FROM '.$textDay.' WHERE ID=' . $posGroup['ID'];
+    $reponse = $db->query($request);
+    $newGroup = $reponse->fetch_array();
+    if($newGroup['ID_t1'] == 0){
+        removeGroup($posGroup, $db, $textDay);
+    }
+    else{
+        $sql = 'UPDATE '.$textDay.' SET ID_Leader='.$newGroup['ID_t1'].' WHERE '. $posGroup['ID'] .'= ID';
+        $db->query($sql);
+    }
 }
 
 function addTeam($posId, $group, $day, $db)
 {
-    error_log("entered add!");
     $textDay = $day == "sam" ? "GroupSaturday" : "GroupSunday";
 
-    for ($i = 1; $i < 9; $i += 1) {
-        if ($group['ID_t' . $i] == null) {
-            $sql = 'UPDATE ' . $textDay . ' SET ID_t' . $i . ' = ' . $posId . ' WHERE ' . $group['ID'] . '=ID';
-            if ($db->query($sql) === TRUE) {
-                echo "Record Nullified successfully";
-            } else {
-                echo "Error updating record: " . $db->error;
+    if ($group['ID_t1'] == -1) {
+        $sql = 'UPDATE ' . $textDay . ' SET ID_t1' . ' = ' . $posId . ' WHERE ' . $group['ID'] . '=ID';
+        if ($db->query($sql) === TRUE) {
+            echo "Record Nullified successfully";
+            promote_leader($group['ID'], $posId, $db, $textDay);
+        } else {
+            echo "Error updating record: " . $db->error;
+        }
+    }
+    else {
+        for ($i = 1; $i < 9; $i += 1) {
+            if ($group['ID_t' . $i] == null) {
+                $sql = 'UPDATE ' . $textDay . ' SET ID_t' . $i . ' = ' . $posId . ' WHERE ' . $group['ID'] . '=ID';
+                if ($db->query($sql) === TRUE) {
+                    if ($i == 1) {//set the first team to the team Leader
+                    }
+                    echo "Record Nullified successfully";
+                } else {
+                    echo "Error updating record: " . $db->error;
+                }
+                break;
             }
-            break;
         }
     }
 }
@@ -226,5 +265,18 @@ function deleteMatch($posId, $posGroup, $db){
     $db->query('DELETE FROM `Match` WHERE (' . $posId . ' = ID_Equipe1 or ' . $posId . ' = ID_Equipe2) and ' . $posGroup['ID'] . '=  Poule_ID');
 }
 
+function removeGroup($posGroup, $db, $textDay){
+    $sql = 'DELETE FROM '.$textDay.' WHERE '. $posGroup['ID'] .'= ID';
+    if ($db->query($sql) === TRUE) {
+        echo "Record Nullified successfully";
+    } else {
+        echo "Error updating record: " . $db->error;
+    }
+}
+
+function promote_leader($idGroup, $teamID, $db, $textDay){
+    $sql = 'UPDATE '.$textDay.' SET ID_Leader='.$teamID.' WHERE '. $idGroup .'= ID';
+    $db->query($sql);
+}
 
 ?>

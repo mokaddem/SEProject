@@ -95,7 +95,6 @@ function getTitre($get) {
             break;
         case "player":
             return "participants";
-
         case "court":
             return "terrains";
         case "extra":
@@ -126,7 +125,7 @@ function getExtras() {
 function getHistories() {
     $db = BDconnect(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
 
-    return $db->query('SELECT * FROM History');
+    return $db->query('SELECT * FROM History ORDER BY id DESC');
 
 }
 
