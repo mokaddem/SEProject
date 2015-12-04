@@ -67,7 +67,7 @@
                                 <?php $reponse = $db->query('SELECT * FROM Categorie');
                                 while ($donnes = $reponse->fetch_array()) { ?>
                                     <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="knock-off.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation'])?></a></li>
-                                <?php} ?>
+                                <?php }?>
                             </ul>
                         </div>
                         <div class="row">
@@ -111,7 +111,7 @@
                                     Le tournoi n'a pas encore été généré pour cette catégorie et/ou ce jour.
                                 </div>
                             <?php } else {
-                                ?> <label> Modifier les équipes et les terrains pour le tour 1. </label>
+                                ?> <h3> <b> Modifier les équipes et les terrains pour le tour 1. </b> </h3>
                             <div class="col-lg-12 text-center">
                             <?php
                                 $impairTeam = 0;
@@ -194,9 +194,7 @@
 
                                 </div>
                                 <div class="col-lg-12 text-center">
-                                    <label> Modifier les terrains pour les tours suivants. </label>
-                                </div>
-                                <div class="col-lg-12 text-center">
+                                    <h3> <b> Modifier les terrains pour les tours suivants. </b> </h3>
                                     <?php // ATTENTION: montrer le bon terrain
                                         $matchNum = $numberFirstRound + $impairTeam;
                                         $iter = 0;
@@ -212,14 +210,14 @@
                                         <div class="col-lg-3 text-center" style="position: relative; top: <?=$position?>;">
                                              <label> Tour <?=$iter+2?> </label>
                                             <?php if($impairTeam == 1 and $numberOfTeams != 3) { ?>
-                                                <label> Une team n'aura pas de match à ce tour. </label >
+                                                <label class="text-danger"> Une team n'aura pas de match à ce tour. </label >
                                             <?php } elseif ($numberOfTeams == 3){
-                                                    ?> </br> <label> Il reste 3 équipes en finale. </label>
+                                                    ?> </br> <label class="text-danger"> Il reste 3 équipes en finale. </label>
                                                      <?php
                                                      $numberOfTeams = 7;
                                                      $stop = True;
                                                   } elseif ($numberOfTeams == 2){
-                                                    ?> </br> <label> FINALE </label> <?php
+                                                    ?> </br> <label class="text-danger"> FINALE </label> <?php
                                                   }
                                             for ($j = $impairTeam; $j < $numberOfTeams/2; $j++) {
                                                 // We need one less match if we have a surplus of 1 team.
