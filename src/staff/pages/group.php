@@ -222,11 +222,11 @@
                                           <?php // N'AFFICHE RIEN SI LE NOM DU PREMIER JOUEUR EST VIDE
                                        ?>
                                         <span data-toggle="pList" data-target="#pList" data-url="./php/group-note<?=$videOrNot?>.php?id=<?=$teamID?>">
-                                          <button class="btn btn-<?=$color?> btn-outlineW" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"];?>">
-                                              [<?=$teamID?>]
-                                              <?=utf8_encode($player['LastName'])?> &
-                                              <?=utf8_encode($player2['LastName'])?>
-                                          </button>
+                                          <div class="btn btn-<?=$color?> btn-outlineW draggable dropper" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"];?>">
+                                                        [<?=$teamID?>]
+                                                        <?=utf8_encode($player['LastName'])?> &
+                                                        <?=utf8_encode($player2['LastName'])?>
+                                    		</div>
                                         </span>
 
                                   </div>
@@ -242,7 +242,7 @@
                               <?php
                                   if($teamNum<8){ ?>
                                           <div class="form-group text-center">
-                                              <button class="btn btn-default btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"]?>">Vide</button>
+                                              <div class="btn btn-default btn-outline draggable dropper" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"]?>">Vide</div>
                                           </div>
                               <?php } ?>
                           </div>
@@ -304,16 +304,103 @@
     <script src="../dist/js/sb-admin-2.js"></script>
 
     <script>
-        $(document).ready(function(){
-            $('[data-toggle="tooltip"]').tooltip();
-        });
+        (function() {
+            var dndHandler = {
+                draggedElement: null,
+                dropperDefaultStyle1: "btn btn-default btn-outlineW draggable dropper",
+                dropperDefaultStyle2: "btn btn-primary btn-outlineW draggable dropper",
+                ropperDefaultStyle3: "btn btn-default btn-outline draggable dropper",
+                draggedDefaultStyle: null,
+
+                applyDragEvents: function(element) {
+                    element.draggable = true;
+                    var dndHandler = this;
+                    element.addEventListener('dragstart', function(e) {
+                        dndHandler.draggedElement = e.target;
+                        dndHandler.draggedDefaultStyle = e.target.getAttribute("class");
+                        e.dataTransfer.setData('text/plain', '');
+                    }, false);
+                },
+
+                applyDropEvents: function(dropper) {
+                    dropper.addEventListener('dragover', function(e) {
+                        e.preventDefault();
+                        dndHandler.dropperDefaultStyle = e.target.getAttribute("class");
+
+                        if(dndHandler.dropperDefaultStyle == dndHandler.dropperDefaultStyle1 + " drop_hover" || dndHandler.dropperDefaultStyle == dndHandler.dropperDefaultStyle2 + " drop_hover" || dndHandler.dropperDefaultStyle == dndHandler.ropperDefaultStyle3 + " drop_hover") {// On revient au style de base lorsque l'élément quitte la zone de drop
+                        }
+                        else{
+                            this.className = e.target.getAttribute("class") + " drop_hover"; // Et on applique le style adéquat à notre zone de drop quand un élément la survole
+                        }
+
+
+                    }, false);
+
+                    dropper.addEventListener('dragleave', function() {
+
+                        if(dndHandler.dropperDefaultStyle1 + " drop_hover"){// On revient au style de base lorsque l'élément quitte la zone de drop
+                            this.className = dndHandler.dropperDefaultStyle1;
+                        }
+                        else if(dndHandler.dropperDefaultStyle2 + " drop_hover"){
+                            this.className = dndHandler.dropperDefaultStyle2;
+                        }
+                        else{
+                            this.className = dndHandler.dropperDefaultStyle3;
+                        }
+
+                    });
+                    var dndHandler = this;
+
+                    dropper.addEventListener('drop', function(e) {
+                        var target = e.target,
+                        draggedElement = dndHandler.draggedElement; // Récupération de l'élément concerné
+                        target.className = dndHandler.draggedDefaultStyle; // Application du style par défaut
+
+                        var draggedElement_id = $(draggedElement).attr('data-id');
+                        var draggedElement_teamNum = $(draggedElement).attr('data-teamNum');
+                        var draggedElement_groupNum = $(draggedElement).attr('data-groupNum');
+                        var target_id = $(target).attr('data-id');
+                        var target_teamNum = $(target).attr('data-teamNum');
+                        var target_groupNum = $(target).attr('data-groupNum');
+                        init_the_swap(draggedElement_id, draggedElement_teamNum, draggedElement_groupNum, target_id, target_teamNum, target_groupNum);
+                    });
+                }
+            };
+            var elements = document.querySelectorAll('.draggable'),
+                elementsLen = elements.length;
+            for (var i = 0 ; i < elementsLen ; i++) {
+                dndHandler.applyDragEvents(elements[i]); // Application des paramètres nécessaires aux éléments déplaçables
+            }
+            var droppers = document.querySelectorAll('.dropper'),
+                droppersLen = droppers.length;
+            for (var i = 0 ; i < droppersLen ; i++) {
+                dndHandler.applyDropEvents(droppers[i]); // Application des événements nécessaires aux zones de drop
+            }
+        })();
     </script>
 
     <script>
-        $(document).ready(function () {
-            $('#popupSave').hide();
-            $('#popupCreate').hide();
-            checkForInvalideGroups();
+        function init_the_swap(draggedElement_id, draggedElement_teamNum, draggedElement_groupNum, target_id, target_teamNum, target_groupNum){
+            document.getElementById('idteam1').value = draggedElement_id;
+            document.getElementById('teamNumberG1').value = draggedElement_teamNum;
+            document.getElementById('groupID1').value = draggedElement_groupNum;
+            document.getElementById('idteam2').value = target_id;
+            document.getElementById('teamNumberG2').value = target_teamNum;
+            document.getElementById('groupID2').value = target_groupNum;
+            var myForm = document.getElementById('echanger');
+            myForm.submit();
+        }
+    </script>
+
+
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+
+            if(<?php if(array_key_exists("popup",$_POST)){echo "true"; error_log($_POST['popup']);}else{echo "false";} ?>) {
+                setTimeout(function () {$('#popupCreate').fadeIn('slow');}, 0);
+                setTimeout(function () {$('#popupCreate').fadeOut('slow');}, 3000);
+            }
         });
     </script>
 
@@ -334,6 +421,13 @@
         function HighlightTheDiv(Div){
             Div.className = "col-lg-3 server-invalide-menu";
         }
+    </script>
+
+    <script>
+        $('#popupSave').hide();
+        $('#popupCreate').hide();
+        checkForInvalideGroups();
+
     </script>
 
     <script type="text/javascript">
@@ -397,9 +491,6 @@
 
             });
 
-            setTimeout(function() {  $('#popupSave').fadeIn('slow');}, 0);
-            setTimeout(function() {  $('#popupSave').fadeOut('slow');},3000);
-            console.log("tim");
         }
 
     </script>
@@ -428,9 +519,22 @@
 
             });
 
+
+//            setTimeout(function() {  location.reload();}, 500+2000);
+            var redirURL = window.location.href;
+
+            var data={ 'popup':true};
+
+            var form = $('<form action="' + redirURL + '" method="post">' +
+                '<input type="text" name="popup" value="' + true + '" />' +
+                '</form>');
+            $('body').append(form);
+            form.submit();
+        }
+
+        function popup(){
             setTimeout(function() {  $('#popupCreate').fadeIn('slow');}, 0);
             setTimeout(function() {  $('#popupCreate').fadeOut('slow');},2000);
-            setTimeout(function() {  location.reload();}, 500+2000);
         }
 
     </script>
