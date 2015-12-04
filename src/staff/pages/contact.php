@@ -54,7 +54,7 @@
         </div>
         <!-- Registration form - START -->
         <div class="row">
-          <form role="form" id="contact" method="post" action="contact_Staff.php">
+          <form role="form" id="contact" method="post" action="../../mail/contact_new.php">
             <div class="col-lg-6">
               <div class="form-group">
                 <div class="input-group">
