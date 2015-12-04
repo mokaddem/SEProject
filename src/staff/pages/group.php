@@ -47,6 +47,19 @@
                 </div>
 
                 <div class="row">
+                  <?php if (array_key_exists("error", $_GET)) {?>
+                      <?php if ($_GET["error"] == "nodata") {?>
+                          <div class="col-lg-8 alert alert-danger text-center">
+                              <b>Erreur</b>
+                              Vous devez renseigner deux ID d'équipes.
+                          </div>
+                      <?php } else { ?>
+                          <div class="col-lg-8 alert alert-danger text-center">
+                              <b>Echec de l'opération !</b>
+                              Certains groupes utilisent le même terrain.
+                          </div>
+                  <?php } } ?>
+
                     <?php if (array_key_exists("submitting", $_GET)) {?>
                         <?php if ($_GET["submitting"] == "correct") {?>
                             <div class="col-lg-8 alert alert-success text-center">
@@ -100,8 +113,8 @@
                         <div class="container">
                             <form id="echanger" class="navbar-form" action="./php/group-switch.php?jour=<?=$_GET['jour']?>&cat=<?=$_GET['cat']?>" method="post">
                                 <input type="submit" class="btn btn-success pull-right" value="Echanger"/>
-                                <span class="pull-right"> </span><input type="text" class="form-control pull-right" id="idteam2" name="idteam2" placeholder="ID Equipe 2" required>
-                                <p class="pull-right"> </p><input type="text" class="form-control pull-right" id="idteam1" name="idteam1" placeholder="ID Equipe 1" required>
+                                <span class="pull-right"> </span><input type="text" class="form-control pull-right" id="idteam2" name="idteam2" placeholder="Cliquez sur une équipe" disabled required>
+                                <p class="pull-right"> </p><input type="text" class="form-control pull-right" id="idteam1" name="idteam1" placeholder="Cliquez sur une équipe" disabled required>
 
                                 <span class="pull-right" data-toggle="pList" data-target="#pList" data-url="./php/group-note-vide.php">
                                 <button class="btn btn-default">
