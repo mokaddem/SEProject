@@ -53,12 +53,8 @@
                               <b>Erreur</b>
                               Vous devez renseigner deux ID d'équipes.
                           </div>
-                      <?php } else { ?>
-                          <div class="col-lg-8 alert alert-danger text-center">
-                              <b>Echec de l'opération !</b>
-                              Certains groupes utilisent le même terrain.
-                          </div>
-                  <?php } } ?>
+                      <?php }
+                  } ?>
 
                     <?php if (array_key_exists("submitting", $_GET)) {?>
                         <?php if ($_GET["submitting"] == "correct") {?>

@@ -54,19 +54,47 @@ include_once('BDD.php');
 $db = BDconnect();
 $id = $_GET['id'];
 
+// Recupération des respos
+// ID Cat Poule = ID Cat staff
+if (!array_key_exists("jour", $_GET)) {
+  echo "Mauvais lien !";
+  return;
+}
+if ($_GET["jour"] = "sam") {
+  $poule = $db->query('SELECT * FROM GroupSaturday WHERE '.$id.' = ID');
+} elseif ($_GET["jour"] = "dim") {
+  $poule = $db->query('SELECT * FROM GroupSunday WHERE '.$id.' = ID');
+}
+
+$poule = $poule->fetch_array();
+
+$staffeurs = $db->query('SELECT ID_Personne FROM Staff WHERE '.$poule['ID_Cat'].' = ID_Cat');
+$respoPrint= "";
+
+foreach ($staffeurs as $staffeur) {
+  $respos = $db->query('SELECT * FROM Personne WHERE '.$staffeur['ID_Personne'].' = ID');
+  foreach ($respos as $respo) {
+    $respoPrint.=", ";
+    $respoPrint.=$respo["FirstName"]." ".$respo["LastName"];
+  }
+}
+  $respoPrint = substr($respoPrint, 2, strlen($respoPrint));
+
+
 $html = <<<EOD
 <h3 align="center">Tournoi</h3>
 <h1 align="center">Charles de Lorraine</h1>
 <p></p>
 <hr/>
 <p></p>
-<h2 align="center">Poule $id - [Nom respo]</h2>
+<h2 align="center">Poule $id - $respoPrint</h2>
 <hr/>
 <p></p>
 EOD;
 $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
 
 $reponse = $db->query('SELECT * FROM `Match` WHERE '.$id.' = Poule_ID');
+
 $numMatch = 1;
 foreach ($reponse as $donnees) {
 

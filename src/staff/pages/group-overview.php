@@ -141,7 +141,7 @@ foreach ($listDonnees as $donnees) { $i = 1; ?>
                         ?>
                   <td>
                       <a href="./group.php?jour=<?=$theDay?>&cat=1"><i class="fa fa-edit fa-fw"></i></a>
-                      <a target="_blank" href="./php/print-group.php?id=<?=$matchID?>"><i class="fa fa-print"></i></a>
+                      <a target="_blank" href="./php/print-group.php?id=<?=$matchID?>&jour=<?=$theDay?>"><i class="fa fa-print"></i></a>
                   </td>
                 </tr>
                 <?php    } ?>
