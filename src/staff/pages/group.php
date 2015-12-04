@@ -119,146 +119,162 @@
                         </div>
                     </nav>
                 </div>
-                <div class="row">
-                    <div class="text-center">
-                        <?php
-                            $db = BDconnect();
-                            $nullAp = "''";
-                            if ($_GET['jour'] == "sam"){
-                                $q1='SELECT * , GroupSaturday.ID AS Gid FROM GroupSaturday, Team WHERE (GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].') UNION ALL SELECT GroupSaturday.*, '.$nullAp.' as ID,'.$nullAp.' as ID_Player1,'.$nullAp.' as ID_Player2,'.$nullAp.' as ID_Cat,'.$nullAp.' as NbWinMatch,'.$nullAp.' as AvgRanking,'.$nullAp.' as Group_Vic, GroupSaturday.ID AS Gid FROM GroupSaturday WHERE GroupSaturday.ID_t1 = -1';
-                                $groups = $db->query($q1);
-                            } else{
-                                $q1='SELECT * , GroupSunday.ID AS Gid FROM GroupSunday, Team WHERE (GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].') UNION ALL SELECT GroupSunday.*, '.$nullAp.' as ID,'.$nullAp.' as ID_Player1,'.$nullAp.' as ID_Player2,'.$nullAp.' as ID_Cat,'.$nullAp.' as NbWinMatch,'.$nullAp.' as AvgRanking,'.$nullAp.' as Group_Vic, GroupSunday.ID AS Gid FROM GroupSunday WHERE GroupSunday.ID_t1 = -1';
-                                $groups = $db->query($q1);
+                  <?php
+                      $db = BDconnect();
+                      $nullAp = "''";
+                      if ($_GET['jour'] == "sam"){
+                          $q1='SELECT * , GroupSaturday.ID AS Gid FROM GroupSaturday, Team WHERE (GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].') UNION ALL SELECT GroupSaturday.*, '.$nullAp.' as ID,'.$nullAp.' as ID_Player1,'.$nullAp.' as ID_Player2,'.$nullAp.' as ID_Cat,'.$nullAp.' as NbWinMatch,'.$nullAp.' as AvgRanking,'.$nullAp.' as Group_Vic, GroupSaturday.ID AS Gid FROM GroupSaturday WHERE GroupSaturday.ID_t1 = -1';
+                          $groups = $db->query($q1);
+                      } else{
+                          $q1='SELECT * , GroupSunday.ID AS Gid FROM GroupSunday, Team WHERE (GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].') UNION ALL SELECT GroupSunday.*, '.$nullAp.' as ID,'.$nullAp.' as ID_Player1,'.$nullAp.' as ID_Player2,'.$nullAp.' as ID_Cat,'.$nullAp.' as NbWinMatch,'.$nullAp.' as AvgRanking,'.$nullAp.' as Group_Vic, GroupSunday.ID AS Gid FROM GroupSunday WHERE GroupSunday.ID_t1 = -1';
+                          $groups = $db->query($q1);
 //                                $groups = $db->query('SELECT *, GroupSunday.ID as Gid FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].') OR (GroupSunday.ID_t1=-1 AND GroupSunday.ID_t2=NULL');
 
-                            }
-                            $lineNum = 4;
-                            $j = 0;
-                            $s_a_m = "";
-                            $k = 0;
-                            while($group = $groups->fetch_array()){//k loop
-                                $k++;
-                                if ($s_a_m == "server-action-menu") {
-                                    $s_a_m = "server-other-menu";
-                                } else {
-                                    $s_a_m = "server-action-menu";
-                                }
-                                $j++;
-                                if ($j > $lineNum){
-                                    $j = 0;
-                                    echo "</div>";
-                                    echo "<div class=\"col-lg-12 text-center\">";
+                      }
+                      ?>
+                  <div class="row">
+                      <div class="text-center">
 
-                                }
-                                if ($group != NULL){?>
-                                    <?php
-                                    $teamNum=8;
-                                    while($group["ID_t".$teamNum] == null){
-                                        $teamNum--;
-                                    }
-                                    ?>
-                                    <div class="col-lg-3 <?=$s_a_m?>"  name="divGroup" id="divGroup<?=$k?>" data-groupID="<?=$group['Gid']?>" data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>" data-teamNum="<?=$teamNum?>">
-                                        <label>
-                                            <span class="fa fa-users"></span> Groupe <?= $k?> [<?=$group['Gid']?>]
-                                            <a href="php/delete-group.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&cat=<?=$_GET['cat']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce groupe ?');"><i class="fa fa-trash-o"></i></a>
-                                        </label>
-                                        <div class="form-group" >
-                                            <label><span class="fa fa-users"></span> Terrain</label>
-                                            <select class="form-control" id="terrain <?=$k?>" name="ExpandableListTerrain">
-                                                <?php
-                                                        $terrains = $db->query('SELECT * FROM Terrain');
-                                                        while ($terrain = $terrains->fetch_array())
-                                                        { ?>
-                                                            <option value=<?=$terrain['ID']?> <?php if ($group['ID_terrain']==$terrain['ID']) { echo "selected=\"selected\""; }?> >
-                                                                    <?=$terrain['ID']?> : [<?=utf8_encode($terrain['Type']);?>/<?=utf8_encode($terrain['etat']);?>] <?=utf8_encode($terrain['Note']);?> (<?=utf8_encode($terrain['adresse']);?>)
-                                                            </option>
-                                                    <?php }
-                                                    ?>
-                                            </select>
-                                        </div>
+                      <?php
+                      $lineNum = 3;
+                      $j = 4;
+                      $s_a_m = "";
+                      $k = 0;
 
-                                        <label><span class="fa fa-users"></span> Equipes </label>
-                                        <?php
-                                        for ($i = 1; $i <= $teamNum; $i++) {
-                                                $teamID = $group["ID_t".$i];
-                                                $team = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"")->fetch_array();
-                                                $IDPersonne = $team['ID_Player1'];
-                                                $player = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne."\"")->fetch_array();
+                      while($group = $groups->fetch_array()){//k loop
+                          $k++;
+                          if ($s_a_m == "server-action-menu") {
+                              $s_a_m = "server-other-menu";
+                          } else {
+                              $s_a_m = "server-action-menu";
+                          }
+                          $j++;
+                          if ($j > $lineNum){
+                              $j = 0; ?>
+                              </div>
+                            </div>
+                            <div class="row">
+                                <div class="text-center">
+                        <?php  }
+                          if ($group != NULL){?>
+                              <?php
+                              $teamNum=8;
+                              while($group["ID_t".$teamNum] == null){
+                                  $teamNum--;
+                              }
+                              ?>
+                          <div class="col-lg-3 <?=$s_a_m?>"  name="divGroup" id="divGroup<?=$k?>" data-groupID="<?=$group['Gid']?>" data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>" data-teamNum="<?=$teamNum?>">
+                              <label>
+                                  <span class="fa fa-users"></span> Groupe <?= $k?> [<?=$group['Gid']?>]
+                                  <a href="php/delete-group.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&cat=<?=$_GET['cat']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce groupe ?');"><i class="fa fa-trash-o"></i></a>
+                              </label>
+                              <div class="form-group" >
+                                  <label><span class="fa fa-users"></span> Terrain</label>
+                                  <select class="form-control" id="terrain <?=$k?>" name="ExpandableListTerrain">
+                                      <?php
+                                              $terrains = $db->query('SELECT * FROM Terrain');
+                                              while ($terrain = $terrains->fetch_array())
+                                              { ?>
+                                                  <option value=<?=$terrain['ID']?> <?php if ($group['ID_terrain']==$terrain['ID']) { echo "selected=\"selected\""; }?> >
+                                                          <?=$terrain['ID']?> : [<?=utf8_encode($terrain['Type']);?>/<?=utf8_encode($terrain['etat']);?>] <?=utf8_encode($terrain['Note']);?> (<?=utf8_encode($terrain['adresse']);?>)
+                                                  </option>
+                                          <?php }
+                                          ?>
+                                  </select>
+                              </div>
 
-                                                $IDPersonne2 = $team['ID_Player2'];
-                                                $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
-                                                ?>
-                                            <div class="form-group text-center">
-                                            <?php $captainText = $teamID == $group['ID_Leader'] ? "fa fa-user text-success " : "fa fa-arrow-circle-o-up"; ?>
-                                            <?php if($group['ID_t1']>0){?>
-                                            <a  data-toggle="tooltip" data-placement="left" title="<?php if($teamID == $group['ID_Leader']){echo "Leader de poule";} else{echo "Assigner cette équipe en tant que leader de poule";}?>" href="php/promote-leader.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&teamID=<?=$teamID?>&cat=<?=$_GET['cat']?>" ><i class="<?=$captainText?>"></i></a>
-                                            <?php }?>
-                                                <?php $color = "default";
-                                                $videOrNot = "-vide";
-                                                // N'AFFICHE RIEN SI LE NOM DU PREMIER JOUEUR EST VIDE
-                                                // MET EN BLEU ET UN LIEN VERS LA NOTE SI LE JOUEUR EN A UNE
-                                                if (!empty($player['LastName'])) {
-                                                if (($player['Note'] || $player2['Note'])) {
-                                                    $color = "primary";
-                                                    $videOrNot = "";
-                                                }?>
-                                                    <?php // N'AFFICHE RIEN SI LE NOM DU PREMIER JOUEUR EST VIDE
-                                                 ?>
-                                                  <span data-toggle="pList" data-target="#pList" data-url="./php/group-note<?=$videOrNot?>.php?id=<?=$teamID?>">
-                                                    <button class="btn btn-<?=$color?> btn-outlineW" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"];?>">
-                                                        [<?=$teamID?>]
-                                                        <?=utf8_encode($player['LastName'])?> &
-                                                        <?=utf8_encode($player2['LastName'])?>
-                                                    </button>
-                                                  </span>
+                              <label><span class="fa fa-users"></span> Equipes </label>
+                              <?php
+                              for ($i = 1; $i <= $teamNum; $i++) {
+                                      $teamID = $group["ID_t".$i];
+                                      $team = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"")->fetch_array();
+                                      $IDPersonne = $team['ID_Player1'];
+                                      $player = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne."\"")->fetch_array();
 
-                                            </div>
+                                      $IDPersonne2 = $team['ID_Player2'];
+                                      $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
+                                      ?>
+                                  <div class="form-group text-center">
+                                  <?php $captainText = $teamID == $group['ID_Leader'] ? "fa fa-user text-success " : "fa fa-arrow-circle-o-up"; ?>
+                                  <?php if($group['ID_t1']>0){?>
+                                  <a  data-toggle="tooltip" data-placement="left" title="<?php if($teamID == $group['ID_Leader']){echo "Leader de poule";} else{echo "Assigner cette équipe en tant que leader de poule";}?>" href="php/promote-leader.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&teamID=<?=$teamID?>&cat=<?=$_GET['cat']?>" ><i class="<?=$captainText?>"></i></a>
+                                  <?php }?>
+                                      <?php $color = "default";
+                                      $videOrNot = "-vide";
+                                      // N'AFFICHE RIEN SI LE NOM DU PREMIER JOUEUR EST VIDE
+                                      // MET EN BLEU ET UN LIEN VERS LA NOTE SI LE JOUEUR EN A UNE
+                                      if (!empty($player['LastName'])) {
+                                      if (($player['Note'] || $player2['Note'])) {
+                                          $color = "primary";
+                                          $videOrNot = "";
+                                      }?>
+                                          <?php // N'AFFICHE RIEN SI LE NOM DU PREMIER JOUEUR EST VIDE
+                                       ?>
+                                        <span data-toggle="pList" data-target="#pList" data-url="./php/group-note<?=$videOrNot?>.php?id=<?=$teamID?>">
+                                          <button class="btn btn-<?=$color?> btn-outlineW" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"];?>">
+                                              [<?=$teamID?>]
+                                              <?=utf8_encode($player['LastName'])?> &
+                                              <?=utf8_encode($player2['LastName'])?>
+                                          </button>
+                                        </span>
 
-                                            <?php
+                                  </div>
 
-                                        }
-                                            else{
-                                                echo "</div>";
-                                            }
-                                        } ?>
+                                  <?php
 
-                                        <?php
-                                            if($teamNum<8){ ?>
-                                                    <div class="form-group text-center">
-                                                        <button class="btn btn-default btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"]?>">Vide</button>
-                                                    </div>
-                                        <?php } ?>
-                                    </div>
-                                    <?php }
-                                        } // End of k loop.
-                                    if ($k == 0){ ?>
-                                        <div class="col-lg-3 alert alert-danger">
-                                            Les groupes n'ont pas encore été générés pour cette catégorie et/ou ce jour.
-                                        </div>
-                                    <?php } ?>
+                              }
+                                  else{
+                                      echo "</div>";
+                                  }
+                              } ?>
 
-                                    <div class="col-lg-3 server-new-menu"  name="divGroupEmpty" id="divGroup<?=($k+1)?>" >
-                                        <label><span class="fa fa-users"></span> Groupe <?= $k+1?> </label>
-                                        <div class="form-group" >
-                                            <button class="btn btn-default" id="createNewGroup" name="createNewGroup">
-                                                Nouveau groupe
-                                            </button>
-                                        </div>
-                                        <div>
-                                            <div class="alert alert-success" id="popupCreate" >Nouveau groupe créé</div>
-                                        </div>
-                                    </div>
+                              <?php
+                                  if($teamNum<8){ ?>
+                                          <div class="form-group text-center">
+                                              <button class="btn btn-default btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"]?>">Vide</button>
+                                          </div>
+                              <?php } ?>
+                          </div>
+                          <?php }
+                              } // End of k loop.
+                          if ($k == 0){ ?>
+                              <div class="col-lg-3 alert alert-danger">
+                                  Les groupes n'ont pas encore été générés pour cette catégorie et/ou ce jour.
+                              </div>
+                          <?php }
 
-                    </div>
-                    <!-- Registration form - END -->
-                <!--</form>-->
+                          $j++;
+                          if ($j > $lineNum){
+                              $j = 0; ?>
+                              </div>
+                            </div>
+                            <div class="row">
+                                <div class="text-center">
+                        <?php  } ?>
 
-                </div>
-                <!-- /.row -->
+
+
+                          <div class="col-lg-3 server-new-menu"  name="divGroupEmpty" id="divGroup<?=($k+1)?>" >
+                              <label><span class="fa fa-users"></span> Groupe <?= $k+1?> </label>
+                              <div class="form-group" >
+                                  <button class="btn btn-default" id="createNewGroup" name="createNewGroup">
+                                      Nouveau groupe
+                                  </button>
+                              </div>
+                              <div>
+                                  <div class="alert alert-success" id="popupCreate" >Nouveau groupe créé</div>
+                              </div>
+                          </div>
+
+              </div>
+              <!-- Registration form - END -->
+          <!--</form>-->
+
             </div>
+            <!-- /.row -->
+        </div>
 
-            <!-- /#page-wrapper -->
+        <!-- /#page-wrapper -->
     </div>
     </div>
     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
