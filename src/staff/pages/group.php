@@ -109,8 +109,8 @@
                         <div class="container">
                             <form id="echanger" class="navbar-form" action="./php/group-switch.php?jour=<?=$_GET['jour']?>&cat=<?=$_GET['cat']?>" method="post">
                                 <input type="submit" class="btn btn-success pull-right" value="Echanger"/>
-                                <span class="pull-right"> </span><input type="text" class="form-control pull-right" id="idteam2" name="idteam2" placeholder="Cliquez sur une équipe" disabled required>
-                                <p class="pull-right"> </p><input type="text" class="form-control pull-right" id="idteam1" name="idteam1" placeholder="Cliquez sur une équipe" disabled required>
+                                <span class="pull-right"> </span><input type="text" class="form-control pull-right" id="idteam2" name="idteam2" placeholder="Cliquez sur une équipe" required>
+                                <p class="pull-right"> </p><input type="text" class="form-control pull-right" id="idteam1" name="idteam1" placeholder="Cliquez sur une équipe" required>
 
                                 <span class="pull-right" data-toggle="pList" data-target="#pList" data-url="./php/group-note-vide.php">
                                 <button class="btn btn-default">
