@@ -55,9 +55,9 @@
                         </div>
                         <!-- /.row -->
 
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <a class="btn btn-danger pull-center" href="../../addons/Populate/populateDB.php">REMPLIR LA BASE DE DONNEES AUTOMATIQUEMENT</a>
-                            </div>
+                            </div> -->
 
                         <div class="row">
                             <div class="col-lg-12">
@@ -137,7 +137,7 @@
                             <a href="./php/delete-history.php" class="btn btn-danger">Effacer</a>
                         </div>
 
-                        <div class="row text-center">
+                        <!-- <div class="row text-center">
                             <a class="twitter-timeline" href="https://twitter.com/SimonsCat" data-widget-id="661635155916890112">Tweets de @SimonsCat</a>
                             <script>
                                 ! function (d, s, id) {
@@ -153,7 +153,7 @@
                             </script>
 
 
-                        </div>
+                        </div> -->
                         <!-- /.panel -->
                     </div>
                     <!-- /.col-lg-6 -->
