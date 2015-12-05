@@ -30,6 +30,10 @@ Mise à jour de l'historique
         header("Location: ../knock-off-generate.php?error=yes_".$_GET['jour']."&jour=".$_GET['jour']);
         return;
     } elseif ($numberOfTeams == 0) {
+			if (!array_key_exists("jour", $_GET)) {
+				header("Location: ../knock-off-generate.php?error=no_selection");
+				return;
+			}
         header("Location: ../knock-off-generate.php?error=no_".$_GET['jour']."&jour=".$_GET['jour']);
         return;
     }

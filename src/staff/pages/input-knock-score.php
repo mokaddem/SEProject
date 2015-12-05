@@ -53,10 +53,13 @@
                     <li <?php if ($_GET['jour']=="dim" ) echo 'class="active" ' ;?>><a href="input-knock-score.php?jour=dim&cat=1">Dimanche</a></li>
                 </ul>
                 <ul class="nav nav-tabs nav-justified">
-                    <?php $reponse = $db->query('SELECT * FROM Categorie');
-                    while ($donnes = $reponse->fetch_array()) { ?>
-                        <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="input-knock-score.php.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation'])?></a></li>
-                    <?php }?>
+                    <?php $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, KnockoffSaturday WHERE KnockoffSaturday.Category = Categorie.ID');
+                    if ($_GET['jour'] == "dim") {
+                      $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, KnockoffSunday WHERE KnockoffSunday.Category = Categorie.ID');
+                    }
+                        while ($donnes = $reponse->fetch_array()) { ?>
+                          <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="input-knock-score.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation'])?></a></li>
+                        <?php }?>
                 </ul>
             </div>
             <div class="row">
