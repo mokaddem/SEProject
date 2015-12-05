@@ -186,7 +186,7 @@ function shiftTeams($PositionNumber, $posGroup, $day, $teamNumberPos, $flagLeade
     $rep = $qer->fetch_array();
     for ($i = $PositionNumber; $i < 9; $i += 1) {
         $iNext = $i + 1;
-        $teamID = $rep["ID_t" . $iNext] == null ? "NULL" : $rep["ID_t" . $iNext];
+        if($iNext>=9){$teamID = "NULL";}else{$teamID = $rep["ID_t" . $iNext] == null ? "NULL" : $rep["ID_t" . $iNext];}
 //        if($iNext >= 9){$teamID="NULL";}
         $sql = 'UPDATE ' . $textDay . ' SET ID_t' . $i . ' = ' . $teamID . ' WHERE ' . $posGroup['ID'] . '=ID';
         if ($db->query($sql) === TRUE) {
