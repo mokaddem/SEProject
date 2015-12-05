@@ -137,7 +137,6 @@ $html = <<<EOD
 <p><b>Terrain:</b> $terfinal</p>
 <p><b>Date du match:</b> $date</p>
 <p><b>Heure du match:</b> $hour</p>
-<p><b>Score:</b> |___________________|--------------|___________________|</p>
 <hr/>
 EOD;
 
@@ -145,6 +144,53 @@ EOD;
   $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
   $numMatch++;
 }
+
+// Set some content to print
+$html = <<<EOD
+<table border="1px">
+EOD;
+
+for ($ii = 0; $ii <= 8; $ii+=1) {
+$html .= <<<EOD
+<tr>
+EOD;
+
+  for ($jj = 0; $jj <= 8; $jj+=1) {
+    if ($ii == $jj && $ii != 0) {
+$hh =<<<EOD
+<td bgcolor="#000000"></td>
+EOD;
+    }elseif ($ii == $jj && $ii== 0) {
+$hh =<<<EOD
+<td></td>
+EOD;
+
+    } elseif ($ii==0) {
+$hh =<<<EOD
+<td> Equipe $jj<br/></td>
+EOD;
+    } elseif ($jj==0) {
+$hh =<<<EOD
+<td> Equipe $ii<br/></td>
+EOD;
+
+    } else {
+$hh =<<<EOD
+<td></td>
+EOD;
+    }
+    $html.=$hh;
+  }
+$html .= <<<EOD
+</tr>
+EOD;
+}
+$html .= <<<EOD
+</table>
+EOD;
+
+  $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
+
 
 $reponse->free(); $t->free(); $t1p->free(); $t2p->free();
 
