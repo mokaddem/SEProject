@@ -131,33 +131,43 @@ Mise à jour de l'historique
         }
 
         $terrains = $db->query("SELECT * FROM Terrain");
-        $reponseTeams = $db->query('SELECT * FROM Team WHERE ID_Cat='.$_GET['InputCat'].'');
+        $reponseTeams = $db->query('SELECT * FROM Team WHERE ID_Cat='.$_GET['InputCat']);
         $i=1;
         $ID_t1 = NULL; $ID_t2 = NULL; $ID_t3 = NULL; $ID_t4 = NULL; $ID_t5 = NULL;
         foreach ($reponseTeams as $team){
-            if ($i == 1){
-                $ID_t1 = $team['ID'];
-            } elseif($i == 2){
-                $ID_t2 = $team['ID'];
-            } elseif($i == 3){
-                $ID_t3 = $team['ID'];
-            } elseif($i == 4){
-                $ID_t4 = $team['ID'];
-            } if($i == 5){
-                $ID_t5 = $team['ID'];
-
-                $terrain = $terrains->fetch_array();
-                if ($terrain == NULL){ // Si on a pas assez de terrains pour tous les matches.
-                    $terrains = $db->query("SELECT * FROM Terrain");
-                    $terrain = $terrains->fetch_array();
+            $personne1 = $db->query('SELECT * FROM Personne WHERE ID ='.$team['ID_Player1'])->fetch_array();
+            $personne2 = $db->query('SELECT * FROM Personne WHERE ID ='.$team['ID_Player2'])->fetch_array();
+            // On récupère les équipes qui jouent le samedi: les équipes mixtes.
+            if ($personne1['Title'] != $personne2['Title']) {
+                if ($i == 1) {
+                    $ID_t1 = $team['ID'];
+                } elseif ($i == 2) {
+                    $ID_t2 = $team['ID'];
+                } elseif ($i == 3) {
+                    $ID_t3 = $team['ID'];
+                } elseif ($i == 4) {
+                    $ID_t4 = $team['ID'];
                 }
-                $ID_Terrain = $terrain['ID'];
+                if ($i == 5) {
+                    $ID_t5 = $team['ID'];
 
-                $Poule_ID = insertSam($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $i, $ID_Terrain);
-                $i = 0;
-                $ID_t1 = NULL; $ID_t2 = NULL; $ID_t3 = NULL; $ID_t4 = NULL; $ID_t5 = NULL;
+                    $terrain = $terrains->fetch_array();
+                    if ($terrain == NULL) { // Si on a pas assez de terrains pour tous les matches.
+                        $terrains = $db->query("SELECT * FROM Terrain");
+                        $terrain = $terrains->fetch_array();
+                    }
+                    $ID_Terrain = $terrain['ID'];
+
+                    $Poule_ID = insertSam($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $i, $ID_Terrain);
+                    $i = 0;
+                    $ID_t1 = NULL;
+                    $ID_t2 = NULL;
+                    $ID_t3 = NULL;
+                    $ID_t4 = NULL;
+                    $ID_t5 = NULL;
+                }
+                $i++;
             }
-            $i++;
         }
         if ($i > 1 and $i <= 5){
             $terrain = $terrains->fetch_array();
@@ -173,6 +183,7 @@ Mise à jour de l'historique
 
         header("Location: ../group.php?jour=sam&generate=true&cat=".$_GET['InputCat']);
         return;
+
     }
     elseif (array_key_exists("InputCat", $_GET) && $_GET['jour']=="dim"){
 
@@ -194,31 +205,42 @@ Mise à jour de l'historique
         $i=1;
         $ID_t1 = NULL; $ID_t2 = NULL; $ID_t3 = NULL; $ID_t4 = NULL; $ID_t5 = NULL; $ID_t6 = NULL;
         foreach ($reponseTeams as $team){
-            if ($i == 1){
-                $ID_t1 = $team['ID'];
-            } elseif($i == 2){
-                $ID_t2 = $team['ID'];
-            } elseif($i == 3){
-                $ID_t3 = $team['ID'];
-            } elseif($i == 4){
-                $ID_t4 = $team['ID'];
-            } elseif($i == 5){
-                $ID_t5 = $team['ID'];
-            } if($i == 6){
-                $ID_t6 = $team['ID'];
-
-                $terrain = $terrains->fetch_array();
-                if ($terrain == NULL){ // Si on a pas assez de terrains pour tous les matches.
-                    $terrains = $db->query("SELECT * FROM Terrain");
-                    $terrain = $terrains->fetch_array();
+            $personne1 = $db->query('SELECT * FROM Personne WHERE ID ='.$team['ID_Player1'])->fetch_array();
+            $personne2 = $db->query('SELECT * FROM Personne WHERE ID ='.$team['ID_Player2'])->fetch_array();
+            // On récupère les équipes qui jouent le dimanche: les équipes unisexe.
+            if ($personne1['Title'] == $personne2['Title']) {
+                if ($i == 1) {
+                    $ID_t1 = $team['ID'];
+                } elseif ($i == 2) {
+                    $ID_t2 = $team['ID'];
+                } elseif ($i == 3) {
+                    $ID_t3 = $team['ID'];
+                } elseif ($i == 4) {
+                    $ID_t4 = $team['ID'];
+                } elseif ($i == 5) {
+                    $ID_t5 = $team['ID'];
                 }
-                $ID_Terrain = $terrain['ID'];
+                if ($i == 6) {
+                    $ID_t6 = $team['ID'];
 
-                $Poule_ID = insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $i, $ID_Terrain);
-                $i = 0;
-                $ID_t1 = NULL; $ID_t2 = NULL; $ID_t3 = NULL; $ID_t4 = NULL; $ID_t5 = NULL; $ID_t6 = NULL;
+                    $terrain = $terrains->fetch_array();
+                    if ($terrain == NULL) { // Si on a pas assez de terrains pour tous les matches.
+                        $terrains = $db->query("SELECT * FROM Terrain");
+                        $terrain = $terrains->fetch_array();
+                    }
+                    $ID_Terrain = $terrain['ID'];
+
+                    $Poule_ID = insertDim($db, $ID_t1, $ID_t2, $ID_t3, $ID_t4, $ID_t5, $ID_t6, $i, $ID_Terrain);
+                    $i = 0;
+                    $ID_t1 = NULL;
+                    $ID_t2 = NULL;
+                    $ID_t3 = NULL;
+                    $ID_t4 = NULL;
+                    $ID_t5 = NULL;
+                    $ID_t6 = NULL;
+                }
+                $i++;
             }
-            $i++;
         }
         if ($i > 1 and $i <= 6){
             $terrain = $terrains->fetch_array();
