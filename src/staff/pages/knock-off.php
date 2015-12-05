@@ -257,13 +257,15 @@
                                                 </div>
                                                 <?php
                                                     $matchNum++;
-                                                    if ($_GET['jour'] == "sam"){
-                                                        $knockoff = $db->query('SELECT * FROM KnockoffSaturday WHERE Position='.$matchNum)->fetch_array();
-                                                    } elseif ($_GET['jour'] == "dim") {
-                                                        $knockoff = $db->query('SELECT * FROM KnockoffSunday WHERE Position='.$matchNum)->fetch_array();
+                                                    if ($matchNum <= $numberOfMatch) {
+                                                        if ($_GET['jour'] == "sam") {
+                                                            $knockoff = $db->query('SELECT * FROM KnockoffSaturday WHERE Position=' . $matchNum)->fetch_array();
+                                                        } elseif ($_GET['jour'] == "dim") {
+                                                            $knockoff = $db->query('SELECT * FROM KnockoffSunday WHERE Position=' . $matchNum)->fetch_array();
+                                                        }
+                                                        $matchRep = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match']);
+                                                        $match = $matchRep->fetch_array();
                                                     }
-                                                    $matchRep = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match']);
-                                                    $match = $matchRep->fetch_array();
                                             } ?>
                                         </div>
                                         <?php
