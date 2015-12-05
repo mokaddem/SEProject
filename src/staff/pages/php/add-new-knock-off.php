@@ -100,9 +100,22 @@ Mise à jour de l'historique
         }
     }
 
+    for ($j = $numberOfTeams; $j >= 3; $j = ($j+1)/2){
+        // Because there will be 3 victors for X_0 = 3, X_n = X_(n-1)*2-1 (3, 5, 9, 17, ...)
+        if ($j == 3){
+            // For the 3 victors, we need to have one more iteration for the following loop !
+            echo "Will have a triple victor !\n";
+            $numberOfTeams++;
+            break;
+        }
+    }
+
     // On génère les matches des autres tours du tournoi.
-    // Dans un tournois à 16 équipes, il y en aura 15.
-    for ($k = $numberOfTeams/2; $k >= 1; $k = ceil($k/2)){
+    // Dans un tournois à 16 équipes, il y en aura 7.
+    //for ($k = ceil($numberOfTeams/2); $k >= 1; $k = ceil($k/2)){
+    echo $numberOfTeams."\n";
+    for($k = $numberOfTeams/2; $k >= 1; $k--){
+        echo $k;
         $reqMatch = $db->prepare('INSERT INTO `Match`(ID, `date`, `hour`, ID_Equipe1, ID_Equipe2, score1, score2, ID_Terrain, Poule_ID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)');
         $ID	 	= '';
         $date = date('Y-m-d');
