@@ -2230,7 +2230,7 @@ input[type=search] {
 	box-sizing:border-box
 }
 input[type=checkbox],input[type=radio] {
-	margin:9px 0 0;
+	margin:4px 0 0;
 	margin-top:1px \9;
 	line-height:normal
 }

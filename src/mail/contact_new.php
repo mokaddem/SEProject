@@ -1,12 +1,12 @@
 <?php
 	include_once('../staff/pages/php/BDD.php');
 	include "mail_helper.php";
-	
+
 	$db = BDconnect();
-	
+
 	// on récupère le contenu des variables
 	//Champs
-	$dest = isset($_POST['dest'])?$_POST['dest']:'';	
+	$dest = isset($_POST['dest'])?$_POST['dest']:'';
 	$sujet = isset($_POST['sujet'])?$_POST['sujet']:'';
 	$message = isset($_POST['message'])?$_POST['message']:'';
 	//CheckBox Desti
@@ -22,13 +22,13 @@
 	$mesLeader=isset($_POST['mesLeader'])?$_POST['mesLeader']:'';
 	$mesTous=isset($_POST['mesTous'])?$_POST['mesTous']:'';
 	$mesNP=isset($_POST['mesNP'])?$_POST['mesNP']:'';
-	
+
 //On gère les destinataires
-//////////////////////////////////////////////////////////////////////////////	
-	//On calcul le champ dest pour pouvoir s'en servir après 
+//////////////////////////////////////////////////////////////////////////////
+	//On calcul le champ dest pour pouvoir s'en servir après
 	$destCoupe = explode(",",$dest);
-	
-	
+
+
 	//Pour calculer le nombre de catégorie et vérifier si elles ont été recue
 	$categorie = $db->query('SELECT Designation FROM Categorie');
     $listCat;
@@ -55,7 +55,7 @@
     			$listcatRecu[$compteur] = $lstRecu['Mail'];
     			$compteur++;
     		}
-    		$ajoutCat=count($destCoupe);    		
+    		$ajoutCat=count($destCoupe);
     		$compteur--;
     		for($compteur;$compteur!=-1;$compteur--)
     		{
@@ -66,8 +66,8 @@
     	$str="";
     	$cat="cat_";
     }
-    
-///////////////////////////////////////////////////////////////////////////////    
+
+///////////////////////////////////////////////////////////////////////////////
    //Si tous les participants sont à joindre
 	if($parti==true)
 	{
@@ -85,7 +85,7 @@
 		{
 			$destCoupe[$ajout]=$listAdr[$i];
 			$ajout++;
-		}	
+		}
 	}
 ///////////////////////////////////////////////////////////////////////////////
 	if($propri==true)
@@ -104,7 +104,7 @@
 		{
 			$destCoupe[$ajout]=$listAdr[$i];
 			$ajout++;
-		}	
+		}
 	}
 ///////////////////////////////////////////////////////////////////////////////
 if($leaderSam==true)
@@ -142,7 +142,7 @@ if($leaderDim==true)
 		{
 			$destCoupe[$ajout]=$listAdr[$i];
 			$ajout++;
-		}	
+		}
 	}
 ///////////////////////////////////////////////////////////////////////////////
 if($npSam==true)
@@ -161,7 +161,7 @@ if($npSam==true)
 		{
 			$destCoupe[$ajout]=$listAdr[$i];
 			$ajout++;
-		}	
+		}
 	}
 ///////////////////////////////////////////////////////////////////////////////
 if($npDim==true)
@@ -180,7 +180,7 @@ if($npDim==true)
 		{
 			$destCoupe[$ajout]=$listAdr[$i];
 			$ajout++;
-		}	
+		}
 	}
 ///////////////////////////////////////////////////////////////////////////////
 if($tousSam==true)
@@ -199,7 +199,7 @@ if($tousSam==true)
 		{
 			$destCoupe[$ajout]=$listAdr[$i];
 			$ajout++;
-		}	
+		}
 	}
 ///////////////////////////////////////////////////////////////////////////////
 if($tousDim==true)
@@ -218,7 +218,7 @@ if($tousDim==true)
 		{
 			$destCoupe[$ajout]=$listAdr[$i];
 			$ajout++;
-		}	
+		}
 	}
 ///////////////////////////////////////////////////////////////////////////////
 //On gère les messages														 //
@@ -230,16 +230,16 @@ if($tousDim==true)
 		$sujet =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet Leader"');
 
 		$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Adresse du HQ"');
-		
-		//récuperer le message du mail 
+
+		//récuperer le message du mail
 		$listMessage;
-		while($mes = $message->fetch-array())	
+		while($mes = $message->fetch-array())
 		{
 			$listMessage[0] = $mes['Value'];
 		}
 		//récuperer le sujet du mail
 		$listSujet;
-		while($suj = $sujet->fetch-array())	
+		while($suj = $sujet->fetch-array())
 		{
 			$listSujet[0] = $suj['Value'];
 		}
@@ -253,7 +253,7 @@ if($tousDim==true)
 		$sujet .= $listSujet[0];
 		$message.="\n\n";
 		$message .= $listMessage[0];
-		$message.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";	
+		$message.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";
 	}
 ///////////////////////////////////////////////////////////////////////////////
 	if($mesNP==true)
@@ -263,16 +263,16 @@ if($tousDim==true)
 		$sujet =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet Non-Payé"');
 
 		$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Adresse du HQ"');
-		
-		//récuperer le message du mail 
+
+		//récuperer le message du mail
 		$listMessage;
-		while($mes = $message->fetch-array())	
+		while($mes = $message->fetch-array())
 		{
 			$listMessage[0] = $mes['Value'];
 		}
 		//récuperer le sujet du mail
 		$listSujet;
-		while($suj = $sujet->fetch-array())	
+		while($suj = $sujet->fetch-array())
 		{
 			$listSujet[0] = $suj['Value'];
 		}
@@ -286,7 +286,7 @@ if($tousDim==true)
 		$sujet .= $listSujet[0];
 		$message.="\n\n";
 		$message .= $listMessage[0];
-		$message.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";	
+		$message.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";
 	}
 ///////////////////////////////////////////////////////////////////////////////
 	if($mesTous==true)
@@ -296,16 +296,16 @@ if($tousDim==true)
 		$sujet =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet à tous"');
 
 		$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Adresse du HQ"');
-		
-		//récuperer le message du mail 
+
+		//récuperer le message du mail
 		$listMessage;
-		while($mes = $message->fetch-array())	
+		while($mes = $message->fetch-array())
 		{
 			$listMessage[0] = $mes['Value'];
 		}
 		//récuperer le sujet du mail
 		$listSujet;
-		while($suj = $sujet->fetch-array())	
+		while($suj = $sujet->fetch-array())
 		{
 			$listSujet[0] = $suj['Value'];
 		}
@@ -319,11 +319,11 @@ if($tousDim==true)
 		$sujet .= $listSujet[0];
 		$message.="\n\n";
 		$message .= $listMessage[0];
-		$message.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";	
+		$message.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";
 	}
-///////////////////////////////////////////////////////////////////////////////	
-	
-//Envoi du mail	
+///////////////////////////////////////////////////////////////////////////////
+
+//Envoi du mail
 sendMail($destCoupe, $message, $sujet);
-header('Location: ../staff/pages/contact.php');	
+header('Location: ../staff/pages/contact.php');
 ?>

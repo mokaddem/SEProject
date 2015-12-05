@@ -481,3 +481,7 @@ table.dataTable thead .sorting:after {
     transform: scale(1.2);
     margin-top: 100px;
 }
+
+input[type=checkbox],input[type=radio] {
+	margin:9px 0 0;
+}

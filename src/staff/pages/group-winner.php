@@ -72,9 +72,12 @@
                         <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="group-winner.php?jour=dim&cat=1">Dimanche</a></li>
                     </ul>
                     <ul class="nav nav-tabs nav-justified">
-                        <?php $reponse = $db->query('SELECT * FROM Categorie');
+                        <?php $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, GroupSaturday WHERE GroupSaturday.ID_Cat = Categorie.ID');
+                        if ($_GET['jour'] == "dim") {
+                          $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, GroupSunday WHERE GroupSunday.ID_Cat = Categorie.ID');
+                        }
                             while ($donnes = $reponse->fetch_array()) { ?>
-                                <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="group-winner.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation']);?></a></li>
+                              <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="group-winner.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation']);?></a></li>
                             <?php }?>
                     </ul>
                 </div>
