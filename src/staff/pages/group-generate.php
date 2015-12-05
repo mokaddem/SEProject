@@ -69,7 +69,7 @@
 
                             <fieldset data-role="controlgroup" data-type="horizontal">
                                 <label for="sam">Samedi</label>
-                                <input type="radio" name="jour" value="sam">
+                                <input type="radio" name="jour" value="sam" checked>
                                 <label for="dim">Dimanche</label>
                                 <input type="radio" name="jour" value="dim">
 
