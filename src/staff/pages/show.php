@@ -1,6 +1,11 @@
 <?php require_once("./php/inc/show-function.inc");
-?>
-      <div class="modal-dialog modal-sm">
+
+if ($_GET["type"]=="extra") { ?>
+  <div class="modal-dialog">
+<?php } else { ?>
+  <div class="modal-dialog modal-sm">
+<?php } ?>
+
 <!-- Page de détail qui apparait lorsque l'on clique sur un participants/matchs/propriétaires/catégories/staff dans la liste -->
         <!-- Modal content-->
         <div class="modal-content">
@@ -24,7 +29,11 @@
               $next = $titreDonnees[0];
               foreach ($paramDonnees as $param){ ?>
                     <p><b><?=$next?>:</b>
+              <?php if ($donnees[$param] == "0") {
+                        echo 'Non';
+                      } else { ?>
                         <?=utf8_encode($donnees[$param])?>
+                  <?php  }?>
                     </p>
                     <?php $next = next($titreDonnees);?>
               <?php } ?>

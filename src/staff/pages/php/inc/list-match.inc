@@ -26,9 +26,9 @@ function getTeam2($id) {
 }
 
 function printListMatch($id) {
-    
+
     include_once('php/BDD.php');
-            
+
     $db = BDconnect();
     $reponse = $db->query('SELECT * FROM `Match` WHERE '.$id.' = ID');
     $donnees = $reponse->fetch_array();

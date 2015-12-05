@@ -1,13 +1,13 @@
 <?php
 // Check for empty fields
-include "../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php";
+include_once("../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php");
 
 function sendMail($dest, $message, $subject){
     $mail = new PHPMailer();
 
     $mail->IsSMTP();                       // telling the class to use SMTP
 
-    $mail->SMTPDebug = 0;                  
+    $mail->SMTPDebug = 0;
     // 0 = no output, 1 = errors and messages, 2 = messages only.
 
     $mail->SMTPAuth = true;                // enable SMTP authentication
@@ -31,5 +31,5 @@ function sendMail($dest, $message, $subject){
                 $error_message = "Successfully sent!";
         }
     }
-}			
+}
 ?>

@@ -64,10 +64,13 @@
                                 <li <?php if ($_GET['jour']=="dim" ) echo 'class="active" ' ;?>><a href="knock-off.php?jour=dim&cat=1">Dimanche</a></li>
                             </ul>
                             <ul class="nav nav-tabs nav-justified">
-                                <?php $reponse = $db->query('SELECT * FROM Categorie');
-                                while ($donnes = $reponse->fetch_array()) { ?>
-                                    <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="knock-off.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation'])?></a></li>
-                                <?php }?>
+                                <?php $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, KnockoffSaturday WHERE KnockoffSaturday.Category = Categorie.ID');
+                                if ($_GET['jour'] == "dim") {
+                                  $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, KnockoffSunday WHERE KnockoffSunday.Category = Categorie.ID');
+                                }
+                                    while ($donnes = $reponse->fetch_array()) { ?>
+                                      <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="knock-off.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation'])?></a></li>
+                                    <?php }?>
                             </ul>
                         </div>
                         <div class="row">
@@ -80,13 +83,11 @@
                                         <input type="submit" class="btn btn-success pull-right" value="Echanger" />
                                         <span class="pull-right"> </span><input type="text" class="form-control pull-right" id="idteam2" name="idteam2" placeholder="ID Equipe 2" required>
                                         <p class="pull-right"> </p><input type="text" class="form-control pull-right" id="idteam1" name="idteam1" placeholder="ID Equipe 1" required>
-
-                                <span class="pull-right" data-toggle="pList" data-target="#pList" data-url="./php/group-note-vide.php">
-                                <button class="btn btn-default">
-                                    <i class="fa fa-chevron-down"></i>
-                                </button>
-                            </span>
-
+                                        <span class="pull-right" data-toggle="pList" data-target="#pList" data-url="./php/group-note-vide.php">
+                                          <button class="btn btn-default">
+                                            <i class="fa fa-chevron-down"></i>
+                                          </button>
+                                        </span>
                                     </form>
 
                                     <br/><br/>
@@ -95,7 +96,7 @@
                             </nav>
                         </div>
                         <div class="col-lg-12 text-center">
-                            <hr>
+
                             <?php
                                 if ($_GET['jour'] == "sam"){
                                 $knockoff_all = $db->query('SELECT * FROM KnockoffSaturday WHERE Category = '.$_GET['cat'].' ORDER BY `Position` ASC');

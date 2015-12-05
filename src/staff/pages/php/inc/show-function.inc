@@ -37,13 +37,13 @@ function getTitreTable($get) {
            return array("ID", "Première équipe", "Seconde équipe", "score 1", "score 2", "ID Terrain");
             break;
         case "player":
-            return array("ID", "Nom", "Prénom", "E-mail", "Né(e) le", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "Chef?", "A payé", "Créé le");
+            return array("ID", "Nom", "Prénom", "E-mail", "Né(e) le", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "Chef?", "A payé", "Inscrit(e) le");
 
         case "court":
             return array("ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Jusqu'au", "Crée le", "Note");
 
         case "extra":
-            return array("ID", "Nom", "Prix", "Nombre de personnes", "Description", "Action");
+            return array("ID", "Nom", "Prix", "Description");
 
         case "owner":
         return array("ID", "Nom", "Prénom", "E-mail", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "Créé le");
@@ -53,7 +53,7 @@ function getTitreTable($get) {
             break;
 
         case "staff":
-            return array("ID", "Nom", "Prénom", "Resp. cat","Né(e) le", "Créé le", "Action");
+            return array("ID", "Nom", "Prénom", "Resp. catégorie","Né(e) le", "Créé le", "Action");
         case "category":
             return array("ID", "Tranche d'âge", "Désignation", "Action");
 
@@ -73,7 +73,7 @@ function getParam($get) {
             return array("ID", "adresse", "surface", "ID_Owner", "etat", "Type", "disponibiliteFrom", "disponibiliteTo", "CreationDate", "Note");
 
         case "extra":
-            return array("ID", "Name", "Price", "Name", "Description"); // Name à modif (4eme param)
+            return array("ID", "Name", "Price", "Description"); // Name à modif (4eme param)
 
         case "owner":
         return array("ID", "LastName", "FirstName", "Mail", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "CreationDate");

@@ -109,22 +109,22 @@
                         <div class="container">
                             <form id="echanger" class="navbar-form" action="./php/group-switch.php?jour=<?=$_GET['jour']?>&cat=<?=$_GET['cat']?>" method="post">
                                 <input type="submit" class="btn btn-success pull-right" value="Echanger"/>
-                                <span class="pull-right"> </span><input type="text" class="form-control pull-right" id="idteam2" name="idteam2" placeholder="Cliquez sur une équipe" required>
-                                <p class="pull-right"> </p><input type="text" class="form-control pull-right" id="idteam1" name="idteam1" placeholder="Cliquez sur une équipe" required>
+                                <span class="pull-right"> </span><pre class="pull-right" id="p2">Cliquez sur une équipe</pre>
+                                <p class="pull-right"> </p><pre class="pull-right" id="p1">Cliquez sur une équipe</pre>
 
-                                <span class="pull-right" data-toggle="pList" data-target="#pList" data-url="./php/group-note-vide.php">
+                              <span class="pull-right" data-toggle="pList" data-target="#pList" data-url="./php/group-note-vide.php">
                                 <button class="btn btn-default">
                                     <i class="fa fa-chevron-down"></i>
                                 </button>
                             </span>
+                              <input type="text" id="idteam2" name="idteam2" placeholder="Cliquez sur une équipe" class="hidden" required/>
+                              <input type="text" id="idteam1" name="idteam1" placeholder="Cliquez sur une équipe" class="hidden" required/>
                                 <input name="teamNumberG1" id="teamNumberG1" class="hidden" value="" />
                                 <input name="teamNumberG2" id="teamNumberG2" class="hidden" value="" />
                                 <input name="groupID1" id="groupID1" class="hidden" value="" />
                                 <input name="groupID2" id="groupID2" class="hidden" value="" />
                             </form>
-
-                            <br/><br/>
-                            <div id="pList"></div>
+                            <div class="col-lg-8" id="pList"></div>
                         </div>
                     </nav>
                 </div>
@@ -289,7 +289,6 @@
 
         <!-- /#page-wrapper -->
     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
         </div>
     </div>
 
@@ -450,18 +449,22 @@
             var teamNum = $(this).attr('data-teamNum');
             var groupNum = $(this).attr('data-groupNum');
             if (document.getElementById('idteam1').value == "") {
+                document.getElementById('p1').innerHTML = id;
                 document.getElementById('idteam1').value = id;
                 document.getElementById('teamNumberG1').value = teamNum;
                 document.getElementById('groupID1').value = groupNum;
             } else if (document.getElementById('idteam1').value != "" && document.getElementById('idteam2').value != "") {
                 document.getElementById('idteam1').value = id;
+                document.getElementById('p1').innerHTML = id;
                 document.getElementById('teamNumberG1').value = teamNum;
                 document.getElementById('groupID1').value = groupNum;
                 document.getElementById('idteam2').value = "";
+                document.getElementById('p2').innerHTML = "Cliquez sur une équipe";
                 document.getElementById('teamNumberG2').value = "";
                 document.getElementById('groupID2').value = "";
             } else {
                 document.getElementById('idteam2').value = id;
+                document.getElementById('p2').innerHTML = id;
                 document.getElementById('teamNumberG2').value = teamNum;
                 document.getElementById('groupID2').value = groupNum;
             }

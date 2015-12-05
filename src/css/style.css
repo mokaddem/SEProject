@@ -13,9 +13,13 @@
     font-weight: 300;
 }
 
-/** {*/
-    /*position: relative;*/
-/*}*/
+* {
+    position: relative;
+}
+
+.modal-dialog {
+  margin-left: -25%;
+}
 
 .breaker {
     clear: both;
@@ -286,7 +290,8 @@ body {
 #slide-2 {
     background-color: #1abc9c;
     color: #e4e6e5;
-    padding-top: 90px;
+    padding-top: 130px;
+    padding-bottom: 200px;
 }
 
 .title-row {
