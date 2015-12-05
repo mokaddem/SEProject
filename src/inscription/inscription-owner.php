@@ -29,30 +29,19 @@
             <div class="row">
                 <div class="col-lg-12">
                     <form role="form" method="Get" action="../staff/pages/php/add-new-owner+terrain.php">
-                        
+
                         <div class="col-lg-6">
                             <div class="col-lg-9">
-                                <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
-
-                                <!-- <div class="form-group">
-                              <label for="sel1">Je m'inscire en tant que </label>
-                              <select class="form-control" id="sel1">
-                                <option>participant</option>
-                                <option>propriétaire</option>
-                              </select>
-                            </div> -->
                                 <div class="form-group">
                                     <label><span class="fa fa-user"></span> Propriétaire</label>
 
-                                    <!--<label for="sel1">Titre:</label>-->
                                     <select class="form-control" id="title" name="title">
                                         <option>M.</option>
                                         <option>Mme.</option>
                                     </select>
                                 </div>
 
-                                <div class="form-group">
-                                    <!--<label for="InputNom">Nom</label>-->
+                                <div class="form-group well well-sm">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                         <input type="text" class="form-control" Nom="InputNom" name="InputNom" id="InputNom" placeholder="Nom" required>
@@ -91,11 +80,9 @@
                                         }
                                         ?>
                                         </select>
-                                        <!--<input type="date" class="form-control" name="InputBirth1" id="InputBirth1" placeholder="Né(e)le jj/mm/aaaa" required>-->
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <!--<label for="InputPrenom">Adresse</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
                                         <input type="text" class="form-control" name="InputAdresse" id="InputAdresse" placeholder="Adresse" required>
@@ -106,7 +93,6 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <!--<label for="InputEmail">Email</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-at"></i></span>
                                         <input type="email" class="form-control" id="InputEmailFirst" name="InputEmailFirst" placeholder="Email" required>
@@ -114,7 +100,6 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <!--<label for="InputPhone">Numéro de téléphone</label>-->
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-phone"></i></span>
                                         <input size="12" pattern=".{9,12}" maxlength="12" type="text" class="form-control bfh-phone" name="InputFixe" id="InputFixe" placeholder="+33 fixe">
@@ -123,12 +108,6 @@
                                     </div>
                                 </div>
 
-                                <!--<div class="form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-bars"></i></span>
-                                    <input type="number" class="form-control" name="size" id="size" placeholder="Nombre d'équipes" min="1" step="1"  style="width: 60px;" required>
-                                </div>
-                            </div>-->
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -154,31 +133,29 @@
                                     </div>
 
                                 </div>
-                                <div class="form-group">
-                                    <label for="sel1"><span class="fa fa-clock-o"></span> Disponibilités</label>
-                                    <div class="form-group">
-                                        <!--<div class="input-group">-->
-                                        <label class="pull-left" for="InputFrom">Du </label>
-                                        <div class="input-group pull-right">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <input size="10" maxlength="10" class="form-control" name="InputFrom" id="InputFrom" type="date" min="<?=date(" Y-m-d ")?>" max="2048-10-10" value="<?=date(" Y-m-d ")?>">
-                                        </div>
-                                        <!--</div>-->
-                                        <!--<div class="input-group">-->
-                                        <label class="pull-left" for="InputTo">Au </label>
-                                        <div class="input-group pull-right">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <input size="10" maxlength="10" class="form-control" name="InputTo" id="InputTo" type="date" min="<?=date(" Y-m-d ")?>" max="2048-10-10" value="<?=date(" Y-m-d ")?>">
-                                        </div>
-                                        <!--</div>-->
+                                  <label><span class="fa fa-clock-o"></span> Disponibilités</label>
+                                  <div class="form-group">
+                                      <label class="pull-left" for="InputFrom">Du </label>
+                                      <div class="input-group pull-right">
+                                          <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                          <input size="10" maxlength="10" class="form-control" name="InputFrom" id="InputFrom" type="date" min="<?=date(" Y-m-d ")?>" max="2048-10-10" value="<?=date(" Y-m-d ")?>">
+                                      </div>
                                     </div>
-                                </div>
+                                    <div class="form-group">
+                                      <label class="pull-left" for="InputTo">Au </label>
+                                      <div class="input-group pull-right">
+                                          <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                          <input size="10" maxlength="10" class="form-control" name="InputTo" id="InputTo" type="date" min="<?=date(" Y-m-d ")?>" max="2048-10-10" value="<?=date(" Y-m-d ")?>">
+                                      </div>
+                                  </div>
                                 </br>
-                                <div class="form-group">
-                                    <!--<label for="InputMessage">Message</label>-->
-
-                                    <label>
-                                        </br>Remarques</label>
+                                </br>
+                                </br>
+                                </br>
+                                </br>
+                                </br>
+                                <div class="form-group well well-sm">
+                                    <label>Remarques</label>
 
                                     <div class="input-group">
                                         <textarea name="InputMessage" id="InputMessage" name="InputMessage" class="form-control" rows="5" placeholder="N'hésitez pas à entrer d'autres informations ou remarques" required></textarea>
