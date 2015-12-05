@@ -28,7 +28,7 @@
                     <li>
                         <a href="../pages/staff.php">
                             <div>
-                                <i class="fa fa-user"></i> Profil 
+                                <i class="fa fa-user"></i> Profil
                             </div>
                         </a>
                     </li>
