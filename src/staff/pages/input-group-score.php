@@ -45,34 +45,41 @@
         <?php
             include("./html/header.php");
             include_once('php/BDD.php');
-
-
             $db = BDconnect();
 
-            $grpSattmp = $db->query('SELECT * FROM GroupSaturday');
-            $grpSuntmp = $db->query('SELECT * FROM GroupSunday');
+            if ($_GET['jour'] == "sam") {
+                $tableGroup = "GroupSaturday";
+            } else{
+                $tableGroup = "GroupSunday";
+            }
+            $temp = $db->query('SELECT * FROM '.$tableGroup.' WHERE ID_Cat = ' . $_GET['cat']);
+            $grptmp = $db->query('SELECT * FROM '.$tableGroup.' WHERE ID_Cat = '.$_GET['cat']);
 
-            $temp = $db->query('SELECT * FROM GroupSaturday');
             $row=$temp->fetch_array();
             $PouleID = $row['ID'];
 
-            if (!empty($_GET)) {
+            if (isset($_GET['poule'])) {
                 $PouleID = $_GET['poule'];
                 $TeamID = $_GET['team'];
             }else{
-                $temp = $db->query('SELECT * FROM GroupSaturday');
+                $temp = $db->query('SELECT * FROM '.$tableGroup.' WHERE ID_Cat = '.$_GET['cat']);
                 $row=$temp->fetch_array();
                 $PouleID = $row['ID'];
                 $TeamID = 0;
             }
-
             $flagGroupNotCreated = 0;
-            if(!($temp = $db->query('SELECT NbWinMatch FROM Team WHERE Team.ID='.$TeamID))){
+            if($PouleID == NULL or !($temp = $db->query('SELECT NbWinMatch FROM Team WHERE Team.ID='.$TeamID.' AND Team.ID_Cat = '.$_GET['cat']))){
                 $flagGroupNotCreated = 1;
             }
             else {
-                $row = $temp->fetch_array();
-                $winnumber = $row['NbWinMatch'];
+                if ($TeamID == 0){
+                    $team = $db->query('SELECT Team.ID, Team.NbWinMatch FROM Team,'.$tableGroup.' WHERE Team.ID = '.$tableGroup.'.ID_t1 AND '.$tableGroup.'.ID = '.$PouleID)->fetch_array();
+                    $TeamID = $team['ID'];
+                    $winnumber = $team['NbWinMatch'];
+                } else {
+                    $row = $temp->fetch_array();
+                    $winnumber = $row['NbWinMatch'];
+                }
             }
         ?>
 
@@ -86,6 +93,25 @@
                 </div>
                 <!-- /.row -->
 
+                <div class="row">
+                    <ul class="nav nav-tabs">
+                        <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="input-group-score.php?jour=sam&cat=1">Samedi</a></li>
+                        <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="input-group-score.php?jour=dim&cat=1">Dimanche</a></li>
+                    </ul>
+                    <ul class="nav nav-tabs nav-justified">
+                        <?php $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, GroupSaturday WHERE GroupSaturday.ID_Cat = Categorie.ID');
+                        if ($_GET['jour'] == "dim") {
+                            $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, GroupSunday WHERE GroupSunday.ID_Cat = Categorie.ID');
+                        }
+                        while ($donnes = $reponse->fetch_array()) { ?>
+                            <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="input-group-score.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation']);?></a></li>
+                        <?php }?>
+                    </ul>
+                </div>
+                <div class="row">
+                    <br/>
+                </div>
+
                 <div class="form-group">
                     <?php if($flagGroupNotCreated == 1){ ?>
                         <div class="col-lg-3 alert alert-danger">
@@ -97,7 +123,7 @@
                     <select class="form-control" id="selectedPoule" name="selectedPoule" style="width: 110px;">
                         <?php
                             $k=0;
-                            while ($row = $grpSattmp->fetch_array())
+                            while ($row = $grptmp->fetch_array())
                             {
                                 $k++;
                                 if($row['ID'] == $_GET['poule']) {
@@ -114,7 +140,11 @@
                     <label for="sel1"><span class="fa fa-dot-circle-o"></span> Choix de l'équipe</label>
                     <select class="form-control" id="selectedTeam" name="selectedTeam" style="width: 400px;">
                     <?php
-                        $reponse = $db->query('SELECT *, Team.ID as T_ID FROM Team, GroupSaturday WHERE GroupSaturday.ID='.$PouleID.' AND (Team.ID=GroupSaturday.ID_t1 OR Team.ID=GroupSaturday.ID_t2 OR Team.ID=GroupSaturday.ID_t3 OR Team.ID=GroupSaturday.ID_t4 OR Team.ID=GroupSaturday.ID_t5 OR Team.ID=GroupSaturday.ID_t6 OR Team.ID=GroupSaturday.ID_t7 OR Team.ID=GroupSaturday.ID_t8)');
+                        if ($_GET['jour'] == "sam") {
+                            $reponse = $db->query('SELECT *, Team.ID as T_ID FROM Team, GroupSaturday WHERE GroupSaturday.ID_Cat=' . $_GET['cat'] . ' AND GroupSaturday.ID=' . $PouleID . ' AND (Team.ID=GroupSaturday.ID_t1 OR Team.ID=GroupSaturday.ID_t2 OR Team.ID=GroupSaturday.ID_t3 OR Team.ID=GroupSaturday.ID_t4 OR Team.ID=GroupSaturday.ID_t5 OR Team.ID=GroupSaturday.ID_t6 OR Team.ID=GroupSaturday.ID_t7 OR Team.ID=GroupSaturday.ID_t8)');
+                        } else{
+                            $reponse = $db->query('SELECT *, Team.ID as T_ID FROM Team, GroupSunday WHERE GroupSunday.ID_Cat=' . $_GET['cat'] . ' AND GroupSunday.ID=' . $PouleID . ' AND (Team.ID=GroupSunday.ID_t1 OR Team.ID=GroupSunday.ID_t2 OR Team.ID=GroupSunday.ID_t3 OR Team.ID=GroupSunday.ID_t4 OR Team.ID=GroupSunday.ID_t5 OR Team.ID=GroupSunday.ID_t6 OR Team.ID=GroupSunday.ID_t7 OR Team.ID=GroupSunday.ID_t8)');
+                        }
                         while ($donnes = $reponse->fetch_array())
                         {
                             $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player1'].' = ID');
@@ -187,7 +217,6 @@
                 </div>
 
 
-
                 <div class="col-lg-6">
                 <div class="form-group">
                     <label for="sel1"><span class="fa fa-edit" id="nbrwin"></span> Nombre de victoire(s)</label>
@@ -237,11 +266,15 @@
     </script>
 
     <script type="text/javascript">
-        function refreshMatchs(){
+        function refreshMatchs(e){
+            target = e.target;
+            nameOfChangedElem = target.getAttribute("name");
             var Poule = document.getElementById('selectedPoule').value;
-            var Team = document.getElementById('selectedTeam').value;
+            var Team = nameOfChangedElem == "selectedPoule" ? 0 : document.getElementById('selectedTeam').value;
+            var Jour = "<?=$_GET['jour']?>";
+            var Cat = <?=$_GET['cat']?>;
 
-            window.location.replace("../pages/input-group-score.php?poule="+ Poule +"&team=" + Team);
+            window.location.replace("../pages/input-group-score.php?jour="+ Jour +"&cat="+ Cat +"&poule="+ Poule +"&team=" + Team);
         }
     </script>
 
@@ -286,5 +319,5 @@
     <script type="text/javascript"> document.getElementById("submit").addEventListener("click", saveScore);</script>
 
 </body>
-<?php $grpSattmp->free(); $grpSuntmp->free(); $temp->free(); $reponse->free(); $p->free(); $reponseMatch->free(); $reponsePers->free(); $reponse2_1->free();?>
+<?php $grptmp->free(); $temp->free(); $reponse->free(); $p->free(); $reponseMatch->free(); $reponsePers->free(); $reponse2_1->free();?>
 </html>

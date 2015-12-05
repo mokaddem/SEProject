@@ -134,10 +134,10 @@
                                             $row=$grpSattmp->fetch_array();
                                             $PouleID = $row['ID'];
                                             $TeamID = $row['ID_t1'];
-                                            $url = "input-group-score.php?poule=".$PouleID."&team=".$TeamID?>
+                                            $url = "input-group-score.php?jour=sam&cat=1&poule=".$PouleID."&team=".$TeamID?>
                                             <a href=<?=$url?>>Saisir un score</a>
                                         <?php }else{ ?>
-                                            <a href="input-group-score.php">Saisir un score</a>
+                                            <a href="input-group-score.php?jour=sam&cat=1">Saisir un score</a>
                                         <?php }
                                         ?>
                                     </li>
