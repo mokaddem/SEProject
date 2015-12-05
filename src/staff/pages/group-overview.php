@@ -82,7 +82,7 @@
                                                         <tr>
                                                             <th>ID</th>
                                                             <th>Terrain</th>
-                                                            <th>1</th>
+                                                            <th>Equipe 1</th>
                                                             <th>2</th>
                                                             <th>3</th>
                                                             <th>4</th>
