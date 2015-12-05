@@ -147,6 +147,9 @@ EOD;
 
 // Set some content to print
 $html = <<<EOD
+<br pagebreak="true"/>
+<h1 align="center">Tableau des Résultats</h1>
+<p></p>
 <table border="1px">
 EOD;
 
@@ -198,5 +201,5 @@ $reponse->free(); $t->free(); $t1p->free(); $t2p->free();
 
 // Close and output PDF document
 // This method has several options, check the source code documentation for more information.
-$pdf->Output('example_001.pdf', 'I');
+$pdf->Output('Poule '.$id.' - '.$respoPrint.'.pdf', 'I');
 ?>
