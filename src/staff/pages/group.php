@@ -33,8 +33,9 @@
             include_once('php/BDD.php');
 
         $db = BDconnect();
-
-
+        $reponse = $db->query('SELECT * FROM GlobalVariables WHERE `Name` = "tournament_started"');
+        $rep = $reponse->fetch_array();
+        $canEdit = $rep['Value'] == "0" ? "" : "disabled";
         ?>
 
 
@@ -108,12 +109,12 @@
                     <nav class="navbar navbar-inverse navbar-perso navbar-fixed-bottom">
                         <div class="container">
                             <form id="echanger" class="navbar-form" action="./php/group-switch.php?jour=<?=$_GET['jour']?>&cat=<?=$_GET['cat']?>" method="post">
-                                <input type="submit" class="btn btn-success pull-right" value="Echanger"/>
+                                <input <?=$canEdit?> type="submit" class="btn btn-success pull-right" value="Echanger"/>
                                 <span class="pull-right"> </span><pre class="pull-right" id="p2">Cliquez sur une équipe</pre>
                                 <p class="pull-right"> </p><pre class="pull-right" id="p1">Cliquez sur une équipe</pre>
 
                               <span class="pull-right" data-toggle="pList" data-target="#pList" data-url="./php/group-note-vide.php">
-                                <button class="btn btn-default">
+                                <button <?=$canEdit?> class="btn btn-default">
                                     <i class="fa fa-chevron-down"></i>
                                 </button>
                             </span>
@@ -179,7 +180,7 @@
                               </label>
                               <div class="form-group" >
                                   <label class=""><span class="fa fa-users"></span> Terrain</label>
-                                  <select class="form-control" id="terrain <?=$k?>" name="ExpandableListTerrain">
+                                  <select <?=$canEdit?> class="form-control" id="terrain <?=$k?>" name="ExpandableListTerrain">
                                       <?php
                                               $terrains = $db->query('SELECT * FROM Terrain');
                                               while ($terrain = $terrains->fetch_array())
@@ -210,7 +211,7 @@
                                   <div class="form-group text-center" name="divButtonContainer" data-index="<?=$k?>">
                                   <?php $captainText = $teamID == $group['ID_Leader'] ? "fa fa-user text-success " : "fa fa-arrow-circle-o-up"; ?>
                                   <?php if($group['ID_t1']>0){?>
-                                  <a class="" data-toggle="tooltip" data-placement="left" title="<?php if($teamID == $group['ID_Leader']){echo "Leader de poule";} else{echo "Assigner cette équipe en tant que leader de poule";}?>" href="php/promote-leader.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&teamID=<?=$teamID?>&cat=<?=$_GET['cat']?>" ><i class="<?=$captainText?>"></i></a>
+                                  <a <?=$canEdit?> class="" data-toggle="tooltip" data-placement="left" title="<?php if($teamID == $group['ID_Leader']){echo "Leader de poule";} else{echo "Assigner cette équipe en tant que leader de poule";}?>" href="php/promote-leader.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&teamID=<?=$teamID?>&cat=<?=$_GET['cat']?>" ><i class="<?=$captainText?>"></i></a>
                                   <?php }?>
                                       <?php $color = "default";
                                       $videOrNot = "-vide";
@@ -224,7 +225,7 @@
                                           <?php // N'AFFICHE RIEN SI LE NOM DU PREMIER JOUEUR EST VIDE
                                        ?>
                                         <span class="" data-toggle="pList" data-target="#pList" data-url="./php/group-note<?=$videOrNot?>.php?id=<?=$teamID?>">
-                                          <div class="btn btn-<?=$color?> btn-outlineW draggable dropper" name="button-player" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"];?>">
+                                          <div <?=$canEdit?> class="btn btn-<?=$color?> btn-outlineW draggable dropper" name="button-player" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"];?>">
                                                         <?=utf8_encode($player['LastName'])?> &
                                                         <?=utf8_encode($player2['LastName'])?>
                                                         [<?=$avgRanking;?>]
@@ -244,7 +245,7 @@
                               <?php
                                   if($teamNum<8){ ?>
                                           <div class="form-group text-center">
-                                              <div class="btn btn-default btn-outline draggable dropper" name="button-player" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"]?>">Vide</div>
+                                              <div <?=$canEdit?> class="btn btn-default btn-outline draggable dropper" name="button-player" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"]?>">Vide</div>
                                           </div>
                               <?php } ?>
                           </div>
@@ -270,7 +271,7 @@
                           <div class="col-lg-3 server-new-menu"  name="divGroupEmpty" id="divGroup<?=($k+1)?>" >
                               <label><span class="fa fa-users"></span> Groupe <?= $k+1?> </label>
                               <div class="form-group" >
-                                  <button class="btn btn-default" id="createNewGroup" name="createNewGroup">
+                                  <button <?=$canEdit?> class="btn btn-default" id="createNewGroup" name="createNewGroup">
                                       Nouveau groupe
                                   </button>
                               </div>
@@ -492,7 +493,6 @@
         $('#popupSave').hide();
         $('#popupCreate').hide();
         checkForInvalideGroups();
-
     </script>
 
     <script type="text/javascript">
