@@ -44,15 +44,13 @@
                             <div class="col-lg-6">
                                 <div class="col-lg-9">
                                     <div class="form-group">
-                                        <!--<label for="sel1">Titre:</label>-->
                                         <select class="form-control" id="title1" name="title1">
                                             <option>M.</option>
                                             <option>Mme.</option>
                                         </select>
                                     </div>
 
-                                    <div class="form-group">
-                                        <!--<label for="InputNom">Nom</label>-->
+                                    <div class="form-group well well-sm">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                             <input type="text" class="form-control" Nom="InputNom" name="InputNom1" id="InputNom1" placeholder="Nom" required>
@@ -90,11 +88,9 @@
                                                   }
                                             ?>
                                             </select>
-                                            <!--<input type="date" class="form-control" name="InputBirth1" id="InputBirth1" placeholder="Né(e)le jj/mm/aaaa" required>-->
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <!--<label for="InputPrenom">Adresse</label>-->
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
                                             <input type="text" class="form-control" name="InputAdresse1" id="InputAdresse1" placeholder="Adresse" required>
@@ -105,7 +101,6 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <!--<label for="InputEmail">Email</label>-->
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-at"></i></span>
                                             <input type="email" class="form-control" id="InputEmailFirst1" name="InputEmailFirst1" placeholder="Email" required>
@@ -113,7 +108,6 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <!--<label for="InputPhone">Numéro de téléphone</label>-->
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-phone"></i></span>
                                             <input size="12" pattern=".{9,12}" maxlength="12" type="text" class="form-control bfh-phone" name="InputFixe1" id="InputFixe1" placeholder="+33 fixe">
@@ -121,7 +115,7 @@
                                             <input size="12" pattern=".{9,12}" maxlength="12" type="text" class="form-control bfh-phone" name="InputMob1" id="InputMob1" placeholder="+33 mobile" required>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="well well-sm form-group">
                                         <label for="InputPhone">Déjà participé au tournoi?</label>
                                         <label class="radio-inline">
                                             <input id="InputPartYes1" type="radio" name="InputPartYes1">Oui
@@ -131,8 +125,7 @@
                                         </label>
                                     </div>
 
-                                    <div class="form-group">
-                                        <!--<label for="sel1">Titre:</label>-->
+                                    <div class="well well-sm  form-group">
                                         <label class="checkbox">Options supplémentaires</label>
                                         <?php
                                         $tmp = $db->query('SELECT * FROM Extras');
@@ -145,27 +138,23 @@
                                             <?php $i=$i+1;} $extraSize = $i; ?>
                                     </div>
 
-                                    <div class="form-group">
-                                        <!--<label for="InputCredit">Paiement</label>-->
-                                        <label for="InputPhone">Montant à payer</label>
+                                    <div class="form-group well well-sm">
+                                        <label>Montant à payer</label>
                                         <div class="input-group">
                                             <input type="text" class="form-control" placeholder="15" disabled>
                                             <span class="input-group-addon">€</span>
                                         </div>
-                                        <div class="input-group">
-                                            
-                                        <label class="radio-inline"><input type="radio" name="group1" value="1"> CB</label>  
-                                        <label class="radio-inline"><input type="radio" name="group1" value="2" checked> Paypal</label> 
+                                        <div class="input-group well well-sm">
+
+                                        <label class="radio-inline"><input type="radio" name="group1" value="1"> CB</label>
+                                        <label class="radio-inline"><input type="radio" name="group1" value="2" checked> Paypal</label>
                                         <label class="radio-inline"><input type="radio" name="group1" value="3"> Chèque</label>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group well well-sm">
                                         <label><span class="fa fa-edit"></span> Information(s) complémentaire(s)</label>
-
-                                        <!--<label for="InputMessage">Message</label>-->
-                                        <div class="input-group">
+                                            <div class="input-group">
                                             <span class="input-group-addon"><span class="fa fa-comment"></span></span>
-
                                             <textarea name="InputMessage" id="InputMessage" name="InputMessage" class="form-control" rows="5"></textarea>
                                         </div>
                                     </div>
@@ -174,17 +163,8 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="col-lg-9">
-                                    <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
 
-                                    <!-- <div class="form-group">
-                                  <label for="sel1">Je m'inscire en tant que </label>
-                                  <select class="form-control" id="sel1">
-                                    <option>participant</option>
-                                    <option>propriétaire</option>
-                                  </select>
-                                </div> -->
                                     <div class="form-group">
-                                        <!--<label for="sel1">Titre:</label>-->
                                         <select class="form-control" id="title2" name="title2">
                                             <option>M.</option>
                                             <option>Mme.</option>
@@ -192,8 +172,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <!--<label for="InputNom">Nom</label>-->
-                                        <div class="input-group">
+                                        <div class="input-group well well-sm">
                                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                             <input type="text" class="form-control" Nom="InputNom" name="InputNom2" id="InputNom2" placeholder="Nom" required>
                                             <input type="text" class="form-control" Prenom="InputPrenom" name="InputPrenom2" id="InputPrenom2" placeholder="Prenom" required>
@@ -234,7 +213,6 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <!--<label for="InputPrenom">Adresse</label>-->
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
                                             <input type="text" class="form-control" name="InputAdresse2" id="InputAdresse2" placeholder="Adresse" required>
@@ -245,7 +223,6 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <!--<label for="InputEmail">Email</label>-->
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-at"></i></span>
                                             <input type="email" class="form-control" id="InputEmailFirst2" name="InputEmailFirst2" placeholder="Email" required>
@@ -253,7 +230,6 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <!--<label for="InputPhone">Numéro de téléphone</label>-->
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-phone"></i></span>
                                             <input size="12" pattern=".{9,12}" maxlength="12" type="text" class="form-control bfh-phone" name="InputFixe2" id="InputFixe2" placeholder="+33 fixe">
@@ -261,7 +237,7 @@
                                             <input size="12" pattern=".{9,12}" maxlength="12" type="text" class="form-control bfh-phone" name="InputMob2" id="InputMob2" placeholder="+33 mobile" required>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group well well-sm">
                                         <label for="InputPhone">Déjà participé au tournoi?</label>
                                         <label class="radio-inline">
                                             <input id="InputPartYes2" name="InputPartYes2" type="radio" name="optradio">Oui
@@ -272,8 +248,7 @@
                                     </div>
 
 
-                                <div class="form-group">
-                                    <!--<label for="sel1">Titre:</label>-->
+                                <div class="form-group well well-sm">
                                     <label class="checkbox">Options supplémentaires</label>
                                         <?php
                                             $tmp = $db->query('SELECT * FROM Extras');
@@ -286,24 +261,21 @@
                                             <?php $i=$i+1;} ?>
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group well well-sm">
                                         <label for="InputPhone">Montant à payer</label>
-                                        <!--<label for="InputCredit">Paiement</label>-->
                                         <div class="input-group">
                                             <input type="text" class="form-control" placeholder="15" disabled>
                                             <span class="input-group-addon">€</span>
                                         </div>
-                                        <div class="input-group">
-                                        <label class="radio-inline"><input type="radio" name="group2" value="1"> CB</label>  
-                                        <label class="radio-inline"><input type="radio" name="group2" value="2" checked> Paypal</label> 
+                                        <div class="input-group well well-sm">
+                                        <label class="radio-inline"><input type="radio" name="group2" value="1"> CB</label>
+                                        <label class="radio-inline"><input type="radio" name="group2" value="2" checked> Paypal</label>
                                         <label class="radio-inline"><input type="radio" name="group2" value="3"> Chèque</label>
-                                        
+
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group well well-sm">
                                         <label><span class="fa fa-edit"></span> Information(s) complémentaire(s)</label>
-
-                                        <!--<label for="InputMessage">Message</label>-->
                                         <div class="input-group">
 
                                             <span class="input-group-addon"><span class="fa fa-comment"></span></span>

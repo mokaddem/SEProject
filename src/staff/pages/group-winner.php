@@ -72,9 +72,12 @@
                         <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="group-winner.php?jour=dim&cat=1">Dimanche</a></li>
                     </ul>
                     <ul class="nav nav-tabs nav-justified">
-                        <?php $reponse = $db->query('SELECT * FROM Categorie');
+                        <?php $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, GroupSaturday WHERE GroupSaturday.ID_Cat = Categorie.ID');
+                        if ($_GET['jour'] == "dim") {
+                          $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, GroupSunday WHERE GroupSunday.ID_Cat = Categorie.ID');
+                        }
                             while ($donnes = $reponse->fetch_array()) { ?>
-                                <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="group-winner.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation']);?></a></li>
+                              <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="group-winner.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation']);?></a></li>
                             <?php }?>
                     </ul>
                 </div>
@@ -123,6 +126,7 @@
                                             <br/>
                                             <?php
                                             $teamNum = 8;
+                                            for ($i = 1; $i <= $teamNum; $i++){ $teamID = $group["ID_t".$i]; if ($teamID != NULL){}else{ $realteamNum = $i; ; break;}}
                                             for ($i = 1; $i <= $teamNum; $i++) {
                                                 $teamID = $group["ID_t".$i];
                                                 if ($teamID != NULL) {
@@ -134,13 +138,16 @@
                                                     $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne2 . "\"")->fetch_array();
                                                     $checked = "";
                                                     if ($team['Group_Vic'] == 1){
-                                                        $checked = "checked";
-                                                    }                                                    ?>
-                                                    <div class="form-group text-center">
+                                                        $checked = "checked=\"checked\"";
+                                                    }?>
+                                                    <div class="form-group text-left col-lg-offset-1">
                                                         <?php $nameWin = "winner".$i."_".$group['ID'];?>
-                                                        <label class="checkbox"><input type="checkbox" name=<?=$nameWin?> value=<?=$teamID?> <?=$checked?>>
-                                                            [<?= $teamID ?>] <?= utf8_encode($player['LastName']) ?>
-                                                            & <?= utf8_encode($player2['LastName']) ?>
+                                                        <label class="checkbox"><input type="checkbox" class="increase_size" name=<?=$nameWin?> value=<?=$teamID?> <?=$checked?>">
+                                                            <div class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Nombre de victoire(s)" <?php if($team['NbWinMatch']>= ($realteamNum-3)){echo "data-check=1";}else{echo "data-check=0";} ?> id="data-button">
+                                                                <?=$team['NbWinMatch']?>
+                                                            </div>
+                                                            <?= utf8_encode($player['LastName']) ?>
+                                                            & <?= utf8_encode($player2['LastName']) ?> [<?=$teamID ?>]
                                                         </label>
                                                     </div>
                                                     <?php
@@ -184,10 +191,31 @@
 
     <script>
         $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
             $('#popup').hide();
             var generate = <?php if (isset($_GET['generate'])){ if($_GET['generate']==true){echo "true";}else{echo "false";}}else{echo "false";}  ?>;
             if(generate==true){
                 saveWinner();
+            }
+
+            //test for already checked box
+            var onlyOneChecked = false;
+            var checkbox = document.querySelectorAll('.increase_size');
+            var checkboxLen = checkbox.length;
+            for (var i = 0 ; i < checkboxLen ; i++) {
+                if(checkbox[i].checked == true){
+                    onlyOneChecked = true;
+                }
+            }
+
+            if(!onlyOneChecked){
+                buttonC = document.querySelectorAll('#data-button');
+                for (var i = 0 ; i < checkboxLen ; i++) {
+                    if(buttonC[i].getAttribute('data-check')==1){
+                        checkbox[i].checked=true;
+                    }
+                }
             }
         });
     </script>

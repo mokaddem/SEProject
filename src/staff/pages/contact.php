@@ -39,7 +39,7 @@
 
     <?php
     		include_once('php/BDD.php');
-    		include "../../mail/mail_helper.php";	
+    		include "../../mail/mail_helper.php";
             include("./html/header.php");
             $db = BDconnect();
 
@@ -83,7 +83,7 @@
                   <input type="checkbox" name="NPDim" value="Propriétaires"> Tous les non-payés
                   <input type="checkbox" name="tousDim" value="Participants"> Tous les joueurs
                   </p>
-                  <p> 
+                  <p>
                   <h4> Catégories </h4>
                   </p>
                   </p>

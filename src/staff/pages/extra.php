@@ -59,9 +59,10 @@
                                         <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" placeholder="Description" required></textarea>
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
                                     </div>
+                                    <input type="submit" name="edit-submit" id="edit-submit" value="Valider" class="btn btn-info pull-right">
+
                                 </div>
 
-                                <input type="submit" name="edit-submit" id="edit-submit" value="Valider" class="btn btn-info pull-right">
                             </form>
                         </div>
                     </div>

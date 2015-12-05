@@ -66,13 +66,16 @@
                 $TeamID = 0;
             }
 
-            $temp = $db->query('SELECT NbWinMatch FROM Team WHERE Team.ID='.$TeamID);
-            $row=$temp->fetch_array();
-            $winnumber = $row['NbWinMatch'];
+            $flagGroupNotCreated = 0;
+            if(!($temp = $db->query('SELECT NbWinMatch FROM Team WHERE Team.ID='.$TeamID))){
+                $flagGroupNotCreated = 1;
+            }
+            else {
+                $row = $temp->fetch_array();
+                $winnumber = $row['NbWinMatch'];
+            }
         ?>
 
-
-        <script>console.log("<?php  ?>")</script>
             <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
 
@@ -84,12 +87,24 @@
                 <!-- /.row -->
 
                 <div class="form-group">
+                    <?php if($flagGroupNotCreated == 1){ ?>
+                        <div class="col-lg-3 alert alert-danger">
+                            Les groupes n'ont pas encore été générés pour cette catégorie et/ou ce jour.
+                        </div>
+                    <?php }
+                    else{ ?>
                     <label for="sel1"><span class="fa fa-dot-circle-o" ></span> Choix de la poule</label>
-                    <select class="form-control" id="selectedPoule" name="selectedPoule" style="width: 80px;">
+                    <select class="form-control" id="selectedPoule" name="selectedPoule" style="width: 110px;">
                         <?php
+                            $k=0;
                             while ($row = $grpSattmp->fetch_array())
                             {
-                                echo "<option value=".$row['ID'].">".$row['ID']."</option>";
+                                $k++;
+                                if($row['ID'] == $_GET['poule']) {
+                                    echo "<option value=" . $row['ID'] . " selected=\"selected\"> Groupe " . $k . "</option>";
+                                }else{
+                                    echo "<option value=" . $row['ID'] . "> Groupe " . $k . "</option>";
+                                }
                             }
                         ?>
                     </select>
@@ -106,7 +121,7 @@
                             $p1 = $p->fetch_array();
                             $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player2'].' = ID');
                             $p2 = $p->fetch_array();
-                            $TeamName=$p1['FirstName']." ".$p1['LastName']." & ".$p2['FirstName']." ".$p2['LastName'];
+                            $TeamName=$p1['FirstName']." ".$p1['LastName']." & ".$p2['FirstName']." ".$p2['LastName']." [".$donnes['T_ID']."]";
                             if ($donnes['T_ID'] != $TeamID) {
                                 echo "<option value=" . $donnes['T_ID'] . ">" . $TeamName . "</option>";
                             }
@@ -164,7 +179,7 @@
                                        step="1" style="width: 60px;" value=<?php echo $flip[$i-1] == 0 ? $arrayResult[$j-2] : $arrayResult[$j-1]; ?> required>
                                 <input type="number" class="form-control" name=<?=$nameField?>-2 id=<?=$nameField?>-2 placeholder="0" min="0"
                                        step="1" style="width: 60px;" value=<?php echo $flip[$i-1] == 0 ? $arrayResult[$j-1] : $arrayResult[$j-2]; ?> required>
-                                <span class="input-group-addon"><?= $p1 . " & " . $p2 ?></span>
+                                <span class="input-group-addon"><?= "[".$otherTeam. "] ". $p1 . " & " . $p2 ?></span>
                             </div>
                         <?php } else { $i--; }
                     }
@@ -187,6 +202,7 @@
                 <div class="col-lg-2 text-center">
                     <div class="alert alert-success" id="popup" >Scores enregistrés</div>
                 </div>
+                <?php } ?>
             </div>
 
 
@@ -259,7 +275,7 @@
 
             setTimeout(function() {  $('#popup').fadeIn('slow');}, 0);
             setTimeout(function() {  $('#popup').fadeOut('slow');},3000);
-            setTimeout(function() {  location.reload();}, 500+3000);
+            setTimeout(function() {  location.reload();;}, 500+3000);
 
         }
     </script>
