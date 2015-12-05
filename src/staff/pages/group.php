@@ -172,19 +172,19 @@
                                   $teamNum--;
                               }
                               ?>
-                          <div class="col-lg-3 <?=$s_a_m?>"  name="divGroup" id="divGroup<?=$k?>" data-groupID="<?=$group['Gid']?>" data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>" data-teamNum="<?=$teamNum?>">
-                              <label>
+                          <div class="col-lg-3 <?=$s_a_m?> dropper"  name="divGroupContainer" id="divGroup<?=$k?>" data-groupID="<?=$group['Gid']?>" data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"]?>">
+                              <label class="">
                                   <span class="fa fa-users"></span> Groupe <?= $k?>
-                                  <a href="php/delete-group.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&cat=<?=$_GET['cat']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce groupe ?');"><i class="fa fa-trash-o"></i></a>
+                                  <a class="" href="php/delete-group.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&cat=<?=$_GET['cat']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce groupe ?');"><i class="fa fa-trash-o"></i></a>
                               </label>
                               <div class="form-group" >
-                                  <label><span class="fa fa-users"></span> Terrain</label>
+                                  <label class=""><span class="fa fa-users"></span> Terrain</label>
                                   <select class="form-control" id="terrain <?=$k?>" name="ExpandableListTerrain">
                                       <?php
                                               $terrains = $db->query('SELECT * FROM Terrain');
                                               while ($terrain = $terrains->fetch_array())
                                               { ?>
-                                                  <option value=<?=$terrain['ID']?> <?php if ($group['ID_terrain']==$terrain['ID']) { echo "selected=\"selected\""; }?> >
+                                                  <option class="" value=<?=$terrain['ID']?> <?php if ($group['ID_terrain']==$terrain['ID']) { echo "selected=\"selected\""; }?> >
                                                           <?=$terrain['ID']?> : [<?=utf8_encode($terrain['Type']);?>/<?=utf8_encode($terrain['etat']);?>] <?=utf8_encode($terrain['Note']);?> (<?=utf8_encode($terrain['adresse']);?>)
                                                   </option>
                                           <?php }
@@ -192,7 +192,7 @@
                                   </select>
                               </div>
 
-                              <label><span class="fa fa-users"></span> Equipes </label>
+                              <label class=""><span class="fa fa-users"></span> Equipes </label>
                               <?php
                               for ($i = 1; $i <= $teamNum; $i++) {
                                       $teamID = $group["ID_t".$i];
@@ -207,10 +207,10 @@
                                       $IDPersonne2 = $team['ID_Player2'];
                                       $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne2."\"")->fetch_array();
                                       ?>
-                                  <div class="form-group text-center">
+                                  <div class="form-group text-center" name="divButtonContainer" data-index="<?=$k?>">
                                   <?php $captainText = $teamID == $group['ID_Leader'] ? "fa fa-user text-success " : "fa fa-arrow-circle-o-up"; ?>
                                   <?php if($group['ID_t1']>0){?>
-                                  <a  data-toggle="tooltip" data-placement="left" title="<?php if($teamID == $group['ID_Leader']){echo "Leader de poule";} else{echo "Assigner cette équipe en tant que leader de poule";}?>" href="php/promote-leader.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&teamID=<?=$teamID?>&cat=<?=$_GET['cat']?>" ><i class="<?=$captainText?>"></i></a>
+                                  <a class="" data-toggle="tooltip" data-placement="left" title="<?php if($teamID == $group['ID_Leader']){echo "Leader de poule";} else{echo "Assigner cette équipe en tant que leader de poule";}?>" href="php/promote-leader.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&teamID=<?=$teamID?>&cat=<?=$_GET['cat']?>" ><i class="<?=$captainText?>"></i></a>
                                   <?php }?>
                                       <?php $color = "default";
                                       $videOrNot = "-vide";
@@ -223,8 +223,8 @@
                                       }?>
                                           <?php // N'AFFICHE RIEN SI LE NOM DU PREMIER JOUEUR EST VIDE
                                        ?>
-                                        <span data-toggle="pList" data-target="#pList" data-url="./php/group-note<?=$videOrNot?>.php?id=<?=$teamID?>">
-                                          <div class="btn btn-<?=$color?> btn-outlineW draggable dropper" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"];?>">
+                                        <span class="" data-toggle="pList" data-target="#pList" data-url="./php/group-note<?=$videOrNot?>.php?id=<?=$teamID?>">
+                                          <div class="btn btn-<?=$color?> btn-outlineW draggable dropper" name="button-player" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"];?>">
                                                         <?=utf8_encode($player['LastName'])?> &
                                                         <?=utf8_encode($player2['LastName'])?>
                                                         [<?=$avgRanking;?>]
@@ -244,7 +244,7 @@
                               <?php
                                   if($teamNum<8){ ?>
                                           <div class="form-group text-center">
-                                              <div class="btn btn-default btn-outline draggable dropper" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"]?>">Vide</div>
+                                              <div class="btn btn-default btn-outline draggable dropper" name="button-player" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"]?>">Vide</div>
                                           </div>
                               <?php } ?>
                           </div>
@@ -312,7 +312,9 @@
                 draggedElement: null,
                 dropperDefaultStyle1: "btn btn-default btn-outlineW draggable dropper",
                 dropperDefaultStyle2: "btn btn-primary btn-outlineW draggable dropper",
-                ropperDefaultStyle3: "btn btn-default btn-outline draggable dropper",
+                dropperDefaultStyle3: "btn btn-default btn-outline draggable dropper",
+                dropperContainerDefaultStyle1: "col-lg-3 server-action-menu dropper",
+                dropperContainerDefaultStyle2: "col-lg-3 server-other-menu dropper",
                 draggedDefaultStyle: null,
 
                 applyDragEvents: function(element) {
@@ -328,36 +330,86 @@
                 applyDropEvents: function(dropper) {
                     dropper.addEventListener('dragover', function(e) {
                         e.preventDefault();
-                        dndHandler.dropperDefaultStyle = e.target.getAttribute("class");
-
-                        if(dndHandler.dropperDefaultStyle == dndHandler.dropperDefaultStyle1 + " drop_hover" || dndHandler.dropperDefaultStyle == dndHandler.dropperDefaultStyle2 + " drop_hover" || dndHandler.dropperDefaultStyle == dndHandler.ropperDefaultStyle3 + " drop_hover") {// On revient au style de base lorsque l'élément quitte la zone de drop
+                        var target = e.target;
+                        var flag_target_ok = true;
+                        if(!(target.className !== undefined)){flag_target_ok=false;}
+                        else {
+                            while (target.className.indexOf('dropper') == -1) { // Cette boucle permet de remonter jusqu'à la zone de drop parente
+                                target = target.parentNode;
+                            }
                         }
-                        else{
-                            this.className = e.target.getAttribute("class") + " drop_hover"; // Et on applique le style adéquat à notre zone de drop quand un élément la survole
+                        dndHandler.dropperDefaultStyle = target.getAttribute("class");
+
+                        var flag_hover = false;
+                        var flag_red = false;
+                        var classList = e.target.className.split(/\s+/);
+                        for (var i = 0; i < classList.length; i++) {
+                            if (classList[i] == "drop_hover" || classList[i] == "drop_hover_green") { flag_hover = true;}
+                            if (classList[i] == "switcher_to_green") { flag_red = true;}
+                        }
+
+                        if(flag_hover) {// On revient au style de base lorsque l'élément quitte la zone de drop
+                            //do nothing
+                        }
+                        else {
+                            if (target.getAttribute("name") != null) {
+                                if (target.getAttribute("name") == "divGroupContainer") { // Et on applique le style adéquat à notre zone de drop quand un élément la survole
+                                    if(flag_red){ target.className += " drop_hover_green";}
+                                    else{this.className += " drop_hover";}
+                                } else if(target.getAttribute("name") == "button-player") {
+                                    if(flag_red){ target.className += " drop_hover_green";}
+                                    else{this.className += " drop_hover";}
+                                }else if(flag_target_ok){
+                                    if(flag_red){ target.className += " drop_hover_green";}
+                                    else{target.className += " drop_hover";}
+                                }
+                            }
                         }
 
 
                     }, false);
 
-                    dropper.addEventListener('dragleave', function() {
+                    dropper.addEventListener('dragleave', function(e) {
+                        var target = e.target;
+                        while (target.className.indexOf('dropper') == -1) { // Cette boucle permet de remonter jusqu'à la zone de drop parente
+                            target = target.parentNode;
+                        }
+                        var flag_hover = false;
+                        var classString="";
+                        var classList = target.className.split(/\s+/);
+                        for (var i = 0; i < classList.length; i++) {
+                            if (classList[i] == "drop_hover" || classList[i] == "drop_hover_green") {
+                                flag_hover=true;
+                            }else{
+                                classString += (classList[i] + " ");
+                            }
+                        }
 
-                        if(dndHandler.dropperDefaultStyle1 + " drop_hover"){// On revient au style de base lorsque l'élément quitte la zone de drop
-                            this.className = dndHandler.dropperDefaultStyle1;
+                        if (e.target.getAttribute("name") != null) {
+                            if(flag_hover){ // On revient au style de base lorsque l'élément quitte la zone de drop
+                                this.className = classString;
+                            }
                         }
-                        else if(dndHandler.dropperDefaultStyle2 + " drop_hover"){
-                            this.className = dndHandler.dropperDefaultStyle2;
-                        }
-                        else{
-                            this.className = dndHandler.dropperDefaultStyle3;
-                        }
-
                     });
                     var dndHandler = this;
 
                     dropper.addEventListener('drop', function(e) {
-                        var target = e.target,
+                        var target = e.target;
+                        while (target.className.indexOf('dropper') == -1) { // Cette boucle permet de remonter jusqu'à la zone de drop parente
+                            target = target.parentNode;
+                        }
                         draggedElement = dndHandler.draggedElement; // Récupération de l'élément concerné
-                        target.className = dndHandler.draggedDefaultStyle; // Application du style par défaut
+
+                        var classString="";
+                        var classList = target.className.split(/\s+/);
+                        for (var i = 0; i < classList.length; i++) {
+                            if (classList[i] == "drop_hover" || classList[i] == "drop_hover_green") {
+                                flag_hover=true;
+                            }else{
+                                classString += (classList[i] + " ");
+                            }
+                        }
+                        target.className = classString; // Application du style par défaut
 
                         var draggedElement_id = $(draggedElement).attr('data-id');
                         var draggedElement_teamNum = $(draggedElement).attr('data-teamNum');
@@ -365,6 +417,11 @@
                         var target_id = $(target).attr('data-id');
                         var target_teamNum = $(target).attr('data-teamNum');
                         var target_groupNum = $(target).attr('data-groupNum');
+                        if(target.getAttribute("name") == "divGroupContainer"){
+                            target_id = -1;
+                            target_teamNum = $(target).attr('data-teamNum');
+                            target_groupNum = $(target).attr('data-groupID');
+                        }
                         init_the_swap(draggedElement_id, draggedElement_teamNum, draggedElement_groupNum, target_id, target_teamNum, target_groupNum);
                     });
                 }
@@ -384,14 +441,16 @@
 
     <script>
         function init_the_swap(draggedElement_id, draggedElement_teamNum, draggedElement_groupNum, target_id, target_teamNum, target_groupNum){
-            document.getElementById('idteam1').value = draggedElement_id;
-            document.getElementById('teamNumberG1').value = draggedElement_teamNum;
-            document.getElementById('groupID1').value = draggedElement_groupNum;
-            document.getElementById('idteam2').value = target_id;
-            document.getElementById('teamNumberG2').value = target_teamNum;
-            document.getElementById('groupID2').value = target_groupNum;
-            var myForm = document.getElementById('echanger');
-            myForm.submit();
+            if(draggedElement_groupNum != target_groupNum && target_teamNum<8) {
+                document.getElementById('idteam1').value = draggedElement_id;
+                document.getElementById('teamNumberG1').value = draggedElement_teamNum;
+                document.getElementById('groupID1').value = draggedElement_groupNum;
+                document.getElementById('idteam2').value = target_id;
+                document.getElementById('teamNumberG2').value = target_teamNum;
+                document.getElementById('groupID2').value = target_groupNum;
+                var myForm = document.getElementById('echanger');
+                myForm.submit();
+            }
         }
     </script>
 
@@ -410,8 +469,8 @@
     <script>
         function checkForInvalideGroups(){
             var i=0;
-            while(document.getElementsByName("divGroup")[i] != null){
-                var Div = document.getElementsByName("divGroup")[i];
+            while(document.getElementsByName("divGroupContainer")[i] != null){
+                var Div = document.getElementsByName("divGroupContainer")[i];
                 if(Div.getAttribute('data-teamNum')<3){
                     HighlightTheDiv(Div);
                 }
@@ -422,7 +481,10 @@
 
     <script>
         function HighlightTheDiv(Div){
-            Div.className = "col-lg-3 server-invalide-menu";
+            Div.className = "col-lg-3 server-invalide-menu switcher_to_green dropper";
+            $(Div).children().addClass("switcher_to_green");
+            $(Div).children().children().addClass("switcher_to_green");
+            $(Div).children().children().children().addClass("switcher_to_green");
         }
     </script>
 
