@@ -174,7 +174,7 @@
                               ?>
                           <div class="col-lg-3 <?=$s_a_m?>"  name="divGroup" id="divGroup<?=$k?>" data-groupID="<?=$group['Gid']?>" data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>" data-teamNum="<?=$teamNum?>">
                               <label>
-                                  <span class="fa fa-users"></span> Groupe <?= $k?> [<?=$group['Gid']?>]
+                                  <span class="fa fa-users"></span> Groupe <?= $k?>
                                   <a href="php/delete-group.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&cat=<?=$_GET['cat']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce groupe ?');"><i class="fa fa-trash-o"></i></a>
                               </label>
                               <div class="form-group" >
@@ -197,6 +197,10 @@
                               for ($i = 1; $i <= $teamNum; $i++) {
                                       $teamID = $group["ID_t".$i];
                                       $team = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"")->fetch_array();
+
+                                      $avgRanking = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"")->fetch_array();
+                                      $avgRanking = $avgRanking['AvgRanking'] != "" ? $avgRanking['AvgRanking'] : "?" ;
+
                                       $IDPersonne = $team['ID_Player1'];
                                       $player = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne."\"")->fetch_array();
 
@@ -221,9 +225,9 @@
                                        ?>
                                         <span data-toggle="pList" data-target="#pList" data-url="./php/group-note<?=$videOrNot?>.php?id=<?=$teamID?>">
                                           <div class="btn btn-<?=$color?> btn-outlineW draggable dropper" data-toggle="idteam1" data-target="#idteam1" data-id="<?=$teamID?>" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"];?>">
-                                                        [<?=$teamID?>]
                                                         <?=utf8_encode($player['LastName'])?> &
                                                         <?=utf8_encode($player2['LastName'])?>
+                                                        [<?=$avgRanking;?>]
                                     		</div>
                                         </span>
 
@@ -262,7 +266,7 @@
                         <?php  } ?>
 
 
-
+                          <?php if($k != 0) { ?>
                           <div class="col-lg-3 server-new-menu"  name="divGroupEmpty" id="divGroup<?=($k+1)?>" >
                               <label><span class="fa fa-users"></span> Groupe <?= $k+1?> </label>
                               <div class="form-group" >
@@ -274,6 +278,7 @@
                                   <div class="alert alert-success" id="popupCreate" >Nouveau groupe créé</div>
                               </div>
                           </div>
+                          <?php } ?>
 
               </div>
               <!-- Registration form - END -->
@@ -396,7 +401,7 @@
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();
 
-            if(<?php if(array_key_exists("popup",$_POST)){echo "true"; error_log($_POST['popup']);}else{echo "false";} ?>) {
+            if(<?php if(array_key_exists("popup",$_POST)){echo "true";}else{echo "false";} ?>) {
                 setTimeout(function () {$('#popupCreate').fadeIn('slow');}, 0);
                 setTimeout(function () {$('#popupCreate').fadeOut('slow');}, 3000);
             }
