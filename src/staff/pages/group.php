@@ -112,7 +112,7 @@
                                 <span class="pull-right"> </span><pre class="pull-right" id="p2">Cliquez sur une équipe</pre>
                                 <p class="pull-right"> </p><pre class="pull-right" id="p1">Cliquez sur une équipe</pre>
 
-                                <span class="pull-right" data-toggle="pList" data-target="#pList" data-url="./php/group-note-vide.php">
+                              <span class="pull-right" data-toggle="pList" data-target="#pList" data-url="./php/group-note-vide.php">
                                 <button class="btn btn-default">
                                     <i class="fa fa-chevron-down"></i>
                                 </button>
@@ -124,9 +124,7 @@
                                 <input name="groupID1" id="groupID1" class="hidden" value="" />
                                 <input name="groupID2" id="groupID2" class="hidden" value="" />
                             </form>
-
-                            <br/><br/>
-                            <div id="pList"></div>
+                            <div class="col-lg-8" id="pList"></div>
                         </div>
                     </nav>
                 </div>
