@@ -221,12 +221,8 @@
                                                     ?> </br> <label class="text-danger"> FINALE </label> <?php
                                                   }
                                             for ($j = $impairTeam; $j < $numberOfTeams/2; $j++) {
-                                                // We need one less match if we have a surplus of 1 team.
-                                                if ($s_a_m == "server-action-menu") {
-                                                    $s_a_m = "server-other-menu";
-                                                } else {
-                                                    $s_a_m = "server-action-menu";
-                                                }?>
+                                                    $s_a_m = "server-new-menu";
+                                                ?>
                                                 <div class="form-group <?=$s_a_m?>">
                                                     <label for="sel1"><span class="fa fa-users"></span> Match
                                                         <?=$matchNum?>
