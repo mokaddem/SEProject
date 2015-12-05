@@ -9,7 +9,7 @@ Mise à jour de l'historique
 
 
 	$db = BDconnect();
-
+/*
 	$knockoffSam = $db->query("SELECT * FROM KnockoffSaturday");
 	foreach($knockoffSam as $knock) {
 		$match = $db->query("DELETE FROM `Match` WHERE ID=".$knock['ID_Match']);
@@ -27,18 +27,19 @@ Mise à jour de l'historique
 	foreach($groupsSun as $groupSun) {
 		$match = $db->query("DELETE FROM `Match` WHERE Poule_ID=".$groupSun['ID']);
 	}
-
+*/
  	// Can we DELETE all teams?
- 	$db->query("DELETE FROM `Match` WHERE 1");
+ 	$db->query("DELETE FROM `Match`");
 
  	// None of the team is a victorious one now:
- 	$db -> query("UPDATE TEAM SET Group_Vic = 0 WHERE Group_Vic = 1");
 
 	// Suppression
 	$db->query('DELETE FROM GroupSunday');
 	$db->query('DELETE FROM GroupSaturday');
 	$db->query('DELETE FROM KnockoffSaturday');
 	$db->query('DELETE FROM KnockoffSunday');
+
+ 	$db->query('UPDATE Team set NbWinMatch=0, Group_Vic = 0');
 
 
 	// Mise à jour de l'historique
