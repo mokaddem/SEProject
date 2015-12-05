@@ -58,8 +58,6 @@
                         Le tournoi du samedi a déjà été généré.
                         <?php } elseif ($_GET["error"] == "yes_dim") { ?>
                         Le tournoi du dimanche a déjà été généré.
-                        <?php } elseif ($_GET["error"] == "no_team") { ?>
-                        Au moins un des groupe n'a pas de vainqueur.
                         <?php } ?>
                     </div>
             <?php } ?>
