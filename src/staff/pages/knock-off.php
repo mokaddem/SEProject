@@ -131,7 +131,7 @@
                                         $i = $numberOfMatch;
                                     } else{
                                         ?>
-                                        <div class="form-group text-center <?=$s_a_m?>">
+                                        <div class="form-group text-center <?=$s_a_m?>"  data-groupID="<?=$knockoff['ID']?>" data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>" data-teamNum="2" data-matchID="<?=$match['ID']?>" >
                                             <label for="sel1"><span class="fa fa-users"></span> Match
                                                 <?= $i ?>
                                             </label>
@@ -144,15 +144,20 @@
                                                     tour</label> <?php
                                             } else{
                                             ?>
-                                                <select class="form-control" id="sel1">
+                                                <select class="form-control" id="sel<?= $i ?>" name="ExpandableListTerrain">
                                                     <?php
                                                     $terrains = $db->query('SELECT * FROM Terrain');
                                                     while ($terrain = $terrains->fetch_array())
                                                     { ?>
-                                                        <option value=<?=$terrain['ID']?>> <?=$terrain['ID']?> : <?=utf8_encode($terrain['Note'])?>, <?=utf8_encode($terrain['adresse'])?></option>
+<!--                                                        <option value=--><?//=$terrain['ID']?><!--> --><?//=$terrain['ID']?><!-- : --><?//=utf8_encode($terrain['Note'])?><!--, --><?//=utf8_encode($terrain['adresse'])?><!--</option>-->
+
+                                                        <option value=<?=$terrain['ID']?> <?php if ($match['ID_Terrain']==$terrain['ID']) { echo "selected=\"selected\""; }?> >
+                                                            <?=$terrain['ID']?> : [<?=utf8_encode($terrain['Type']);?>/<?=utf8_encode($terrain['etat']);?>] <?=utf8_encode($terrain['Note']);?> (<?=utf8_encode($terrain['adresse']);?>)
+                                                        </option>
                                                     <?php }
                                                     ?>
                                                 </select>
+                                                <label></label>
                                                 <?php }?>
                                          <?php
                                         for ($j = 1; $j <= 2; $j++) {
@@ -202,6 +207,16 @@
                                         $numberOfPixels = (int) -75/2;
                                         $numberOfTeams = $numberFirstRound + $impairTeam;
                                         $stop = False;
+
+
+                                        if ($_GET['jour'] == "sam"){
+                                            $knockoff = $db->query('SELECT * FROM KnockoffSaturday WHERE Position='.$matchNum)->fetch_array();
+                                        } elseif ($_GET['jour'] == "dim") {
+                                            $knockoff = $db->query('SELECT * FROM KnockoffSunday WHERE Position='.$matchNum)->fetch_array();
+                                        }
+                                        $matchRep = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match']);
+                                        $match = $matchRep->fetch_array();
+
                                         while ($numberOfTeams > 1 and !$stop){
                                             $impairTeam = $numberOfTeams % 2;
                                             //echo $numberOfTeams." team(s).\n";
@@ -223,22 +238,32 @@
                                             for ($j = $impairTeam; $j < $numberOfTeams/2; $j++) {
                                                     $s_a_m = "server-new-menu";
                                                 ?>
-                                                <div class="form-group <?=$s_a_m?>">
+                                                <div class="form-group <?=$s_a_m?>"data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>" data-matchID="<?=$match['ID']?>">
                                                     <label for="sel1"><span class="fa fa-users"></span> Match
                                                         <?=$matchNum?>
                                                     </label>
-                                                    <select class="form-control" id="sel1">
+                                                    <select class="form-control" id="sel<?= ($j+$matchNum) ?>" name="ExpandableListTerrain">
                                                         <?php
                                                             $terrains = $db->query('SELECT * FROM Terrain');
                                                             while ($terrain = $terrains->fetch_array())
                                                             { ?>
-                                                                <option value=<?=$terrain['ID']?>> <?=$terrain['ID']?> : <?=utf8_encode($terrain['Note'])?>, <?=utf8_encode($terrain['adresse'])?></option>
+                                                                <option value=<?=$terrain['ID']?> <?php if ($match['ID_Terrain']==$terrain['ID']) { echo "selected=\"selected\""; }?> >
+                                                                    <?=$terrain['ID']?> : [<?=utf8_encode($terrain['Type']);?>/<?=utf8_encode($terrain['etat']);?>] <?=utf8_encode($terrain['Note']);?> (<?=utf8_encode($terrain['adresse']);?>)
+                                                                </option>
+
                                                             <?php }
                                                         ?>
                                                     </select>
                                                 </div>
                                                 <?php
                                                     $matchNum++;
+                                                    if ($_GET['jour'] == "sam"){
+                                                        $knockoff = $db->query('SELECT * FROM KnockoffSaturday WHERE Position='.$matchNum)->fetch_array();
+                                                    } elseif ($_GET['jour'] == "dim") {
+                                                        $knockoff = $db->query('SELECT * FROM KnockoffSunday WHERE Position='.$matchNum)->fetch_array();
+                                                    }
+                                                    $matchRep = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match']);
+                                                    $match = $matchRep->fetch_array();
                                             } ?>
                                         </div>
                                         <?php
@@ -296,6 +321,43 @@
             }
         });
     </script>
+
+    <script>
+        function saveCourt(e){
+            var dropDownList = document.getElementById(e.target.id);
+
+            var CatID = dropDownList .parentNode.getAttribute('data-category');
+            var Day = dropDownList .parentNode.getAttribute('data-day');
+            var matchID = dropDownList .parentNode.getAttribute('data-matchID');
+
+            var js_idT = dropDownList.options[dropDownList.selectedIndex].value;
+            var js_idC = CatID ;
+            var js_jour=  Day;
+            var js_matchID = matchID;
+            var url="../pages/php/inc/edit-court-knock-off.php";
+
+            var data={ 'idT':js_idT, 'idC':js_idC, 'idM' : js_matchID, 'jour': js_jour };
+            console.log(data);
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: data
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var i=0;
+            while(document.getElementsByName("ExpandableListTerrain")[i] != null){
+                var List = document.getElementsByName("ExpandableListTerrain")[i];
+                i++;
+                List.addEventListener("change", saveCourt);
+            }
+        });
+
+    </script>
+
 
 </body>
 

@@ -491,11 +491,8 @@
                 type: "POST",
                 url: url,
                 data: data
-
             });
-
         }
-
     </script>
 
     <script>
