@@ -155,13 +155,16 @@
                                         <label><span class="fa fa-edit"></span> Information(s) complémentaire(s)</label>
                                             <div class="input-group">
                                             <span class="input-group-addon"><span class="fa fa-comment"></span></span>
-                                            <textarea name="InputMessage" id="InputMessage" name="InputMessage" class="form-control" rows="5"></textarea>
+                                            <textarea name="InputMessage1" id="InputMessage1" class="form-control" rows="5"></textarea>
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div>
+                                <input id="addCoop" class="btn btn-info col-lg-4" value="Ajouter un partenaire"/>
+                            </div>
+                            <div class="col-lg-6" id="player2" data-activated="0">
                                 <div class="col-lg-9">
 
                                     <div class="form-group">
@@ -280,7 +283,7 @@
 
                                             <span class="input-group-addon"><span class="fa fa-comment"></span></span>
 
-                                            <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5"></textarea>
+                                            <textarea name="InputMessage2" id="InputMessage2" class="form-control" rows="5"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -316,6 +319,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        $('#player2').hide();
         if(document.getElementsByName("extra1_1")[0].checked == true){
             for (i = 2; i < <?php echo $extraSize; ?>; i++) {
                 extraName= "extraD1_" +i.toString();
@@ -354,9 +358,22 @@
     }
 </script>
 
+<script type="text/javascript">
+    function registerAlone(){
+        if($('#player2').attr("data-activated")==0){
+            var url="../staff/pages/php/add-single-player.php";
+            $('input').attr("required",false);
+            $('form').attr("action", url);
+            $('form').submit();
+        }
+    }
+</script>
+
 <script type="text/javascript">  window.onload = function() {
         document.getElementsByName("extra1_1")[0].addEventListener("click",function(){hideExtras(1); });
         document.getElementsByName("extra2_1")[0].addEventListener("click",function(){hideExtras(2); });
+        document.getElementById("addCoop").addEventListener("click",function(){ $('#player2').show(); $('#addCoop').hide(); $('#player2').attr("data-activated",1);});
+        document.getElementById("submit").addEventListener("click",registerAlone);
     };
 </script>
 

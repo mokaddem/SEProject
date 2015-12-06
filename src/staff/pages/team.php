@@ -113,9 +113,11 @@
                         </div>
                     </form>
                     <!-- Registration form - END -->
-
                 </div>
                 <!-- /.row -->
+                <div>
+                <button name="createTeams" id="createTeams" class="btn btn-info pull-left col-lg-3">Associer les joueurs seuls en équipe</button>
+                </div>
             </div>
             <!-- /#page-wrapper -->
 
@@ -134,6 +136,21 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
+    <script>
+        function associate(){
+            var url="/php/associate-player.php";
+            var data={ };
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: data
+            });
+        }
+    </script>
+
+    <script>
+        document.getElementsByName("createTeams")[0].addEventListener("click",associate);
+    </script>
 </body>
 <?php $reponse->free(); ?>
 </html>
