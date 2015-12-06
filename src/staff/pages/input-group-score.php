@@ -94,6 +94,7 @@
                 <!-- /.row -->
 
                 <div class="row">
+                  <div class="panel panel-default">
                     <ul class="nav nav-tabs">
                         <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="input-group-score.php?jour=sam&cat=1">Samedi</a></li>
                         <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="input-group-score.php?jour=dim&cat=1">Dimanche</a></li>
@@ -108,6 +109,7 @@
                         <?php }?>
                     </ul>
                 </div>
+              </div>
                 <div class="row">
                     <br/>
                 </div>
