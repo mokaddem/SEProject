@@ -223,7 +223,7 @@
                                             $numberOfPixels += (int) 75*$numberOfTeams/4 - $impairTeam*(75/2);
                                             $position = $numberOfPixels."px";
                                     ?>
-                                        <div class="col-lg-3 text-center" style="position: relative; top: <?=$position?>;">
+                                        <div class="col-lg-3 text-center  vcenter" style="position: relative; top: <?=$position?>;">
                                              <label> Tour <?=$iter+2?> </label>
                                             <?php if($impairTeam == 1 and $numberOfTeams != 3) { ?>
                                                 <label class="text-danger"> Une team n'aura pas de match à ce tour. </label >

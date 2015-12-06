@@ -509,3 +509,10 @@ table.dataTable thead .sorting:after {
 input[type=checkbox],input[type=radio] {
 	margin:9px 0 0;
 }
+
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
