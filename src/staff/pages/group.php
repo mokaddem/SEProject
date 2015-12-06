@@ -176,7 +176,7 @@
                           <div class="col-lg-3 <?=$s_a_m?> dropper"  name="divGroupContainer" id="divGroup<?=$k?>" data-groupID="<?=$group['Gid']?>" data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"]?>">
                               <label class="">
                                   <span class="fa fa-users"></span> Groupe <?= $k?>
-                                  <a class="" href="php/delete-group.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&cat=<?=$_GET['cat']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce groupe ?');"><i class="fa fa-trash-o"></i></a>
+                                  <a class="" <?php if(!$canEdit){?> href="php/delete-group.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&cat=<?=$_GET['cat']?>" <?php }?> <?php if(!$canEdit){?> onclick="return confirm('Voulez-vous vraiment supprimer ce groupe ?');" <?php }?> ><i class="fa fa-trash-o"></i></a>
                               </label>
                               <div class="form-group" >
                                   <label class=""><span class="fa fa-users"></span> Terrain</label>
@@ -211,7 +211,7 @@
                                   <div class="form-group text-center" name="divButtonContainer" data-index="<?=$k?>">
                                   <?php $captainText = $teamID == $group['ID_Leader'] ? "fa fa-user text-success " : "fa fa-arrow-circle-o-up"; ?>
                                   <?php if($group['ID_t1']>0){?>
-                                  <a <?=$canEdit?> class="" data-toggle="tooltip" data-placement="left" title="<?php if($teamID == $group['ID_Leader']){echo "Leader de poule";} else{echo "Assigner cette équipe en tant que leader de poule";}?>" href="php/promote-leader.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&teamID=<?=$teamID?>&cat=<?=$_GET['cat']?>" ><i class="<?=$captainText?>"></i></a>
+                                  <a <?=$canEdit?> class="" data-toggle="tooltip" data-placement="left" title="<?php if($teamID == $group['ID_Leader']){echo "Leader de poule";} else{echo "Assigner cette équipe en tant que leader de poule";}?>" <?php if(!$canEdit){?> href="php/promote-leader.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&teamID=<?=$teamID?>&cat=<?=$_GET['cat']?>" <?php }?> ><i class="<?=$captainText?>"></i></a>
                                   <?php }?>
                                       <?php $color = "default";
                                       $videOrNot = "-vide";
