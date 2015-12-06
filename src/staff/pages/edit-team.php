@@ -110,11 +110,11 @@
 										{
                                             if ($t['ID_Cat'] == $donnes['ID'])
                                             {
-                                                echo "<option selected=\"".$donnes['Designation']." ".$donnes['Year']."\" value=".$donnes['ID'].">".utf8_encode($donnes['Designation'])." ".utf8_encode($donnes['Year'])."</option>";
+                                                echo "<option selected=\"".$donnes['Designation']." ".$donnes['Age']."\" value=".$donnes['ID'].">".utf8_encode($donnes['Designation'])." ".utf8_encode($donnes['Age'])."</option>";
                                             }
                                             else
                                             {
-										      echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['Designation'])." ".utf8_encode($donnes['Year'])."</option>";								  }
+										      echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['Designation'])." ".utf8_encode($donnes['Age'])."</option>";								  }
                                         }
                                     ?>
 
