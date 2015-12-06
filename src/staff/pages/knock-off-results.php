@@ -22,6 +22,7 @@
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -49,8 +50,8 @@
         <div class="row">
             <div class="row">
                 <ul class="nav nav-tabs">
-                    <li <?php if ($_GET['jour']=="sam" ) echo 'class="active" ' ;?>><a href="knock-off-results.php?jour=sam&cat=1">Samedi</a></li>
-                    <li <?php if ($_GET['jour']=="dim" ) echo 'class="active" ' ;?>><a href="knock-off-results.php?jour=dim&cat=1">Dimanche</a></li>
+                    <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="group.php?jour=sam&cat=1" >Samedi <i class="fa fa-venus-mars" style="font-size: 150%"></i> </a></li>
+                        <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="group.php?jour=dim&cat=1">Dimanche <i class="fa fa-venus" style="font-size: 150%"></i> || <i class="fa fa-mars" style="font-size: 150%"></i></a></li>
                 </ul>
                 <ul class="nav nav-tabs nav-justified">
                     <?php $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, KnockoffSaturday WHERE KnockoffSaturday.Category = Categorie.ID');
