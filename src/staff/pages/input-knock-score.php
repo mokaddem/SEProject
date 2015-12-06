@@ -192,7 +192,7 @@
         $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne2 . "\"")->fetch_array();
 
         $nameField = "score".$position;
-        $ranking = ($team['AvgRanking'] == NULL) ? "?" : $team['AvgRanking'];
+        $ranking = ($team['AvgRanking'] == NULL) ? "NC" : $team['AvgRanking'];
         ?>
         <div class="row">
             <div class="col-lg-7">

@@ -191,7 +191,7 @@ function displayTeam($team, $match, $teamInMatch, $position, $db){
     $IDPersonne2 = $team['ID_Player2'];
     $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne2 . "\"")->fetch_array();
 
-    $ranking = ($team['AvgRanking'] == NULL) ? "?" : $team['AvgRanking'];
+    $ranking = ($team['AvgRanking'] == NULL) ? "NC" : $team['AvgRanking'];
     ?>
     <div class="row">
         <div class="col-lg-10">

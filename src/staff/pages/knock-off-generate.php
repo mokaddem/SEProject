@@ -71,22 +71,21 @@
 
                             <fieldset data-role="controlgroup" data-type="horizontal">
                                 <label for="sam">Samedi</label>
-                                <input type="radio" name="jour" value="sam">
+                                <input type="radio" name="jour" value="sam" checked>
                                 <label for="dim">Dimanche</label>
                                 <input type="radio" name="jour" value="dim">
                                 <div class="form-group">
-                                <select class="form-control" id="InputCat" name="InputCat">
-                                    <?php
-                                    $db = BDconnect();
-                                    $reponse = $db->query('SELECT * FROM Categorie');
-                                    while ($donnes = $reponse->fetch_array())
-                                    {
-                                        echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['Designation'])." ".$donnes['Year']."</option>";
-                                    }
-                                    ?>
-                                </select>
+                                    <select class="form-control" id="InputCat" name="InputCat">
+                                        <?php
+                                        $db = BDconnect();
+                                        $reponse = $db->query('SELECT * FROM Categorie');
+                                        while ($donnes = $reponse->fetch_array())
+                                        {
+                                            echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['Designation'])." ".$donnes['Age']."</option>";
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
-
                                 <input type="submit" name="submit" id="submit" value="Générer" class="btn btn-info pull-right">
                             </fieldset>
                             <hr>

@@ -161,7 +161,8 @@
                             $p1 = $p->fetch_array();
                             $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player2'].' = ID');
                             $p2 = $p->fetch_array();
-                            $TeamName=utf8_encode($p1['FirstName']." ".$p1['LastName']." & ".$p2['FirstName']." ".$p2['LastName']." [".$donnes['T_ID']."]");
+                            $ranking = ($donnes['AvgRanking'] == NULL) ? "NC" : $donnes['AvgRanking'];
+                            $TeamName=utf8_encode("[".$ranking."]".$p1['FirstName']." ".$p1['LastName']." & ".$p2['FirstName']." ".$p2['LastName']." [".$donnes['T_ID']."]");
                             if ($donnes['T_ID'] != $TeamID) {
                                 echo "<option value=" . $donnes['T_ID'] . ">" . $TeamName . "</option>";
                             }
