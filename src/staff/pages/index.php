@@ -136,6 +136,9 @@
                         <div>
                             <a href="./php/delete-history.php" class="btn btn-danger">Effacer</a>
                         </div>
+                        <div class="pull-right">
+                            <a href="./php/delete-all.php" class="btn btn-danger">Détruire l'année écoulée afin d'en recommencer une nouvelle.</a>
+                        </div>
                         <!-- /.panel -->
                     </div>
                     <!-- /.col-lg-6 -->

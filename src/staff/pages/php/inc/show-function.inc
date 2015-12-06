@@ -128,7 +128,7 @@ function getExtra($id) {
 
 function getHistories() {
     $db = BDconnect(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
-    return $db->query('SELECT * FROM History');
+    return $db->query('SELECT * FROM History ORDER BY ID DESC');
 }
 
 function getHistory($id) {
