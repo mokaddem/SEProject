@@ -65,7 +65,7 @@
             <div class="row">
                 <br/>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 vcenter">
                 <?php
                 if ($_GET['jour'] == "sam"){
                     $knockoff_all = $db->query('SELECT * FROM KnockoffSaturday WHERE Category = '.$_GET['cat'].' ORDER BY `Position` ASC');
@@ -87,66 +87,55 @@
                 $newColNeeded = False;
                 $numberOfTeams = -1;
                 $numberOfColDone = 0;
-                $numberOfPixels = 0;
+                $round = 1;
                 foreach($knockoff_all as $knockoff){
                     $match = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match'])->fetch_array();
                 ?>
                 <div class="row"> <?php
                     if ($match['ID_Equipe2'] == 0){
-                        if ($numberOfMatchCol == -1){ // We begin the second round.
-                            $numberOfMatchCol = $iter-1;
-                            //$iter = 1;
+                        if ($numberOfMatchCol == -1) { // We begin the second round.
+                            $numberOfMatchCol = $iter - 1;
                             $impair = ($match['ID_Equipe1'] == 0) ? 0 : 1;
-                            $numberOfTeams = 2*$numberOfMatchCol + $impair; // Total number of teams that we have to place.
+                            $numberOfTeams = 2 * $numberOfMatchCol + $impair; // Total number of teams that we have to place.
                             $newColNeeded = True;
-                        } else{
-                            if ($numberOfColDone >= $numberOfMatchCol){
+                        } else {
+                            if ($numberOfColDone >= $numberOfMatchCol) {
                                 $newColNeeded = True;
                             }
                         }
                         if ($newColNeeded){
-                            $numberOfPixels += (int) 75*$numberOfColDone/2;
-                            $position = $numberOfPixels."px";
+                            if ($impair == 1 and $round != 1){
+                                displayVoidTeamNoMatch($round, $db);
+                            }
+                            $round++;
                             $newColNeeded = False;
                             $numberOfTeams -= $numberOfMatchCol; // There were $numberOfMatchCol matches, so this number of team lost.
                             $impair = $numberOfTeams % 2;
-                            $numberOfMatchCol = (int) ($numberOfTeams/2);
+                            $numberOfMatchCol = ($numberOfTeams == 3) ? 3 : (int)($numberOfTeams / 2); // Ce sera 3 si on a 3 finalistes.
                             $numberOfColDone = 0;
-                            if ($numberOfTeams == 3){
-                                $numberOfMatchCol = 3;
-                                $numberOfPixels -= 100;
-                                $position = $numberOfPixels."px";
-                            }
                             ?>
                             </div>
                             </div>
-                            <div class="col-lg-3" style="position: relative; top: <?=$position?>;">
-                            <div class="row"> <?php
+                            <div class="col-lg-3 vcenter">
+                                <div class="row"> <?php
                         }
-                        if($match['ID_Equipe1'] == 0) { ?>
-                            <div class="form-group <?=$s_a_m?>">
-                                <div class="text-center">
-                                    <label ><span class="fa fa-users"></span> Match <?=$knockoff['Position'] ?> </label>
-                                </div>
-                                <?php
-                                displayVoidMatch($match, $knockoff['Position'], $db); ?>
-                            </div> <?php
-                        } else { ?>
-                            <div class="form-group <?=$s_a_m?>">
-                                <div class="text-center">
-                                    <label ><span class="fa fa-users"></span> Match <?=$knockoff['Position']?> </label>
-                                </div> <?php
-                                displayImpairMatch($match, $knockoff['Position'], $db); ?>
-                            </div> <?php
+                    }?>
+                    <div class="form-group <?=$s_a_m?>">
+                        <div class="text-center">
+                            <label ><span class="fa fa-users"></span> Match <?=$knockoff['Position'] ?> </label>
+                        </div>
+                        <?php
+                        for ($j = 1; $j <= 2; $j++) {
+                            $teamID = $match['ID_Equipe'.$j];
+                            if ($teamID == 0) {
+                                displayVoidTeam($match, $knockoff['Position'], $db);
+                            } else {
+                                $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'] . ' ')->fetch_array();
+                                displayTeam($team, $match, $knockoff['Position'], $db);
+                            }
                         }
-                    } else{ ?>
-                        <div class="form-group <?=$s_a_m?>">
-                            <div class="text-center">
-                                <label ><span class="fa fa-users"></span> Match <?=$knockoff['Position'] ?> </label>
-                            </div> <?php
-                            displayMatch($match, $knockoff['Position'], $db); ?>
-                        </div> <?php
-                    }
+                        ?>
+                    </div> <?php
                     if ($s_a_m == "server-action-menu") {
                         $s_a_m = "server-other-menu";
                     } else {
@@ -161,17 +150,31 @@
 
                 </div>
             </div>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <!-- Registration form - END -->
             </div>
+
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     </div>
 
     <!-- Display functions ! -->
     <?php
-    function displayVoidMatch($match, $position, $db){
+
+    function displayVoidTeamNoMatch($round, $db){
+        ?>
+        <div class="form-group server-invalide-menu">
+            <div class="text-center">
+                <label ><span class="fa fa-users"></span> Team without match this round. </label>
+            </div>
+            <div class="form-group text-center">
+                <button class="btn btn-default btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-position="<?=$round?>" data-matchID="0">Vide</button>
+            </div>
+        </div>
+        <?php
+    }
+    function displayVoidTeam($match, $position, $db){
         ?>
         <div class="form-group text-center">
             <button class="btn btn-default btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-position="<?=$position?>" data-matchID="<?=$match["ID"]?>">Vide</button>
@@ -179,8 +182,8 @@
         <?php
     }
 
-    function displayImpairMatch($match, $position, $db){
-        $teamID = $match["ID_Equipe1"];
+    function displayTeam($team, $match, $position, $db){
+        $teamID = $team["ID"];
         $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'] . ' ')->fetch_array();
         $IDPersonne1 = $team['ID_Player1'];
         $player1 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne1 . "\"")->fetch_array();
@@ -203,57 +206,6 @@
                 <i class="fa fa-2x fa-arrow-circle-right"></i>
             </div>
         </div>
-        <label> Team impaire ! </label>
-        <?php
-    }
-
-    function displayMatch($match, $position, $db){
-        $teamID1 = $match["ID_Equipe1"];
-        $team1 = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID1 . ' AND ID_Cat=' . $_GET['cat'] . ' ')->fetch_array();
-        $IDPersonne11 = $team1['ID_Player1'];
-        $player11 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne11 . "\"")->fetch_array();
-
-        $IDPersonne12 = $team1['ID_Player2'];
-        $player12 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne12 . "\"")->fetch_array();
-
-        $teamID2 = $match["ID_Equipe2"];
-        $team2 = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID2 . ' AND ID_Cat=' . $_GET['cat'] . ' ')->fetch_array();
-        $IDPersonne21 = $team2['ID_Player1'];
-        $player21 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne21 . "\"")->fetch_array();
-
-        $IDPersonne22 = $team2['ID_Player2'];
-        $player22 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne22 . "\"")->fetch_array();
-
-        $nameField = "score".$position;
-        ?>
-        <br/>
-
-        <div class="row">
-            <div class="col-lg-6">
-                <button class="btn btn-default" disabled> [<?= $teamID1 ?> - <?= $team1['AvgRanking'] ?>] <?= utf8_encode($player11['LastName']) ?> & <?= utf8_encode($player12['LastName']) ?> </button>
-            </div>
-            <div class="col-lg-4">
-                <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" min="0"
-                       step="1" style="float: left;" required>
-            </div>
-            <div class="col-lg-1">
-                <i class="fa fa-2x fa-arrow-circle-right"></i>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <button class="btn btn-default" disabled> [<?= $teamID2 ?> - <?= $team2['AvgRanking'] ?>]
-                    <?= utf8_encode($player21['LastName']) ?> & <?= utf8_encode($player22['LastName']) ?> </button>
-            </div>
-            <div class="col-lg-4">
-                <input type="number" class="form-control" name=<?=$nameField?>-2 id=<?=$nameField?>-2 placeholder="0" min="0"
-                       step="1" style="float: right;" required>
-            </div>
-            <div class="col-lg-1">
-                <i class="fa fa-2x fa-arrow-circle-right"></i>
-            </div>
-        </div>
-
         <?php
     }
     ?>
