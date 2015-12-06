@@ -171,6 +171,7 @@
                                             if ($match['ID_Equipe2'] == 0) {
                                                 $j++;
                                             }
+                                            $ranking = ($team['AvgRanking'] == NULL) ? "?" : $team['AvgRanking'];
                                             ?>
                                             <div class="form-group text-center">
                                             <?php $color = "default";
@@ -185,7 +186,7 @@
                                                     <button class="btn btn-<?= $color ?> btn-outline"
                                                             data-toggle="idteam1" data-target="#idteam1"
                                                             data-id="<?= $teamID ?>">
-                                                        [<?= $teamID ?> - <?= $team['AvgRanking'] ?>]
+                                                        [<?= $teamID ?> - <?= $ranking ?>]
                                                         <?= utf8_encode($player1['LastName']) ?> &
                                                         <?= utf8_encode($player2['LastName']) ?>
                                                     </button>

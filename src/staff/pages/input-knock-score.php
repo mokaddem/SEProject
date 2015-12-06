@@ -192,13 +192,13 @@
         $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne2 . "\"")->fetch_array();
 
         $nameField = "score".$position;
-
+        $ranking = ($team['AvgRanking'] == NULL) ? "?" : $team['AvgRanking'];
         ?>
         <div class="row">
-            <div class="col-lg-6">
-                <button class="btn btn-default" disabled> [<?= $teamID ?> - <?= $team['AvgRanking'] ?>] <?= utf8_encode($player1['LastName']) ?> & <?= utf8_encode($player2['LastName']) ?> </button>
+            <div class="col-lg-7">
+                <button class="btn btn-default" disabled> [<?=$ranking?>] <?= utf8_encode($player1['LastName']) ?> & <?= utf8_encode($player2['LastName']) ?> </button>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" min="0"
                        step="1" style="float: left;" required>
             </div>
