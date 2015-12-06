@@ -35,7 +35,7 @@
             include_once('php/BDD.php');
 
         $db = BDconnect();
-        $reponse = $db->query('SELECT * FROM GlobalVariables WHERE `Name` = "tournament_started"');
+        $reponse = $db->query('SELECT * FROM GlobalVariables WHERE `Name` = "tournament_started_'.$_GET['jour'].'"');
         $rep = $reponse->fetch_array();
         $canEdit = $rep['Value'] == "0" ? "" : "disabled";
         ?>
@@ -112,10 +112,10 @@
                         <div class="container">
                             <form id="echanger" class="navbar-form" action="./php/group-switch.php?jour=<?=$_GET['jour']?>&cat=<?=$_GET['cat']?>" method="post">
                                 <input <?=$canEdit?> type="submit" class="btn btn-success pull-right" value="Echanger"/>
-                                <span class="pull-right"> </span><pre class="pull-right" id="p2">Cliquez sur une équipe</pre>
-                                <p class="pull-right"> </p><pre class="pull-right" id="p1">Cliquez sur une équipe</pre>
+                                <span class="pull-right"> </span><div class="pull-right well well-sm" id="p2">Cliquez sur une équipe</div>
+                                <p class="pull-right"> </p><div class="pull-right well well-sm" id="p1">Cliquez sur une équipe</div>
 
-                              <span class="pull-right" data-toggle="pList" data-target="#pList" data-url="./php/group-note-vide.php">
+                              <span class="pull-left" data-toggle="pList" data-target="#pList" data-url="./php/group-note-vide.php">
                                 <button <?=$canEdit?> class="btn btn-default">
                                     <i class="fa fa-chevron-down"></i>
                                 </button>
@@ -202,7 +202,7 @@
                                       $team = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"")->fetch_array();
 
                                       $avgRanking = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"")->fetch_array();
-                                      $avgRanking = $avgRanking['AvgRanking'] != "" ? $avgRanking['AvgRanking'] : "?" ;
+                                      $avgRanking = $avgRanking['AvgRanking'] != "" ? $avgRanking['AvgRanking'] : "NC" ;
 
                                       $IDPersonne = $team['ID_Player1'];
                                       $player = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne."\"")->fetch_array();
@@ -512,14 +512,16 @@
             var id = $(this).attr('data-id');
             var teamNum = $(this).attr('data-teamNum');
             var groupNum = $(this).attr('data-groupNum');
+            var contentHtml = $(this).text();
+            // var contentHtml = $(this).text().replace(/ /g,'');
             if (document.getElementById('idteam1').value == "") {
-                document.getElementById('p1').innerHTML = id;
+                document.getElementById('p1').innerHTML = contentHtml;
                 document.getElementById('idteam1').value = id;
                 document.getElementById('teamNumberG1').value = teamNum;
                 document.getElementById('groupID1').value = groupNum;
             } else if (document.getElementById('idteam1').value != "" && document.getElementById('idteam2').value != "") {
                 document.getElementById('idteam1').value = id;
-                document.getElementById('p1').innerHTML = id;
+                document.getElementById('p1').innerHTML = contentHtml;
                 document.getElementById('teamNumberG1').value = teamNum;
                 document.getElementById('groupID1').value = groupNum;
                 document.getElementById('idteam2').value = "";
@@ -528,7 +530,7 @@
                 document.getElementById('groupID2').value = "";
             } else {
                 document.getElementById('idteam2').value = id;
-                document.getElementById('p2').innerHTML = id;
+                document.getElementById('p2').innerHTML = contentHtml;
                 document.getElementById('teamNumberG2').value = teamNum;
                 document.getElementById('groupID2').value = groupNum;
             }

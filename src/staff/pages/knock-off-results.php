@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Page des résultats du knock-off -->
+<!-- Page de modification du tournoi knock-off (echange d'équipes et terrains) -->
 <head>
 
     <meta charset="utf-8">
@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Staff - Charles de Lorraine - Knock-Off - Résultats</title>
+    <title>Staff - Charles de Lorraine - Knock-Off - Saisir Score</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -27,124 +27,199 @@
 
 <body>
 
-    <div id="wrapper">
+<div id="wrapper">
 
-        <?php
-            include("./html/header.php");
-            include_once('php/BDD.php');
-        ?>
+    <?php
+    include("./html/header.php");
+    include_once('php/BDD.php');
+
+    $db = BDconnect();
+    ?>
 
 
-            <div id="page-wrapper">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">Knock-Off - Résultats</h1>
-                    </div>
-                    <!-- /.col-lg-12 -->
-                </div>
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Résultats du tournoi de Knock-Off</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
 
-                <!-- Registration form - START -->
-                <div class="row">
-                    <ul class="nav nav-tabs">
-                        <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="group.php?jour=sam&cat=1" >Samedi <i class="fa fa-venus-mars" style="font-size: 150%"></i> </a></li>
+        <!-- Registration form - START -->
+
+        <div class="row">
+            <div class="row">
+                <ul class="nav nav-tabs">
+                    <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="group.php?jour=sam&cat=1" >Samedi <i class="fa fa-venus-mars" style="font-size: 150%"></i> </a></li>
                         <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="group.php?jour=dim&cat=1">Dimanche <i class="fa fa-venus" style="font-size: 150%"></i> || <i class="fa fa-mars" style="font-size: 150%"></i></a></li>
-                    </ul>
-                    <ul class="nav nav-tabs nav-justified">
-                        <?php $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, KnockoffSaturday WHERE KnockoffSaturday.Category = Categorie.ID');
-                        if ($_GET['jour'] == "dim") {
-                          $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, KnockoffSunday WHERE KnockoffSunday.Category = Categorie.ID');
-                        }
-                            while ($donnes = $reponse->fetch_array()) { ?>
-                              <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="knock-off-results.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation']);?></a></li>
-                            <?php }?>
-                    </ul>
-                </div>
+                </ul>
+                <ul class="nav nav-tabs nav-justified">
+                    <?php $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, KnockoffSaturday WHERE KnockoffSaturday.Category = Categorie.ID');
+                    if ($_GET['jour'] == "dim") {
+                        $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, KnockoffSunday WHERE KnockoffSunday.Category = Categorie.ID');
+                    }
+                    while ($donnes = $reponse->fetch_array()) { ?>
+                        <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="knock-off-results.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation'])?></a></li>
+                    <?php }?>
+                </ul>
+            </div>
+            <div class="row">
+                <br/>
+            </div>
+            <div class="col-lg-3 vcenter">
                 <?php
-                $db = BDconnect();
                 if ($_GET['jour'] == "sam"){
-                    $knockoff_all = $db->query('SELECT * FROM KnockoffSaturday ORDER BY `Position` ASC');
-                    $row = $db->query('SELECT COUNT(*) as numberOfGroups FROM GroupSaturday, Team WHERE GroupSaturday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'')->fetch_array();
+                    $knockoff_all = $db->query('SELECT * FROM KnockoffSaturday WHERE Category = '.$_GET['cat'].' ORDER BY `Position` ASC');
+                    $row = $db->query('SELECT COUNT(ID) as numberOfMatch FROM KnockoffSaturday WHERE Category = '.$_GET['cat'])->fetch_array();
                     extract($row);
-                } else{
-                    $knockoff_all = $db->query('SELECT * FROM KnockoffSunday ORDER BY `Position` ASC');
-                    $row = $db->query('SELECT COUNT(*) as numberOfGroups FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].'')->fetch_array();
+                } elseif ($_GET['jour'] == "dim") {
+                    $knockoff_all = $db->query('SELECT * FROM KnockoffSunday WHERE Category = '.$_GET['cat'].' ORDER BY `Position` ASC');
+                    $row = $db->query('SELECT COUNT(ID) as numberOfMatch FROM KnockoffSunday WHERE Category = '.$_GET['cat'])->fetch_array();
                     extract($row);
                 }
-                $knockoff = $knockoff_all->fetch_array();
-                if ($knockoff == NULL or $numberOfGroups == 0){ ?>
-                    <br/>
-                    <div class="col-lg-3 alert alert-danger">
-                        Le tournoi n'a pas encore été généré.
-                        <br/>
-                        Il n'y a donc aucun résultat à afficher.
+                if ($numberOfMatch == 0){ ?>
+                    <div class="alert alert-danger">
+                        Le tournoi n'a pas encore été généré pour cette catégorie et/ou ce jour.
                     </div>
-                <?php } else {
-                    $matchNum = 1;
-                    $iter = 0;
-                    $numberOfPixels = 25;
-                    for ($k = $numberOfGroups; $k >= 1; $k = $k / 2) {
-                        $position = $numberOfPixels . "px";
-                        ?>
-                        <div class="col-lg-3 text-center" style="position: relative; top: <?= $position ?>;">
-                            <?php for ($i = 1; $i <= $k; $i++) {
-                                $match = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match'])->fetch_array();
-                                ?>
-                                <div class="form-group text-center">
-                                    <label for="sel1"><span class="fa fa-users"></span> Match
-                                        <?= $matchNum ?>
-                                    </label>
-                                    <option name="ID_Match" value=<?= $knockoff['ID_Match'] ?>>
-                                        <?php $matchNum++;
-                                        for ($j = 1; $j <= 2; $j++) {
-                                            $teamID = $match["ID_Equipe" . $j];
-                                            if ($teamID == NULL) { ?>
-                                                <div class="alert alert-danger">
-                                                    Au moins un groupe ne contient pas de vainqueur.
-                                                </div>
-                                                <?php $j++;
-                                                $NumberOfGroups = 0;
-                                            } else {
-                                                $team = $db->query("SELECT * FROM Team WHERE ID=\"" . $teamID . "\"")->fetch_array();
-                                                $IDPersonne1 = $team['ID_Player1'];
-                                                $player1 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne1 . "\"")->fetch_array();
-
-                                                $IDPersonne2 = $team['ID_Player2'];
-                                                $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne2 . "\"")->fetch_array();
-                                                ?>
-                                                <?= $player1['FirstName'] ?> <?= $player1['LastName'] ?> & <?= $player2['FirstName'] ?> <?= $player2['LastName'] ?>
-                                                <?php if ($j == 1) { ?> <br/> VS <br/> <?php }
-                                            }
-                                        } ?> </option>
-                                </div>
-                                <br/>
-                                <br/>
-                                <?php
-                                $knockoff = $knockoff_all->fetch_array();
-                            } ?>
+                <?php }
+                $s_a_m = "server-action-menu";
+                $numberOfMatchCol = -1;
+                $iter = 1;
+                $newColNeeded = False;
+                $numberOfTeams = -1;
+                $numberOfColDone = 0;
+                $round = 1;
+                foreach($knockoff_all as $knockoff){
+                $match = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match'])->fetch_array();
+                ?>
+                <div class="row"> <?php
+                    if ($match['ID_Equipe2'] == 0){
+                    if ($numberOfMatchCol == -1) { // We begin the second round.
+                        $numberOfMatchCol = $iter - 1;
+                        $impair = ($match['ID_Equipe1'] == 0) ? 0 : 1;
+                        $numberOfTeams = 2 * $numberOfMatchCol + $impair; // Total number of teams that we have to place.
+                        $newColNeeded = True;
+                    } else {
+                        if ($numberOfColDone >= $numberOfMatchCol) {
+                            $newColNeeded = True;
+                        }
+                    }
+                    if ($newColNeeded){
+                    if ($impair == 1 and $round != 1){
+                        displayVoidTeamNoMatch($round, $db);
+                    }
+                    $round++;
+                    $newColNeeded = False;
+                    $numberOfTeams -= $numberOfMatchCol; // There were $numberOfMatchCol matches, so this number of team lost.
+                    $impair = $numberOfTeams % 2;
+                    $numberOfMatchCol = ($numberOfTeams == 3) ? 3 : (int)($numberOfTeams / 2); // Ce sera 3 si on a 3 finalistes.
+                    $numberOfColDone = 0;
+                    ?>
+                </div>
+            </div>
+            <div class="col-lg-3 vcenter">
+                <div class="row"> <?php
+                    }
+                    }?>
+                    <div class="form-group <?=$s_a_m?>">
+                        <div class="text-center">
+                            <label ><span class="fa fa-users"></span> Match <?=$knockoff['Position'] ?> </label>
                         </div>
                         <?php
-                        $iter++;
-                        $numberOfPixels += (int)125 * $k / 4;
+                        for ($j = 1; $j <= 2; $j++) {
+                            $teamID = $match['ID_Equipe'.$j];
+                            if ($teamID == 0) {
+                                displayVoidTeam($match, $knockoff['Position'], $db);
+                            } else {
+                                $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'] . ' ')->fetch_array();
+                                displayTeam($team, $match, $j, $knockoff['Position'], $db);
+                            }
+                        }
+                        ?>
+                    </div> <?php
+                    if ($s_a_m == "server-action-menu") {
+                        $s_a_m = "server-other-menu";
+                    } else {
+                        $s_a_m = "server-action-menu";
                     }
-                }?>
-                <!-- /.row -->
+                    $numberOfColDone++;
+                    $iter++;
+                    ?>
+                </div> <?php
+                }
+                ?>
+
             </div>
-            <!-- /#page-wrapper -->
-
+        </div>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <!-- Registration form - END -->
     </div>
-    <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
+</div>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Display functions ! -->
+<?php
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+function displayVoidTeamNoMatch($round, $db){
+    ?>
+    <div class="form-group server-invalide-menu">
+        <div class="text-center">
+            <label ><span class="fa fa-users"></span> Team sans match pour ce tour. </label>
+        </div>
+        <div class="form-group text-center">
+            <p> Equipe non choisie. </p>
+        </div>
+    </div>
+    <?php
+}
+function displayVoidTeam($match, $position, $db){
+    ?>
+    <div class="form-group text-center">
+        <p> Equipe non choisie. </p>
+    </div>
+    <?php
+}
 
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
+function displayTeam($team, $match, $teamInMatch, $position, $db){
+    $teamID = $team["ID"];
+    $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'] . ' ')->fetch_array();
+    $IDPersonne1 = $team['ID_Player1'];
+    $player1 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne1 . "\"")->fetch_array();
+
+    $IDPersonne2 = $team['ID_Player2'];
+    $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne2 . "\"")->fetch_array();
+
+    $ranking = ($team['AvgRanking'] == NULL) ? "NC" : $team['AvgRanking'];
+    ?>
+    <div class="row">
+        <div class="col-lg-10">
+            <p> [<?=$ranking?>] <?= utf8_encode($player1['LastName']) ?> & <?= utf8_encode($player2['LastName']) ?> </p>
+        </div>
+        <div class="col-lg-1">
+            <p> <?= $match['score'.$teamInMatch]?> </p>
+        </div>
+    </div>
+    <?php
+}
+?>
+<!-- /#wrapper -->
+
+<!-- jQuery -->
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="../dist/js/sb-admin-2.js"></script>
+
+<script type="text/javascript"></script>
 
 </body>
 

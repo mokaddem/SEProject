@@ -156,6 +156,11 @@ function getPlayer($id) {
     return $db->query('SELECT * FROM Personne, Player WHERE Personne.ID = '.$id.'');
 }
 
+function getRanking($id) {
+    $db = BDconnect(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
+    return $db->query('SELECT * FROM Player WHERE '.$id.' = ID_Personne');
+}
+
 function getStaff($id) {
     $db = BDconnect();
     $reponse = $db->query('SELECT * FROM Personne, Staff WHERE isStaff=1 and Personne.ID = '.$id.'');
