@@ -23,6 +23,11 @@ if ($_GET["type"]=="extra") { ?>
                 $paramDonnees = getParam($_GET["type"]);
 
                 $titre = getTitre($_GET["type"]);
+
+                if ($_GET["type"] == "player") {
+                  $player = getRanking($donnees['ID']);
+                  $player = $player->fetch_array();
+                }
             }
 
             if (!empty($donnees)) {
@@ -37,6 +42,7 @@ if ($_GET["type"]=="extra") { ?>
                     </p>
                     <?php $next = next($titreDonnees);?>
               <?php } ?>
+              <p><b>Classement :</b> <?=$player["Ranking"]?></p>
                 </div>
             </div>
             <div class="modal-footer">

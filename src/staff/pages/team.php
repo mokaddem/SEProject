@@ -78,17 +78,19 @@
                             <div class="form-group">
                                 <label for="sel2"><span class="fa fa-user"></span> Second joueur</label>
                                 <select class="form-control" id="sel2" name="sel2">
-                                    <?php
-										$db = BDconnect();
-										$reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
-										while ($donnes = $reponse->fetch_array())
-										{
-                                            if (canDeletePlayer($donnes['ID'])){
-											     echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['FirstName'])." ".utf8_encode($donnes['LastName'])."</option>";
+                                <?php
+            										  $db = BDconnect();
+              										$reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
+                                  while ($donnes = $reponse->fetch_array())
+              										{
+                                    $player = $db->query('SELECT * FROM Player WHERE '.$donnes['ID'].' = ID_Personne');
+                                    $player = $player->fetch_array();
+                                    if (canDeletePlayer($donnes['ID'])){
+    									                  echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['FirstName'])." ".utf8_encode($donnes['LastName'])." [".utf8_encode($player['Ranking'])."]</option>";
 
-                                            }
-                                        }
-                                    ?>
+                                    }
+                                }
+                                  ?>
 
                                 </select>
                             </div>
@@ -101,7 +103,7 @@
 										$reponse = $db->query('SELECT * FROM Categorie');
 										while ($donnes = $reponse->fetch_array())
 										{
-										    echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['Designation'])." ".$donnes['Year']."</option>";
+										    echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['Designation'])." ".$donnes['Age']."</option>";
                                         }
                                     ?>
 
