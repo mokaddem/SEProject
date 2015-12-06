@@ -50,6 +50,8 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <h1 class="page-header">Accueil</h1>
+                                <a href="./php/auto-populate.php" class="btn btn-success pull-right">Populate Joueurs</a>
+                                
                             </div>
                             <!-- /.col-lg-12 -->
                         </div>
