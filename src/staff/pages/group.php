@@ -33,7 +33,7 @@
             include_once('php/BDD.php');
 
         $db = BDconnect();
-        $reponse = $db->query('SELECT * FROM GlobalVariables WHERE `Name` = "tournament_started"');
+        $reponse = $db->query('SELECT * FROM GlobalVariables WHERE `Name` = "tournament_started_'.$_GET['jour'].'"');
         $rep = $reponse->fetch_array();
         $canEdit = $rep['Value'] == "0" ? "" : "disabled";
         ?>

@@ -81,7 +81,7 @@
                     $winnumber = $row['NbWinMatch'];
                 }
             }
-            $reponse = $db->query('SELECT * FROM GlobalVariables WHERE `Name` = "tournament_started"');
+            $reponse = $db->query('SELECT * FROM GlobalVariables WHERE `Name` = "tournament_started_'.$_GET['jour'].'"');
             $rep = $reponse->fetch_array();
             $flagTournamentStarted = $rep['Value'];
         ?>
@@ -125,7 +125,8 @@
                     <?php } elseif($flagTournamentStarted != 1){ ?>
                         <div class="col-lg-3 alert alert-danger">
                             <p> Le tournoi n'a pas encore commencé.</p></br>
-                            <button id="start_tournament" class="btn btn-danger"> Démarrer le tounoi</button>
+                            <?php $startTournament = "start_tournament_".$_GET['jour'] ;?>
+                            <button id=<?=$startTournament?> class="btn btn-danger"> Démarrer le tounoi</button>
                         </div>
                     <?php }
                     else{ ?>
@@ -332,7 +333,7 @@
     <script type="text/javascript">
         function start_tournament(){
             var url="../pages/php/modify_global_var.php";
-            var data={ 'varName':"tournament_started", 'varVal':1};
+            var data={ 'varName':"tournament_started_<?=$_GET['jour']?>", 'varVal':1};
             $.ajax({
                 type: "POST",
                 url: url,
@@ -346,7 +347,7 @@
     <script type="text/javascript"> document.getElementById("selectedPoule").addEventListener("change", refreshMatchs);</script>
     <script type="text/javascript"> document.getElementById("selectedTeam").addEventListener("change", refreshMatchs);</script>
     <script type="text/javascript"> document.getElementById("submit").addEventListener("click", saveScore);</script>
-    <?php if($flagTournamentStarted != 1) { ?> <script type="text/javascript"> document.getElementById("start_tournament").addEventListener("click", start_tournament);</script> <?php }?>
+    <?php if($flagTournamentStarted != 1) { ?> <script type="text/javascript"> document.getElementById("start_tournament_<?=$_GET['jour']?>").addEventListener("click", start_tournament);</script> <?php }?>
 
 </body>
 <?php $grptmp->free(); $temp->free(); $reponse->free(); if($flagTournamentStarted){ $p->free(); $reponseMatch->free(); $reponsePers->free(); $reponse2_1->free();}?>
