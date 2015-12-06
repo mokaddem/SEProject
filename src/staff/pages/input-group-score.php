@@ -124,8 +124,8 @@
                         </div>
                     <?php } elseif($flagTournamentStarted != 1){ ?>
                         <div class="col-lg-3 alert alert-danger">
-                            <p> Le tournois n'a pas encore commencé.</p></br>
-                            <button id="start_tournament"> Démarrer le tounois</button>
+                            <p> Le tournoi n'a pas encore commencé.</p></br>
+                            <button id="start_tournament" class="btn btn-danger"> Démarrer le tounoi</button>
                         </div>
                     <?php }
                     else{ ?>
@@ -161,7 +161,7 @@
                             $p1 = $p->fetch_array();
                             $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player2'].' = ID');
                             $p2 = $p->fetch_array();
-                            $TeamName=$p1['FirstName']." ".$p1['LastName']." & ".$p2['FirstName']." ".$p2['LastName']." [".$donnes['T_ID']."]";
+                            $TeamName=utf8_encode($p1['FirstName']." ".$p1['LastName']." & ".$p2['FirstName']." ".$p2['LastName']." [".$donnes['T_ID']."]");
                             if ($donnes['T_ID'] != $TeamID) {
                                 echo "<option value=" . $donnes['T_ID'] . ">" . $TeamName . "</option>";
                             }
@@ -185,9 +185,9 @@
                         $otherTeam = $donnesMatch['ID_Equipe1']== $TeamID ? $donnesMatch['ID_Equipe2'] : $donnesMatch['ID_Equipe1'];
                         $reponsePers  = $db->query("SELECT Personne.FirstName, Personne.LastName FROM `Team`, Personne WHERE Team.ID=".$otherTeam." AND `ID_Player1`=Personne.ID UNION SELECT Personne.FirstName, Personne.LastName FROM `Team`, Personne WHERE Team.ID=".$otherTeam." AND `ID_Player2`=Personne.ID");
                         $donnesPers = $reponsePers->fetch_array();
-                        $p1 = $donnesPers['FirstName'] . " " . $donnesPers['LastName'];
+                        $p1 = utf8_encode($donnesPers['FirstName'] . " " . $donnesPers['LastName']);
                         $donnesPers = $reponsePers->fetch_array();
-                        $p2 = $donnesPers['FirstName'] . " " . $donnesPers['LastName'];
+                        $p2 =  utf8_encode($donnesPers['FirstName'] . " " . $donnesPers['LastName']);
                         $arrayTeamId[$i]  = $otherTeam;
                         $arrayMatchID[$i] = $donnesMatch['ID'];
 
