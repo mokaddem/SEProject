@@ -81,7 +81,7 @@
                     $winnumber = $row['NbWinMatch'];
                 }
             }
-            $reponse = $db->query('SELECT * FROM GlobalVariables WHERE `Name` = "tournament_started"');
+            $reponse = $db->query('SELECT * FROM GlobalVariables WHERE `Name` = "tournament_started_'.$_GET['jour'].'"');
             $rep = $reponse->fetch_array();
             $flagTournamentStarted = $rep['Value'];
         ?>
@@ -125,7 +125,8 @@
                     <?php } elseif($flagTournamentStarted != 1){ ?>
                         <div class="col-lg-3 alert alert-danger">
                             <p> Le tournoi n'a pas encore commencé.</p></br>
-                            <button id="start_tournament" class="btn btn-danger"> Démarrer le tounoi</button>
+                            <?php $startTournament = "start_tournament_".$_GET['jour'] ;?>
+                            <button id=<?=$startTournament?> class="btn btn-danger"> Démarrer le tounoi</button>
                         </div>
                     <?php }
                     else{ ?>
@@ -155,8 +156,10 @@
                         } else{
                             $reponse = $db->query('SELECT *, Team.ID as T_ID FROM Team, GroupSunday WHERE GroupSunday.ID_Cat=' . $_GET['cat'] . ' AND GroupSunday.ID=' . $PouleID . ' AND (Team.ID=GroupSunday.ID_t1 OR Team.ID=GroupSunday.ID_t2 OR Team.ID=GroupSunday.ID_t3 OR Team.ID=GroupSunday.ID_t4 OR Team.ID=GroupSunday.ID_t5 OR Team.ID=GroupSunday.ID_t6 OR Team.ID=GroupSunday.ID_t7 OR Team.ID=GroupSunday.ID_t8)');
                         }
+                        $teamNum = 0;
                         while ($donnes = $reponse->fetch_array())
                         {
+                            $teamNum++;
                             $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player1'].' = ID');
                             $p1 = $p->fetch_array();
                             $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player2'].' = ID');
@@ -174,9 +177,10 @@
                     ?>
                     </select>
                 </div>
-
-                <div class="form-group">
-                <label for="sel1"><span class="fa fa-dot-circle-o"></span> Matchs VS</label>
+                <?php
+                if ($teamNum > 1){ ?>
+                    <div class="form-group">
+                    <label for="sel1"><span class="fa fa-dot-circle-o"></span> Matchs VS</label>
                     <?php
                     //$reponse = $db->query('SELECT FirstName, LastName, R2.ID as TeamID, R2.M_id as MatchID FROM (SELECT * FROM (SELECT ID_Equipe1, ID_Equipe2, `Match`.ID as M_id FROM `Match`, Team WHERE `Match`.Poule_ID ='.$PouleID.' AND `Match`.ID_Equipe1 ='.$TeamID.' OR `Match`.ID_Equipe2 ='.$TeamID.' GROUP BY ID_Equipe1 ) AS R1, Team WHERE R1.ID_Equipe1 = Team.ID OR R1.ID_Equipe2 = Team.ID GROUP BY Team.ID ) AS R2, Personne WHERE R2.ID_Player1 = Personne.ID OR R2.ID_Player2 = Personne.ID');
                     $reponseMatch = $db->query("SELECT * FROM `Match` WHERE `Poule_ID`=".$PouleID." and (`ID_Equipe1`=".$TeamID." or `ID_Equipe2`=".$TeamID.")");
@@ -233,7 +237,9 @@
                     <label for="sel1"><span class="fa fa-edit" id="nbrwin"></span> Nombre de victoire(s)</label>
                     <span class="form-control text-center" style="width: 70px;"><p><?=$winnumber ?></p></span>
                 </div>
-
+                <?php }else{ ?>
+                    <p><b> Cette équipe n'a aucun adversaire. </b></p>
+                <?php } ?>
 
                 <!-- /.row -->
 
@@ -327,7 +333,7 @@
     <script type="text/javascript">
         function start_tournament(){
             var url="../pages/php/modify_global_var.php";
-            var data={ 'varName':"tournament_started", 'varVal':1};
+            var data={ 'varName':"tournament_started_<?=$_GET['jour']?>", 'varVal':1};
             $.ajax({
                 type: "POST",
                 url: url,
@@ -341,7 +347,7 @@
     <script type="text/javascript"> document.getElementById("selectedPoule").addEventListener("change", refreshMatchs);</script>
     <script type="text/javascript"> document.getElementById("selectedTeam").addEventListener("change", refreshMatchs);</script>
     <script type="text/javascript"> document.getElementById("submit").addEventListener("click", saveScore);</script>
-    <?php if($flagTournamentStarted != 1) { ?> <script type="text/javascript"> document.getElementById("start_tournament").addEventListener("click", start_tournament);</script> <?php }?>
+    <?php if($flagTournamentStarted != 1) { ?> <script type="text/javascript"> document.getElementById("start_tournament_<?=$_GET['jour']?>").addEventListener("click", start_tournament);</script> <?php }?>
 
 </body>
 <?php $grptmp->free(); $temp->free(); $reponse->free(); if($flagTournamentStarted){ $p->free(); $reponseMatch->free(); $reponsePers->free(); $reponse2_1->free();}?>

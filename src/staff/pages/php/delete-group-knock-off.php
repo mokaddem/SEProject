@@ -40,7 +40,8 @@ Mise à jour de l'historique
 	$db->query('DELETE FROM KnockoffSunday');
 
  	$db->query('UPDATE Team set NbWinMatch=0, Group_Vic = 0');
-	 $req = $db->query("UPDATE SEProjectC.GlobalVariables SET `Value` = \"0\" WHERE `Name` = \"tournament_started\"");
+    $req = $db->query("UPDATE SEProjectC.GlobalVariables SET `Value` = \"0\" WHERE `Name` = \"tournament_started_sam\"");
+	$req = $db->query("UPDATE SEProjectC.GlobalVariables SET `Value` = \"0\" WHERE `Name` = \"tournament_started_dim\"");
 
 
 	// Mise à jour de l'historique
