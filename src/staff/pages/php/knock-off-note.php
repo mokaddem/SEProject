@@ -13,13 +13,14 @@ if (array_key_exists("id", $_GET)) {
     $IDPersonne2 = $team['ID_Player2'];
     $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne2 . "\"")->fetch_array();
 }
-?>
-<div class="panel text-center panel-border-perso">
-<div class="panel-heading panel-perso">
-    Note <?=$_GET['id']?>
-</div>
-<div class="panel-body">
-    <p><?=$player['Note']?></p>
-    <p><?=$player2['Note']?></p>
-</div>
-</div>
+
+if ($player['Note'] && $player2['Note']) { ?>
+  <pre><b>Note <?=$_GET['id']?> :</b><ul><li><?=$player['Note']?></li><li><?=$player2['Note']?></li></ul></pre>
+<?php
+} elseif ($player['Note']) { ?>
+  <pre><b>Note <?=$_GET['id']?> :</b><ul><li><?=$player['Note']?></li></ul></pre>
+<?php
+} elseif ($player2['Note']) { ?>
+  <pre><b>Note <?=$_GET['id']?> :</b><ul><li><?=$player2['Note']?></li></ul></pre>
+<?php
+}?>
