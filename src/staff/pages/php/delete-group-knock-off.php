@@ -9,36 +9,15 @@ Mise à jour de l'historique
 
 
 	$db = BDconnect();
-/*
-	$knockoffSam = $db->query("SELECT * FROM KnockoffSaturday");
-	foreach($knockoffSam as $knock) {
-		$match = $db->query("DELETE FROM `Match` WHERE ID=".$knock['ID_Match']);
-	}
-	$knockoffSun = $db->query("SELECT * FROM KnockoffSunday");
-	foreach($knockoffSun as $knock) {
-		$match = $db->query("DELETE FROM `Match` WHERE ID=".$knock['ID_Match']);
-	}
 
-	$groupsSam = $db->query("SELECT * FROM GroupSaturday");
-	foreach($groupsSam as $groupSam) {
-		$match = $db->query("DELETE FROM `Match` WHERE Poule_ID=".$groupSam['ID']);
-	}
-	$groupsSun = $db->query("SELECT * FROM GroupSunday");
-	foreach($groupsSun as $groupSun) {
-		$match = $db->query("DELETE FROM `Match` WHERE Poule_ID=".$groupSun['ID']);
-	}
-*/
- 	// Can we DELETE all teams?
+	// Suppression des Matches, Group & Knock-off
  	$db->query("DELETE FROM `Match`");
-
- 	// None of the team is a victorious one now:
-
-	// Suppression
 	$db->query('DELETE FROM GroupSunday');
 	$db->query('DELETE FROM GroupSaturday');
 	$db->query('DELETE FROM KnockoffSaturday');
 	$db->query('DELETE FROM KnockoffSunday');
 
+ 	// Plus aucune team n'est victorieuse.
  	$db->query('UPDATE Team set NbWinMatch=0, Group_Vic = 0');
     $req = $db->query("UPDATE SEProjectC.GlobalVariables SET `Value` = \"0\" WHERE `Name` = \"tournament_started_sam\"");
 	$req = $db->query("UPDATE SEProjectC.GlobalVariables SET `Value` = \"0\" WHERE `Name` = \"tournament_started_dim\"");
