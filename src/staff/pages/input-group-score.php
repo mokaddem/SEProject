@@ -124,8 +124,8 @@
                         </div>
                     <?php } elseif($flagTournamentStarted != 1){ ?>
                         <div class="col-lg-3 alert alert-danger">
-                            <p> Le tournois n'a pas encore commencé.</p></br>
-                            <button id="start_tournament"> Démarrer le tounois</button>
+                            <p> Le tournoi n'a pas encore commencé.</p></br>
+                            <button id="start_tournament"> Démarrer le tounoi</button>
                         </div>
                     <?php }
                     else{ ?>
@@ -161,7 +161,7 @@
                             $p1 = $p->fetch_array();
                             $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player2'].' = ID');
                             $p2 = $p->fetch_array();
-                            $TeamName=$p1['FirstName']." ".$p1['LastName']." & ".$p2['FirstName']." ".$p2['LastName']." [".$donnes['T_ID']."]";
+                            $TeamName=utf8_encode($p1['FirstName']." ".$p1['LastName']." & ".$p2['FirstName']." ".$p2['LastName']." [".$donnes['T_ID']."]");
                             if ($donnes['T_ID'] != $TeamID) {
                                 echo "<option value=" . $donnes['T_ID'] . ">" . $TeamName . "</option>";
                             }
