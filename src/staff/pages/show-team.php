@@ -31,7 +31,7 @@ require_once("./php/inc/list-team.inc");
 
                 $rcat = $db->query('SELECT * FROM Categorie WHERE ID = '.$donnees['ID_Cat'].'');
                 $cat = $rcat->fetch_array();
-                $catFinal = utf8_encode($cat['Designation'])." ".$cat['Year'];
+                $catFinal = utf8_encode($cat['Designation'])." ".$cat['Age'];
                 ?>
                     <p><b>ID </b> : <?=$donnees['ID']?></p>
                     <p><b>Catégorie</b> : <?=$catFinal?></p>

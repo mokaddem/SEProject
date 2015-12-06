@@ -61,7 +61,7 @@
                                             </div>
                                             <!-- <select class="form-control" name="InputYear" id="InputYear">
                                                 <?php // Liste des années
-                                                echo '<option value="'.$donnees['Year'].'" selected="'.$donnees['Year'].'">'.$donnees['Year'].'</option>'; ?>
+                                                echo '<option value="'.$donnees['Age'].'" selected="'.$donnees['Age'].'">'.$donnees['Age'].'</option>'; ?>
                                                 <?php
 
                                                       for ($i = date("Y"); $i <= 2500; $i++) {

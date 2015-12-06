@@ -12,25 +12,28 @@ function PopulateDB(){
     $db = BDconnect();
 
     $i = 0;
-    for ($i = 0; $i < 30; $i+=2) {
+    for ($i = 0; $i < 100; $i+=2) {
         /*$req = $db->prepare("INSERT INTO Personne(Title, FirstName, LastName, Ville, ZIPCode, Rue, Number, PhoneNumber, GSMNumber, BirthDate, Mail, CreationDate, Note, IsPlayer, IsOwner, IsStaff) VALUES(1,'joueur".$1."','name".$1."','bxl','1000','rue de la pluie',".$1.",'665666','545535','1985-1-1','mailbidon".$1."@mailbidons.com','2015-11-11','',1,0,0)");
         $req->execute();*/
 
+        $prenoms = array("Adam", "Alex", "Alexandre", "Alexis", "Anthony", "Antoine", "Benjamin", "Cédric", "Charles", "Christopher", "David", "Dylan", "Édouard", "Elliot", "Émile", "Étienne", "Félix", "Gabriel", "Guillaume", "Hugo", "Isaac", "Jacob", "Jérémy", "Jonathan", "Julien", "Justin", "Léo", "Logan", "Loïc", "Louis", "Lucas", "Ludovic", "Malik", "Mathieu", "Mathis", "Maxime", "Michaël", "Nathan", "Nicolas", "Noah", "Olivier", "Philippe", "Raphaël", "Samuel", "Simon", "Thomas", "Tommy", "Tristan", "Victor", "Vincent");
+        $noms = array("Tremblay", "Desmarais", "Larrivée", "Chan", "Gagnon", "Laberge", "Major", "Métivier", "Roy", "Nault", "Boissonneault", "Fradette", "Côté", "Bourgeois", "Patenaude", "Ranger", "Bouchard", "Lafrance", "Alarie", "Després", "Gauthier", "Lagacé", "Carpentier", "Lesage", "Morin", "Daoust", "Grenon", "Poliquin", "Lavoie", "Brault", "Bossé", "Généreux", "Fortin", "Castonguay", "Bessette", "Papineau", "Gagné", "Vallières", "Lajeunesse", "Frappier", "Ouellet", "Pellerin", "Barbeau", "Latreille", "Pelletier", "Rivest", "Miller", "Meloche", "Bélanger", "Brochu", "Masson", "Gouin", "Lévesque", "Samson", "Cournoyer", "Crête", "Bergeron", "Lépine", "Ratté", "Pedneault", "Leblanc", "Leroux", "Chrétien", "Berger", "Paquette", "Larochelle", "Bourgault", "Briand", "Girard", "Brousseau", "Leboeuf", "Olivier", "Simard", "Sauvé", "Nolet", "Truchon", "Boucher", "Laurin", "Sylvestre", "Sénéchal");
         // PREMIERE
         $req = $db->prepare("INSERT INTO Personne(ID, Title, FirstName, LastName, Ville, ZIPCode, Rue, Number, PhoneNumber, GSMNumber, BirthDate, Mail, CreationDate, Note, IsPlayer, IsOwner, IsStaff) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         $ID1	 	= '';
-        $FirstName1	= utf8_decode("JoueurP".$i);
-        $LastName1	= utf8_decode("NameP".$i);
-        $Title1	    = 1;
+        $FirstName1	= utf8_decode($prenoms[array_rand($prenoms)]);
+        $LastName1	= utf8_decode($noms[array_rand($noms)]);
+        $Title1	    = rand(0,1);
         $ZIPCode1	= 1000;
         $PhoneNumber1	= 600000000;
         $GSMNumber1	= 600000000;
         $Ville1		= utf8_decode("Ville".$i);
         $Rue1		= utf8_decode("Rue".$i);
         $Number1		= 1;
-        $BirthDate1	= "1985-1-1";
-        $Mail1		= $i."address@mail.com";
+        $rand1 = rand(1960,2005);
+        $BirthDate1	= $rand1."-1-1";
+        $Mail1		= $FirstName1.".".$LastName1."@mail.com";
         $CreationDate = date('Y-m-d');
         $Note1 = ""; //utf8_decode("R.A.S.");
         $IsPlayer1	= 1;
@@ -45,17 +48,18 @@ function PopulateDB(){
         $req = $db->prepare("INSERT INTO Personne(ID, Title, FirstName, LastName, Ville, ZIPCode, Rue, Number, PhoneNumber, GSMNumber, BirthDate, Mail, CreationDate, Note, IsPlayer, IsOwner, IsStaff) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         $ID2	 	= '';
-        $FirstName2	= utf8_decode("JoueurP".($i+1));
-        $LastName2	= utf8_decode("NameP".($i+1));
-        $Title2	    = 1;
+        $FirstName2	= utf8_decode($prenoms[array_rand($prenoms)]);
+        $LastName2	= utf8_decode($noms[array_rand($noms)]);
+        $Title2	    = rand(0,1);
         $ZIPCode2	= 1000;
         $PhoneNumber2	= 600000000;
         $GSMNumber2	= 600000000;
         $Ville2		= utf8_decode("Ville".($i+1));
         $Rue2		= utf8_decode("Rue".($i+1));
         $Number2		= 1;
-        $BirthDate2	= "1985-1-1";
-        $Mail2		= ($i+1)."address@mail.com";
+        $rand2 = rand(1960,2005);
+        $BirthDate2	= $rand2."-1-1";
+        $Mail2		= $FirstName2.".".$LastName2."@mail.com";
         $CreationDate = date('Y-m-d');
         $Note2 = ""; //utf8_decode("R.A.S.");
         $IsPlayer2	= 1;
@@ -117,7 +121,7 @@ function PopulateDB(){
 
         /*On determine sa categorie - START */
         // Get l'age le plus grand des deux joueurs
-        $ageCurrent = max(intval(date('Y')) - intval(1985), intval(date('Y')) - intval(1985));
+        $ageCurrent = max(intval(date('Y')) - intval($rand1), intval(date('Y')) - intval($rand2));
         $reponse = $db->query('SELECT * FROM Categorie');
         $ID_Cat		= '1';
 
