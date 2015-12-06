@@ -112,7 +112,8 @@
                                     Le tournoi n'a pas encore été généré pour cette catégorie et/ou ce jour.
                                 </div>
                             <?php } else {
-                                ?> <h3> <b> Modifier les équipes et les terrains pour le tour 1. </b> </h3>
+                                ?> <p> Modifier les équipes et les terrains pour le premier tour</p>
+                                <label> Tour 1 </label>
                             <div class="col-lg-12 text-center">
                             <?php
                                 $impairTeam = 0;
@@ -171,6 +172,7 @@
                                             if ($match['ID_Equipe2'] == 0) {
                                                 $j++;
                                             }
+                                            $ranking = ($team['AvgRanking'] == NULL) ? "?" : $team['AvgRanking'];
                                             ?>
                                             <div class="form-group text-center">
                                             <?php $color = "default";
@@ -185,7 +187,7 @@
                                                     <button class="btn btn-<?= $color ?> btn-outline"
                                                             data-toggle="idteam1" data-target="#idteam1"
                                                             data-id="<?= $teamID ?>">
-                                                        [<?= $teamID ?> - <?= $team['AvgRanking'] ?>]
+                                                        [<?= $teamID ?> - <?= $ranking ?>]
                                                         <?= utf8_encode($player1['LastName']) ?> &
                                                         <?= utf8_encode($player2['LastName']) ?>
                                                     </button>
@@ -200,7 +202,7 @@
 
                                 </div>
                                 <div class="col-lg-12 text-center">
-                                    <h3> <b> Modifier les terrains pour les tours suivants. </b> </h3>
+                                    <p>Modifier les terrains pour les tours suivants</p>
                                     <?php // ATTENTION: montrer le bon terrain
                                         $matchNum = $numberFirstRound + $impairTeam;
                                         $iter = 0;

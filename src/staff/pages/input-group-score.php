@@ -125,7 +125,7 @@
                     <?php } elseif($flagTournamentStarted != 1){ ?>
                         <div class="col-lg-3 alert alert-danger">
                             <p> Le tournoi n'a pas encore commencé.</p></br>
-                            <button id="start_tournament"> Démarrer le tounoi</button>
+                            <button id="start_tournament" class="btn btn-danger"> Démarrer le tounoi</button>
                         </div>
                     <?php }
                     else{ ?>
@@ -185,9 +185,9 @@
                         $otherTeam = $donnesMatch['ID_Equipe1']== $TeamID ? $donnesMatch['ID_Equipe2'] : $donnesMatch['ID_Equipe1'];
                         $reponsePers  = $db->query("SELECT Personne.FirstName, Personne.LastName FROM `Team`, Personne WHERE Team.ID=".$otherTeam." AND `ID_Player1`=Personne.ID UNION SELECT Personne.FirstName, Personne.LastName FROM `Team`, Personne WHERE Team.ID=".$otherTeam." AND `ID_Player2`=Personne.ID");
                         $donnesPers = $reponsePers->fetch_array();
-                        $p1 = $donnesPers['FirstName'] . " " . $donnesPers['LastName'];
+                        $p1 = utf8_encode($donnesPers['FirstName'] . " " . $donnesPers['LastName']);
                         $donnesPers = $reponsePers->fetch_array();
-                        $p2 = $donnesPers['FirstName'] . " " . $donnesPers['LastName'];
+                        $p2 =  utf8_encode($donnesPers['FirstName'] . " " . $donnesPers['LastName']);
                         $arrayTeamId[$i]  = $otherTeam;
                         $arrayMatchID[$i] = $donnesMatch['ID'];
 

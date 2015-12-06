@@ -121,9 +121,10 @@
                             </div>
 
                             <div class="form-group">
+                              <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-at"></i></span>
                                     <input type="email" class="form-control" id="InputEmailFirst" name="InputEmailFirst" placeholder="Email" required>
-                            </div>
+                            </div></div>
 
                             <div class="form-group">
                                 <div class="input-group">
