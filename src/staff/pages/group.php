@@ -200,7 +200,7 @@
                                       $team = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"")->fetch_array();
 
                                       $avgRanking = $db->query("SELECT * FROM Team WHERE ID=\"".$teamID."\"")->fetch_array();
-                                      $avgRanking = $avgRanking['AvgRanking'] != "" ? $avgRanking['AvgRanking'] : "?" ;
+                                      $avgRanking = $avgRanking['AvgRanking'] != "" ? $avgRanking['AvgRanking'] : "NC" ;
 
                                       $IDPersonne = $team['ID_Player1'];
                                       $player = $db->query("SELECT * FROM Personne WHERE ID=\"".$IDPersonne."\"")->fetch_array();

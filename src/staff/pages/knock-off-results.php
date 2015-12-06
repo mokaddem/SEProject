@@ -39,7 +39,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Résultats du tournoi de knock-off.</h1>
+                <h1 class="page-header">Résultats du tournoi de Knock-Off</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -191,7 +191,7 @@ function displayTeam($team, $match, $teamInMatch, $position, $db){
     $IDPersonne2 = $team['ID_Player2'];
     $player2 = $db->query("SELECT * FROM Personne WHERE ID=\"" . $IDPersonne2 . "\"")->fetch_array();
 
-    $ranking = ($team['AvgRanking'] == NULL) ? "?" : $team['AvgRanking'];
+    $ranking = ($team['AvgRanking'] == NULL) ? "NC" : $team['AvgRanking'];
     ?>
     <div class="row">
         <div class="col-lg-10">
