@@ -89,7 +89,7 @@ Mise à jour de l'historique
             $reponseMatch = $db->query("SELECT * FROM `Match` WHERE ID_Terrain =".$ID_Terrain." AND ID_Equipe1=".$teamID1." AND ID_Equipe2=".$teamID2.' AND Poule_ID = 0');
             $donneesMatch = $reponseMatch->fetch_array();
                     // Mise à jour de l'historique
-            addHistory($donneesMatch['ID'], "Match - Knock-off", "Ajout");
+            addHistory($donneesMatch['ID'], "Match - Knock-Off", "Ajout");
 
             $reqKnock = $db->prepare("INSERT INTO ".$table."(ID, ID_Match, `Position`, Category) VALUES(?, ?, ?, ?)");
             $ID = '';
@@ -139,7 +139,7 @@ Mise à jour de l'historique
         $reponseMatch = $db->query("SELECT * FROM `Match` WHERE ID_Terrain =".$ID_Terrain." AND ID_Equipe1=".$teamID1." AND ID_Equipe2=".$teamID2);
         $donneesMatch = $reponseMatch->fetch_array();
         // Mise à jour de l'historique
-        addHistory($donneesMatch['ID'], "Match - Knock-off", "Ajout");
+        addHistory($donneesMatch['ID'], "Match - Knock-Off", "Ajout");
 
         $reqKnock = $db->prepare("INSERT INTO ".$table."(ID, ID_Match, `Position`, Category) VALUES(?, ?, ?, ?)");
         $ID = '';

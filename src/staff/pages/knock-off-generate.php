@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Staff - Charles de Lorraine - Knock-off</title>
+    <title>Staff - Charles de Lorraine - Knock-Off - Générer</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@
             <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Générer le tournoi de knock-off</h1>
+                        <h1 class="page-header">Knock-Off - Générer le tournoi</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
