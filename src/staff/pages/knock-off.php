@@ -83,7 +83,7 @@
                                         <input type="submit" class="btn btn-success pull-right" value="Echanger" />
                                         <span class="pull-right"> </span><input type="text" class="form-control pull-right" id="idteam2" name="idteam2" placeholder="ID Equipe 2" required>
                                         <p class="pull-right"> </p><input type="text" class="form-control pull-right" id="idteam1" name="idteam1" placeholder="ID Equipe 1" required>
-                                        <span class="pull-right" data-toggle="pList" data-target="#pList" data-url="./php/group-note-vide.php">
+                                        <span class="pull-left" data-toggle="pList" data-target="#pList" data-url="./php/group-note-vide.php">
                                           <button class="btn btn-default">
                                             <i class="fa fa-chevron-down"></i>
                                           </button>
@@ -91,7 +91,7 @@
                                     </form>
 
                                     <br/><br/>
-                                    <div id="pList"></div>
+                                    <div class="col-lg-8" id="pList"></div>
                                 </div>
                             </nav>
                         </div>
