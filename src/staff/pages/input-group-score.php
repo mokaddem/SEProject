@@ -81,6 +81,9 @@
                     $winnumber = $row['NbWinMatch'];
                 }
             }
+            $reponse = $db->query('SELECT * FROM GlobalVariables WHERE `Name` = "tournament_started"');
+            $rep = $reponse->fetch_array();
+            $flagTournamentStarted = $rep['Value'];
         ?>
 
             <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
@@ -116,6 +119,11 @@
                     <?php if($flagGroupNotCreated == 1){ ?>
                         <div class="col-lg-3 alert alert-danger">
                             Les groupes n'ont pas encore été générés pour cette catégorie et/ou ce jour.
+                        </div>
+                    <?php } elseif($flagTournamentStarted != 1){ ?>
+                        <div class="col-lg-3 alert alert-danger">
+                            <p> Le tournois n'a pas encore commencé.</p></br>
+                            <button id="start_tournament"> Démarrer le tounois</button>
                         </div>
                     <?php }
                     else{ ?>
@@ -308,16 +316,30 @@
 
             setTimeout(function() {  $('#popup').fadeIn('slow');}, 0);
             setTimeout(function() {  $('#popup').fadeOut('slow');},3000);
-            setTimeout(function() {  location.reload();;}, 500+3000);
+            setTimeout(function() {  location.reload();}, 500+3000);
 
         }
     </script>
 
+    <script type="text/javascript">
+        function start_tournament(){
+            var url="../pages/php/modify_global_var.php";
+            var data={ 'varName':"tournament_started", 'varVal':1};
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: data
+
+            });
+            setTimeout(function() {  location.reload();}, 750);
+        }
+    </script>
 
     <script type="text/javascript"> document.getElementById("selectedPoule").addEventListener("change", refreshMatchs);</script>
     <script type="text/javascript"> document.getElementById("selectedTeam").addEventListener("change", refreshMatchs);</script>
     <script type="text/javascript"> document.getElementById("submit").addEventListener("click", saveScore);</script>
+    <?php if($flagTournamentStarted != 1) { ?> <script type="text/javascript"> document.getElementById("start_tournament").addEventListener("click", start_tournament);</script> <?php }?>
 
 </body>
-<?php $grptmp->free(); $temp->free(); $reponse->free(); $p->free(); $reponseMatch->free(); $reponsePers->free(); $reponse2_1->free();?>
+<?php $grptmp->free(); $temp->free(); $reponse->free(); if($flagTournamentStarted){ $p->free(); $reponseMatch->free(); $reponsePers->free(); $reponse2_1->free();}?>
 </html>
