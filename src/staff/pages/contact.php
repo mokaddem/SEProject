@@ -57,14 +57,14 @@
           <form role="form" id="contact" method="post" action="../../mail/contact_new.php">
             <div class="col-lg-6">
               <div class="form-group">
-                <div class="input-group">
+                <!-- <div class="input-group"> -->
                   <input class="form-control" autocomplete="off" name="dest" id="dest" placeholder="Destinataire" type="text">
-                  <div class="input-group-btn">
+                  <!-- <div class="input-group-btn"> -->
                     <button type="button" class="btn btn-default btn-outline" data-toggle="collapse" data-target="#demo" ata-toggle="tooltip" data-placement="top" title="Selectionner des groupes">
                       <i class="fa fa-long-arrow-down"></i> <i class="fa fa-users"></i>
                     </button>
-                  </div>
-                </div>
+                  <!-- </div> -->
+                <!-- </div> -->
                   <p>
                   <div id="demo" class="collapse">
                   <input type="checkbox" name="parti" value="Participants"> Tous les participants
@@ -109,11 +109,11 @@
                   <input type="text" class="form-control" placeholder="Sujet" name="sujet" id="sujet" required data-validation-required-message="Veuillez entrer le sujet.">
                   <br>
                   <textarea rows="15" cols="50" class="form-control" placeholder="Message" name="message" id="message" required data-validation-required-message="Veuillez entrer votre message."></textarea>
-                  <div class="input-group-btn">
+                </div>
+                <div class="rows">
                   <button type="button" class="btn btn-default btn-outline" data-toggle="collapse" data-target="#demo1" ata-toggle="tooltip" data-placement="top" title="Selectionner des messages">
-                  <i class="fa fa-long-arrow-down"></i> <i class="fa fa-users"></i>
+                  <i class="fa fa-long-arrow-down"></i> <i class="fa fa-envelope"></i>
                   </button>
-                  </div>
                   <p>
                   <div id="demo1" class="collapse">
                   <input type="checkbox" name="mesLeader" value="Participants"> Messages des leaders
