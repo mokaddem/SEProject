@@ -46,7 +46,7 @@
         ?>
 
 
-      <div id="page-wrapper">
+      <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
         <div class="row">
           <div class="page-header">
             <h1>Envoyer un mail</h1>
