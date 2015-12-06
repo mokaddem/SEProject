@@ -153,7 +153,7 @@
                                 <a href="#">Knock-Off<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level colorBlue">
                                     <li>
-                                        <a href="knock-off-generate.php">Création</a>
+                                        <a href="knock-off-generate.php">Génération</a>
                                     </li>
                                     <li>
                                         <a href="knock-off.php?jour=sam&cat=1">Modification</a>
