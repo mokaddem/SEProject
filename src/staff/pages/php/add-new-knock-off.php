@@ -24,16 +24,16 @@ Mise à jour de l'historique
         extract($row->fetch_array());
         $row->free();
     }
-    $reponse = $db->query("SELECT * FROM ".$table);
+    $reponse = $db->query("SELECT * FROM ".$table." WHERE Category = ".$_GET['InputCat']);
     $bool = $reponse->fetch_array();
     if ($bool != NULL) {
         header("Location: ../knock-off-generate.php?error=yes_".$_GET['jour']."&jour=".$_GET['jour']);
         return;
     } elseif ($numberOfTeams == 0) {
-			if (!array_key_exists("jour", $_GET)) {
-				header("Location: ../knock-off-generate.php?error=no_selection");
-				return;
-			}
+        if (!array_key_exists("jour", $_GET)) {
+            header("Location: ../knock-off-generate.php?error=no_selection");
+            return;
+        }
         header("Location: ../knock-off-generate.php?error=no_".$_GET['jour']."&jour=".$_GET['jour']);
         return;
     }

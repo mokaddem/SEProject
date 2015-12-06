@@ -155,8 +155,10 @@
                         } else{
                             $reponse = $db->query('SELECT *, Team.ID as T_ID FROM Team, GroupSunday WHERE GroupSunday.ID_Cat=' . $_GET['cat'] . ' AND GroupSunday.ID=' . $PouleID . ' AND (Team.ID=GroupSunday.ID_t1 OR Team.ID=GroupSunday.ID_t2 OR Team.ID=GroupSunday.ID_t3 OR Team.ID=GroupSunday.ID_t4 OR Team.ID=GroupSunday.ID_t5 OR Team.ID=GroupSunday.ID_t6 OR Team.ID=GroupSunday.ID_t7 OR Team.ID=GroupSunday.ID_t8)');
                         }
+                        $teamNum = 0;
                         while ($donnes = $reponse->fetch_array())
                         {
+                            $teamNum++;
                             $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player1'].' = ID');
                             $p1 = $p->fetch_array();
                             $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player2'].' = ID');
@@ -174,9 +176,10 @@
                     ?>
                     </select>
                 </div>
-
-                <div class="form-group">
-                <label for="sel1"><span class="fa fa-dot-circle-o"></span> Matchs VS</label>
+                <?php
+                if ($teamNum > 1){ ?>
+                    <div class="form-group">
+                    <label for="sel1"><span class="fa fa-dot-circle-o"></span> Matchs VS</label>
                     <?php
                     //$reponse = $db->query('SELECT FirstName, LastName, R2.ID as TeamID, R2.M_id as MatchID FROM (SELECT * FROM (SELECT ID_Equipe1, ID_Equipe2, `Match`.ID as M_id FROM `Match`, Team WHERE `Match`.Poule_ID ='.$PouleID.' AND `Match`.ID_Equipe1 ='.$TeamID.' OR `Match`.ID_Equipe2 ='.$TeamID.' GROUP BY ID_Equipe1 ) AS R1, Team WHERE R1.ID_Equipe1 = Team.ID OR R1.ID_Equipe2 = Team.ID GROUP BY Team.ID ) AS R2, Personne WHERE R2.ID_Player1 = Personne.ID OR R2.ID_Player2 = Personne.ID');
                     $reponseMatch = $db->query("SELECT * FROM `Match` WHERE `Poule_ID`=".$PouleID." and (`ID_Equipe1`=".$TeamID." or `ID_Equipe2`=".$TeamID.")");
@@ -233,7 +236,9 @@
                     <label for="sel1"><span class="fa fa-edit" id="nbrwin"></span> Nombre de victoire(s)</label>
                     <span class="form-control text-center" style="width: 70px;"><p><?=$winnumber ?></p></span>
                 </div>
-
+                <?php }else{ ?>
+                    <p><b> Cette équipe n'a aucun adversaire. </b></p>
+                <?php } ?>
 
                 <!-- /.row -->
 
