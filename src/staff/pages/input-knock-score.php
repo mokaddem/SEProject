@@ -138,12 +138,12 @@
                             if ($teamID == 0) {
                                 displayVoidTeam($match, $knockoff['Position'], $j, $db);
                             } else {
-                                $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'] . ' ')->fetch_array();
-                                displayTeam($team, $match, $knockoff['Position'], $j, $numberOfMatch, $db);
+                                $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'])->fetch_array();
+                                displayTeam($team, $match, $knockoff['Position'], $j, $numberOfMatch, $round, $db);
                                 array_push($visitedTeams,$teamID);
                             }
                             if($j==1){
-                                displaySelectButton($knockoff, $match);
+                                displaySelectButton($knockoff, $match, $round);
                             }
                         }
                         ?>
@@ -175,10 +175,10 @@
     <!-- Display functions ! -->
     <?php
 
-    function displaySelectButton($knockoff, $match){
+    function displaySelectButton($knockoff, $match, $round){
         ?>
         <div class="row">
-            <button class="btn btn-danger fa fa-2x fa-arrow-circle-right col-lg-offset-10" style="font-size: 200%" id="btnselect<?=$knockoff['Position']?>" name="btnselect" data-score1="" data-score2="" data-winning-team="" data-matchID="<?=$match['ID']?>"></button>
+            <button class="btn btn-danger fa fa-2x fa-arrow-circle-right col-lg-offset-10" style="font-size: 200%" id="btnselect<?=$knockoff['Position']?>" name="btnselect" data-score1="" data-score2="" data-winning-team="" data-matchID="<?=$match['ID']?>" data-round="<?=$round?>"></button>
         </div>
         <?php
     }
@@ -203,7 +203,7 @@
         <?php
     }
 
-    function displayTeam($team, $match, $position, $indice, $numberOfMatch, $db){
+    function displayTeam($team, $match, $position, $indice, $numberOfMatch, $round, $db){
         $teamID = $team["ID"];
         $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'] . ' ')->fetch_array();
         $IDPersonne1 = $team['ID_Player1'];
@@ -219,7 +219,7 @@
         ?>
         <div class="row">
             <div class="col-lg-7">
-                <button class="btn-block btn btn-default" data-teamID="<?=$team['ID'] ?>" disabled> [<?=$ranking?>] <?= utf8_encode($player1['LastName']) ?> & <?= utf8_encode($player2['LastName']) ?> </button>
+                <button class="btn-block btn btn-default" data-teamID="<?=$team['ID']?>" data-round="<?=$round ?>" disabled> [<?=$ranking?>] <?= utf8_encode($player1['LastName']) ?> & <?= utf8_encode($player2['LastName']) ?> </button>
             </div>
             <div class="col-lg-2" style="padding-right: 2px">
                 <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" min="0" data-teamID="<?=$team['ID']?>" data-matchID="<?=$match['ID']?>" data-indice="<?=$indice ?>"
@@ -316,27 +316,32 @@
             var matchID = parseInt(emptySlot.attr("data-matchID"));
             var indice = parseInt(emptySlot.attr("data-indice"));
             var teamID = parseInt(target.getAttribute("data-winning-team"));
+            var round= parseInt(target.getAttribute("data-round"));
 
-            var data = {'matchID':matchID, 'indice':indice, 'teamID':teamID };
-            if(teamID != -1) {
-                $.ajax({
-                    type: 'POST',
-                    url: url,
-                    dataType: 'text',
-                    data: data,
-                    success: function (text) {
-                        if (text == "success") {
-                            location.reload();
+            //check if team already in the next round.
+            var teambuttons= $("button[data-round='"+(round+1)+"'][data-teamID='"+teamID+"']");
+            if(teambuttons.size() == 0) { //add the team
+                var data = {'matchID': matchID, 'indice': indice, 'teamID': teamID};
+                if (teamID != -1) {
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        dataType: 'text',
+                        data: data,
+                        success: function (text) {
+                            if (text == "success") {
+                                location.reload();
 
-                        } else {
-                            $('form-messages-rep').text("Error");
-                            location.reload();
+                            } else {
+                                $('form-messages-rep').text("Error");
+                                location.reload();
+                            }
+                        },
+                        error: function (text) {
+                            alert("Error:" + text);
                         }
-                    },
-                    error: function (text){
-                        alert("Error:" + text);
-                    }
-                });
+                    });
+                }
             }
         }
     </script>
