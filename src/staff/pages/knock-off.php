@@ -37,15 +37,13 @@
         ?>
 
 
-            <div id="page-wrapper">
+            <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Modifier le Knock-Off</h1>
-                    </div>
+                    
                     <!-- /.col-lg-12 -->
-                </div>
-
-                <div class="row">
+                
                     <?php if (array_key_exists("generate", $_GET)) {?>
                         <div class="col-lg-8 alert alert-success">
                             <b>Opération réussite !</b>
@@ -54,17 +52,12 @@
                             <?php } ?>
                         </div>
                     <?php } ?>
-                </div>
-
-                <!-- Registration form - START -->
-
-                    <div class="row">
-                        <div class="row">
                             <ul class="nav nav-tabs">
                                 <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="knock-off.php?jour=sam&cat=0" >Samedi <i class="fa fa-venus-mars" style="font-size: 150%"></i> </a></li>
                                 <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="knock-off.php?jour=dim&cat=0">Dimanche <i class="fa fa-venus" style="font-size: 150%"></i> || <i class="fa fa-mars" style="font-size: 150%"></i></a></li>
                             </ul>
-                            <ul class="nav nav-tabs nav-justified">
+                            <div class="panel panel-default">
+                            <ul class="nav nav-pills nav-justified">
                                 <?php $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, KnockoffSaturday WHERE KnockoffSaturday.Category = Categorie.ID');
                                 if ($_GET['jour'] == "dim") {
                                   $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, KnockoffSunday WHERE KnockoffSunday.Category = Categorie.ID');
@@ -75,7 +68,7 @@
                                       <?php  } ?>
                                       <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="knock-off.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation'])?></a></li>
                                     <?php }?>
-                            </ul>
+                            </ul></div>
                         </div>
                         <div class="row">
                             <br/>
