@@ -153,7 +153,7 @@
 
                                         <label class="radio-inline"><input type="radio" name="group1" value="1"> CB</label>
                                         <label class="radio-inline"><input type="radio" name="group1" value="2" checked> Paypal</label>
-                                        <label class="radio-inline"><input type="radio" name="group1" value="3"> Chèque</label>
+                                        <label class="radio-inline"><input type="radio" name="group1" value="3"> Espèce/Chèque</label>
                                         </div>
                                     </div>
                                     <div class="form-group well well-sm">
@@ -278,7 +278,7 @@
                                         <div class="input-group well well-sm">
                                         <label class="radio-inline"><input type="radio" name="group2" value="1"> CB</label>
                                         <label class="radio-inline"><input type="radio" name="group2" value="2" checked> Paypal</label>
-                                        <label class="radio-inline"><input type="radio" name="group2" value="3"> Chèque</label>
+                                        <label class="radio-inline"><input type="radio" name="group2" value="3"> Espèce/Chèque</label>
 
                                         </div>
                                     </div>

@@ -7,6 +7,7 @@ Mise à jour de l'historique
  -->
  <?php
 	include_once('BDD.php');
+	include "../../../mail/mail_helper.php";
     require_once('add-new-history.php');
 	include_once('get-ranking.php');
 //	$db = BDconnect();
@@ -32,6 +33,7 @@ Mise à jour de l'historique
 	$IsPlayer1	= 1;
 	$IsOwner1	= 0;
 	$IsStaff1	= 0;
+	$payer1 = $_GET['group1'];
 
 
 
@@ -66,6 +68,8 @@ Mise à jour de l'historique
 	$IsPlayer2	= 1;
 	$IsOwner2	= 0;
 	$IsStaff2	= 0;
+	$payer2 = $_GET['group2'];
+
 
 	$req->bind_param("iisssisiiissssiii", $ID2, $Title2, $FirstName2, $LastName2, $Ville2, $ZIPCode2, $Rue2, $Number2, $PhoneNumber2, $GSMNumber2, $BirthDate2, $Mail2, $CreationDate, $Note2, $IsPlayer2, $IsOwner2, $IsStaff2);
 
@@ -189,6 +193,105 @@ Mise à jour de l'historique
 			// Do Nothing
 		}
 	}
+	
+	// -------------------Mail payement joueur 1----------------------------
+	$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet payement"');
+	$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Adresse du HQ"');
+	//récuperer le sujet du mail
+	$listSujet;
+	while($suj = $sujetR->fetch-array())
+	{
+		$listSujet[0] = $suj['Value'];
+	}
+	//Adresse HQ
+	$listHQ;
+	while($lHQ = $adresse ->fetch-array())
+	{
+		$listHQ[0] = $lHQ['Value'];
+	}
+	$sujet = $listSujet[0];
+	$message="";
+
+	if($payer1==1)
+	{
+		$messageR = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Payement CB"');
+
+		//récuperer le message du mail
+		$listMessage;
+		while($mes = $messageR->fetch-array())
+		{
+			$listMessage[0] = $mes['Value'];
+		}
+	}
+	if($payer1==2)
+	{
+		$messager2 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Payement Paypal"');
+		//récuperer le message du mail
+		$listMessage;
+		while($mes = $messageR2->fetch-array())
+		{
+			$listMessage[0] = $mes['Value'];
+		}
+
+	}
+	if($payer1==3)
+	{
+		$messager3 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Payement Espèce"');
+		//récuperer le message du mail
+		$listMessage;
+		while($mes = $messageR3->fetch-array())
+		{
+			$listMessage[0] = $mes['Value'];
+		}
+
+	}
+	$message = $listMessage[0];
+	$message.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";
+	
+	sendMail($to, $message, $sujet);
+	
+	
+	// -------------------Mail payement joueur 2----------------------------
+
+	$message2="";
+
+	if($payer2==1)
+	{
+		$message2R = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Payement CB"');
+
+		//récuperer le message du mail
+		$listMessage2;
+		while($mes = $message2R->fetch-array())
+		{
+			$listMessage2[0] = $mes['Value'];
+		}
+	}
+	if($payer2==2)
+	{
+		$message2R2 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Payement Paypal"');
+		//récuperer le message du mail
+		$listMessage2;
+		while($mes = $message2R2->fetch-array())
+		{
+			$listMessage2[0] = $mes['Value'];
+		}
+	}
+	if($payer2==3)
+	{
+		$message2R3 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Payement Espèce"');
+		//récuperer le message du mail
+		$listMessage2;
+		while($mes = $message2R3->fetch-array())
+		{
+			$listMessage2[0] = $mes['Value'];
+		}
+
+	}
+	$message2 = $listMessage2[0];
+	$message2.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";
+	
+	sendMail($to, $message2, $sujet);
+	
 
   $reponse->free();
   $RankingReponse->free();

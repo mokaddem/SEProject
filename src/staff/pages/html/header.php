@@ -79,6 +79,9 @@
                             <li>
                                 <a href="list.php?type=staff"> Staff</a>
                             </li>
+                            <li>
+                                <a href="listVarGlobal.php"> Variables Globales</a>
+                            </li>
 
                         </ul>
                         <!-- /.nav-second-level -->
@@ -106,6 +109,9 @@
                             </li>
                             <li>
                                 <a href="extra.php"> Extra</a>
+                            </li>
+                            <li>
+                                <a href="varGlobal.php"> Variables Globales</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->

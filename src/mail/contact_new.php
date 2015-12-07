@@ -225,21 +225,21 @@ if($tousDim==true)
 ///////////////////////////////////////////////////////////////////////////////
 	if($mesLeader==true)
 	{
-		$message = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Message Leader"');
+		$messageR = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Message Leader"');
 
-		$sujet =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet Leader"');
+		$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet Leader"');
 
 		$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Adresse du HQ"');
 
 		//récuperer le message du mail
 		$listMessage;
-		while($mes = $message->fetch-array())
+		while($mes = $messageR->fetch-array())
 		{
 			$listMessage[0] = $mes['Value'];
 		}
 		//récuperer le sujet du mail
 		$listSujet;
-		while($suj = $sujet->fetch-array())
+		while($suj = $sujetR->fetch-array())
 		{
 			$listSujet[0] = $suj['Value'];
 		}
@@ -258,21 +258,21 @@ if($tousDim==true)
 ///////////////////////////////////////////////////////////////////////////////
 	if($mesNP==true)
 	{
-		$message = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Message Non-Payé"');
+		$messageR = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Message Non-Payé"');
 
-		$sujet =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet Non-Payé"');
+		$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet Non-Payé"');
 
 		$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Adresse du HQ"');
 
 		//récuperer le message du mail
 		$listMessage;
-		while($mes = $message->fetch-array())
+		while($mes = $messageR->fetch-array())
 		{
 			$listMessage[0] = $mes['Value'];
 		}
 		//récuperer le sujet du mail
 		$listSujet;
-		while($suj = $sujet->fetch-array())
+		while($suj = $sujetR->fetch-array())
 		{
 			$listSujet[0] = $suj['Value'];
 		}
@@ -291,21 +291,21 @@ if($tousDim==true)
 ///////////////////////////////////////////////////////////////////////////////
 	if($mesTous==true)
 	{
-		$message = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Message à tous"');
+		$messageR = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Message à tous"');
 
-		$sujet =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet à tous"');
+		$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet à tous"');
 
 		$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Adresse du HQ"');
 
 		//récuperer le message du mail
 		$listMessage;
-		while($mes = $message->fetch-array())
+		while($mes = $messageR->fetch-array())
 		{
 			$listMessage[0] = $mes['Value'];
 		}
 		//récuperer le sujet du mail
 		$listSujet;
-		while($suj = $sujet->fetch-array())
+		while($suj = $sujetR->fetch-array())
 		{
 			$listSujet[0] = $suj['Value'];
 		}
