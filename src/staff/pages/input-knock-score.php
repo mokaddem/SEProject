@@ -137,7 +137,7 @@
                             if($j==1){
                             ?>
                                 <div class="row">
-                                    <a href=""><i class="fa fa-2x fa-arrow-circle-right col-lg-offset-10" style="font-size: 200%"></i></a>
+                                    <button class="btn tn-default fa fa-2x fa-arrow-circle-right col-lg-offset-10" style="font-size: 200%"></button>
                                 </div>
                             <?php }
                         }
@@ -251,7 +251,7 @@
         }
     </script>
 
-    <script>  	$(':input').change(saveScore);      </script>
+    <script>$(':input').change(saveScore);</script>
 
 </body>
 
