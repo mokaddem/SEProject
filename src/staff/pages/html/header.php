@@ -24,15 +24,6 @@
                 <a class="dropdown-toggle" href="../pages/staff.php">
                     <?php echo $_SESSION["NAME"]; ?>
                 </a>
-                <!--<ul class="dropdown-menu dropdown-alerts">
-                    <li>
-                        <a href="../pages/staff.php">
-                            <div>
-                                <i class="fa fa-user"></i> Profil
-                            </div>
-                        </a>
-                    </li>
-                </ul>-->
                 <!-- /.dropdown-alerts -->
             </li>
             <!-- /.dropdown -->

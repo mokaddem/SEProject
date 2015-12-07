@@ -135,5 +135,5 @@ Mise à jour de l'historique
             $getPoules->free();
         }
     }
-    //header("Location: ../group.php?jour=" . $day . "&generate=true&cat=" . $cat);
+    header("Location: ../group.php?jour=" . $day . "&generate=true&cat=" . $cat);
 ?>
