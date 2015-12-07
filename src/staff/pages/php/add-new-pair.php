@@ -195,17 +195,17 @@ Mise à jour de l'historique
 	}
 	
 	// -------------------Mail payement joueur 1----------------------------
-	$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet payement"');
+	$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet paiement"');
 	$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Adresse du HQ"');
 	//récuperer le sujet du mail
 	$listSujet;
-	while($suj = $sujetR->fetch-array())
+	while($suj = $sujetR->fetch_array())
 	{
 		$listSujet[0] = $suj['Value'];
 	}
 	//Adresse HQ
 	$listHQ;
-	while($lHQ = $adresse ->fetch-array())
+	while($lHQ = $adresse ->fetch_array())
 	{
 		$listHQ[0] = $lHQ['Value'];
 	}
@@ -214,21 +214,21 @@ Mise à jour de l'historique
 
 	if($payer1==1)
 	{
-		$messageR = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Payement CB"');
+		$messageR = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Paiement CB"');
 
 		//récuperer le message du mail
 		$listMessage;
-		while($mes = $messageR->fetch-array())
+		while($mes = $messageR->fetch_array())
 		{
 			$listMessage[0] = $mes['Value'];
 		}
 	}
 	if($payer1==2)
 	{
-		$messager2 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Payement Paypal"');
+		$messager2 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Paiement Paypal"');
 		//récuperer le message du mail
 		$listMessage;
-		while($mes = $messageR2->fetch-array())
+		while($mes = $messageR2->fetch_array())
 		{
 			$listMessage[0] = $mes['Value'];
 		}
@@ -236,10 +236,10 @@ Mise à jour de l'historique
 	}
 	if($payer1==3)
 	{
-		$messager3 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Payement Espèce"');
+		$messager3 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Paiement Espèce"');
 		//récuperer le message du mail
 		$listMessage;
-		while($mes = $messageR3->fetch-array())
+		while($mes = $messageR3->fetch_array())
 		{
 			$listMessage[0] = $mes['Value'];
 		}
@@ -257,31 +257,31 @@ Mise à jour de l'historique
 
 	if($payer2==1)
 	{
-		$message2R = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Payement CB"');
+		$message2R = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Paiement CB"');
 
 		//récuperer le message du mail
 		$listMessage2;
-		while($mes = $message2R->fetch-array())
+		while($mes = $message2R->fetch_array())
 		{
 			$listMessage2[0] = $mes['Value'];
 		}
 	}
 	if($payer2==2)
 	{
-		$message2R2 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Payement Paypal"');
+		$message2R2 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Paiement Paypal"');
 		//récuperer le message du mail
 		$listMessage2;
-		while($mes = $message2R2->fetch-array())
+		while($mes = $message2R2->fetch_array())
 		{
 			$listMessage2[0] = $mes['Value'];
 		}
 	}
 	if($payer2==3)
 	{
-		$message2R3 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Payement Espèce"');
+		$message2R3 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Paiement Espèce"');
 		//récuperer le message du mail
 		$listMessage2;
-		while($mes = $message2R3->fetch-array())
+		while($mes = $message2R3->fetch_array())
 		{
 			$listMessage2[0] = $mes['Value'];
 		}
