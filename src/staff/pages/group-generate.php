@@ -85,7 +85,9 @@
                                         ?>
                                     </select>
                                 </div>
-                                <input type="submit" name="submit" id="submit" value="Générer" class="btn btn-info pull-right">
+                                <input type="submit" name="submit" id="submit" value="Générer la poule sélectionnée" class="btn btn-info pull-right">
+                                <div>
+                                    <a href="php/add-all-group.php"> Tout générer </a>
                             </fieldset>
                             <hr>
                         </div>

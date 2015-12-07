@@ -34,8 +34,6 @@ $db->query('INSERT INTO OldTerrain SELECT * FROM Terrain');
 // Remise des variables globales à leurs valeurs d'origines:
 // Il n'y a plus de tournoi généré.
 // $req = $db->query("UPDATE GlobalVariables SET `Value` = \"[A rédiger]\" WHERE `Name` != \"tournament_started_sam\" AND `Name` != \"tournament_started_dim\"");
-
-$req = $db->query("UPDATE GlobalVariables SET `Value` = \"0\" WHERE `Name` = \"tournament_started\"");
 $req = $db->query("UPDATE GlobalVariables SET `Value` = \"0\" WHERE `Name` = \"tournament_started_sam\"");
 $req = $db->query("UPDATE GlobalVariables SET `Value` = \"0\" WHERE `Name` = \"tournament_started_dim\"");
 // Et tous les autres champ doivent être ré-encodé.
