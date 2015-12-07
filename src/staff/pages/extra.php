@@ -34,7 +34,7 @@
 
 
             <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
-                <div class="container">
+                <div class="container col-lg-12">
 
                     <div class="page-header">
                         <h1>Ajouter un extra</h1>

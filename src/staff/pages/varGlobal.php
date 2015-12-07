@@ -34,14 +34,13 @@
 
 
             <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
-                <div class="container">
+                <div class="container col-lg-12">
 
                     <div class="page-header">
                         <h1>Ajouter une variable globale</h1>
                     </div>
 
                     <!-- Registration form - START -->
-                    <div class="container">
                         <div class="row">
                             <form role="form" method="Get" action="php/add-new-varGlobal.php">
                                 <div class="col-lg-6">
@@ -57,7 +56,6 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
                     <!-- Registration form - END -->
 
                 </div>
