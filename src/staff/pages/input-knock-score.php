@@ -92,6 +92,7 @@
                 $numberOfTeams = -1;
                 $numberOfColDone = 0;
                 $round = 1;
+                $maxCol = 4;
                 $visitedTeams = array();
                 array_push($visitedTeams,"0");
                 foreach($knockoff_all as $knockoff){
@@ -110,6 +111,12 @@
                             }
                         }
                         if ($newColNeeded){
+                            if ($round % $maxCol == 0){ ?>
+                                </div>
+                                <div class="col-lg-12 vcenter">
+                                    <h4><b> Tours suivants </b></h4>
+                            <?php
+                            }
                             if ($impair == 1 and $round != 1){
                                 displayVoidTeamNoMatch($round, $db);
                             }
@@ -178,7 +185,7 @@
     function displaySelectButton($knockoff, $match, $round){
         ?>
         <div class="row">
-            <button class="btn btn-danger fa fa-2x fa-arrow-circle-right col-lg-offset-10" style="font-size: 200%" id="btnselect<?=$knockoff['Position']?>" name="btnselect" data-score1="" data-score2="" data-winning-team="" data-matchID="<?=$match['ID']?>" data-round="<?=$round?>"></button>
+            <button class="btn btn-danger fa fa-arrow-circle-right col-lg-offset-10" style="font-size: 200%" id="btnselect<?=$knockoff['Position']?>" name="btnselect" data-score1="" data-score2="" data-winning-team="" data-matchID="<?=$match['ID']?>" data-round="<?=$round?>" disabled="true"></button>
         </div>
         <?php
     }
@@ -222,7 +229,7 @@
                 <button class="btn-block btn btn-default" data-teamID="<?=$team['ID']?>" data-round="<?=$round ?>" disabled> [<?=$ranking?>] <?= utf8_encode($player1['LastName']) ?> & <?= utf8_encode($player2['LastName']) ?> </button>
             </div>
             <div class="col-lg-2" style="padding-right: 2px">
-                <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" min="0" data-teamID="<?=$team['ID']?>" data-matchID="<?=$match['ID']?>" data-indice="<?=$indice ?>"
+                <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" min="0" data-teamID="<?=$team['ID']?>" data-matchID="<?=$match['ID']?>" data-indice="<?=$indice ?>" data-round="<?=$round ?>
                        step="1" style="float: left;" value="<?=$score ?>"  required>
             </div>
             <?php if($position > ceil($numberOfMatch/2)){ ?>
@@ -265,6 +272,7 @@
             var winningTeam;
             var indice;
             var matchNumber=0;
+            var round;
             $("input").each(function (index) {
                     indice = $( this ).attr("data-indice");
                     if (indice == 1) {
@@ -279,9 +287,20 @@
                         button= $("#btnselect" + matchNumber);
                         button.attr("data-score1", value1).attr("data-score2", value2).attr("data-winning-team", winningTeam);
                         if(winningTeam!=-1){
-                            button.removeClass("btn-danger").addClass("btn-success");
+                            round = parseInt($(this).attr("data-round"));
+                            var teambuttons= $("button[data-round='"+(round+1)+"'][data-teamID='"+winningTeam+"']");
+                            console.log("round="+round+", size="+teambuttons.size());
+                            if(teambuttons.size() == 0) {
+                                button.removeClass("btn-danger").addClass("btn-success");
+                                button.attr("disabled", false);
+                            }else{
+                                button.removeClass("btn-danger").addClass("btn-warning");
+                                button.removeClass("fa-arrow-circle-right").addClass("fa-times");
+                                button.attr("disabled", true);
+                            }
                         }else{
                             button.removeClass("btn-success").addClass("btn-danger");
+                            button.attr("disabled", true);
                         }
                     }})
         }
