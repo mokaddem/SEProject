@@ -87,10 +87,8 @@ Mise à jour de l'historique
 
             $reqMatch->bind_param("issiiiiii", $ID, $date, $hour, $teamID1, $teamID2, $score1, $score2, $ID_Terrain, $Poule_ID);
             $reqMatch->execute();
-            $reponseMatch = $db->query("SELECT * FROM `Match` WHERE ID_Terrain =".$ID_Terrain." AND ID_Equipe1=".$teamID1." AND ID_Equipe2=".$teamID2.' AND Poule_ID = 0');
+            $reponseMatch = $db->query("SELECT * FROM `Match` WHERE ID_Terrain =".$ID_Terrain." AND ID_Equipe1=".$teamID1." AND ID_Equipe2=".$teamID2.' ORDER BY `Match`.ID DESC');
             $donneesMatch = $reponseMatch->fetch_array();
-                    // Mise à jour de l'historique
-            addHistory($donneesMatch['ID'], "Match - Knock-Off", "Ajout");
 
             $reqKnock = $db->prepare("INSERT INTO ".$table."(ID, ID_Match, `Position`, Category) VALUES(?, ?, ?, ?)");
             $ID = '';
@@ -140,10 +138,8 @@ Mise à jour de l'historique
 
         $reqMatch->bind_param("issiiiiii", $ID, $date, $hour, $teamID1, $teamID2, $score1, $score2, $ID_Terrain, $Poule_ID);
         $reqMatch->execute();
-        $reponseMatch = $db->query("SELECT * FROM `Match` WHERE ID_Terrain =".$ID_Terrain." AND ID_Equipe1=".$teamID1." AND ID_Equipe2=".$teamID2);
+        $reponseMatch = $db->query("SELECT * FROM `Match` WHERE ID_Terrain =".$ID_Terrain." AND ID_Equipe1=".$teamID1." AND ID_Equipe2=".$teamID2.' ORDER BY `Match`.ID DESC');
         $donneesMatch = $reponseMatch->fetch_array();
-        // Mise à jour de l'historique
-        addHistory($donneesMatch['ID'], "Match - Knock-Off", "Ajout");
 
         $reqKnock = $db->prepare("INSERT INTO ".$table."(ID, ID_Match, `Position`, Category) VALUES(?, ?, ?, ?)");
         $ID = '';
@@ -165,12 +161,12 @@ Mise à jour de l'historique
 
     if ($_GET['jour'] == "sam"){
         // Mise à jour de l'historique
-        addHistory($donneesKnock['ID'], "Knock-Off (Samedi)", "Création");
+        addHistory($donneesKnock['ID'], "Knock-Off (Samedi - ".$_GET['InputCat'].")", "Création");
         header("Location: ../knock-off.php?jour=sam&generate=true&cat=0");
     }
     elseif ($_GET['jour'] == "dim") {
         // Mise à jour de l'historique
-        addHistory($donneesKnock['ID'], "Knock-Off (Dimanche)", "Création");
+        addHistory($donneesKnock['ID'], "Knock-Off (Dimanche - ".$_GET['InputCat'].")", "Création");
         header("Location: ../knock-off.php?jour=dim&generate=true&cat=0");
     }
 
