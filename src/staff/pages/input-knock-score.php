@@ -200,6 +200,8 @@
 
         $nameField = "score".$position;
         $ranking = ($team['AvgRanking'] == NULL) ? "NC" : $team['AvgRanking'];
+
+        $score = $indice == 1 ? $match['score1'] : $match['score2'];
         ?>
         <div class="row">
             <div class="col-lg-7">
@@ -207,7 +209,7 @@
             </div>
             <div class="col-lg-3">
                 <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" min="0" data-teamID="<?=$team['ID']?>" data-matchID="<?=$match['ID']?>" data-indice="<?=$indice ?>"
-                       step="1" style="float: left;" required>
+                       step="1" style="float: left;" value="<?=$score ?>"  required>
             </div>
         </div>
         <?php
