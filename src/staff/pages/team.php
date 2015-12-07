@@ -114,17 +114,17 @@
                             </div>
 
                             <input type="submit" name="submit" id="submit" value="Créer" class="btn btn-info pull-right">
-
+                            <div class="form-group">
+                            <button name="createTeams" id="createTeams" class="btn btn-info pull-left">Associer les joueurs seuls en équipe</button>
+                            </div>
                         </div>
                     </form>
                     <!-- Registration form - END -->
                 </div>
                 <!-- /.row -->
-                <div class="form-group row">
-                    <button name="createTeams" id="createTeams" class="btn btn-info pull-left col-lg-3">Associer les joueurs seuls en équipe</button>
-                </div>
+                    <br/>
                 <div id="spinnercontainer" class="col-lg-6">
-                    <p id="btnspinner" class="btn btn-warning pull-right col-lg-3"="">Equipes en création...</p>
+                    <p id="btnspinner" class="btn btn-warning pull-right col-lg-6">Equipes en création...</p>
                 </div>
                 <div class="col-lg-2 text-center">
                     <div class="alert alert-success" id="popup" >Equipes créées !</div>
