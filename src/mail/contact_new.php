@@ -233,19 +233,19 @@ if($tousDim==true)
 
 		//récuperer le message du mail
 		$listMessage;
-		while($mes = $messageR->fetch-array())
+		while($mes = $messageR->fetch_array())
 		{
 			$listMessage[0] = $mes['Value'];
 		}
 		//récuperer le sujet du mail
 		$listSujet;
-		while($suj = $sujetR->fetch-array())
+		while($suj = $sujetR->fetch_array())
 		{
 			$listSujet[0] = $suj['Value'];
 		}
 		//Adresse HQ
 		$listHQ;
-		while($lHQ = $adresse ->fetch-array())
+		while($lHQ = $adresse ->fetch_array())
 		{
 			$listHQ[0] = $lHQ['Value'];
 		}
@@ -266,19 +266,19 @@ if($tousDim==true)
 
 		//récuperer le message du mail
 		$listMessage;
-		while($mes = $messageR->fetch-array())
+		while($mes = $messageR->fetch_array())
 		{
 			$listMessage[0] = $mes['Value'];
 		}
 		//récuperer le sujet du mail
 		$listSujet;
-		while($suj = $sujetR->fetch-array())
+		while($suj = $sujetR->fetch_array())
 		{
 			$listSujet[0] = $suj['Value'];
 		}
 		//Adresse HQ
 		$listHQ;
-		while($lHQ = $adresse ->fetch-array())
+		while($lHQ = $adresse ->fetch_array())
 		{
 			$listHQ[0] = $lHQ['Value'];
 		}
@@ -299,19 +299,19 @@ if($tousDim==true)
 
 		//récuperer le message du mail
 		$listMessage;
-		while($mes = $messageR->fetch-array())
+		while($mes = $messageR->fetch_array())
 		{
 			$listMessage[0] = $mes['Value'];
 		}
 		//récuperer le sujet du mail
 		$listSujet;
-		while($suj = $sujetR->fetch-array())
+		while($suj = $sujetR->fetch_array())
 		{
 			$listSujet[0] = $suj['Value'];
 		}
 		//Adresse HQ
 		$listHQ;
-		while($lHQ = $adresse ->fetch-array())
+		while($lHQ = $adresse ->fetch_array())
 		{
 			$listHQ[0] = $lHQ['Value'];
 		}
