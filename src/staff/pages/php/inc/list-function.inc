@@ -18,7 +18,7 @@ function getDonnees($get) {
 
             case "extra":
                 return getExtras();
-               
+
             case "varGlobal":
                 return getVarGlobal();
 
@@ -36,7 +36,7 @@ function getDonnees($get) {
                 return getStaffs();
             case "category":
                 return getCategories();
-                
+
 
         }
 }
@@ -57,9 +57,9 @@ function getTitreTable($get) {
 
         case "extra":
             return array("ID", "Nom", "Prix (€)", "Description","Nombre de personne", "Action");
-           
+
         case "varGlobal":
-            return array("Titre","Message");
+            return array("Titre","Message", "Action");
 
         case "owner":
             return array("ID", "Nom", "Prénom", "Créé le", "Action");
@@ -96,8 +96,8 @@ function getParam($get) {
             return array("ID", "adresse", "surface", "FirstName", "etat", "Type", "disponibiliteFrom", "disponibiliteTo","CreationDate", "Note");
 
         case "extra":
-            return array("ID", "Name", "nbr", "Price", "Description"); // Name à modif (4eme param)
-            
+            return array("ID", "Name", "Price", "Description", "nbr"); // Name à modif (4eme param)
+
         case "varGlobal":
             return array("Name", "Value");
 

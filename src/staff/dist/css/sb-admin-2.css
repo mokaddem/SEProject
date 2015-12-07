@@ -516,3 +516,7 @@ input[type=checkbox],input[type=radio] {
     vertical-align: middle;
     float: none;
 }
+
+.mydisabled {
+    color: red;
+}
