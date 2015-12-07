@@ -47,12 +47,17 @@
 
                 <div class="row">
                     <?php if (array_key_exists("generate", $_GET)) {?>
+                        <?php if ($_GET["generate"] == "true") {?>
                         <div class="col-lg-8 alert alert-success">
                             <b>Opération réussite !</b>
-                            <?php if ($_GET["generate"] == "true") {?>
-                                La génération du tournoi est terminée. Vous pouvez à présent le modifier comme bon vous semble.
-                            <?php } ?>
+                            La génération du tournoi est terminée. Vous pouvez à présent le modifier comme bon vous semble.
                         </div>
+                        <?php } else{ ?>
+                            <div class="col-lg-8 alert alert-danger">
+                                <b>Echec de l'opération !</b>
+                                Y a-t-il assez de vainqueur sélectionné pour ce jour ?
+                            </div>
+                        <?php } ?>
                     <?php } ?>
                 </div>
 
@@ -121,6 +126,7 @@
                                 <label> Tour 1 </label>
                             <div class="col-lg-12 text-center vcenter">
                             <?php
+                                $numberFirstRound = 0;
                                 $impairTeam = 0;
                                 $s_a_m = "server-other-menu";
                                 for ($i = 1; $i <= $numberOfMatch; $i++) {
@@ -154,25 +160,27 @@
                                          </div>
                                     <?php }
                                     ?> </div> <?php
-                                } ?>
+                                }
+                                if ($numberFirstRound > 0){
+                            ?>
 
-                                </div>
-                                <div class="col-lg-12 text-center">
-                                    <p><b>Modifier les terrains pour les tours suivants</b></p>
-                                    <?php
-                                        $matchNum = $numberFirstRound;
-                                        $iter = 0;
-                                        $numberOfTeams = $numberFirstRound - 1 + $impairTeam;
-                                        $stop = False;
-                                        while ($numberOfTeams > 1 and !$stop){
-                                            $s_a_m = "server-new-menu";
+                            </div>
+                            <div class="col-lg-12 text-center">
+                                <p><b>Modifier les terrains pour les tours suivants</b></p>
+                                <?php
+                                $matchNum = $numberFirstRound;
+                                $iter = 0;
+                                $numberOfTeams = $numberFirstRound - 1 + $impairTeam;
+                                $stop = False;
+                                while ($numberOfTeams > 1 and !$stop) {
+                                    $s_a_m = "server-new-menu";
 
 
-                                            $impairTeam = $numberOfTeams % 2;
-                                            ?>
-                                            <div class="col-lg-3 text-center  vcenter">
-                                                <label> Tour <?=$iter+2?> </label>
-                                                <?php if($impairTeam == 1 and $numberOfTeams != 3) { ?>
+                                    $impairTeam = $numberOfTeams % 2;
+                                    ?>
+                                    <div class="col-lg-3 text-center  vcenter">
+                                        <label> Tour <?= $iter + 2 ?> </label>
+                                        <?php if($impairTeam == 1 and $numberOfTeams != 3) { ?>
                                                     <label class="text-danger"> Une team n'aura pas de match à ce tour. </label >
                                                 <?php
                                                 } elseif ($numberOfTeams == 3){
@@ -183,26 +191,28 @@
                                                 } elseif ($numberOfTeams == 2){
                                                     ?> </br> <label class="text-danger"> FINALE </label> <?php
                                                 }
-                                                for ($j = $impairTeam; $j < $numberOfTeams/2; $j++) {
-                                                    if ($_GET['jour'] == "sam"){
-                                                        $knockoff = $db->query('SELECT * FROM KnockoffSaturday WHERE Position='.$matchNum)->fetch_array();
-                                                    } elseif ($_GET['jour'] == "dim") {
-                                                        $knockoff = $db->query('SELECT * FROM KnockoffSunday WHERE Position='.$matchNum)->fetch_array();
-                                                    }
-                                                    $matchRep = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match']);
-                                                    $match = $matchRep->fetch_array();
-                                                    ?>
-                                                    <div class="form-group <?=$s_a_m?>"data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>" data-matchID="<?=$match['ID']?>">
-                                                        <?php displayVoidMatch($match, $matchNum, $db); ?>
-                                                    </div>
-                                                    <?php
-                                                    $matchNum++;
-                                                } ?>
+                                        for ($j = $impairTeam; $j < $numberOfTeams / 2; $j++) {
+                                            if ($_GET['jour'] == "sam") {
+                                                $knockoff = $db->query('SELECT * FROM KnockoffSaturday WHERE Position=' . $matchNum)->fetch_array();
+                                            } elseif ($_GET['jour'] == "dim") {
+                                                $knockoff = $db->query('SELECT * FROM KnockoffSunday WHERE Position=' . $matchNum)->fetch_array();
+                                            }
+                                            $matchRep = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match']);
+                                            $match = $matchRep->fetch_array();
+                                            ?>
+                                            <div class="form-group <?= $s_a_m ?>" data-day="<?= $_GET['jour'] ?>"
+                                                 data-category="<?= $_GET['cat'] ?>" data-matchID="<?= $match['ID'] ?>">
+                                                <?php displayVoidMatch($match, $matchNum, $db); ?>
                                             </div>
                                             <?php
-                                            $iter++;
-                                            $numberOfTeams = intval($numberOfTeams / 2) + $impairTeam;
+                                            $matchNum++;
                                         } ?>
+                                    </div>
+                                    <?php
+                                    $iter++;
+                                    $numberOfTeams = intval($numberOfTeams / 2) + $impairTeam;
+                                }
+                                }?>
                                     </div>
                                 <!-- Registration form - END -->
                             </div>

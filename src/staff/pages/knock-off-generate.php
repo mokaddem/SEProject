@@ -65,33 +65,36 @@
 
                 <!-- Registration form - START -->
                 <div class="row">
-                    <form role="form" method="get" action="php/add-new-knock-off.php">
-                        <div class="row">
-                        <div class="col-lg-4 text-center">
-
+                        <div class="col-lg-6 text-center">
                             <fieldset data-role="controlgroup" data-type="horizontal">
-                                <label for="sam">Samedi</label>
-                                <input type="radio" name="jour" value="sam" checked>
-                                <label for="dim">Dimanche</label>
-                                <input type="radio" name="jour" value="dim">
-                                <div class="form-group">
-                                    <select class="form-control" id="InputCat" name="InputCat">
-                                        <?php
-                                        $db = BDconnect();
-                                        $reponse = $db->query('SELECT * FROM Categorie');
-                                        while ($donnes = $reponse->fetch_array())
-                                        {
-                                            echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['Designation'])." ".$donnes['Age']."</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                                <input type="submit" name="submit" id="submit" value="Générer" class="btn btn-info pull-right">
+                                <form role="form" method="get" action="php/add-new-knock-off.php">
+                                    <label for="sam">Samedi</label>
+                                    <input type="radio" name="jour" value="sam" onclick="document.form2.jour.value = this.value;" checked>
+                                    <label for="dim">Dimanche</label>
+                                    <input type="radio" name="jour" onclick="document.form2.jour.value = this.value;" value="dim">
+
+                                    <div class="form-group">
+                                        <select class="form-control" id="InputCat" name="InputCat">
+                                            <?php
+                                            $db = BDconnect();
+                                            $reponse = $db->query('SELECT * FROM Categorie');
+                                            while ($donnes = $reponse->fetch_array())
+                                            {
+                                                echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['Designation'])." ".$donnes['Age']."</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <input type="submit" name="submit" id="submit" value="Générer le tournoi sélectionné" class="btn btn-info pull-right">
+                                </form>
+                                <form name="form2" action="./php/add-all-knock-off.php">
+                                    <input class="hidden" type="text" name="jour" value="sam"/>
+                                    <button type="submit" class="btn btn-success pull-left">Tout générer pour ce jour <i class="fa fa-refresh"></i></button>
+                                </form>
                             </fieldset>
                             <hr>
                         </div>
-                        </div>
-                    </form>
+
                     <!-- Registration form - END -->
                 </div>
                 <!-- /.row -->
