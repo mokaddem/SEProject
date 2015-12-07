@@ -1,6 +1,7 @@
 <?php
 // Check for empty fields
 include_once("../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php");
+include_once("../../../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php");
 
 function sendMail($dest, $message, $subject){
     $mail = new PHPMailer();
@@ -25,11 +26,16 @@ function sendMail($dest, $message, $subject){
         $mail->IsHTML(false);
         $mail->Body = $message;
         $mail->AddAddress($currentDest);
-        if(!$mail->Send()){
+       // if(!$mail->Send()){
+        //   $error_message = "Mailer Error: " . $mail->ErrorInfo;
+        //} else {
+         //       $error_message = "Successfully sent!";
+        //}
+    }
+    if(!$mail->Send()){
            $error_message = "Mailer Error: " . $mail->ErrorInfo;
         } else {
                 $error_message = "Successfully sent!";
         }
-    }
 }
 ?>

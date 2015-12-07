@@ -34,6 +34,7 @@ Mise à jour de l'historique
 	$IsOwner1	= 0;
 	$IsStaff1	= 0;
 	$payer1 = $_GET['group1'];
+	$to1[0]=$_GET['InputEmailFirst1'];
 
 
 
@@ -69,6 +70,7 @@ Mise à jour de l'historique
 	$IsOwner2	= 0;
 	$IsStaff2	= 0;
 	$payer2 = $_GET['group2'];
+	$to2[0]= $_GET['InputEmailFirst2'];
 
 
 	$req->bind_param("iisssisiiissssiii", $ID2, $Title2, $FirstName2, $LastName2, $Ville2, $ZIPCode2, $Rue2, $Number2, $PhoneNumber2, $GSMNumber2, $BirthDate2, $Mail2, $CreationDate, $Note2, $IsPlayer2, $IsOwner2, $IsStaff2);
@@ -198,17 +200,17 @@ Mise à jour de l'historique
 	}
 
 	// -------------------Mail payement joueur 1----------------------------
-	$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet payement"');
-	$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Adresse du HQ"');
+	$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet paiement"');
+	$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Adresse HQ"');
 	//récuperer le sujet du mail
 	$listSujet;
-	while($suj = $sujetR->fetch-array())
+	while($suj = $sujetR->fetch_array())
 	{
 		$listSujet[0] = $suj['Value'];
 	}
 	//Adresse HQ
 	$listHQ;
-	while($lHQ = $adresse ->fetch-array())
+	while($lHQ = $adresse ->fetch_array())
 	{
 		$listHQ[0] = $lHQ['Value'];
 	}
@@ -217,21 +219,21 @@ Mise à jour de l'historique
 
 	if($payer1==1)
 	{
-		$messageR = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Payement CB"');
+		$messageR = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Paiement CB"');
 
 		//récuperer le message du mail
 		$listMessage;
-		while($mes = $messageR->fetch-array())
+		while($mes = $messageR->fetch_array())
 		{
 			$listMessage[0] = $mes['Value'];
 		}
 	}
 	if($payer1==2)
 	{
-		$messager2 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Payement Paypal"');
+		$messageR2 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Paiement Paypal"');
 		//récuperer le message du mail
 		$listMessage;
-		while($mes = $messageR2->fetch-array())
+		while($mes = $messageR2->fetch_array())
 		{
 			$listMessage[0] = $mes['Value'];
 		}
@@ -239,10 +241,10 @@ Mise à jour de l'historique
 	}
 	if($payer1==3)
 	{
-		$messager3 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Payement Espèce"');
+		$messageR3 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Paiement Espèce"');
 		//récuperer le message du mail
 		$listMessage;
-		while($mes = $messageR3->fetch-array())
+		while($mes = $messageR3->fetch_array())
 		{
 			$listMessage[0] = $mes['Value'];
 		}
@@ -251,7 +253,7 @@ Mise à jour de l'historique
 	$message = $listMessage[0];
 	$message.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";
 
-	sendMail($to, $message, $sujet);
+	sendMail($to1, $message, $sujet);
 
 
 	// -------------------Mail payement joueur 2----------------------------
@@ -260,40 +262,39 @@ Mise à jour de l'historique
 
 	if($payer2==1)
 	{
-		$message2R = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Payement CB"');
+		$message2R = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Paiement CB"');
 
 		//récuperer le message du mail
 		$listMessage2;
-		while($mes = $message2R->fetch-array())
+		while($mes = $message2R->fetch_array())
 		{
 			$listMessage2[0] = $mes['Value'];
 		}
 	}
 	if($payer2==2)
 	{
-		$message2R2 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Payement Paypal"');
+		$message2R2 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Paiement Paypal"');
 		//récuperer le message du mail
 		$listMessage2;
-		while($mes = $message2R2->fetch-array())
+		while($mes = $message2R2->fetch_array())
 		{
 			$listMessage2[0] = $mes['Value'];
 		}
 	}
 	if($payer2==3)
 	{
-		$message2R3 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Payement Espèce"');
+		$message2R3 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Paiement Espece"');
 		//récuperer le message du mail
 		$listMessage2;
-		while($mes = $message2R3->fetch-array())
+		while($mes = $message2R3->fetch_array())
 		{
 			$listMessage2[0] = $mes['Value'];
 		}
-
 	}
 	$message2 = $listMessage2[0];
 	$message2.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";
 
-	sendMail($to, $message2, $sujet);
+	sendMail($to2, $message2, $sujet);
 
 
   $reponse->free();

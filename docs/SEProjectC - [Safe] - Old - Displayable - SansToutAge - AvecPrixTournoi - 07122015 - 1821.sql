@@ -93,14 +93,18 @@ INSERT INTO `GlobalVariables` (`id`, `Name`, `Value`, `Displayable`) VALUES
 (1, 'Message Leader', '[A rediger]', 1),
 (2, 'Sujet Leader', '[A rediger]', 1),
 (3, 'Adresse HQ', '[A rediger]', 1),
-(4, 'Message Non-Payé', '[A rediger]', 1),
-(5, 'Sujet Non-Payé', '[A rediger]', 1),
-(6, 'Message à tous', '[A rediger]', 1),
-(7, 'Sujet à tous', '[A rediger]', 1),
+(4, 'Message Non-Paye', '[A rediger]', 1),
+(5, 'Sujet Non-Paye', '[A rediger]', 1),
+(6, 'Message a tous', '[A rediger]', 1),
+(7, 'Sujet a tous', '[A rediger]', 1),
 (8, 'Message', '[A rediger]', 1),
+(9, 'Prix_Tournoi', '12', 1),
 (10, 'tournament_started_sam', '0', 0),
 (11, 'tournament_started_dim', '0', 0),
-(12, 'Prix_Tournoi', '12', 1);
+(12, 'Paiement CB', '[A rediger]', 0),
+(13, 'Paiement Espece', '[A rediger]', 0),
+(16, 'Paiement Paypal', '[A rediger]', 1),
+(17, 'Sujet paiement', '[A rediger]', 1);
 
 -- --------------------------------------------------------
 

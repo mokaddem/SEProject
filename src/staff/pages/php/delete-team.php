@@ -10,7 +10,6 @@ require_once('test-delete.php');
 
 $db = BDconnect();
 
-	var_dump(canDeleteTeam($_GET['id']));
 	if (!canDeleteTeam($_GET['id'])) {
 		header("Location: ../list-team.php?error=creation");
 	} else {
