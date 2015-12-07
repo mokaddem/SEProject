@@ -12,7 +12,7 @@ Mise à jour de l'historique
     // Generation de la poule
     $db = BDconnect();
 
-    function insert($db, $day, $ID_teams, $groupSize, $ID_Terrain, $cat){
+    function insert($db, $day, $ID_teams, $groupSize, $ID_Terrain, $cat, $catName){
     if ($day == "sam"){
         $table = "GroupSaturday";
         $ID_teams[6] = NULL;
@@ -32,7 +32,7 @@ Mise à jour de l'historique
     $donnees = $reponse->fetch_array();
     // Mise à jour de l'historique
 
-    addHistory($donnees['ID'], "Poules (".$completeDay.")", "Ajout");
+    addHistory($donnees['ID'], "Poules (".$completeDay." - ".$catName.")", "Ajout");
 
     /* Add Matchs */
 
@@ -58,12 +58,6 @@ Mise à jour de l'historique
             //error_log("Added: ".$ID_Equipe1." + ".$ID_Equipe2." + ".$date." + ".$hour." + ".$score1." + ".$score2." + ".$ID_Terrain." + ".$Poule_ID);
             $req->bind_param("issiiiiii", $ID,$date,$hour,$ID_Equipe1,$ID_Equipe2,$score1,$score2,$ID_Terrain,$Poule_ID);
             $req->execute();
-
-            $reponse = $db->query("SELECT * FROM `Match` WHERE ID_Equipe1=".$ID_Equipe1." AND ID_Equipe2=".$ID_Equipe2);
-            $donnees = $reponse->fetch_array();
-            // Mise à jour de l'historique
-            addHistory($donnees['ID'], "Match de poule (".$completeDay.")", "Ajout");
-
         }
     }
     $reponse->free();
@@ -80,22 +74,22 @@ Mise à jour de l'historique
         $table = "GroupSunday";
     }
 
+    $terrains = $db->query("SELECT * FROM Terrain");
     $categories = $db->query('SELECT * FROM Categorie');
-    $generate = true;
     foreach($categories as $cat) {
+        $catName = $cat['Designation'];
         $cat = $cat['ID'];
         $getPoules = $db->query("SELECT ID_t1 FROM " . $table);
+        $generate = true;
         foreach ($getPoules as $poule) {
             $getTeams = $db->query('SELECT ID_Cat FROM `Team` WHERE Team.ID =' . $poule['ID_t1'] . '');
             $bool = $getTeams->fetch_array();
-            var_dump($bool['ID_Cat']);
             if ($bool['ID_Cat'] == $cat) {
                 $generate = false;
                 break;
             }
         }
         if ($generate) {
-            $terrains = $db->query("SELECT * FROM Terrain");
             $reponseTeams = $db->query('SELECT * FROM Team WHERE ID_Cat=' . $cat);
             $i = 1;
             $ID_teams = array();
@@ -114,7 +108,7 @@ Mise à jour de l'historique
                         }
                         $ID_Terrain = $terrain['ID'];
 
-                        $Poule_ID = insert($db, $day, $ID_teams, $i, $ID_Terrain, $cat);
+                        $Poule_ID = insert($db, $day, $ID_teams, $i, $ID_Terrain, $cat, $catName);
                         $i = 0;
                         $ID_teams = array();
                     }
@@ -129,11 +123,11 @@ Mise à jour de l'historique
                 }
                 $ID_Terrain = $terrain['ID'];
 
-                $Poule_ID = insert($db, $day, $ID_teams, $i - 1, $ID_Terrain, $cat);
+                $Poule_ID = insert($db, $day, $ID_teams, $i - 1, $ID_Terrain, $cat, $catName);
             }
 
             $getPoules->free();
         }
     }
-    header("Location: ../group.php?jour=" . $day . "&generate=true&cat=" . $cat);
+    header("Location: ../group.php?jour=" . $day . "&generate=true&cat=0");
 ?>

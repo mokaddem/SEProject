@@ -48,7 +48,7 @@
 
                             <label>Attention, le fait de réinitialiser le tournoi va supprimer toutes les poules et le Knock-Off. Cette action est irréversible.</label>
 
-                            <input type="submit" name="submit" id="submit" value="J'ai pris connaissances des risques." class="btn btn-danger pull-center">
+                            <input type="submit" name="submit" id="submit" value="J'ai pris connaissances des risques" class="btn btn-danger pull-center">
 
                         </div>
                     </form>

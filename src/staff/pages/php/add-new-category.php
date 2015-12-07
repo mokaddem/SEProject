@@ -18,11 +18,6 @@ Mise à jour de l'historique
 //	$Age	=  $_GET['Age'];
 	$Designation	= $_GET['Designation'];
 
-	var_dump($req);
-
-	var_dump($ID);
-	var_dump($Age);
-	var_dump($Designation);
 	$req->bind_param("iss", $ID, $Age, utf8_decode($Designation));
 
 	$req->execute();

@@ -41,7 +41,7 @@
         ?>
 
 
-            <div id="page-wrapper">
+            <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Modifier les poules</h1>
@@ -101,7 +101,8 @@
                             <div class="alert alert-success" id="popupSave" >Terrain enregistré</div>
                         </div>
                     </ul>
-                    <ul class="nav nav-tabs nav-justified">
+                    <div class="panel panel-default">
+                    <ul class="nav nav-pills nav-justified">
                         <?php $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, GroupSaturday WHERE GroupSaturday.ID_Cat = Categorie.ID');
                         if ($_GET['jour'] == "dim") {
                           $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, GroupSunday WHERE GroupSunday.ID_Cat = Categorie.ID');
@@ -114,6 +115,7 @@
                                 <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="group.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation']);?></a></li>
                             <?php }?>
                     </ul>
+                    </div>
                 </div>
                 <div class="row">
                     <br/>
@@ -176,6 +178,11 @@
                               $j = 0; ?>
                               </div>
                             </div>
+
+                            <div class="row">
+                              <br/>
+                            </div>
+
                             <div class="row">
                                 <div class="text-center">
                         <?php  }

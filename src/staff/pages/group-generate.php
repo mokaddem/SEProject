@@ -63,8 +63,7 @@
 
                 <!-- Registration form - START -->
                 <div class="row">
-                  <div class="row">
-                    <div class="col-lg-5 text-center">
+                    <div class="col-lg-6 text-center">
                       <fieldset data-role="controlgroup" data-type="horizontal">
                           <form name="form" method="get" action="php/add-new-group.php">
                               <label for="sam">Samedi</label>
@@ -85,19 +84,15 @@
                                   </select>
                               </div>
                               <input type="submit" name="submit" id="submit" value="Générer la poule sélectionnée" class="btn btn-info pull-right">
-                              <div>
                           </form>
                           <form name="form2" action="./php/add-all-group.php">
                             <input class="hidden" type="text" name="jour" value="sam"/>
-                            <button type="submit" class="btn btn-success pull-left">Tout générer <i class="fa fa-refresh"></i></button>
+                            <button type="submit" class="btn btn-success pull-left">Tout générer pour ce jour <i class="fa fa-refresh"></i></button>
                           </form>
                         </fieldset>
                         <hr>
                     </div>
-                    </div>
                 <!-- Registration form - END -->
-
-
                 </div>
                 <!-- /.row -->
             </div>

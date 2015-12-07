@@ -67,7 +67,6 @@
         /* Suppression d'un owner s'il n'appartient à aucun terrain */
         function canDeleteOwner($id)
         {
-
             include_once('BDD.php');
 
             $db = BDconnect();
