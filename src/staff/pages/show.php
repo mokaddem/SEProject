@@ -41,10 +41,17 @@ if ($_GET["type"]=="extra") { ?>
                   <?php  }?>
                     </p>
                     <?php $next = next($titreDonnees);?>
+<<<<<<< HEAD
               <?php } ?>
               <?php if ($_GET["type"] == "player") { ?>
                 <p><b>Classement :</b> <?php if ($player["Ranking"] == "") { echo "NC"; } else { echo $player["Ranking"]; } ?></p>
               <?php } ?>
+=======
+              <?php }
+            if ($_GET['type'] == "player"){ ?>
+              <p><b>Classement :</b> <?php if ($player["Ranking"] == "") { echo "NC"; } else { echo $player["Ranking"]; } ?></p>
+            <?php } ?>
+>>>>>>> d30c9e18011e001a58f4d3bddb9d0defa601ec2d
                 </div>
             </div>
             <div class="modal-footer">

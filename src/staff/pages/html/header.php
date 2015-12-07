@@ -196,6 +196,19 @@
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
+                        <a href="#"><i class="fa fa-table fa-fw"></i> Données antérieures <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level colorBlue">
+                            <li>
+                                <a href="list.php?type=oldCourt"> Terrains antérieurs </a>
+                            </li>
+                            <li>
+                                <a href="list.php?type=oldOwner"> Propriétaires antérieurs </a>
+                            </li>
+
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <li>
                         <a href="../../index.php?action=logout"><i class="fa fa-home fa-fw"></i> Retour au site</a>
                     </li>
 
