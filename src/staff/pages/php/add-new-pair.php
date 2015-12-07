@@ -34,7 +34,7 @@ Mise à jour de l'historique
 	$IsOwner1	= 0;
 	$IsStaff1	= 0;
 	$payer1 = $_GET['group1'];
-	$to1=$_GET['InputEmailFirst1'];
+	$to1[0]=$_GET['InputEmailFirst1'];
 
 
 
@@ -70,7 +70,7 @@ Mise à jour de l'historique
 	$IsOwner2	= 0;
 	$IsStaff2	= 0;
 	$payer2 = $_GET['group2'];
-	$to2= $_GET['InputEmailFirst2'];
+	$to2[0]= $_GET['InputEmailFirst2'];
 
 
 	$req->bind_param("iisssisiiissssiii", $ID2, $Title2, $FirstName2, $LastName2, $Ville2, $ZIPCode2, $Rue2, $Number2, $PhoneNumber2, $GSMNumber2, $BirthDate2, $Mail2, $CreationDate, $Note2, $IsPlayer2, $IsOwner2, $IsStaff2);
