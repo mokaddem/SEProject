@@ -62,11 +62,9 @@ Mise à jour de l'historique
     $position = 1;
     for($i = 0; $i < $numberOfTeams; $i++){
         $team = $vicTeamsGoodOrder[$i];
-        var_dump($team);
         if ($k == 0){
             $team1 = $team;
             $teamID1 = $team1['teamID'];
-            var_dump($teamID1);
             $k = 1;
         } else{
             $team2 = $team;

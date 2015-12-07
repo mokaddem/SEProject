@@ -84,7 +84,6 @@ Mise à jour de l'historique
     foreach ($getPoules as $poule) {
         $getTeams = $db->query('SELECT ID_Cat FROM `Team` WHERE Team.ID ='.$poule['ID_t1'].'');
         $bool = $getTeams->fetch_array();
-        var_dump($bool['ID_Cat']);
         if ($bool['ID_Cat'] == $_GET['InputCat']) {
             header("Location: ../group-generate.php?error=no_".$day);
             return;
