@@ -228,7 +228,7 @@ Mise à jour de l'historique
 	}
 	if($payer1==2)
 	{
-		$messager2 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Paiement Paypal"');
+		$messageR2 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Paiement Paypal"');
 		//récuperer le message du mail
 		$listMessage;
 		while($mes = $messageR2->fetch_array())
@@ -239,7 +239,7 @@ Mise à jour de l'historique
 	}
 	if($payer1==3)
 	{
-		$messager3 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Paiement Espèce"');
+		$messageR3 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Paiement Espèce"');
 		//récuperer le message du mail
 		$listMessage;
 		while($mes = $messageR3->fetch_array())
