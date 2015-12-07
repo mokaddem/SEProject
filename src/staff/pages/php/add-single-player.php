@@ -50,6 +50,7 @@ $IsPlayer1	= 1;
 $IsOwner1	= 0;
 $IsStaff1	= 0;
 $to1[0]=$_GET['InputEmailFirst1'];
+$payer1 = $_GET['group1'];
 
 $req->bind_param("iisssisiiissssiii", $ID1, $Title1, $FirstName1, $LastName1, $Ville1, $ZIPCode1, $Rue1, $Number1, $PhoneNumber1, $GSMNumber1, $BirthDate1, $Mail1, $CreationDate, $Note1, $IsPlayer1, $IsOwner1, $IsStaff1);
 
