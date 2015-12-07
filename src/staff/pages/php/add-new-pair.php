@@ -34,6 +34,7 @@ Mise à jour de l'historique
 	$IsOwner1	= 0;
 	$IsStaff1	= 0;
 	$payer1 = $_GET['group1'];
+	$to1=$_GET['InputEmailFirst1'];
 
 
 
@@ -69,6 +70,7 @@ Mise à jour de l'historique
 	$IsOwner2	= 0;
 	$IsStaff2	= 0;
 	$payer2 = $_GET['group2'];
+	$to2=$_GET['InputEmailFirst2'];
 
 
 	$req->bind_param("iisssisiiissssiii", $ID2, $Title2, $FirstName2, $LastName2, $Ville2, $ZIPCode2, $Rue2, $Number2, $PhoneNumber2, $GSMNumber2, $BirthDate2, $Mail2, $CreationDate, $Note2, $IsPlayer2, $IsOwner2, $IsStaff2);
@@ -199,7 +201,7 @@ Mise à jour de l'historique
 
 	// -------------------Mail payement joueur 1----------------------------
 	$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet paiement"');
-	$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Adresse du HQ"');
+	$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Adresse HQ"');
 	//récuperer le sujet du mail
 	$listSujet;
 	while($suj = $sujetR->fetch_array())
@@ -251,7 +253,7 @@ Mise à jour de l'historique
 	$message = $listMessage[0];
 	$message.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";
 
-	sendMail($to, $message, $sujet);
+	sendMail($to1, $message, $sujet);
 
 
 	// -------------------Mail payement joueur 2----------------------------
@@ -293,7 +295,7 @@ Mise à jour de l'historique
 	$message2 = $listMessage2[0];
 	$message2.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";
 
-	sendMail($to, $message2, $sujet);
+	sendMail($to2, $message2, $sujet);
 
 
   $reponse->free();
