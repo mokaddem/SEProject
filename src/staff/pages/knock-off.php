@@ -22,6 +22,7 @@
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   </head>
 
 <body>
@@ -60,8 +61,8 @@
                     <div class="row">
                         <div class="row">
                             <ul class="nav nav-tabs">
-                                <li <?php if ($_GET['jour']=="sam" ) echo 'class="active" ' ;?>><a href="knock-off.php?jour=sam&cat=1">Samedi</a></li>
-                                <li <?php if ($_GET['jour']=="dim" ) echo 'class="active" ' ;?>><a href="knock-off.php?jour=dim&cat=1">Dimanche</a></li>
+                                <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="knock-off.php?jour=sam&cat=0" >Samedi <i class="fa fa-venus-mars" style="font-size: 150%"></i> </a></li>
+                                <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="knock-off.php?jour=dim&cat=0">Dimanche <i class="fa fa-venus" style="font-size: 150%"></i> || <i class="fa fa-mars" style="font-size: 150%"></i></a></li>
                             </ul>
                             <ul class="nav nav-tabs nav-justified">
                                 <?php $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, KnockoffSaturday WHERE KnockoffSaturday.Category = Categorie.ID');
@@ -69,6 +70,9 @@
                                   $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, KnockoffSunday WHERE KnockoffSunday.Category = Categorie.ID');
                                 }
                                     while ($donnes = $reponse->fetch_array()) { ?>
+                                      <?php if ($_GET['cat']=="0") { ?>
+                                        <script>document.location.href="./group.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>";</script>
+                                      <?php  } ?>
                                       <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="knock-off.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation'])?></a></li>
                                     <?php }?>
                             </ul>
@@ -113,8 +117,9 @@
                                 </div>
                             <?php } else {
                                 ?> <b> Modifier les équipes et les terrains pour le premier tour</b>
+                                </br>
                                 <label> Tour 1 </label>
-                            <div class="col-lg-12 text-center">
+                            <div class="col-lg-12 text-center vcenter">
                             <?php
                                 $impairTeam = 0;
                                 $s_a_m = "server-other-menu";
@@ -129,7 +134,7 @@
                                     $match = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match'])->fetch_array();
                                     if ($match['ID_Equipe1'] == 0 and $match['ID_Equipe2'] == 0) {
                                         // On arruve sur un match vide --> on stop a boucle et passe au second tour.
-                                        $numberFirstRound = $i - 1;
+                                        $numberFirstRound = $i;
                                         $i = $numberOfMatch;
                                     } else{
                                         ?>
@@ -138,7 +143,7 @@
                                             <?php
                                             if ($match['ID_Equipe2'] == 0) {
                                                 // Dans le cas d'un nombre impair d'équipe.
-                                                $numberFirstRound = $i - 1;
+                                                $numberFirstRound = $i;
                                                 $i = $numberOfMatch;
                                                 $impairTeam = 1;
                                                 ?> <label class="text-center">Cette équipe commence au second tour</label>
@@ -155,18 +160,13 @@
                                 <div class="col-lg-12 text-center">
                                     <p><b>Modifier les terrains pour les tours suivants</b></p>
                                     <?php
-                                        $matchNum = $numberFirstRound + $impairTeam;
+                                        $matchNum = $numberFirstRound;
                                         $iter = 0;
-                                        $numberOfTeams = $numberFirstRound + $impairTeam;
+                                        $numberOfTeams = $numberFirstRound - 1 + $impairTeam;
                                         $stop = False;
                                         while ($numberOfTeams > 1 and !$stop){
-                                            if ($_GET['jour'] == "sam"){
-                                                $knockoff = $db->query('SELECT * FROM KnockoffSaturday WHERE Position='.$matchNum)->fetch_array();
-                                            } elseif ($_GET['jour'] == "dim") {
-                                                $knockoff = $db->query('SELECT * FROM KnockoffSunday WHERE Position='.$matchNum)->fetch_array();
-                                            }
-                                            $matchRep = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match']);
-                                            $match = $matchRep->fetch_array();
+                                            $s_a_m = "server-new-menu";
+
 
                                             $impairTeam = $numberOfTeams % 2;
                                             ?>
@@ -184,10 +184,16 @@
                                                     ?> </br> <label class="text-danger"> FINALE </label> <?php
                                                 }
                                                 for ($j = $impairTeam; $j < $numberOfTeams/2; $j++) {
-                                                    $s_a_m = "server-new-menu";
+                                                    if ($_GET['jour'] == "sam"){
+                                                        $knockoff = $db->query('SELECT * FROM KnockoffSaturday WHERE Position='.$matchNum)->fetch_array();
+                                                    } elseif ($_GET['jour'] == "dim") {
+                                                        $knockoff = $db->query('SELECT * FROM KnockoffSunday WHERE Position='.$matchNum)->fetch_array();
+                                                    }
+                                                    $matchRep = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match']);
+                                                    $match = $matchRep->fetch_array();
                                                     ?>
                                                     <div class="form-group <?=$s_a_m?>"data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>" data-matchID="<?=$match['ID']?>">
-                                                        <?php displayVoidMatch($match, $matchNum, $j, $db); ?>
+                                                        <?php displayVoidMatch($match, $matchNum, $db); ?>
                                                     </div>
                                                     <?php
                                                     $matchNum++;
@@ -209,9 +215,9 @@
 
     <!-- Display functions -->
     <?php
-    function displayVoidMatch($match, $position, $j, $db){ ?>
+    function displayVoidMatch($match, $position, $db){ ?>
         <label for="sel1"><span class="fa fa-users"></span> Match <?=$position?> </label>
-        <select class="form-control" id="sel<?= ($j+$position) ?>" name="ExpandableListTerrain">
+        <select class="form-control" id="sel<?=$position?>" name="ExpandableListTerrain">
             <?php
             $terrains = $db->query('SELECT * FROM Terrain');
             while ($terrain = $terrains->fetch_array()) { ?>

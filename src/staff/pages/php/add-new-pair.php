@@ -101,7 +101,9 @@ Mise à jour de l'historique
 
 
 	$ranking1 = getRanking($FirstName1, $LastName1, $Birth1);
+ 	$ranking1[4] = $ranking1[4]== "" ? "NC" : $ranking1 ;
 	$ranking2 = getRanking($FirstName2, $LastName2, $Birth2);
+ 	$ranking2[4] = $ranking2[4]== "" ? "NC" : $ranking2 ;
 	$req->bind_param("iiiis", $ID_Personne1, $IsLeader, $Paid, $AlreadyPart, $ranking1[4]);
 	$req->execute();
 

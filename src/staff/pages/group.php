@@ -22,6 +22,8 @@
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
@@ -72,22 +74,29 @@
                 </div>
 
                 <div class="row">
-                    <?php if (array_key_exists("generate", $_GET)) {?>
-                        <div class="col-lg-8 alert alert-success">
+                    <?php
+                    if (array_key_exists("generate", $_GET)) {?>
+                        <?php
+                        if ($_GET["generate"] == "true") {?>
+                            <div class="col-lg-8 alert alert-success">
                             <b>Opération réussite !</b>
-                            <?php if ($_GET["generate"] == "true") {?>
-                                La génération des groupes est terminée. Vous pouvez à présent les modifier à souhait.
-                                <?php } ?>
-                        </div>
-                        <?php } ?>
+                            La génération des groupes est terminée. Vous pouvez à présent les modifier à souhait.
+                            </div>
+                        <?php } else{ ?>
+                            <div class="col-lg-8 alert alert-danger">
+                            <b>Echec de l'opération !</b>
+                            Y a-t-il assez d'équipes dans la catégorie sélectionnée ?
+                            </div>
+                        <?php }
+                    } ?>
                 </div>
 
 
                 <!-- Registration form - START -->
                 <div class="row">
                     <ul class="nav nav-tabs">
-                        <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="group.php?jour=sam&cat=1">Samedi</a></li>
-                        <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="group.php?jour=dim&cat=1">Dimanche</a></li>
+                        <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="group.php?jour=sam&cat=0" >Samedi <i class="fa fa-venus-mars" style="font-size: 150%"></i> </a></li>
+                        <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="group.php?jour=dim&cat=0">Dimanche <i class="fa fa-venus" style="font-size: 150%"></i> || <i class="fa fa-mars" style="font-size: 150%"></i></a></li>
                         <div class="col-lg-2 text-center">
                             <div class="alert alert-success" id="popupSave" >Terrain enregistré</div>
                         </div>
@@ -97,7 +106,11 @@
                         if ($_GET['jour'] == "dim") {
                           $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, GroupSunday WHERE GroupSunday.ID_Cat = Categorie.ID');
                         }
-                            while ($donnes = $reponse->fetch_array()) { ?>
+                            while ($donnes = $reponse->fetch_array()) {
+                              ?>
+                              <?php if ($_GET['cat']=="0") { ?>
+                                <script>document.location.href="./group.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>";</script>
+                              <?php  } ?>
                                 <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="group.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation']);?></a></li>
                             <?php }?>
                     </ul>

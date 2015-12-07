@@ -113,10 +113,11 @@ Mise à jour de l'historique
             break;
         }
     }
-
+    if ($j != 3){
+        $numberOfTeams--;
+    }
     // On génère les matches des autres tours du tournoi.
     // Dans un tournois à 16 équipes, il y en aura 7.
-    //for ($k = ceil($numberOfTeams/2); $k >= 1; $k = ceil($k/2)){
     echo $numberOfTeams."\n";
     for($k = $numberOfTeams/2; $k >= 1; $k--){
         echo $k;
@@ -162,12 +163,12 @@ Mise à jour de l'historique
     if ($_GET['jour'] == "sam"){
         // Mise à jour de l'historique
         addHistory($donneesKnock['ID'], "Knock-Off (Samedi)", "Création");
-        header("Location: ../knock-off.php?jour=sam&generate=true&cat=1");
+        header("Location: ../knock-off.php?jour=sam&generate=true&cat=0");
     }
     elseif ($_GET['jour'] == "dim") {
         // Mise à jour de l'historique
         addHistory($donneesKnock['ID'], "Knock-Off (Dimanche)", "Création");
-        header("Location: ../knock-off.php?jour=dim&generate=true&cat=1");
+        header("Location: ../knock-off.php?jour=dim&generate=true&cat=0");
     }
 
 		// $reponse->free(); $ID_Terrain->free(); $reponseMatch->free(); $reqKnock->free(); $reponseKnock->free();
