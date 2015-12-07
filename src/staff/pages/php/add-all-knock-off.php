@@ -94,7 +94,7 @@ Mise à jour de l'historique
 
                     $reqMatch->bind_param("issiiiiii", $ID, $date, $hour, $teamID1, $teamID2, $score1, $score2, $ID_Terrain, $Poule_ID);
                     $reqMatch->execute();
-                    $donneesMatch = $db->query('SELECT * FROM `Match` WHERE ID_Equipe1 = '.$teamID1.' AND ID_Equipe2 = '.$teamID2.' AND ID_Terrain = '.$ID_Terrain)->fetch_array();
+                    $donneesMatch = $db->query('SELECT * FROM `Match` WHERE ID_Equipe1 = '.$teamID1.' AND ID_Equipe2 = '.$teamID2.' AND ID_Terrain = '.$ID_Terrain.' ORDER BY `Match`.ID DESC')->fetch_array();
 
                     $reqKnock = $db->prepare("INSERT INTO " . $table . "(ID, ID_Match, `Position`, Category) VALUES(?, ?, ?, ?)");
                     $ID = '';
@@ -141,7 +141,7 @@ Mise à jour de l'historique
 
                 $reqMatch->bind_param("issiiiiii", $ID, $date, $hour, $teamID1, $teamID2, $score1, $score2, $ID_Terrain, $Poule_ID);
                 $reqMatch->execute();
-                $donneesMatch = $db->query('SELECT * FROM `Match` WHERE ID_Equipe1 = '.$teamID1.' AND ID_Equipe2 = '.$teamID2.' AND ID_Terrain = '.$ID_Terrain)->fetch_array();
+                $donneesMatch = $db->query('SELECT * FROM `Match` WHERE ID_Equipe1 = '.$teamID1.' AND ID_Equipe2 = '.$teamID2.' AND ID_Terrain = '.$ID_Terrain.' ORDER BY `Match`.ID DESC')->fetch_array();
 
                 $reqKnock = $db->prepare("INSERT INTO " . $table . "(ID, ID_Match, `Position`, Category) VALUES(?, ?, ?, ?)");
                 $ID = '';
