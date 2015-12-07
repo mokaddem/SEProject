@@ -4,7 +4,7 @@ include_once('php/BDD.php');
 
 function dbAndPrint() {
     $db = BDconnect();
-    $reponse1 = $db->query('SELECT * FROM GlobalVariables');
+    $reponse1 = $db->query('SELECT * FROM GlobalVariables WHERE Displayable=1');
 
     while ($donnes1 = $reponse1->fetch_array())
     {
