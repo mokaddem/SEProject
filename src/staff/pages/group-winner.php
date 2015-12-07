@@ -69,8 +69,8 @@
                 <!-- Registration form - START -->
                 <div class="row">
                     <ul class="nav nav-tabs">
-                        <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="group-winner.php?jour=sam&cat=1">Samedi <i class="fa fa-venus-mars" style="font-size: 150%"></i></a></li>
-                        <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="group-winner.php?jour=dim&cat=1">Dimanche <i class="fa fa-venus" style="font-size: 150%"></i> || <i class="fa fa-mars" style="font-size: 150%"></i></a></li>
+                        <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="group-winner.php?jour=sam&cat=0">Samedi <i class="fa fa-venus-mars" style="font-size: 150%"></i></a></li>
+                        <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="group-winner.php?jour=dim&cat=0">Dimanche <i class="fa fa-venus" style="font-size: 150%"></i> || <i class="fa fa-mars" style="font-size: 150%"></i></a></li>
                     </ul>
                     <ul class="nav nav-tabs nav-justified">
                         <?php $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, GroupSaturday WHERE GroupSaturday.ID_Cat = Categorie.ID');
@@ -78,6 +78,9 @@
                           $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, GroupSunday WHERE GroupSunday.ID_Cat = Categorie.ID');
                         }
                             while ($donnes = $reponse->fetch_array()) { ?>
+                              <?php if ($_GET['cat']=="0") { ?>
+                                <script>document.location.href="./group.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>";</script>
+                              <?php  } ?>
                               <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="group-winner.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation']);?></a></li>
                             <?php }?>
                     </ul>

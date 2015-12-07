@@ -79,6 +79,9 @@
                             <li>
                                 <a href="list.php?type=staff"> Staff</a>
                             </li>
+                            <li>
+                                <a href="listVarGlobal.php"> Variables Globales</a>
+                            </li>
 
                         </ul>
                         <!-- /.nav-second-level -->
@@ -107,6 +110,9 @@
                             <li>
                                 <a href="extra.php"> Extra</a>
                             </li>
+                            <li>
+                                <a href="varGlobal.php"> Variables Globales</a>
+                            </li>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
@@ -120,7 +126,7 @@
                                         <a href="group-generate.php">Génération</a>
                                     </li>
                                     <li>
-                                        <a href="group.php?jour=sam&cat=1">Modification</a>
+                                        <a href="group.php?jour=sam&cat=0">Modification</a>
                                     </li>
                                     <li>
                                         <?php
@@ -134,18 +140,18 @@
                                             $row=$grpSattmp->fetch_array();
                                             $PouleID = $row['ID'];
                                             $TeamID = $row['ID_t1'];
-                                            $url = "input-group-score.php?jour=sam&cat=1&poule=".$PouleID."&team=".$TeamID?>
+                                            $url = "input-group-score.php?jour=sam&cat=0&poule=".$PouleID."&team=".$TeamID?>
                                             <a href=<?=$url?>>Saisir un score</a>
                                         <?php }else{ ?>
-                                            <a href="input-group-score.php?jour=sam&cat=1">Saisir un score</a>
+                                            <a href="input-group-score.php?jour=sam&cat=0">Saisir un score</a>
                                         <?php }
                                         ?>
                                     </li>
                                     <li>
-                                        <a href="group-winner.php?jour=sam&cat=1">Sélectionner les vainqueurs</a>
+                                        <a href="group-winner.php?jour=sam&cat=0">Sélectionner les vainqueurs</a>
                                     </li>
                                     <li>
-                                        <a href="group-overview.php?jour=sam&cat=1">Vue d'ensemble</a>
+                                        <a href="group-overview.php?jour=sam&cat=0">Vue d'ensemble</a>
                                     </li>
                                 </ul>
                             </li>
@@ -156,13 +162,13 @@
                                         <a href="knock-off-generate.php">Génération</a>
                                     </li>
                                     <li>
-                                        <a href="knock-off.php?jour=sam&cat=1">Modification</a>
+                                        <a href="knock-off.php?jour=sam&cat=0">Modification</a>
                                     </li>
                                     <li>
-                                        <a href="input-knock-score.php?jour=sam&cat=1">Saisir les scores</a>
+                                        <a href="input-knock-score.php?jour=sam&cat=0">Saisir les scores</a>
                                     </li>
                                     <li>
-                                        <a href="knock-off-results.php?jour=sam&cat=1">Résultats</a>
+                                        <a href="knock-off-results.php?jour=sam&cat=0">Résultats</a>
                                     </li>
                                 </ul>
                             </li>

@@ -15,6 +15,9 @@ function getDonnees($get) {
 
             case "extra":
                 return getExtras();
+               
+            case "varGlobal":
+                return getVarGlobal();
 
             case "owner":
                 return getOwners();
@@ -27,6 +30,7 @@ function getDonnees($get) {
                 return getStaffs();
             case "category":
                 return getCategories();
+                
 
         }
 }
@@ -44,6 +48,9 @@ function getTitreTable($get) {
 
         case "extra":
             return array("ID", "Nom", "Prix (€)", "Description","Nombre de personne", "Action");
+           
+        case "varGlobal":
+            return array("Titre","Message");
 
         case "owner":
             return array("ID", "Nom", "Prénom", "Créé le", "Action");
@@ -72,6 +79,9 @@ function getParam($get) {
 
         case "extra":
             return array("ID", "Name", "nbr", "Price", "Description"); // Name à modif (4eme param)
+            
+        case "varGlobal":
+            return array("Name", "Value"); 
 
         case "owner":
             return array("ID_O", "LastName", "FirstName", "CreationDate");
@@ -99,6 +109,8 @@ function getTitre($get) {
             return "terrains";
         case "extra":
             return "extras";
+        case "varGlobal":
+            return "Variables Globales";
         case "owner":
             return "propriétaires";
         case "team":
@@ -120,6 +132,11 @@ function getCourts() {
 function getExtras() {
     $db = BDconnect();
     return $db->query('SELECT Extras.*, NULL as nbr FROM Extras');
+}
+
+function getVarGlobal() {
+    $db = BDconnect();
+    return $db->query('SELECT GlobalVariables.* FROM GlobalVariables');
 }
 
 function getHistories() {
