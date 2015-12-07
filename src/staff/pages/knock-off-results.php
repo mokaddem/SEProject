@@ -60,7 +60,7 @@
                     }
                     while ($donnes = $reponse->fetch_array()) { ?>
                       <?php if ($_GET['cat']=="0") { ?>
-                        <script>document.location.href="./knock-off-resultats.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>";</script>
+                        <script>document.location.href="./knock-off-results.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>";</script>
                       <?php  } ?>
                         <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="knock-off-results.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation'])?></a></li>
                     <?php }?>
