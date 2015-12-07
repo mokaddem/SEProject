@@ -13,11 +13,17 @@ function getDonnees($get, $id) {
             case "court":
                 return getCourt($id);
 
+            case "oldCourt":
+                return getOldCourt($id);
+
             case "extra":
                 return getExtra($id);
 
             case "owner":
                 return getOwner($id);
+
+            case "oldOwner":
+                return getOldOwner($id);
 
             case "team":
                 //return getTeam($id);
@@ -42,11 +48,17 @@ function getTitreTable($get) {
         case "court":
             return array("ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Jusqu'au", "Crée le", "Note");
 
+        case "oldCourt":
+            return array("ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Jusqu'au", "Crée le", "Note");
+
         case "extra":
             return array("ID", "Nom", "Prix", "Description");
 
         case "owner":
-        return array("ID", "Nom", "Prénom", "E-mail", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "Créé le");
+            return array("ID", "Nom", "Prénom", "E-mail", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "Créé le");
+
+        case "oldOwner":
+            return array("ID", "Nom", "Prénom", "E-mail", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "Créé le");
 
         case "team":
             return array("ID", "Nom", "Prénom", "Action");
@@ -72,11 +84,17 @@ function getParam($get) {
         case "court":
             return array("ID", "adresse", "surface", "ID_Owner", "etat", "Type", "disponibiliteFrom", "disponibiliteTo", "CreationDate", "Note");
 
+        case "oldCourt":
+            return array("ID", "adresse", "surface", "ID_Owner", "etat", "Type", "disponibiliteFrom", "disponibiliteTo", "CreationDate", "Note");
+
         case "extra":
             return array("ID", "Name", "Price", "Description"); // Name à modif (4eme param)
 
         case "owner":
-        return array("ID", "LastName", "FirstName", "Mail", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "CreationDate");
+            return array("ID", "LastName", "FirstName", "Mail", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "CreationDate");
+
+        case "oldOwner":
+            return array("ID", "LastName", "FirstName", "Mail", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "CreationDate");
 
         case "team":
             return array("ID", "L", "F", "ID_Cat");
@@ -100,10 +118,14 @@ function getTitre($get) {
 
         case "court":
             return "terrains";
+        case "oldCourt":
+            return "terrains antérieurs";
         case "extra":
             return "extras";
         case "owner":
             return "propriétaires";
+        case "oldOwner":
+            return "propriétaires antérieurs";
         case "team":
             return "équipes";
             break;
@@ -119,6 +141,11 @@ function getTitre($get) {
 function getCourt($id) {
     $db = BDconnect();
     return $db->query('SELECT * FROM `Terrain` WHERE ID = '.$id.'');
+}
+
+function getOldCourt($id) {
+    $db = BDconnect();
+    return $db->query('SELECT * FROM `OldTerrain` WHERE ID = '.$id.'');
 }
 
 function getExtra($id) {
@@ -147,6 +174,11 @@ function getCategory($id) {
 }
 
 function getOwner($id) {
+    $db = BDconnect();
+    return $db->query('SELECT * FROM Personne WHERE isOwner=1 and ID = '.$id.'');
+}
+
+function getOldOwner($id) {
     $db = BDconnect();
     return $db->query('SELECT * FROM Personne WHERE isOwner=1 and ID = '.$id.'');
 }
