@@ -46,8 +46,8 @@
     // Recupération des données des participants
          while ($row = $listPlayer->fetch_object()){ ?>
             <?php
-                    $nom = $row->LastName." ".utf8_encode($row->FirstName);
-                    $adresse = $row->Number." ".utf8_encode($row->Rue)." ".$row->ZIPCode." ".utf8_encode($row->Ville);
+                    $nom = $row->LastName." ".$row->FirstName;
+                    $adresse = $row->Number." ".$row->Rue." ".$row->ZIPCode." ".$row->Ville;
                     $liste1[$adresse] = $nom;
 
             ?>
@@ -55,8 +55,8 @@
     // Recupération des données des propriétaire
         while ($row = $listOwner->fetch_object()){ ?>
             <?php
-            $nom = utf8_encode($row->LastName)." ".utf8_encode($row->FirstName);
-            $adresse = $row->Number." ".utf8_encode($row->Rue)." ".$row->ZIPCode." ".utf8_encode($row->Ville);
+            $nom = $row->LastName." ".$row->FirstName;
+            $adresse = $row->Number." ".$row->Rue." ".$row->ZIPCode." ".$row->Ville;
             $liste2[$adresse] = $nom;
 
             ?>
@@ -71,20 +71,21 @@
                     </div>
                 </div>
                 <!-- Affichage des adresse - START -->
+                                <div class="container col-lg-12">
                 <div class="row">
                     <div class="col-lg-6">
                             <div id="listPart">
                             <!-- Affichage des adresse propriétaire - START -->
                             <h3><i class="fa fa-suitcase"></i> Propriétaires</h3>
                             <?php foreach (array_unique($liste2) as $adresse => $nom) {?>
-                                <?=$nom?> - <?=$adresse?><br/>
+                                <?=utf8_encode($nom)?> - <?=utf8_encode($adresse)?><br/>
                             <?php } ?>
                             
                             <!-- Affichage des adresse propriétaire - END -->
                             <h3><i class="fa fa-users"></i> Particpants</h3>
                             <!-- Affichage des adresse des participants - END -->
                             <?php foreach (array_unique($liste1) as $adresse => $nom) {?>
-                                            <?=$nom?> - <?=$adresse?><br/>
+                                            <?=utf8_encode($nom)?> - <?=utf8_encode($adresse)?><br/>
                                     <?php } ?>
                             <!-- Affichage des adresse participant - END -->
 
@@ -95,7 +96,7 @@
                     </div>
 
                     <!-- Affichage des adresses - END -->
-                </div>
+                                    </div></div>
                 <br/><br/><br/>
                 <!-- /.row -->
             </div>
