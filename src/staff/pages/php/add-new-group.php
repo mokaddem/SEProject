@@ -21,14 +21,12 @@ Mise à jour de l'historique
         $table = "GroupSunday";
         $completeDay = "Dimanche";
     }
-    var_dump($table);
     $req = $db->prepare("INSERT INTO ".$table."(ID, ID_terrain, ID_t1, ID_t2, ID_t3, ID_t4, ID_t5, ID_t6, ID_Leader, ID_Cat) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
     $ID	 	= '';
 
     $req->bind_param("iiiiiiiiii", $ID, $ID_Terrain, $ID_teams[1], $ID_teams[2], $ID_teams[3], $ID_teams[4], $ID_teams[5], $ID_teams[6], $ID_teams[1], $_GET['InputCat']);
     $req->execute();
-    var_dump($req);
 
     $reponse = $db->query("SELECT * FROM ".$table." WHERE ID_t1=".$ID_teams[1]);
     $donnees = $reponse->fetch_array();
@@ -133,8 +131,6 @@ Mise à jour de l'historique
 
     $getPoules->free();
 
-    var_dump($reponseTeams->fetch_array());
-    //$day->fetch_array();
     if ($i > 0){
         header("Location: ../group.php?jour=".$day."&generate=true&cat=".$_GET['InputCat']);
     } else{
