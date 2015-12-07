@@ -21,10 +21,14 @@ $db->query('DELETE FROM `Match`');
 $db->query('DELETE FROM Personne WHERE IsPlayer = 1');
 $db->query('DELETE FROM PersonneExtra');
 $db->query('DELETE FROM Player');
+$db->query('DELETE FROM PlayerAlone');
 $db->query('DELETE FROM Team');
 
 // Propriétaires et terrains vont dans les archives pour pouvoir les recontacter.
-
+$db->query('DELETE FROM OldOwner');
+$db->query('DELETE FROM OldTerrain');
+$db->query('INSERT INTO OldOwner SELECT * FROM Owner');
+$db->query('INSERT INTO OldTerrain SELECT * FROM Terrain');
 
 
 // Remise des variables globales à leurs valeurs d'origines:
@@ -35,7 +39,6 @@ $req = $db->query("UPDATE GlobalVariables SET `Value` = \"0\" WHERE `Name` = \"t
 $req = $db->query("UPDATE GlobalVariables SET `Value` = \"0\" WHERE `Name` = \"tournament_started_sam\"");
 $req = $db->query("UPDATE GlobalVariables SET `Value` = \"0\" WHERE `Name` = \"tournament_started_dim\"");
 // Et tous les autres champ doivent être ré-encodé.
-
 
 // Mise à jour de l'historique
 require_once('add-new-history.php');

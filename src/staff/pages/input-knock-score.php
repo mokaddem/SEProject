@@ -126,7 +126,7 @@
                     }?>
                     <div class="form-group <?=$s_a_m?>">
                         <div class="text-center">
-                            <label ><span class="fa fa-users"></span> Match <?=$knockoff['Position'] ?> </label>
+                            <label ><span class="fa fa-users"></span> Match <?=$knockoff['Position']." [".$match['ID']."]" ?> </label>
                         </div>
                         <?php
                         for ($j = 1; $j <= 2; $j++) {
@@ -135,8 +135,14 @@
                                 displayVoidTeam($match, $knockoff['Position'], $db);
                             } else {
                                 $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'] . ' ')->fetch_array();
-                                displayTeam($team, $match, $knockoff['Position'], $db);
+                                displayTeam($team, $match, $knockoff['Position'], $j, $db);
                             }
+                            if($j==1){
+                            ?>
+                                <div class="row">
+                                    <a href=""><i class="fa fa-2x fa-arrow-circle-right col-lg-offset-10" style="font-size: 200%"></i></a>
+                                </div>
+                            <?php }
                         }
                         ?>
                     </div> <?php
@@ -186,7 +192,7 @@
         <?php
     }
 
-    function displayTeam($team, $match, $position, $db){
+    function displayTeam($team, $match, $position, $indice, $db){
         $teamID = $team["ID"];
         $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'] . ' ')->fetch_array();
         $IDPersonne1 = $team['ID_Player1'];
@@ -197,17 +203,16 @@
 
         $nameField = "score".$position;
         $ranking = ($team['AvgRanking'] == NULL) ? "NC" : $team['AvgRanking'];
+
+        $score = $indice == 1 ? $match['score1'] : $match['score2'];
         ?>
         <div class="row">
             <div class="col-lg-7">
-                <button class="btn btn-default" disabled> [<?=$ranking?>] <?= utf8_encode($player1['LastName']) ?> & <?= utf8_encode($player2['LastName']) ?> </button>
+                <button class="btn-block btn btn-default " disabled> [<?=$ranking?>] <?= utf8_encode($player1['LastName']) ?> & <?= utf8_encode($player2['LastName']) ?> </button>
             </div>
             <div class="col-lg-3">
-                <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" min="0"
-                       step="1" style="float: left;" required>
-            </div>
-            <div class="col-lg-1">
-                <i class="fa fa-2x fa-arrow-circle-right"></i>
+                <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" min="0" data-teamID="<?=$team['ID']?>" data-matchID="<?=$match['ID']?>" data-indice="<?=$indice ?>"
+                       step="1" style="float: left;" value="<?=$score ?>"  required>
             </div>
         </div>
         <?php
@@ -228,6 +233,28 @@
     <script src="../dist/js/sb-admin-2.js"></script>
 
     <script type="text/javascript"></script>
+
+    <script>
+        function saveScore(e){
+            var input = e.target;
+
+            var teamId = input.getAttribute("data-teamID");
+            var matchId = input.getAttribute("data-matchID");
+            var score = input.value;
+            var indice = input.getAttribute("data-indice");
+            var url="../pages/php/add-score-knock-off.php";
+
+            console.log('score='+score+' id='+indice);
+            var data={ 'idT':teamId, 'idM':matchId, 'score':score, 'indice':indice};
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: data
+            });
+        }
+    </script>
+
+    <script>  	$(':input').change(saveScore);      </script>
 
 </body>
 
