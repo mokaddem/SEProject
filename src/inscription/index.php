@@ -145,8 +145,11 @@
 
                                     <div class="form-group well well-sm">
                                         <label>Montant à payer</label>
+                                        
+                                        <?php $price = $db->query('SELECT * FROM GlobalVariables WHERE Name=\'Prix_Tournoi\'')->fetch_array(); ?>
+                                        
                                         <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="15" disabled>
+                                            <input type="text" class="form-control" placeholder="<?=$price['Value'];?>" disabled>
                                             <span class="input-group-addon">€</span>
                                         </div>
                                         <div class="input-group well well-sm">
@@ -272,7 +275,7 @@
                                     <div class="form-group well well-sm">
                                         <label for="InputPhone">Montant à payer</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="15" disabled>
+                                            <input type="text" class="form-control" placeholder="<?=$price['Value'];?>" disabled>
                                             <span class="input-group-addon">€</span>
                                         </div>
                                         <div class="input-group well well-sm">
