@@ -128,12 +128,15 @@ Mise à jour de l'historique
   // Get l'age le plus grand des deux joueurs
   $ageCurrent = max(intval(date('Y')) - intval($_GET['birth_year1']), intval(date('Y')) - intval($_GET['birth_year2']));
   $reponse = $db->query('SELECT * FROM Categorie');
-  $ID_Cat		= '1';
+  $ID_Cat		= '';
 
   // Parcours des categories
   foreach ($reponse as $donnees) {
     $ageCat = explode(" - ", $donnees["Age"]);
 
+    if ($ID_Cat == '') {
+      $ID_Cat		= $donnees['ID'];
+    }
     // Si l'âge est dans la tranche d'âge on l'ajoute à cette catégorie
     if (intval($ageCat[0])<= $ageCurrent && intval($ageCat[1]) >= $ageCurrent) {
       $ID_Cat		= $donnees['ID'];
@@ -193,7 +196,7 @@ Mise à jour de l'historique
 			// Do Nothing
 		}
 	}
-	
+
 	// -------------------Mail payement joueur 1----------------------------
 	$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet payement"');
 	$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Adresse du HQ"');
@@ -247,10 +250,10 @@ Mise à jour de l'historique
 	}
 	$message = $listMessage[0];
 	$message.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";
-	
+
 	sendMail($to, $message, $sujet);
-	
-	
+
+
 	// -------------------Mail payement joueur 2----------------------------
 
 	$message2="";
@@ -289,9 +292,9 @@ Mise à jour de l'historique
 	}
 	$message2 = $listMessage2[0];
 	$message2.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";
-	
+
 	sendMail($to, $message2, $sujet);
-	
+
 
   $reponse->free();
   $RankingReponse->free();
