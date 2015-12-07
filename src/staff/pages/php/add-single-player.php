@@ -12,6 +12,21 @@ include_once('get-ranking.php');
 //	$db = BDconnect();
 error_log(serialize($_GET));
 
+if ($_GET['InputPrenom1'] == NULL
+or $_GET['InputNom1'] == NULL
+or $_GET['title1'] == NULL
+or $_GET['InputCP1'] == NULL
+or $_GET['InputMob1'] == NULL
+or $_GET['InputLoc1'] == NULL
+or $_GET['InputAdresse1'] == NULL
+or $_GET['birth_year1'] == NULL
+or $_GET['birth_month1'] == NULL
+or $_GET['birth_day1'] == NULL
+or $_GET['InputEmailFirst1'] == NULL  ){
+  header("Location: ../../../inscription/index.php?error=true" );
+  return;
+}
+
 // Ajout du duo de joueur
 $db = BDconnect();
 $req = $db->prepare("INSERT INTO Personne(ID, Title, FirstName, LastName, Ville, ZIPCode, Rue, Number, PhoneNumber, GSMNumber, BirthDate, Mail, CreationDate, Note, IsPlayer, IsOwner, IsStaff) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
