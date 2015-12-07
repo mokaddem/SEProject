@@ -137,7 +137,7 @@
                         for ($j = 1; $j <= 2; $j++) {
                             $teamID = $match['ID_Equipe'.$j];
                             if ($teamID == 0) {
-                                displayVoidTeam($match, $knockoff['Position'], $j, $db);
+                                displayVoidTeam($match, $knockoff['Position'], $j, $round, $db);
                             } else {
                                 $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'])->fetch_array();
                                 displayTeam($team, $match, $knockoff['Position'], $j, $numberOfMatch, $round, $db);
@@ -196,10 +196,10 @@
         </div>
         <?php
     }
-    function displayVoidTeam($match, $position, $indice, $db){
+    function displayVoidTeam($match, $position, $indice, $round, $db){
         ?>
         <div class="form-group text-center">
-            <button class="btn btn-default btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-position="<?=$position?>" data-matchID="<?=$match["ID"]?>" data-indice="<?=$indice ?>" data-void="1">Vide</button>
+            <button class="btn btn-default btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-position="<?=$position?>" data-matchID="<?=$match["ID"]?>" data-indice="<?=$indice ?>" data-void="1" data-round="<?=$round?>" >Vide</button>
         </div>
         <?php
     }
@@ -283,10 +283,16 @@
                         if(winningTeam!=-1){
                             round = parseInt($(this).attr("data-round"));
                             var teambuttons= $("button[data-round='"+(round+1)+"'][data-teamID='"+winningTeam+"']");
-                            console.log("round="+round+", size="+teambuttons.size());
                             if(teambuttons.size() == 0) {
                                 button.removeClass("btn-danger").addClass("btn-success");
                                 button.attr("disabled", false);
+
+                                //check for non vide for a round
+                                var videbuttons= $("button[data-round='"+(round)+"'][data-void='"+1+"']");
+                                if(videbuttons.size() != 0) {
+                                    button.removeClass("btn-success").addClass("btn-danger");
+                                    button.attr("disabled", true);
+                                }
                             }else{
                                 button.removeClass("btn-danger").addClass("btn-warning");
                                 button.removeClass("fa-arrow-circle-right").addClass("fa-times");
