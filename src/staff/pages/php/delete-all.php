@@ -12,6 +12,7 @@ $db = BDconnect();
 // On ne touche pas aux catégories, extras, staff ou ranking.
 
 // Vidage de toutes les tables qui ne serront plus utiles cette année.
+$db->query('DELETE FROM Personne WHERE IsPlayer = 1');
 $db->query('DELETE FROM GroupSunday');
 $db->query('DELETE FROM GroupSaturday');
 $db->query('DELETE FROM History');
@@ -21,7 +22,6 @@ $db->query('DELETE FROM `Match`');
 $db->query('DELETE FROM PersonneExtra');
 $db->query('DELETE FROM Player');
 $db->query('DELETE FROM PlayerAlone');
-$db->query('DELETE FROM Personne WHERE IsPlayer = 1');
 $db->query('DELETE FROM Team');
 
 // Propriétaires et terrains vont dans les archives pour pouvoir les recontacter.

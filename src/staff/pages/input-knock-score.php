@@ -86,14 +86,16 @@
                 $numberOfTeams = -1;
                 $numberOfColDone = 0;
                 $round = 1;
+                $visitedTeams = array();
+                array_push($visitedTeams,"0");
                 foreach($knockoff_all as $knockoff){
                     $match = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match'])->fetch_array();
                 ?>
                 <div class="row"> <?php
-                    if ($match['ID_Equipe2'] == 0){
+                    if (in_array($match['ID_Equipe2'],$visitedTeams)){ // If we have already seen this team,
                         if ($numberOfMatchCol == -1) { // We begin the second round.
                             $numberOfMatchCol = $iter - 1;
-                            $impair = ($match['ID_Equipe1'] == 0) ? 0 : 1;
+                            $impair = (in_array($match['ID_Equipe1'],$visitedTeams)) ? 0 : 1;
                             $numberOfTeams = 2 * $numberOfMatchCol + $impair; // Total number of teams that we have to place.
                             $newColNeeded = True;
                         } else {
@@ -111,6 +113,8 @@
                             $impair = $numberOfTeams % 2;
                             $numberOfMatchCol = ($numberOfTeams == 3) ? 3 : (int)($numberOfTeams / 2); // Ce sera 3 si on a 3 finalistes.
                             $numberOfColDone = 0;
+                            $visitedTeams = array();
+                            array_push($visitedTeams,"0");
                             ?>
                             </div>
                             </div>
@@ -126,17 +130,15 @@
                         for ($j = 1; $j <= 2; $j++) {
                             $teamID = $match['ID_Equipe'.$j];
                             if ($teamID == 0) {
-                                displayVoidTeam($match, $knockoff['Position'], $db);
+                                displayVoidTeam($match, $knockoff['Position'], $j, $db);
                             } else {
                                 $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'] . ' ')->fetch_array();
-                                displayTeam($team, $match, $knockoff['Position'], $j, $db);
+                                displayTeam($team, $match, $knockoff['Position'], $j, $numberOfMatch, $db);
+                                array_push($visitedTeams,$teamID);
                             }
                             if($j==1){
-                            ?>
-                                <div class="row">
-                                    <a href=""><i class="fa fa-2x fa-arrow-circle-right col-lg-offset-10" style="font-size: 200%"></i></a>
-                                </div>
-                            <?php }
+                                displaySelectButton($knockoff, $match);
+                            }
                         }
                         ?>
                     </div> <?php
@@ -153,6 +155,7 @@
                 ?>
 
                 </div>
+            <div id="form-messages-rep"></div>
             </div>
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <!-- Registration form - END -->
@@ -166,6 +169,14 @@
     <!-- Display functions ! -->
     <?php
 
+    function displaySelectButton($knockoff, $match){
+        ?>
+        <div class="row">
+            <button class="btn btn-danger fa fa-2x fa-arrow-circle-right col-lg-offset-10" style="font-size: 200%" id="btnselect<?=$knockoff['Position']?>" name="btnselect" data-score1="" data-score2="" data-winning-team="" data-matchID="<?=$match['ID']?>"></button>
+        </div>
+        <?php
+    }
+
     function displayVoidTeamNoMatch($round, $db){
         ?>
         <div class="form-group server-invalide-menu">
@@ -178,15 +189,15 @@
         </div>
         <?php
     }
-    function displayVoidTeam($match, $position, $db){
+    function displayVoidTeam($match, $position, $indice, $db){
         ?>
         <div class="form-group text-center">
-            <button class="btn btn-default btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-position="<?=$position?>" data-matchID="<?=$match["ID"]?>">Vide</button>
+            <button class="btn btn-default btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-position="<?=$position?>" data-matchID="<?=$match["ID"]?>" data-indice="<?=$indice ?>" data-void="1">Vide</button>
         </div>
         <?php
     }
 
-    function displayTeam($team, $match, $position, $indice, $db){
+    function displayTeam($team, $match, $position, $indice, $numberOfMatch, $db){
         $teamID = $team["ID"];
         $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'] . ' ')->fetch_array();
         $IDPersonne1 = $team['ID_Player1'];
@@ -202,12 +213,17 @@
         ?>
         <div class="row">
             <div class="col-lg-7">
-                <button class="btn-block btn btn-default " disabled> [<?=$ranking?>] <?= utf8_encode($player1['LastName']) ?> & <?= utf8_encode($player2['LastName']) ?> </button>
+                <button class="btn-block btn btn-default" data-teamID="<?=$team['ID'] ?>" disabled> [<?=$ranking?>] <?= utf8_encode($player1['LastName']) ?> & <?= utf8_encode($player2['LastName']) ?> </button>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-2" style="padding-right: 2px">
                 <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" min="0" data-teamID="<?=$team['ID']?>" data-matchID="<?=$match['ID']?>" data-indice="<?=$indice ?>"
                        step="1" style="float: left;" value="<?=$score ?>"  required>
             </div>
+            <?php if($position > ceil($numberOfMatch/2)){ ?>
+                <div class="" style="margin-top: 1.5%">
+                    <a class="pull-left" href="php/delete-knock.php?matchID=<?=$match['ID']?>&indice=<?=$indice?>&jour=<?=$_GET["jour"]?>&cat=<?=$_GET['cat']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce groupe ?');" ><i class="fa fa-trash-o"></i></a>
+                </div>
+            <?php } ?>
         </div>
         <?php
     }
@@ -229,6 +245,43 @@
     <script type="text/javascript"></script>
 
     <script>
+        $( document ).ready(function(){
+            updateButton();
+//            setInterval(updateButton, 300);
+        });
+
+        function updateButton() {
+            var button;
+            var value1;
+            var value2;
+            var team1;
+            var team2;
+            var winningTeam;
+            var indice;
+            var matchNumber=0;
+            $("input").each(function (index) {
+                    indice = $( this ).attr("data-indice");
+                    if (indice == 1) {
+                        value1 = $( this ).val();
+                        team1=$( this ).attr("data-teamID");
+                    }
+                    else if (indice == 2) {
+                        matchNumber++;
+                        value2 = $( this ).val();
+                        team2=$( this ).attr("data-teamID");
+                        winningTeam = value1 == value2 ? -1 : (value1>value2 ? team1 : team2);
+                        button= $("#btnselect" + matchNumber);
+                        button.attr("data-score1", value1).attr("data-score2", value2).attr("data-winning-team", winningTeam);
+                        if(winningTeam!=-1){
+                            button.removeClass("btn-danger").addClass("btn-success");
+                        }else{
+                            button.removeClass("btn-success").addClass("btn-danger");
+                        }
+                    }})
+        }
+    </script>
+
+    <script>
         function saveScore(e){
             var input = e.target;
 
@@ -237,18 +290,54 @@
             var score = input.value;
             var indice = input.getAttribute("data-indice");
             var url="../pages/php/add-score-knock-off.php";
-
-            console.log('score='+score+' id='+indice);
             var data={ 'idT':teamId, 'idM':matchId, 'score':score, 'indice':indice};
+
             $.ajax({
                 type: "POST",
                 url: url,
                 data: data
             });
+            updateButton();
         }
     </script>
 
-    <script>  	$(':input').change(saveScore);      </script>
+    <script>
+        function selectTeam(e){
+            var target = e.target;
+            var url ="php/select-team-knock-off.php";
+
+            var emptySlot = $(':button[data-void=1]:first');
+            var matchID = parseInt(emptySlot.attr("data-matchID"));
+            var indice = parseInt(emptySlot.attr("data-indice"));
+            var teamID = parseInt(target.getAttribute("data-winning-team"));
+
+            var data = {'matchID':matchID, 'indice':indice, 'teamID':teamID };
+            if(teamID != -1) {
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    dataType: 'text',
+                    data: data,
+                    success: function (text) {
+                        if (text == "success") {
+                            location.reload();
+
+                        } else {
+                            $('form-messages-rep').text("Error");
+                            location.reload();
+                        }
+                    },
+                    error: function (text){
+                        alert("Error:" + text);
+                    }
+                });
+            }
+        }
+    </script>
+
+
+    <script>$(':input').change(saveScore);</script>
+    <script>$("[name=btnselect]").click(selectTeam);</script>
 
 </body>
 
