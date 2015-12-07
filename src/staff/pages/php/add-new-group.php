@@ -133,6 +133,13 @@ Mise à jour de l'historique
 
     $getPoules->free();
 
-    header("Location: ../group.php?jour=".$day."&generate=true&cat=".$_GET['InputCat']);
+    var_dump($reponseTeams->fetch_array());
+    //$day->fetch_array();
+    if ($i > 0){
+        header("Location: ../group.php?jour=".$day."&generate=true&cat=".$_GET['InputCat']);
+    } else{
+        header("Location: ../group.php?jour=".$day."&generate=false&cat=".$_GET['InputCat']);
+    }
+
     return;
 ?>

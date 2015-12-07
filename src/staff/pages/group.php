@@ -74,14 +74,21 @@
                 </div>
 
                 <div class="row">
-                    <?php if (array_key_exists("generate", $_GET)) {?>
-                        <div class="col-lg-8 alert alert-success">
+                    <?php
+                    if (array_key_exists("generate", $_GET)) {?>
+                        <?php
+                        if ($_GET["generate"] == "true") {?>
+                            <div class="col-lg-8 alert alert-success">
                             <b>Opération réussite !</b>
-                            <?php if ($_GET["generate"] == "true") {?>
-                                La génération des groupes est terminée. Vous pouvez à présent les modifier à souhait.
-                                <?php } ?>
-                        </div>
-                        <?php } ?>
+                            La génération des groupes est terminée. Vous pouvez à présent les modifier à souhait.
+                            </div>
+                        <?php } else{ ?>
+                            <div class="col-lg-8 alert alert-danger">
+                            <b>Echec de l'opération !</b>
+                            Y a-t-il assez d'équipes dans la catégorie sélectionnée ?
+                            </div>
+                        <?php }
+                    } ?>
                 </div>
 
 
