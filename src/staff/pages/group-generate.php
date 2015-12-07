@@ -89,7 +89,7 @@
                           </form>
                           <form name="form2" action="./php/add-all-group.php">
                             <input class="hidden" type="text" name="jour" value="sam"/>
-                            <button type="submit" class="btn btn-success pull-left">Tout générer <i class="fa fa-refresh"></i></button>
+                            <button type="submit" class="btn btn-success pull-left">Tout générer pour ce jour <i class="fa fa-refresh"></i></button>
                           </form>
                         </fieldset>
                         <hr>

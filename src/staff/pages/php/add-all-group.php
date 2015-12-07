@@ -80,6 +80,7 @@ Mise à jour de l'historique
         $table = "GroupSunday";
     }
 
+    $terrains = $db->query("SELECT * FROM Terrain");
     $categories = $db->query('SELECT * FROM Categorie');
     $generate = true;
     foreach($categories as $cat) {
@@ -88,14 +89,13 @@ Mise à jour de l'historique
         foreach ($getPoules as $poule) {
             $getTeams = $db->query('SELECT ID_Cat FROM `Team` WHERE Team.ID =' . $poule['ID_t1'] . '');
             $bool = $getTeams->fetch_array();
-            var_dump($bool['ID_Cat']);
+            //var_dump($bool['ID_Cat']);
             if ($bool['ID_Cat'] == $cat) {
                 $generate = false;
                 break;
             }
         }
         if ($generate) {
-            $terrains = $db->query("SELECT * FROM Terrain");
             $reponseTeams = $db->query('SELECT * FROM Team WHERE ID_Cat=' . $cat);
             $i = 1;
             $ID_teams = array();
@@ -135,5 +135,5 @@ Mise à jour de l'historique
             $getPoules->free();
         }
     }
-    header("Location: ../group.php?jour=" . $day . "&generate=true&cat=" . $cat);
+    header("Location: ../group.php?jour=" . $day . "&generate=true&cat=0");
 ?>
