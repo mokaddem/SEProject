@@ -92,6 +92,7 @@
                 $numberOfTeams = -1;
                 $numberOfColDone = 0;
                 $round = 1;
+                $maxCol = 4;
                 foreach($knockoff_all as $knockoff){
                 $match = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match'])->fetch_array();
                 ?>
@@ -108,20 +109,25 @@
                         }
                     }
                     if ($newColNeeded){
-                    if ($impair == 1 and $round != 1){
-                        displayVoidTeamNoMatch($round, $db);
-                    }
-                    $round++;
-                    $newColNeeded = False;
-                    $numberOfTeams -= $numberOfMatchCol; // There were $numberOfMatchCol matches, so this number of team lost.
-                    $impair = $numberOfTeams % 2;
-                    $numberOfMatchCol = ($numberOfTeams == 3) ? 3 : (int)($numberOfTeams / 2); // Ce sera 3 si on a 3 finalistes.
-                    $numberOfColDone = 0;
-                    ?>
-                </div>
-            </div>
-            <div class="col-lg-3 vcenter">
-                <div class="row"> <?php
+                        if ($round % $maxCol == 0){ ?>
+                            </div>
+                            <div class="col-lg-12 vcenter">
+                                <h4><b> Résultats des tours suivant </b></h4>
+                        <?php }
+                        if ($impair == 1 and $round != 1){
+                            displayVoidTeamNoMatch($round, $db);
+                        }
+                        $round++;
+                        $newColNeeded = False;
+                        $numberOfTeams -= $numberOfMatchCol; // There were $numberOfMatchCol matches, so this number of team lost.
+                        $impair = $numberOfTeams % 2;
+                        $numberOfMatchCol = ($numberOfTeams == 3) ? 3 : (int)($numberOfTeams / 2); // Ce sera 3 si on a 3 finalistes.
+                        $numberOfColDone = 0;
+                        ?>
+                        </div>
+                        </div>
+                        <div class="col-lg-3 vcenter">
+                        <div class="row"> <?php
                     }
                     }?>
                     <div class="form-group <?=$s_a_m?>">

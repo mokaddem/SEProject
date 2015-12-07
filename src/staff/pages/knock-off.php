@@ -121,7 +121,7 @@
                                     Le tournoi n'a pas encore été généré pour cette catégorie et/ou ce jour.
                                 </div>
                             <?php } else {
-                                ?> <b> Modifier les équipes et les terrains pour le premier tour</b>
+                                ?> <h4><b> Modifier les équipes et les terrains pour le premier tour</b></h4>
                                 </br>
                                 <label> Tour 1 </label>
                             <div class="col-lg-12 text-center vcenter">
@@ -166,20 +166,25 @@
 
                             </div>
                             <div class="col-lg-12 text-center">
-                                <p><b>Modifier les terrains pour les tours suivants</b></p>
+                                <h4><b>Modifier les terrains pour les tours suivants</b></h4>
                                 <?php
                                 $matchNum = $numberFirstRound;
-                                $iter = 0;
+                                $round = 2; // Numéro du tour
+                                $maxCol = 4; // Nombre maximum de colonnes.
                                 $numberOfTeams = $numberFirstRound - 1 + $impairTeam;
                                 $stop = False;
                                 while ($numberOfTeams > 1 and !$stop) {
                                     $s_a_m = "server-new-menu";
-
-
                                     $impairTeam = $numberOfTeams % 2;
+                                    if (($round-1)%4 == 0){ ?>
+                                        </div>
+                                        <div class="col-lg-12 text-center">
+                                            <h4><b>Modifier les terrains pour les tours suivants</b></h4>
+                                    <?php
+                                    }
                                     ?>
                                     <div class="col-lg-3 text-center  vcenter">
-                                        <label> Tour <?= $iter + 2 ?> </label>
+                                        <label> Tour <?= $round ?> </label>
                                         <?php if($impairTeam == 1 and $numberOfTeams != 3) { ?>
                                                     <label class="text-danger"> Une team n'aura pas de match à ce tour. </label >
                                                 <?php
@@ -209,7 +214,7 @@
                                         } ?>
                                     </div>
                                     <?php
-                                    $iter++;
+                                    $round++;
                                     $numberOfTeams = intval($numberOfTeams / 2) + $impairTeam;
                                 }
                                 }?>
