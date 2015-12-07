@@ -50,13 +50,14 @@
                 </div>
                 <!-- Registration form - START -->
 
+                <div class="container col-lg-12">
                 <div class="row">
                     <h3><i class="fa fa-suitcase"></i> Propriétaires</h3>
                     <div id="listProp">
                         <p>
                             <?php
                     while ($row = $listProp->fetch_object()){ ?>
-                                <?php echo $row->Mail; ?>,
+                                <?php echo utf8_encode($row->Mail); ?>,
                                     <?php }
                     ?>
                         </p>
@@ -69,12 +70,13 @@
                         <p>
                             <?php
                     while ($row = $listPart->fetch_object()){ ?>
-                                <?php echo $row->Mail; ?>,
+                                <?php echo utf8_encode($row->Mail); ?>,
                                     <?php }
                     ?>
                         </p>
 
                     </div>
+                </div>
                 </div>
                 <br/>
                 <br/>

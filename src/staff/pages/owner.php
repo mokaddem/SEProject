@@ -35,14 +35,13 @@
 
 
             <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
-                <div class="container">
+                <div class="container col-lg-12">
 
                     <div class="page-header">
                         <h1>Ajouter un propriétaire</h1>
                     </div>
 
                     <!-- Registration form - START -->
-                    <div class="container">
                         <div class="row">
                             <div class="col-lg-6">
                                 <form role="form" method="Get" action="php/add-new-owner.php">
@@ -131,9 +130,7 @@
                                 </form>
                             </div>
                         </div>
-                    </div>
                     <!-- Registration form - END -->
-
                 </div>
                 <!-- /.row -->
             </div>

@@ -37,23 +37,16 @@
     ?>
 
 
-    <div id="page-wrapper">
+    <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Knock-Off - Saisir les résultats</h1>
-            </div>
-            <!-- /.col-lg-12 -->
-        </div>
-
-        <!-- Registration form - START -->
-
-        <div class="row">
-            <div class="row">
                 <ul class="nav nav-tabs">
                     <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="input-knock-score.php?jour=sam&cat=0" >Samedi <i class="fa fa-venus-mars" style="font-size: 150%"></i> </a></li>
                     <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="input-knock-score.php?jour=dim&cat=0">Dimanche <i class="fa fa-venus" style="font-size: 150%"></i> || <i class="fa fa-mars" style="font-size: 150%"></i></a></li>
                 </ul>
-                <ul class="nav nav-tabs nav-justified">
+                <div class="panel panel-default">
+                <ul class="nav nav-pills nav-justified">
                     <?php $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, KnockoffSaturday WHERE KnockoffSaturday.Category = Categorie.ID');
                     if ($_GET['jour'] == "dim") {
                       $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, KnockoffSunday WHERE KnockoffSunday.Category = Categorie.ID');
@@ -65,6 +58,7 @@
                           <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="input-knock-score.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation'])?></a></li>
                         <?php }?>
                 </ul>
+                </div>
             </div>
             <div class="row">
                 <br/>
@@ -92,6 +86,7 @@
                 $numberOfTeams = -1;
                 $numberOfColDone = 0;
                 $round = 1;
+                $maxCol = 4;
                 $visitedTeams = array();
                 array_push($visitedTeams,"0");
                 foreach($knockoff_all as $knockoff){
@@ -110,6 +105,12 @@
                             }
                         }
                         if ($newColNeeded){
+                            if ($round % $maxCol == 0){ ?>
+                                </div>
+                                <div class="col-lg-12 vcenter">
+                                    <h4><b> Tours suivants </b></h4>
+                            <?php
+                            }
                             if ($impair == 1 and $round != 1){
                                 displayVoidTeamNoMatch($round, $db);
                             }
@@ -136,14 +137,14 @@
                         for ($j = 1; $j <= 2; $j++) {
                             $teamID = $match['ID_Equipe'.$j];
                             if ($teamID == 0) {
-                                displayVoidTeam($match, $knockoff['Position'], $j, $db);
+                                displayVoidTeam($match, $knockoff['Position'], $j, $round, $db);
                             } else {
-                                $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'] . ' ')->fetch_array();
-                                displayTeam($team, $match, $knockoff['Position'], $j, $numberOfMatch, $db);
+                                $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'])->fetch_array();
+                                displayTeam($team, $match, $knockoff['Position'], $j, $numberOfMatch, $round, $db);
                                 array_push($visitedTeams,$teamID);
                             }
                             if($j==1){
-                                displaySelectButton($knockoff, $match);
+                                displaySelectButton($knockoff, $match, $round);
                             }
                         }
                         ?>
@@ -175,10 +176,10 @@
     <!-- Display functions ! -->
     <?php
 
-    function displaySelectButton($knockoff, $match){
+    function displaySelectButton($knockoff, $match, $round){
         ?>
         <div class="row">
-            <button class="btn btn-danger fa fa-2x fa-arrow-circle-right col-lg-offset-10" style="font-size: 200%" id="btnselect<?=$knockoff['Position']?>" name="btnselect" data-score1="" data-score2="" data-winning-team="" data-matchID="<?=$match['ID']?>"></button>
+            <button class="btn btn-danger fa fa-arrow-circle-right col-lg-offset-10" style="font-size: 200%" id="btnselect<?=$knockoff['Position']?>" name="btnselect" data-score1="" data-score2="" data-winning-team="" data-matchID="<?=$match['ID']?>" data-round="<?=$round?>" disabled="true"></button>
         </div>
         <?php
     }
@@ -195,15 +196,15 @@
         </div>
         <?php
     }
-    function displayVoidTeam($match, $position, $indice, $db){
+    function displayVoidTeam($match, $position, $indice, $round, $db){
         ?>
         <div class="form-group text-center">
-            <button class="btn btn-default btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-position="<?=$position?>" data-matchID="<?=$match["ID"]?>" data-indice="<?=$indice ?>" data-void="1">Vide</button>
+            <button class="btn btn-default btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-position="<?=$position?>" data-matchID="<?=$match["ID"]?>" data-indice="<?=$indice ?>" data-void="1" data-round="<?=$round?>" >Vide</button>
         </div>
         <?php
     }
 
-    function displayTeam($team, $match, $position, $indice, $numberOfMatch, $db){
+    function displayTeam($team, $match, $position, $indice, $numberOfMatch, $round, $db){
         $teamID = $team["ID"];
         $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'] . ' ')->fetch_array();
         $IDPersonne1 = $team['ID_Player1'];
@@ -219,10 +220,10 @@
         ?>
         <div class="row">
             <div class="col-lg-7">
-                <button class="btn-block btn btn-default" data-teamID="<?=$team['ID'] ?>" disabled> [<?=$ranking?>] <?= utf8_encode($player1['LastName']) ?> & <?= utf8_encode($player2['LastName']) ?> </button>
+                <button class="btn-block btn btn-default" data-teamID="<?=$team['ID']?>" data-round="<?=$round ?>" disabled> [<?=$ranking?>] <?= utf8_encode($player1['LastName']) ?> & <?= utf8_encode($player2['LastName']) ?> </button>
             </div>
             <div class="col-lg-2" style="padding-right: 2px">
-                <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" min="0" data-teamID="<?=$team['ID']?>" data-matchID="<?=$match['ID']?>" data-indice="<?=$indice ?>"
+                <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" min="0" data-teamID="<?=$team['ID']?>" data-matchID="<?=$match['ID']?>" data-indice="<?=$indice ?>" data-round="<?=$round ?>
                        step="1" style="float: left;" value="<?=$score ?>"  required>
             </div>
             <?php if($position > ceil($numberOfMatch/2)){ ?>
@@ -265,6 +266,7 @@
             var winningTeam;
             var indice;
             var matchNumber=0;
+            var round;
             $("input").each(function (index) {
                     indice = $( this ).attr("data-indice");
                     if (indice == 1) {
@@ -279,9 +281,26 @@
                         button= $("#btnselect" + matchNumber);
                         button.attr("data-score1", value1).attr("data-score2", value2).attr("data-winning-team", winningTeam);
                         if(winningTeam!=-1){
-                            button.removeClass("btn-danger").addClass("btn-success");
+                            round = parseInt($(this).attr("data-round"));
+                            var teambuttons= $("button[data-round='"+(round+1)+"'][data-teamID='"+winningTeam+"']");
+                            if(teambuttons.size() == 0) {
+                                button.removeClass("btn-danger").addClass("btn-success");
+                                button.attr("disabled", false);
+
+                                //check for non vide for a round
+                                var videbuttons= $("button[data-round='"+(round)+"'][data-void='"+1+"']");
+                                if(videbuttons.size() != 0) {
+                                    button.removeClass("btn-success").addClass("btn-danger");
+                                    button.attr("disabled", true);
+                                }
+                            }else{
+                                button.removeClass("btn-danger").addClass("btn-warning");
+                                button.removeClass("fa-arrow-circle-right").addClass("fa-times");
+                                button.attr("disabled", true);
+                            }
                         }else{
                             button.removeClass("btn-success").addClass("btn-danger");
+                            button.attr("disabled", true);
                         }
                     }})
         }
@@ -316,27 +335,32 @@
             var matchID = parseInt(emptySlot.attr("data-matchID"));
             var indice = parseInt(emptySlot.attr("data-indice"));
             var teamID = parseInt(target.getAttribute("data-winning-team"));
+            var round= parseInt(target.getAttribute("data-round"));
 
-            var data = {'matchID':matchID, 'indice':indice, 'teamID':teamID };
-            if(teamID != -1) {
-                $.ajax({
-                    type: 'POST',
-                    url: url,
-                    dataType: 'text',
-                    data: data,
-                    success: function (text) {
-                        if (text == "success") {
-                            location.reload();
+            //check if team already in the next round.
+            var teambuttons= $("button[data-round='"+(round+1)+"'][data-teamID='"+teamID+"']");
+            if(teambuttons.size() == 0) { //add the team
+                var data = {'matchID': matchID, 'indice': indice, 'teamID': teamID};
+                if (teamID != -1) {
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        dataType: 'text',
+                        data: data,
+                        success: function (text) {
+                            if (text == "success") {
+                                location.reload();
 
-                        } else {
-                            $('form-messages-rep').text("Error");
-                            location.reload();
+                            } else {
+                                $('form-messages-rep').text("Error");
+                                location.reload();
+                            }
+                        },
+                        error: function (text) {
+                            alert("Error:" + text);
                         }
-                    },
-                    error: function (text){
-                        alert("Error:" + text);
-                    }
-                });
+                    });
+                }
             }
         }
     </script>

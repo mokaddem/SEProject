@@ -15,5 +15,5 @@ $req->bind_param("ii", $teamID, $matchID);
 $req->execute();
 addHistory($matchID, "Match", "Ajout");
 
-    echo "success";
+echo "success";
 ?>

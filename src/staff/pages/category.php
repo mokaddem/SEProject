@@ -41,7 +41,6 @@
                         <h1>Ajouter une catégorie</h1>
                     </div>
 
-                    <div class="container">
                         <div class="row">
                             <!-- Registration form - START -->
                             <form role="form" method="Get" action="php/add-new-category.php">
@@ -60,11 +59,10 @@
                                         </div>
                                     </div>
 
-                                <input type="submit" name="add-submit" id="add-submit" name="Year" value="Créer" class="btn btn-info pull-right">
+                                <input type="submit" name="add-submit" id="add-submit" name="Year" value="Créer" class="btn btn-info pull-left">
                             </form>
                             <!-- Registration form - END -->
                         </div>
-                    </div>
 
                 </div>
                 <!-- /.row -->

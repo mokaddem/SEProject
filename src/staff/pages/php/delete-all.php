@@ -12,7 +12,6 @@ $db = BDconnect();
 // On ne touche pas aux catégories, extras, staff ou ranking.
 
 // Vidage de toutes les tables qui ne serront plus utiles cette année.
-$db->query('DELETE FROM Personne WHERE IsPlayer = 1');
 $db->query('DELETE FROM GroupSunday');
 $db->query('DELETE FROM GroupSaturday');
 $db->query('DELETE FROM History');
@@ -32,6 +31,7 @@ $db->query('INSERT INTO OldTerrain SELECT * FROM Terrain');
 //$db->query('DELETE FROM Owner');
 //$db->query('DELETE FROM Terrain');
 
+$db->query('DELETE FROM Personne WHERE IsPlayer = 1');
 
 // Remise des variables globales à leurs valeurs d'origines:
 // Il n'y a plus de tournoi généré.
