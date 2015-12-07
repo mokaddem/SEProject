@@ -10,12 +10,13 @@ Mise à jour de l'historique
 
     // Ajout de l'extra
     $db = BDconnect();
-	$req = $db->prepare("INSERT INTO GlobalVariables(Name,Value) VALUES(?, ?)");
+	$req = $db->prepare("INSERT INTO GlobalVariables(Name,Value,Displayable) VALUES(?,?,?)");
 
 	$Name   = utf8_decode($_GET['nom']);
 	$Description = utf8_decode($_GET['value']);
+	$di=1;
 
-	$req->bind_param("isis",$Name,$Description);
+	$req->bind_param("ssi",$Name,$Description,$di);
 
 	$req->execute();
 
@@ -24,10 +25,11 @@ Mise à jour de l'historique
     // Mise à jour de l'historique
     addHistory($donnees["Name"], "Variable Globale", "Ajout");
 
-	header("Location: ../list.php?type=varGlobal");
 
 //	$req->execute(array('ID' => '', 'FirstName' => $_GET['InputPrenom2'], 'LastName' => $_GET['InputNom2'], 'Title' => $_GET['title2'], 'ZIPCode' => $_GET['InputCP2'], 'PhoneNumber' => $_GET['Fixnum2'], 'GSMNumber' => $_GET['Gsmnum2'], 'Address' => $_GET['InputLoc2'] . "  ," . $_GET['InputAdresse2'] . " n°" . $_GET['InputBat2'] , 'BirthDate' => $_GET['InputBirth2'], 'Mail' => $_GET['InputEmailFirst2'], 'CreationDate' => time(), 'IsPlayer' => $_GET['role2'], 'IsOwner' => $_GET['role2'], 'IsStaff' => 0));
 $reponse->free();
+
+header("Location: ../listVarGlobal.php");
 
 
 ?>
