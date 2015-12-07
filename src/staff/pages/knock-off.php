@@ -272,7 +272,7 @@
                 } ?>
                 <span data-toggle="pList" data-target="#pList" data-url="./php/knock-off-note<?= $videOrNot ?>.php?id=<?= $teamID ?>">
                     <button class="btn btn-<?= $color ?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?= $teamID ?>">
-                        [<?= $teamID ?> - <?= $ranking ?>]
+                        [<?= $ranking ?>]
                         <?= utf8_encode($player1['LastName']) ?> &
                         <?= utf8_encode($player2['LastName']) ?>
                     </button>
