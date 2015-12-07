@@ -7,6 +7,7 @@ Mise à jour de l'historique
  -->
 <?php
 include_once('BDD.php');
+include "../../../mail/mail_helper.php";
 require_once('add-new-history.php');
 include_once('get-ranking.php');
 //	$db = BDconnect();
@@ -48,6 +49,7 @@ $Note1 = utf8_decode($_GET['InputMessage1']);
 $IsPlayer1	= 1;
 $IsOwner1	= 0;
 $IsStaff1	= 0;
+$to1[0]=$_GET['InputEmailFirst1'];
 
 $req->bind_param("iisssisiiissssiii", $ID1, $Title1, $FirstName1, $LastName1, $Ville1, $ZIPCode1, $Rue1, $Number1, $PhoneNumber1, $GSMNumber1, $BirthDate1, $Mail1, $CreationDate, $Note1, $IsPlayer1, $IsOwner1, $IsStaff1);
 
@@ -96,6 +98,65 @@ while($extraID = $extraIDs->fetch_array()){
 }
 
 $reponse->free();
+
+// -------------------Envoie Mail Paiement----------------------------
+	$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet paiement"');
+	$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Adresse HQ"');
+	
+	//récuperer le sujet du mail
+	$listSujet;
+	while($suj = $sujetR->fetch_array())
+	{
+		$listSujet[0] = $suj['Value'];
+	}
+	//Adresse HQ
+	$listHQ;
+	while($lHQ = $adresse ->fetch_array())
+	{
+		$listHQ[0] = $lHQ['Value'];
+	}
+	$sujet = $listSujet[0];
+	$message="";
+
+	if($payer1==1)
+	{
+		$messageR = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Paiement CB"');
+
+		//récuperer le message du mail
+		$listMessage;
+		while($mes = $messageR->fetch_array())
+		{
+			$listMessage[0] = $mes['Value'];
+		}
+	}
+	if($payer1==2)
+	{
+		$messageR2 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Paiement Paypal"');
+		//récuperer le message du mail
+		$listMessage;
+		while($mes = $messageR2->fetch_array())
+		{
+			$listMessage[0] = $mes['Value'];
+		}
+
+	}
+	if($payer1==3)
+	{
+		$messageR3 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Paiement Espèce"');
+		//récuperer le message du mail
+		$listMessage;
+		while($mes = $messageR3->fetch_array())
+		{
+			$listMessage[0] = $mes['Value'];
+		}
+
+	}
+	$message = $listMessage[0];
+	$message.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";
+
+	sendMail($to1, $message, $sujet);
+//////////////////////////////////////
+
 
 if (array_key_exists('ID', $_SESSION)) {
     header("Location: ../list.php?type=player");
