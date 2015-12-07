@@ -13,13 +13,13 @@ Mise à jour de l'historique
 
     if ($_GET['jour'] == "sam"){
         $table = "KnockoffSaturday";
-        $vicTeams = $db->query('SELECT * FROM GroupSaturday, Team WHERE Team.Group_Vic = 1 AND Team.ID_Cat = '.$_GET['InputCat'].' AND (GroupSaturday.ID_t1 = Team.ID OR GroupSaturday.ID_t2 = Team.ID OR GroupSaturday.ID_t3 = Team.ID OR GroupSaturday.ID_t4 = Team.ID OR GroupSaturday.ID_t5 = Team.ID OR GroupSaturday.ID_t6 = Team.ID OR GroupSaturday.ID_t7 = Team.ID OR GroupSaturday.ID_t8 = Team.ID) ORDER BY Team.AvgRanking');
+        $vicTeams = $db->query('SELECT *, Team.ID as teamID FROM Team, GroupSaturday, RankingTextToIntBelgian WHERE Team.Group_Vic = 1 AND Team.ID_Cat = '.$_GET['InputCat'].' AND Team.AvgRanking=RankingTextToIntBelgian.RankingText AND (GroupSaturday.ID_t1 = Team.ID OR GroupSaturday.ID_t2 = Team.ID OR GroupSaturday.ID_t3 = Team.ID OR GroupSaturday.ID_t4 = Team.ID OR GroupSaturday.ID_t5 = Team.ID OR GroupSaturday.ID_t6 = Team.ID OR GroupSaturday.ID_t7 = Team.ID OR GroupSaturday.ID_t8 = Team.ID) ORDER BY RankingTextToIntBelgian.RankingInt DESC');
         $row = $db->query('SELECT COUNT(Team.ID) as numberOfTeams FROM GroupSaturday, Team WHERE Team.Group_Vic = 1 AND Team.ID_Cat = '.$_GET['InputCat'].' AND (GroupSaturday.ID_t1 = Team.ID OR GroupSaturday.ID_t2 = Team.ID OR GroupSaturday.ID_t3 = Team.ID OR GroupSaturday.ID_t4 = Team.ID OR GroupSaturday.ID_t5 = Team.ID OR GroupSaturday.ID_t6 = Team.ID OR GroupSaturday.ID_t7 = Team.ID OR GroupSaturday.ID_t8 = Team.ID)');
         extract($row->fetch_array());
         $row->free();
     } else{
         $table = "KnockoffSunday";
-        $vicTeams = $db->query('SELECT * FROM GroupSunday, Team WHERE Team.Group_Vic = 1 AND Team.ID_Cat = '.$_GET['InputCat'].' AND (GroupSunday.ID_t1 = Team.ID OR GroupSunday.ID_t2 = Team.ID OR GroupSunday.ID_t3 = Team.ID OR GroupSunday.ID_t4 = Team.ID OR GroupSunday.ID_t5 = Team.ID OR GroupSunday.ID_t6 = Team.ID OR GroupSunday.ID_t7 = Team.ID OR GroupSunday.ID_t8 = Team.ID) ORDER BY Team.AvgRanking');
+        $vicTeams = $db->query('SELECT *, Team.ID as teamID FROM Team, GroupSunday, RankingTextToIntBelgian WHERE Team.Group_Vic = 1 AND Team.ID_Cat = '.$_GET['InputCat'].' AND Team.AvgRanking=RankingTextToIntBelgian.RankingText AND (GroupSunday.ID_t1 = Team.ID OR GroupSunday.ID_t2 = Team.ID OR GroupSunday.ID_t3 = Team.ID OR GroupSunday.ID_t4 = Team.ID OR GroupSunday.ID_t5 = Team.ID OR GroupSunday.ID_t6 = Team.ID OR GroupSunday.ID_t7 = Team.ID OR GroupSunday.ID_t8 = Team.ID) ORDER BY RankingTextToIntBelgian.RankingInt DESC');
         $row = $db->query('SELECT COUNT(Team.ID) as numberOfTeams FROM GroupSunday, Team WHERE Team.Group_Vic = 1 AND Team.ID_Cat = '.$_GET['InputCat'].' AND (GroupSunday.ID_t1 = Team.ID OR GroupSunday.ID_t2 = Team.ID OR GroupSunday.ID_t3 = Team.ID OR GroupSunday.ID_t4 = Team.ID OR GroupSunday.ID_t5 = Team.ID OR GroupSunday.ID_t6 = Team.ID OR GroupSunday.ID_t7 = Team.ID OR GroupSunday.ID_t8 = Team.ID)');
         extract($row->fetch_array());
         $row->free();
@@ -38,6 +38,7 @@ Mise à jour de l'historique
         return;
     }
 
+    // Try to put the best players at the extremities, so that they will fight on the final match.
     $vicTeamsGoodOrder = array($numberOfTeams);
     $i = 0;
     $k = 0;
@@ -61,13 +62,15 @@ Mise à jour de l'historique
     $position = 1;
     for($i = 0; $i < $numberOfTeams; $i++){
         $team = $vicTeamsGoodOrder[$i];
+        var_dump($team);
         if ($k == 0){
             $team1 = $team;
-            $teamID1 = $team1['ID'];
+            $teamID1 = $team1['teamID'];
+            var_dump($teamID1);
             $k = 1;
         } else{
             $team2 = $team;
-            $teamID2 = $team2['ID'];
+            $teamID2 = $team2['teamID'];
             $k = 0;
             // On créé le match pour ces deux équipes.
             $reqMatch = $db->prepare('INSERT INTO `Match`(ID, `date`, `hour`, ID_Equipe1, ID_Equipe2, score1, score2, ID_Terrain, Poule_ID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)');

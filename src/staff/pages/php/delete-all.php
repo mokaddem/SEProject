@@ -18,10 +18,10 @@ $db->query('DELETE FROM History');
 $db->query('DELETE FROM KnockoffSaturday');
 $db->query('DELETE FROM KnockoffSunday');
 $db->query('DELETE FROM `Match`');
-$db->query('DELETE FROM Personne WHERE IsPlayer = 1');
 $db->query('DELETE FROM PersonneExtra');
 $db->query('DELETE FROM Player');
 $db->query('DELETE FROM PlayerAlone');
+$db->query('DELETE FROM Personne WHERE IsPlayer = 1');
 $db->query('DELETE FROM Team');
 
 // Propriétaires et terrains vont dans les archives pour pouvoir les recontacter.
@@ -29,13 +29,13 @@ $db->query('DELETE FROM OldOwner');
 $db->query('DELETE FROM OldTerrain');
 $db->query('INSERT INTO OldOwner SELECT * FROM Owner');
 $db->query('INSERT INTO OldTerrain SELECT * FROM Terrain');
+//$db->query('DELETE FROM Owner');
+//$db->query('DELETE FROM Terrain');
 
 
 // Remise des variables globales à leurs valeurs d'origines:
 // Il n'y a plus de tournoi généré.
 // $req = $db->query("UPDATE GlobalVariables SET `Value` = \"[A rédiger]\" WHERE `Name` != \"tournament_started_sam\" AND `Name` != \"tournament_started_dim\"");
-
-$req = $db->query("UPDATE GlobalVariables SET `Value` = \"0\" WHERE `Name` = \"tournament_started\"");
 $req = $db->query("UPDATE GlobalVariables SET `Value` = \"0\" WHERE `Name` = \"tournament_started_sam\"");
 $req = $db->query("UPDATE GlobalVariables SET `Value` = \"0\" WHERE `Name` = \"tournament_started_dim\"");
 // Et tous les autres champ doivent être ré-encodé.
