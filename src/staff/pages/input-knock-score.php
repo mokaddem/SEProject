@@ -92,14 +92,16 @@
                 $numberOfTeams = -1;
                 $numberOfColDone = 0;
                 $round = 1;
+                $visitedTeams = array();
+                array_push($visitedTeams,"0");
                 foreach($knockoff_all as $knockoff){
                     $match = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match'])->fetch_array();
                 ?>
                 <div class="row"> <?php
-                    if ($match['ID_Equipe2'] == 0){
+                    if (in_array($match['ID_Equipe2'],$visitedTeams)){ // If we have already seen this team,
                         if ($numberOfMatchCol == -1) { // We begin the second round.
                             $numberOfMatchCol = $iter - 1;
-                            $impair = ($match['ID_Equipe1'] == 0) ? 0 : 1;
+                            $impair = (in_array($match['ID_Equipe1'],$visitedTeams)) ? 0 : 1;
                             $numberOfTeams = 2 * $numberOfMatchCol + $impair; // Total number of teams that we have to place.
                             $newColNeeded = True;
                         } else {
@@ -117,6 +119,8 @@
                             $impair = $numberOfTeams % 2;
                             $numberOfMatchCol = ($numberOfTeams == 3) ? 3 : (int)($numberOfTeams / 2); // Ce sera 3 si on a 3 finalistes.
                             $numberOfColDone = 0;
+                            $visitedTeams = array();
+                            array_push($visitedTeams,"0");
                             ?>
                             </div>
                             </div>
@@ -135,14 +139,12 @@
                                 displayVoidTeam($match, $knockoff['Position'], $j, $db);
                             } else {
                                 $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'] . ' ')->fetch_array();
-                                displayTeam($team, $match, $knockoff['Position'], $j, $db);
+                                displayTeam($team, $match, $knockoff['Position'], $j, $numberOfMatch, $db);
+                                array_push($visitedTeams,$teamID);
                             }
                             if($j==1){
-                            ?>
-                                <div class="row">
-                                    <button class="btn btn-danger fa fa-2x fa-arrow-circle-right col-lg-offset-10" style="font-size: 200%" id="btnselect<?=$knockoff['Position']?>" name="btnselect" data-score1="" data-score2="" data-winning-team="" data-matchID="<?=$match['ID']?>"></button>
-                                </div>
-                            <?php }
+                                displaySelectButton($knockoff, $match);
+                            }
                         }
                         ?>
                     </div> <?php
@@ -173,6 +175,14 @@
     <!-- Display functions ! -->
     <?php
 
+    function displaySelectButton($knockoff, $match){
+        ?>
+        <div class="row">
+            <button class="btn btn-danger fa fa-2x fa-arrow-circle-right col-lg-offset-10" style="font-size: 200%" id="btnselect<?=$knockoff['Position']?>" name="btnselect" data-score1="" data-score2="" data-winning-team="" data-matchID="<?=$match['ID']?>"></button>
+        </div>
+        <?php
+    }
+
     function displayVoidTeamNoMatch($round, $db){
         ?>
         <div class="form-group server-invalide-menu">
@@ -193,7 +203,7 @@
         <?php
     }
 
-    function displayTeam($team, $match, $position, $indice, $db){
+    function displayTeam($team, $match, $position, $indice, $numberOfMatch, $db){
         $teamID = $team["ID"];
         $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'] . ' ')->fetch_array();
         $IDPersonne1 = $team['ID_Player1'];
@@ -211,10 +221,15 @@
             <div class="col-lg-7">
                 <button class="btn-block btn btn-default" data-teamID="<?=$team['ID'] ?>" disabled> [<?=$ranking?>] <?= utf8_encode($player1['LastName']) ?> & <?= utf8_encode($player2['LastName']) ?> </button>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-2" style="padding-right: 2px">
                 <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" min="0" data-teamID="<?=$team['ID']?>" data-matchID="<?=$match['ID']?>" data-indice="<?=$indice ?>"
                        step="1" style="float: left;" value="<?=$score ?>"  required>
             </div>
+            <?php if($position > ceil($numberOfMatch/2)){ ?>
+                <div class="" style="margin-top: 1.5%">
+                    <a class="pull-left" href="php/delete-knock.php?matchID=<?=$match['ID']?>&indice=<?=$indice?>&jour=<?=$_GET["jour"]?>&cat=<?=$_GET['cat']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce groupe ?');" ><i class="fa fa-trash-o"></i></a>
+                </div>
+            <?php } ?>
         </div>
         <?php
     }
@@ -303,22 +318,26 @@
             var teamID = parseInt(target.getAttribute("data-winning-team"));
 
             var data = {'matchID':matchID, 'indice':indice, 'teamID':teamID };
-            console.log(data);
-            $.ajax({
-                type: 'POST',
-                url: url,
-                data: data,
-                success : function(text){
-                    if (text == "success"){
-                        alert("ok!");
-                        location.reload();
+            if(teamID != -1) {
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    dataType: 'text',
+                    data: data,
+                    success: function (text) {
+                        if (text == "success") {
+                            location.reload();
 
-                    }else{
-                        $('form-messages-rep').text("Error");
+                        } else {
+                            $('form-messages-rep').text("Error");
+                            location.reload();
+                        }
+                    },
+                    error: function (text){
+                        alert("Error:" + text);
                     }
-                }
-            });
-
+                });
+            }
         }
     </script>
 

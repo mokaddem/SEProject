@@ -13,9 +13,7 @@ $query = "UPDATE SEProjectC.`Match` SET score1=0, score2=0, ".$textTeam."=? WHER
 $req = $db->prepare($query);
 $req->bind_param("ii", $teamID, $matchID);
 $req->execute();
-
 addHistory($matchID, "Match", "Ajout");
 
-echo "success";
-
+    echo "success";
 ?>
