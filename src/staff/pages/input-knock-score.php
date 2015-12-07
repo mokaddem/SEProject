@@ -123,7 +123,7 @@
                     }?>
                     <div class="form-group <?=$s_a_m?>">
                         <div class="text-center">
-                            <label ><span class="fa fa-users"></span> Match <?=$knockoff['Position'] ?> </label>
+                            <label ><span class="fa fa-users"></span> Match <?=$knockoff['Position']." [".$match['ID']."]" ?> </label>
                         </div>
                         <?php
                         for ($j = 1; $j <= 2; $j++) {
@@ -231,17 +231,16 @@
 
     <script>
         function saveScore(e){
-            var input = document.getElementById(e.target.id);
+            var input = e.target;
 
             var teamId = input.getAttribute("data-teamID");
             var matchId = input.getAttribute("data-matchID");
             var score = input.value;
             var indice = input.getAttribute("data-indice");
+            var url="../pages/php/add-score-knock-off.php";
 
-            var url="../pages/php/inc/input-score-knock-off.php";
-
-            var data={ 'idT':teamID, 'idM':matchID, 'score':score, 'indice':indice};
-
+            console.log('score='+score+' id='+indice);
+            var data={ 'idT':teamId, 'idM':matchId, 'score':score, 'indice':indice};
             $.ajax({
                 type: "POST",
                 url: url,
@@ -250,7 +249,7 @@
         }
     </script>
 
-    <script type="text/javascript"> document.getElementById("submit").addEventListener("click", saveScore);</script>
+    <script>  	$(':input').change(saveScore);      </script>
 
 </body>
 

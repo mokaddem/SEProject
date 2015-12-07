@@ -10,17 +10,16 @@ Mise à jour de l'historique
 
     // Mise à jour du score
     $db = BDconnect();
-
     $indice = $_POST['indice'];
     $scoreName = $indice == 1 ? "score1" : "score2";
     $score = $_POST['score'];
     $MatchID = $_POST['idM'];
-    $teamID = $_POST['teamID'];
+    $teamID = $_POST['idT'];
 
     $req = $db->prepare("UPDATE SEProjectC.`Match` SET ".$scoreName."=? WHERE `Match`.ID=?");
 
     $req->bind_param("ii", $score, $MatchID);
     $req->execute();
     // Mise à jour de l'historique
-    addHistory($MatchID[$i], "Match", "Ajout");
+    addHistory($MatchID, "Match", "Ajout");
 ?>
