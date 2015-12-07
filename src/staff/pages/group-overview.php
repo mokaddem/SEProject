@@ -141,11 +141,12 @@ foreach ($listDonnees as $donnees) { $i = 1; ?>
         ?>
                         </td>
                         <?php    $i++; }
+                        $idCat = $donnees['ID_Cat'];
                         $matchID = $donnees['ID'];
                         $theDay = $_GET['jour'];
                         ?>
                   <td>
-                      <a href="./group.php?jour=<?=$theDay?>&cat=0"><i class="fa fa-edit fa-fw"></i></a>
+                      <a href="./group.php?jour=<?=$theDay?>&cat=<?=$idCat?>"><i class="fa fa-edit fa-fw"></i></a>
                       <a target="_blank" href="./php/print-group.php?id=<?=$matchID?>&jour=<?=$theDay?>"><i class="fa fa-print"></i></a>
                   </td>
                 </tr>
