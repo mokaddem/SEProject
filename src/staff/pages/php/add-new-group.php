@@ -132,9 +132,9 @@ Mise à jour de l'historique
     $getPoules->free();
 
     if ($i > 0){
-       // header("Location: ../group.php?jour=".$day."&generate=true&cat=".$_GET['InputCat']);
+       header("Location: ../group.php?jour=".$day."&generate=true&cat=".$_GET['InputCat']);
     } else{
-       // header("Location: ../group.php?jour=".$day."&generate=false&cat=".$_GET['InputCat']);
+       header("Location: ../group.php?jour=".$day."&generate=false&cat=".$_GET['InputCat']);
     }
 
     return;

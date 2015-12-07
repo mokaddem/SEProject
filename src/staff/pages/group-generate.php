@@ -63,37 +63,41 @@
 
                 <!-- Registration form - START -->
                 <div class="row">
-                    <form role="form" method="get" action="php/add-new-group.php">
-                        <div class="row">
-                        <div class="col-lg-4 text-center">
+                  <div class="row">
+                    <div class="col-lg-5 text-center">
+                      <fieldset data-role="controlgroup" data-type="horizontal">
+                          <form name="form" method="get" action="php/add-new-group.php">
+                              <label for="sam">Samedi</label>
+                              <input type="radio" name="jour" value="sam" onclick="document.form2.jour.value = this.value;" checked>
+                              <label for="dim">Dimanche</label>
+                              <input type="radio" name="jour" onclick="document.form2.jour.value = this.value;" value="dim">
 
-                            <fieldset data-role="controlgroup" data-type="horizontal">
-                                <label for="sam">Samedi</label>
-                                <input type="radio" name="jour" value="sam" checked>
-                                <label for="dim">Dimanche</label>
-                                <input type="radio" name="jour" value="dim">
+                              <div class="form-group">
+                                  <select class="form-control" id="InputCat" name="InputCat">
+                                      <?php
+                                      $db = BDconnect();
+                                      $reponse = $db->query('SELECT * FROM Categorie');
+                                      while ($donnes = $reponse->fetch_array())
+                                      {
+                                          echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['Designation'])." ".$donnes['Age']."</option>";
+                                      }
+                                      ?>
+                                  </select>
+                              </div>
+                              <input type="submit" name="submit" id="submit" value="Générer la poule sélectionnée" class="btn btn-info pull-right">
+                              <div>
+                          </form>
+                          <form name="form2" action="./php/add-all-group.php">
+                            <input class="hidden" type="text" name="jour" value="sam"/>
+                            <button type="submit" class="btn btn-success pull-left">Tout générer <i class="fa fa-refresh"></i></button>
+                          </form>
+                        </fieldset>
+                        <hr>
+                    </div>
+                    </div>
+                <!-- Registration form - END -->
 
-                                <div class="form-group">
-                                    <select class="form-control" id="InputCat" name="InputCat">
-                                        <?php
-                                        $db = BDconnect();
-                                        $reponse = $db->query('SELECT * FROM Categorie');
-                                        while ($donnes = $reponse->fetch_array())
-                                        {
-                                            echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['Designation'])." ".$donnes['Age']."</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                                <input type="submit" name="submit" id="submit" value="Générer la poule sélectionnée" class="btn btn-info pull-right">
-                                <div>
-                                    <a href="php/add-all-group.php"> Tout générer </a>
-                            </fieldset>
-                            <hr>
-                        </div>
-                        </div>
-                    </form>
-                    <!-- Registration form - END -->
+
                 </div>
                 <!-- /.row -->
             </div>
