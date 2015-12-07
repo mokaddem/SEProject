@@ -23,11 +23,16 @@
 
     $tmp = $db->query('SELECT * FROM Extras');
 
+
     ?>
 
         <div class="container">
 
             <div class="page-header">
+              <?php if (array_key_exists("error", $_GET)){ ?>
+                <div class="alert alert-danger">Saisie incomplète</div>
+              <?php } ?>
+
                 <h1>
                 Formulaire d'inscription
                 <a class="btn btn-default pull-right" href="../index.php">Retour</a>
