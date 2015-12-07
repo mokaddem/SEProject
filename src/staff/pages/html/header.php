@@ -24,15 +24,6 @@
                 <a class="dropdown-toggle" href="../pages/staff.php">
                     <?php echo $_SESSION["NAME"]; ?>
                 </a>
-                <!--<ul class="dropdown-menu dropdown-alerts">
-                    <li>
-                        <a href="../pages/staff.php">
-                            <div>
-                                <i class="fa fa-user"></i> Profil
-                            </div>
-                        </a>
-                    </li>
-                </ul>-->
                 <!-- /.dropdown-alerts -->
             </li>
             <!-- /.dropdown -->
@@ -192,6 +183,19 @@
                             <!--<li>
                                     <a href="login.php">Login Page</a>
                                 </li>-->
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-table fa-fw"></i> Données antérieures <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level colorBlue">
+                            <li>
+                                <a href="list.php?type=oldCourt"> Terrains antérieurs </a>
+                            </li>
+                            <li>
+                                <a href="list.php?type=oldOwner"> Propriétaires antérieurs </a>
+                            </li>
+
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>

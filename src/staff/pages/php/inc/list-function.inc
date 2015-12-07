@@ -13,14 +13,20 @@ function getDonnees($get) {
             case "court":
                 return getCourts();
 
+            case "oldCourt":
+                return getOldCourts();
+
             case "extra":
                 return getExtras();
-               
+
             case "varGlobal":
                 return getVarGlobal();
 
             case "owner":
                 return getOwners();
+
+            case "oldOwner":
+                return getOldOwners();
 
             case "team":
                 //return getTeams();
@@ -30,7 +36,7 @@ function getDonnees($get) {
                 return getStaffs();
             case "category":
                 return getCategories();
-                
+
 
         }
 }
@@ -46,19 +52,28 @@ function getTitreTable($get) {
         case "court":
             return array("ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Jusqu'au", "Crée le", "Note", "Action");
 
+        case "oldCourt":
+            return array("ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Jusqu'au", "Crée le", "Note", "Action");
+
         case "extra":
             return array("ID", "Nom", "Prix (€)", "Description","Nombre de personne", "Action");
-           
+
         case "varGlobal":
-            return array("Titre","Message");
+            return array("Titre","Message", "Action");
 
         case "owner":
             return array("ID", "Nom", "Prénom", "Créé le", "Action");
+
+        case "oldOwner":
+            return array("ID", "Nom", "Prénom", "Créé le", "Action");
+
         case "team":
 //            return getTeams();
             break;
+
         case "staff":
             return array("ID", "Nom", "Prénom", "Né(e) le", "Créé le", "Action");
+
         case "category":
             return array("ID", "Tranche d'âge", "Désignation", "Action");
 
@@ -77,13 +92,19 @@ function getParam($get) {
         case "court":
             return array("ID", "adresse", "surface", "FirstName", "etat", "Type", "disponibiliteFrom", "disponibiliteTo","CreationDate", "Note");
 
+        case "oldCourt":
+            return array("ID", "adresse", "surface", "FirstName", "etat", "Type", "disponibiliteFrom", "disponibiliteTo","CreationDate", "Note");
+
         case "extra":
-            return array("ID", "Name", "nbr", "Price", "Description"); // Name à modif (4eme param)
-            
+            return array("ID", "Name", "Price", "Description", "nbr"); // Name à modif (4eme param)
+
         case "varGlobal":
-            return array("Name", "Value"); 
+            return array("Name", "Value");
 
         case "owner":
+            return array("ID_O", "LastName", "FirstName", "CreationDate");
+
+        case "oldOwner":
             return array("ID_O", "LastName", "FirstName", "CreationDate");
 
         case "team":
@@ -107,12 +128,16 @@ function getTitre($get) {
             return "participants";
         case "court":
             return "terrains";
+        case "oldCourt":
+            return "terrains utilisés l'année passée";
         case "extra":
             return "extras";
         case "varGlobal":
             return "Variables Globales";
         case "owner":
             return "propriétaires";
+        case "oldOwner":
+            return "propriétaires de l'année passée";
         case "team":
             return "équipes";
             break;
@@ -127,6 +152,11 @@ function getTitre($get) {
 function getCourts() {
     $db = BDconnect();
     return $db->query('SELECT *, Terrain.ID as ID, Terrain.Note as Note, Owner.ID as O_id FROM `Terrain`, `Personne`, `Owner` WHERE Owner.ID = Terrain.ID_Owner AND Personne.ID = Owner.ID_Personne');
+}
+
+function getOldCourts() {
+    $db = BDconnect();
+    return $db->query('SELECT *, OldTerrain.ID as ID, OldTerrain.Note as Note, OldOwner.ID as O_id FROM `OldTerrain`, `Personne`, `OldOwner` WHERE OldOwner.ID = OldTerrain.ID_Owner AND Personne.ID = OldOwner.ID_Personne');
 }
 
 function getExtras() {
@@ -158,7 +188,6 @@ function getStaffName($idPerson) {
 }
 
 
-
 function getHistory($id) {
     $db = BDconnect(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
     return $db->query('SELECT * FROM History WHERE id = '.$id.'');
@@ -177,8 +206,12 @@ function getCategories() {
 
 function getOwners() {
     $db = BDconnect();
-//    return $db->query('SELECT *, Owner.ID_Personne as ID, Owner.ID as ID_O FROM Personne, Owner WHERE isOwner=1');//     GROUP BY Owner.ID');
     return $db->query('SELECT *, Owner.ID_Personne as ID, Owner.ID as ID_O FROM Owner, Personne WHERE Owner.ID_Personne = Personne.ID');//     GROUP BY Owner.ID');
+}
+
+function getOldOwners() {
+    $db = BDconnect();
+    return $db->query('SELECT *, OldOwner.ID_Personne as ID, OldOwner.ID as ID_O FROM OldOwner, Personne WHERE OldOwner.ID_Personne = Personne.ID');//     GROUP BY Owner.ID');
 }
 
 function getPlayers() {

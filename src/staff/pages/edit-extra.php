@@ -82,7 +82,7 @@
                                 </div>
                             </div>
 
-                            <a class="btn btn-info" href="list.php?type=extra">Retour</a>
+                            <a class="btn btn-info" href="list-extras.php">Retour</a>
                             <button class="btn btn-success pull-right" type="submit" name="id" id="id" value=<?=$_GET['id']?>>Sauvegarder</button>
 
                         </div>

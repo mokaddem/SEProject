@@ -98,13 +98,13 @@ function PopulateDB(){
         $Birth1	= $BirthDate1;
         $Birth2	= $BirthDate2;
 
-        $ranking1 = getRanking($FirstName1, $LastName1, $Birth1);
-        $ranking2 = getRanking($FirstName2, $LastName2, $Birth2);
-        $req->bind_param("iiiis", $ID_Personne1, $IsLeader, $Paid, $AlreadyPart, $rankings[array_rand($rankings)]);
+        $ranking1 = $rankings[array_rand($rankings)]; //getRanking($FirstName1, $LastName1, $Birth1);
+        $ranking2 = $rankings[array_rand($rankings)];
+        $req->bind_param("iiiis", $ID_Personne1, $IsLeader, $Paid, $AlreadyPart, $ranking1);
         $req->execute();
 
         $req = $db->prepare("INSERT INTO Player(ID_personne, IsLeader, Paid, AlreadyPart, Ranking) VALUES(?, ?, ?, ?, ?)");
-        $req->bind_param("iiiis", $ID_Personne2, $IsLeader,$Paid, $AlreadyPart, $rankings[array_rand($rankings)]);
+        $req->bind_param("iiiis", $ID_Personne2, $IsLeader,$Paid, $AlreadyPart, $ranking2);
         $req->execute();
 
         $reponse = $db->query('SELECT * FROM Team WHERE '.$ID_Personne1.' = ID_Player1 AND '.$ID_Personne2.' = ID_Player2');
@@ -140,7 +140,7 @@ function PopulateDB(){
         /*On determine sa categorie - END */
         $NbmatchWin	= '0';
 
-        $query = 'SELECT RankingInt FROM RankingTextToIntBelgian WHERE "'.$ranking1[4].'" = RankingText OR "'.$ranking2[4].'" = RankingText';
+        $query = 'SELECT RankingInt FROM RankingTextToIntBelgian WHERE "'.$ranking1.'" = RankingText OR "'.$ranking2.'" = RankingText';
         $RankingReponse = $db->query($query);
         $rankings = $RankingReponse->fetch_array();
         $rankInt1 = $rankings['RankingInt'];

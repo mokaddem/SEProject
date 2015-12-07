@@ -19,5 +19,5 @@ Mise à jour de l'historique
 		// Mise à jour de l'historique
     addHistory( $_GET['id'], "Extra", "Suppression");
 
-	header("Location: ../list.php?type=extra");
+	header("Location: ../list-extras.php");
 ?>

@@ -66,8 +66,11 @@
 										$reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
 										while ($donnes = $reponse->fetch_array())
 										{
+                                            $player = $db->query('SELECT * FROM Player WHERE '.$donnes['ID'].' = ID_Personne');
+                                            $player = $player->fetch_array();
+                                            $ranking = ($player['Ranking'] == NULL) ? "NC" : $player['Ranking'];
                                             if (canDeletePlayer($donnes['ID'])){
-                                                echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['FirstName'])." ".utf8_encode($donnes['LastName'])."</option>";
+                                                echo "<option value=".$donnes['ID']."> [".utf8_encode($ranking)."] ".utf8_encode($donnes['FirstName'])." ".utf8_encode($donnes['LastName'])."</option>";
                                             }
 										}
 			 	    				?>
@@ -79,14 +82,14 @@
                                 <label for="sel2"><span class="fa fa-user"></span> Second joueur</label>
                                 <select class="form-control" id="sel2" name="sel2">
                                 <?php
-            										  $db = BDconnect();
-              										$reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
-                                  while ($donnes = $reponse->fetch_array())
-              										{
+                                $db = BDconnect();
+                                $reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
+                                while ($donnes = $reponse->fetch_array()) {
                                     $player = $db->query('SELECT * FROM Player WHERE '.$donnes['ID'].' = ID_Personne');
                                     $player = $player->fetch_array();
+                                    $ranking = ($player['Ranking'] == NULL) ? "NC" : $player['Ranking'];
                                     if (canDeletePlayer($donnes['ID'])){
-    									                  echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['FirstName'])." ".utf8_encode($donnes['LastName'])." [".utf8_encode($player['Ranking'])."]</option>";
+                                        echo "<option value=".$donnes['ID']."> [".utf8_encode($ranking)."] ".utf8_encode($donnes['FirstName'])." ".utf8_encode($donnes['LastName'])."</option>";
 
                                     }
                                 }
