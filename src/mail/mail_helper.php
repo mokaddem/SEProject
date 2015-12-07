@@ -25,11 +25,16 @@ function sendMail($dest, $message, $subject){
         $mail->IsHTML(false);
         $mail->Body = $message;
         $mail->AddAddress($currentDest);
-        if(!$mail->Send()){
+       // if(!$mail->Send()){
+        //   $error_message = "Mailer Error: " . $mail->ErrorInfo;
+        //} else {
+         //       $error_message = "Successfully sent!";
+        //}
+    }
+    if(!$mail->Send()){
            $error_message = "Mailer Error: " . $mail->ErrorInfo;
         } else {
                 $error_message = "Successfully sent!";
         }
-    }
 }
 ?>

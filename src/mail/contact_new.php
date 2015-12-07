@@ -258,11 +258,11 @@ if($tousDim==true)
 ///////////////////////////////////////////////////////////////////////////////
 	if($mesNP==true)
 	{
-		$messageR = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Message Non-Payé"');
+		$messageR = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Message Non-Paye"');
 
-		$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet Non-Payé"');
+		$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet Non-Paye"');
 
-		$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Adresse du HQ"');
+		$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Adresse HQ"');
 
 		//récuperer le message du mail
 		$listMessage;
@@ -291,11 +291,11 @@ if($tousDim==true)
 ///////////////////////////////////////////////////////////////////////////////
 	if($mesTous==true)
 	{
-		$messageR = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Message à tous"');
+		$messageR = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Message a tous"');
 
-		$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet à tous"');
+		$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet a tous"');
 
-		$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Adresse du HQ"');
+		$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Adresse HQ"');
 
 		//récuperer le message du mail
 		$listMessage;
