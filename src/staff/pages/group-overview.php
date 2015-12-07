@@ -4,7 +4,6 @@
 <?php include_once('php/BDD.php'); ?>
 
     <head>
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -67,7 +66,7 @@
                         }
                             while ($donnes = $reponse->fetch_array()) { ?>
                               <?php if ($_GET['cat']=="0") { ?>
-                                <script>document.location.href="./group.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>";</script>
+                                <script>document.location.href="./group-overview.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>";</script>
                               <?php  } ?>
                               <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="group-overview.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation']);?></a></li>
                         <?php }?>
