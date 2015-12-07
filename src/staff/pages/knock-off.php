@@ -113,7 +113,7 @@
                                     Le tournoi n'a pas encore été généré pour cette catégorie et/ou ce jour.
                                 </div>
                             <?php } else {
-                                ?> <b> Modifier les équipes et les terrains pour le premier tour:</b>
+                                ?> <b> Modifier les équipes et les terrains pour le premier tour</b>
                                 </br>
                                 <label> Tour 1 </label>
                             <div class="col-lg-12 text-center vcenter">
