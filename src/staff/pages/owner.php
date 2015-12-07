@@ -42,7 +42,6 @@
                     </div>
 
                     <!-- Registration form - START -->
-                    <div class="container">
                         <div class="row">
                             <div class="col-lg-6">
                                 <form role="form" method="Get" action="php/add-new-owner.php">
@@ -131,7 +130,6 @@
                                 </form>
                             </div>
                         </div>
-                    </div>
                     <!-- Registration form - END -->
 
                 </div>

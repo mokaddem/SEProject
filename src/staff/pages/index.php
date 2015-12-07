@@ -148,6 +148,7 @@
                     <!-- /.col-lg-6 -->
                 </div>
                 <!-- /.container-fluid -->
+            </br></br></br>
         </div>
         <!-- /#page-wrapper -->
 

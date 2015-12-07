@@ -41,7 +41,6 @@
                     </div>
 
                     <!-- Registration form - START -->
-                    <div class="container">
                         <div class="row">
                             <form role="form" method="Get" action="php/add-new-extra.php">
                                 <div class="col-lg-6">
@@ -65,7 +64,6 @@
 
                             </form>
                         </div>
-                    </div>
                     <!-- Registration form - END -->
 
                 </div>
