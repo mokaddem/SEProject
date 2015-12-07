@@ -44,10 +44,10 @@ Mise à jour de l'historique
     $k = 0;
     foreach($vicTeams as $team){
         if ($k == 0){
-            $vicTeamsGoodOrder[$i] = $team;
+            $vicTeamsGoodOrder[$numberOfTeams-1-$i] = $team;
             $k = 1;
         } elseif ($k == 1){
-            $vicTeamsGoodOrder[$numberOfTeams-1-$i] = $team;
+            $vicTeamsGoodOrder[$i] = $team;
             $i++;
             $k = 0;
         }
@@ -105,16 +105,18 @@ Mise à jour de l'historique
         }
     }
 
-    for ($j = $numberOfTeams; $j >= 3; $j = ($j+1)/2){
+    $tripleVictor = 0;
+    for ($j = $numberOfTeams; $j >= 3; $j = (($j+($j%2))/2)) {
         // Because there will be 3 victors for X_0 = 3, X_n = X_(n-1)*2-1 (3, 5, 9, 17, ...)
-        if ($j == 3){
+        // If $j is pair, we need to divide it by 2.
+        if ($j == 3) {
             // For the 3 victors, we need to have one more iteration for the following loop !
-            echo "Will have a triple victor !\n";
+            $tripleVictor = 1;
             $numberOfTeams++;
             break;
         }
     }
-    if ($j != 3){
+    if ($tripleVictor != 1) {
         $numberOfTeams--;
     }
     // On génère les matches des autres tours du tournoi.

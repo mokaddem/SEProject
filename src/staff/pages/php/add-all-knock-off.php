@@ -26,7 +26,7 @@ Mise à jour de l'historique
         $generate = true;
         $getcat = $db->query("SELECT DISTINCT Category FROM " . $table);
         foreach ($getcat as $doneCat) {
-            if ($doneCat == $cat) {
+            if ($doneCat['Category'] == $cat) {
                 $generate = false;
                 break;
             }
@@ -108,17 +108,11 @@ Mise à jour de l'historique
             }
 
             $tripleVictor = 0;
-            for ($j = $numberOfTeams; $j >= 3; $j = ($j + 1) / 2) {
+            for ($j = $numberOfTeams; $j >= 3; $j = (($j+($j%2))/2)) {
                 // Because there will be 3 victors for X_0 = 3, X_n = X_(n-1)*2-1 (3, 5, 9, 17, ...)
+                // If $j is pair, we need to divide it by 2.
                 if ($j == 3) {
                     // For the 3 victors, we need to have one more iteration for the following loop !
-                    $tripleVictor = 1;
-                    $numberOfTeams++;
-                    break;
-                }
-            }
-            for ($j = $numberOfTeams; $j >= 3; $j = $j/2){
-                if ($j == 3){
                     $tripleVictor = 1;
                     $numberOfTeams++;
                     break;
@@ -129,7 +123,6 @@ Mise à jour de l'historique
             }
             // On génère les matches des autres tours du tournoi.
             // Dans un tournois à 16 équipes, il y en aura 7.
-            echo $numberOfTeams . "\n";
             for ($k = $numberOfTeams / 2; $k >= 1; $k--) {
                 echo $k;
                 $reqMatch = $db->prepare('INSERT INTO `Match`(ID, `date`, `hour`, ID_Equipe1, ID_Equipe2, score1, score2, ID_Terrain, Poule_ID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)');
@@ -176,7 +169,6 @@ Mise à jour de l'historique
             }
         }
     }
-
     if ($numCatDone == 0){
         header("Location: ../knock-off.php?jour=".$_GET['jour']."&generate=false&cat=0");
     } else{
