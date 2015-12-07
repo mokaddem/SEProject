@@ -2,10 +2,10 @@
 -- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Sam 05 Décembre 2015 à 02:34
--- Version du serveur: 5.5.46-0ubuntu0.14.04.2
--- Version de PHP: 5.6.15-1+deb.sury.org~trusty+1
+-- Host: localhost
+-- Generation Time: Dec 07, 2015 at 12:44 AM
+-- Server version: 5.5.46-0ubuntu0.14.04.2
+-- PHP Version: 5.5.9-1ubuntu4.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `SEProjectC`
+-- Database: `SEProjectC`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Categorie`
+-- Table structure for table `Categorie`
 --
 
 CREATE TABLE IF NOT EXISTS `Categorie` (
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `Categorie` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
--- Contenu de la table `Categorie`
+-- Dumping data for table `Categorie`
 --
 
 INSERT INTO `Categorie` (`ID`, `Age`, `Designation`) VALUES
@@ -52,7 +52,7 @@ INSERT INTO `Categorie` (`ID`, `Age`, `Designation`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Extras`
+-- Table structure for table `Extras`
 --
 
 CREATE TABLE IF NOT EXISTS `Extras` (
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `Extras` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Contenu de la table `Extras`
+-- Dumping data for table `Extras`
 --
 
 INSERT INTO `Extras` (`ID`, `Name`, `Price`, `Description`) VALUES
@@ -77,32 +77,36 @@ INSERT INTO `Extras` (`ID`, `Name`, `Price`, `Description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `GlobalVariables`
+-- Table structure for table `GlobalVariables`
 --
 
 CREATE TABLE IF NOT EXISTS `GlobalVariables` (
-  `Name` varchar(20) COLLATE latin1_bin NOT NULL,
-  `Value` varchar(1000) COLLATE latin1_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(30) COLLATE latin1_bin NOT NULL,
+  `Value` varchar(1000) COLLATE latin1_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_bin AUTO_INCREMENT=12 ;
 
 --
--- Contenu de la table `GlobalVariables`
+-- Dumping data for table `GlobalVariables`
 --
 
-INSERT INTO `GlobalVariables` (`Name`, `Value`) VALUES
-('Message Leader', '[A rediger]'),
-('Sujet Leader', '[A rediger]'),
-('Adresse HQ', '[A rediger]'),
-('Message Non-Payé', '[A rediger]'),
-('Sujet Non-Payé', '[A rediger]'),
-('Message à tous', '[A rediger]'),
-('Sujet à tous', '[A rediger]'),
-('Message', 'ar');
+INSERT INTO `GlobalVariables` (`id`, `Name`, `Value`) VALUES
+(1, 'Message Leader', '[A rediger]'),
+(2, 'Sujet Leader', '[A rediger]'),
+(3, 'Adresse HQ', '[A rediger]'),
+(4, 'Message Non-Payé', '[A rediger]'),
+(5, 'Sujet Non-Payé', '[A rediger]'),
+(6, 'Message à tous', '[A rediger]'),
+(7, 'Sujet à tous', '[A rediger]'),
+(8, 'Message', 'ar'),
+(10, 'tournament_started_sam', '0'),
+(11, 'tournament_started_dim', '1');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `GroupSaturday`
+-- Table structure for table `GroupSaturday`
 --
 
 CREATE TABLE IF NOT EXISTS `GroupSaturday` (
@@ -120,12 +124,12 @@ CREATE TABLE IF NOT EXISTS `GroupSaturday` (
   `ID_Cat` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID` (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=121 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=129 ;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `GroupSunday`
+-- Table structure for table `GroupSunday`
 --
 
 CREATE TABLE IF NOT EXISTS `GroupSunday` (
@@ -143,12 +147,21 @@ CREATE TABLE IF NOT EXISTS `GroupSunday` (
   `ID_Cat` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `GroupSunday`
+--
+
+INSERT INTO `GroupSunday` (`ID`, `ID_terrain`, `ID_t1`, `ID_t2`, `ID_t3`, `ID_t4`, `ID_t5`, `ID_t6`, `ID_t7`, `ID_t8`, `ID_Leader`, `ID_Cat`) VALUES
+(7, 13, 43, 44, 45, 46, 50, 54, NULL, NULL, 43, 1),
+(8, 14, 61, 62, 63, 64, 65, 66, NULL, NULL, 61, 1),
+(9, 15, 67, 68, 225, NULL, NULL, NULL, NULL, NULL, 67, 1);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `History`
+-- Table structure for table `History`
 --
 
 CREATE TABLE IF NOT EXISTS `History` (
@@ -164,10 +177,10 @@ CREATE TABLE IF NOT EXISTS `History` (
   UNIQUE KEY `id_3` (`id`),
   UNIQUE KEY `id_4` (`id`),
   KEY `id_2` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1595 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1844 ;
 
 --
--- Contenu de la table `History`
+-- Dumping data for table `History`
 --
 
 INSERT INTO `History` (`id`, `idPerson`, `idEntite`, `typeEntite`, `action`, `date`, `hour`) VALUES
@@ -1486,12 +1499,261 @@ INSERT INTO `History` (`id`, `idPerson`, `idEntite`, `typeEntite`, `action`, `da
 (1591, 7, 64, 'Vainqueur - Team 64', 'Ajout', '2015-12-05', '02:24:13'),
 (1592, 7, 60, 'Vainqueur - Team 60', 'Ajout', '2015-12-05', '02:24:13'),
 (1593, 7, 65, 'Vainqueur - Team 65', 'Ajout', '2015-12-05', '02:24:13'),
-(1594, 7, 0, 'Groupes & Knock-Off', 'Suppression', '2015-12-05', '02:33:43');
+(1594, 7, 0, 'Groupes & Knock-Off', 'Suppression', '2015-12-05', '02:33:43'),
+(1595, 7, 121, 'Poules (Samedi)', 'Ajout', '2015-12-05', '02:40:45'),
+(1596, 7, 795, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1597, 7, 796, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1598, 7, 797, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1599, 7, 798, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1600, 7, 799, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1601, 7, 800, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1602, 7, 801, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1603, 7, 802, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1604, 7, 803, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1605, 7, 804, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1606, 7, 122, 'Poules (Samedi)', 'Ajout', '2015-12-05', '02:40:45'),
+(1607, 7, 805, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1608, 7, 806, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1609, 7, 807, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1610, 7, 808, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1611, 7, 809, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1612, 7, 810, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1613, 7, 811, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1614, 7, 812, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1615, 7, 813, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1616, 7, 814, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1617, 7, 123, 'Poules (Samedi)', 'Ajout', '2015-12-05', '02:40:45'),
+(1618, 7, 815, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1619, 7, 816, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1620, 7, 817, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1621, 7, 818, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1622, 7, 819, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1623, 7, 820, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1624, 7, 821, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1625, 7, 822, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1626, 7, 823, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1627, 7, 824, 'Match', 'Ajout', '2015-12-05', '02:40:45'),
+(1628, 7, 124, 'Poules (Samedi)', 'Ajout', '2015-12-05', '02:43:38'),
+(1629, 7, 825, 'Match', 'Ajout', '2015-12-05', '02:43:38'),
+(1630, 7, 43, 'Vainqueur - Team 43', 'Ajout', '2015-12-05', '02:43:49'),
+(1631, 7, 44, 'Vainqueur - Team 44', 'Ajout', '2015-12-05', '02:43:49'),
+(1632, 7, 54, 'Vainqueur - Team 54', 'Ajout', '2015-12-05', '02:43:49'),
+(1633, 7, 60, 'Vainqueur - Team 60', 'Ajout', '2015-12-05', '02:43:49'),
+(1634, 7, 64, 'Vainqueur - Team 64', 'Ajout', '2015-12-05', '02:43:49'),
+(1635, 7, 65, 'Vainqueur - Team 65', 'Ajout', '2015-12-05', '02:43:49'),
+(1636, 7, 826, 'Match - Knock-off', 'Ajout', '2015-12-05', '02:43:54'),
+(1637, 7, 827, 'Match - Knock-off', 'Ajout', '2015-12-05', '02:43:54'),
+(1638, 7, 828, 'Match - Knock-off', 'Ajout', '2015-12-05', '02:43:54'),
+(1639, 7, 829, 'Match - Knock-off', 'Ajout', '2015-12-05', '02:43:54'),
+(1640, 7, 830, 'Match - Knock-off', 'Ajout', '2015-12-05', '02:43:54'),
+(1641, 7, 831, 'Match - Knock-off', 'Ajout', '2015-12-05', '02:43:54'),
+(1642, 7, 12, 'Knock-Off (Samedi)', 'CrÃ©ation', '2015-12-05', '02:43:54'),
+(1643, 7, 57, 'Vainqueur - Team 57', 'Ajout', '2015-12-05', '02:44:07'),
+(1644, 7, 59, 'Vainqueur - Team 59', 'Ajout', '2015-12-05', '02:44:07'),
+(1645, 7, 389, 'Joueur', 'Ajout', '2015-12-05', '03:41:34'),
+(1646, 7, 390, 'Joueur', 'Ajout', '2015-12-05', '03:41:34'),
+(1647, 7, 69, 'Equipe', 'Ajout', '2015-12-05', '03:41:38'),
+(1648, 7, 107, 'Joueur', 'Edition', '2015-12-05', '03:59:00'),
+(1649, 7, 0, 'Groupes & Knock-Off', 'Suppression', '2015-12-06', '00:18:26'),
+(1650, 7, 125, 'Poules (Samedi)', 'Ajout', '2015-12-06', '00:18:41'),
+(1651, 7, 832, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1652, 7, 833, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1653, 7, 834, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1654, 7, 835, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1655, 7, 836, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1656, 7, 837, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1657, 7, 838, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1658, 7, 839, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1659, 7, 840, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1660, 7, 841, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1661, 7, 126, 'Poules (Samedi)', 'Ajout', '2015-12-06', '00:18:41'),
+(1662, 7, 842, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1663, 7, 843, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1664, 7, 844, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1665, 7, 845, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1666, 7, 846, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1667, 7, 847, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1668, 7, 848, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1669, 7, 849, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1670, 7, 850, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1671, 7, 851, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1672, 7, 127, 'Poules (Samedi)', 'Ajout', '2015-12-06', '00:18:41'),
+(1673, 7, 852, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1674, 7, 853, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1675, 7, 854, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1676, 7, 855, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1677, 7, 856, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1678, 7, 857, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1679, 7, 858, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1680, 7, 859, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1681, 7, 860, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1682, 7, 861, 'Match', 'Ajout', '2015-12-06', '00:18:41'),
+(1683, 7, 43, 'Vainqueur - Team 43', 'Ajout', '2015-12-06', '00:19:08'),
+(1684, 7, 44, 'Vainqueur - Team 44', 'Ajout', '2015-12-06', '00:19:08'),
+(1685, 7, 54, 'Vainqueur - Team 54', 'Ajout', '2015-12-06', '00:19:08'),
+(1686, 7, 60, 'Vainqueur - Team 60', 'Ajout', '2015-12-06', '00:19:08'),
+(1687, 7, 61, 'Vainqueur - Team 61', 'Ajout', '2015-12-06', '00:19:08'),
+(1688, 7, 64, 'Vainqueur - Team 64', 'Ajout', '2015-12-06', '00:19:08'),
+(1689, 7, 65, 'Vainqueur - Team 65', 'Ajout', '2015-12-06', '00:19:08'),
+(1690, 7, 862, 'Match - Knock-off', 'Ajout', '2015-12-06', '00:19:21'),
+(1691, 7, 863, 'Match - Knock-off', 'Ajout', '2015-12-06', '00:19:21'),
+(1692, 7, 864, 'Match - Knock-off', 'Ajout', '2015-12-06', '00:19:21'),
+(1693, 7, 865, 'Match - Knock-off', 'Ajout', '2015-12-06', '00:19:21'),
+(1694, 7, 866, 'Match - Knock-off', 'Ajout', '2015-12-06', '00:19:21'),
+(1695, 7, 867, 'Match - Knock-off', 'Ajout', '2015-12-06', '00:19:21'),
+(1696, 7, 0, 'Groupes & Knock-Off', 'Suppression', '2015-12-06', '14:18:53'),
+(1697, 7, 128, 'Poules (Samedi)', 'Ajout', '2015-12-06', '14:25:31'),
+(1698, 7, 1, 'Poules (Dimanche)', 'Ajout', '2015-12-06', '14:25:56'),
+(1699, 7, 915, 'Match', 'Ajout', '2015-12-06', '14:25:56'),
+(1700, 7, 916, 'Match', 'Ajout', '2015-12-06', '14:25:57'),
+(1701, 7, 917, 'Match', 'Ajout', '2015-12-06', '14:25:57'),
+(1702, 7, 918, 'Match', 'Ajout', '2015-12-06', '14:25:57'),
+(1703, 7, 919, 'Match', 'Ajout', '2015-12-06', '14:25:57'),
+(1704, 7, 920, 'Match', 'Ajout', '2015-12-06', '14:25:57'),
+(1705, 7, 921, 'Match', 'Ajout', '2015-12-06', '14:25:57'),
+(1706, 7, 922, 'Match', 'Ajout', '2015-12-06', '14:25:57'),
+(1707, 7, 923, 'Match', 'Ajout', '2015-12-06', '14:25:57'),
+(1708, 7, 924, 'Match', 'Ajout', '2015-12-06', '14:25:57'),
+(1709, 7, 925, 'Match', 'Ajout', '2015-12-06', '14:25:57'),
+(1710, 7, 926, 'Match', 'Ajout', '2015-12-06', '14:25:58'),
+(1711, 7, 927, 'Match', 'Ajout', '2015-12-06', '14:25:58'),
+(1712, 7, 928, 'Match', 'Ajout', '2015-12-06', '14:25:58'),
+(1713, 7, 929, 'Match', 'Ajout', '2015-12-06', '14:25:58'),
+(1714, 7, 2, 'Poules (Dimanche)', 'Ajout', '2015-12-06', '14:25:58'),
+(1715, 7, 930, 'Match', 'Ajout', '2015-12-06', '14:25:58'),
+(1716, 7, 931, 'Match', 'Ajout', '2015-12-06', '14:25:58'),
+(1717, 7, 932, 'Match', 'Ajout', '2015-12-06', '14:25:58'),
+(1718, 7, 933, 'Match', 'Ajout', '2015-12-06', '14:25:58'),
+(1719, 7, 934, 'Match', 'Ajout', '2015-12-06', '14:25:58'),
+(1720, 7, 935, 'Match', 'Ajout', '2015-12-06', '14:25:58'),
+(1721, 7, 936, 'Match', 'Ajout', '2015-12-06', '14:25:58'),
+(1722, 7, 937, 'Match', 'Ajout', '2015-12-06', '14:25:58'),
+(1723, 7, 938, 'Match', 'Ajout', '2015-12-06', '14:25:58'),
+(1724, 7, 939, 'Match', 'Ajout', '2015-12-06', '14:25:59'),
+(1725, 7, 940, 'Match', 'Ajout', '2015-12-06', '14:25:59'),
+(1726, 7, 941, 'Match', 'Ajout', '2015-12-06', '14:25:59'),
+(1727, 7, 942, 'Match', 'Ajout', '2015-12-06', '14:25:59'),
+(1728, 7, 943, 'Match', 'Ajout', '2015-12-06', '14:25:59'),
+(1729, 7, 944, 'Match', 'Ajout', '2015-12-06', '14:25:59'),
+(1730, 7, 3, 'Poules (Dimanche)', 'Ajout', '2015-12-06', '14:25:59'),
+(1731, 7, 945, 'Match', 'Ajout', '2015-12-06', '14:25:59'),
+(1732, 7, 0, 'Groupes & Knock-Off', 'Suppression', '2015-12-06', '15:55:32'),
+(1733, 7, 4, 'Poules (Dimanche)', 'Ajout', '2015-12-06', '15:55:35'),
+(1734, 7, 948, 'Match', 'Ajout', '2015-12-06', '15:55:35'),
+(1735, 7, 949, 'Match', 'Ajout', '2015-12-06', '15:55:35'),
+(1736, 7, 950, 'Match', 'Ajout', '2015-12-06', '15:55:35'),
+(1737, 7, 951, 'Match', 'Ajout', '2015-12-06', '15:55:35'),
+(1738, 7, 952, 'Match', 'Ajout', '2015-12-06', '15:55:35'),
+(1739, 7, 953, 'Match', 'Ajout', '2015-12-06', '15:55:35'),
+(1740, 7, 954, 'Match', 'Ajout', '2015-12-06', '15:55:35'),
+(1741, 7, 955, 'Match', 'Ajout', '2015-12-06', '15:55:35'),
+(1742, 7, 956, 'Match', 'Ajout', '2015-12-06', '15:55:35'),
+(1743, 7, 957, 'Match', 'Ajout', '2015-12-06', '15:55:35'),
+(1744, 7, 958, 'Match', 'Ajout', '2015-12-06', '15:55:36'),
+(1745, 7, 959, 'Match', 'Ajout', '2015-12-06', '15:55:36'),
+(1746, 7, 960, 'Match', 'Ajout', '2015-12-06', '15:55:36'),
+(1747, 7, 961, 'Match', 'Ajout', '2015-12-06', '15:55:36'),
+(1748, 7, 962, 'Match', 'Ajout', '2015-12-06', '15:55:36'),
+(1749, 7, 5, 'Poules (Dimanche)', 'Ajout', '2015-12-06', '15:55:36'),
+(1750, 7, 963, 'Match', 'Ajout', '2015-12-06', '15:55:36'),
+(1751, 7, 964, 'Match', 'Ajout', '2015-12-06', '15:55:36'),
+(1752, 7, 965, 'Match', 'Ajout', '2015-12-06', '15:55:36'),
+(1753, 7, 966, 'Match', 'Ajout', '2015-12-06', '15:55:36'),
+(1754, 7, 967, 'Match', 'Ajout', '2015-12-06', '15:55:36'),
+(1755, 7, 968, 'Match', 'Ajout', '2015-12-06', '15:55:36'),
+(1756, 7, 969, 'Match', 'Ajout', '2015-12-06', '15:55:36'),
+(1757, 7, 970, 'Match', 'Ajout', '2015-12-06', '15:55:37'),
+(1758, 7, 971, 'Match', 'Ajout', '2015-12-06', '15:55:37'),
+(1759, 7, 972, 'Match', 'Ajout', '2015-12-06', '15:55:37'),
+(1760, 7, 973, 'Match', 'Ajout', '2015-12-06', '15:55:37'),
+(1761, 7, 974, 'Match', 'Ajout', '2015-12-06', '15:55:37'),
+(1762, 7, 975, 'Match', 'Ajout', '2015-12-06', '15:55:37'),
+(1763, 7, 976, 'Match', 'Ajout', '2015-12-06', '15:55:37'),
+(1764, 7, 977, 'Match', 'Ajout', '2015-12-06', '15:55:37'),
+(1765, 7, 6, 'Poules (Dimanche)', 'Ajout', '2015-12-06', '15:55:37'),
+(1766, 7, 978, 'Match', 'Ajout', '2015-12-06', '15:55:37'),
+(1767, 7, 391, 'Joueur', 'Ajout', '2015-12-06', '17:48:30'),
+(1768, 7, 391, 'Joueur', 'Ajout', '2015-12-06', '17:49:40'),
+(1769, 7, 391, 'Joueur', 'Ajout', '2015-12-06', '17:50:12'),
+(1770, 7, 391, 'Joueur', 'Ajout', '2015-12-06', '17:50:29'),
+(1771, 7, 391, 'Joueur', 'Ajout', '2015-12-06', '17:50:37'),
+(1772, 7, 391, 'Joueur', 'Ajout', '2015-12-06', '17:50:54'),
+(1773, 7, 391, 'Joueur', 'Ajout', '2015-12-06', '17:53:11'),
+(1774, 7, 391, 'Joueur', 'Ajout', '2015-12-06', '17:55:22'),
+(1775, 7, 391, 'Joueur', 'Ajout', '2015-12-06', '17:55:36'),
+(1776, 7, 391, 'Joueur', 'Ajout', '2015-12-06', '17:55:54'),
+(1777, 7, 391, 'Joueur', 'Ajout', '2015-12-06', '17:59:40'),
+(1778, 7, 391, 'Joueur', 'Ajout', '2015-12-06', '18:04:46'),
+(1779, 7, 391, 'Joueur', 'Ajout', '2015-12-06', '18:07:04'),
+(1780, 7, 43, 'Vainqueur - Team 43', 'Ajout', '2015-12-06', '23:31:24'),
+(1781, 7, 44, 'Vainqueur - Team 44', 'Ajout', '2015-12-06', '23:31:24'),
+(1782, 7, 62, 'Vainqueur - Team 62', 'Ajout', '2015-12-06', '23:31:24'),
+(1783, 7, 67, 'Vainqueur - Team 67', 'Ajout', '2015-12-06', '23:31:24'),
+(1784, 7, 68, 'Vainqueur - Team 68', 'Ajout', '2015-12-06', '23:31:24'),
+(1785, 7, 43, 'Vainqueur - Team 43', 'Ajout', '2015-12-06', '23:31:31'),
+(1786, 7, 44, 'Vainqueur - Team 44', 'Ajout', '2015-12-06', '23:31:31'),
+(1787, 7, 61, 'Vainqueur - Team 61', 'Ajout', '2015-12-06', '23:31:31'),
+(1788, 7, 62, 'Vainqueur - Team 62', 'Ajout', '2015-12-06', '23:31:31'),
+(1789, 7, 67, 'Vainqueur - Team 67', 'Ajout', '2015-12-06', '23:31:31'),
+(1790, 7, 68, 'Vainqueur - Team 68', 'Ajout', '2015-12-06', '23:31:31'),
+(1791, 7, 997, 'Match - Knock-Off', 'Ajout', '2015-12-06', '23:31:55'),
+(1792, 7, 998, 'Match - Knock-Off', 'Ajout', '2015-12-06', '23:31:55'),
+(1793, 7, 999, 'Match - Knock-Off', 'Ajout', '2015-12-06', '23:31:55'),
+(1794, 7, 1000, 'Match - Knock-Off', 'Ajout', '2015-12-06', '23:31:56'),
+(1795, 7, 1001, 'Match - Knock-Off', 'Ajout', '2015-12-06', '23:31:56'),
+(1796, 7, 1002, 'Match - Knock-Off', 'Ajout', '2015-12-06', '23:31:56'),
+(1797, 7, 6, 'Knock-Off (Dimanche)', 'CrÃ©ation', '2015-12-06', '23:31:56'),
+(1798, 7, 0, 'Groupes & Knock-Off', 'Suppression', '2015-12-06', '23:58:20'),
+(1799, 7, 7, 'Poules (Dimanche)', 'Ajout', '2015-12-06', '23:58:26'),
+(1800, 7, 1003, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:26'),
+(1801, 7, 1004, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:26'),
+(1802, 7, 1005, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:26'),
+(1803, 7, 1006, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:26'),
+(1804, 7, 1007, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:26'),
+(1805, 7, 1008, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:26'),
+(1806, 7, 1009, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:26'),
+(1807, 7, 1010, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:26'),
+(1808, 7, 1011, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:27'),
+(1809, 7, 1012, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:27'),
+(1810, 7, 1013, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:27'),
+(1811, 7, 1014, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:27'),
+(1812, 7, 1015, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:27'),
+(1813, 7, 1016, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:27'),
+(1814, 7, 1017, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:27'),
+(1815, 7, 8, 'Poules (Dimanche)', 'Ajout', '2015-12-06', '23:58:27'),
+(1816, 7, 1018, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:27'),
+(1817, 7, 1019, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:27'),
+(1818, 7, 1020, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:27'),
+(1819, 7, 1021, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:28'),
+(1820, 7, 1022, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:28'),
+(1821, 7, 1023, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:28'),
+(1822, 7, 1024, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:28'),
+(1823, 7, 1025, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:28'),
+(1824, 7, 1026, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:28'),
+(1825, 7, 1027, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:28'),
+(1826, 7, 1028, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:28'),
+(1827, 7, 1029, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:28'),
+(1828, 7, 1030, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:28'),
+(1829, 7, 1031, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:28'),
+(1830, 7, 1032, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:29'),
+(1831, 7, 9, 'Poules (Dimanche)', 'Ajout', '2015-12-06', '23:58:29'),
+(1832, 7, 1033, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:29'),
+(1833, 7, 1034, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:29'),
+(1834, 7, 1035, 'Match de poule (Dimanche)', 'Ajout', '2015-12-06', '23:58:29'),
+(1835, 7, 43, 'Vainqueur - Team 43', 'Ajout', '2015-12-07', '00:00:31'),
+(1836, 7, 44, 'Vainqueur - Team 44', 'Ajout', '2015-12-07', '00:00:31'),
+(1837, 7, 61, 'Vainqueur - Team 61', 'Ajout', '2015-12-07', '00:00:31'),
+(1838, 7, 67, 'Vainqueur - Team 67', 'Ajout', '2015-12-07', '00:00:31'),
+(1839, 7, 1036, 'Match - Knock-Off', 'Ajout', '2015-12-07', '00:02:00'),
+(1840, 7, 1037, 'Match - Knock-Off', 'Ajout', '2015-12-07', '00:02:00'),
+(1841, 7, 1038, 'Match - Knock-Off', 'Ajout', '2015-12-07', '00:02:00'),
+(1842, 7, 1039, 'Match - Knock-Off', 'Ajout', '2015-12-07', '00:02:00'),
+(1843, 7, 10, 'Knock-Off (Dimanche)', 'CrÃ©ation', '2015-12-07', '00:02:00');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `KnockoffSaturday`
+-- Table structure for table `KnockoffSaturday`
 --
 
 CREATE TABLE IF NOT EXISTS `KnockoffSaturday` (
@@ -1500,12 +1762,12 @@ CREATE TABLE IF NOT EXISTS `KnockoffSaturday` (
   `Position` int(11) NOT NULL,
   `Category` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `KnockoffSunday`
+-- Table structure for table `KnockoffSunday`
 --
 
 CREATE TABLE IF NOT EXISTS `KnockoffSunday` (
@@ -1514,12 +1776,22 @@ CREATE TABLE IF NOT EXISTS `KnockoffSunday` (
   `Position` int(11) NOT NULL,
   `Category` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `KnockoffSunday`
+--
+
+INSERT INTO `KnockoffSunday` (`ID`, `ID_Match`, `Position`, `Category`) VALUES
+(7, 1036, 1, 1),
+(8, 1037, 2, 1),
+(9, 1038, 3, 1),
+(10, 1039, 4, 1);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Match`
+-- Table structure for table `Match`
 --
 
 CREATE TABLE IF NOT EXISTS `Match` (
@@ -1533,12 +1805,55 @@ CREATE TABLE IF NOT EXISTS `Match` (
   `ID_Terrain` int(11) DEFAULT NULL,
   `Poule_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=795 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1040 ;
+
+--
+-- Dumping data for table `Match`
+--
+
+INSERT INTO `Match` (`ID`, `date`, `hour`, `ID_Equipe1`, `ID_Equipe2`, `score1`, `score2`, `ID_Terrain`, `Poule_ID`) VALUES
+(1003, '2015-12-06', '08:30', 43, 44, 0, 0, 13, 7),
+(1004, '2015-12-06', '08:30', 43, 45, 0, 0, 13, 7),
+(1005, '2015-12-06', '08:30', 43, 46, 0, 0, 13, 7),
+(1006, '2015-12-06', '08:30', 43, 50, 0, 0, 13, 7),
+(1007, '2015-12-06', '08:30', 43, 54, 0, 0, 13, 7),
+(1008, '2015-12-06', '08:30', 44, 45, 0, 0, 13, 7),
+(1009, '2015-12-06', '08:30', 44, 46, 0, 0, 13, 7),
+(1010, '2015-12-06', '08:30', 44, 50, 0, 0, 13, 7),
+(1011, '2015-12-06', '08:30', 44, 54, 0, 0, 13, 7),
+(1012, '2015-12-06', '08:30', 45, 46, 0, 0, 13, 7),
+(1013, '2015-12-06', '08:30', 45, 50, 0, 0, 13, 7),
+(1014, '2015-12-06', '08:30', 45, 54, 0, 0, 13, 7),
+(1015, '2015-12-06', '08:30', 46, 50, 0, 0, 13, 7),
+(1016, '2015-12-06', '08:30', 46, 54, 0, 0, 13, 7),
+(1017, '2015-12-06', '08:30', 50, 54, 0, 0, 13, 7),
+(1018, '2015-12-06', '08:30', 61, 62, 0, 0, 14, 8),
+(1019, '2015-12-06', '08:30', 61, 63, 0, 0, 14, 8),
+(1020, '2015-12-06', '08:30', 61, 64, 0, 0, 14, 8),
+(1021, '2015-12-06', '08:30', 61, 65, 0, 0, 14, 8),
+(1022, '2015-12-06', '08:30', 61, 66, 0, 0, 14, 8),
+(1023, '2015-12-06', '08:30', 62, 63, 0, 0, 14, 8),
+(1024, '2015-12-06', '08:30', 62, 64, 0, 0, 14, 8),
+(1025, '2015-12-06', '08:30', 62, 65, 0, 0, 14, 8),
+(1026, '2015-12-06', '08:30', 62, 66, 0, 0, 14, 8),
+(1027, '2015-12-06', '08:30', 63, 64, 0, 0, 14, 8),
+(1028, '2015-12-06', '08:30', 63, 65, 0, 0, 14, 8),
+(1029, '2015-12-06', '08:30', 63, 66, 0, 0, 14, 8),
+(1030, '2015-12-06', '08:30', 64, 65, 0, 0, 14, 8),
+(1031, '2015-12-06', '08:30', 64, 66, 0, 0, 14, 8),
+(1032, '2015-12-06', '08:30', 65, 66, 0, 0, 14, 8),
+(1033, '2015-12-06', '08:30', 67, 68, 0, 0, 15, 9),
+(1034, '2015-12-06', '08:30', 67, 225, 0, 0, 15, 9),
+(1035, '2015-12-06', '08:30', 68, 225, 0, 0, 15, 9),
+(1036, '2015-12-07', '00:02', 61, 44, 0, 0, 13, 0),
+(1037, '2015-12-07', '00:02', 67, 43, 0, 0, 14, 0),
+(1038, '2015-12-07', '00:02', 0, 0, 0, 0, 15, 0),
+(1039, '2015-12-07', '00:02', 0, 0, 0, 0, 16, 0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Owner`
+-- Table structure for table `Owner`
 --
 
 CREATE TABLE IF NOT EXISTS `Owner` (
@@ -1551,7 +1866,7 @@ CREATE TABLE IF NOT EXISTS `Owner` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
--- Contenu de la table `Owner`
+-- Dumping data for table `Owner`
 --
 
 INSERT INTO `Owner` (`ID`, `ID_Personne`, `ID_Staff`) VALUES
@@ -1571,7 +1886,7 @@ INSERT INTO `Owner` (`ID`, `ID_Personne`, `ID_Staff`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Personne`
+-- Table structure for table `Personne`
 --
 
 CREATE TABLE IF NOT EXISTS `Personne` (
@@ -1593,16 +1908,16 @@ CREATE TABLE IF NOT EXISTS `Personne` (
   `IsOwner` tinyint(1) NOT NULL,
   `IsStaff` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=389 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=413 ;
 
 --
--- Contenu de la table `Personne`
+-- Dumping data for table `Personne`
 --
 
 INSERT INTO `Personne` (`ID`, `Title`, `FirstName`, `LastName`, `Ville`, `ZIPCode`, `Rue`, `Number`, `PhoneNumber`, `GSMNumber`, `BirthDate`, `Mail`, `CreationDate`, `Note`, `IsPlayer`, `IsOwner`, `IsStaff`) VALUES
 (7, 1, 'Super', 'Admin', '', 9413, 'chemin des Bibilou, 14', 0, 413257954, 2147483647, '1964-11-19', 'Billy.Biloup@gmail.c', '2015-08-20', '', 0, 0, 1),
 (70, 1, 'Antoine', 'ROLLIN', 'Bourg-Lès-Valence', 26500, '192, rue des abricotiers', 0, 0, 635434770, '1994-05-06', 'antoine.rollin26@free.fr', '2015-11-05', 'R.A.S.', 0, 0, 1),
-(107, 1, 'John', 'Doooooeuf', '450', 38000, '0', 12, 9, 6, '1978-11-14', 'j.d@hotmail.fr', '2015-11-11', 'J''aime les barbecues.', 1, 0, 0),
+(107, 1, 'Johné', 'Doooooeuf', '0', 38000, '12', 450, 9, 6, '1978-11-14', 'j.d@hotmail.fr', '2015-11-11', 'J''aime les barbecues.', 1, 0, 0),
 (108, 1, 'Oussama', 'Faitmal', '0', 21000, '0', 12, 99999999, 6898989, '1964-02-12', 'f.o@gmail.com', '2015-11-11', '', 1, 0, 0),
 (109, 2, 'Sarah', 'Croche', 'Annecy', 78000, 'Avenue du halo', 0, 9, 689898989, '1945-01-01', 'c.s@gmail.fr', '2015-11-11', '', 0, 1, 0),
 (110, 1, 'Yves', 'Rogne', '192 rue des abricotiers', 6000, '0', 0, 9, 6, '1970-11-04', 'r.y@gmail.com', '2015-11-11', 'coucou', 1, 0, 0),
@@ -1870,12 +2185,36 @@ INSERT INTO `Personne` (`ID`, `Title`, `FirstName`, `LastName`, `Ville`, `ZIPCod
 (385, 0, 'Julien', 'Evrard', 'vfegze', 453544, 'efgaezgzeg', 545, 335465468, 335465468, '1994-06-02', 'lzefjzf@ldgzj.com', '2015-12-01', 'zarfehj', 1, 0, 0),
 (386, 0, 'Marie', 'Leyder', 'clvkszjvlzekv', 35435, 'fezfvzev', 54, 335465468, 335486846, '1995-07-21', 'lzefjzf@ldgzj.com', '2015-12-01', '', 1, 0, 0),
 (387, 0, 'Sami', 'Mokka', 'o', 0, 'o', 0, 0, 2147483647, '1994-02-02', 'o@o.fr', '2015-12-02', '', 1, 0, 0),
-(388, 0, 'Lili', 'Best', 'a', 0, 'a', 0, 0, 2147483647, '1994-11-08', 'a@a.fr', '2015-12-02', '', 1, 0, 0);
+(388, 0, 'Lili', 'Best', 'a', 0, 'a', 0, 0, 2147483647, '1994-11-08', 'a@a.fr', '2015-12-02', '', 1, 0, 0),
+(389, 0, 'Olivier', 'BOULANGER', 'kjhyhku', 234, 'jhfh', 123, 543676756, 2147483647, '1965-08-05', 'o@o.fr', '2015-12-05', 'dfghj', 1, 0, 0),
+(390, 0, 'Roxane', 'BOULANGER', 'kfeflzief', 3456, 'drtyukhi', 2345, 2147483647, 2147483647, '1994-04-01', 'a@a.fr', '2015-12-05', 'cfvghjk', 1, 0, 0),
+(391, 0, 'pika', 'chu', 'vfegze', 7578, 'Mouch', 75, 335465468, 335465468, '2012-04-05', 'lzefjzf@ldgzj.com', '2015-12-06', '', 1, 0, 0),
+(392, 0, 'pika', 'chu', 'vfegze', 7578, 'Mouch', 75, 335465468, 335465468, '2012-04-05', 'lzefjzf@ldgzj.com', '2015-12-06', '', 1, 0, 0),
+(393, 0, 'pika', 'chu', 'vfegze', 7578, 'Mouch', 75, 335465468, 335465468, '2012-04-05', 'lzefjzf@ldgzj.com', '2015-12-06', '', 1, 0, 0),
+(394, 0, 'pika', 'chu', 'vfegze', 7578, 'Mouch', 75, 335465468, 335465468, '2012-04-05', 'lzefjzf@ldgzj.com', '2015-12-06', '', 1, 0, 0),
+(395, 0, 'pika', 'chu', 'vfegze', 7578, 'Mouch', 75, 335465468, 335465468, '2012-04-05', 'lzefjzf@ldgzj.com', '2015-12-06', '', 1, 0, 0),
+(396, 0, 'pika', 'chu', 'vfegze', 7578, 'Mouch', 75, 335465468, 335465468, '2012-04-05', 'lzefjzf@ldgzj.com', '2015-12-06', '', 1, 0, 0),
+(397, 0, 'pika', 'chu', 'vfegze', 7578, 'Mouch', 75, 335465468, 335465468, '2012-04-05', 'lzefjzf@ldgzj.com', '2015-12-06', '', 1, 0, 0),
+(398, 0, 'pika', 'chu', 'vfegze', 7578, 'Mouch', 75, 335465468, 335465468, '2012-04-05', 'lzefjzf@ldgzj.com', '2015-12-06', '', 1, 0, 0),
+(399, 0, 'pika', 'chu', 'vfegze', 7578, 'Mouch', 75, 335465468, 335465468, '2012-04-05', 'lzefjzf@ldgzj.com', '2015-12-06', '', 1, 0, 0),
+(400, 0, 'pika', 'chu', 'vfegze', 7578, 'Mouch', 75, 335465468, 335465468, '2012-04-05', 'lzefjzf@ldgzj.com', '2015-12-06', 'azertyuiop', 1, 0, 0),
+(401, 0, 'pika', 'chu', 'vfegze', 7578, 'Mouch', 75, 335465468, 335465468, '2012-04-05', 'lzefjzf@ldgzj.com', '2015-12-06', 'azertyuiop', 1, 0, 0),
+(402, 0, 'pika', 'chu', 'vfegze', 7578, 'Mouch', 75, 335465468, 335465468, '2012-04-05', 'lzefjzf@ldgzj.com', '2015-12-06', 'azertyuiop', 1, 0, 0),
+(403, 0, 'pika', 'chu', 'vfegze', 7578, 'Mouch', 75, 335465468, 335465468, '2012-04-05', 'lzefjzf@ldgzj.com', '2015-12-06', 'azertyuiopz', 1, 0, 0),
+(404, 0, 'pika', 'chu', 'vfegze', 7578, 'Mouch', 75, 335465468, 335465468, '2012-04-05', 'lzefjzf@ldgzj.com', '2015-12-06', 'azertyuiopzzef', 1, 0, 0),
+(405, 0, 'pika', 'chu', 'vfegze', 7578, 'Mouch', 75, 335465468, 335465468, '2012-04-05', 'lzefjzf@ldgzj.com', '2015-12-06', 'azertyuiopzzefs', 1, 0, 0),
+(406, 0, 'pika', 'chu', 'vfegze', 7578, 'Mouch', 75, 335465468, 335465468, '2012-04-05', 'lzefjzf@ldgzj.com', '2015-12-06', 'azertyuiopzzefs', 1, 0, 0),
+(407, 0, 'pika', 'chu', 'vfegze', 7578, 'Mouch', 75, 335465468, 335465468, '2012-04-05', 'lzefjzf@ldgzj.com', '2015-12-06', 'azertyuiopzzefs', 1, 0, 0),
+(408, 0, 'pika', 'chu', 'vfegze', 7578, 'Mouch', 75, 335465468, 335465468, '2012-04-05', 'lzefjzf@ldgzj.com', '2015-12-06', 'azertyuiopzzefsca', 1, 0, 0),
+(409, 0, 'pika2', 'chu2', 'vfegze', 7578, 'efgaezgzeg', 545, 335465468, 897456151, '2013-03-03', 'abra@pokemon.be', '2015-12-06', 'cezvzebzb', 1, 0, 0),
+(410, 0, 'pika3', 'chu3', 'vfegze', 7578, 'efgaezgzeg', 75, 335465468, 335465468, '2010-06-04', 'abra@pokemon.be', '2015-12-06', 'afavavav', 1, 0, 0),
+(411, 0, 'pika4', 'chu4', 'vfegze', 7578, 'Mouch', 75, 335465468, 335465468, '2004-12-10', 'lzefjzf@ldgzj.com', '2015-12-06', 'zezevzev', 1, 0, 0),
+(412, 0, 'pika5', 'chu5', 'vfegze', 7578, 'Mouch', 75, 335465468, 335465468, '2010-11-07', 'lzefjzf@ldgzj.com', '2015-12-06', 'bdkbhskf', 1, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `PersonneExtra`
+-- Table structure for table `PersonneExtra`
 --
 
 CREATE TABLE IF NOT EXISTS `PersonneExtra` (
@@ -1883,10 +2222,10 @@ CREATE TABLE IF NOT EXISTS `PersonneExtra` (
   `Personne_ID` int(11) NOT NULL,
   `Extra_ID` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=44 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=55 ;
 
 --
--- Contenu de la table `PersonneExtra`
+-- Dumping data for table `PersonneExtra`
 --
 
 INSERT INTO `PersonneExtra` (`ID`, `Personne_ID`, `Extra_ID`) VALUES
@@ -1902,12 +2241,23 @@ INSERT INTO `PersonneExtra` (`ID`, `Personne_ID`, `Extra_ID`) VALUES
 (40, 317, 1),
 (41, 318, 1),
 (42, 317, 1),
-(43, 318, 1);
+(43, 318, 1),
+(44, 391, 1),
+(45, 391, 1),
+(46, 391, 1),
+(47, 391, 1),
+(48, 391, 1),
+(49, 391, 1),
+(50, 391, 1),
+(51, 409, 1),
+(52, 410, 2),
+(53, 411, 1),
+(54, 412, 1);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Player`
+-- Table structure for table `Player`
 --
 
 CREATE TABLE IF NOT EXISTS `Player` (
@@ -1922,7 +2272,7 @@ CREATE TABLE IF NOT EXISTS `Player` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `Player`
+-- Dumping data for table `Player`
 --
 
 INSERT INTO `Player` (`ID_Personne`, `IsLeader`, `Paid`, `AlreadyPart`, `Ranking`) VALUES
@@ -2106,12 +2456,40 @@ INSERT INTO `Player` (`ID_Personne`, `IsLeader`, `Paid`, `AlreadyPart`, `Ranking
 (330, 0, 0, 0, 'C15.4'),
 (339, 0, 0, 0, 'C30.3'),
 (387, 0, 0, 0, ''),
-(388, 0, 0, 0, '');
+(388, 0, 0, 0, ''),
+(389, 0, 0, 0, 'B-15.2'),
+(390, 0, 0, 0, 'B-15.2'),
+(391, 0, 0, 0, ''),
+(409, 0, 0, 0, 'NC'),
+(410, 0, 0, 0, 'NC'),
+(411, 0, 0, 0, 'NC'),
+(412, 0, 0, 0, 'NC');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `RankingTextToIntBelgian`
+-- Table structure for table `PlayerAlone`
+--
+
+CREATE TABLE IF NOT EXISTS `PlayerAlone` (
+  `ID_Personne` int(255) NOT NULL,
+  `Paid` tinyint(4) NOT NULL,
+  `AlreadyPart` tinyint(4) NOT NULL,
+  `Ranking` varchar(10) NOT NULL,
+  UNIQUE KEY `ID_Personne` (`ID_Personne`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `PlayerAlone`
+--
+
+INSERT INTO `PlayerAlone` (`ID_Personne`, `Paid`, `AlreadyPart`, `Ranking`) VALUES
+(391, 0, 0, 'NC');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `RankingTextToIntBelgian`
 --
 
 CREATE TABLE IF NOT EXISTS `RankingTextToIntBelgian` (
@@ -2119,10 +2497,10 @@ CREATE TABLE IF NOT EXISTS `RankingTextToIntBelgian` (
   `RankingText` varchar(10) COLLATE latin1_bin NOT NULL,
   `RankingInt` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_bin AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_bin AUTO_INCREMENT=26 ;
 
 --
--- Contenu de la table `RankingTextToIntBelgian`
+-- Dumping data for table `RankingTextToIntBelgian`
 --
 
 INSERT INTO `RankingTextToIntBelgian` (`ID`, `RankingText`, `RankingInt`) VALUES
@@ -2139,7 +2517,7 @@ INSERT INTO `RankingTextToIntBelgian` (`ID`, `RankingText`, `RankingInt`) VALUES
 (11, 'C15.2', 10),
 (12, 'C15.1', 11),
 (13, 'C15', 12),
-(14, ' B+4/6', 13),
+(14, 'B+4/6', 13),
 (15, 'B+2/6', 14),
 (16, 'B0', 15),
 (17, 'B-2/6', 16),
@@ -2149,12 +2527,13 @@ INSERT INTO `RankingTextToIntBelgian` (`ID`, `RankingText`, `RankingInt`) VALUES
 (21, 'B-15.2', 20),
 (22, 'B-15.4', 21),
 (23, 'A Nat', 22),
-(24, 'A Int', 23);
+(24, 'A Int', 23),
+(25, '', -1);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Staff`
+-- Table structure for table `Staff`
 --
 
 CREATE TABLE IF NOT EXISTS `Staff` (
@@ -2170,7 +2549,7 @@ CREATE TABLE IF NOT EXISTS `Staff` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=101 ;
 
 --
--- Contenu de la table `Staff`
+-- Dumping data for table `Staff`
 --
 
 INSERT INTO `Staff` (`ID`, `ID_Personne`, `Level`, `ID_Cat`, `Password`, `Username`) VALUES
@@ -2180,7 +2559,7 @@ INSERT INTO `Staff` (`ID`, `ID_Personne`, `Level`, `ID_Cat`, `Password`, `Userna
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Team`
+-- Table structure for table `Team`
 --
 
 CREATE TABLE IF NOT EXISTS `Team` (
@@ -2195,35 +2574,38 @@ CREATE TABLE IF NOT EXISTS `Team` (
   KEY `ID_Player1` (`ID_Player1`),
   KEY `ID_Player2` (`ID_Player2`),
   KEY `ID_Cat` (`ID_Cat`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=69 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=226 ;
 
 --
--- Contenu de la table `Team`
+-- Dumping data for table `Team`
 --
 
 INSERT INTO `Team` (`ID`, `ID_Player1`, `ID_Player2`, `ID_Cat`, `NbWinMatch`, `AvgRanking`, `Group_Vic`) VALUES
 (43, 107, 108, 1, 0, '', 1),
 (44, 110, 111, 1, 0, '', 1),
-(45, 112, 113, 1, 4, '', 0),
-(46, 114, 115, 1, 3, '', 0),
-(50, 117, 118, 1, 4, '', 0),
-(54, 130, 131, 1, 2, '', 1),
-(57, 137, 132, 6, 0, '', 1),
+(45, 112, 113, 1, 0, '', 0),
+(46, 114, 115, 1, 0, '', 0),
+(50, 117, 118, 1, 0, '', 0),
+(54, 130, 131, 1, 0, '', 0),
+(57, 137, 132, 6, 0, '', 0),
 (59, 133, 136, 6, 0, '', 0),
-(60, 145, 146, 1, 0, '', 1),
-(61, 317, 318, 1, 0, '', 0),
+(60, 145, 146, 1, 0, '', 0),
+(61, 317, 318, 1, 0, '', 1),
 (62, 317, 318, 1, 0, '', 0),
 (63, 317, 318, 1, 0, '', 0),
-(64, 317, 318, 1, 0, '', 1),
-(65, 317, 318, 1, 0, '', 1),
+(64, 317, 318, 1, 0, '', 0),
+(65, 317, 318, 1, 0, '', 0),
 (66, 317, 318, 1, 0, '', 0),
-(67, 339, 330, 1, 0, 'NC', 0),
-(68, 339, 330, 1, 0, 'C30', 0);
+(67, 339, 330, 1, 0, 'NC', 1),
+(68, 339, 330, 1, 0, 'C30', 0),
+(69, 389, 390, 21, 0, 'C15.2', 0),
+(224, 412, 411, 16, 0, 'B-4/6', 0),
+(225, 409, 410, 1, 0, 'C15.1', 0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Terrain`
+-- Table structure for table `Terrain`
 --
 
 CREATE TABLE IF NOT EXISTS `Terrain` (
@@ -2241,7 +2623,7 @@ CREATE TABLE IF NOT EXISTS `Terrain` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
--- Contenu de la table `Terrain`
+-- Dumping data for table `Terrain`
 --
 
 INSERT INTO `Terrain` (`ID`, `adresse`, `surface`, `ID_Owner`, `etat`, `disponibiliteFrom`, `disponibiliteTo`, `CreationDate`, `Type`, `Note`) VALUES
@@ -2252,31 +2634,31 @@ INSERT INTO `Terrain` (`ID`, `adresse`, `surface`, `ID_Owner`, `etat`, `disponib
 (17, 'okok', 0, 14, 'Neuf', '2015-11-12', '2015-11-12', '2015-11-12', 'Terre battue', 'ok');
 
 --
--- Contraintes pour les tables exportées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `Owner`
+-- Constraints for table `Owner`
 --
 ALTER TABLE `Owner`
   ADD CONSTRAINT `Owner_ibfk_1` FOREIGN KEY (`ID_Personne`) REFERENCES `Personne` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Owner_ibfk_2` FOREIGN KEY (`ID_Staff`) REFERENCES `Staff` (`ID_Personne`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Contraintes pour la table `Player`
+-- Constraints for table `Player`
 --
 ALTER TABLE `Player`
   ADD CONSTRAINT `PersonneFK` FOREIGN KEY (`ID_Personne`) REFERENCES `Personne` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `Staff`
+-- Constraints for table `Staff`
 --
 ALTER TABLE `Staff`
   ADD CONSTRAINT `Staff_ibfk_1` FOREIGN KEY (`ID_Personne`) REFERENCES `Personne` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Staff_ibfk_2` FOREIGN KEY (`ID_Cat`) REFERENCES `Categorie` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Contraintes pour la table `Team`
+-- Constraints for table `Team`
 --
 ALTER TABLE `Team`
   ADD CONSTRAINT `Team_ibfk_1` FOREIGN KEY (`ID_Player1`) REFERENCES `Personne` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,

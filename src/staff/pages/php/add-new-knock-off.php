@@ -113,10 +113,11 @@ Mise à jour de l'historique
             break;
         }
     }
-
+    if ($j != 3){
+        $numberOfTeams--;
+    }
     // On génère les matches des autres tours du tournoi.
     // Dans un tournois à 16 équipes, il y en aura 7.
-    //for ($k = ceil($numberOfTeams/2); $k >= 1; $k = ceil($k/2)){
     echo $numberOfTeams."\n";
     for($k = $numberOfTeams/2; $k >= 1; $k--){
         echo $k;
