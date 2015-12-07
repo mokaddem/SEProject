@@ -191,7 +191,7 @@
                 <label ><span class="fa fa-users"></span> Team without match this round. </label>
             </div>
             <div class="form-group text-center">
-                <button class="btn btn-default btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-position="<?=$round?>" data-matchID="0">Vide</button>
+                <button class="btn btn-default btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-position="<?=$round?>" data-matchID="0" data-void="2">Vide</button>
             </div>
         </div>
         <?php
@@ -331,7 +331,9 @@
             var target = e.target;
             var url ="php/select-team-knock-off.php";
 
-            var emptySlot = $(':button[data-void=1]:first');
+            var emptySlot = $(':button[data-void=1],[data-void=2]:first');
+            var teamWithoutMatch = emptySlot.attr("data-void") == 2 ? true : false;
+            console.log(teamWithoutMatch);
             var matchID = parseInt(emptySlot.attr("data-matchID"));
             var indice = parseInt(emptySlot.attr("data-indice"));
             var teamID = parseInt(target.getAttribute("data-winning-team"));
@@ -340,26 +342,33 @@
             //check if team already in the next round.
             var teambuttons= $("button[data-round='"+(round+1)+"'][data-teamID='"+teamID+"']");
             if(teambuttons.size() == 0) { //add the team
-                var data = {'matchID': matchID, 'indice': indice, 'teamID': teamID};
-                if (teamID != -1) {
-                    $.ajax({
-                        type: 'POST',
-                        url: url,
-                        dataType: 'text',
-                        data: data,
-                        success: function (text) {
-                            if (text == "success") {
-                                location.reload();
+                if(!teamWithoutMatch) {
+                    var data = {'matchID': matchID, 'indice': indice, 'teamID': teamID};
+                    if (teamID != -1) {
+                        $.ajax({
+                            type: 'POST',
+                            url: url,
+                            dataType: 'text',
+                            data: data,
+                            success: function (text) {
+                                if (text == "success") {
+                                    location.reload();
 
-                            } else {
-                                $('form-messages-rep').text("Error");
-                                location.reload();
+                                } else {
+                                    $('form-messages-rep').text("Error");
+                                    location.reload();
+                                }
+                            },
+                            error: function (text) {
+                                alert("Error:" + text);
                             }
-                        },
-                        error: function (text) {
-                            alert("Error:" + text);
-                        }
-                    });
+                        });
+                    }
+                }else{ //this is the last team without match -> generate the 3 match for the final
+                    console.log("Match!!");
+                    var emptySlot = $(':button[data-void=1][data-round='+(round+1)+']');
+                    $(emptySlot).each(function (index) {
+                        indice = $( this ).attr("data-indice");
                 }
             }
         }
