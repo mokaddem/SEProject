@@ -73,7 +73,7 @@ function createMatchKnock($db, $position, $cat, $teamID1, $teamID2, $terrainID, 
     $matchID = '';
     $date = date('d');
     $hour = NULL;
-    $score = 0;
+    $score = 1;
     $pouleID = 0;
     $reqMatch = $db->prepare('INSERT INTO `Match`(ID, `date`, `hour`, ID_Equipe1, ID_Equipe2, score1, score2, ID_Terrain, Poule_ID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)');
     $reqMatch->bind_param("issiiiiii", $matchID, $date, $hour, $teamID1, $teamID2, $score, $score, $terrainID, $pouleID);
