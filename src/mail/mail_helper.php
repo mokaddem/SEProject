@@ -2,6 +2,8 @@
 // Check for empty fields
 include_once("../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php");
 include_once("../../../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php");
+include_once("../../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php");
+
 
 function sendMail($dest, $message, $subject){
     $mail = new PHPMailer();
@@ -18,24 +20,72 @@ function sendMail($dest, $message, $subject){
 
     $mail->Username = "seproject2015c@gmail.com";  // Gmail username
     $mail->Password = "seprojectc";      // Gmail password
-    foreach ($dest as $currentDest) {
-        $mail->CharSet = 'windows-1250';
-        $mail->SetFrom ('noreply@test.pydehon.me', '');
-        $mail->Subject = $subject;
-        $mail->ContentType = 'text/plain';
-        $mail->IsHTML(false);
-        $mail->Body = $message;
-        $mail->AddAddress($currentDest);
-       // if(!$mail->Send()){
-        //   $error_message = "Mailer Error: " . $mail->ErrorInfo;
-        //} else {
-         //       $error_message = "Successfully sent!";
-        //}
-    }
-    if(!$mail->Send()){
+    
+    $nbr=count($dest);
+    if($nbr<=50)
+    {
+    	foreach ($dest as $currentDest) {
+    		$mail->CharSet = 'windows-1250';
+    		$mail->SetFrom ('noreply@test.pydehon.me', '');
+    		$mail->Subject = $subject;
+    		$mail->ContentType = 'text/plain';
+    		$mail->IsHTML(false);
+    		$mail->Body = $message;
+    		$mail->AddAddress($currentDest);
+    		//if(!$mail->Send()){
+    		//	$error_message = "Mailer Error: " . $mail->ErrorInfo;
+    		//} else {
+           	//    $error_message = "Successfully sent!";
+            //}
+        }
+        if(!$mail->Send()){
            $error_message = "Mailer Error: " . $mail->ErrorInfo;
         } else {
                 $error_message = "Successfully sent!";
         }
+    }else
+    {
+    	$nbrDefois=(int)$nbr/50;		//Pour compteur le nombre de fois il faudra passer dans la boucle
+    	$nbrModulo=$nbr%50;		//Pour avoir le reste et savoir s'arreter au bon moment
+    	
+    	for($k=0;$k<$nbrDefois;$k++)
+    	{
+    		for($i=0+($k*50);$i<(50*$k);$i++)
+    		{
+    				$mail->CharSet = 'windows-1250';
+    				$mail->SetFrom ('noreply@test.pydehon.me', '');
+    				$mail->Subject = $subject;
+    				$mail->ContentType = 'text/plain';
+    				$mail->IsHTML(false);
+    				$mail->Body = $message;
+    				$mail->AddAddress($dest[$i]);	
+    		}
+    		if(!$mail->Send()){
+    			$error_message = "Mailer Error: " . $mail->ErrorInfo;
+           	 } else {
+                $error_message = "Successfully sent!";
+             }     
+    	}
+    	for($i=0+(50*$nbrDefois);$i<$nbrModulo+(50*$nbrDefois);$i++)
+    		{
+    				$mail->CharSet = 'windows-1250';
+    				$mail->SetFrom ('noreply@test.pydehon.me', '');
+    				$mail->Subject = $subject;
+    				$mail->ContentType = 'text/plain';
+    				$mail->IsHTML(false);
+    				$mail->Body = $message;
+    				$mail->AddAddress($dest[$i]);	
+    		}
+    		if(!$mail->Send()){
+    			$error_message = "Mailer Error: " . $mail->ErrorInfo;
+           	 } else {
+                $error_message = "Successfully sent!";
+             }
+    }
+    /*if(!$mail->Send()){
+           $error_message = "Mailer Error: " . $mail->ErrorInfo;
+        } else {
+                $error_message = "Successfully sent!";
+        }*/
 }
 ?>

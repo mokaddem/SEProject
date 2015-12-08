@@ -153,6 +153,11 @@
 
                 </div>
             <div id="form-messages-rep"></div>
+
+            <div class="col-lg-5 text-center col-lg-offset-5">
+                <div class="alert alert-success" id="popup"></div>
+            </div>
+
             </div>
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <!-- Registration form - END -->
@@ -169,16 +174,30 @@
     function displaySelectButton($knockoff, $match, $round){
         ?>
         <div class="row">
-            <button class="btn btn-danger fa fa-arrow-circle-right col-lg-offset-10" style="font-size: 200%" id="btnselect<?=$knockoff['Position']?>" name="btnselect" data-score1="" data-score2="" data-winning-team="" data-matchID="<?=$match['ID']?>" data-round="<?=$round?>" disabled="true"></button>
+            <div class="tooltip-wrapper" data-placement="right">
+                <button class="btn btn-danger fa fa-arrow-circle-right col-lg-offset-10" style="font-size: 200%"
+                        id="btnselect<?=$knockoff['Position']?>" name="btnselect" data-score1="" data-score2="" data-winning-team="" data-matchID="<?=$match['ID']?>" data-round="<?=$round?>" data-selected="0" tooltip-title="Séléctionner l'équipe gagnante" disabled="true"></button>
+            </div>
         </div>
         <?php
     }
 
-    function displayAloneTeam($round, $db){
+    function displayVoidTeamNoMatch($round){
         ?>
-        <label class="text-danger">Cette équipe commence au second tour</label>
+        <div class="form-group server-invalide-menu">
+            <div class="text-center">
+                <label ><span class="fa fa-users"></span> Team without match this round. </label>
+            </div>
+            <div class="row">
+                <div class="col-lg-7">
+                    <button class="btn btn-default btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-position="<?=$round?>" data-matchID="0" data-void="2" data-round="<?=$round?>" >Vide</button>
+                </div>
+                <div class="col-lg-5">
+                    <button class="btn btn-danger fa fa-arrow-circle-right col-lg-offset-7" style="font-size: 200%" id="btnselectVoid<?=$round?>" name="btnselect" data-winning-team="" data-matchID="0" data-round="<?=$round?>" disabled="true"></button>
+                </div>
+            </div>
+        </div>
         <?php
-        displayTeam();
     }
 
     function displayVoidTeam($match, $position, $indice, $round, $db){
@@ -221,6 +240,7 @@
                 </div>
             <?php } ?>
             <?php if($position > ceil($numberOfMatch/2)){ ?>
+            <?php //if($round > 1){ ?>
                 <div class="" style="margin-top: 1.5%">
                     <a class="pull-left" href="php/delete-knock.php?matchID=<?=$match['ID']?>&indice=<?=$indice?>&jour=<?=$_GET["jour"]?>&cat=<?=$_GET['cat']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce groupe ?');" ><i class="fa fa-trash-o"></i></a>
                 </div>
@@ -247,8 +267,13 @@
 
     <script>
         $( document ).ready(function(){
+            $('#popup').hide();
             updateButton();
-//            setInterval(updateButton, 300);
+            var div_wrapper = $('.tooltip-wrapper');
+            var text = div_wrapper.children();
+            console.log(text);
+            $(div_wrapper).attr("data-title", text)
+            div_wrapper.tooltip();
         });
 
         function updateButton() {
@@ -261,7 +286,7 @@
             var indice;
             var matchNumber=0;
             var round;
-            $("input").each(function (index) {
+            $("input").each(function (index){
                     indice = $( this ).attr("data-indice");
                     if (indice == 1) {
                         value1 = $( this ).val();
@@ -278,25 +303,80 @@
                             round = parseInt($(this).attr("data-round"));
                             var teambuttons= $("button[data-round='"+(round+1)+"'][data-teamID='"+winningTeam+"']");
                             if(teambuttons.size() == 0) {
-                                button.removeClass("btn-danger").addClass("btn-success");
-                                button.attr("disabled", false);
+                                if(button.hasClass("btn-warning")){
+                                    button.attr("disabled", true);
+                                    button.attr("data-selected", 1);
+                                }else{
+                                    button.removeClass("btn-danger").addClass("btn-success");
+                                    button.attr("disabled", false);
+                                    button.attr("data-selected", 0);
+                                }
 
                                 //check for non vide for a round
                                 var videbuttons= $("button[data-round='"+(round)+"'][data-void='"+1+"']");
                                 if(videbuttons.size() != 0) {
                                     button.removeClass("btn-success").addClass("btn-danger");
                                     button.attr("disabled", true);
+                                    button.attr("data-selected",0);
                                 }
                             }else{
                                 button.removeClass("btn-danger").addClass("btn-warning");
                                 button.removeClass("fa-arrow-circle-right").addClass("fa-times");
                                 button.attr("disabled", true);
+                                button.attr("data-selected",1);
                             }
                         }else{
                             button.removeClass("btn-success").addClass("btn-danger");
                             button.attr("disabled", true);
+                            button.attr("data-selected",0);
                         }
-                    }})
+                    }
+            })
+
+            //team without match -> autoselect the last one if there is only one team not selected yet
+            var toReplace = $(':button[data-void=2]')
+            $(toReplace).each(function(index){
+                round = $(this).attr("data-round");
+                var teambutton = $(":button[data-round="+(round-1)+"][name=btnselect][data-selected=0]:enabled");
+                var otherTeamsbutton = $(":button[data-round="+(round-1)+"][name=btnselect][data-selected=1]:disabled");
+                var allTeambutton = $(":button[data-round="+(round-1)+"][name=btnselect]");
+                if((teambutton.length == 1) && (otherTeamsbutton.length == (allTeambutton.length-1))) {
+                    teambutton.removeClass("btn-danger").addClass("btn-warning");
+                    teambutton.removeClass("fa-arrow-circle-right").addClass("fa-times");
+                    teambutton.attr("disabled", true);
+                    teambutton.attr("data-selected", 1)
+
+                    var winningTeam = $(teambutton).attr("data-winning-team");
+                    var teamBut = $(":button[data-teamid=" + winningTeam + "][data-round=" + (round - 1) + "]");
+                    toReplace.replaceWith($(teamBut).clone());
+
+                    var buttonSelect = $("#btnselectVoid" + round);
+                    buttonSelect.attr("data-winning-team", winningTeam);
+                    buttonSelect.removeClass("btn-danger").addClass("btn-warning");
+                    buttonSelect.removeClass("fa-arrow-circle-right").addClass("fa-times");
+                    buttonSelect.attr("disabled", true);
+                    buttonSelect.attr("data-selected", 1)
+                }
+            })
+
+            // check if all team selected once -> autofill the remaining 2 match
+            var buttonsSelect = $(':button[data-void=1]');
+            var flag_reload = false;
+            $(buttonsSelect).each(function(index){
+                round = $(this).attr('data-round');
+                var buttonsEnableSelect = $(':button[data-round='+(round-1)+'][data-selected=1]:disabled');
+                if((buttonsEnableSelect.length == 3) && (buttonsEnableSelect.length !== 0)){ //no team to select available -> auto-fill the remaining match
+                    var buttonsDisableSelect = $(':button[data-round='+(round-1)+'][name=btnselect]:disabled');
+                    matchID = $(this).attr('data-matchID');
+                    indice = $(this).attr('data-indice');
+                    var buttonDisable = $(buttonsDisableSelect).get(2-index);
+                    teamID = $(buttonDisable).attr("data-winning-team");
+                    data = {'matchID': matchID, 'indice': indice, 'teamID': teamID};
+                    SelectTeam(data, false);
+                    if(index==3){flag_reload = true;}
+                }
+            })
+            if(flag_reload){setTimeout(function() {location.reload();},1000);}
         }
     </script>
 
@@ -321,11 +401,11 @@
     </script>
 
     <script>
-        function selectTeam(e){
+        function autoselectTeam(e){
             var target = e.target;
-            var url ="php/select-team-knock-off.php";
 
-            var emptySlot = $(':button[data-void=1]:first');
+            var emptySlot = $(':button[data-void=1],[data-void=2]:first');
+            var teamWithoutMatch = emptySlot.attr("data-void") == 2 ? true : false;
             var matchID = parseInt(emptySlot.attr("data-matchID"));
             var indice = parseInt(emptySlot.attr("data-indice"));
             var teamID = parseInt(target.getAttribute("data-winning-team"));
@@ -334,34 +414,54 @@
             //check if team already in the next round.
             var teambuttons= $("button[data-round='"+(round+1)+"'][data-teamID='"+teamID+"']");
             if(teambuttons.size() == 0) { //add the team
-                var data = {'matchID': matchID, 'indice': indice, 'teamID': teamID};
-                if (teamID != -1) {
-                    $.ajax({
-                        type: 'POST',
-                        url: url,
-                        dataType: 'text',
-                        data: data,
-                        success: function (text) {
-                            if (text == "success") {
-                                location.reload();
-
-                            } else {
-                                $('form-messages-rep').text("Error");
-                                location.reload();
-                            }
-                        },
-                        error: function (text) {
-                            alert("Error:" + text);
+                if(!teamWithoutMatch) {
+                    var data = {'matchID': matchID, 'indice': indice, 'teamID': teamID};
+                    if (teamID != -1) {
+                        if(!isNaN(matchID)) { //if there is no match left
+                            SelectTeam(data, true);
+                        }else{
+                            $('#popup').text("L'équipe "+$(target).attr('data-winning-team')+" a gagnée le tournois pour cette catégorie!");
+                            setTimeout(function() {  $('#popup').fadeIn('slow');}, 0);
+                            setTimeout(function() {  $('#popup').fadeOut('slow');},3000);
                         }
-                    });
+                    }
+                }else{ //this is the last team without match -> generate the 3 match for the final
+                    var teamBut = $(":button[data-teamid="+teamID+"][data-round="+round+"]");
+                    var toReplace = $(':button[data-void=2][data-round='+(round+1)+']:first')
+                    toReplace.replaceWith($(teamBut).clone());
+
                 }
             }
         }
     </script>
 
+    <script>
+        function SelectTeam(data, autoreload) {
+            console.log(data);
+            var url ="php/select-team-knock-off.php";
+            $.ajax({
+                type: 'POST',
+                url: url,
+                dataType: 'text',
+                data: data,
+                success: function (text) {
+                    if (text == "success") {
+                        location.reload();
+
+                    } else {
+                        $('form-messages-rep').text("Error");
+                        if(autoreload) {location.reload();}
+                    }
+                },
+                error: function (text) {
+                    alert("Error:" + text);
+                }
+            });
+        }
+    </script>
 
     <script>$(':input').change(saveScore);</script>
-    <script>$("[name=btnselect]").click(selectTeam);</script>
+    <script>$("[name=btnselect]").click(autoselectTeam);</script>
 
 </body>
 

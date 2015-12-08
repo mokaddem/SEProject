@@ -74,7 +74,7 @@ function getTitreTable($get) {
             return array("ID", "Tranche d'âge", "Désignation", "Action");
 
         case "varGlobal":
-            return array("ID", "Titre", "Message", "Action");
+            return array("ID", "Titre", "Valeur", "Action");
 
     }
 }
