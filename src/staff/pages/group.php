@@ -275,7 +275,7 @@
                               <?php
                                   if($teamNum<8){ ?>
                                           <div class="form-group text-center">
-                                              <div <?=$canEdit?> class="btn btn-default btn-outline draggable dropper" name="button-player" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"]?>">Vide</div>
+                                              <div <?=$canEdit?> class="btn btn-default btn-outline draggable dropper" name="button-player" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"]?>">Emplacement vide</div>
                                           </div>
                               <?php } ?>
                           </div>
