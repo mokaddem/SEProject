@@ -225,11 +225,11 @@ if($tousDim==true)
 ///////////////////////////////////////////////////////////////////////////////
 	if($mesLeader==true)
 	{
-		$messageR = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Message Leader"');
+		$messageR = $db->query('SELECT Value FROM GlobalVariables WHERE id=1');
 
-		$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet Leader"');
+		$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE id=2');
 
-		$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Adresse du HQ"');
+		$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE id=3');
 
 		//récuperer le message du mail
 		$listMessage;
@@ -258,11 +258,11 @@ if($tousDim==true)
 ///////////////////////////////////////////////////////////////////////////////
 	if($mesNP==true)
 	{
-		$messageR = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Message Non-Paye"');
+		$messageR = $db->query('SELECT Value FROM GlobalVariables WHERE id=4');
 
-		$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet Non-Paye"');
+		$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE id=5');
 
-		$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Adresse HQ"');
+		$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE id=3');
 
 		//récuperer le message du mail
 		$listMessage;
@@ -291,11 +291,11 @@ if($tousDim==true)
 ///////////////////////////////////////////////////////////////////////////////
 	if($mesTous==true)
 	{
-		$messageR = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Message a tous"');
+		$messageR = $db->query('SELECT Value FROM GlobalVariables WHERE id=6');
 
-		$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet a tous"');
+		$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE id=7');
 
-		$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Adresse HQ"');
+		$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE id=3');
 
 		//récuperer le message du mail
 		$listMessage;

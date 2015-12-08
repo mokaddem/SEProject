@@ -59,7 +59,7 @@ function getTitreTable($get) {
             return array("ID", "Nom", "Prix (€)", "Description","Nombre de personne", "Action");
 
         case "varGlobal":
-            return array("Titre","Message", "Action");
+            return array("Titre","Valeur", "Action");
 
         case "owner":
             return array("ID", "Nom", "Prénom", "Créé le", "Action");
