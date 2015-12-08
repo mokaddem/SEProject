@@ -55,7 +55,7 @@
                     <button type="button" class="btn btn-default btn-outline" data-toggle="collapse" data-target="#demo" ata-toggle="tooltip" data-placement="top" title="Selectionner des groupes">
                       <i class="fa fa-long-arrow-down"></i> <i class="fa fa-users"></i>
                     </button>
-                    <button type="button" class="btn btn-default btn-outline" data-toggle="collapse" data-target="#demo1" ata-toggle="tooltip" data-placement="top" title="Selectionner des messages">
+                    <button type="button" class="btn btn-info btn-outline" data-toggle="collapse" data-target="#demo1" ata-toggle="tooltip" data-placement="top" title="Selectionner des messages">
                   <i class="fa fa-long-arrow-down"></i> <i class="fa fa-envelope"></i>
                   </button>
 
@@ -78,43 +78,52 @@
             </div>
             <div class="col-lg-6">
               <div id="demo" class="collapse">
-                  <p>
-                  <input type="checkbox" name="parti" value="Participants"> Tous les participants
-                  <input type="checkbox" name="proprio" value="Propriétaires"> Tous les propriétaires
-                  </p>
-                  <b> Groupes Samedi </b><br/>
-                  <p>
-                  <input type="checkbox" name="leaderSam" value="Participants"> Tous les leaders
-                  <input type="checkbox" name="NPSam" value="Propriétaires"> Tous les non-payés
-                  <input type="checkbox" name="tousSam" value="Participants"> Tous les joueurs
-                  </p>
-                  <b> Groupes Dimanche </b><br/>
-                  <p><input type="checkbox" name="leaderDim" value="Participants"> Tous les leaders
-                  <input type="checkbox" name="NPDim" value="Propriétaires"> Tous les non-payés
-                  <input type="checkbox" name="tousDim" value="Participants"> Tous les joueurs
-                  </p>
-                  <b> Catégories </b><br/>
+                <div class="panel panel-default">
+                  <div class="panel-heading"><b>Envoyer à</b></div>
+                  <div class="panel-body">
+                    <p>
+                    <input type="checkbox" name="parti" value="Participants"> Tous les participants
+                    <input type="checkbox" name="proprio" value="Propriétaires"> Tous les propriétaires
+                    </p>
+                    <b> Poules Samedi </b><br/>
+                    <p>
+                    <input type="checkbox" name="leaderSam" value="Participants"> Tous les leaders
+                    <input type="checkbox" name="NPSam" value="Propriétaires"> Tous les non-payés
+                    <input type="checkbox" name="tousSam" value="Participants"> Tous les joueurs
+                    </p>
+                    <b> Poules Dimanche </b><br/>
+                    <p><input type="checkbox" name="leaderDim" value="Participants"> Tous les leaders
+                    <input type="checkbox" name="NPDim" value="Propriétaires"> Tous les non-payés
+                    <input type="checkbox" name="tousDim" value="Participants"> Tous les joueurs
+                    </p>
+                    <b> Catégories </b><br/>
+                    <?php
+                    $categorie = $db->query('SELECT Designation FROM Categorie');
+                    $listCat;
+                    $i=0;
+                    while($lcat = $categorie -> fetch_array())
+                    {
+                    	  $listCat[$i] = utf8_encode($lcat['Designation']);
+                    	 ?>
+                    	 <input type="checkbox" name="cat_<?php echo $i ?>" value="<?php echo $listCat[$i] ?>"> <?php echo utf8_encode(utf8_decode($listCat[$i])); ?>
                   <?php
-                  $categorie = $db->query('SELECT Designation FROM Categorie');
-                  $listCat;
-                  $i=0;
-                  while($lcat = $categorie -> fetch_array())
-                  {
-                  	  $listCat[$i] = utf8_encode($lcat['Designation']);
-                  	 ?>
-                  	 <input type="checkbox" name="cat_<?php echo $i ?>" value="<?php echo $listCat[$i] ?>"> <?php echo utf8_encode(utf8_decode($listCat[$i])); ?>
-                <?php
-                  $i++;
-                  }
-                  ?>
+                    $i++;
+                    }
+                    ?>
+
+                  </div>
+                </div>
                 </div>
               <div id="demo1" class="collapse">
-                <br/><br/><br/><br/><br/>
-                  <b>Message pré-ecrit</b><br/>
-                  <input type="checkbox" name="mesLeader" value="Participants"> Messages des leaders
-                  <input type="checkbox" name="mesTous" value="Propriétaires"> Messages pour tous
-                  <input type="checkbox" name="mesNP" value="Propriétaires"> Messages des non-payés
-              </div>
+                <div class="panel panel-info">
+                  <div class="panel-heading"><b>Message pré-ecrit</b><br/></div>
+                  <div class="panel-body">
+                    <input type="checkbox" name="mesLeader" value="Participants"> Messages des leaders
+                    <input type="checkbox" name="mesTous" value="Propriétaires"> Messages pour tous
+                    <input type="checkbox" name="mesNP" value="Propriétaires"> Messages des non-payés
+                  </div>
+                </div>
+            </div>
 
             </div>
           </form>
