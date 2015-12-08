@@ -40,7 +40,12 @@
             include("./html/header.php");
             include_once('php/BDD.php');
             $db = BDconnect();
-            $reponse = $db->query('SELECT * FROM GlobalVariables WHERE \''. $_GET['Name']. '\' = Name');
+        
+            if (array_key_exists("Name",$_GET)) {
+                $reponse = $db->query('SELECT * FROM GlobalVariables WHERE \''. $_GET['Name']. '\' = Name');
+            } else {
+                $reponse = $db->query('SELECT * FROM GlobalVariables WHERE ' . $_GET['id']. ' = id');
+            }
             $donnes = $reponse->fetch_array();
         ?>
 
