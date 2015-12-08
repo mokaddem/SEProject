@@ -133,6 +133,7 @@
                                     <i class="fa fa-chevron-down"></i>
                                 </button>
                             </span>
+                                <button class="pull-left btn btn-success" onclick="checkCourts();"> Vérifier que les terrains sont différents </button>
                               <input type="text" id="idteam2" name="idteam2" placeholder="Cliquez sur une équipe" class="hidden" required/>
                               <input type="text" id="idteam1" name="idteam1" placeholder="Cliquez sur une équipe" class="hidden" required/>
                                 <input name="teamNumberG1" id="teamNumberG1" class="hidden" value="" />
@@ -338,6 +339,9 @@
     <script src="../dist/js/sb-admin-2.js"></script>
 
     <script>
+        function checkCourts(){
+            alert("<?php checkDifferentCourtsForGroups($_GET['jour']); ?>");
+        }
         (function() {
             var dndHandler = {
                 draggedElement: null,

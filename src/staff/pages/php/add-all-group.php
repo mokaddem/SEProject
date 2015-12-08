@@ -44,9 +44,6 @@ Mise à jour de l'historique
     $ID         = '';
     $date       = date('Y-m-d');
     $hour       = date("08:30");
-    echo $hour;
-    // $hour       = "8:30" //date("H:i");
-    // echo $hour;
     $score1     = 0;
     $score2     = 0;
     $Poule_ID   = $donnees['ID'];
@@ -129,5 +126,6 @@ Mise à jour de l'historique
             $getPoules->free();
         }
     }
+
     header("Location: ../group.php?jour=" . $day . "&generate=true&cat=0");
 ?>
