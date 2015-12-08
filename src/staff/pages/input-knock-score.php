@@ -184,7 +184,10 @@
     function displaySelectButton($knockoff, $match, $round){
         ?>
         <div class="row">
-            <button class="btn btn-danger fa fa-arrow-circle-right col-lg-offset-10" style="font-size: 200%" id="btnselect<?=$knockoff['Position']?>" name="btnselect" data-score1="" data-score2="" data-winning-team="" data-matchID="<?=$match['ID']?>" data-round="<?=$round?>" data-selected="0" disabled="true"></button>
+            <div class="tooltip-wrapper" data-placement="right">
+                <button class="btn btn-danger fa fa-arrow-circle-right col-lg-offset-10" style="font-size: 200%"
+                        id="btnselect<?=$knockoff['Position']?>" name="btnselect" data-score1="" data-score2="" data-winning-team="" data-matchID="<?=$match['ID']?>" data-round="<?=$round?>" data-selected="0" tooltip-title="Séléctionner l'équipe gagnante" disabled="true"></button>
+            </div>
         </div>
         <?php
     }
@@ -265,6 +268,11 @@
         $( document ).ready(function(){
             $('#popup').hide();
             updateButton();
+            var div_wrapper = $('.tooltip-wrapper');
+            var text = div_wrapper.children();
+            console.log(text);
+            $(div_wrapper).attr("data-title", text)
+            div_wrapper.tooltip();
         });
 
         function updateButton() {

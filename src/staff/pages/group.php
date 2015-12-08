@@ -198,6 +198,11 @@
                                   <span class="fa fa-users"></span> Groupe <?= $k?>
                                   <a class="" <?php if(!$canEdit){?> href="php/delete-group.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&cat=<?=$_GET['cat']?>" <?php }?> <?php if(!$canEdit){?> onclick="return confirm('Voulez-vous vraiment supprimer ce groupe ?');" <?php }?> ><i class="fa fa-trash-o"></i></a>
                               </label>
+
+                              <form name="leaderMail" action="mailLeader.php" method="post"> <input type="submit" name="leaderMail_<?php echo $group['Gid']?>" value="Leader"> </form>
+                              <form name="NPMail" action="mailNP.php" method="post"> <input type="submit" name="NP_<?php echo $group['Gid']?>" value="Non Payé"> </form>
+                              <form name="tous" action="mailTous.php" method="post"> <input type="submit" name="tous_<?php echo $group['Gid']?>" value="Tous"> </form>
+
                               <div class="form-group" >
                                   <label class=""><span class="fa fa-users"></span> Terrain</label>
                                   <select <?=$canEdit?> class="form-control" id="terrain <?=$k?>" name="ExpandableListTerrain">
@@ -376,7 +381,12 @@
                             if (target.getAttribute("name") != null) {
                                 if (target.getAttribute("name") == "divGroupContainer") { // Et on applique le style adéquat à notre zone de drop quand un élément la survole
                                     if(flag_red){ target.className += " drop_hover_green";}
-                                    else{this.className += " drop_hover";}
+                                    else{
+                                        if($(target).attr("data-groupnum") == $(dndHandler.draggedElement).attr("data-groupnum")){ //On applique le style seulement si le draggred est dans un group différent
+                                            //do nothing
+                                        }
+                                        else{this.className += " drop_hover";}
+                                    }
                                 } else if(target.getAttribute("name") == "button-player") {
                                     if(flag_red){ target.className += " drop_hover_green";}
                                     else{this.className += " drop_hover";}
