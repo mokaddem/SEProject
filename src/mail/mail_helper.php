@@ -2,6 +2,8 @@
 // Check for empty fields
 include_once("../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php");
 include_once("../../../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php");
+include_once("../../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php");
+
 
 function sendMail($dest, $message, $subject){
     $mail = new PHPMailer();
@@ -48,7 +50,23 @@ function sendMail($dest, $message, $subject){
     	
     	for($k=0;$k<$nbrDefois;$k++)
     	{
-    		for($i=0+(50*$k);$i<$nbrModulo+(50*$k);$i++)
+    		for($i=0;$i<50;$i++)
+    		{
+    				$mail->CharSet = 'windows-1250';
+    				$mail->SetFrom ('noreply@test.pydehon.me', '');
+    				$mail->Subject = $subject;
+    				$mail->ContentType = 'text/plain';
+    				$mail->IsHTML(false);
+    				$mail->Body = $message;
+    				$mail->AddAddress($dest[$i]);	
+    		}
+    		if(!$mail->Send()){
+    			$error_message = "Mailer Error: " . $mail->ErrorInfo;
+           	 } else {
+                $error_message = "Successfully sent!";
+             }     
+    	}
+    	for($i=0+(50*$k);$i<$nbrModulo+(50*$k);$i++)
     		{
     				$mail->CharSet = 'windows-1250';
     				$mail->SetFrom ('noreply@test.pydehon.me', '');
@@ -63,7 +81,6 @@ function sendMail($dest, $message, $subject){
            	 } else {
                 $error_message = "Successfully sent!";
              }
-    	}
     }
     /*if(!$mail->Send()){
            $error_message = "Mailer Error: " . $mail->ErrorInfo;
