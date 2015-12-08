@@ -288,27 +288,32 @@
                             round = parseInt($(this).attr("data-round"));
                             var teambuttons= $("button[data-round='"+(round+1)+"'][data-teamID='"+winningTeam+"']");
                             if(teambuttons.size() == 0) {
-                                button.removeClass("btn-danger").addClass("btn-success");
-                                button.attr("disabled", false);
-                                button.attr("data-selected",0)
+                                if(button.hasClass("btn-warning")){
+                                    button.attr("disabled", true);
+                                    button.attr("data-selected", 1);
+                                }else{
+                                    button.removeClass("btn-danger").addClass("btn-success");
+                                    button.attr("disabled", false);
+                                    button.attr("data-selected", 0);
+                                }
 
                                 //check for non vide for a round
                                 var videbuttons= $("button[data-round='"+(round)+"'][data-void='"+1+"']");
                                 if(videbuttons.size() != 0) {
                                     button.removeClass("btn-success").addClass("btn-danger");
                                     button.attr("disabled", true);
-                                    button.attr("data-selected",0)
+                                    button.attr("data-selected",0);
                                 }
                             }else{
                                 button.removeClass("btn-danger").addClass("btn-warning");
                                 button.removeClass("fa-arrow-circle-right").addClass("fa-times");
                                 button.attr("disabled", true);
-                                button.attr("data-selected",1)
+                                button.attr("data-selected",1);
                             }
                         }else{
                             button.removeClass("btn-success").addClass("btn-danger");
                             button.attr("disabled", true);
-                            button.attr("data-selected",0)
+                            button.attr("data-selected",0);
                         }
                     }
             })
@@ -318,16 +323,18 @@
             $(toReplace).each(function(index){
                 round = $(this).attr("data-round");
                 var teambutton = $(":button[data-round="+(round-1)+"][name=btnselect][data-selected=0]:enabled");
-                console.log(teambutton);
-                if((teambutton.length == 1)) {
+                var otherTeamsbutton = $(":button[data-round="+(round-1)+"][name=btnselect][data-selected=1]:disabled");
+                var allTeambutton = $(":button[data-round="+(round-1)+"][name=btnselect]");
+                if((teambutton.length == 1) && (otherTeamsbutton.length == (allTeambutton.length-1))) {
                     teambutton.removeClass("btn-danger").addClass("btn-warning");
                     teambutton.removeClass("fa-arrow-circle-right").addClass("fa-times");
                     teambutton.attr("disabled", true);
                     teambutton.attr("data-selected", 1)
-                    var winningTeam = $(teambutton).attr("data-winning-team");
 
+                    var winningTeam = $(teambutton).attr("data-winning-team");
                     var teamBut = $(":button[data-teamid=" + winningTeam + "][data-round=" + (round - 1) + "]");
                     toReplace.replaceWith($(teamBut).clone());
+
                     var buttonSelect = $("#btnselectVoid" + round);
                     buttonSelect.attr("data-winning-team", winningTeam);
                     buttonSelect.removeClass("btn-danger").addClass("btn-warning");
