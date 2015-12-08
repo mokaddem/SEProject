@@ -46,21 +46,6 @@
                     <!-- /.col-lg-12 -->
                 </div>
 
-                <!-- <div class="row">
-                    <?php //if (array_key_exists("submitting", $_GET)) {?>
-                        <?php //if ($_GET["submitting"] == "correct") {?>
-                            <div class="col-lg-8 alert alert-success text-center">
-                                <b>Opération réussite !</b>
-                                Succès lors de l'enregistrement des groupes.
-                            </div>
-                        <?php //} else { ?>
-                            <div class="col-lg-8 alert alert-danger text-center">
-                                <b>Echec de l'opération !</b>
-                                Certains groupes utilisent le même terrain.
-                            </div>
-                    <?php //} } ?>
-                </div> -->
-
                 <div>
                     <div class="alert alert-success" id="popup" >Vos changements sont enregistrés. Vous pouvez à présent générer le tournoi de knock-off.</div>
                 </div>
@@ -86,6 +71,19 @@
                             <?php }?>
                     </ul></div>
                 </div>
+                <?php
+                $reponse = $db->query('SELECT * FROM GlobalVariables WHERE `Name` = "tournament_started_'.$_GET['jour'].'"');
+                $rep = $reponse->fetch_array();
+                $flagTournamentStarted = $rep['Value'];
+                if ($flagTournamentStarted != 1){?>
+                    <div class="col-lg-3 alert alert-danger">
+                        Le tournoi n'a pas encore commencé.</br>
+                        Veuillez saisir les scores des groupes avant de continuer. </br>
+                        <?php $startTournament = "start_tournament_".$_GET['jour'] ;?>
+                        <a href="input-group-score.php?jour=<?=$_GET['jour']?>&cat=0" class="btn btn-danger">Saisir les score</a>
+                    </div>
+                <?php }
+                else{ ?>
                 <div class="row">
                     <br/>
                 </div>
@@ -174,6 +172,7 @@
                 <!--</form>-->
                 </div>
                 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                <?php } ?>
                 <!-- /.row -->
             </div>
             <!-- /#page-wrapper -->
