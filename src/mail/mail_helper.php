@@ -44,13 +44,15 @@ function sendMail($dest, $message, $subject){
           // error_log("PREMIERE BOUCLE = ".$i);
           // error_log("ADRESSE MAIL = ".$dest[$i]);
   		}
+      // On envoit
   		if(!$mail->Send()){
   			$error_message = "Mailer Error: " . $mail->ErrorInfo;
          	 } else {
               $error_message = "Successfully sent!";
            }
+      //On vide la liste des mails à qui on vient d'envoyer
+      $mail->ClearAddresses();
   	}
-    $mail->ClearAddresses();
   	for($i=0+(50*$nbrDefois);$i<$nbrModulo+(50*$nbrDefois);$i++)
   		{
   				$mail->CharSet = 'windows-1250';
