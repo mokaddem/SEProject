@@ -23,7 +23,7 @@ function printListVarGlobal($donnes1) {
     $id = $donnes1['id'];
     echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show.php?id=$id&type=varGlobal\">".utf8_encode($donnes1['Name'])."</td>";
     echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show.php?id=$id&type=varGlobal\">".utf8_encode($donnes1['Value'])."</td>";
-    echo "<td><a href=\"php/inc/edit-varGlobal.php?Name=".utf8_encode($donnes1['Name'])."\"><i class=\"fa fa-edit fa-fw\"></i></a></td>";
+    echo "<td><a href=\"edit-varGlobal.php?Name=".utf8_encode($donnes1['Name'])."\"><i class=\"fa fa-edit fa-fw\"></i></a></td>";
     echo "</tr>";
 }
 ?>
