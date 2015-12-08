@@ -10,14 +10,16 @@ require_once('../add-new-history.php');
 //$database_db = 'SEProjectC';
 //$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
 $db = BDconnect();
-$ID	= $_GET['Name'];
-$Description = utf8_encode($_GET['value']);
+$ID	= $_GET['id'];
+$Description = utf8_encode($_GET['InputValue']);
 
 
-$reponse = $db->query("UPDATE SEProjectC.GlobalVariables SET Value = \"".$Description."\", Name=\"" .$ID." WHERE ".$ID."=GlobalVariables.Name");
+$reponse = $db->query("UPDATE SEProjectC.GlobalVariables SET Value = \"".$Description."\" WHERE ".$ID." = GlobalVariables.id");
 
 addHistory($ID, "Variables Globales", "Edition");
 
+
 header("Location: ../../listVarGlobal.php");
+
 
 ?>

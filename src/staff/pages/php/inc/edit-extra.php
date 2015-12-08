@@ -20,6 +20,6 @@ $reponse = $db->query("UPDATE SEProjectC.Extras SET Description = \"".$Descripti
 
 addHistory($ID, "Extra", "Edition");
 
-header("Location: ../../list.php?type=extra");
+header("Location: ../../list-extras.php");
 
 ?>

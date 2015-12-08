@@ -40,7 +40,12 @@
             include("./html/header.php");
             include_once('php/BDD.php');
             $db = BDconnect();
-            $reponse = $db->query('SELECT * FROM Extras WHERE '. $_GET['id']. ' = Extras.ID');
+        
+            if (array_key_exists("Name",$_GET)) {
+                $reponse = $db->query('SELECT * FROM GlobalVariables WHERE \''. $_GET['Name']. '\' = Name');
+            } else {
+                $reponse = $db->query('SELECT * FROM GlobalVariables WHERE ' . $_GET['id']. ' = id');
+            }
             $donnes = $reponse->fetch_array();
         ?>
 
@@ -48,42 +53,33 @@
             <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
                     <div class="col-lg-12 noDeco">
-                        <h1 class="page-header"><a href="list-extras.php">Gestion des extras</a> > Modifier</h1>
+                        <h1 class="page-header"><a href="listVarGlobal.php">Gestion des variables</a> > Modifier</h1>
                     </div>
                 </div>
 
                 <!-- Registration form - START -->
                 <div class="row">
-                    <form role="form" method="Get" action="php/inc/edit-extra.php">
+                    <form role="form" method="Get" action="php/inc/edit-varGlobal.php">
                         <div class="col-lg-6">
                             <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
 
                             <div class="form-group">
                                 <!--<label for="InputNom">Nom</label>-->
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input type="text" class="form-control" name="InputNom" id="InputNom" placeholder="Nom" required>
+                                    <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                    <input type="text" class="form-control" name="InputNom" id="InputNom" value="<?=$donnes["Name"]?>" disabled>
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <!--<label for="InputPrice">Prix</label>-->
-                                <div class="input-group">
-                                    <input type="price" class="form-control" id="InputPrice" name="InputPrice" placeholder="Prix" required>
-                                    <span class="input-group-addon">€</span>
-                                </div>
-                            </div>
-
                             <div class="form-group">
                                 <!--<label for="InputMessage">Message</label>-->
                                 <div class="input-group">
-                                    <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" placeholder="Description" required><?php echo utf8_encode($donnes["Description"]); ?></textarea>
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
+                                    <textarea name="InputValue" id="InputValue" class="form-control" rows="5" required><?php echo utf8_encode($donnes["Value"]); ?></textarea>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-edit"></span></span>
                                 </div>
                             </div>
 
-                            <a class="btn btn-info" href="list-extras.php">Retour</a>
-                            <button class="btn btn-success pull-right" type="submit" name="id" id="id" value=<?=$_GET['id']?>>Sauvegarder</button>
+                            <a class="btn btn-info" href="listVarGlobal.php">Retour</a>
+                            <button class="btn btn-success pull-right" type="submit" name="id" id="id" value="<?=$donnes["id"]?>">Sauvegarder</button>
 
                         </div>
                     </form>
