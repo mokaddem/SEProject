@@ -8,29 +8,29 @@ $gsSam = $db->query('SELECT GroupSaturday.ID as Gid FROM GroupSaturday');
 
 $groupsDim = $db->query('SELECT GroupSunday.ID as Gid FROM GroupSunday');
 
-$message = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Message Non-Payé"');
+$message = $db->query('SELECT Value FROM GlobalVariables WHERE id=4');
 
-$sujet =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet Non-Payé"');
+$sujet =  $db->query('SELECT Value FROM GlobalVariables WHERE id=5');
 
-$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Adresse du HQ"');
+$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE id=3');
 
 //récuperer le message du mail 
 $listMessage;
-while($mes = $message->fetch-array())	
+while($mes = $message->fetch_array())	
 {
 	$listMessage[0] = $mes['Value'];
 }
 
 //récuperer le sujet du mail
 $listSujet;
-while($suj = $sujet->fetch-array())	
+while($suj = $sujet->fetch_array())	
 {
 	$listSujet[0] = $suj['Value'];
 }
 
 //Adresse du HQ depuis la base de données
 $listHQ;
-while($lHQ = $adresse ->fetch-array())
+while($lHQ = $adresse ->fetch_array())
 {
 	$listHQ[0] = $lHQ['Value'];
 }
