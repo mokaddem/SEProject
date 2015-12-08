@@ -45,12 +45,12 @@ function sendMail($dest, $message, $subject){
         }
     }else
     {
-    	$nbrDefois=$nbr/50;		//Pour compteur le nombre de fois il faudra passer dans la boucle
+    	$nbrDefois=(int)$nbr/50;		//Pour compteur le nombre de fois il faudra passer dans la boucle
     	$nbrModulo=$nbr%50;		//Pour avoir le reste et savoir s'arreter au bon moment
     	
     	for($k=0;$k<$nbrDefois;$k++)
     	{
-    		for($i=0;$i<50;$i++)
+    		for($i=0+($k*50);$i<(50*$k);$i++)
     		{
     				$mail->CharSet = 'windows-1250';
     				$mail->SetFrom ('noreply@test.pydehon.me', '');
@@ -66,7 +66,7 @@ function sendMail($dest, $message, $subject){
                 $error_message = "Successfully sent!";
              }     
     	}
-    	for($i=0+(50*$k);$i<$nbrModulo+(50*$k);$i++)
+    	for($i=0+(50*$nbrDefois);$i<$nbrModulo+(50*$nbrDefois);$i++)
     		{
     				$mail->CharSet = 'windows-1250';
     				$mail->SetFrom ('noreply@test.pydehon.me', '');
