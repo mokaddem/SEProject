@@ -79,85 +79,75 @@
                         Le tournoi n'a pas encore été généré pour cette catégorie et/ou ce jour.
                     </div>
                 <?php }
+
                 $s_a_m = "server-action-menu";
-                $numberOfMatchCol = -1;
-                $iter = 1;
-                $newColNeeded = False;
-                $numberOfTeams = -1;
-                $numberOfColDone = 0;
+                $matchInRound = ($numberOfMatch+1)/2;
+                $matchDoneThisRound = 0;
+                $matchNum = 1;
                 $round = 1;
                 $maxCol = 4;
                 $visitedTeams = array();
-                array_push($visitedTeams,"0");
                 foreach($knockoff_all as $knockoff){
+                    ?> <div class="row"> <?php
                     $match = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match'])->fetch_array();
-                ?>
-                <div class="row"> <?php
-                    if (in_array($match['ID_Equipe2'],$visitedTeams)){ // If we have already seen this team,
-                        if ($numberOfMatchCol == -1) { // We begin the second round.
-                            $numberOfMatchCol = $iter - 1;
-                            $impair = (in_array($match['ID_Equipe1'],$visitedTeams)) ? 0 : 1;
-                            $numberOfTeams = 2 * $numberOfMatchCol + $impair; // Total number of teams that we have to place.
-                            $newColNeeded = True;
-                        } else {
-                            if ($numberOfColDone >= $numberOfMatchCol) {
-                                $newColNeeded = True;
-                            }
-                        }
-                        if ($newColNeeded){
-                            if ($round % $maxCol == 0){ ?>
-                                </div>
-                                <div class="col-lg-12 vcenter">
-                                    <h4><b> Tours suivants </b></h4>
-                            <?php
-                            }
-                            if ($impair == 1 and $round != 1){
-                                displayVoidTeamNoMatch($round, $db);
-                            }
-                            $round++;
-                            $newColNeeded = False;
-                            $numberOfTeams -= $numberOfMatchCol; // There were $numberOfMatchCol matches, so this number of team lost.
-                            $impair = $numberOfTeams % 2;
-                            $numberOfMatchCol = ($numberOfTeams == 3) ? 3 : (int)($numberOfTeams / 2); // Ce sera 3 si on a 3 finalistes.
-                            $numberOfColDone = 0;
-                            $visitedTeams = array();
-                            array_push($visitedTeams,"0");
-                            ?>
-                            </div>
-                            </div>
-                            <div class="col-lg-3 vcenter">
-                                <div class="row"> <?php
-                        }
-                    }?>
-                    <div class="form-group <?=$s_a_m?>">
-                        <div class="text-center">
-                            <label ><span class="fa fa-users"></span> Match <?=$knockoff['Position']." [".$match['ID']."]" ?> </label>
+                    if ($matchDoneThisRound >= $matchInRound){
+                        $matchDoneThisRound = 0;
+                        $matchInRound = $matchInRound/2;
+                        $round++;
+                        if (($round-1) % $maxCol == 0){ ?>
                         </div>
+                        <div class="col-lg-12 vcenter">
+                            <h4><b> Tours suivants </b></h4>
                         <?php
-                        for ($j = 1; $j <= 2; $j++) {
-                            $teamID = $match['ID_Equipe'.$j];
-                            if ($teamID == 0) {
-                                displayVoidTeam($match, $knockoff['Position'], $j, $round, $db);
-                            } else {
-                                $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'])->fetch_array();
-                                displayTeam($team, $match, $knockoff['Position'], $j, $numberOfMatch, $round, $db);
-                                array_push($visitedTeams,$teamID);
-                            }
-                            if($j==1){
-                                displaySelectButton($knockoff, $match, $round);
-                            }
                         }
                         ?>
-                    </div> <?php
+                        </div>
+                        </div>
+                        <div class="col-lg-3 vcenter">
+                        <div class="row">
+                    <?php
+                    }
+                    ?>
+                    <div class="form-group <?=$s_a_m?>">
+                    <div class="text-center">
+                        <label ><span class="fa fa-users"></span> Match <?=$knockoff['Position']." [".$match['ID']."]" ?> </label>
+                    </div>
+                    <?php
+                    $aloneTeam = false;
+                    if ($match['ID_Equipe2'] == -2){
+                        //displayAloneTeam($round, $db);
+                        $aloneTeam = true;
+                        ?>
+                        <label class="text-danger">Cette équipe commence au second tour</label>
+                        <?php
+                    }
+                    for($j = 1; $j <= 2; $j++){
+                        $teamID = $match['ID_Equipe'.$j];
+                        if ($teamID == 0) {
+                            displayVoidTeam($match, $knockoff['Position'], $j, $round, $db);
+                        }  else {
+                            $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'])->fetch_array();
+                            displayTeam($team, $match, $knockoff['Position'], $j, $numberOfMatch, $round, $aloneTeam, $db);
+                            array_push($visitedTeams,$teamID);
+                        }
+                        if($j==1 and !$aloneTeam){
+                            displaySelectButton($knockoff, $match, $round);
+                        }
+                        if ($aloneTeam){
+                            $j++;
+                        }
+                    }
                     if ($s_a_m == "server-action-menu") {
                         $s_a_m = "server-other-menu";
                     } else {
                         $s_a_m = "server-action-menu";
                     }
-                    $numberOfColDone++;
-                    $iter++;
+                    $matchNum++;
+                    $matchDoneThisRound++;
                     ?>
-                    </div> <?php
+                    </div>
+                    </div>
+                    <?php
                 }
                 ?>
 
@@ -184,18 +174,13 @@
         <?php
     }
 
-    function displayVoidTeamNoMatch($round, $db){
+    function displayAloneTeam($round, $db){
         ?>
-        <div class="form-group server-invalide-menu">
-            <div class="text-center">
-                <label ><span class="fa fa-users"></span> Team without match this round. </label>
-            </div>
-            <div class="form-group text-center">
-                <button class="btn btn-default btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-position="<?=$round?>" data-matchID="0">Vide</button>
-            </div>
-        </div>
+        <label class="text-danger">Cette équipe commence au second tour</label>
         <?php
+        displayTeam();
     }
+
     function displayVoidTeam($match, $position, $indice, $round, $db){
         ?>
         <div class="form-group text-center">
@@ -204,7 +189,7 @@
         <?php
     }
 
-    function displayTeam($team, $match, $position, $indice, $numberOfMatch, $round, $db){
+    function displayTeam($team, $match, $position, $indice, $numberOfMatch, $round, $aloneTeam, $db){
         $teamID = $team["ID"];
         $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'] . ' ')->fetch_array();
         $IDPersonne1 = $team['ID_Player1'];
@@ -219,13 +204,22 @@
         $score = $indice == 1 ? $match['score1'] : $match['score2'];
         ?>
         <div class="row">
-            <div class="col-lg-7">
+            <?php
+            if ($aloneTeam){
+                ?> <div class="col-lg-10"> <?php
+            } else{
+                ?> <div class="col-lg-7"> <?php
+            }
+            ?>
                 <button class="btn-block btn btn-default" data-teamID="<?=$team['ID']?>" data-round="<?=$round ?>" disabled> [<?=$ranking?>] <?= utf8_encode($player1['LastName']) ?> & <?= utf8_encode($player2['LastName']) ?> </button>
             </div>
-            <div class="col-lg-2" style="padding-right: 2px">
-                <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" min="0" data-teamID="<?=$team['ID']?>" data-matchID="<?=$match['ID']?>" data-indice="<?=$indice ?>" data-round="<?=$round ?>
-                       step="1" style="float: left;" value="<?=$score ?>"  required>
-            </div>
+            <?php
+            if (!$aloneTeam){ ?>
+                <div class="col-lg-2" style="padding-right: 2px">
+                    <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" min="0" data-teamID="<?=$team['ID']?>" data-matchID="<?=$match['ID']?>" data-indice="<?=$indice ?>" data-round="<?=$round ?>
+                           step="1" style="float: left;" value="<?=$score ?>"  required>
+                </div>
+            <?php } ?>
             <?php if($position > ceil($numberOfMatch/2)){ ?>
                 <div class="" style="margin-top: 1.5%">
                     <a class="pull-left" href="php/delete-knock.php?matchID=<?=$match['ID']?>&indice=<?=$indice?>&jour=<?=$_GET["jour"]?>&cat=<?=$_GET['cat']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce groupe ?');" ><i class="fa fa-trash-o"></i></a>

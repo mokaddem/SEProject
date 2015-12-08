@@ -119,10 +119,9 @@
                                 <label> Tour 1 </label>
                             <div class="col-lg-12 text-center vcenter">
                             <?php
-                                $numberFirstRound = 0;
-                                $impairTeam = 0;
+                                $numberFirstRound = ($numberOfMatch+1)/2;
                                 $s_a_m = "server-other-menu";
-                                for ($i = 1; $i <= $numberOfMatch; $i++) {
+                                for ($i = 1; $i <= $numberFirstRound; $i++) {
                                 ?> <div class="col-lg-3 text-center"> <?php
                                     if ($s_a_m == "server-action-menu") {
                                         $s_a_m = "server-other-menu";
@@ -131,28 +130,20 @@
                                     }
                                     $knockoff = $knockoff_all->fetch_array();
                                     $match = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match'])->fetch_array();
-                                    if ($match['ID_Equipe1'] == 0 and $match['ID_Equipe2'] == 0) {
-                                        // On arruve sur un match vide --> on stop a boucle et passe au second tour.
-                                        $numberFirstRound = $i;
-                                        $i = $numberOfMatch;
-                                    } else{
                                         ?>
                                         <div class="form-group text-center <?=$s_a_m?>"  data-groupID="<?=$knockoff['ID']?>" data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>" data-teamNum="2" data-matchID="<?=$match['ID']?>" >
                                             <label for="sel1"><span class="fa fa-users"></span> Match <?= $i ?> </label>
                                             <?php
-                                            if ($match['ID_Equipe2'] == 0) {
-                                                // Dans le cas d'un nombre impair d'équipe.
-                                                $numberFirstRound = $i;
-                                                $i = $numberOfMatch;
-                                                $impairTeam = 1;
-                                                ?> <label class="text-center">Cette équipe commence au second tour</label>
+                                            if ($match['ID_Equipe2'] == -2) {
+                                                // Dans le cas d'un match où une équipe est seule.
+                                                $aloneTeam = true;
+                                                ?> <label class="text-danger">Cette équipe commence au second tour</label>
                                                 <?php
                                             }
                                             displayMatch($match, $i, $db);
                                              ?>
                                          </div>
-                                    <?php }
-                                    ?> </div> <?php
+                                    </div> <?php
                                 }
                                 if ($numberFirstRound > 0){
                             ?>
@@ -161,14 +152,11 @@
                             <div class="col-lg-12 text-center">
                                 <h4><b>Modifier les terrains pour les tours suivants</b></h4>
                                 <?php
-                                $matchNum = $numberFirstRound;
-                                $round = 2; // Numéro du tour
+                                $matchNum = $numberFirstRound+1;
                                 $maxCol = 4; // Nombre maximum de colonnes.
-                                $numberOfTeams = $numberFirstRound - 1 + $impairTeam;
-                                $stop = False;
-                                while ($numberOfTeams > 1 and !$stop) {
+                                $numberOfTeams = $numberFirstRound;
+                                for ($round = 2; $matchNum <= $numberOfMatch; $round++) {
                                     $s_a_m = "server-new-menu";
-                                    $impairTeam = $numberOfTeams % 2;
                                     if (($round-1)%4 == 0){ ?>
                                         </div>
                                         <div class="col-lg-12 text-center">
@@ -178,24 +166,17 @@
                                     ?>
                                     <div class="col-lg-3 text-center  vcenter">
                                         <label> Tour <?= $round ?> </label>
-                                        <?php if($impairTeam == 1 and $numberOfTeams != 3) { ?>
-                                                    <label class="text-danger"> Une team n'aura pas de match à ce tour. </label >
-                                                <?php
-                                                } elseif ($numberOfTeams == 3){
-                                                    ?> </br> <label class="text-danger"> Il reste 3 équipes en finale. </label>
-                                                     <?php
-                                                     $numberOfTeams = 7;
-                                                     $stop = True;
-                                                } elseif ($numberOfTeams == 2){
-                                                    ?> </br> <label class="text-danger"> FINALE </label> <?php
-                                                }
-                                        for ($j = $impairTeam; $j < $numberOfTeams / 2; $j++) {
+                                        <?php
+                                        if ($numberOfTeams == 2){
+                                            ?> </br> <label class="text-danger"> FINALE </label> <?php
+                                        }
+                                        for ($j = 0; $j < $numberOfTeams / 2; $j++) {
                                             if ($_GET['jour'] == "sam") {
-                                                $knockoff = $db->query('SELECT * FROM KnockoffSaturday WHERE Position=' . $matchNum)->fetch_array();
+                                                $knockoff = $db->query('SELECT * FROM KnockoffSaturday WHERE Position='.$matchNum)->fetch_array();
                                             } elseif ($_GET['jour'] == "dim") {
-                                                $knockoff = $db->query('SELECT * FROM KnockoffSunday WHERE Position=' . $matchNum)->fetch_array();
+                                                $knockoff = $db->query('SELECT * FROM KnockoffSunday WHERE Position='.$matchNum)->fetch_array();
                                             }
-                                            $matchRep = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match']);
+                                            $matchRep = $db->query("SELECT * FROM `Match` WHERE ID =".$knockoff['ID_Match']);
                                             $match = $matchRep->fetch_array();
                                             ?>
                                             <div class="form-group <?= $s_a_m ?>" data-day="<?= $_GET['jour'] ?>"
@@ -207,8 +188,7 @@
                                         } ?>
                                     </div>
                                     <?php
-                                    $round++;
-                                    $numberOfTeams = intval($numberOfTeams / 2) + $impairTeam;
+                                    $numberOfTeams = $numberOfTeams / 2;
                                 }
                                 }?>
                                     </div>
@@ -240,7 +220,7 @@
     }
 
     function displayMatch($match, $position, $db){
-        if ($match['ID_Equipe2'] != 0){ ?>
+        if ($match['ID_Equipe2'] != -2){ ?>
             <select class="form-control" id="sel<?= $position ?>" name="ExpandableListTerrain">
                 <?php
                 $terrains = $db->query('SELECT * FROM Terrain');
