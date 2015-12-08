@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="row">
-            <?php if (array_key_exists("error", $_GET)) {?>
+                    <?php if (array_key_exists("error", $_GET)) {?>
                     <div class="col-lg-4 alert alert-danger">
                     <?php if ($_GET["error"] == "no_selection") {?>
                     Veuillez selectionner un jour.
@@ -54,17 +54,24 @@
                 <?php } elseif ($_GET["error"] == "no_dim") { ?>
                         Aucun vainqueur du dimanche trouvé. <br/>
                         Ils doivent être choisis préalablement.
-                    <?php } elseif ($_GET["error"] == "yes_sam") { ?>
+                <?php } elseif ($_GET["error"] == "yes_sam") { ?>
                         Le tournoi du samedi a déjà été généré.
-                        <?php } elseif ($_GET["error"] == "yes_dim") { ?>
+                <?php } elseif ($_GET["error"] == "yes_dim") { ?>
                         Le tournoi du dimanche a déjà été généré.
+                <?php } elseif ($_GET["error"] == "no_tournament_sam"){ ?>
+                       Le tournoi du samedi n'a pas encore commencé. </br>
+                       Veuillez saisir les scores des groupes avant de continuer. </br>
+                        <a href="input-group-score.php?jour=sam&cat=0" class="btn btn-danger">Saisir les score</a>
+                <?php } elseif ($_GET["error"] == "no_tournament_dim"){ ?>
+                        Le tournoi du dimanche n'a pas encore commencé. </br>
+                        Veuillez saisir les scores des groupes avant de continuer. </br>
+                        <a href="input-group-score.php?jour=dim&cat=0" class="btn btn-danger">Saisir les score</a>
                         <?php } ?>
-                    </div>
-            <?php } ?>
                 </div>
-
+                        </div>
+                    <?php } ?>
                 <!-- Registration form - START -->
-                <div class="row">
+                    <div class="row">
                         <div class="col-lg-6 text-center">
                             <fieldset data-role="controlgroup" data-type="horizontal">
                                 <form role="form" method="get" action="php/add-new-knock-off.php">
@@ -96,7 +103,7 @@
                         </div>
 
                     <!-- Registration form - END -->
-                </div>
+                    </div>
                 <!-- /.row -->
             </div>
             <!-- /#page-wrapper -->

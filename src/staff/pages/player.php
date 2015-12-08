@@ -123,12 +123,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="InputPhone">Déjà participé au tournoi?</label>
-                                    <label class="radio-inline">
-                                        <input id="InputPartYes1" type="radio" name="InputPartYes1">Oui
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input id="InputPartNo1" type="radio" name="InputPartNo1">Non
-                                    </label>
+                                    <div class="input-group">
+                                        <label class="radio-inline"><input id="InputPartYes1" name="InputPartYes1" type="radio" name="optradio" value="Oui">Oui</label>
+                                        <label class="radio-inline"><input id="InputPartYes1" name="InputPartYes1" type="radio" name="optradio" value="Non">Non</label>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     
@@ -233,12 +231,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="InputPhone">Déjà participé au tournoi?</label>
-                                    <label class="radio-inline">
-                                        <input id="InputPartYes2" name="InputPartYes2" type="radio" name="optradio">Oui
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input id="InputPartNo2" name="InputPartNo2" type="radio" name="optradio">Non
-                                    </label>
+                                    <div class="input-group">
+                                        <label class="radio-inline"><input id="InputPartYes2" name="InputPartYes2" type="radio" name="optradio" value="Oui">Oui</label>
+                                        <label class="radio-inline"><input id="InputPartYes2" name="InputPartYes2" type="radio" name="optradio" value="Non">Non</label>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="InputPhone">Montant à payer</label>

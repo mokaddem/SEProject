@@ -54,81 +54,79 @@
                     <?php } ?>
                 </div>
 
-                <!-- Registration form - START -->
-                <div class="row">
-                    <form role="form" method="Get" action="php/add-new-team.php">
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="sel1"><span class="fa fa-user"></span> Premier joueur</label>
-                                <select class="form-control" id="sel1" name="sel1">
-                                    <?php
-										$db = BDconnect();
-										$reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
-										while ($donnes = $reponse->fetch_array())
-										{
-                                            $player = $db->query('SELECT * FROM Player WHERE '.$donnes['ID'].' = ID_Personne');
+                <?php
+                $db = BDconnect();
+                $alone = $db->query('SELECT Count(*) as numberOfAloneTeam  FROM PlayerAlone')->fetch_array();
+                extract($alone);
+                if ($numberOfAloneTeam == 0){ ?>
+                    <div class="col-lg-3 alert alert-success">
+                        <b>Génial !</b>
+                        Aucun joueur n'est laissé de côté, ils ont tous un binôme.
+                    </div>
+                <?php } else {
+                    ?>
+
+                    <!-- Registration form - START -->
+                    <div class="row">
+                        <form role="form" method="Get" action="php/add-new-team.php">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="sel1"><span class="fa fa-user"></span> Premier joueur</label>
+                                    <select class="form-control" id="sel1" name="sel1">
+                                        <?php
+                                        $reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
+                                        while ($donnes = $reponse->fetch_array()) {
+                                            $player = $db->query('SELECT * FROM Player WHERE ' . $donnes['ID'] . ' = ID_Personne');
                                             $player = $player->fetch_array();
                                             $ranking = ($player['Ranking'] == NULL) ? "NC" : $player['Ranking'];
-                                            if (canDeletePlayer($donnes['ID'])){
-                                                echo "<option value=".$donnes['ID']."> [".utf8_encode($ranking)."] ".utf8_encode($donnes['FirstName'])." ".utf8_encode($donnes['LastName'])."</option>";
+                                            if (canDeletePlayer($donnes['ID'])) { // Returns true if the player is not in any team.
+                                                echo "<option value=" . $donnes['ID'] . "> [" . utf8_encode($ranking) . "] " . utf8_encode($donnes['FirstName']) . " " . utf8_encode($donnes['LastName']) . "</option>";
+
                                             }
-										}
-			 	    				?>
-                                        <!-- <option>propriétaire</option> -->
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="sel2"><span class="fa fa-user"></span> Second joueur</label>
-                                <select class="form-control" id="sel2" name="sel2">
-                                <?php
-                                $db = BDconnect();
-                                $reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
-                                while ($donnes = $reponse->fetch_array()) {
-                                    $player = $db->query('SELECT * FROM Player WHERE '.$donnes['ID'].' = ID_Personne');
-                                    $player = $player->fetch_array();
-                                    $ranking = ($player['Ranking'] == NULL) ? "NC" : $player['Ranking'];
-                                    if (canDeletePlayer($donnes['ID'])){
-                                        echo "<option value=".$donnes['ID']."> [".utf8_encode($ranking)."] ".utf8_encode($donnes['FirstName'])." ".utf8_encode($donnes['LastName'])."</option>";
-
-                                    }
-                                }
-                                  ?>
-
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="sel2"><span class="fa fa-user"></span> Catégorie</label>
-                                <select class="form-control" id="InputCat" name="InputCat">
-                                    <?php
-										$db = BDconnect();
-										$reponse = $db->query('SELECT * FROM Categorie');
-										while ($donnes = $reponse->fetch_array())
-										{
-										    echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['Designation'])." ".$donnes['Age']."</option>";
                                         }
-                                    ?>
+                                        ?>
+                                    </select>
+                                </div>
 
-                                </select>
-                            </div>
+                                <div class="form-group">
+                                    <label for="sel2"><span class="fa fa-user"></span> Second joueur</label>
+                                    <select class="form-control" id="sel2" name="sel2">
+                                        <?php
+                                        $reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
+                                        while ($donnes = $reponse->fetch_array()) {
+                                            $player = $db->query('SELECT * FROM Player WHERE ' . $donnes['ID'] . ' = ID_Personne');
+                                            $player = $player->fetch_array();
+                                            $ranking = ($player['Ranking'] == NULL) ? "NC" : $player['Ranking'];
+                                            if (canDeletePlayer($donnes['ID'])) { // Returns true if the player is not in any team.
+                                                echo "<option value=" . $donnes['ID'] . "> [" . utf8_encode($ranking) . "] " . utf8_encode($donnes['FirstName']) . " " . utf8_encode($donnes['LastName']) . "</option>";
 
-                            <input type="submit" name="submit" id="submit" value="Créer" class="btn btn-info pull-right">
-                            <div class="form-group">
-                            <button name="createTeams" id="createTeams" class="btn btn-info pull-left">Associer les joueurs seuls en équipe</button>
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <input type="submit" name="submit" id="submit" value="Créer une équipe"
+                                       class="btn btn-info pull-right">
+
+                                <div class="form-group">
+                                    <button name="createTeams" id="createTeams" class="btn btn-success pull-left">Associer tous les joueurs seuls en équipes </button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                    <!-- Registration form - END -->
-                </div>
-                <!-- /.row -->
+                        </form>
+                        <!-- Registration form - END -->
+                    </div>
+                    <!-- /.row -->
                     <br/>
-                <div id="spinnercontainer" class="col-lg-6">
-                    <p id="btnspinner" class="btn btn-warning pull-right col-lg-6">Equipes en création...</p>
-                </div>
-                <div class="col-lg-2 text-center">
-                    <div class="alert alert-success" id="popup" >Equipes créées !</div>
-                </div>
+                    <div id="spinnercontainer" class="col-lg-6">
+                        <p id="btnspinner" class="btn btn-warning pull-right col-lg-6">Equipes en création...</p>
+                    </div>
+                    <div class="col-lg-2 text-center">
+                        <div class="alert alert-success" id="popup">Equipes créées !</div>
+                    </div>
+                    <?php
+                }
+                ?>
             </div>
             <!-- /#page-wrapper -->
 

@@ -134,7 +134,7 @@
                                             $url = "input-group-score.php?jour=sam&cat=0&poule=".$PouleID."&team=".$TeamID?>
                                             <a href=<?=$url?>>Saisir un score</a>
                                         <?php }else{ ?>
-                                            <a href="input-group-score.php?jour=sam&cat=0">Saisir un score</a>
+                                            <a href="input-group-score.php?jour=sam&cat=0">Saisir les score</a>
                                         <?php }
                                         ?>
                                     </li>

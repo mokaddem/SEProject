@@ -31,6 +31,9 @@ if ($_GET["type"]=="extra") { ?>
             }
 
             if (!empty($donnees)) {
+                if ($_GET['type'] == "varGlobal"){
+                    $donnees['ID'] = $donnees['id']; // Because global variables don't have any ID.
+                }
               $next = $titreDonnees[0];
               foreach ($paramDonnees as $param){ ?>
                     <p><b><?=$next?>:</b>

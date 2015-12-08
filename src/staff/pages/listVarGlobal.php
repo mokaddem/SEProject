@@ -51,7 +51,7 @@
 
                 <?php
                 if (array_key_exists("error", $_GET)) {?>
-                    <p class="alert alert-danger"> Vous ne pouvez pas supprimer cette équipe car elle est utilisée ailleurs</p>
+                    <p class="alert alert-danger"> Vous ne pouvez pas supprimer cette variable globale</p>
                 <?php }
                 ?>
 

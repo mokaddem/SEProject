@@ -34,6 +34,9 @@ function getDonnees($get, $id) {
             case "category":
                 return getCategory($id);
 
+            case "varGlobal":
+                return getVarGlobal($id);
+
         }
 }
 
@@ -66,8 +69,12 @@ function getTitreTable($get) {
 
         case "staff":
             return array("ID", "Nom", "Prénom", "Resp. catégorie","Né(e) le", "Créé le", "Action");
+
         case "category":
             return array("ID", "Tranche d'âge", "Désignation", "Action");
+
+        case "varGlobal":
+            return array("ID", "Titre", "Message", "Action");
 
     }
 }
@@ -102,8 +109,12 @@ function getParam($get) {
 
         case "staff":
             return array("ID", "LastName", "FirstName", "ID_Cat", "BirthDate", "CreationDate");
+
         case "category":
             return array("ID", "Age", "Designation");
+
+        case "varGlobal":
+            return array("ID", "Name", "Value", "Displayable");
 
     }
 }
@@ -133,6 +144,8 @@ function getTitre($get) {
             return "staffeurs";
         case "category":
             return "catégories";
+        case "varGlobal":
+            return "variables globales";
 
     }
 }
@@ -209,6 +222,13 @@ function getTeam1() {
 function getTeam2($id) {
     $db = BDconnect();
     return $db->query('SELECT Team.ID, FirstName as F, LastName as L FROM Team, Personne WHERE Personne.ID = '.$id.'');
+}
+
+function getVarGlobal($id){
+    $db = BDconnect();
+    //$test = $db->query('SELECT * FROM GlobalVariables WHERE `Name`=\''.utf8_encode($name).'\'');
+    $test = $db->query('SELECT * FROM GlobalVariables WHERE `ID`='.$id);
+    return $test;
 }
 
 ?>
