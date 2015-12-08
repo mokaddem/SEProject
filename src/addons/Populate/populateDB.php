@@ -12,7 +12,7 @@ function PopulateDB(){
     $db = BDconnect();
 
     $i = 0;
-    for ($i = 0; $i < 100; $i+=2) {
+    for ($i = 0; $i < 120; $i+=2) {
         /*$req = $db->prepare("INSERT INTO Personne(Title, FirstName, LastName, Ville, ZIPCode, Rue, Number, PhoneNumber, GSMNumber, BirthDate, Mail, CreationDate, Note, IsPlayer, IsOwner, IsStaff) VALUES(1,'joueur".$1."','name".$1."','bxl','1000','rue de la pluie',".$1.",'665666','545535','1985-1-1','mailbidon".$1."@mailbidons.com','2015-11-11','',1,0,0)");
         $req->execute();*/
 

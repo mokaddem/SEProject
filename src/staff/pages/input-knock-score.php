@@ -135,6 +135,7 @@
                         }
                         if ($aloneTeam){
                             $j++;
+                            displaySelectButtonAlone($knockoff, $match, $round, $team);
                         }
                     }
                     if ($s_a_m == "server-action-menu") {
@@ -170,6 +171,13 @@
 
     <!-- Display functions ! -->
     <?php
+
+    function displaySelectButtonAlone($knockoff, $match, $round, $winningTeam){ ?>
+        <div class="tooltip-wrapper" data-placement="right">
+                <button class="btn btn-success fa fa-arrow-circle-right col-lg-offset-10" style="font-size: 200%"
+                        id="btnselect<?=$knockoff['Position']?>" name="btnselect" data-score1="1" data-score2="0" data-winning-team="<?=$winningTeam['ID'] ?>" data-matchID="<?=$match['ID']?>" data-round="<?=$round?>" data-selected="0" tooltip-title="Séléctionner l'équipe gagnante" data-alone="true"></button>
+        </div>
+    <?php }
 
     function displaySelectButton($knockoff, $match, $round){
         ?>
@@ -235,8 +243,8 @@
             <?php
             if (!$aloneTeam){ ?>
                 <div class="col-lg-2" style="padding-right: 2px">
-                    <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" min="0" data-teamID="<?=$team['ID']?>" data-matchID="<?=$match['ID']?>" data-indice="<?=$indice ?>" data-round="<?=$round ?>
-                           step="1" style="float: left;" value="<?=$score ?>"  required>
+                    <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" min="0" data-teamID="<?=$team['ID']?>" data-matchID="<?=$match['ID']?>" data-indice="<?=$indice ?>" data-round="<?=$round ?>" data-position="<?=$position?>"
+                           step="1" style="float: left;" value="<?=$score ?>" required>
                 </div>
             <?php } ?>
             <?php if($position > ceil($numberOfMatch/2)){ ?>
@@ -268,15 +276,14 @@
     <script>
         $( document ).ready(function(){
             $('#popup').hide();
-            updateButton();
+            updateButtons();
             var div_wrapper = $('.tooltip-wrapper');
             var text = div_wrapper.children();
-            console.log(text);
             $(div_wrapper).attr("data-title", text)
-            div_wrapper.tooltip();
+//            div_wrapper.tooltip();
         });
 
-        function updateButton() {
+        function updateButtons() {
             var button;
             var value1;
             var value2;
@@ -284,7 +291,6 @@
             var team2;
             var winningTeam;
             var indice;
-            var matchNumber=0;
             var round;
             $("input").each(function (index){
                     indice = $( this ).attr("data-indice");
@@ -293,10 +299,12 @@
                         team1=$( this ).attr("data-teamID");
                     }
                     else if (indice == 2) {
-                        matchNumber++;
+                        matchNumber = $(this).attr("data-position");
                         value2 = $( this ).val();
                         team2=$( this ).attr("data-teamID");
+//                        console.log('matchn='+matchNumber+', sc1='+value1+', sc2='+value2);
                         winningTeam = value1 == value2 ? -1 : (value1>value2 ? team1 : team2);
+//                        console.log(winningTeam);
                         button= $("#btnselect" + matchNumber);
                         button.attr("data-score1", value1).attr("data-score2", value2).attr("data-winning-team", winningTeam);
                         if(winningTeam!=-1){
@@ -331,8 +339,40 @@
                             button.attr("data-selected",0);
                         }
                     }
-            })
+            });
 
+            //check for team alone present in the second round
+            $(":button[data-alone=true]").each(function (index){
+                winningTeam = $(this).attr("data-winning-team");
+                round = parseInt($(this).attr("data-round"));
+                var teambuttons= $(":button[data-round='"+(round+1)+"'][data-teamID='"+winningTeam+"']");
+                if(teambuttons.size() == 0) {
+                    if($(this).hasClass("btn-warning")){
+                        $(this).attr("disabled", true);
+                        $(this).attr("data-selected", 1);
+                    }else{
+                        $(this).removeClass("btn-danger").addClass("btn-success");
+                        $(this).attr("disabled", false);
+                        $(this).attr("data-selected", 0);
+                    }
+
+                    //check for non vide for a round
+                    var videbuttons= $("button[data-round='"+(round)+"'][data-void='"+1+"']");
+                    if(videbuttons.size() != 0) {
+                        $(this).removeClass("btn-success").addClass("btn-danger");
+                        $(this).attr("disabled", true);
+                        $(this).attr("data-selected",0);
+                    }
+                }else{
+                    $(this).removeClass("btn-danger").addClass("btn-warning");
+                    $(this).removeClass("fa-arrow-circle-right").addClass("fa-times");
+                    $(this).attr("disabled", true);
+                    $(this).attr("data-selected",1);
+                }
+            });
+
+
+            /*
             //team without match -> autoselect the last one if there is only one team not selected yet
             var toReplace = $(':button[data-void=2]')
             $(toReplace).each(function(index){
@@ -377,6 +417,7 @@
                 }
             })
             if(flag_reload){setTimeout(function() {location.reload();},1000);}
+            */
         }
     </script>
 
@@ -396,7 +437,7 @@
                 url: url,
                 data: data
             });
-            updateButton();
+            updateButtons();
         }
     </script>
 
