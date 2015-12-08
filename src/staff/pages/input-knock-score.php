@@ -184,14 +184,19 @@
         <?php
     }
 
-    function displayVoidTeamNoMatch($round, $db){
+    function displayVoidTeamNoMatch($round){
         ?>
         <div class="form-group server-invalide-menu">
             <div class="text-center">
                 <label ><span class="fa fa-users"></span> Team without match this round. </label>
             </div>
-            <div class="form-group text-center">
-                <button class="btn btn-default btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-position="<?=$round?>" data-matchID="0" data-void="2">Vide</button>
+            <div class="row">
+                <div class="col-lg-7">
+                    <button class="btn btn-default btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-position="<?=$round?>" data-matchID="0" data-void="2" data-round="<?=$round?>" >Vide</button>
+                </div>
+                <div class="col-lg-5">
+                    <button class="btn btn-danger fa fa-arrow-circle-right col-lg-offset-7" style="font-size: 200%" id="btnselectVoid<?=$round?>" name="btnselect" data-winning-team="" data-matchID="0" data-round="<?=$round?>" disabled="true"></button>
+                </div>
             </div>
         </div>
         <?php
@@ -220,10 +225,10 @@
         ?>
         <div class="row">
             <div class="col-lg-7">
-                <button class="btn-block btn btn-default" data-teamID="<?=$team['ID']?>" data-round="<?=$round ?>" disabled> [<?=$ranking?>] <?= utf8_encode($player1['LastName']) ?> & <?= utf8_encode($player2['LastName']) ?> </button>
+                <button class="btn btn-default btn-block" data-teamID="<?=$team['ID']?>" data-round="<?=$round ?>" disabled> [<?=$ranking?>-<?=$team['ID']?>] <?= utf8_encode($player1['LastName']) ?> & <?= utf8_encode($player2['LastName']) ?> </button>
             </div>
             <div class="col-lg-2" style="padding-right: 2px">
-                <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" min="0" data-teamID="<?=$team['ID']?>" data-matchID="<?=$match['ID']?>" data-indice="<?=$indice ?>" data-round="<?=$round ?>
+                <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" min="0" data-teamID="<?=$team['ID']?>" data-matchID="<?=$match['ID']?>" data-indice="<?=$indice ?>" data-round="<?=$round?>
                        step="1" style="float: left;" value="<?=$score ?>"  required>
             </div>
             <?php if($position > ceil($numberOfMatch/2)){ ?>
@@ -254,7 +259,6 @@
     <script>
         $( document ).ready(function(){
             updateButton();
-//            setInterval(updateButton, 300);
         });
 
         function updateButton() {
@@ -267,7 +271,7 @@
             var indice;
             var matchNumber=0;
             var round;
-            $("input").each(function (index) {
+            $("input").each(function (index){
                     indice = $( this ).attr("data-indice");
                     if (indice == 1) {
                         value1 = $( this ).val();
@@ -302,7 +306,45 @@
                             button.removeClass("btn-success").addClass("btn-danger");
                             button.attr("disabled", true);
                         }
-                    }})
+                    }
+            })
+
+            //team without match -> autoselect the last one
+            var toReplace = $(':button[data-void=2]')
+            $(toReplace).each(function(index){
+                round = $(this).attr("data-round");
+                var teambutton = $(":button[data-round="+(round-1)+"][name=btnselect]:enabled");
+                teambutton.removeClass("btn-danger").addClass("btn-warning");
+                teambutton.removeClass("fa-arrow-circle-right").addClass("fa-times");
+                teambutton.attr("disabled", true);
+                var winningTeam = $(teambutton).attr("data-winning-team");
+
+                var teamBut = $(":button[data-teamid="+winningTeam+"][data-round="+(round-1)+"]");
+                toReplace.replaceWith($(teamBut).clone());
+                var buttonSelect = $("#btnselectVoid"+round);
+                buttonSelect.attr("data-winning-team", winningTeam);
+                buttonSelect.removeClass("btn-danger").addClass("btn-warning");
+                buttonSelect.removeClass("fa-arrow-circle-right").addClass("fa-times");
+                buttonSelect.attr("disabled", true);
+            })
+
+            // check if all team selected once -> autofill the remaining 2 match
+            var buttonsSelect = $(':button[data-void=1]');
+            $(buttonsSelect).each(function(index){
+                round = $(this).attr('data-round');
+                var buttonsEnableSelect = $(':button[data-round='+(round-1)+']:enabled');
+                if(buttonsEnableSelect.size() == 0){ //no team to select available -> auto-fill the remaining match
+                    var buttonsDisableSelect = $(':button[data-round='+(round-1)+'][name=btnselect]:disabled');
+                    matchID = $(this).attr('data-matchID');
+                    indice = $(this).attr('data-indice');
+                    var buttonDisable = $(buttonsDisableSelect).get(2-index);
+                    teamID = $(buttonDisable).attr("data-winning-team");
+                    data = {'matchID': matchID, 'indice': indice, 'teamID': teamID};
+                    SelectTeam(data, false);
+                    if(index==2){setTimeout(function(){location.reload();},1000);}
+                }
+            })
+
         }
     </script>
 
@@ -327,13 +369,11 @@
     </script>
 
     <script>
-        function selectTeam(e){
+        function autoselectTeam(e){
             var target = e.target;
-            var url ="php/select-team-knock-off.php";
 
             var emptySlot = $(':button[data-void=1],[data-void=2]:first');
             var teamWithoutMatch = emptySlot.attr("data-void") == 2 ? true : false;
-            console.log(teamWithoutMatch);
             var matchID = parseInt(emptySlot.attr("data-matchID"));
             var indice = parseInt(emptySlot.attr("data-indice"));
             var teamID = parseInt(target.getAttribute("data-winning-team"));
@@ -345,38 +385,44 @@
                 if(!teamWithoutMatch) {
                     var data = {'matchID': matchID, 'indice': indice, 'teamID': teamID};
                     if (teamID != -1) {
-                        $.ajax({
-                            type: 'POST',
-                            url: url,
-                            dataType: 'text',
-                            data: data,
-                            success: function (text) {
-                                if (text == "success") {
-                                    location.reload();
-
-                                } else {
-                                    $('form-messages-rep').text("Error");
-                                    location.reload();
-                                }
-                            },
-                            error: function (text) {
-                                alert("Error:" + text);
-                            }
-                        });
+                        SelectTeam(data, true);
                     }
                 }else{ //this is the last team without match -> generate the 3 match for the final
-                    console.log("Match!!");
-                    var emptySlot = $(':button[data-void=1][data-round='+(round+1)+']');
-                    $(emptySlot).each(function (index) {
-                        indice = $( this ).attr("data-indice");
+                    var teamBut = $(":button[data-teamid="+teamID+"][data-round="+round+"]");
+                    var toReplace = $(':button[data-void=2][data-round='+(round+1)+']:first')
+                    toReplace.replaceWith($(teamBut).clone());
+
                 }
             }
         }
     </script>
 
+    <script>
+        function SelectTeam(data, autoreload) {
+            var url ="php/select-team-knock-off.php";
+            $.ajax({
+                type: 'POST',
+                url: url,
+                dataType: 'text',
+                data: data,
+                success: function (text) {
+                    if (text == "success") {
+                        location.reload();
+
+                    } else {
+                        $('form-messages-rep').text("Error");
+                        if(autoreload) {location.reload();}
+                    }
+                },
+                error: function (text) {
+                    alert("Error:" + text);
+                }
+            });
+        }
+    </script>
 
     <script>$(':input').change(saveScore);</script>
-    <script>$("[name=btnselect]").click(selectTeam);</script>
+    <script>$("[name=btnselect]").click(autoselectTeam);</script>
 
 </body>
 
