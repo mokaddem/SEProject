@@ -51,7 +51,7 @@ if(ISSET($_POST["leaderMail_$arraySam[$i]"]))
 	{
 		$j=0;
 		$listAdress;
-		$mailsSam = $db -> query("SELECT DISTINCT Mail FROM Personne JOIN Player ON Player.ID_Personne = Personne.ID JOIN Team ON Team.ID_Player1=Player.ID_Personne OR Team.ID_Player2=Player.ID_Personne JOIN GroupSaturday ON GroupSaturday.ID_t1 = Team.ID OR GroupSaturday.ID_t2 = Team.ID OR GroupSaturday.ID_t3 = Team.ID OR GroupSaturday.ID_t4 = Team.ID OR GroupSaturday.ID_t5 = Team.ID OR GroupSaturday.ID_t6 = Team.ID OR GroupSaturday.ID_t7 = Team.ID OR GroupSaturday.ID_t8 = Team.ID WHERE Player.IsLeader=1 AND GroupSaturday.ID=".$arraySam[$i]);
+		$mailsSam = $db -> query("SELECT DISTINCT Mail FROM Personne JOIN Player ON Player.ID_Personne = Personne.ID JOIN Team ON Team.ID_Player1=Player.ID_Personne OR Team.ID_Player2=Player.ID_Personne JOIN GroupSaturday ON GroupSaturday.ID_Leader=Team.ID WHERE GroupSaturday.ID=".$arraySam[$i]);
 		$y=0;
 		$listRespFirst;
 		$listRespLast;
@@ -135,7 +135,7 @@ else //Si on est dimanche
 		{
 			$t=0;
 			$listAdressDim;
-			$mailsDim = $db -> query("SELECT DISTINCT Mail FROM Personne JOIN Player ON Player.ID_Personne = Personne.ID JOIN Team ON Team.ID_Player1=Player.ID_Personne OR Team.ID_Player2=Player.ID_Personne JOIN GroupSunday ON GroupSunday.ID_t1 = Team.ID OR GroupSunday.ID_t2 = Team.ID OR GroupSunday.ID_t3 = Team.ID OR GroupSunday.ID_t4 = Team.ID OR GroupSunday.ID_t5 = Team.ID OR GroupSunday.ID_t6 = Team.ID OR GroupSunday.ID_t7 = Team.ID OR GroupSunday.ID_t8 = Team.ID WHERE Player.IsLeader=1 AND GroupSunday.ID=".$arrayDim[$k]); 
+			$mailsDim = $db -> query("SELECT DISTINCT Mail FROM Personne JOIN Player ON Player.ID_Personne = Personne.ID JOIN Team ON Team.ID_Player1=Player.ID_Personne OR Team.ID_Player2=Player.ID_Personne JOIN GroupSunday ON GroupSunday.ID_Leader=Team.ID WHERE GroupSunday.ID=".$arrayDim[$k]); 
 			$y=0;
 			$listRespFirst;
 			$listRespLast;

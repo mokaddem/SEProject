@@ -31,7 +31,7 @@
 
     <?php
     		include_once('php/BDD.php');
-    		include "../../mail/mail_helper.php";
+    		// include "../../mail/mail_helper.php";
             include("./html/header.php");
             $db = BDconnect();
 
@@ -66,7 +66,7 @@
                 <br/>
                 <div class="form-group">
                   <!-- <label for="sel1"><span class="fa fa-user"></span> Message à tous les propriétaires</label> -->
-                  <input type="text" class="form-control" placeholder="Sujet" name="sujet" id="sujet" required data-validation-required-message="Veuillez entrer le sujet.">
+                  <input type="text" class="form-control" placeholder="Sujet" name="sujet" id="sujet" data-validation-required-message="Veuillez entrer le sujet.">
                   <br>
                   <textarea rows="15" cols="50" class="form-control" placeholder="Message" name="message" id="message" data-validation-required-message="Veuillez entrer votre message."></textarea>
                 </div>

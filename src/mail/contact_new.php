@@ -109,7 +109,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 if($leaderSam==true)
 	{
-		$adresse = $db->query('SELECT DISTINCT Mail FROM Personne JOIN Player ON Player.ID_Personne = Personne.ID JOIN Team ON Team.ID_Player1=Player.ID_Personne OR Team.ID_Player2=Player.ID_Personne JOIN GroupSaturday ON GroupSaturday.ID_t1 = Team.ID OR GroupSaturday.ID_t2 = Team.ID OR GroupSaturday.ID_t3 = Team.ID OR GroupSaturday.ID_t4 = Team.ID OR GroupSaturday.ID_t5 = Team.ID OR GroupSaturday.ID_t6 = Team.ID OR GroupSaturday.ID_t7 = Team.ID OR GroupSaturday.ID_t8 = Team.ID WHERE Player.IsLeader=1');
+		$adresse = $db->query('SELECT DISTINCT Mail FROM Personne JOIN Player ON Player.ID_Personne = Personne.ID JOIN Team ON Team.ID_Player1=Player.ID_Personne OR Team.ID_Player2=Player.ID_Personne JOIN GroupSaturday ON GroupSaturday.ID_Leader=Team.ID');
 		$listAdr;
 		$i=0;
 		while($ladr = $adresse -> fetch_array())
@@ -128,7 +128,7 @@ if($leaderSam==true)
 ///////////////////////////////////////////////////////////////////////////////
 if($leaderDim==true)
 	{
-		$adresse = $db->query('SELECT DISTINCT Mail FROM Personne JOIN Player ON Player.ID_Personne = Personne.ID JOIN Team ON Team.ID_Player1=Player.ID_Personne OR Team.ID_Player2=Player.ID_Personne JOIN GroupSunday ON GroupSunday.ID_t1 = Team.ID OR GroupSunday.ID_t2 = Team.ID OR GroupSunday.ID_t3 = Team.ID OR GroupSunday.ID_t4 = Team.ID OR GroupSunday.ID_t5 = Team.ID OR GroupSunday.ID_t6 = Team.ID OR GroupSunday.ID_t7 = Team.ID OR GroupSunday.ID_t8 = Team.ID WHERE Player.IsLeader=1');
+		$adresse = $db->query('SELECT DISTINCT Mail FROM Personne JOIN Player ON Player.ID_Personne = Personne.ID JOIN Team ON Team.ID_Player1=Player.ID_Personne OR Team.ID_Player2=Player.ID_Personne JOIN GroupSunday ON GroupSunday.ID_Leader=Team.ID');
 		$listAdr;
 		$i=0;
 		while($ladr = $adresse -> fetch_array())
