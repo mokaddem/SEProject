@@ -194,10 +194,20 @@
                               }
                               ?>
                           <div class="col-lg-3 <?=$s_a_m?> dropper"  name="divGroupContainer" id="divGroup<?=$k?>" data-groupID="<?=$group['Gid']?>" data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"]?>">
-                              <label class="">
+                              <div>
+                                  <button name="button_mail" class="fa fa-envelope default pull-left" style="font-size: 120%; margin-right: -5px"></button>
+                              <label>
                                   <span class="fa fa-users"></span> Groupe <?= $k?>
                                   <a class="" <?php if(!$canEdit){?> href="php/delete-group.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&cat=<?=$_GET['cat']?>" <?php }?> <?php if(!$canEdit){?> onclick="return confirm('Voulez-vous vraiment supprimer ce groupe ?');" <?php }?> ><i class="fa fa-trash-o"></i></a>
                               </label>
+                              </div>
+<!--                                <form name="tous" action="mailTous.php" method="post"> </form>-->
+<!--                                  <input type='submit' name='tous_--><?php //echo $group['Gid']?><!--' value='Tous'> </input>-->
+<!--                                <form name="leaderMail" action="mailLeader.php" method="post">  </form>-->
+<!--                                  <input type="submit" name="leaderMail_--><?php //echo $group['Gid']?><!--" value="Leader">-->
+<!--                              <form name="NPMail" action="mailNP.php" method="post">  </form>-->
+<!--                                  <input type="submit" name="NP_--><?php //echo $group['Gid']?><!--" value="Non Payé">-->
+
                               <div class="form-group" >
                                   <label class=""><span class="fa fa-users"></span> Terrain</label>
                                   <select <?=$canEdit?> class="form-control" id="terrain <?=$k?>" name="ExpandableListTerrain">
@@ -376,7 +386,12 @@
                             if (target.getAttribute("name") != null) {
                                 if (target.getAttribute("name") == "divGroupContainer") { // Et on applique le style adéquat à notre zone de drop quand un élément la survole
                                     if(flag_red){ target.className += " drop_hover_green";}
-                                    else{this.className += " drop_hover";}
+                                    else{
+                                        if($(target).attr("data-groupnum") == $(dndHandler.draggedElement).attr("data-groupnum")){ //On applique le style seulement si le draggred est dans un group différent
+                                            //do nothing
+                                        }
+                                        else{this.className += " drop_hover";}
+                                    }
                                 } else if(target.getAttribute("name") == "button-player") {
                                     if(flag_red){ target.className += " drop_hover_green";}
                                     else{this.className += " drop_hover";}
@@ -479,6 +494,18 @@
     <script>
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();
+            $('[name="button_mail"]').popover({
+                placement: 'right',
+                html: true,
+                title: "<i class='fa fa-envelope-o'> Envoyer un mail</i>",
+                trigger: "focus",
+                content: "<button name='mail_button' data-Mailtarget='mailTous' class='btn btn-info'>Groupe</button> <button name='mail_button' data-Mailtarget='mailLeader' class='btn btn-info'>Leader</button> <button name='mail_button' data-Mailtarget='mailNP' class='btn btn-warning'>Non payé</button>"
+            }).on('shown.bs.popover', function (eventShown) {
+                var $popup = $('#' + $(eventShown.target).attr('aria-describedby'));
+                $popup.find(':button').click(function(){
+                    sendTheMailTo($(this).attr('data-Mailtarget'));
+                });
+            });
 
             if(<?php if(array_key_exists("popup",$_POST)){echo "true";}else{echo "false";} ?>) {
                 setTimeout(function () {$('#popupCreate').fadeIn('slow');}, 0);
@@ -602,9 +629,6 @@
                 data: data
 
             });
-
-
-//            setTimeout(function() {  location.reload();}, 500+2000);
             var redirURL = window.location.href;
 
             var data={ 'popup':true};
@@ -620,7 +644,12 @@
             setTimeout(function() {  $('#popupCreate').fadeIn('slow');}, 0);
             setTimeout(function() {  $('#popupCreate').fadeOut('slow');},2000);
         }
+    </script>
 
+    <script>
+        function sendTheMailTo(target){
+            console.log(target);
+        }
     </script>
 
     <script type="text/javascript">
