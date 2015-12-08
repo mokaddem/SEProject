@@ -48,7 +48,7 @@
             <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
                     <div class="col-lg-12 noDeco">
-                        <h1 class="page-header"><a href="list.php?type=extra">Gestion des extras</a> > Modifier</h1>
+                        <h1 class="page-header"><a href="list-extras.php">Gestion des extras</a> > Modifier</h1>
                     </div>
                 </div>
 
