@@ -179,7 +179,7 @@
     function displaySelectButton($knockoff, $match, $round){
         ?>
         <div class="row">
-            <button class="btn btn-danger fa fa-arrow-circle-right col-lg-offset-10" style="font-size: 200%" id="btnselect<?=$knockoff['Position']?>" name="btnselect" data-score1="" data-score2="" data-winning-team="" data-matchID="<?=$match['ID']?>" data-round="<?=$round?>" disabled="true"></button>
+            <button class="btn btn-danger fa fa-arrow-circle-right col-lg-offset-10" style="font-size: 200%" id="btnselect<?=$knockoff['Position']?>" name="btnselect" data-score1="" data-score2="" data-winning-team="" data-matchID="<?=$match['ID']?>" data-round="<?=$round?>" data-selected="0" disabled="true"></button>
         </div>
         <?php
     }
@@ -290,58 +290,68 @@
                             if(teambuttons.size() == 0) {
                                 button.removeClass("btn-danger").addClass("btn-success");
                                 button.attr("disabled", false);
+                                button.attr("data-selected",0)
 
                                 //check for non vide for a round
                                 var videbuttons= $("button[data-round='"+(round)+"'][data-void='"+1+"']");
                                 if(videbuttons.size() != 0) {
                                     button.removeClass("btn-success").addClass("btn-danger");
                                     button.attr("disabled", true);
+                                    button.attr("data-selected",0)
                                 }
                             }else{
                                 button.removeClass("btn-danger").addClass("btn-warning");
                                 button.removeClass("fa-arrow-circle-right").addClass("fa-times");
                                 button.attr("disabled", true);
+                                button.attr("data-selected",1)
                             }
                         }else{
                             button.removeClass("btn-success").addClass("btn-danger");
                             button.attr("disabled", true);
+                            button.attr("data-selected",0)
                         }
                     }
             })
 
-            //team without match -> autoselect the last one
+            //team without match -> autoselect the last one if there is only one team not selected yet
             var toReplace = $(':button[data-void=2]')
             $(toReplace).each(function(index){
                 round = $(this).attr("data-round");
-                var teambutton = $(":button[data-round="+(round-1)+"][name=btnselect]:enabled");
-                teambutton.removeClass("btn-danger").addClass("btn-warning");
-                teambutton.removeClass("fa-arrow-circle-right").addClass("fa-times");
-                teambutton.attr("disabled", true);
-                var winningTeam = $(teambutton).attr("data-winning-team");
+                var teambutton = $(":button[data-round="+(round-1)+"][name=btnselect][data-selected=0]:enabled");
+                console.log(teambutton);
+                if((teambutton.length == 1)) {
+                    teambutton.removeClass("btn-danger").addClass("btn-warning");
+                    teambutton.removeClass("fa-arrow-circle-right").addClass("fa-times");
+                    teambutton.attr("disabled", true);
+                    teambutton.attr("data-selected", 1)
+                    var winningTeam = $(teambutton).attr("data-winning-team");
 
-                var teamBut = $(":button[data-teamid="+winningTeam+"][data-round="+(round-1)+"]");
-                toReplace.replaceWith($(teamBut).clone());
-                var buttonSelect = $("#btnselectVoid"+round);
-                buttonSelect.attr("data-winning-team", winningTeam);
-                buttonSelect.removeClass("btn-danger").addClass("btn-warning");
-                buttonSelect.removeClass("fa-arrow-circle-right").addClass("fa-times");
-                buttonSelect.attr("disabled", true);
+                    var teamBut = $(":button[data-teamid=" + winningTeam + "][data-round=" + (round - 1) + "]");
+                    toReplace.replaceWith($(teamBut).clone());
+                    var buttonSelect = $("#btnselectVoid" + round);
+                    buttonSelect.attr("data-winning-team", winningTeam);
+                    buttonSelect.removeClass("btn-danger").addClass("btn-warning");
+                    buttonSelect.removeClass("fa-arrow-circle-right").addClass("fa-times");
+                    buttonSelect.attr("disabled", true);
+                    buttonSelect.attr("data-selected", 1)
+                }
             })
 
             // check if all team selected once -> autofill the remaining 2 match
             var buttonsSelect = $(':button[data-void=1]');
             $(buttonsSelect).each(function(index){
                 round = $(this).attr('data-round');
-                var buttonsEnableSelect = $(':button[data-round='+(round-1)+']:enabled');
-                if(buttonsEnableSelect.size() == 0){ //no team to select available -> auto-fill the remaining match
+                var buttonsEnableSelect = $(':button[data-round='+(round-1)+'][data-selected=1]:disabled');
+                if((buttonsEnableSelect.length == 3) && (buttonsEnableSelect.length !== 0)){ //no team to select available -> auto-fill the remaining match
                     var buttonsDisableSelect = $(':button[data-round='+(round-1)+'][name=btnselect]:disabled');
                     matchID = $(this).attr('data-matchID');
                     indice = $(this).attr('data-indice');
                     var buttonDisable = $(buttonsDisableSelect).get(2-index);
                     teamID = $(buttonDisable).attr("data-winning-team");
                     data = {'matchID': matchID, 'indice': indice, 'teamID': teamID};
+//                    console.log(data);
                     SelectTeam(data, false);
-                    if(index==2){setTimeout(function(){location.reload();},1000);}
+//                    if(index==2){setTimeout(function(){location.reload();},1000);}
                 }
             })
 
