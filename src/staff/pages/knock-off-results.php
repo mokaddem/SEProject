@@ -81,73 +81,62 @@
                     </div>
                 <?php }
                 $s_a_m = "server-action-menu";
-                $numberOfMatchCol = -1;
-                $iter = 1;
-                $newColNeeded = False;
-                $numberOfTeams = -1;
-                $numberOfColDone = 0;
+                $matchInRound = ($numberOfMatch+1)/2;
+                $matchDoneThisRound = 0;
                 $round = 1;
                 $maxCol = 4;
                 foreach($knockoff_all as $knockoff){
-                $match = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match'])->fetch_array();
-                ?>
-                <div class="row"> <?php
-                    if ($match['ID_Equipe2'] == 0){
-                    if ($numberOfMatchCol == -1) { // We begin the second round.
-                        $numberOfMatchCol = $iter - 1;
-                        $impair = ($match['ID_Equipe1'] == 0) ? 0 : 1;
-                        $numberOfTeams = 2 * $numberOfMatchCol + $impair; // Total number of teams that we have to place.
-                        $newColNeeded = True;
-                    } else {
-                        if ($numberOfColDone >= $numberOfMatchCol) {
-                            $newColNeeded = True;
-                        }
-                    }
-                    if ($newColNeeded){
-                        if ($round % $maxCol == 0){ ?>
-                            </div>
-                            <div class="col-lg-12 vcenter">
-                                <h4><b> Résultats des tours suivant </b></h4>
-                        <?php }
-                        if ($impair == 1 and $round != 1){
-                            displayVoidTeamNoMatch($round, $db);
-                        }
+                    $match = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match'])->fetch_array();
+                    ?> <div class="row"> <?php
+                    if ($matchDoneThisRound >= $matchInRound){
+                        $matchDoneThisRound = 0;
+                        $matchInRound = $matchInRound/2;
                         $round++;
-                        $newColNeeded = False;
-                        $numberOfTeams -= $numberOfMatchCol; // There were $numberOfMatchCol matches, so this number of team lost.
-                        $impair = $numberOfTeams % 2;
-                        $numberOfMatchCol = ($numberOfTeams == 3) ? 3 : (int)($numberOfTeams / 2); // Ce sera 3 si on a 3 finalistes.
-                        $numberOfColDone = 0;
+                        if (($round-1) % $maxCol == 0){ ?>
+                        </div>
+                        <div class="col-lg-12 vcenter">
+                            <h4><b> Résultats des tours suivants </b></h4>
+                        <?php
+                        }
                         ?>
                         </div>
                         </div>
                         <div class="col-lg-3 vcenter">
-                        <div class="row"> <?php
-                    }
-                    }?>
-                    <div class="form-group <?=$s_a_m?>">
-                        <div class="text-center">
-                            <label ><span class="fa fa-users"></span> Match <?=$knockoff['Position'] ?> </label>
-                        </div>
+                        <div class="row">
                         <?php
-                        for ($j = 1; $j <= 2; $j++) {
-                            $teamID = $match['ID_Equipe'.$j];
-                            if ($teamID == 0) {
-                                displayVoidTeam($match, $knockoff['Position'], $db);
-                            } else {
-                                $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'] . ' ')->fetch_array();
-                                displayTeam($team, $match, $j, $knockoff['Position'], $db);
-                            }
-                        }
+                    } ?>
+                    <div class="form-group <?=$s_a_m?>">
+                    <div class="text-center">
+                        <label ><span class="fa fa-users"></span> Match <?=$knockoff['Position'] ?> </label>
+                    </div>
+                    <?php
+                    $aloneTeam = false;
+                    if ($match['ID_Equipe2'] == -2){
+                        $aloneTeam = true;
                         ?>
+                        <label class="text-danger">Cette équipe commence au second tour</label>
+                        <?php
+                    }
+                    for ($j = 1; $j <= 2; $j++) {
+                        $teamID = $match['ID_Equipe'.$j];
+                        if ($teamID == 0) {
+                            displayVoidTeam($match, $knockoff['Position'], $db);
+                        } else {
+                            $team = $db->query('SELECT * FROM Team WHERE ID= ' . $teamID . ' AND ID_Cat=' . $_GET['cat'] . ' ')->fetch_array();
+                            displayTeam($team, $match, $j, $knockoff['Position'], $db);
+                        }
+                        if ($aloneTeam){
+                            $j++;
+                        }
+                    }
+                    ?>
                     </div> <?php
                     if ($s_a_m == "server-action-menu") {
                         $s_a_m = "server-other-menu";
                     } else {
                         $s_a_m = "server-action-menu";
                     }
-                    $numberOfColDone++;
-                    $iter++;
+                    $matchDoneThisRound++;
                     ?>
                 </div> <?php
                 }
@@ -167,18 +156,6 @@
 <!-- Display functions ! -->
 <?php
 
-function displayVoidTeamNoMatch($round, $db){
-    ?>
-    <div class="form-group server-invalide-menu">
-        <div class="text-center">
-            <label ><span class="fa fa-users"></span> Team sans match pour ce tour. </label>
-        </div>
-        <div class="form-group text-center">
-            <p> Equipe non choisie. </p>
-        </div>
-    </div>
-    <?php
-}
 function displayVoidTeam($match, $position, $db){
     ?>
     <div class="form-group text-center">
