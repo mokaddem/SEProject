@@ -23,14 +23,6 @@
 
   <!-- Custom Fonts -->
   <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
 
 <body>
@@ -63,30 +55,45 @@
                     <button type="button" class="btn btn-default btn-outline" data-toggle="collapse" data-target="#demo" ata-toggle="tooltip" data-placement="top" title="Selectionner des groupes">
                       <i class="fa fa-long-arrow-down"></i> <i class="fa fa-users"></i>
                     </button>
+                    <button type="button" class="btn btn-default btn-outline" data-toggle="collapse" data-target="#demo1" ata-toggle="tooltip" data-placement="top" title="Selectionner des messages">
+                  <i class="fa fa-long-arrow-down"></i> <i class="fa fa-envelope"></i>
+                  </button>
+
                   <!-- </div> -->
                 <!-- </div> -->
+
+
+                <br/>
+                <div class="form-group">
+                  <!-- <label for="sel1"><span class="fa fa-user"></span> Message à tous les propriétaires</label> -->
+                  <input type="text" class="form-control" placeholder="Sujet" name="sujet" id="sujet" required data-validation-required-message="Veuillez entrer le sujet.">
+                  <br>
+                  <textarea rows="15" cols="50" class="form-control" placeholder="Message" name="message" id="message" data-validation-required-message="Veuillez entrer votre message."></textarea>
+                </div>
+                <div class="rows">
                   <p>
-                  <div id="demo" class="collapse">
+                <input type="submit" name="envoi" id="submitPlayers" value="Envoyer" class="btn btn-primary pull-right" />
+              </div>
+            </div>
+            </div>
+            <div class="col-lg-6">
+              <div id="demo" class="collapse">
+                  <p>
                   <input type="checkbox" name="parti" value="Participants"> Tous les participants
                   <input type="checkbox" name="proprio" value="Propriétaires"> Tous les propriétaires
                   </p>
+                  <b> Groupes Samedi </b><br/>
                   <p>
-                  <h4> Groupes Samedi </h4>
-                  </p>
                   <input type="checkbox" name="leaderSam" value="Participants"> Tous les leaders
                   <input type="checkbox" name="NPSam" value="Propriétaires"> Tous les non-payés
                   <input type="checkbox" name="tousSam" value="Participants"> Tous les joueurs
                   </p>
-                  <h4> Groupes Dimanche </h4>
-                  </p>
-                  <input type="checkbox" name="leaderDim" value="Participants"> Tous les leaders
+                  <b> Groupes Dimanche </b><br/>
+                  <p><input type="checkbox" name="leaderDim" value="Participants"> Tous les leaders
                   <input type="checkbox" name="NPDim" value="Propriétaires"> Tous les non-payés
                   <input type="checkbox" name="tousDim" value="Participants"> Tous les joueurs
                   </p>
-                  <p>
-                  <h4> Catégories </h4>
-                  </p>
-                  </p>
+                  <b> Catégories </b><br/>
                   <?php
                   $categorie = $db->query('SELECT Designation FROM Categorie');
                   $listCat;
@@ -100,29 +107,15 @@
                   $i++;
                   }
                   ?>
-                  </p>
                 </div>
-
-                <br/>
-                <div class="form-group">
-                  <!-- <label for="sel1"><span class="fa fa-user"></span> Message à tous les propriétaires</label> -->
-                  <input type="text" class="form-control" placeholder="Sujet" name="sujet" id="sujet" required data-validation-required-message="Veuillez entrer le sujet.">
-                  <br>
-                  <textarea rows="15" cols="50" class="form-control" placeholder="Message" name="message" id="message" required data-validation-required-message="Veuillez entrer votre message."></textarea>
-                </div>
-                <div class="rows">
-                  <button type="button" class="btn btn-default btn-outline" data-toggle="collapse" data-target="#demo1" ata-toggle="tooltip" data-placement="top" title="Selectionner des messages">
-                  <i class="fa fa-long-arrow-down"></i> <i class="fa fa-envelope"></i>
-                  </button>
-                  <p>
-                  <div id="demo1" class="collapse">
+              <div id="demo1" class="collapse">
+                <br/><br/><br/><br/><br/>
+                  <b>Message pré-ecrit</b><br/>
                   <input type="checkbox" name="mesLeader" value="Participants"> Messages des leaders
                   <input type="checkbox" name="mesTous" value="Propriétaires"> Messages pour tous
                   <input type="checkbox" name="mesNP" value="Propriétaires"> Messages des non-payés
-                  </p>
-                  </div>
-                <input type="submit" name="envoi" id="submitPlayers" value="Envoyer" class="btn btn-primary pull-right" />
               </div>
+
             </div>
           </form>
           <!-- Registration form - END -->
