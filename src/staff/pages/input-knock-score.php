@@ -163,6 +163,11 @@
 
                 </div>
             <div id="form-messages-rep"></div>
+
+            <div class="col-lg-5 text-center col-lg-offset-5">
+                <div class="alert alert-success" id="popup"></div>
+            </div>
+
             </div>
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <!-- Registration form - END -->
@@ -231,7 +236,7 @@
                 <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" min="0" data-teamID="<?=$team['ID']?>" data-matchID="<?=$match['ID']?>" data-indice="<?=$indice ?>" data-round="<?=$round?>
                        step="1" style="float: left;" value="<?=$score ?>"  required>
             </div>
-            <?php if($position > ceil($numberOfMatch/2)){ ?>
+            <?php if($round > 1){ ?>
                 <div class="" style="margin-top: 1.5%">
                     <a class="pull-left" href="php/delete-knock.php?matchID=<?=$match['ID']?>&indice=<?=$indice?>&jour=<?=$_GET["jour"]?>&cat=<?=$_GET['cat']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce groupe ?');" ><i class="fa fa-trash-o"></i></a>
                 </div>
@@ -258,6 +263,7 @@
 
     <script>
         $( document ).ready(function(){
+            $('#popup').hide();
             updateButton();
         });
 
@@ -346,6 +352,7 @@
 
             // check if all team selected once -> autofill the remaining 2 match
             var buttonsSelect = $(':button[data-void=1]');
+            var flag_reload = false;
             $(buttonsSelect).each(function(index){
                 round = $(this).attr('data-round');
                 var buttonsEnableSelect = $(':button[data-round='+(round-1)+'][data-selected=1]:disabled');
@@ -356,12 +363,11 @@
                     var buttonDisable = $(buttonsDisableSelect).get(2-index);
                     teamID = $(buttonDisable).attr("data-winning-team");
                     data = {'matchID': matchID, 'indice': indice, 'teamID': teamID};
-//                    console.log(data);
                     SelectTeam(data, false);
-//                    if(index==2){setTimeout(function(){location.reload();},1000);}
+                    if(index==3){flag_reload = true;}
                 }
             })
-
+            if(flag_reload){setTimeout(function() {location.reload();},1000);}
         }
     </script>
 
@@ -402,7 +408,13 @@
                 if(!teamWithoutMatch) {
                     var data = {'matchID': matchID, 'indice': indice, 'teamID': teamID};
                     if (teamID != -1) {
-                        SelectTeam(data, true);
+                        if(!isNaN(matchID)) { //if there is no match left
+                            SelectTeam(data, true);
+                        }else{
+                            $('#popup').text("L'équipe "+$(target).attr('data-winning-team')+" a gagnée le tournois pour cette catégorie!");
+                            setTimeout(function() {  $('#popup').fadeIn('slow');}, 0);
+                            setTimeout(function() {  $('#popup').fadeOut('slow');},3000);
+                        }
                     }
                 }else{ //this is the last team without match -> generate the 3 match for the final
                     var teamBut = $(":button[data-teamid="+teamID+"][data-round="+round+"]");
@@ -416,6 +428,7 @@
 
     <script>
         function SelectTeam(data, autoreload) {
+            console.log(data);
             var url ="php/select-team-knock-off.php";
             $.ajax({
                 type: 'POST',
