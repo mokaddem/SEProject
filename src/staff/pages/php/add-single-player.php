@@ -101,8 +101,8 @@ while($extraID = $extraIDs->fetch_array()){
 $reponse->free();
 
 // -------------------Envoie Mail Paiement----------------------------
-	$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE Name="Sujet paiement"');
-	$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Adresse HQ"');
+	$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE id=17');
+	$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE id=3');
 	
 	//récuperer le sujet du mail
 	$listSujet;
@@ -121,7 +121,7 @@ $reponse->free();
 
 	if($payer1==1)
 	{
-		$messageR = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Paiement CB"');
+		$messageR = $db->query('SELECT Value FROM GlobalVariables WHERE id=12');
 
 		//récuperer le message du mail
 		$listMessage;
@@ -132,7 +132,7 @@ $reponse->free();
 	}
 	if($payer1==2)
 	{
-		$messageR2 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Paiement Paypal"');
+		$messageR2 = $db->query('SELECT Value FROM GlobalVariables WHERE id=16');
 		//récuperer le message du mail
 		$listMessage;
 		while($mes = $messageR2->fetch_array())
@@ -143,7 +143,7 @@ $reponse->free();
 	}
 	if($payer1==3)
 	{
-		$messageR3 = $db->query('SELECT Value FROM GlobalVariables WHERE Name="Paiement Espèce"');
+		$messageR3 = $db->query('SELECT Value FROM GlobalVariables WHERE id=13');
 		//récuperer le message du mail
 		$listMessage;
 		while($mes = $messageR3->fetch_array())
