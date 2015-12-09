@@ -1,5 +1,5 @@
 <?php
-//include_once('../BDD.php');
+include_once('../BDD.php');
 header('Content-type: application/json');
 // Fonction utilisée pour vérifier que tous les groupes ont un terrain différent.
 function checkDifferentCourtsForGroups($day){
