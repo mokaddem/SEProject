@@ -140,7 +140,7 @@
                             <a href="./php/delete-history.php" class="btn btn-danger">Effacer</a>
                         </div>
                         <div class="pull-right">
-                            <a href="./php/delete-all.php" class="btn btn-danger">Vider entièrement la Base de Données <i class="fa fa-refresh"></i></a>
+                            <a href="./php/delete-all.php" class="btn btn-danger">Vider entièrement la Base de Données <i class="fa fa-trash"></i></a>
                         </div>
                       </span>
                         <!-- /.panel -->
