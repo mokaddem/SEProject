@@ -42,6 +42,7 @@
                         <h1 class="page-header">Modifier le Knock-Off
                           <?php $jour =$_GET['jour'] ?>
                           <a class="btn btn-default btn-outline pull-right" href="./php/print-knock-off.php?jour=<?=$jour?>" target="_blank"><i class="fa fa-print fa-fw"></i> Print</a>
+                          <button class="btn btn-info pull-right fa fa-question-circle" onclick="checkCourts();" style="font-size: 55%" data-toggle="tooltip" data-placement="left" title="Vérifier que les terrains sont différents"></button>
                         </h1>
                     </div>
                 </div>
@@ -344,6 +345,32 @@
         }
     </script>
 
+    <script>
+        function checkCourts(){
+            var url ="./php/inc/check-terrain.php";
+            $.ajax({
+                type: 'POST',
+                url: url,
+                dataType: "json",
+                data: {'day':"<?=$_GET['jour']?>", 'type':"knock"},
+                success: function (response_array) {
+                    if (response_array['rep'] == "success") {
+                        alert("OK: Tous les groupes utilisent des terrains différents.");
+                    } else {
+                        $('form-messages-rep').text("Error");
+                        alert("Attention: "+response_array['rep']);
+                    }
+                },
+                error: function (response_array) {
+                    console.log(response_array);
+                    alert("Error:" + response_array['rep']);
+                }
+            });
+
+
+        }
+    </script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             var i=0;
@@ -352,6 +379,7 @@
                 i++;
                 List.addEventListener("change", saveCourt);
             }
+            $('[data-toggle="tooltip"]').tooltip();
         });
 
     </script>

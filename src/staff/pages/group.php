@@ -621,8 +621,14 @@
             var js_idG = groupID;
             var js_idC = CatID;
             var js_jour= Day;
-            var url="../pages/php/inc/create-new-empty-group.php";
 
+            var redirURL = window.location.href;
+            var data={ 'popup':true};
+            var form = $('<form action="' + redirURL + '" method="post">' +
+                '<input type="text" name="popup" value="' + true + '" />' +
+                '</form>');
+
+            var url="../pages/php/inc/create-new-empty-group.php";
             var data={ 'idG':js_idG, 'idT':js_idT, 'idC':js_idC, 'jour': js_jour };
 
             $.ajax({
@@ -630,16 +636,9 @@
                 url: url,
                 data: data
 
-            });
-            var redirURL = window.location.href;
+            }).done(function(){$('body').append(form);
+            form.submit();});
 
-            var data={ 'popup':true};
-
-            var form = $('<form action="' + redirURL + '" method="post">' +
-                '<input type="text" name="popup" value="' + true + '" />' +
-                '</form>');
-            $('body').append(form);
-            form.submit();
         }
 
         function popup(){
@@ -675,10 +674,10 @@
                 data: {'day':"<?=$_GET['jour']?>", 'type':"group"},
                 success: function (response_array) {
                     if (response_array['rep'] == "success") {
-                        alert("success");
+                        alert("OK: Tous les groupes utilisent des terrains différents.");
                     } else {
                         $('form-messages-rep').text("Error");
-                        alert("Attention: "+response_array['rep']);
+                        alert("failed: "+response_array['rep']);
                     }
                 },
                 error: function (response_array) {
