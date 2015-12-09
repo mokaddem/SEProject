@@ -133,6 +133,7 @@
                                     <i class="fa fa-chevron-down"></i>
                                 </button>
                             </span>
+                                <button class="pull-left btn btn-success" onclick="checkCourts();"> Vérifier que les terrains sont différents </button>
                               <input type="text" id="idteam2" name="idteam2" placeholder="Cliquez sur une équipe" class="hidden" required/>
                               <input type="text" id="idteam1" name="idteam1" placeholder="Cliquez sur une équipe" class="hidden" required/>
                                 <input name="teamNumberG1" id="teamNumberG1" class="hidden" value="" />
@@ -153,8 +154,6 @@
                       } else{
                           $q1='SELECT * , GroupSunday.ID AS Gid FROM GroupSunday, Team WHERE (GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].') UNION ALL SELECT GroupSunday.*, '.$nullAp.' as ID,'.$nullAp.' as ID_Player1,'.$nullAp.' as ID_Player2,'.$nullAp.' as ID_Cat,'.$nullAp.' as NbWinMatch,'.$nullAp.' as AvgRanking,'.$nullAp.' as Group_Vic, GroupSunday.ID AS Gid FROM GroupSunday WHERE GroupSunday.ID_t1 = -1';
                           $groups = $db->query($q1);
-//                                $groups = $db->query('SELECT *, GroupSunday.ID as Gid FROM GroupSunday, Team WHERE GroupSunday.ID_t1 = Team.ID AND Team.ID_Cat = '.$_GET['cat'].') OR (GroupSunday.ID_t1=-1 AND GroupSunday.ID_t2=NULL');
-
                       }
                       ?>
                   <div class="row">
@@ -165,6 +164,7 @@
                       $j = 4;
                       $s_a_m = "";
                       $k = 0;
+                      $groupNumber = $groups->num_rows;
 
                       while($group = $groups->fetch_array()){//k loop
                           $k++;
@@ -201,14 +201,13 @@
                                   <a class="" <?php if(!$canEdit){?> href="php/delete-group.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&cat=<?=$_GET['cat']?>" <?php }?> <?php if(!$canEdit){?> onclick="return confirm('Voulez-vous vraiment supprimer ce groupe ?');" <?php }?> ><i class="fa fa-trash-o"></i></a>
                               </label>
                               </div>
-                                <form name="tous" action="mailTous.php" method="post">
-                                  <input type='submit' name='tous_<?php echo $group['Gid']?>' value='Tous'>
-                                </form>
-                                <form name="leaderMail" action="mailLeader.php" method="post">
-                                  <input type="submit" name="leaderMail_<?php echo $group['Gid']?>" value="Leader"></form>
-                              <form name="NPMail" action="mailNP.php" method="post">
-                                  <input type="submit" name="NP_<?php echo $group['Gid']?>" value="Non Payé">
-                              </form>
+<!--                                <form name="tous" action="mailTous.php" method="post">-->
+<!--                                  <input type='submit' name='tous_--><?php //echo $group['Gid']?><!--' value='Tous'> </input></form>-->
+<!--                                <form name="leaderMail" action="mailLeader.php" method="post">-->
+<!--                                  <input type="submit" name="leaderMail_--><?php //echo $group['Gid']?><!--" value="Leader"></form>-->
+<!--                              <form name="NPMail" action="mailNP.php" method="post">-->
+<!--                                  <input type="submit" name="NP_--><?php //echo $group['Gid']?><!--" value="Non Payé">-->
+<!--                              </form>-->
                               <div class="form-group" >
                                   <label class=""><span class="fa fa-users"></span> Terrain</label>
                                   <select <?=$canEdit?> class="form-control" id="terrain <?=$k?>" name="ExpandableListTerrain">
@@ -278,8 +277,14 @@
                                           <div class="form-group text-center">
                                               <div <?=$canEdit?> class="btn btn-default btn-outline draggable dropper" name="button-player" data-toggle="idteam1" data-target="#idteam1" data-id="-1" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"]?>">Emplacement vide</div>
                                           </div>
+                              <?php }
+                              if($groupNumber == ($k)){ ?>
+                                  <div>
+                                      <div class="alert alert-success" id="popupCreate" >Nouveau groupe créé</div>
+                                  </div>
                               <?php } ?>
-                          </div>
+
+                              </div>
                           <?php }
                               } // End of k loop.
                           if ($k == 0){ ?>
@@ -305,9 +310,6 @@
                                   <button <?=$canEdit?> class="btn btn-default" id="createNewGroup" name="createNewGroup">
                                       Nouveau groupe
                                   </button>
-                              </div>
-                              <div>
-                                  <div class="alert alert-success" id="popupCreate" >Nouveau groupe créé</div>
                               </div>
                           </div>
                           <?php } ?>
@@ -339,6 +341,9 @@
     <script src="../dist/js/sb-admin-2.js"></script>
 
     <script>
+        function checkCourts(){
+            alert("<?php checkDifferentCourtsForGroups($_GET['jour']); ?>");
+        }
         (function() {
             var dndHandler = {
                 draggedElement: null,
