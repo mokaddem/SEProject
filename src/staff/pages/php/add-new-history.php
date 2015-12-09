@@ -1,9 +1,9 @@
-<!-- Ajout d'une nouvelle action dans l'historique,
-fonction appelée dans tous les formulaires qui touchent à la BDDS
- -->
 
 <?php session_start(); ?>
 <?php
+	//Ajout d'une nouvelle action dans l'historique,
+	//fonction appelée dans tous les formulaires qui touchent à la BDDS
+
 	include_once('BDD.php');
 function addHistory($IdEntite, $TypeEntite, $Action) {
 

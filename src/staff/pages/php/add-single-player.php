@@ -13,6 +13,8 @@ include_once('get-ranking.php');
 //	$db = BDconnect();
 error_log(serialize($_GET));
 
+
+
 if ($_GET['InputPrenom1'] == NULL
 or $_GET['InputNom1'] == NULL
 or $_GET['title1'] == NULL
@@ -24,8 +26,12 @@ or $_GET['birth_year1'] == NULL
 or $_GET['birth_month1'] == NULL
 or $_GET['birth_day1'] == NULL
 or $_GET['InputEmailFirst1'] == NULL  ){
-  header("Location: ../../../inscription/index.php?error=true" );
-  return;
+    if ($_GET['access'] == "visitor"){
+        header("Location: ../../../inscription/index.php?error=true" );
+    } elseif ($_GET['access'] == "staff") {
+        header("Location: ../player.php?error=true" );
+    }
+    return;
 }
 
 // Ajout du duo de joueur

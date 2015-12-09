@@ -16,7 +16,7 @@
         <meta name="author" content="">
 
         <title>Staff - Charles de Lorraine</title>
-
+        
         <!-- Bootstrap Core CSS -->
         <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -34,6 +34,7 @@
 
         <!-- Custom Fonts -->
         <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../../images/icon.ico">
     </head>
 
     <body>
