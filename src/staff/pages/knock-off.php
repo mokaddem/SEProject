@@ -119,9 +119,16 @@
                                 <label> Tour 1 </label>
                             <div class="col-lg-12 text-center vcenter">
                             <?php
+                                $maxCol = 4; // Nombre maximum de colonnes.
+                                $col = 0;
                                 $numberFirstRound = ($numberOfMatch+1)/2;
                                 $s_a_m = "server-other-menu";
                                 for ($i = 1; $i <= $numberFirstRound; $i++) {
+                                    if ($col % $maxCol == 0){
+                                        ?> </div>
+                                        <div class="col-lg-12">
+                                        <?php
+                                    }
                                 ?> <div class="col-lg-3 text-center"> <?php
                                     if ($s_a_m == "server-action-menu") {
                                         $s_a_m = "server-other-menu";
@@ -144,6 +151,7 @@
                                              ?>
                                          </div>
                                     </div> <?php
+                                    $col++;
                                 }
                                 if ($numberFirstRound > 0){
                             ?>
@@ -153,7 +161,6 @@
                                 <h4><b>Modifier les terrains pour les tours suivants</b></h4>
                                 <?php
                                 $matchNum = $numberFirstRound+1;
-                                $maxCol = 4; // Nombre maximum de colonnes.
                                 $numberOfTeams = $numberFirstRound;
                                 for ($round = 2; $matchNum <= $numberOfMatch; $round++) {
                                     $s_a_m = "server-new-menu";
