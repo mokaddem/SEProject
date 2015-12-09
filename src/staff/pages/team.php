@@ -180,6 +180,7 @@
                         $('#popup').removeClass("btn-warning").addClass("btn-success");
                         setTimeout(function(){$('#popup').fadeIn('slow');},0);
                         setTimeout(function(){$('#popup').fadeOut('slow');},3000);
+                        setTimeout(function(){location.reload();},4000);
                     }else{
                         $('#btnspinner').hide();
                         $('#popup').hide();
@@ -190,13 +191,6 @@
                     }
                 },
                 error: function (response_array) {
-//                    console.log(response_array);
-//                    $('#btnspinner').hide();
-//                    $('#popup').hide();
-//                    $('#popup').removeClass("btn-success").addClass("btn-warning");
-//                    $('#popup').text('Error');
-//                    setTimeout(function(){$('#popup').fadeIn('slow');},0)
-//                    setTimeout(function(){$('#popup').fadeOut('slow');},3000)
                     $('#btnspinner').hide();
                     $('#popup').hide();
                     $('#popup').removeClass("btn-success").addClass("btn-warning");
@@ -206,9 +200,6 @@
                 }
 
             });
-//            var target = document.getElementById('btnspinner');
-//            var spinner = new Spinner(opts).spin(target);
-//            $('#btnspinner').show();
         }
     </script>
 

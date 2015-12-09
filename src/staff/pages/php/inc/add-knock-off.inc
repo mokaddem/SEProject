@@ -90,7 +90,7 @@ function createKnock($db, $knocktable, $cat, $numberOfTeams, $vicTeams) {
 
 function createMatchKnock($db, $position, $cat, $teamID1, $teamID2, $terrainID, $pouleID, $knocktable, $round){
     $matchID = '';
-    $date = date('d');
+    $date = date('Y-m-d');
     $intHour = 13+$round;
     $hourString = $intHour.":00";
     $hour = date($hourString);

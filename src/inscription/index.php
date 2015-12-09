@@ -136,12 +136,17 @@
                                         <?php
                                         $tmp = $db->query('SELECT * FROM Extras');
                                         $i=1;
+                                        $checked = "checked";
                                         while ($extra = $tmp->fetch_array()){?>
                                             <div class="form-group" id="extraD1_<?php echo $i;?>" name="extraD1_<?php echo $i;?>">
-                                                <input id="extra1_<?php echo $i;?>" name="extra1_<?php echo $i;?>" value=<?=$extra['ID']?> type="checkbox"> <strong><?php echo utf8_encode($extra['Name']);?></strong>: </input>
+                                                <?php if ($i!=1){ ?>
+                                                    <input checked id="extra1_<?php echo $i;?>" name="extra1_<?php echo $i;?>" value=<?=$extra['ID']?> type="checkbox"> <strong><?php echo utf8_encode($extra['Name']);?></strong>: </input>
+                                                <?php }else{ ?>
+                                                    <input id="extra1_<?php echo $i;?>" name="extra1_<?php echo $i;?>" value=<?=$extra['ID']?> type="checkbox"> <strong><?php echo utf8_encode($extra['Name']);?></strong>: </input>
+                                                <?php } ?>
                                                 <span><?php echo utf8_encode($extra['Description'])?></span>
                                             </div>
-                                            <?php $i=$i+1;} $extraSize = $i; ?>
+                                            <?php $i=$i+1; $checked="";} $extraSize = $i; ?>
                                     </div>
 
                                     <div class="form-group well well-sm">
