@@ -836,6 +836,19 @@ CREATE TABLE IF NOT EXISTS `PersonneExtra` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `TmpPersonneExtra`
+--
+
+CREATE TABLE IF NOT EXISTS `TmpPersonneExtra` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Personne_ID` int(11) NOT NULL,
+  `Extra_ID` int(11) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=55 ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `TmpPersonne`
 --
 
