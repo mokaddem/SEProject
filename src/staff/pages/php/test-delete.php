@@ -1,6 +1,6 @@
-<?php
 
-    /* Suppression d'un joueur s'il n'appartient à aucune équipe */
+<?php
+/* Suppression d'un joueur s'il n'appartient à aucune équipe */
     function canDeletePlayer($id) {
         
         include_once('BDD.php');
