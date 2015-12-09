@@ -98,7 +98,7 @@
                                 <div class="modal-body">
                                     <p>Félicitation !</p>
                                     <p>Vous avez bien été enregistré !</p>
-                                    <p>Vous recevrez un e-mail de confirmation sous peu.</p>                                
+                                    <p>Vous recevrez un e-mail de confirmation sous peu.</p>
                                 </div>
                             <?php } elseif ($_GET["action"] == "confirm") { ?>
                                     <h4 class="modal-title">Inscription réussite</h4>
@@ -320,6 +320,42 @@
                         <div class="col-sm-1 hidden-sm">&nbsp;</div>
                         <div class="col-12 col-sm-10 font-light">N'hésitez pas à nous faire part de vos réactions, il n'y a qu'un bouton à appuyer.</div>
                         <div class="col-sm-1 hidden-sm">&nbsp;</div>
+                    </div>
+                    <button class="btn btn-default btn-lg pull-left" data-toggle="collapse" data-target="#respo">Liste des responsables</button>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div id="respo" class="collapse">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Catégorie</th>
+                            <th>Age</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Email</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                      <?php // requete des respo de cat pour pouvoir les contacter par mail
+                        require_once('staff/pages/php/BDD.php');
+                        $db = BDconnect();
+                        $reponse = $db->query('SELECT ID_Personne, ID_Cat FROM Staff');
+
+                        foreach ($reponse as $staff) {
+                          $reponse = $db->query('SELECT * FROM Personne WHERE '.$staff['ID_Personne'].' = ID ');
+                          $reponse2 = $db->query('SELECT * FROM Categorie WHERE '.$staff['ID_Cat'].'  = ID');
+                          $reponse2 = $reponse2->fetch_array();
+
+                          foreach ($reponse as $personne) { ?>
+                            <tr>
+                              <th><?=$reponse2['Designation'] ?></th><th><?=$reponse2['Age'] ?></th> <th><?=$personne["LastName"]?></th> <th><?=$personne["FirstName"]?></th> <th><?=$personne["Mail"]?></th>
+                            </tr>
+                          <?php }
+                        } ?>
+                        </tbody>
+                      </table>
                     </div>
                     <!-- /row -->
 
