@@ -45,11 +45,14 @@
 
                 <div class="row">
                     <?php if (array_key_exists("error", $_GET)) {?>
-                    <div class="col-lg-4 alert alert-danger">
+                    <div class="col-lg-5 alert alert-danger">
                     <?php if ($_GET["error"] == "no_selection") {?>
                     Veuillez selectionner un jour.
                 <?php } elseif ($_GET["error"] == "no_sam") { ?>
                         Aucun vainqueur du samedi trouvé. <br/>
+                        Ils doivent être choisis préalablement.
+                <?php } elseif ($_GET["error"] == "no_team") { ?>
+                        Aucune équipe n'a été trouvée pour générer le knock-off. <br/>
                         Ils doivent être choisis préalablement.
                 <?php } elseif ($_GET["error"] == "no_dim") { ?>
                         Aucun vainqueur du dimanche trouvé. <br/>
