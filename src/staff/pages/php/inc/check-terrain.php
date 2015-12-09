@@ -67,4 +67,9 @@ function checkDifferentCourtsForKnock($day){
     }
     return json_encode($response_array);
 }
+if($_POST['type']=="group"){
+    echo checkDifferentCourtsForGroups($_POST['day']);
+}else{
+    echo checkDifferentCourtsForKnock($_POST['day']);
+}
 ?>
