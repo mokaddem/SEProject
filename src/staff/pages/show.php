@@ -8,12 +8,28 @@ if ($_GET["type"]=="extra") { ?>
 
 <!-- Page de détail qui apparait lorsque l'on clique sur un participants/matchs/propriétaires/catégories/staff dans la liste -->
         <!-- Modal content-->
+      <?php
+      if (array_key_exists("type", $_GET) && array_key_exists("id", $_GET)) {
+      $listDonnees = getDonnees($_GET["type"], $_GET['id']);
+      $donnees = $listDonnees->fetch_array();
+      $titreDonnees = getTitreTable($_GET["type"]);
+      $paramDonnees = getParam($_GET["type"]);
+
+      $titre = getTitre($_GET["type"]);
+
+      if ($_GET["type"] == "player") {
+      $player = getRanking($donnees['ID']);
+      $player = $player->fetch_array();
+      }
+      }
+      ?>
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Informations
                 <?php if ($_GET['type'] == 'court') {
-                  // Pour les teams et terrains ?>
+                  // Pour les teams et terrains
+                    ?>
                   <a class="btn btn-default pull-right" target="_blank" href="./php/print.php?id=<?=$donnees['ID']?>"><i class="fa fa-print"></i></a>
                 <?php } ?>
                 </h4>
@@ -21,19 +37,7 @@ if ($_GET["type"]=="extra") { ?>
             <div class="modal-body">
                 <div class="container">
             <?php
-            if (array_key_exists("type", $_GET) && array_key_exists("id", $_GET)) {
-                $listDonnees = getDonnees($_GET["type"], $_GET['id']);
-                $donnees = $listDonnees->fetch_array();
-                $titreDonnees = getTitreTable($_GET["type"]);
-                $paramDonnees = getParam($_GET["type"]);
 
-                $titre = getTitre($_GET["type"]);
-
-                if ($_GET["type"] == "player") {
-                  $player = getRanking($donnees['ID']);
-                  $player = $player->fetch_array();
-                }
-            }
 
             if (!empty($donnees)) {
                 if ($_GET['type'] == "varGlobal"){

@@ -16,43 +16,49 @@ function createKnock($db, $knocktable, $cat, $numberOfTeams, $vicTeams) {
         $pouleID = -2;
     }
 
-
-    // Try to put the best players at the extremities, so that they will fight on the final match.
-//        $vicTeamsGoodOrder = array($numberOfTeams);
-//        $i = 0;
-//        $k = 0;
-//        foreach ($vicTeams as $team) {
-//            if ($k == 0) {
-//                $vicTeamsGoodOrder[$numberOfTeams - 1 - $i] = $team;
-//                $k = 1;
-//            } elseif ($k == 1) {
-//                $vicTeamsGoodOrder[$i] = $team;
-//                $i++;
-//                $k = 0;
-//            }
-//        }
-
     // On trouve le nombre de matches pour le premier tour: la puissance de 2 supérieure la plus proche.
-    for ($k = 1; $k < $numberOfTeams; $k = $k * 2) {
-    }
+
+    for ($k = 1; $k < $numberOfTeams; $k = $k * 2) {}
     $numberOfMatchFirstRound = $k / 2;
     $numberOfMatch = $k - 1;
     $numberOfMatchInRound = $numberOfMatchFirstRound;
+
+
+    // Créé le tableau contenant toutes les teams, y compris les teams vide (ID = -2).
+    $vicTeamsIDBadOrder = array($k);
+    for($j = 1; $j <= $k; $j++){
+        if ($j <= $numberOfTeams){
+            $team = $vicTeams->fetch_array();
+            $vicTeamsIDBadOrder[$j] = $team['teamID'];
+        } else{
+            $vicTeamsIDBadOrder[$j] = -2;
+        }
+    }
+
+    // On met les meilleurs joueurs aux extremités, pour qu'ils s'affrontent en finale.
+    $vicTeamsIDGoodOrder = $vicTeamsIDBadOrder;
+    for($j = 1; $j <= $k/4; $j++){
+        $vicTeamsIDGoodOrder[$j*2] = $vicTeamsIDBadOrder[$k-($j*2)+1];
+        $vicTeamsIDGoodOrder[$k-($j*2)+1] = $vicTeamsIDBadOrder[$j*2];
+    }
 
     $terrains = $db->query("SELECT * FROM Terrain");
     $round = 1;
     for ($i = 1; $i <= $numberOfMatch; $i++) {
         $teamID1 = 0;
         $teamID2 = 0;
-        if ($i <= $numberOfTeams - $numberOfMatchFirstRound) {
-            $team1 = $vicTeams->fetch_array();
-            $team2 = $vicTeams->fetch_array();
-            $teamID1 = $team1['teamID'];
-            $teamID2 = $team2['teamID'];
-        } elseif ($i <= $numberOfMatchFirstRound) {
-            $team1 = $vicTeams->fetch_array();
-            $teamID1 = $team1['teamID'];
-            $teamID2 = -2; // Valeure servant à savoir quand il n'y a pas de team mais qu'il ne faut pas en ajouter par après.
+//        if ($i <= $numberOfTeams - $numberOfMatchFirstRound) {
+//            $team1 = $vicTeams->fetch_array();
+//            $team2 = $vicTeams->fetch_array();
+//            $teamID1 = $team1['teamID'];
+//            $teamID2 = $team2['teamID'];
+//        } else
+            if ($i <= $numberOfMatchFirstRound) {
+                $teamID1 = $vicTeamsIDGoodOrder[$i*2 - 1];
+                $teamID2 = $vicTeamsIDGoodOrder[$i*2];
+//            $team1 = $vicTeams->fetch_array();
+//            $teamID1 = $team1['teamID'];
+//            $teamID2 = -2; // Valeure servant à savoir quand il n'y a pas de team mais qu'il ne faut pas en ajouter par après.
         }
         if ($numberOfMatch-$i < $numberOfMatchInRound){
             $numberOfMatchInRound = $numberOfMatchInRound/2;
@@ -88,7 +94,7 @@ function createMatchKnock($db, $position, $cat, $teamID1, $teamID2, $terrainID, 
     $intHour = 13+$round;
     $hourString = $intHour.":00";
     $hour = date($hourString);
-    $score = 1;
+    $score = 0;
     $reqMatch = $db->prepare('INSERT INTO `Match`(ID, `date`, `hour`, ID_Equipe1, ID_Equipe2, score1, score2, ID_Terrain, Poule_ID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)');
     $reqMatch->bind_param("issiiiiii", $matchID, $date, $hour, $teamID1, $teamID2, $score, $score, $terrainID, $pouleID);
     $reqMatch->execute();

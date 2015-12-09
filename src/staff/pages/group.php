@@ -678,10 +678,11 @@
                         alert("success");
                     } else {
                         $('form-messages-rep').text("Error");
-                        alert("failed:"+response_array['rep']);
+                        alert("Attention: "+response_array['rep']);
                     }
                 },
                 error: function (response_array) {
+                    console.log(response_array);
                     alert("Error:" + response_array['rep']);
                 }
             });

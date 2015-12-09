@@ -57,6 +57,26 @@
 
                 <?php
                 $db = BDconnect();
+                $reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
+                $alonePlayer = array();
+                $alonePersonne = array();
+                $count = 0;
+                while ($personne = $reponse->fetch_array()) {
+                    $player = $db->query('SELECT * FROM Player WHERE ' . $personne['ID'] . ' = ID_Personne')->fetch_array();
+                    if (canDeletePlayer($personne['ID'])) { // Returns true if the player is not in any team.
+                        array_push($alonePlayer, $player);
+                        array_push($alonePersonne, $personne);
+                        $count++;
+                    }
+                }
+
+                if ($count == 0){ ?>
+                    <div class="col-lg-4 alert alert-success">
+                        <b>Génial !</b>
+                        Chaque joueur s'est trouvé un binôme.
+                    </div>
+                <?php
+                } else{
                 ?>
 
                     <!-- Registration form - START -->
@@ -67,15 +87,11 @@
                                     <label for="sel1"><span class="fa fa-user"></span> Premier joueur</label>
                                     <select class="form-control" id="sel1" name="sel1">
                                         <?php
-                                        $reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
-                                        while ($donnes = $reponse->fetch_array()) {
-                                            $player = $db->query('SELECT * FROM Player WHERE ' . $donnes['ID'] . ' = ID_Personne');
-                                            $player = $player->fetch_array();
+                                        foreach($alonePlayer as $player){
+                                            $personne = array_shift($alonePersonne);
                                             $ranking = ($player['Ranking'] == NULL) ? "NC" : $player['Ranking'];
-                                            if (canDeletePlayer($donnes['ID'])) { // Returns true if the player is not in any team.
-                                                echo "<option value=" . $donnes['ID'] . "> [" . utf8_encode($ranking) . "] " . utf8_encode($donnes['FirstName']) . " " . utf8_encode($donnes['LastName']) . "</option>";
-
-                                            }
+                                            echo "<option value=" . $personne['ID'] . "> [" . utf8_encode($ranking) . "] " . utf8_encode($personne['FirstName']) . " " . utf8_encode($personne['LastName']) . "</option>";
+                                            array_push($alonePersonne, $personne);
                                         }
                                         ?>
                                     </select>
@@ -85,15 +101,11 @@
                                     <label for="sel2"><span class="fa fa-user"></span> Second joueur</label>
                                     <select class="form-control" id="sel2" name="sel2">
                                         <?php
-                                        $reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
-                                        while ($donnes = $reponse->fetch_array()) {
-                                            $player = $db->query('SELECT * FROM Player WHERE ' . $donnes['ID'] . ' = ID_Personne');
-                                            $player = $player->fetch_array();
+                                        foreach($alonePlayer as $player){
+                                            $personne = array_shift($alonePersonne);
                                             $ranking = ($player['Ranking'] == NULL) ? "NC" : $player['Ranking'];
-                                            if (canDeletePlayer($donnes['ID'])) { // Returns true if the player is not in any team.
-                                                echo "<option value=" . $donnes['ID'] . "> [" . utf8_encode($ranking) . "] " . utf8_encode($donnes['FirstName']) . " " . utf8_encode($donnes['LastName']) . "</option>";
-
-                                            }
+                                            echo "<option value=" . $personne['ID'] . "> [" . utf8_encode($ranking) . "] " . utf8_encode($personne['FirstName']) . " " . utf8_encode($personne['LastName']) . "</option>";
+                                            //array_push($alonePersonne, $personne);
                                         }
                                         ?>
                                     </select>
@@ -117,6 +129,7 @@
                     <div class="col-lg-2 text-center">
                         <div class="btn btn-success disabled" id="popup">Equipes créées !</div>
                     </div>
+                <?php } ?>
             </div>
             <!-- /#page-wrapper -->
 
@@ -151,6 +164,10 @@
         function associate(){
             var url="./php/associate-player.php";
             var data={ };
+
+            var target = document.getElementById('btnspinner');
+            var spinner = new Spinner(opts).spin(target);
+            $('#btnspinner').show();
             $.ajax({
                 type: 'POST',
                 url: url,
@@ -184,14 +201,14 @@
                     $('#popup').hide();
                     $('#popup').removeClass("btn-success").addClass("btn-warning");
                     $('#popup').text('Pas assez de joueurs seuls disponible.');
-                    setTimeout(function(){$('#popup').fadeIn('slow');},0)
-                    setTimeout(function(){$('#popup').fadeOut('slow');},3000)
+                    setTimeout(function(){$('#popup').fadeIn('slow');},0);
+                    setTimeout(function(){$('#popup').fadeOut('slow');},3000);
                 }
 
             });
-            var target = document.getElementById('btnspinner');
-            var spinner = new Spinner(opts).spin(target);
-            $('#btnspinner').show();
+//            var target = document.getElementById('btnspinner');
+//            var spinner = new Spinner(opts).spin(target);
+//            $('#btnspinner').show();
         }
     </script>
 

@@ -1,14 +1,16 @@
-<!-- Generation des poules,
-fonction appelée dans le formulaire de group-generate.php
-Redirection vers group.php
 
-Mise à jour de l'historique
- -->
 <?php
-	include_once('BDD.php');
+//Generation des poules,
+//fonction appelée dans le formulaire de group-generate.php
+//Redirection vers group.php
+//
+//Mise à jour de l'historique
+error_reporting(-1);
+//ob_start();//    ob_end_clean();
+
+include_once('BDD.php');
 
     require_once('add-new-history.php');
-
     // Generation de la poule
     $db = BDconnect();
 
@@ -25,7 +27,7 @@ Mise à jour de l'historique
 
     $ID	 	= '';
 
-    $req->bind_param("iiiiiiiiii", $ID, $ID_Terrain, $ID_teams[1], $ID_teams[2], $ID_teams[3], $ID_teams[4], $ID_teams[5], $ID_teams[6], $ID_teams[1], $_GET['InputCat']);
+    $req->bind_param("iiiiiiiiii", $ID, $ID_Terrain, $ID_teams[1], $ID_teams[2], $ID_teams[3], $ID_teams[4], $ID_teams[5], $ID_teams[6], $ID_teams[1], $_POST['cat']);
     $req->execute();
 
     $reponse = $db->query("SELECT * FROM ".$table." WHERE ID_t1=".$ID_teams[1]);
@@ -44,7 +46,7 @@ Mise à jour de l'historique
     $ID         = '';
     $date       = date('Y-m-d');
     $hour       = date("08:30");
-    echo $hour;
+//    echo $hour;
     // $hour       = "8:30" //date("H:i");
     // echo $hour;
     $score1     = 0;
@@ -71,7 +73,7 @@ Mise à jour de l'historique
 
 }
 
-    $day = $_GET['jour'];
+    $day = $_POST['jour'];
     if ($day == "sam"){
         $maxTeamNum = 5;
         $table = "GroupSaturday";
@@ -79,22 +81,22 @@ Mise à jour de l'historique
         $maxTeamNum = 6;
         $table = "GroupSunday";
     }
-
+    $flagerror=false;
     $getPoules = $db->query("SELECT ID_t1 FROM ".$table);
     foreach ($getPoules as $poule) {
         $getTeams = $db->query('SELECT ID_Cat FROM `Team` WHERE Team.ID ='.$poule['ID_t1'].'');
         $bool = $getTeams->fetch_array();
-        if ($bool['ID_Cat'] == $_GET['InputCat']) {
-            header("Location: ../group-generate.php?error=no_".$day);
-            return;
+        if ($bool['ID_Cat'] == $_POST['cat']) {
+//            header("Location: ../group-generate.php?error=no_".$day);
+            $flagerror=true;
         }
 
     }
-
     $terrains = $db->query("SELECT * FROM Terrain");
-    $reponseTeams = $db->query('SELECT * FROM Team WHERE ID_Cat='.$_GET['InputCat']);
+    $reponseTeams = $db->query('SELECT * FROM Team WHERE ID_Cat='.$_POST['cat']);
     $i = 1;
     $ID_teams = array();
+    if ($reponseTeams->num_rows<=1){$flagerror=true;}
     foreach ($reponseTeams as $team){
         $personne1 = $db->query('SELECT * FROM Personne WHERE ID ='.$team['ID_Player1'])->fetch_array();
         $personne2 = $db->query('SELECT * FROM Personne WHERE ID ='.$team['ID_Player2'])->fetch_array();
@@ -131,10 +133,16 @@ Mise à jour de l'historique
     $getPoules->free();
 
     if ($i > 0){
-       header("Location: ../group.php?jour=".$day."&generate=true&cat=".$_GET['InputCat']);
+//       header("Location: ../group.php?jour=".$day."&generate=true&cat=".$_GET['InputCat']);
+        if ($flagerror){
+            $response_array['rep'] = "failure";
+        }else {
+            $response_array['rep'] = "success";
+        }
     } else{
-       header("Location: ../group.php?jour=".$day."&generate=false&cat=".$_GET['InputCat']);
+//       header("Location: ../group.php?jour=".$day."&generate=false&cat=".$_GET['InputCat']);
+        $response_array['rep'] = "failure";
     }
-
-    return;
+    header('Content-type: application/json');
+    echo json_encode($response_array);
 ?>

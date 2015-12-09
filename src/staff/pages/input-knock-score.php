@@ -439,7 +439,6 @@
 
     <script>
         function SelectTeam(data, autoreload) {
-            console.log(data);
             var url ="php/select-team-knock-off.php";
             $.ajax({
                 type: 'POST',

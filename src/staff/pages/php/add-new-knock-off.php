@@ -5,6 +5,7 @@ Redirection vers knock-off.php
 Mise à jour de l'historique
  -->
 <?php
+
     include_once('inc/add-knock-off.inc');
 	include_once('BDD.php');
     require_once('add-new-history.php');
@@ -46,7 +47,7 @@ Mise à jour de l'historique
         }
 
         createKnock($db, $knocktable, $_GET['InputCat'], $numberOfTeams, $vicTeams);
-        header("Location: ../knock-off.php?jour=dim&generate=true&cat=0");
+        header("Location: ../knock-off.php?jour=".$_GET['jour']."&generate=true&cat=0");
     }
     // $reponse->free(); $ID_Terrain->free(); $reponseMatch->free(); $reqKnock->free(); $reponseKnock->free();
     return;

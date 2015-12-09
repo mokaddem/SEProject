@@ -1,10 +1,11 @@
-<!-- Generation des poules,
-fonction appelée dans le formulaire de group-generate.php
-Redirection vers group.php
 
-Mise à jour de l'historique
- -->
 <?php
+//Generation des poules,
+//fonction appelée dans le formulaire de group-generate.php
+//Redirection vers group.php
+//
+//Mise à jour de l'historique
+ob_start();
 	include_once('BDD.php');
 
     require_once('add-new-history.php');
@@ -62,7 +63,7 @@ Mise à jour de l'historique
 
 }
 
-    $day = $_GET['jour'];
+    $day = $_POST['jour'];
     if ($day == "sam"){
         $maxTeamNum = 5;
         $table = "GroupSaturday";
@@ -127,5 +128,9 @@ Mise à jour de l'historique
         }
     }
 
-    header("Location: ../group.php?jour=" . $day . "&generate=true&cat=0");
+//    header("Location: ../group.php?jour=" . $day . "&generate=true&cat=0");
+    header('Content-type: application/json');
+    ob_end_clean();
+    $response_array['rep']="success";
+    echo json_encode($response_array);
 ?>
