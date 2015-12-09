@@ -81,7 +81,7 @@
                         <a href="#"><i class="fa fa-plus fa-fw"></i> Ajouter<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level colorBlue">
                             <li>
-                                <a href="player.php"> Paire</a>
+                                <a href="player.php"> Joueur / Paire</a>
                             </li>
                             <li>
                                 <a href="team.php"> Equipe</a>
