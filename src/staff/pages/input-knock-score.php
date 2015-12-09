@@ -41,28 +41,32 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Knock-Off - Saisir les résultats</h1>
-                <ul class="nav nav-tabs">
-                    <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="input-knock-score.php?jour=sam&cat=0" >Samedi <i class="fa fa-venus-mars" style="font-size: 150%"></i> </a></li>
-                    <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="input-knock-score.php?jour=dim&cat=0">Dimanche <i class="fa fa-venus" style="font-size: 150%"></i> || <i class="fa fa-mars" style="font-size: 150%"></i></a></li>
-                </ul>
-                <div class="panel panel-default">
-                <ul class="nav nav-pills nav-justified">
-                    <?php $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, KnockoffSaturday WHERE KnockoffSaturday.Category = Categorie.ID');
-                    if ($_GET['jour'] == "dim") {
-                      $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, KnockoffSunday WHERE KnockoffSunday.Category = Categorie.ID');
-                    }
-                        while ($donnes = $reponse->fetch_array()) { ?>
-                          <?php if ($_GET['cat']=="0") { ?>
-                            <script>document.location.href="./input-knock-score.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>";</script>
-                          <?php  } ?>
-                          <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="input-knock-score.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation'])?></a></li>
-                        <?php }?>
+            </div>
+        </div>
+        <div class="row">
+            <ul class="nav nav-tabs">
+                <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="input-knock-score.php?jour=sam&cat=0" >Samedi <i class="fa fa-venus-mars" style="font-size: 150%"></i> </a></li>
+                <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="input-knock-score.php?jour=dim&cat=0">Dimanche <i class="fa fa-venus" style="font-size: 150%"></i> || <i class="fa fa-mars" style="font-size: 150%"></i></a></li>
+            </ul>
+            <div class="panel panel-default">
+            <ul class="nav nav-pills nav-justified">
+                <?php $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, KnockoffSaturday WHERE KnockoffSaturday.Category = Categorie.ID');
+                if ($_GET['jour'] == "dim") {
+                  $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, KnockoffSunday WHERE KnockoffSunday.Category = Categorie.ID');
+                }
+                    while ($donnes = $reponse->fetch_array()) { ?>
+                      <?php if ($_GET['cat']=="0") { ?>
+                        <script>document.location.href="./input-knock-score.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>";</script>
+                      <?php  } ?>
+                      <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="input-knock-score.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation'])?></a></li>
+                    <?php }?>
                 </ul>
                 </div>
             </div>
             <div class="row">
                 <br/>
             </div>
+        <div class="row">
             <div class="col-lg-3 vcenter">
                 <?php
                 if ($_GET['jour'] == "sam"){
@@ -102,8 +106,8 @@
                         }
                         ?>
                         </div>
-                        </div>
-                        <div class="col-lg-3 vcenter">
+                    </div>
+                    <div class="col-lg-3 vcenter">
                         <div class="row">
                     <?php
                     }
@@ -153,6 +157,7 @@
                 ?>
 
                 </div>
+            </div>
             <div id="form-messages-rep"></div>
 
             <div class="col-lg-5 text-center col-lg-offset-5">
