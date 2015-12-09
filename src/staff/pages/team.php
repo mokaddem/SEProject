@@ -56,15 +56,7 @@
 
                 <?php
                 $db = BDconnect();
-                $alone = $db->query('SELECT Count(*) as numberOfAloneTeam  FROM PlayerAlone')->fetch_array();
-                extract($alone);
-                if ($numberOfAloneTeam == 0){ ?>
-                    <div class="col-lg-3 alert alert-success">
-                        <b>Génial !</b>
-                        Aucun joueur n'est laissé de côté, ils ont tous un binôme.
-                    </div>
-                <?php } else {
-                    ?>
+                ?>
 
                     <!-- Registration form - START -->
                     <div class="row">
@@ -124,9 +116,6 @@
                     <div class="col-lg-2 text-center">
                         <div class="alert alert-success" id="popup">Equipes créées !</div>
                     </div>
-                    <?php
-                }
-                ?>
             </div>
             <!-- /#page-wrapper -->
 

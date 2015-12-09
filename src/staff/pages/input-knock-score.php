@@ -163,9 +163,11 @@
             <div class="col-lg-5 text-center col-lg-offset-5">
                 <div class="alert alert-success" id="popup"></div>
             </div>
+        
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
 
             </div>
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <!-- Registration form - END -->
             </div>
 
@@ -240,14 +242,14 @@
             if ($aloneTeam){
                 ?> <div class="col-lg-10"> <?php
             } else{
-                ?> <div class="col-lg-7"> <?php
+                ?> <div class="col-lg-8"> <?php
             }
             ?>
-                <button class="btn-block btn btn-default" data-teamID="<?=$team['ID']?>" data-round="<?=$round ?>" disabled> [<?=$ranking?>] <?= utf8_encode($player1['LastName']) ?> & <?= utf8_encode($player2['LastName']) ?> </button>
+                <input class="btn btn-default" data-teamID="<?=$team['ID']?>" data-round="<?=$round ?>" value="<?= utf8_encode($player1['LastName']) ?> & <?= utf8_encode($player2['LastName']) ?> " disabled></input>
             </div>
             <?php
             if (!$aloneTeam){ ?>
-                <div class="col-lg-2" style="padding-right: 2px">
+                <div class="col-lg-3" style="padding-right: 2px">
                     <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" min="0" data-teamID="<?=$team['ID']?>" data-matchID="<?=$match['ID']?>" data-indice="<?=$indice ?>" data-round="<?=$round ?>" data-position="<?=$position?>"
                            step="1" style="float: left;" value="<?=$score ?>" required>
                 </div>
@@ -466,7 +468,7 @@
                         if(!isNaN(matchID)) { //if there is no match left
                             SelectTeam(data, true);
                         }else{
-                            $('#popup').text("L'équipe "+$(target).attr('data-winning-team')+" a gagnée le tournois pour cette catégorie!");
+                            $('#popup').text("L'équipe "+$(target).attr('data-winning-team')+" a gagnée le tournoi pour cette catégorie !");
                             setTimeout(function() {  $('#popup').fadeIn('slow');}, 0);
                             setTimeout(function() {  $('#popup').fadeOut('slow');},3000);
                         }
