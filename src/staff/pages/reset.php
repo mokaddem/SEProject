@@ -46,9 +46,10 @@
                     <form role="form" method="Get" action="php/delete-group-knock-off.php">
                         <div class="col-lg-6">
 
-                            <label>Attention, le fait de réinitialiser le tournoi va supprimer toutes les poules et le Knock-Off. Cette action est irréversible.</label>
-
-                            <input type="submit" name="submit" id="submit" value="J'ai pris connaissances des risques" class="btn btn-danger pull-center">
+                            <label><p>Attention, le fait de réinitialiser le tournoi va supprimer toutes les poules et le Knock-Off. Cette action est irréversible.</p></label>
+                            <div >
+                                <button type="submit" name="submit" id="submit" class="btn btn-danger pull-center"><i class="fa fa-refresh"></i> J'ai pris connaissances des risques</button>
+                            </div>
 
                         </div>
                     </form>
