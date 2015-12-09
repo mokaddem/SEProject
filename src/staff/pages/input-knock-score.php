@@ -466,7 +466,7 @@
                         if(!isNaN(matchID)) { //if there is no match left
                             SelectTeam(data, true);
                         }else{
-                            $('#popup').text("L'équipe "+$(target).attr('data-winning-team')+" a gagnée le tournois pour cette catégorie!");
+                            $('#popup').text("L'équipe "+$(target).attr('data-winning-team')+" a gagnée le tournoi pour cette catégorie !");
                             setTimeout(function() {  $('#popup').fadeIn('slow');}, 0);
                             setTimeout(function() {  $('#popup').fadeOut('slow');},3000);
                         }
