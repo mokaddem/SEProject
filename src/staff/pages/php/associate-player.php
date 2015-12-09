@@ -91,5 +91,5 @@ for($i=0; $i!=$playerNumber; $i++) {
 /*  end team generate   */
     $msg = array("success"=>"everything is ok");
     header('Content-type: application/json');
-    echo json_encode($msg);die;
+    echo json_encode($msg);
 ?>

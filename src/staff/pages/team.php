@@ -135,6 +135,7 @@
     <script src="../dist/js/sb-admin-2.js"></script>
 
     <script>
+        console.log("hide");
         $('#btnspinner').hide();
         $('#popup').hide();
     </script>
@@ -157,6 +158,7 @@
                 data: data,
                 success: function(data) {
                     if(data.status == "success"){
+                        console.log(data.status);
                         setTimeout(function() { $('#btnspinner').hide(); },2000);
                         setTimeout(function() { $('#popup').hide(); },2000);
                         setTimeout(function() {  $('#popup').fadeIn('slow');}, 0);
@@ -167,11 +169,6 @@
             var target = document.getElementById('btnspinner');
             var spinner = new Spinner(opts).spin(target);
             $('#btnspinner').show();
-            setTimeout(function() { $('#btnspinner').hide(); },2000);
-            setTimeout(function() { $('#popup').hide(); },2000);
-            setTimeout(function() {  $('#popup').fadeIn('slow');}, 2000);
-            setTimeout(function() {  $('#popup').fadeOut('slow');},4000);
-            setTimeout(function() {  location.reload();}, 500+4000);
         }
     </script>
 
