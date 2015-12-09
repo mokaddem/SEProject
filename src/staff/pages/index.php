@@ -50,7 +50,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <h1 class="page-header">Accueil</h1>
-                                <a href="./php/auto-populate.php" class="btn btn-success pull-right">Remplir la Base de Données  <i class="fa fa-users"></i></a>
+                                <a href="./php/auto-populate.php" class="btn btn-success btn-outline pull-right">Remplir la Base de Données  <i class="fa fa-users"></i></a>
 
                             </div>
                             <!-- /.col-lg-12 -->
@@ -140,7 +140,7 @@
                             <a href="./php/delete-history.php" class="btn btn-danger">Effacer</a>
                         </div>
                         <div class="pull-right">
-                            <a href="./php/delete-all.php" class="btn btn-danger">Vider entièrement la Base de Données <i class="fa fa-trash"></i></a>
+                            <a href="./php/delete-all.php" class="btn btn-danger btn-outline">Vider la Base de Données <i class="fa fa-trash"></i></a>
                         </div>
                       </span>
                         <!-- /.panel -->
