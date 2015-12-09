@@ -90,23 +90,35 @@
                     <div class="modal-dialog modal-lg">
                         <!-- Modal content-->
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Inscription réussite</h4>
-                            </div>
-                            <div class="modal-body">
                             <?php if ($_GET["action"] == "register") { ?>
-                                <p>Félicitations !</p>
-                                <p>Vous avez bien été enregistré !</p>
-                                <p>Vous recevrez un e-mail de confirmation sous peu.</p>                                
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Inscription réussite</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Félicitation !</p>
+                                    <p>Vous avez bien été enregistré !</p>
+                                    <p>Vous recevrez un e-mail de confirmation sous peu.</p>                                
+                                </div>
                             <?php } elseif ($_GET["action"] == "confirme") { ?>
-                                <p>Félicitations !</p>
-                                <p>Votre inscription est confirmée !</p>
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Inscription réussite</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Félicitation !</p>
+                                    <p>Votre inscription est confirmée !</p>
+                                </div>
                             <?php } elseif ($_GET["action"] == "error") { ?>
-                                <p>Erreur !</p>
-                                <p>Lien de confirmation invalide ou déjà utilisé</p>
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Erreur !</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Désolé !</p>
+                                    <p>Lien de confirmation invalide ou déjà utilisé.</p>
+                                </div>
                             <?php } ?>
-                            </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
