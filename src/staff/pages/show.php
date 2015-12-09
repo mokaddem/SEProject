@@ -11,7 +11,12 @@ if ($_GET["type"]=="extra") { ?>
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Informations</h4>
+                <h4 class="modal-title">Informations
+                <?php if ($_GET['type'] == 'court') {
+                  // Pour les teams et terrains ?>
+                  <a class="btn btn-default pull-right" target="_blank" href="./php/print.php?id=<?=$donnees['ID']?>"><i class="fa fa-print"></i></a>
+                <?php } ?>
+                </h4>
             </div>
             <div class="modal-body">
                 <div class="container">
