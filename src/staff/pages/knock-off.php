@@ -271,11 +271,11 @@
                     $videOrNot = "";
                 } ?>
                 <span data-toggle="pList" data-target="#pList" data-url="./php/knock-off-note<?= $videOrNot ?>.php?id=<?= $teamID ?>">
-                    <button class="btn btn-<?= $color ?> btn-outline" data-toggle="idteam1" data-target="#idteam1" data-id="<?= $teamID ?>">
+                    <div class="btn btn-<?= $color ?> btn-outline draggable dropper" data-toggle="idteam1" data-target="#idteam1" data-id="<?= $teamID ?>"  >
                         [<?= $ranking ?>]
                         <?= utf8_encode($player1['LastName']) ?> &
                         <?= utf8_encode($player2['LastName']) ?>
-                    </button>
+                    </div>
                 </span>
             <?php } ?>
             </div>
@@ -296,6 +296,154 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+
+    <script>
+        (function() {
+            var dndHandler = {
+                draggedElement: null,
+                dropperDefaultStyle1: "btn btn-default btn-outlineW draggable dropper",
+                dropperDefaultStyle2: "btn btn-primary btn-outlineW draggable dropper",
+                dropperDefaultStyle3: "btn btn-default btn-outline draggable dropper",
+                dropperContainerDefaultStyle1: "col-lg-3 server-action-menu dropper",
+                dropperContainerDefaultStyle2: "col-lg-3 server-other-menu dropper",
+                draggedDefaultStyle: null,
+
+                applyDragEvents: function(element) {
+                    element.draggable = true;
+                    var dndHandler = this;
+                    element.addEventListener('dragstart', function(e) {
+                        dndHandler.draggedElement = e.target;
+                        dndHandler.draggedDefaultStyle = e.target.getAttribute("class");
+                        e.dataTransfer.setData('text/plain', '');
+                    }, false);
+                },
+
+                applyDropEvents: function(dropper) {
+                    dropper.addEventListener('dragover', function(e) {
+                        e.preventDefault();
+                        var target = e.target; console.log(target);
+                        var flag_target_ok = true;
+                        if(!(target.className !== undefined)){flag_target_ok=false;}
+                        else {
+                            while (target.className.indexOf('dropper') == -1) { // Cette boucle permet de remonter jusqu'à la zone de drop parente
+                                target = target.parentNode;
+                            }
+                        }
+                        dndHandler.dropperDefaultStyle = target.getAttribute("class");
+
+                        var flag_hover = false;
+                        var flag_red = false;
+                        var classList = e.target.className.split(/\s+/);
+                        for (var i = 0; i < classList.length; i++) {
+                            if (classList[i] == "drop_hover" || classList[i] == "drop_hover_green") { flag_hover = true;}
+                            if (classList[i] == "switcher_to_green") { flag_red = true;}
+                        }
+
+                        if(flag_hover) {// On revient au style de base lorsque l'élément quitte la zone de drop
+                            //do nothing
+                        }
+                        else {
+                            if (target.getAttribute("name") != null) {
+                                if (target.getAttribute("name") == "divGroupContainer") { // Et on applique le style adéquat à notre zone de drop quand un élément la survole
+                                    if(flag_red){ target.className += " drop_hover_green";}
+                                    else{
+                                        if($(target).attr("data-groupnum") == $(dndHandler.draggedElement).attr("data-groupnum")){ //On applique le style seulement si le draggred est dans un group différent
+                                            //do nothing
+                                        }
+                                        else{this.className += " drop_hover";}
+                                    }
+                                } else if(target.getAttribute("name") == "button-player") {
+                                    if(flag_red){ target.className += " drop_hover_green";}
+                                    else{this.className += " drop_hover";}
+                                }else if(flag_target_ok){
+                                    if(flag_red){ target.className += " drop_hover_green";}
+                                    else{target.className += " drop_hover";}
+                                }
+                            }
+                        }
+
+
+                    }, false);
+
+                    dropper.addEventListener('dragleave', function(e) {
+                        var target = e.target;
+                        while (target.className.indexOf('dropper') == -1) { // Cette boucle permet de remonter jusqu'à la zone de drop parente
+                            target = target.parentNode;
+                        }
+                        var flag_hover = false;
+                        var classString="";
+                        var classList = target.className.split(/\s+/);
+                        for (var i = 0; i < classList.length; i++) {
+                            if (classList[i] == "drop_hover" || classList[i] == "drop_hover_green") {
+                                flag_hover=true;
+                            }else{
+                                classString += (classList[i] + " ");
+                            }
+                        }
+
+                        if (e.target.getAttribute("name") != null) {
+                            if(flag_hover){ // On revient au style de base lorsque l'élément quitte la zone de drop
+                                this.className = classString;
+                            }
+                        }
+                    });
+                    var dndHandler = this;
+
+                    dropper.addEventListener('drop', function(e) {
+                        var target = e.target;
+                        while (target.className.indexOf('dropper') == -1) { // Cette boucle permet de remonter jusqu'à la zone de drop parente
+                            target = target.parentNode;
+                        }
+                        draggedElement = dndHandler.draggedElement; // Récupération de l'élément concerné
+
+                        var classString="";
+                        var classList = target.className.split(/\s+/);
+                        for (var i = 0; i < classList.length; i++) {
+                            if (classList[i] == "drop_hover" || classList[i] == "drop_hover_green") {
+                                flag_hover=true;
+                            }else{
+                                classString += (classList[i] + " ");
+                            }
+                        }
+                        target.className = classString; // Application du style par défaut
+
+                        var draggedElement_id = $(draggedElement).attr('data-id');
+                        var draggedElement_teamNum = $(draggedElement).attr('data-teamNum');
+                        var draggedElement_groupNum = $(draggedElement).attr('data-groupNum');
+                        var target_id = $(target).attr('data-id');
+                        var target_teamNum = $(target).attr('data-teamNum');
+                        var target_groupNum = $(target).attr('data-groupNum');
+                        if(target.getAttribute("name") == "divGroupContainer"){
+                            target_id = -1;
+                            target_teamNum = $(target).attr('data-teamNum');
+                            target_groupNum = $(target).attr('data-groupID');
+                        }
+                        init_the_swap(draggedElement_id, target_id);
+                    });
+                }
+            };
+            var elements = document.querySelectorAll('.draggable'),
+                elementsLen = elements.length;
+            for (var i = 0 ; i < elementsLen ; i++) {
+                dndHandler.applyDragEvents(elements[i]); // Application des paramètres nécessaires aux éléments déplaçables
+            }
+            var droppers = document.querySelectorAll('.dropper'),
+                droppersLen = droppers.length;
+            for (var i = 0 ; i < droppersLen ; i++) {
+                dndHandler.applyDropEvents(droppers[i]); // Application des événements nécessaires aux zones de drop
+            }
+        })();
+    </script>
+
+    <script>
+        function init_the_swap(draggedElement_id, target_id){
+            document.getElementById('idteam1').value = draggedElement_id;
+            document.getElementById('idteam2').value = target_id;
+            var myForm = document.getElementById('echanger');
+            myForm.submit();
+        }
+    </script>
+
 
     <script type="text/javascript">
         // On click, get html content from url and update the corresponding modal
@@ -366,8 +514,6 @@
                     alert("Error:" + response_array['rep']);
                 }
             });
-
-
         }
     </script>
 
