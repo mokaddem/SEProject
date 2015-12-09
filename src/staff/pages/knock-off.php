@@ -35,15 +35,14 @@
 
             $db = BDconnect();
         ?>
-
-
             <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Modifier le Knock-Off</h1>
-                    
+                    </div>
+                </div>
                     <!-- /.col-lg-12 -->
-                
+                <div class="row">
                     <?php if (array_key_exists("generate", $_GET)) {?>
                         <?php if ($_GET["generate"] == "true") {?>
                         <div class="col-lg-8 alert alert-success">
@@ -57,48 +56,49 @@
                             </div>
                         <?php } ?>
                     <?php } ?>
-                            <ul class="nav nav-tabs">
-                                <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="knock-off.php?jour=sam&cat=0" >Samedi <i class="fa fa-venus-mars" style="font-size: 150%"></i> </a></li>
-                                <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="knock-off.php?jour=dim&cat=0">Dimanche <i class="fa fa-venus" style="font-size: 150%"></i> || <i class="fa fa-mars" style="font-size: 150%"></i></a></li>
-                            </ul>
-                            <div class="panel panel-default">
-                            <ul class="nav nav-pills nav-justified">
-                                <?php $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, KnockoffSaturday WHERE KnockoffSaturday.Category = Categorie.ID');
-                                if ($_GET['jour'] == "dim") {
-                                  $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, KnockoffSunday WHERE KnockoffSunday.Category = Categorie.ID');
-                                }
-                                    while ($donnes = $reponse->fetch_array()) { ?>
-                                      <?php if ($_GET['cat']=="0") { ?>
-                                        <script>document.location.href="./knock-off.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>";</script>
-                                      <?php  } ?>
-                                      <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="knock-off.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation'])?></a></li>
-                                    <?php }?>
-                            </ul></div>
-                        </div>
-                        <div class="row">
-                            <br/>
-                        </div>
-                        <div class="row">
-                            <nav class="navbar navbar-inverse navbar-perso navbar-fixed-bottom">
-                                <div class="container">
-                                    <form id="echanger" class="navbar-form" action="./php/knock-off-switch.php?jour=<?=$_GET['jour']?>&cat=<?=$_GET['cat']?>" method="post">
-                                        <input type="submit" class="btn btn-success pull-right" value="Echanger" />
-                                        <span class="pull-right"> </span><input type="text" class="form-control pull-right" id="idteam2" name="idteam2" placeholder="ID Equipe 2" required>
-                                        <p class="pull-right"> </p><input type="text" class="form-control pull-right" id="idteam1" name="idteam1" placeholder="ID Equipe 1" required>
-                                        <span class="pull-left" data-toggle="pList" data-target="#pList" data-url="./php/group-note-vide.php">
-                                          <button class="btn btn-default">
-                                            <i class="fa fa-chevron-down"></i>
-                                          </button>
-                                        </span>
-                                    </form>
+                </div>
+                <div class="row">
+                    <ul class="nav nav-tabs">
+                        <li <?php if ($_GET[ 'jour']=="sam" ) echo 'class="active" ' ;?>><a href="knock-off.php?jour=sam&cat=0" >Samedi <i class="fa fa-venus-mars" style="font-size: 150%"></i> </a></li>
+                        <li <?php if ($_GET[ 'jour']=="dim" ) echo 'class="active" ' ;?>><a href="knock-off.php?jour=dim&cat=0">Dimanche <i class="fa fa-venus" style="font-size: 150%"></i> || <i class="fa fa-mars" style="font-size: 150%"></i></a></li>
+                    </ul>
+                    <div class="panel panel-default">
+                    <ul class="nav nav-pills nav-justified">
+                        <?php $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, KnockoffSaturday WHERE KnockoffSaturday.Category = Categorie.ID');
+                        if ($_GET['jour'] == "dim") {
+                          $reponse = $db->query('SELECT DISTINCT Categorie.ID, Categorie.Designation FROM Categorie, KnockoffSunday WHERE KnockoffSunday.Category = Categorie.ID');
+                        }
+                            while ($donnes = $reponse->fetch_array()) { ?>
+                              <?php if ($_GET['cat']=="0") { ?>
+                                <script>document.location.href="./knock-off.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>";</script>
+                              <?php  } ?>
+                              <li <?php if ($_GET['cat']==$donnes['ID'] ) echo 'class="active" ';?>><a href="knock-off.php?jour=<?=$_GET['jour']?>&cat=<?=$donnes['ID']?>"><?=utf8_encode($donnes['Designation'])?></a></li>
+                            <?php }?>
+                    </ul></div>
+                </div>
+                <div class="row">
+                    <br/>
+                </div>
+                <div class="row">
+                    <nav class="navbar navbar-inverse navbar-perso navbar-fixed-bottom">
+                        <div class="container">
+                            <form id="echanger" class="navbar-form" action="./php/knock-off-switch.php?jour=<?=$_GET['jour']?>&cat=<?=$_GET['cat']?>" method="post">
+                                <input type="submit" class="btn btn-success pull-right" value="Echanger" />
+                                <span class="pull-right"> </span><input type="text" class="form-control pull-right" id="idteam2" name="idteam2" placeholder="ID Equipe 2" required>
+                                <p class="pull-right"> </p><input type="text" class="form-control pull-right" id="idteam1" name="idteam1" placeholder="ID Equipe 1" required>
+                                <span class="pull-left" data-toggle="pList" data-target="#pList" data-url="./php/group-note-vide.php">
+                                  <button class="btn btn-default">
+                                    <i class="fa fa-chevron-down"></i>
+                                  </button>
+                                </span>
+                            </form>
 
-                                    <br/><br/>
-                                    <div class="col-lg-8" id="pList"></div>
-                                </div>
-                            </nav>
+                            <br/><br/>
+                            <div class="col-lg-8" id="pList"></div>
                         </div>
-                        <div class="col-lg-12 text-center">
-
+                    </nav>
+                </div>
+                <div class="row text-center">
                             <?php
                                 if ($_GET['jour'] == "sam"){
                                 $knockoff_all = $db->query('SELECT * FROM KnockoffSaturday WHERE Category = '.$_GET['cat'].' ORDER BY `Position` ASC');
@@ -115,7 +115,7 @@
                                 </div>
                             <?php } else {
                                 ?> <h4><b> Modifier les équipes et les terrains pour le premier tour</b></h4>
-                                </br>
+                                <br/>
                                 <label> Tour 1 </label>
                             <div class="col-lg-12 text-center vcenter">
                             <?php
@@ -168,7 +168,7 @@
                                         <label> Tour <?= $round ?> </label>
                                         <?php
                                         if ($numberOfTeams == 2){
-                                            ?> </br> <label class="text-danger"> FINALE </label> <?php
+                                            ?> <br/> <label class="text-danger"> FINALE </label> <?php
                                         }
                                         for ($j = 0; $j < $numberOfTeams / 2; $j++) {
                                             if ($_GET['jour'] == "sam") {
@@ -264,14 +264,13 @@
                         <?= utf8_encode($player1['LastName']) ?> &
                         <?= utf8_encode($player2['LastName']) ?>
                     </button>
-                <span/>
+                </span>
             <?php } ?>
             </div>
         <?php }
     }
 
     ?>
-
     <!-- /#wrapper -->
 
     <!-- jQuery -->
@@ -345,7 +344,6 @@
         });
 
     </script>
-
 
 </body>
 

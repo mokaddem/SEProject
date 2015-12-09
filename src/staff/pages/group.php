@@ -202,7 +202,8 @@
                               </label>
                               </div>
                                 <form name="tous" action="mailTous.php" method="post">
-                                  <input type='submit' name='tous_<?php echo $group['Gid']?>' value='Tous'> </input></form>
+                                  <input type='submit' name='tous_<?php echo $group['Gid']?>' value='Tous'>
+                                </form>
                                 <form name="leaderMail" action="mailLeader.php" method="post">
                                   <input type="submit" name="leaderMail_<?php echo $group['Gid']?>" value="Leader"></form>
                               <form name="NPMail" action="mailNP.php" method="post">

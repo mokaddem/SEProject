@@ -77,8 +77,8 @@
                 $flagTournamentStarted = $rep['Value'];
                 if ($flagTournamentStarted != 1){?>
                     <div class="col-lg-3 alert alert-danger">
-                        Le tournoi n'a pas encore commencé.</br>
-                        Veuillez saisir les scores des groupes avant de continuer. </br>
+                        Le tournoi n'a pas encore commencé.<br/>
+                        Veuillez saisir les scores des groupes avant de continuer. <br/>
                         <?php $startTournament = "start_tournament_".$_GET['jour'] ;?>
                         <a href="input-group-score.php?jour=<?=$_GET['jour']?>&cat=0" class="btn btn-danger">Saisir les score</a>
                     </div>
@@ -234,5 +234,5 @@
     <script type="text/javascript"> //document.getElementById("confirmWinner").addEventListener("click", saveWinner);</script>
 
 </body>
-<?php $reponse->free(); $groups->free(); ?>
+<?php $groups->free(); ?>
 </html>
