@@ -23,6 +23,7 @@
 
   <!-- Custom Fonts -->
   <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="../../images/icon.ico">
 </head>
 
 <body>
@@ -116,7 +117,7 @@
                 </div>
               <div id="demo1" class="collapse">
                 <div class="panel panel-info">
-                  <div class="panel-heading"><b>Message pré-ecrit</b><br/></div>
+                  <div class="panel-heading"><b>Message pré-rédigé</b><br/></div>
                   <div class="panel-body">
                     <input type="checkbox" name="mesLeader" value="Participants"> Messages des leaders
                     <input type="checkbox" name="mesTous" value="Propriétaires"> Messages pour tous

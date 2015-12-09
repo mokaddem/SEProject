@@ -101,9 +101,9 @@
                             <li>
                                 <a href="extra.php"> Extra</a>
                             </li>
-                            <li>
+                            <!--<li>
                                 <a href="varGlobal.php"> Variables Globales</a>
-                            </li>
+                            </li>-->
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
