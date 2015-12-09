@@ -799,7 +799,7 @@ $('#dest').typeahead({
   remote: {
       url: 'php/contact-mail-list.php?query=%QUERY'
     },
-    //local: ['alpha', 'allpha2', 'alpha3', 'bravo', 'charlie', 'delta', 'epsilon', 'gamma', 'zulu']
+    // local: ['alpha', 'allpha2', 'alpha3', 'bravo', 'charlie', 'delta', 'epsilon', 'gamma', 'zulu']
 });
 
 $('.tt-query').css('background-color', '#fff');
