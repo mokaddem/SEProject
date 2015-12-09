@@ -22,6 +22,7 @@
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="../../images/icon.ico">
 </head>
 
 <body>
@@ -36,14 +37,19 @@
             <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Ajouter une paire</h1>
+                        <h1 class="page-header">Ajouter un joueur / une paire</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
+                
+                <?php if (array_key_exists("error", $_GET)){ ?>
+                <div class="alert alert-danger">Saisie incomplète</div>
+              <?php } ?>
 
                 <!-- Registration form - START -->
                 <div class="row">
                   <form role="form" method="Get" action="./php/add-new-pair.php">
+                    <input class="hidden" id="access" name="access" value="staff">
 
                       <div class="col-lg-6">
                           <div class="col-lg-9">

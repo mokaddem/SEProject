@@ -23,6 +23,7 @@
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="../../images/icon.ico">
 
 </head>
 
@@ -195,7 +196,7 @@
                               ?>
                           <div class="col-lg-3 <?=$s_a_m?> dropper"  name="divGroupContainer" id="divGroup<?=$k?>" data-groupID="<?=$group['Gid']?>" data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>" data-teamNum="<?=$teamNum?>" data-groupNum="<?=$group["Gid"]?>">
                               <div>
-                                  <button name="button_mail" class="fa fa-envelope btn btn-default pull-left" data-groupID="<?=$group['Gid'] ?>" style="font-size: 120%; margin-right: -5px;"></button>
+                                  <button name="button_mail" class="fa fa-envelope btn btn-default btn-outline pull-left" data-groupID="<?=$group['Gid'] ?>" style="font-size: 120%; margin-right: -5px;"></button>
                               <label>
                                   <span class="fa fa-users"></span> Groupe <?= $k?>
                                   <a class="" <?php if(!$canEdit){?> href="php/delete-group.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&cat=<?=$_GET['cat']?>" <?php }?> <?php if(!$canEdit){?> onclick="return confirm('Voulez-vous vraiment supprimer ce groupe ?');" <?php }?> ><i class="fa fa-trash-o"></i></a>

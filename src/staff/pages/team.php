@@ -22,6 +22,7 @@
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="../../images/icon.ico">
 </head>
 
 <body>
@@ -102,7 +103,7 @@
                                        class="btn btn-info pull-right">
 
                                 <div class="form-group">
-                                    <button name="createTeams" id="createTeams" class="btn btn-success pull-left">Associer tous les joueurs seuls en équipes </button>
+                                    <button type="button" name="createTeams" id="createTeams" class="btn btn-success pull-left">Associer tous les joueurs seuls en équipes </button>
                                 </div>
                             </div>
                         </form>
@@ -111,10 +112,10 @@
                     <!-- /.row -->
                     <br/>
                     <div id="spinnercontainer" class="col-lg-6">
-                        <p id="btnspinner" class="btn btn-warning pull-right col-lg-6">Equipes en création...</p>
+                        <p id="btnspinner" ></p>
                     </div>
                     <div class="col-lg-2 text-center">
-                        <div class="alert alert-success" id="popup">Equipes créées !</div>
+                        <div class="btn btn-success disabled" id="popup">Equipes créées !</div>
                     </div>
             </div>
             <!-- /#page-wrapper -->
@@ -139,11 +140,11 @@
         $('#popup').hide();
     </script>
 
-<!--    --><?php //if(array_key_exists("creation_success", $_GET)){?><!--<script>-->
-<!--        setTimeout(function() {  $('#popup').fadeIn('slow');}, 0);-->
-<!--        setTimeout(function() {  $('#popup').fadeOut('slow');},3000);-->
-<!--        setTimeout(function() {  location.reload();}, 500+3000);-->
-<!--    </script> --><?php //} ?>
+    <?php if(array_key_exists("creation_success", $_GET)){?><script>
+        setTimeout(function() {  $('#popup').fadeIn('slow');}, 0);
+        setTimeout(function() {  $('#popup').fadeOut('slow');},3000);
+        setTimeout(function() {  location.reload();}, 500+3000);
+    </script> <?php } ?>
 
 
     <script>
@@ -151,27 +152,46 @@
             var url="./php/associate-player.php";
             var data={ };
             $.ajax({
-                type: "POST",
+                type: 'POST',
                 url: url,
-                dataType: 'JSON',
+                dataType: "json",
                 data: data,
-                success: function(data) {
-                    if(data.status == "success"){
-                        setTimeout(function() { $('#btnspinner').hide(); },2000);
-                        setTimeout(function() { $('#popup').hide(); },2000);
-                        setTimeout(function() {  $('#popup').fadeIn('slow');}, 0);
-                        setTimeout(function() {  $('#popup').fadeOut('slow');},3000);
+                success: function(response_array) {
+                    if(response_array['rep'] == "success"){
+                        $('#btnspinner').hide();
+                        $('#popup').hide();
+                        $('#popup').removeClass("btn-warning").addClass("btn-success");
+                        setTimeout(function(){$('#popup').fadeIn('slow');},0);
+                        setTimeout(function(){$('#popup').fadeOut('slow');},3000);
+                    }else{
+                        $('#btnspinner').hide();
+                        $('#popup').hide();
+                        $('#popup').removeClass("btn-success").addClass("btn-warning");
+                        $('#popup').text('Pas assez de joueurs seuls disponible.');
+                        setTimeout(function(){$('#popup').fadeIn('slow');},0)
+                        setTimeout(function(){$('#popup').fadeOut('slow');},3000)
                     }
+                },
+                error: function (response_array) {
+//                    console.log(response_array);
+//                    $('#btnspinner').hide();
+//                    $('#popup').hide();
+//                    $('#popup').removeClass("btn-success").addClass("btn-warning");
+//                    $('#popup').text('Error');
+//                    setTimeout(function(){$('#popup').fadeIn('slow');},0)
+//                    setTimeout(function(){$('#popup').fadeOut('slow');},3000)
+                    $('#btnspinner').hide();
+                    $('#popup').hide();
+                    $('#popup').removeClass("btn-success").addClass("btn-warning");
+                    $('#popup').text('Pas assez de joueurs seuls disponible.');
+                    setTimeout(function(){$('#popup').fadeIn('slow');},0)
+                    setTimeout(function(){$('#popup').fadeOut('slow');},3000)
                 }
+
             });
             var target = document.getElementById('btnspinner');
             var spinner = new Spinner(opts).spin(target);
             $('#btnspinner').show();
-            setTimeout(function() { $('#btnspinner').hide(); },2000);
-            setTimeout(function() { $('#popup').hide(); },2000);
-            setTimeout(function() {  $('#popup').fadeIn('slow');}, 2000);
-            setTimeout(function() {  $('#popup').fadeOut('slow');},4000);
-            setTimeout(function() {  location.reload();}, 500+4000);
         }
     </script>
 

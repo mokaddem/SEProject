@@ -23,6 +23,7 @@
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="../../images/icon.ico">
 </head>
 
 <body>
@@ -378,53 +379,6 @@
                 }
             });
 
-
-            /*
-            //team without match -> autoselect the last one if there is only one team not selected yet
-            var toReplace = $(':button[data-void=2]')
-            $(toReplace).each(function(index){
-                round = $(this).attr("data-round");
-                var teambutton = $(":button[data-round="+(round-1)+"][name=btnselect][data-selected=0]:enabled");
-                var otherTeamsbutton = $(":button[data-round="+(round-1)+"][name=btnselect][data-selected=1]:disabled");
-                var allTeambutton = $(":button[data-round="+(round-1)+"][name=btnselect]");
-                if((teambutton.length == 1) && (otherTeamsbutton.length == (allTeambutton.length-1))) {
-                    teambutton.removeClass("btn-danger").addClass("btn-warning");
-                    teambutton.removeClass("fa-arrow-circle-right").addClass("fa-times");
-                    teambutton.attr("disabled", true);
-                    teambutton.attr("data-selected", 1)
-
-                    var winningTeam = $(teambutton).attr("data-winning-team");
-                    var teamBut = $(":button[data-teamid=" + winningTeam + "][data-round=" + (round - 1) + "]");
-                    toReplace.replaceWith($(teamBut).clone());
-
-                    var buttonSelect = $("#btnselectVoid" + round);
-                    buttonSelect.attr("data-winning-team", winningTeam);
-                    buttonSelect.removeClass("btn-danger").addClass("btn-warning");
-                    buttonSelect.removeClass("fa-arrow-circle-right").addClass("fa-times");
-                    buttonSelect.attr("disabled", true);
-                    buttonSelect.attr("data-selected", 1)
-                }
-            })
-
-            // check if all team selected once -> autofill the remaining 2 match
-            var buttonsSelect = $(':button[data-void=1]');
-            var flag_reload = false;
-            $(buttonsSelect).each(function(index){
-                round = $(this).attr('data-round');
-                var buttonsEnableSelect = $(':button[data-round='+(round-1)+'][data-selected=1]:disabled');
-                if((buttonsEnableSelect.length == 3) && (buttonsEnableSelect.length !== 0)){ //no team to select available -> auto-fill the remaining match
-                    var buttonsDisableSelect = $(':button[data-round='+(round-1)+'][name=btnselect]:disabled');
-                    matchID = $(this).attr('data-matchID');
-                    indice = $(this).attr('data-indice');
-                    var buttonDisable = $(buttonsDisableSelect).get(2-index);
-                    teamID = $(buttonDisable).attr("data-winning-team");
-                    data = {'matchID': matchID, 'indice': indice, 'teamID': teamID};
-                    SelectTeam(data, false);
-                    if(index==3){flag_reload = true;}
-                }
-            })
-            if(flag_reload){setTimeout(function() {location.reload();},1000);}
-            */
         }
     </script>
 

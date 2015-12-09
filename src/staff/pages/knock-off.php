@@ -23,6 +23,7 @@
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="../../images/icon.ico">
   </head>
 
 <body>
@@ -38,7 +39,10 @@
             <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Modifier le Knock-Off</h1>
+                        <h1 class="page-header">Modifier le Knock-Off
+                          <?php $jour =$_GET['jour'] ?>
+                          <a class="btn btn-default btn-outline pull-right" href="./php/print-knock-off.php?jour=<?=$jour?>" target="_blank"><i class="fa fa-print fa-fw"></i> Print</a>
+                        </h1>
                     </div>
                 </div>
                     <!-- /.col-lg-12 -->

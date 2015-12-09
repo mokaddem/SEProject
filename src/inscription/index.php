@@ -45,6 +45,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <form role="form" method="Get" action="../staff/pages/php/add-new-pair.php">
+                            <input class="hidden" id="access" name="access" value="visitor">
 
                             <div class="col-lg-6">
                                 <div class="col-lg-9">
