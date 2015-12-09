@@ -136,33 +136,35 @@
 
             var url ="php/add-new-group.php";
             var data ={'cat':cat, 'jour':day };
-            console.log(data);
             $.ajax({
                 type: 'POST',
                 url: url,
                 dataType: "json",
                 data: data,
                 success: function(response_array) {
+                    console.log(response_array);
                     if (response_array['rep'] == "success") {
                         $('#btnspinner').hide();
                         var popup = $('#popup');
                         popup.hide();
-                        popup.removeClass("btn-warning").addClass("btn-success");
-                        popup.text('Poules générées.');
+                        popup.removeClass("btn-danger").addClass("btn-success");
+                        popup.text('Poule générée.');
                         setTimeout(function(){$('#popup').fadeIn('slow');},500);
-                        setTimeout(function(){$('#popup').fadeOut('slow');},350);
+                        setTimeout(function(){$('#popup').fadeOut('slow');},3500);
                     } else {
                         $('#btnspinner').hide();
                         var popup = $('#popup');
                         popup.hide();
                         popup.removeClass("btn-success").addClass("btn-danger");
                         setTimeout(function(){$('#popup').fadeOut('slow');},0);
-                        popup.text('Généreation impossible.');
+                        popup.text('Génération impossible.');
                         setTimeout(function(){$('#popup').fadeIn('slow');},0);
                         setTimeout(function(){$('#popup').fadeOut('slow');},3500);
                     }
                 },
                 error: function (response_array) {
+                    console.log("error:")
+                    console.log(response_array);
                     $('#btnspinner').hide();
                     var popup = $('#popup');
                     popup.hide();
@@ -172,6 +174,9 @@
                     setTimeout(function(){$('#popup').fadeOut('slow');},3000);
                 }
             });
+            $('#popup').removeClass("btn-danger").addClass("btn-success");
+            $('#popup').removeClass("btn-warning").addClass("btn-success");
+            $('#popup').text("Génération en cours... ");
         })
         $('#form2').submit(function (evt) {
             var cat = $('#InputCat').find(":selected").val();
@@ -218,6 +223,7 @@
                     setTimeout(function(){$('#popup').fadeOut('slow');},3000);
                 }
             });
+            $('#popup').text("Génération en cours... ");
         })
     </script>
 
