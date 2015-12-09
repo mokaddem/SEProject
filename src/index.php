@@ -99,14 +99,12 @@
                                     <p>Félicitation !</p>
                                     <p>Vous avez bien été enregistré !</p>
                                     <p>Vous recevrez un e-mail de confirmation sous peu.</p>
-                                </div>
                             <?php } elseif ($_GET["action"] == "confirm") { ?>
                                     <h4 class="modal-title">Inscription réussite</h4>
                                 </div>
                                 <div class="modal-body">
                                     <p>Félicitation !</p>
                                     <p>Votre inscription est confirmée !</p>
-                                </div>
                             <?php } elseif ($_GET["action"] == "error") { ?>
                                     <h4 class="modal-title">Erreur !</h4>
                                 </div>
