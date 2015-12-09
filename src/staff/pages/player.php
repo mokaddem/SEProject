@@ -41,10 +41,15 @@
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
+                
+                <?php if (array_key_exists("error", $_GET)){ ?>
+                <div class="alert alert-danger">Saisie incomplète</div>
+              <?php } ?>
 
                 <!-- Registration form - START -->
                 <div class="row">
                   <form role="form" method="Get" action="./php/add-new-pair.php">
+                    <input class="hidden" id="access" name="access" value="staff">
 
                       <div class="col-lg-6">
                           <div class="col-lg-9">
