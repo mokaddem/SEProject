@@ -1,11 +1,14 @@
-<!-- Generation des poules,
-fonction appelée dans le formulaire de group-generate.php
-Redirection vers group.php
 
-Mise à jour de l'historique
- -->
 <?php
+//Generation des poules,
+//fonction appelée dans le formulaire de group-generate.php
+//Redirection vers group.php
+//
+//Mise à jour de l'historique
+    error_reporting(0);
+ob_start();
 	include_once('BDD.php');
+    header('Content-type: application/json');
 
     require_once('add-new-history.php');
 
@@ -131,10 +134,14 @@ Mise à jour de l'historique
     $getPoules->free();
 
     if ($i > 0){
-       header("Location: ../group.php?jour=".$day."&generate=true&cat=".$_GET['InputCat']);
+//       header("Location: ../group.php?jour=".$day."&generate=true&cat=".$_GET['InputCat']);
+        $response_array['rep'] = "success";
     } else{
-       header("Location: ../group.php?jour=".$day."&generate=false&cat=".$_GET['InputCat']);
+//       header("Location: ../group.php?jour=".$day."&generate=false&cat=".$_GET['InputCat']);
+        $response_array['rep'] = "failure";
     }
-
+    header('Content-type: application/json');
+    ob_end_clean();
+    echo json_encode($response_array);
     return;
 ?>
