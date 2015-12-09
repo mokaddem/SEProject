@@ -55,6 +55,6 @@ Redirection vers la page d'accueil utilisateur
 	$req->execute();
 
 	$reponse->free();
-	header("Location: ../list.php?type=owner");
+	header("Location: ../../../index.php?action=register");
 
 ?>
