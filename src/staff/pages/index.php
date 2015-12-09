@@ -49,9 +49,8 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h1 class="page-header">Accueil</h1>
-                                <a href="./php/auto-populate.php" class="btn btn-success btn-outline pull-right">Remplir la Base de Données  <i class="fa fa-users"></i></a>
-
+                                <h1 class="page-header">Accueil <a href="./php/auto-populate.php" class="btn btn-success btn-outline pull-right">Remplir la Base de Données  <i class="fa fa-users"></i></a></h1>
+                                
                             </div>
                             <!-- /.col-lg-12 -->
                         </div>
@@ -63,7 +62,8 @@
 
                         <div class="row">
                             <div class="col-lg-12">
-                                <label for="sel1"><span class="fa fa-history"></span> Historique des modifications</label>
+                                <label for="sel1"><span class="fa fa-history"></span> Historique des modifications </label>
+                                
                                 <div class="panel panel-default">
 
                                     <!-- <div class="panel-heading">
