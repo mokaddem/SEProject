@@ -1,6 +1,6 @@
 <?php
-include_once('BDD.php');
-
+include_once('../BDD.php');
+header('Content-type: application/json');
 // Function utilisée pour vérifier que tous les groupes ont un terrain différent.
 function checkDifferentCourtsForGroups($day){
     $db = BDconnect();
@@ -21,14 +21,16 @@ function checkDifferentCourtsForGroups($day){
     $terrainPouleNum = $allPouleTerrain['terrainNum'];
     if ($terrainPouleNum > $distinctNum){
         if ($terrainNum == $distinctNum){
-            echo "Tous les terrains sont utilisés, mais il n'y en a pas assez pour tous les groupes.";
+            $response_array['rep']= "Tous les terrains sont utilisés, mais il n'y en a pas assez pour tous les groupes.";
         } elseif ($terrainNum > $distinctNum){
-            echo "Certain groupes utilisent les même terrain, mais certain terrain ne sont pas utilisés.";
+            $response_array['rep']= "Certain groupes utilisent les même terrain, mais certain terrain ne sont pas utilisés.";
         } else{
-            echo "Erreur: plus de terrains sont utilisés qu'il n'en existe !";
+            $response_array['rep']= "Erreur: plus de terrains sont utilisés qu'il n'en existe !";
         }
     } else{
-        echo "success";
+        $response_array['rep']= "success";
     }
+    return json_encode($response_array);
 }
+echo checkDifferentCourtsForGroups($_POST['day']);
 ?>

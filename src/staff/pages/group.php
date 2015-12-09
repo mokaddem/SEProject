@@ -341,9 +341,6 @@
     <script src="../dist/js/sb-admin-2.js"></script>
 
     <script>
-        function checkCourts(){
-            alert("<?php checkDifferentCourtsForGroups($_GET['jour']); ?>");
-        }
         (function() {
             var dndHandler = {
                 draggedElement: null,
@@ -495,7 +492,6 @@
             }
         }
     </script>
-
 
     <script>
         $(document).ready(function(){
@@ -662,6 +658,31 @@
                 type: "POST",
                 url: url,
                 data: data
+            });
+
+
+        }
+    </script>
+
+    <script>
+        function checkCourts(){
+            var url ="./php/inc/check-terrain.php";
+            $.ajax({
+                type: 'POST',
+                url: url,
+                dataType: "json",
+                data: {'day':"<?=$_GET['jour']?>"},
+                success: function (response_array) {
+                    if (response_array['rep'] == "success") {
+                        alert("success");
+                    } else {
+                        $('form-messages-rep').text("Error");
+                        alert("failed:"+response_array['rep']);
+                    }
+                },
+                error: function (response_array) {
+                    alert("Error:" + response_array['rep']);
+                }
             });
 
 
