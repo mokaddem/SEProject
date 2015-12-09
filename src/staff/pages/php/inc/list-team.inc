@@ -30,7 +30,7 @@ function printListTeam($donnes1,$donnes2, $catFinal) {
     echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-team.php?id=$id\">".utf8_encode($donnes1['F']). " " . utf8_encode($donnes1['L'])."</td>";
     echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-team.php?id=$id\">".utf8_encode($donnes2['F']). " " . utf8_encode($donnes2['L'])."</td>";
     echo "<td data-toggle=\"modal\" data-target=\"#myModal\" data-url=\"./show-team.php?id=$id\">".utf8_encode($catFinal)."</td>";
-    echo "<td><a href=\"./php/print_team.php?id=$id\"><i class=\"fa fa-print fa-fw\"></i></a><a href=\"./edit-team.php?id=".$donnes1['ID']."\"><i class=\"fa fa-edit fa-fw\"></i></a> <a href=\"./php/delete-team.php?id=".$donnes1['ID']."\" onclick=\"return confirm('Voulez-vous vraiment supprimer cette entrée ?');\"><i class=\"fa fa-trash-o\"></i></a></td>";
+    echo "<td><a href=\"./edit-team.php?id=".$donnes1['ID']."\"><i class=\"fa fa-edit fa-fw\"></i></a> <a href=\"./php/delete-team.php?id=".$donnes1['ID']."\" onclick=\"return confirm('Voulez-vous vraiment supprimer cette entrée ?');\"><i class=\"fa fa-trash-o\"></i></a><a href=\"./php/print-team.php?id=$id\"  target=\"_blank\"><i class=\"fa fa-print fa-fw\"></i></a></td>";
     echo "</tr>";
 }
 ?>

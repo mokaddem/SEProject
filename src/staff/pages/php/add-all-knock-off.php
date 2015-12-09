@@ -59,7 +59,7 @@ Mise à jour de l'historique
         if ($numCatDone == 0) {
             header("Location: ../knock-off-generate.php?error=no_team");
         } else {
-            header("Location: ../knock-off.php-generate?jour=" . $_GET['jour'] . "&generate=true&cat=0");
+            header("Location: ../knock-off.php?jour=" . $_GET['jour'] . "&generate=true&cat=0");
         }
     }
     // $reponse->free(); $ID_Terrain->free(); $reponseMatch->free(); $reqKnock->free(); $reponseKnock->free();
