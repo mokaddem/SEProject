@@ -671,7 +671,7 @@
                 type: 'POST',
                 url: url,
                 dataType: "json",
-                data: {'day':"<?=$_GET['jour']?>"},
+                data: {'day':"<?=$_GET['jour']?>", 'type':"group"},
                 success: function (response_array) {
                     if (response_array['rep'] == "success") {
                         alert("success");

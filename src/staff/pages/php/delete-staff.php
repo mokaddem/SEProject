@@ -2,6 +2,6 @@
 <!-- Page de modification d'extra selectionné dans la liste -->
 <html lang="en">
 
-    <?php header("Location: ../list.php?type=staff"); ?>
+    <?php header("Location: ../list.php?type=staff&stafferror=delete"); ?>
 
 </html>

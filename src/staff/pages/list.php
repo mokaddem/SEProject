@@ -54,6 +54,8 @@ list.php?type=staff
                 $titre = getTitre($_GET["type"]);
             }
 
+            
+            
             if (!empty($listDonnees)) {
             ?>
 
@@ -64,8 +66,19 @@ list.php?type=staff
                             <a class="btn btn-default btn-outline pull-right" href="./<?=$_GET["type"]?>.php"> Créer</a>
                             </h1>
                         </div>
+                        
+                        
                         <!-- /.col-lg-12 -->
                     </div>
+                    <?php if (array_key_exists("stafferror", $_GET)) {
+                            if ($_GET['stafferror'] == "edit") { ?>
+                                <div class="alert alert-danger">Les membres du Staff ne peuvent pas être modifiés</div>
+                            <?php } elseif ($_GET['stafferror'] == "delete") { ?>
+                                <div class="alert alert-danger">Les membres du Staff ne peuvent pas être supprimés</div> 
+                    <?php } ?>
+                    <?php } ?>
+                    
+                    
                     <?php
                         if (array_key_exists("error", $_GET)) {
                           if ($_GET['error'] == "creation") {?>

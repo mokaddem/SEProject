@@ -10,6 +10,13 @@ Mise à jour de l'historique
 
 // Generation du knock-off
 function createKnock($db, $knocktable, $cat, $numberOfTeams, $vicTeams) {
+    if ($knocktable == "KnockoffSaturday") {
+        $pouleID = -1;
+    } elseif ($knocktable == "KnockoffSunday") {
+        $pouleID = -2;
+    }
+
+
     // Try to put the best players at the extremities, so that they will fight on the final match.
 //        $vicTeamsGoodOrder = array($numberOfTeams);
 //        $i = 0;
@@ -30,8 +37,10 @@ function createKnock($db, $knocktable, $cat, $numberOfTeams, $vicTeams) {
     }
     $numberOfMatchFirstRound = $k / 2;
     $numberOfMatch = $k - 1;
+    $numberOfMatchInRound = $numberOfMatchFirstRound;
 
     $terrains = $db->query("SELECT * FROM Terrain");
+    $round = 1;
     for ($i = 1; $i <= $numberOfMatch; $i++) {
         $teamID1 = 0;
         $teamID2 = 0;
@@ -45,6 +54,10 @@ function createKnock($db, $knocktable, $cat, $numberOfTeams, $vicTeams) {
             $teamID1 = $team1['teamID'];
             $teamID2 = -2; // Valeure servant à savoir quand il n'y a pas de team mais qu'il ne faut pas en ajouter par après.
         }
+        if ($numberOfMatch-$i < $numberOfMatchInRound){
+            $numberOfMatchInRound = $numberOfMatchInRound/2;
+            $round++;
+        }
 
         if ($teamID2 == -2){
             $terrain['ID'] = -1;
@@ -56,25 +69,26 @@ function createKnock($db, $knocktable, $cat, $numberOfTeams, $vicTeams) {
             }
         }
 
-        createMatchKnock($db, $i, $cat, $teamID1, $teamID2, $terrain['ID'], $knocktable);
+        createMatchKnock($db, $i, $cat, $teamID1, $teamID2, $terrain['ID'], $pouleID, $knocktable, $round);
     }
 
     $knockID = $db->query('SELECT ID FROM '.$knocktable.' WHERE Category = '.$cat)->fetch_array();
-    if ($_GET['jour'] == "sam") {
+    if ($knocktable == "KnockoffSaturday") {
         // Mise à jour de l'historique
         addHistory($knockID, "Knock-Off (Samedi - " . $cat . ")", "Création");
-    } elseif ($_GET['jour'] == "dim") {
+    } elseif ($knocktable == "KnockoffSunday") {
         // Mise à jour de l'historique
         addHistory($knockID, "Knock-Off (Dimanche - " . $cat . ")", "Création");
     }
 }
 
-function createMatchKnock($db, $position, $cat, $teamID1, $teamID2, $terrainID, $knocktable){
+function createMatchKnock($db, $position, $cat, $teamID1, $teamID2, $terrainID, $pouleID, $knocktable, $round){
     $matchID = '';
     $date = date('d');
-    $hour = NULL;
+    $intHour = 13+$round;
+    $hourString = $intHour.":00";
+    $hour = date($hourString);
     $score = 1;
-    $pouleID = 0;
     $reqMatch = $db->prepare('INSERT INTO `Match`(ID, `date`, `hour`, ID_Equipe1, ID_Equipe2, score1, score2, ID_Terrain, Poule_ID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)');
     $reqMatch->bind_param("issiiiiii", $matchID, $date, $hour, $teamID1, $teamID2, $score, $score, $terrainID, $pouleID);
     $reqMatch->execute();
