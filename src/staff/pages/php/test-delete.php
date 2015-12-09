@@ -4,8 +4,7 @@
     function canDeletePlayer($id) {
         
         include_once('BDD.php');
-    
-        
+
         $db = BDconnect();
         $reponse = $db->query('SELECT * FROM `Team` WHERE ID_Player1 = '. $id .' OR ID_Player2 = '. $id .'');
         

@@ -1,10 +1,11 @@
 <?php
+ob_start();
+error_reporting(0);
 include_once('BDD.php');
 require_once('add-new-history.php');
 include_once('get-ranking.php');
 include_once('./test-delete.php');
 header('Content-type: application/json');
-//error_reporting(0);
 
 $flagSucess = "failed";
 $response_array['rep'] = $flagSucess;
@@ -12,44 +13,40 @@ $response_array['rep'] = $flagSucess;
 try {
     $db = BDconnect();
     /*  generate the team with the single player */
-    $teamTemp = array();
+    $teamTemp = [];
 
     /*$reqAlone = "SELECT * FROM `PlayerAlone`, RankingTextToIntBelgian WHERE `Ranking`=RankingText ORDER BY `RankingInt` DESC ";
     $reponseAlone = $db->query($reqAlone);*/
 
-    $reponseAlone = array();
+    $reponseAlone = [];
     $reponse = $db->query('SELECT * FROM Personne WHERE isPlayer=1');
     while ($donnes = $reponse->fetch_array()) {
         $player = $db->query('SELECT * FROM Player WHERE ' . $donnes['ID'] . ' = ID_Personne');
-        $player = $player->fetch_array();
-        $ranking = ($player['Ranking'] == NULL) ? "NC" : $player['Ranking'];
+        $playerArray = $player->fetch_array();
+        $ranking = ($playerArray['Ranking'] == NULL) ? "NC" : $playerArray['Ranking'];
         if (canDeletePlayer($donnes['ID'])) { // Returns true if the player is not in any team.
-            array_push($reponseAlone, $player);
+            array_push($reponseAlone, $playerArray);
         }
     }
-
     $i = 0;
     foreach ($reponseAlone as $player) {
         $teamTemp[$i] = $player['ID_Personne'];
-        error_log("i=" . $i . ", " . "teamTeamp=" . $teamTemp[$i]);
         $classTemp[$i] = $player['Ranking'];
         $i++;
     }
     $playerNumber = ($i + 1);
-    for ($i = 0; $i != $playerNumber; $i++) {
+    for ($i = 0; $i < $playerNumber-1; $i++) {
 // ---------------------AJOUTER TEAM--------------------------
         $req = $db->prepare("INSERT INTO Team(ID, ID_player1, ID_player2, ID_Cat, NbWinMatch, AvgRanking) VALUES(?, ?, ?, ?, ?, ?)");
-
         $ID = '';
         $flag1Alone = 0;
         if ($i + 1 >= ($playerNumber - 1)) {
             $flag1Alone = 1;
         }
-        $ID_player1 = $teamTemp[$i];
+        $ID_player1 =  $teamTemp[$i];
         $ID_player2 = $flag1Alone == 1 ? 0 : $teamTemp[$i + 1];
 
         $reqPersonne1 = "SELECT *, YEAR(BirthDate) as `yeari`, month(BirthDate) as `monthi`, day(BirthDate) as `dayi` FROM `Personne` WHERE Personne.ID=" . $teamTemp[$i];
-//    error_log("i=".$i);
         $repPersonne1 = $db->query($reqPersonne1)->fetch_array();
         if (!$flag1Alone) {
             $reqPersonne2 = "SELECT *, YEAR(BirthDate) as `yeari`, month(BirthDate) as `monthi`, day(BirthDate) as `dayi` FROM `Personne` WHERE Personne.ID=" . $teamTemp[$i + 1];
@@ -98,20 +95,25 @@ try {
         if (!$flag1Alone) {
             $req->bind_param("iiiiis", $ID, $ID_player1, $ID_player2, $ID_Cat, $NbmatchWin, $rankingAvgText);
             $req->execute();
-            error_log($ID . ', ' . $ID_player1 . ', ' . $ID_player2 . ', ' . $ID_Cat . ', ' . $NbmatchWin . ', ' . $rankingAvgText);
+//            error_log($ID . ', ' . $ID_player1 . ', ' . $ID_player2 . ', ' . $ID_Cat . ', ' . $NbmatchWin . ', ' . $rankingAvgText);
             $flagSucess = "success";
         }
         $i++;
     }
     /*  end team generate   */
     $response_array['rep'] = $flagSucess;
-    error_log($response_array['rep']);
+//    error_log($response_array['rep']);
     header('Content-type: application/json');
+    ob_end_clean();
     echo json_encode($response_array);
+    return;
 }catch (Exception $e) {
-    error_log("error:".$response_array['rep']);
+//    error_log("error:".$response_array['rep']);
+    ob_end_clean();
     echo json_encode($response_array);
+    return;
 }
 error_log($response_array['rep']);
+ob_end_clean();
 echo json_encode($response_array);
 ?>
