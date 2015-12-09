@@ -62,25 +62,24 @@ $html = <<<EOD
 <p></p>
 <hr/>
 <p></p>
-<h2 align="center">Poule $id - [Nom respo]</h2>
+<h2 align="center">Equipe $id</h2>
 <hr/>
 <p></p>
 EOD;
 $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
 
 $reponse = $db->query('SELECT * FROM `Team` WHERE '.$id.' = ID');
-$numMatch = 1;
 foreach ($reponse as $donnees) {
 
-  $t = $db->query('SELECT * FROM `Personne` WHERE '.$donnees['ID_Equipe1'].' = ID');
+  $t = $db->query('SELECT * FROM `Personne` WHERE '.$donnees['ID_Player1'].' = ID');
   $t1 = $t->fetch_array();
 
   $t1p = $db->query('SELECT * FROM `Personne` WHERE '.$donnees['ID_Player2'].' = ID');
   $t1p1 = $t1p->fetch_array();
 
-  $t1p = $db->query('SELECT * FROM `Player` WHERE '.$t1['ID_Player1'].' = ID_Personne AND 1= IsLeader');
-  $t1p1 = $t1p->fetch_array();
-  if ($t1p1){
+  $t1p = $db->query('SELECT * FROM `Player` WHERE '.$t1['ID'].' = ID_Personne AND 1= IsLeader');
+  $t1p2 = $t1p->fetch_array();
+  if ($t1p2){
   	$leader = utf8_encode($t1['FirstName'])." ".utf8_encode($t1['LastName']);
   	 }
   	 else{
@@ -88,36 +87,33 @@ foreach ($reponse as $donnees) {
   	     }
   $a = utf8_encode($t1['FirstName'])." ".utf8_encode($t1['LastName']);
   $b = utf8_encode($t1p1['FirstName'])." ".utf8_encode($t1p1['LastName']);
-  
+
   $c = utf8_encode($t1['PhoneNumber']);
   $d = utf8_encode($t1['Mail']);
-  
+
   $e = utf8_encode($t1p1['PhoneNumber']);
   $f = utf8_encode($t1p1['Mail']);
-  
+
 
 
 
 // Set some content to print
 $html = <<<EOD
-<h2 align="center">Team $id</h2>
-<p><b>Player 1:</b> $a</p>
+<p><b>Le leader: $leader</b></p>
+<p><b>Joueur 1:</b> $a</p>
 <p><b>Numero de Telephone:</b> $c</p>
 <p><b>Mail:</b> $d</p>
-<p><b>---------------------------------------------------------</b></p>
-<p><b>Player 2:</b> $b</p>
+<hr/>
+<p></p>
+<p><b>Joueur 2:</b> $b</p>
 <p><b>Numero de Telephone:</b> $e</p>
 <p><b>Mail:</b> $f</p>
-<p><b>Le leader: $leader</b></p>
 <hr/>
 EOD;
 
   // Print text using writeHTMLCell()
   $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
-  $numMatch++;
 }
-
-$reponse->free(); $t->free(); $t1p->free(); $t2p->free();
 
 // ---------------------------------------------------------
 
