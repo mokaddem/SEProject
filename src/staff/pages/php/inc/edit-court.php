@@ -15,8 +15,8 @@ $adresse    = utf8_decode($_GET['InputAdresse']);
 $surface	= utf8_decode($_GET['surface']);
 $ID_Owner   = $_GET['owner'];
 $etat       = utf8_decode($_GET['etat']);
-$disponibiliteFrom  =  $_GET['calendarF'];
-$disponibiliteTo    =  $_GET['calendarT'];
+$disponibiliteFrom  =  $_GET['InputFrom'];
+$disponibiliteTo    =  $_GET['InputTo'];
 $Type    = utf8_decode($_GET['type']);
 $Note    = utf8_decode($_GET['InputNote']);
 
