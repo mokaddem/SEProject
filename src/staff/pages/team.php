@@ -151,6 +151,10 @@
         function associate(){
             var url="./php/associate-player.php";
             var data={ };
+
+            var target = document.getElementById('btnspinner');
+            var spinner = new Spinner(opts).spin(target);
+            $('#btnspinner').show();
             $.ajax({
                 type: 'POST',
                 url: url,
@@ -184,14 +188,14 @@
                     $('#popup').hide();
                     $('#popup').removeClass("btn-success").addClass("btn-warning");
                     $('#popup').text('Pas assez de joueurs seuls disponible.');
-                    setTimeout(function(){$('#popup').fadeIn('slow');},0)
-                    setTimeout(function(){$('#popup').fadeOut('slow');},3000)
+                    setTimeout(function(){$('#popup').fadeIn('slow');},0);
+                    setTimeout(function(){$('#popup').fadeOut('slow');},3000);
                 }
 
             });
-            var target = document.getElementById('btnspinner');
-            var spinner = new Spinner(opts).spin(target);
-            $('#btnspinner').show();
+//            var target = document.getElementById('btnspinner');
+//            var spinner = new Spinner(opts).spin(target);
+//            $('#btnspinner').show();
         }
     </script>
 

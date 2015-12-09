@@ -5,6 +5,7 @@ Redirection vers knock-off.php
 Mise à jour de l'historique
  -->
 <?php
+
     include_once('inc/add-knock-off.inc');
 	include_once('BDD.php');
     require_once('add-new-history.php');
