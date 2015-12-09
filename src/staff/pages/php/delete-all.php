@@ -23,6 +23,13 @@ $db->query('DELETE FROM Player');
 $db->query('DELETE FROM PlayerAlone');
 $db->query('DELETE FROM Team');
 
+//vidage des tables temporaires
+$db->query('DELETE FROM TmpTeam');
+$db->query('DELETE FROM TmpPersonne');
+$db->query('DELETE FROM TmpPersonneExtra');
+$db->query('DELETE FROM TmpPlayer');
+$db->query('DELETE FROM ConfirmationPersonne');
+
 // Propriétaires et terrains vont dans les archives pour pouvoir les recontacter.
 $db->query('DELETE FROM OldOwner');
 $db->query('DELETE FROM OldTerrain');

@@ -242,7 +242,7 @@
                                   <div class="form-group text-center" name="divButtonContainer" data-index="<?=$k?>">
                                   <?php $captainText = $teamID == $group['ID_Leader'] ? "fa fa-user text-success " : "fa fa-arrow-circle-o-up"; ?>
                                   <?php if($group['ID_t1']>0){?>
-                                  <a <?=$canEdit?> class="" data-toggle="tooltip" data-placement="left" title="<?php if($teamID == $group['ID_Leader']){echo "Leader de poule";} else{echo "Assigner cette équipe en tant que leader de poule";}?>" <?php if(!$canEdit){?> href="php/promote-leader.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&teamID=<?=$teamID?>&cat=<?=$_GET['cat']?>" <?php }?> ><i class="<?=$captainText?>"></i></a>
+                                  <a <?=$canEdit?> class="" data-toggle="tooltip" data-placement="left" title="<?php if($teamID == $group['ID_Leader']){echo "Leader de poule";} else{echo "Assigner cette équipe en tant que leader de poule";}?>" <?php if(!$canEdit){?> href="php/promote-group-leader.php?id=<?=$group['Gid']?>&textDay=<?=$_GET['jour']?>&jour=<?=$_GET["jour"]?>&teamID=<?=$teamID?>&cat=<?=$_GET['cat']?>" <?php }?> ><i class="<?=$captainText?>"></i></a>
                                   <?php }?>
                                       <?php $color = "default";
                                       $videOrNot = "-vide";
