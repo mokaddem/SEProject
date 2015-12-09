@@ -22,6 +22,7 @@
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="../../images/icon.ico">
 </head>
 
 <body>
@@ -46,9 +47,10 @@
                     <form role="form" method="Get" action="php/delete-group-knock-off.php">
                         <div class="col-lg-6">
 
-                            <label>Attention, le fait de réinitialiser le tournoi va supprimer toutes les poules et le Knock-Off. Cette action est irréversible.</label>
-
-                            <input type="submit" name="submit" id="submit" value="J'ai pris connaissances des risques" class="btn btn-danger pull-center">
+                            <label><p> <i class="fa fa-exclamation-triangle"></i> Attention, le fait de réinitialiser le tournoi va supprimer toutes les poules et le Knock-Off. Cette action est irréversible.</p></label>
+                            <div >
+                                <button type="submit" name="submit" id="submit" class="btn btn-danger btn-outline pull-center">J'ai pris connaissances des risques <i class="fa fa-trash"></i></button>
+                            </div>
 
                         </div>
                     </form>

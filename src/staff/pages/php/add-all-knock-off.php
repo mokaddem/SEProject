@@ -49,6 +49,7 @@ Mise à jour de l'historique
                     extract($row->fetch_array());
                     $row->free();
                 }
+                var_dump($numberOfTeams);
                 if ($numberOfTeams > 0) {
                     $numCatDone++;
                 }

@@ -22,7 +22,7 @@
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+    <link rel="shortcut icon" href="../../images/icon.ico">
 </head>
 
 <body>
