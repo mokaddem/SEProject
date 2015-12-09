@@ -66,7 +66,7 @@
                 <div class="row">
                     <div class="col-lg-6 text-center">
                       <fieldset data-role="controlgroup" data-type="horizontal">
-                          <form name="form" id="form" method="get" action="php/add-new-group.php">
+                          <form name="form1" id="form1" method="post" action="php/add-new-group.php">
                               <label for="sam">Samedi</label>
                               <input type="radio" name="jour" value="sam" onclick="document.form2.jour.value = this.value;" checked>
                               <label for="dim">Dimanche</label>
@@ -86,7 +86,7 @@
                               </div>
                               <input type="submit" name="submit" id="submit" value="Générer la poule sélectionnée" class="btn btn-info pull-right">
                           </form>
-                          <form name="form2" id="form2" action="./php/add-all-group2.php">
+                          <form name="form2" id="form2" action="./php/add-all-group.php">
                             <input class="hidden" type="text" name="jour" value="sam"/>
                             <button type="submit" class="btn btn-success pull-left">Tout générer pour ce jour <i class="fa fa-refresh"></i></button>
                           </form>
@@ -125,8 +125,9 @@
     </script>
 
     <script>
-        var cat = $('#InputCat').value;
-        $('#form2').submit(function (evt) {
+        $('#form1').submit(function (evt) {
+            var cat = $('#InputCat').find(":selected").val();
+            var day = document.querySelector('input[name="jour"]:checked').value;
             evt.preventDefault();
             var target = document.getElementById('btnspinner');
             var spinner = new Spinner(opts).spin(target);
@@ -134,7 +135,55 @@
             setTimeout(function(){$('#popup').fadeIn('slow');},0);
 
             var url ="php/add-new-group.php";
-            var data ={'cat':cat};
+            var data ={'cat':cat, 'jour':day };
+            console.log(data);
+            $.ajax({
+                type: 'POST',
+                url: url,
+                dataType: "json",
+                data: data,
+                success: function(response_array) {
+                    if (response_array['rep'] == "success") {
+                        $('#btnspinner').hide();
+                        var popup = $('#popup');
+                        popup.hide();
+                        popup.removeClass("btn-warning").addClass("btn-success");
+                        popup.text('Poules générées.');
+                        setTimeout(function(){$('#popup').fadeIn('slow');},500);
+                        setTimeout(function(){$('#popup').fadeOut('slow');},350);
+                    } else {
+                        $('#btnspinner').hide();
+                        var popup = $('#popup');
+                        popup.hide();
+                        popup.removeClass("btn-success").addClass("btn-danger");
+                        setTimeout(function(){$('#popup').fadeOut('slow');},0);
+                        popup.text('Généreation impossible.');
+                        setTimeout(function(){$('#popup').fadeIn('slow');},0);
+                        setTimeout(function(){$('#popup').fadeOut('slow');},3500);
+                    }
+                },
+                error: function (response_array) {
+                    $('#btnspinner').hide();
+                    var popup = $('#popup');
+                    popup.hide();
+                    popup.removeClass("btn-success").addClass("btn-warning");
+                    popup.text('Erreur pendant la génération');
+                    setTimeout(function(){$('#popup').fadeIn('slow');},0);
+                    setTimeout(function(){$('#popup').fadeOut('slow');},3000);
+                }
+            });
+        })
+        $('#form2').submit(function (evt) {
+            var cat = $('#InputCat').find(":selected").val();
+            var day = document.querySelector('input[name="jour"]:checked').value;
+            evt.preventDefault();
+            var target = document.getElementById('btnspinner');
+            var spinner = new Spinner(opts).spin(target);
+            $('#btnspinner').show();
+            setTimeout(function(){$('#popup').fadeIn('slow');},0);
+
+            var url ="./php/add-all-group.php";
+            var data ={'cat':cat, 'jour':day };
             $.ajax({
                 type: 'POST',
                 url: url,
@@ -146,10 +195,7 @@
                         $('#btnspinner').hide();
                         var popup = $('#popup');
                         popup.hide();
-                        popup.removeClass("btn-warning").addClass("btn-success");
-                        popup.text('Poules générées.');
-                        setTimeout(function(){$('#popup').fadeIn('slow');},500);
-                        setTimeout(function(){$('#popup').fadeOut('slow');},350);
+                        window.location = "./group.php?jour=" + day + "&generate=true&cat=0"
                     } else {
                         $('#btnspinner').hide();
                         var popup = $('#popup');

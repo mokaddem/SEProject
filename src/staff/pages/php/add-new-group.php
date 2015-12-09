@@ -5,7 +5,6 @@
 //Redirection vers group.php
 //
 //Mise à jour de l'historique
-    error_reporting(0);
 ob_start();
 	include_once('BDD.php');
     header('Content-type: application/json');
@@ -74,7 +73,7 @@ ob_start();
 
 }
 
-    $day = $_GET['jour'];
+    $day = $_POST['jour'];
     if ($day == "sam"){
         $maxTeamNum = 5;
         $table = "GroupSaturday";
@@ -93,9 +92,9 @@ ob_start();
         }
 
     }
-
+error_log(serialize($_POST));
     $terrains = $db->query("SELECT * FROM Terrain");
-    $reponseTeams = $db->query('SELECT * FROM Team WHERE ID_Cat='.$_GET['InputCat']);
+    $reponseTeams = $db->query('SELECT * FROM Team WHERE ID_Cat='.$_POST['cat']);
     $i = 1;
     $ID_teams = array();
     foreach ($reponseTeams as $team){
