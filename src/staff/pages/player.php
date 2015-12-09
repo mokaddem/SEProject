@@ -37,7 +37,7 @@
             <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Ajouter une paire</h1>
+                        <h1 class="page-header">Ajouter un joueur / une paire</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
