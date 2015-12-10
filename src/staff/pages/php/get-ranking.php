@@ -8,6 +8,8 @@ function getRanking($firstname, $lastname, $birthdata)
 //    $firstname = 'Antoine';
 //    $lastname = 'Glorieux';
 //    $birthdata = '01/09/1994';
+    $firstname = str_replace(" ", $firstname);
+    $lastname = str_replace(" ", $lastname);
 
     $URL = "http://www.aftnet.be/Portail-AFT/Joueurs/Resultats-recherche-affilies.aspx?mode=searchname&nom=" . $lastname . "&prenom=" . $firstname;
     $html = file_get_html($URL);

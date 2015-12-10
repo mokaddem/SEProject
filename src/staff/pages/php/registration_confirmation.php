@@ -14,8 +14,8 @@ $repId = $db->query($reqId)->fetch_array();
 $ID = $repId['ID'];
 
 $queryPers = "INSERT INTO Personne SELECT * FROM TmpPersonne WHERE TmpPersonne.ID=".$ID;
-$queryPersonneExtra = "INSERT INTO PersonneExtra SELECT * FROM TmpPersonneExtra.Personne_ID WHERE ".$ID;
-$queryPlayer = "INSERT INTO Player SELECT * FROM TmpPlayer WHERE TmpPlayer.ID_Personne".$ID;
+$queryPersonneExtra = "INSERT INTO PersonneExtra SELECT * FROM TmpPersonneExtra WHERE TmpPersonneExtra.Personne_ID=".$ID;
+$queryPlayer = "INSERT INTO Player SELECT * FROM TmpPlayer WHERE TmpPlayer.ID_Personne=".$ID;
 
 $db->query($queryPers);
 $db->query($queryPersonneExtra);
@@ -46,7 +46,6 @@ $repPlayerConfirmed = $repPlayerConfirmed->fetch_array();
 
 if(($repPlayerConfirmed['p1'] == 1) AND ($repPlayerConfirmed['p2'] == 1)){
     $queryTeam = "INSERT INTO Team(ID, ID_Player1, ID_Player2, ID_Cat, NbWinMatch, AvgRanking, Group_Vic) SELECT ID, ID_Player1, ID_Player2, ID_Cat, NbWinMatch, AvgRanking, Group_Vic FROM TmpTeam WHERE ID=".$teamID;
-    error_log($queryTeam);
     $db->query($queryTeam);
 }
 
