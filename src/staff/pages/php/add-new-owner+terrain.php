@@ -6,6 +6,8 @@ Redirection vers la page d'accueil utilisateur
 
 <?php
 	include_once('BDD.php');
+	include "../../../mail/mail_helper.php";
+
 
 	// Inscription du propriétaire avec son terrain
 	$db = BDconnect();
@@ -52,8 +54,8 @@ Redirection vers la page d'accueil utilisateur
 	$Note		= utf8_decode($_GET['InputMessage']);
 	
 	//email confirmation 
-	$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE id=18');
-	$corpsR = $db->query('SELECT Value FROM GlobalVariables WHERE id=19');
+	$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE id=20');
+	$corpsR = $db->query('SELECT Value FROM GlobalVariables WHERE id=21');
 		
 	//récuperer le sujet du mail
 	$listSujet;
