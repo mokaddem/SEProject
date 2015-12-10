@@ -53,8 +53,8 @@
                         Aucun vainqueur du samedi trouvé. <br/>
                         Ils doivent être choisis préalablement.
                 <?php } elseif ($_GET["error"] == "no_team") { ?>
-                        Aucune équipe n'a été trouvée pour générer le knock-off. <br/>
-                        Ils doivent être choisis préalablement.
+                        Aucune équipe victorieuse n'a été trouvée pour générer le knock-off. <br/>
+                        Elles doivent être choisis préalablement.
                 <?php } elseif ($_GET["error"] == "no_dim") { ?>
                         Aucun vainqueur du dimanche trouvé. <br/>
                         Ils doivent être choisis préalablement.
@@ -175,7 +175,7 @@
             setTimeout(function(){$('#btnspinner').hide();},3000);
             setTimeout(function () {popup.fadeIn('slow');}, 0);
             setTimeout(function(){popup.fadeOut('slow');},3000);
-            popup.text('Erreur pendant la génération');
+            popup.text('Génération en cours...');
             setTimeout(function () {popup.fadeIn('slow');},3000);
             setTimeout(function(){popup.fadeOut('slow');},5000);
         }

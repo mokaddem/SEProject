@@ -44,7 +44,7 @@ Mise à jour de l'historique
 	$req->execute();
 
 
-    $reponse = $db->query('SELECT * FROM TmpPersonne WHERE "'.$FirstName1.'" = FirstName AND "'.$LastName1.'" = LastName');
+    $reponse = $db->query('SELECT * FROM TmpPersonne WHERE "'.$FirstName1.'" = FirstName AND "'.$LastName1.'" = LastName AND '.$PhoneNumber1.' = PhoneNumber');
     $donnees1 = $reponse->fetch_array();
     // Mise à jour de l'historique
     addHistory( $donnees1["ID"], "Joueur", "Ajout");
@@ -85,7 +85,7 @@ Mise à jour de l'historique
 	$req->execute();
 
 
-    $reponse = $db->query('SELECT * FROM TmpPersonne WHERE "'.$FirstName2.'" = FirstName AND "'.$LastName2.'" = LastName');
+    $reponse = $db->query('SELECT * FROM TmpPersonne WHERE "'.$FirstName2.'" = FirstName AND "'.$LastName2.'" = LastName AND '.$PhoneNumber1.' = PhoneNumber');
     $donnees2 = $reponse->fetch_array();
     // Mise à jour de l'historique
     addHistory( $donnees2["ID"], "Joueur", "Ajout");
