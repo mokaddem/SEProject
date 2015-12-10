@@ -31,7 +31,7 @@ if($ID==null)
     $db->query('DELETE FROM TmpPersonneExtra WHERE TmpPersonneExtra.Personne_ID=' . $ID);
     $db->query($queryPlayer);
     $db->query('DELETE FROM TmpPlayer WHERE TmpPlayer.ID_Personne='. $ID);
-    $db->query('DELETE FROM ConfirmationPersonne');
+    $db->query('DELETE FROM ConfirmationPersonne WHERE Personne_ID='.$ID);
 
 //add the confirmation for this player in Tmpteam
     $reqteamId = "SELECT * FROM TmpTeam WHERE ID_Player1=" . $ID . " OR ID_Player2=" . $ID;
@@ -39,28 +39,29 @@ if($ID==null)
     $teamID = $repteamId['ID'];
 
     $repChoosePlayer = $db->query('SELECT ID_Player1 as p1, ID_Player2 as p2 FROM TmpTeam WHERE ID=' . $teamID);
-    $repChoosePlayer = $repChoosePlayer->fetch_array();
-    if ($repChoosePlayer['p1'] == $ID) {
-        $playerText = "player1_confirmed";
-    } else {
-        $playerText = "player2_confirmed";
+
+    if($repChoosePlayer != null) {  //if the player is not a alone player
+        $repChoosePlayer = $repChoosePlayer->fetch_array();
+        if ($repChoosePlayer['p1'] == $ID) {
+            $playerText = "player1_confirmed";
+        } else {
+            $playerText = "player2_confirmed";
+        }
+
+        $reqAddConfirmation = "UPDATE TmpTeam SET " . $playerText . "=1 WHERE ID=" . $teamID;
+        $repAddConfirmation = $db->query($reqAddConfirmation);
+
+        //check if the two players have confirmed their inscription
+        $reqPlayerConfirmed = "SELECT player1_confirmed as p1, player2_confirmed as p2 FROM TmpTeam WHERE ID=" . $teamID;
+        $repPlayerConfirmed = $db->query($reqPlayerConfirmed);
+        $repPlayerConfirmed = $repPlayerConfirmed->fetch_array();
+
+        if (($repPlayerConfirmed['p1'] == 1) AND ($repPlayerConfirmed['p2'] == 1)) {
+            $queryTeam = "INSERT INTO Team(ID, ID_Player1, ID_Player2, ID_Cat, NbWinMatch, AvgRanking, Group_Vic) SELECT ID, ID_Player1, ID_Player2, ID_Cat, NbWinMatch, AvgRanking, Group_Vic FROM TmpTeam WHERE ID=" . $teamID;
+            $db->query($queryTeam);
+            $db->query('DELETE FROM TmpTeam WHERE ID=' . $teamID);
+        }
     }
-
-    $reqAddConfirmation = "UPDATE TmpTeam SET " . $playerText . "=1 WHERE ID=" . $teamID;
-    $repAddConfirmation = $db->query($reqAddConfirmation);
-
-
-//check if the two players have confirmed their inscription
-    $reqPlayerConfirmed = "SELECT player1_confirmed as p1, player2_confirmed as p2 FROM TmpTeam WHERE ID=" . $teamID;
-    $repPlayerConfirmed = $db->query($reqPlayerConfirmed);
-    $repPlayerConfirmed = $repPlayerConfirmed->fetch_array();
-
-    if (($repPlayerConfirmed['p1'] == 1) AND ($repPlayerConfirmed['p2'] == 1)) {
-        $queryTeam = "INSERT INTO Team(ID, ID_Player1, ID_Player2, ID_Cat, NbWinMatch, AvgRanking, Group_Vic) SELECT ID, ID_Player1, ID_Player2, ID_Cat, NbWinMatch, AvgRanking, Group_Vic FROM TmpTeam WHERE ID=" . $teamID;
-        $db->query($queryTeam);
-        $db->query('DELETE FROM TmpTeam WHERE ID='.$teamID);
-    }
-
 }
 
 if($flagPersonneFound){ //if the confirmation code is valid
