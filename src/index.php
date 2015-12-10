@@ -83,7 +83,7 @@
             <!-- /.arrows -->
 
             <?php
-            if (array_key_exists("action", $_GET) && $_GET["action"] == "register") { ?>
+            if (array_key_exists("action", $_GET)) { ?>
 
                 <!-- Modal -->
                 <div id="myModal" class="modal fade" role="dialog">
@@ -95,9 +95,17 @@
                                 <h4 class="modal-title">Inscription réussite</h4>
                             </div>
                             <div class="modal-body">
+                            <?php if ($_GET["action"] == "register") { ?>
                                 <p>Félicitations !</p>
                                 <p>Vous avez bien été enregistré !</p>
-                                <p>Vous recevrez un e-mail de confirmation sous peu.</p>
+                                <p>Vous recevrez un e-mail de confirmation sous peu.</p>                                
+                            <?php } elseif ($_GET["action"] == "confirme") { ?>
+                                <p>Félicitations !</p>
+                                <p>Votre inscription est confirmée !</p>
+                            <?php } elseif ($_GET["action"] == "error") { ?>
+                                <p>Erreur !</p>
+                                <p>Lien de confirmation invalide ou déjà utilisé</p>
+                            <?php } ?>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
