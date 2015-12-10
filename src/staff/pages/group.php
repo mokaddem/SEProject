@@ -394,14 +394,26 @@
                                         if($(target).attr("data-groupnum") == $(dndHandler.draggedElement).attr("data-groupnum")){ //On applique le style seulement si le draggred est dans un group différent
                                             //do nothing
                                         }
-                                        else{this.className += " drop_hover";}
+                                        else{
+                                            var elemSave = $(this);
+                                            this.className += " drop_hover";
+                                            setTimeout(function(){elemSave.removeClass("drop_hover");},1000);
+                                        }
                                     }
                                 } else if(target.getAttribute("name") == "button-player") {
                                     if(flag_red){ target.className += " drop_hover_green";}
-                                    else{this.className += " drop_hover";}
+                                    else{
+                                        var elemSave = $(this);
+                                        this.className += " drop_hover";
+                                        setTimeout(function(){elemSave.removeClass("drop_hover")},1000);
+                                    }
                                 }else if(flag_target_ok){
                                     if(flag_red){ target.className += " drop_hover_green";}
-                                    else{target.className += " drop_hover";}
+                                    else{
+                                        var elemSave = $(this);
+                                        target.className += " drop_hover";
+                                        setTimeout(function(){elemSave.removeClass("drop_hover");},1000);
+                                    }
                                 }
                             }
                         }
@@ -502,7 +514,6 @@
                 placement: 'right',
                 html: true,
                 title: "<i class='fa fa-envelope-o'> Envoyer un mail</i>",
-//                trigger: "focus",
                 content: "<button name='mail_button' data-Mailtarget='mailTous' class='btn btn-info' data-groupID=\""+$(this).attr("data-groupID")+"\" >Groupe</button> <button name='mail_button' data-Mailtarget='mailLeader' class='btn btn-info' data-groupID=\""+$(this).attr("data-groupID")+"\">Leader</button> <button name='mail_button' data-Mailtarget='mailNP' class='btn btn-warning' data-groupID=\""+$(this).attr("data-groupID")+"\">Non payé</button>"
             }).on('shown.bs.popover', function (eventShown) {
                 var $popup = $('#' + $(eventShown.target).attr('aria-describedby'));
