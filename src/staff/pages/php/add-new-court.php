@@ -6,6 +6,7 @@ Mise à jour de l'historique
  -->
 <?php
 	include('BDD.php');
+	include_once("../../../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php");
   include("../../../mail/mail_helper.php");
   require_once('add-new-history.php');
 	// Ajout du terrain
@@ -27,7 +28,7 @@ Mise à jour de l'historique
 
     // Check existing court in DataBase
     $rep = $db->query('SELECT * FROM `Terrain` WHERE adresse=\''.$Adresse.'\' AND ID_Owner='.$ID_Owner);
-    
+
     if (($donnees = $rep->fetch_array()) != NULL) {
         /*
         $ID	 	    = $_GET['id'];
