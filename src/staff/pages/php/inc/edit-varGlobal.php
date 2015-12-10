@@ -11,7 +11,7 @@ require_once('../add-new-history.php');
 //$db = new mysqli($database_host, $database_user, $database_pass, $database_db);
 $db = BDconnect();
 $ID	= $_GET['id'];
-$Description = utf8_encode($_GET['InputValue']);
+$Description = utf8_decode($_GET['InputValue']);
 
 
 $reponse = $db->query("UPDATE SEProjectC.GlobalVariables SET Value = \"".$Description."\" WHERE ".$ID." = GlobalVariables.id");
