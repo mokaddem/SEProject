@@ -122,6 +122,7 @@
                     <input type="checkbox" name="mesLeader" value="Participants"> Messages des leaders
                     <input type="checkbox" name="mesTous" value="Propriétaires"> Messages pour tous
                     <input type="checkbox" name="mesNP" value="Propriétaires"> Messages des non-payés
+                    <input type="checkbox" name="mesCat" value="mesCat"> Messages catégories
                   </div>
                 </div>
             </div>
@@ -148,7 +149,7 @@
 
   <!-- Custom Theme JavaScript -->
   <script src="../dist/js/sb-admin-2.js"></script>
-  <script src="../dist/js/alicia.js"></script>
+  <script src="../dist/js/typehead.js"></script>
 
   <script src="http://cdn.jsdelivr.net/typeahead.js/0.9.3/typeahead.min.js"></script>
 

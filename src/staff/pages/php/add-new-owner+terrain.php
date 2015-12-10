@@ -6,6 +6,8 @@ Redirection vers la page d'accueil utilisateur
 
 <?php
 	include_once('BDD.php');
+	include "../../../mail/mail_helper.php";
+
 
 	// Inscription du propriétaire avec son terrain
 	$db = BDconnect();
@@ -30,6 +32,7 @@ Redirection vers la page d'accueil utilisateur
 	$req->bind_param("issiiiisissssiii", $ID, $FirstName, $LastName, $Title, $ZIPCode, $PhoneNumber, $GSMNumber, $Rue, $Number, $Ville, $BirthDate, $Mail, $CreationDate, $IsPlayer, $IsOwner, $IsStaff);
 	$req->execute();
 
+
 	$reponse = $db->query("SELECT ID FROM Personne WHERE FirstName=\"$FirstName\" AND LastName=\"$LastName\" AND Mail=\"$Mail\"");
 	$donnes = $reponse->fetch_array();
 	$ID_inserted = $donnes['ID'];
@@ -49,7 +52,28 @@ Redirection vers la page d'accueil utilisateur
 	$CreationDate	= date("Y-m-d");
 	$type		= utf8_decode($_GET['type']);
 	$Note		= utf8_decode($_GET['InputMessage']);
-
+	
+	//email confirmation 
+	$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE id=20');
+	$corpsR = $db->query('SELECT Value FROM GlobalVariables WHERE id=21');
+		
+	//récuperer le sujet du mail
+	$listSujet;
+	while($suj = $sujetR->fetch_array())
+	{
+		$listSujet[0] = $suj['Value'];
+	}
+	//Corps du mail
+	$listCorp;
+	while($lHQ = $corpsR ->fetch_array())
+	{
+		$listCorp[0] = $lHQ['Value'];
+	}
+	$to[0]=$Mail;
+	$sujet = $listSujet[0];
+	$message=$listCorp[0];
+	sendMail($to, $message, $sujet);
+	
 	$req->bind_param("isiissssss", $ID,$Adresse,$Surface,$ID_Owner,$Etat,$DispoFrom,$DispoTo,$CreationDate,$type,$Note);
 
 	$req->execute();
