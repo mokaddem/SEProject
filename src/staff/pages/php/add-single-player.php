@@ -70,7 +70,7 @@ addHistory( $donnees1["ID"], "Joueur", "Ajout");
 
 //Generate MD code for confirmation email
 $text_code = $FirstName1 . $LastName1 . $BirthDate1 . $CreationDate;
-$verifiaction_code = (String) md5($text_code);
+$verification_code = (String) md5($text_code);
 $id='';
 $codePrep = $db->prepare("INSERT INTO ConfirmationPersonne(ID, Personne_ID, Code) VALUES (?, ?, ?)");
 $codePrep->bind_param('iis', $id, $donnees1['ID'], $verifiaction_code);
@@ -168,6 +168,7 @@ $reponse->free();
 	}
 	$message = $listMessage[0];
 	$message.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";
+	$message.="\n"."Confirmez votre inscription en cliquant sur ce lien: "."http://test.pydehon.me/staff/pages/php/registration_confirmation.php?code=".$verification_code;
 
 	sendMail($to1, $message, $sujet);
 //////////////////////////////////////

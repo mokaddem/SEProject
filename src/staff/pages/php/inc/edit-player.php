@@ -23,7 +23,11 @@ $Number		= $_GET['InputBat'];
 $BirthDate	= $_GET['birth_year']."-".$_GET['birth_month']."-".$_GET['birth_day'];
 $Mail		= $_GET['InputEmailFirst'];
 $Note       = utf8_decode($_GET['InputMessage']);
-
+$confirm="";
+if(array_key_exists("confirm", $_GET)){
+    $confirm="Tmp";
+}
+".<?=$confirm?>."
 
 $req = $db->prepare("UPDATE SEProjectC.Personne SET FirstName = ?,LastName = ?,Title = ?,ZIPCode =?,PhoneNumber = ?,GSMNumber = ?,Ville = ?,Rue = ?,Number = ?,BirthDate = ?,Mail = ?,Note=? WHERE ".$ID."=Personne.ID");
 $req->bind_param("ssiiiississs", $FirstName, $LastName, $Title, $ZIPCode, $PhoneNumber, $GSMNumber, $Rue, $Number, $Ville, $BirthDate, $Mail, $Note);
