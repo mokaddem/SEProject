@@ -73,7 +73,7 @@ $text_code = $FirstName1 . $LastName1 . $BirthDate1 . $CreationDate;
 $verification_code = (String) md5($text_code);
 $id='';
 $codePrep = $db->prepare("INSERT INTO ConfirmationPersonne(ID, Personne_ID, Code) VALUES (?, ?, ?)");
-$codePrep->bind_param('iis', $id, $donnees1['ID'], $verifiaction_code);
+$codePrep->bind_param('iis', $id, $donnees1['ID'], $verification_code);
 $codePrep->execute();
 
 

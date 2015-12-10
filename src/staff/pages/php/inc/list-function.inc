@@ -71,6 +71,9 @@ function getTitreTable($get) {
         case "oldOwner":
             return array("ID", "Nom", "Prénom", "Créé le", "Action");
 
+        case "confirm":
+            return array("ID", "Nom", "Prénom", "email", "Créé le", "Action");
+
         case "team":
 //            return getTeams();
             break;
@@ -81,8 +84,7 @@ function getTitreTable($get) {
         case "category":
             return array("ID", "Tranche d'âge", "Désignation", "Action");
 
-        case "confirm":
-            return array("ID", "Nom", "Prénom", "email", "Créé le", "Action");
+
 
     }
 }
@@ -148,6 +150,8 @@ function getTitre($get) {
             return "propriétaires";
         case "oldOwner":
             return "propriétaires de l'année passée";
+        case "confirm":
+            return "Joueurs n'ayant pas confirmé leur inscription";
         case "team":
             return "équipes";
             break;
@@ -155,8 +159,7 @@ function getTitre($get) {
             return "staffeurs";
         case "category":
             return "catégories";
-        case "confirm":
-            return "Joueurs n'ayant pas confirmé leur inscription";
+
 
     }
 }
