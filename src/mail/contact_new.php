@@ -22,50 +22,13 @@
 	$mesLeader=isset($_POST['mesLeader'])?$_POST['mesLeader']:'';
 	$mesTous=isset($_POST['mesTous'])?$_POST['mesTous']:'';
 	$mesNP=isset($_POST['mesNP'])?$_POST['mesNP']:'';
+	$mesCat=isset($_POST['mesCat'])?$_POST['mesCat']:'';
 
 //On gère les destinataires
 //////////////////////////////////////////////////////////////////////////////
 	//On calcul le champ dest pour pouvoir s'en servir après
 	$destCoupe = explode(",",$dest);
 
-
-	//Pour calculer le nombre de catégorie et vérifier si elles ont été recue
-	$categorie = $db->query('SELECT Designation FROM Categorie');
-    $listCat;
-    $z=0;
-    $cat="cat_";
-    while($lcat = $categorie -> fetch_array())
-    {
-    	$listCat[$z] = $lcat['Designation'];
-    	$z++;
-    }
-    $z--;
-    for($z;$z!=-1;$z--)
-    {
-    	$str=(string) $z;
-    	$cat.=$str;
-    	$catish=isset($_POST[$cat])?$_POST[$cat]:'';
-    	if($catish==true)
-    	{
-    		$catRecu = $db->query('SELECT DISTINCT Mail FROM Personne JOIN Team ON Team.ID_Player1 = Personne.ID OR Team.ID_Player2 = Personne.ID JOIN Categorie ON Team.ID_Cat = Categorie.ID WHERE Categorie.Designation="'.$listCat[$z].'"');
-    		$listcatRecu;
-    		$compteur=0;
-    		while($lstRecu = $catRecu -> fetch_array())
-    		{
-    			$listcatRecu[$compteur] = $lstRecu['Mail'];
-    			$compteur++;
-    		}
-    		$ajoutCat=count($destCoupe);
-    		$compteur--;
-    		for($compteur;$compteur!=-1;$compteur--)
-    		{
-    			$destCoupe[$ajoutCat]=$listcatRecu[$compteur];
-    			$ajoutCat++;
-    		}
-    	}
-    	$str="";
-    	$cat="cat_";
-    }
 
 ///////////////////////////////////////////////////////////////////////////////
    //Si tous les participants sont à joindre
@@ -229,7 +192,7 @@ if($tousDim==true)
 
 		$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE id=2');
 
-		$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE id=3');
+		//$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE id=3');
 
 		//récuperer le message du mail
 		$listMessage;
@@ -244,16 +207,16 @@ if($tousDim==true)
 			$listSujet[0] = $suj['Value'];
 		}
 		//Adresse HQ
-		$listHQ;
+		/*$listHQ;
 		while($lHQ = $adresse ->fetch_array())
 		{
 			$listHQ[0] = $lHQ['Value'];
-		}
+		}*/
 		$sujet.="\n\n";
 		$sujet .= $listSujet[0];
 		$message.="\n\n";
 		$message .= $listMessage[0];
-		$message.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";
+		//$message.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";
 	}
 ///////////////////////////////////////////////////////////////////////////////
 	if($mesNP==true)
@@ -262,7 +225,7 @@ if($tousDim==true)
 
 		$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE id=5');
 
-		$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE id=3');
+		//$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE id=3');
 
 		//récuperer le message du mail
 		$listMessage;
@@ -277,16 +240,16 @@ if($tousDim==true)
 			$listSujet[0] = $suj['Value'];
 		}
 		//Adresse HQ
-		$listHQ;
+		/*$listHQ;
 		while($lHQ = $adresse ->fetch_array())
 		{
 			$listHQ[0] = $lHQ['Value'];
-		}
+		}*/
 		$sujet.="\n\n";
 		$sujet .= $listSujet[0];
 		$message.="\n\n";
 		$message .= $listMessage[0];
-		$message.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";
+		//$message.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";
 	}
 ///////////////////////////////////////////////////////////////////////////////
 	if($mesTous==true)
@@ -295,7 +258,7 @@ if($tousDim==true)
 
 		$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE id=7');
 
-		$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE id=3');
+		//$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE id=3');
 
 		//récuperer le message du mail
 		$listMessage;
@@ -310,19 +273,131 @@ if($tousDim==true)
 			$listSujet[0] = $suj['Value'];
 		}
 		//Adresse HQ
-		$listHQ;
+	/*	$listHQ;
 		while($lHQ = $adresse ->fetch_array())
 		{
 			$listHQ[0] = $lHQ['Value'];
-		}
+		}*/
 		$sujet.="\n\n";
 		$sujet .= $listSujet[0];
 		$message.="\n\n";
 		$message .= $listMessage[0];
-		$message.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";
-	}
+		//$message.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";
+	} 
 ///////////////////////////////////////////////////////////////////////////////
 
+	if($mesCat==true)
+	{
+		$messageR = $db->query('SELECT Value FROM GlobalVariables WHERE id=18');
+
+		$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE id=19');
+
+		//$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE id=3');
+
+		//récuperer le message du mail
+		$listMessage;
+		while($mes = $messageR->fetch_array())
+		{
+			$listMessage[0] = $mes['Value'];
+		}
+		//récuperer le sujet du mail
+		$listSujet;
+		while($suj = $sujetR->fetch_array())
+		{
+			$listSujet[0] = $suj['Value'];
+		}
+		//Adresse HQ
+	/*	$listHQ;
+		while($lHQ = $adresse ->fetch_array())
+		{
+			$listHQ[0] = $lHQ['Value'];
+		}*/
+		$sujet.="\n\n";
+		$sujet .= $listSujet[0];
+		$message.="\n\n";
+		$message .= $listMessage[0];
+		//$message.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";
+	} 
+
+
+//Pour calculer le nombre de catégorie et vérifier si elles ont été recue
+	$categorie = $db->query('SELECT Designation FROM Categorie');
+    $listCat;
+    $z=0;
+    $cat="cat_";
+    while($lcat = $categorie -> fetch_array())
+    {
+    	$listCat[$z] = $lcat['Designation'];
+    	$z++;
+    }
+    $z--;
+    for($z;$z!=-1;$z--)
+    {
+    	$str=(string) $z;
+    	$cat.=$str;
+    	$catish=isset($_POST[$cat])?$_POST[$cat]:'';
+    	if($catish==true)
+    	{
+    		$catRecu = $db->query('SELECT DISTINCT Mail FROM Personne JOIN Team ON Team.ID_Player1 = Personne.ID OR Team.ID_Player2 = Personne.ID JOIN Categorie ON Team.ID_Cat = Categorie.ID WHERE Categorie.Designation="'.$listCat[$z].'"');
+    		$listRespFirst;
+			$listRespLast;
+			$listRespPhone;
+			$listRespGSM;
+			$listRespMail;
+			$respCat= $db->query('SELECT DISTINCT Personne.FirstName, Personne.LastName, Personne.PhoneNumber, Personne.GSMNumber, Personne.Mail FROM Personne JOIN Staff ON Staff.ID_Personne = Personne.ID JOIN Categorie ON Staff.ID_Cat = Categorie.ID WHERE Personne.isStaff=1 AND Categorie.Designation="'.$listCat[$z].'"');
+    		$listcatRecu;
+    		$compteur=0;
+    		$y=0;
+    		while($lstRecu = $catRecu -> fetch_array())
+    		{
+    			$listcatRecu[$compteur] = $lstRecu['Mail'];
+    			$compteur++;
+    		}
+    		$ajoutCat=count($destCoupe);
+    		$compteur--;
+    		for($compteur;$compteur!=-1;$compteur--)
+    		{
+    			$destCoupe[$ajoutCat]=$listcatRecu[$compteur];
+    			$ajoutCat++;
+    		}
+    		
+    		while($respC = $respCat->fetch_array())
+			{
+			$listRespFirst[$y]=$respC['FirstName'];
+			$listRespLast[$y]=$respC['LastName'];
+			$listRespPhone[$y]=$respC['PhoneNumber'];
+			$listRespGSM[$y]=$respC['GSMNumber'];
+			$listRespMail[$y]=$respC['Mail'];
+			$y++;
+			}
+  		
+    		$psResponsable= utf8_decode("\n\nCoordonnées des responsables de la catégorie : ".$listCat[$z]." \n");
+    		for($y--;$y!=-1;$y--)
+    		{
+    			$psResponsable.=utf8_decode("Prénom : ".$listRespFirst[$y]."\n\n");
+    			$psResponsable.=utf8_decode("Nom : ".$listRespLast[$y]."\n\n");
+    			$psResponsable.=utf8_decode("Numero de téléphone : ".$listRespPhone[$y]."\n\n");
+    			$psResponsable.=utf8_decode("Numero de GSM : ".$listRespGSM[$y]."\n\n");
+    			$psResponsable.="Adresse Email : ".$listRespMail[$y]."\n\n";
+    			$psResponsable.="----------------\n\n";
+    		}
+    		$message.=$psResponsable;
+    	}
+    	$str="";
+    	$cat="cat_";
+    }
+    
+//Ajout adresse du HQ
+//Adresse HQ
+$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE id=3');
+
+$listHQ;
+while($lHQ = $adresse ->fetch_array())
+{
+	$listHQ[0] = $lHQ['Value'];
+}
+$message.=utf8_decode("\n\nPS : Adresse du quartier général : ".$listHQ[0]."\n\n");
+		
 //Envoi du mail
 sendMail($destCoupe, $message, $sujet);
 header('Location: ../staff/pages/contact.php');

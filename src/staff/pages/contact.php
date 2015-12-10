@@ -122,6 +122,7 @@
                     <input type="checkbox" name="mesLeader" value="Participants"> Messages des leaders
                     <input type="checkbox" name="mesTous" value="Propriétaires"> Messages pour tous
                     <input type="checkbox" name="mesNP" value="Propriétaires"> Messages des non-payés
+                    <input type="checkbox" name="mesCat" value="mesCat"> Messages catégories
                   </div>
                 </div>
             </div>

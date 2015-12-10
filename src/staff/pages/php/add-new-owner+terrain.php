@@ -54,7 +54,7 @@ Redirection vers la page d'accueil utilisateur
 	//email confirmation 
 	$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE id=18');
 	$corpsR = $db->query('SELECT Value FROM GlobalVariables WHERE id=19');
-	
+		
 	//récuperer le sujet du mail
 	$listSujet;
 	while($suj = $sujetR->fetch_array())
@@ -63,7 +63,7 @@ Redirection vers la page d'accueil utilisateur
 	}
 	//Corps du mail
 	$listCorp;
-	while($lHQ = $adresse ->fetch_array())
+	while($lHQ = $corpsR ->fetch_array())
 	{
 		$listCorp[0] = $lHQ['Value'];
 	}
