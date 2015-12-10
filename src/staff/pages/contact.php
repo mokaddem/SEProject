@@ -149,7 +149,7 @@
 
   <!-- Custom Theme JavaScript -->
   <script src="../dist/js/sb-admin-2.js"></script>
-  <script src="../dist/js/alicia.js"></script>
+  <script src="../dist/js/typehead.js"></script>
 
   <script src="http://cdn.jsdelivr.net/typeahead.js/0.9.3/typeahead.min.js"></script>
 
