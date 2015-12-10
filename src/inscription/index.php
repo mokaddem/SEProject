@@ -304,8 +304,10 @@
 
                             </div>
                             <div class="col-lg-offset-5 col-lg-2">
-                                <input type="submit" name="submit" id="submit" value="Valider" class="btn btn-info">
+                                <input type="submit" name="submitButton" id="submitButton" value="Valider" class="btn btn-info" src="../images/loader.gif">
+                                <img id="spinnergif" src="../images/loader.gif" height="32" width="32">
                             </div>
+
                         </form>
                     </div>
                 </div>
@@ -333,6 +335,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        $("#spinnergif").hide();
         $('#player2').hide();
         if(document.getElementsByName("extra1_1")[0].checked == true){
             for (i = 2; i < <?php echo $extraSize; ?>; i++) {
@@ -374,6 +377,7 @@
 
 <script type="text/javascript">
     function registerAlone(){
+        $("#spinnergif").show();
         if($('#player2').attr("data-activated")==0){
             var url="../staff/pages/php/add-single-player.php";
             $('input').attr("required",false);
@@ -387,7 +391,7 @@
         document.getElementsByName("extra1_1")[0].addEventListener("click",function(){hideExtras(1); });
         document.getElementsByName("extra2_1")[0].addEventListener("click",function(){hideExtras(2); });
         document.getElementById("addCoop").addEventListener("click",function(){ $('#player2').show(); $('#addCoop').hide(); $('#player2').attr("data-activated",1);});
-        document.getElementById("submit").addEventListener("click",registerAlone);
+        document.getElementById("submitButton").addEventListener("click",registerAlone);
     };
 </script>
 
