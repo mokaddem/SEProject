@@ -41,7 +41,10 @@
     <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Knock-Off - Saisir les résultats</h1>
+                <h1 class="page-header">Knock-Off - Saisir les résultats
+                  <?php $jour =$_GET['jour'] ?>
+                  <a class="btn btn-default btn-outline pull-right" href="./php/print-knock-off.php?jour=<?=$jour?>" target="_blank"><i class="fa fa-print fa-fw"></i> Print</a>
+                </h1>
             </div>
         </div>
         <div class="row">
@@ -164,7 +167,7 @@
             <div class="col-lg-5 text-center col-lg-offset-5">
                 <div class="alert alert-success" id="popup"></div>
             </div>
-        
+
                 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 
