@@ -83,16 +83,16 @@
             <!-- /.arrows -->
 
             <?php
-            if (array_key_exists("action", $_GET)) { ?>
+            if (array_key_exists("action", $_GET) && $_GET["action"] != "logout") { ?>
 
                 <!-- Modal -->
                 <div id="myModal" class="modal fade" role="dialog">
                     <div class="modal-dialog modal-lg">
                         <!-- Modal content-->
                         <div class="modal-content">
-                            <?php if ($_GET["action"] == "register") { ?>
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <?php if ($_GET["action"] == "register") { ?>
                                     <h4 class="modal-title">Inscription réussite</h4>
                                 </div>
                                 <div class="modal-body">
@@ -100,9 +100,7 @@
                                     <p>Vous avez bien été enregistré !</p>
                                     <p>Vous recevrez un e-mail de confirmation sous peu.</p>                                
                                 </div>
-                            <?php } elseif ($_GET["action"] == "confirme") { ?>
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <?php } elseif ($_GET["action"] == "confirm") { ?>
                                     <h4 class="modal-title">Inscription réussite</h4>
                                 </div>
                                 <div class="modal-body">
@@ -110,15 +108,19 @@
                                     <p>Votre inscription est confirmée !</p>
                                 </div>
                             <?php } elseif ($_GET["action"] == "error") { ?>
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     <h4 class="modal-title">Erreur !</h4>
                                 </div>
                                 <div class="modal-body">
                                     <p>Désolé !</p>
                                     <p>Lien de confirmation invalide ou déjà utilisé.</p>
+                            <?php } else { ?>
+                                <h4 class="modal-title">NON MAIS OHH !!</h4>
                                 </div>
+                                <div class="modal-body">
+                                    <p>Merci de ne pas changer manuellement l'URL du site ;)</p>
+                                    <p>Les devs.</p>
                             <?php } ?>
+                                </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
