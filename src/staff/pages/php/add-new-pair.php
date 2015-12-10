@@ -12,9 +12,11 @@ Mise à jour de l'historique
 	include_once('get-ranking.php');
 //	$db = BDconnect();
 
+
+
 	// Ajout du duo de joueur
 	$db = BDconnect();
-	$req = $db->prepare("INSERT INTO Personne(ID, Title, FirstName, LastName, Ville, ZIPCode, Rue, Number, PhoneNumber, GSMNumber, BirthDate, Mail, CreationDate, Note, IsPlayer, IsOwner, IsStaff) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+	$req = $db->prepare("INSERT INTO PersonneTmp(ID, Title, FirstName, LastName, Ville, ZIPCode, Rue, Number, PhoneNumber, GSMNumber, BirthDate, Mail, CreationDate, Note, IsPlayer, IsOwner, IsStaff) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 	$ID1	 	= '';
 	$FirstName1	= utf8_decode($_GET['InputPrenom1']);
@@ -36,9 +38,12 @@ Mise à jour de l'historique
 	$payer1 = $_GET['group1'];
 	$to1[0]=$_GET['InputEmailFirst1'];
 
+ //Generate MD code for confirmation email
+ $text_code = $FirstName1 . $LastName1 . $BirthDate1 . $CreationDate;
+ $verifiaction_code = md5($text_code);
 
 
-	$req->bind_param("iisssisiiissssiii", $ID1, $Title1, $FirstName1, $LastName1, $Ville1, $ZIPCode1, $Rue1, $Number1, $PhoneNumber1, $GSMNumber1, $BirthDate1, $Mail1, $CreationDate, $Note1, $IsPlayer1, $IsOwner1, $IsStaff1);
+	$req->bind_param("iisssisiiissssiiis", $ID1, $Title1, $FirstName1, $LastName1, $Ville1, $ZIPCode1, $Rue1, $Number1, $PhoneNumber1, $GSMNumber1, $BirthDate1, $Mail1, $CreationDate, $Note1, $IsPlayer1, $IsOwner1, $IsStaff1, $verifiaction_code);
 
 	$req->execute();
 
@@ -50,7 +55,7 @@ Mise à jour de l'historique
 
 
 
-    $req = $db->prepare("INSERT INTO Personne(ID, Title, FirstName, LastName, Ville, ZIPCode, Rue, Number, PhoneNumber, GSMNumber, BirthDate, Mail, CreationDate, Note, IsPlayer, IsOwner, IsStaff) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $req = $db->prepare("INSERT INTO PersonneTmp(ID, Title, FirstName, LastName, Ville, ZIPCode, Rue, Number, PhoneNumber, GSMNumber, BirthDate, Mail, CreationDate, Note, IsPlayer, IsOwner, IsStaff) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 	$ID2	 	    = '';
 	$FirstName2	= utf8_decode($_GET['InputPrenom2']);
@@ -72,8 +77,11 @@ Mise à jour de l'historique
 	$payer2 = $_GET['group2'];
 	$to2[0]= $_GET['InputEmailFirst2'];
 
+ //Generate MD code for confirmation email
+ $text_code = $FirstName2 . $LastName2 . $BirthDate2 . $CreationDate;
+ $verifiaction_code = md5($text_code);
 
-	$req->bind_param("iisssisiiissssiii", $ID2, $Title2, $FirstName2, $LastName2, $Ville2, $ZIPCode2, $Rue2, $Number2, $PhoneNumber2, $GSMNumber2, $BirthDate2, $Mail2, $CreationDate, $Note2, $IsPlayer2, $IsOwner2, $IsStaff2);
+ $req->bind_param("iisssisiiissssiiis", $ID2, $Title2, $FirstName2, $LastName2, $Ville2, $ZIPCode2, $Rue2, $Number2, $PhoneNumber2, $GSMNumber2, $BirthDate2, $Mail2, $CreationDate, $Note2, $IsPlayer2, $IsOwner2, $IsStaff2, $verifiaction_code);
 
 
 	$req->execute();
@@ -87,7 +95,7 @@ Mise à jour de l'historique
 
     // --------------------AJOUTER PLAYER---------------------------
 
-	$req = $db->prepare("INSERT INTO Player(ID_personne, IsLeader, Paid, AlreadyPart, Ranking) VALUES(?, ?, ?, ?, ?)");
+	$req = $db->prepare("INSERT INTO PlayerTmp(ID_personne, IsLeader, Paid, AlreadyPart, Ranking) VALUES(?, ?, ?, ?, ?)");
 
 	//	$req = $db->prepare('INSERT INTO Personne(ID, FirstName, LastName, Title, ZIPCode, PhoneNumber, GSMNumber, Address, BirthDate, Mail, CreationDate, IsPlayer, IsOwner, IsStaff) VALUES('', "bb", "bb", 1, 1234, 12354, 46351, "glkrzjglz e zfzef", 2015-02-02, "lzeijgze@fmezk.com", 2015-02-03, 1, 0, 0)');
 
@@ -109,7 +117,7 @@ Mise à jour de l'historique
 	$req->bind_param("iiiis", $ID_Personne1, $IsLeader, $Paid, $AlreadyPart, $ranking1[4]);
 	$req->execute();
 
-	$req = $db->prepare("INSERT INTO Player(ID_personne, IsLeader, Paid, AlreadyPart, Ranking) VALUES(?, ?, ?, ?, ?)");
+	$req = $db->prepare("INSERT INTO PlayerTmp(ID_personne, IsLeader, Paid, AlreadyPart, Ranking) VALUES(?, ?, ?, ?, ?)");
 	$req->bind_param("iiiis", $ID_Personne2, $IsLeader,$Paid, $AlreadyPart, $ranking2[4]);
 	$req->execute();
 
@@ -120,7 +128,7 @@ Mise à jour de l'historique
 	addHistory($donnees["ID"], "Equipe", "Ajout");
 
 	// ---------------------AJOUTER TEAM--------------------------
-	$req = $db->prepare("INSERT INTO Team(ID, ID_player1, ID_player2, ID_Cat, NbWinMatch, AvgRanking) VALUES(?, ?, ?, ?, ?, ?)");
+	$req = $db->prepare("INSERT INTO TeamTmp(ID, ID_player1, ID_player2, ID_Cat, NbWinMatch, AvgRanking) VALUES(?, ?, ?, ?, ?, ?)");
 
 	$ID	 	= '';
 	$ID_player1	= $donnees1['ID'];
@@ -179,7 +187,7 @@ Mise à jour de l'historique
 		$extraName="extra1_".(String) ($extraID['id']);
 		if(isset($_GET[$extraName])) {
 			$extra = $_GET[$extraName];
-				$db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extraID['id'].",".$ID_Personne1.")");
+				$db->query("INSERT INTO PersonneExtraTmp (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extraID['id'].",".$ID_Personne1.")");
 		} else{
 			// Do Nothing
 		}
@@ -193,7 +201,7 @@ Mise à jour de l'historique
 		$extraName="extra2_".(String) ($extraID['id']);
 		if(isset($_GET[$extraName])) {
 			$extra = $_GET[$extraName];
-			$db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extraID['id'].",".$ID_Personne2.")");
+			$db->query("INSERT INTO PersonneExtraTmp (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extraID['id'].",".$ID_Personne2.")");
 		} else{
 			// Do Nothing
 		}
