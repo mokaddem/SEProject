@@ -2,6 +2,8 @@
 
 if ($_GET["type"]=="extra") { ?>
   <div class="modal-dialog">
+<?php } elseif ($_GET["type"]=="court") { ?>
+  <div class="modal-dialog modal-lg">
 <?php } else { ?>
   <div class="modal-dialog modal-sm">
 <?php } ?>
