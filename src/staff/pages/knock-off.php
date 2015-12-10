@@ -271,7 +271,7 @@
                     $videOrNot = "";
                 } ?>
                 <span data-toggle="pList" data-target="#pList" data-url="./php/knock-off-note<?= $videOrNot ?>.php?id=<?= $teamID ?>">
-                    <div class="btn btn-<?= $color ?> btn-outline draggable dropper" data-toggle="idteam1" data-target="#idteam1" data-id="<?= $teamID ?>"  >
+                    <div class="btn btn-default btn-outlineW draggable dropper" name="data-player" data-toggle="idteam1" data-target="#idteam1" data-id="<?= $teamID ?>"  >
                         [<?= $ranking ?>]
                         <?= utf8_encode($player1['LastName']) ?> &
                         <?= utf8_encode($player2['LastName']) ?>
@@ -321,7 +321,7 @@
                 applyDropEvents: function(dropper) {
                     dropper.addEventListener('dragover', function(e) {
                         e.preventDefault();
-                        var target = e.target; console.log(target);
+                        var target = e.target;
                         var flag_target_ok = true;
                         if(!(target.className !== undefined)){flag_target_ok=false;}
                         else {
@@ -332,11 +332,9 @@
                         dndHandler.dropperDefaultStyle = target.getAttribute("class");
 
                         var flag_hover = false;
-                        var flag_red = false;
                         var classList = e.target.className.split(/\s+/);
                         for (var i = 0; i < classList.length; i++) {
-                            if (classList[i] == "drop_hover" || classList[i] == "drop_hover_green") { flag_hover = true;}
-                            if (classList[i] == "switcher_to_green") { flag_red = true;}
+                            if (classList[i] == "drop_hover") { flag_hover = true;}
                         }
 
                         if(flag_hover) {// On revient au style de base lorsque l'élément quitte la zone de drop
@@ -345,19 +343,14 @@
                         else {
                             if (target.getAttribute("name") != null) {
                                 if (target.getAttribute("name") == "divGroupContainer") { // Et on applique le style adéquat à notre zone de drop quand un élément la survole
-                                    if(flag_red){ target.className += " drop_hover_green";}
-                                    else{
-                                        if($(target).attr("data-groupnum") == $(dndHandler.draggedElement).attr("data-groupnum")){ //On applique le style seulement si le draggred est dans un group différent
-                                            //do nothing
-                                        }
-                                        else{this.className += " drop_hover";}
+                                    if($(target).attr("data-groupnum") == $(dndHandler.draggedElement).attr("data-groupnum")){ //On applique le style seulement si le draggred est dans un group différent
+                                        //do nothing
                                     }
-                                } else if(target.getAttribute("name") == "button-player") {
-                                    if(flag_red){ target.className += " drop_hover_green";}
                                     else{this.className += " drop_hover";}
+                                } else if(target.getAttribute("name") == "button-player") {
+                                    this.className += " drop_hover";
                                 }else if(flag_target_ok){
-                                    if(flag_red){ target.className += " drop_hover_green";}
-                                    else{target.className += " drop_hover";}
+                                    target.className += " drop_hover";
                                 }
                             }
                         }
@@ -374,7 +367,7 @@
                         var classString="";
                         var classList = target.className.split(/\s+/);
                         for (var i = 0; i < classList.length; i++) {
-                            if (classList[i] == "drop_hover" || classList[i] == "drop_hover_green") {
+                            if (classList[i] == "drop_hover") {
                                 flag_hover=true;
                             }else{
                                 classString += (classList[i] + " ");
@@ -399,7 +392,7 @@
                         var classString="";
                         var classList = target.className.split(/\s+/);
                         for (var i = 0; i < classList.length; i++) {
-                            if (classList[i] == "drop_hover" || classList[i] == "drop_hover_green") {
+                            if (classList[i] == "drop_hover") {
                                 flag_hover=true;
                             }else{
                                 classString += (classList[i] + " ");
