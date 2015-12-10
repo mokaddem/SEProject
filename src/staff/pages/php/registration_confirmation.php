@@ -9,10 +9,9 @@ include_once('get-ranking.php');
 $db = BDconnect();
 
 $verification_code = $_GET['code'];
-
-$reqId = "SELECT Personne_ID as ID FROM ConfirmationPersonne WHERE Code=".$verification_code;
-$repId = $db->query($reqId);
-$ID = $repId->extract('ID');
+$reqId = "SELECT Personne_ID as ID FROM ConfirmationPersonne WHERE Code=\"".$verification_code."\"";
+$repId = $db->query($reqId)->fetch_array();
+$ID = $repId['ID'];
 
 $queryPers = "INSERT INTO Personne SELECT * FROM TmpPersonne WHERE TmpPersonne.ID=".$ID;
 $queryPersonneExtra = "INSERT INTO PersonneExtra SELECT * FROM TmpPersonneExtra.Personne_ID WHERE ".$ID;
@@ -24,10 +23,10 @@ $db->query($queryPlayer);
 
 //add the confirmation for this player in Tmpteam
 $reqteamId = "SELECT * FROM TmpTeam WHERE ID_Player1=".$ID." OR ID_Player2=".$ID;
-$repteamId = $db->query($reqteamId);
-$teamID = $repteamId->extract('ID');
+$repteamId = $db->query($reqteamId)->fetch_array();
+$teamID = $repteamId['ID'];
 
-$repChoosePlayer = $db->query('SELECT ID_Player1 as p1, ID_Player2 as p2 FROM TmpTeam WHERE ID='.$ID);
+$repChoosePlayer = $db->query('SELECT ID_Player1 as p1, ID_Player2 as p2 FROM TmpTeam WHERE ID='.$teamID);
 $repChoosePlayer = $repChoosePlayer->fetch_array();
 if($repChoosePlayer['p1']== $ID){
     $playerText = "player1_confirmed";
@@ -36,16 +35,18 @@ if($repChoosePlayer['p1']== $ID){
 }
 
 $reqAddConfirmation = "UPDATE TmpTeam SET ".$playerText."=1 WHERE ID=".$teamID;
-$repAddConfirmation = $db->query($repAddConfirmation);
+error_log($reqAddConfirmation);
+$repAddConfirmation = $db->query($reqAddConfirmation);
 
 
 //check if the two players have confirmed their inscription
-$reqPlayerConfirmed = "SELECT player1_confirmed as p1, player2_confirmed as p2 FROM TmpTeam WHERE ID=".$ID;
+$reqPlayerConfirmed = "SELECT player1_confirmed as p1, player2_confirmed as p2 FROM TmpTeam WHERE ID=".$teamID;
 $repPlayerConfirmed = $db->query($reqPlayerConfirmed);
-$repPlayerConfirmed = -$repPlayerConfirmed->fetch_array();
+$repPlayerConfirmed = $repPlayerConfirmed->fetch_array();
 
 if(($repPlayerConfirmed['p1'] == 1) AND ($repPlayerConfirmed['p2'] == 1)){
-    $queryTeam = "INSERT INTO Team SELECT * FROM TmpTeam WHERE TmpTeam".$ID;
+    $queryTeam = "INSERT INTO Team(ID, ID_Player1, ID_Player2, ID_Cat, NbWinMatch, AvgRanking, Group_Vic) SELECT ID, ID_Player1, ID_Player2, ID_Cat, NbWinMatch, AvgRanking, Group_Vic FROM TmpTeam WHERE ID=".$teamID;
+    error_log($queryTeam);
     $db->query($queryTeam);
 }
 
