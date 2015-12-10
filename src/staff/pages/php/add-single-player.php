@@ -12,8 +12,6 @@ include "../../../mail/mail_helper.php";
 require_once('add-new-history.php');
 include_once('get-ranking.php');
 //	$db = BDconnect();
-error_log(serialize($_GET));
-
 
 
 if ($_GET['InputPrenom1'] == NULL
@@ -80,14 +78,15 @@ if (array_key_exists('ID', $_SESSION)) {
 }
 
 //Generate MD code for confirmation email
-$text_code = $FirstName1 . $LastName1 . $BirthDate1 . $CreationDate;
-$verification_code = (String) md5($text_code);
-$id='';
-$codePrep = $db->prepare("INSERT INTO ConfirmationPersonne(ID, Personne_ID, Code) VALUES (?, ?, ?)");
-$codePrep->bind_param('iis', $id, $donnees1['ID'], $verification_code);
-$codePrep->execute();
 
-
+if($tmp == "Tmp") {
+	$text_code = $FirstName1 . $LastName1 . $BirthDate1 . $CreationDate;
+	$verification_code = (String)md5($text_code);
+	$id = '';
+	$codePrep = $db->prepare("INSERT INTO ConfirmationPersonne(ID, Personne_ID, Code) VALUES (?, ?, ?)");
+	$codePrep->bind_param('iis', $id, $donnees1['ID'], $verification_code);
+	$codePrep->execute();
+}
 // --------------------AJOUTER PLAYER---------------------------
 $req = $db->prepare("INSERT INTO ".$tmp."Player(ID_personne, IsLeader, Paid, AlreadyPart, Ranking) VALUES(?, ?, ?, ?, ?)");
 //$req2 = $db->prepare("INSERT INTO PlayerAlone(ID_personne, Paid, AlreadyPart, Ranking) VALUES(?, ?, ?, ?)");
