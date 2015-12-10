@@ -15,6 +15,49 @@ function PopulateDB(){
 
     $db = BDconnect();
 
+    /** Vide la BDD **/
+    // On ne touche pas aux catégories, extras, staff ou ranking.
+
+    // Vidage de toutes les tables qui ne serront plus utiles cette année.
+    $db->query('DELETE FROM GroupSunday');
+    $db->query('DELETE FROM GroupSaturday');
+    $db->query('DELETE FROM History');
+
+    $db->query('DELETE FROM PlayerAlone');
+    $db->query('DELETE FROM Team');
+
+    //vidage des tables temporaires
+    $db->query('DELETE FROM TmpTeam');
+    $db->query('DELETE FROM TmpPersonne');
+    $db->query('DELETE FROM TmpPersonneExtra');
+    $db->query('DELETE FROM TmpPlayer');
+    $db->query('DELETE FROM ConfirmationPersonne');
+
+    // Propriétaires et terrains vont dans les archives pour pouvoir les recontacter.
+    $db->query('DELETE FROM OldOwner');
+    $db->query('DELETE FROM OldTerrain');
+    $db->query('INSERT INTO OldOwner SELECT * FROM Owner');
+    $db->query('INSERT INTO OldTerrain SELECT * FROM Terrain');
+
+    // On retire tous les anciens joueurs.
+    $db->query('DELETE FROM Personne WHERE IsPlayer = 1');
+    // On retire tous les anciens owners qui n'ont pas été repris cette année.
+    $db->query('DELETE FROM Personne WHERE IsOwner = 1 AND ID NOT IN (SELECT ID_Personne FROM OldOwner)');
+
+    // Remise des variables globales à leurs valeurs d'origines:
+    // Il n'y a plus de tournoi généré.
+    // $req = $db->query("UPDATE GlobalVariables SET `Value` = \"[A rédiger]\" WHERE `Name` != \"tournament_started_sam\" AND `Name` != \"tournament_started_dim\"");
+    $req = $db->query("UPDATE GlobalVariables SET `Value` = \"0\" WHERE `Name` = \"tournament_started_sam\"");
+    $req = $db->query("UPDATE GlobalVariables SET `Value` = \"0\" WHERE `Name` = \"tournament_started_dim\"");
+    // Et tous les autres champ doivent être ré-encodé.
+
+    // Mise à jour de l'historique
+    require_once('add-new-history.php');
+    addHistory( 0, utf8_decode("Suppression de toute l'année précédente."), "Suppression");
+
+
+    /** Populate **/
+
     $i = 0;
     // les minimes mixtes avec 17 paires par encore assignée dans un groupe.
     for ($i = 0; $i < 34; $i+=2) {
