@@ -55,6 +55,6 @@ Redirection vers la page d'accueil utilisateur
 	$req->execute();
 
 	$reponse->free();
-	header("Location: ../../../inscription/inscription-owner.php?generate=true");
+	header("Location: ../../../index.php?action=register");
 
 ?>

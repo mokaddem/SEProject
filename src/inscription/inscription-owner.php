@@ -24,24 +24,6 @@
             </h1>
         </div>
 
-        <div class="row">
-            <?php
-            if (array_key_exists("generate", $_GET)) {?>
-                <?php
-                if ($_GET["generate"] == "true") {?>
-                    <div class="col-lg-8 alert alert-success">
-                        <b>Opération réussite !</b>
-                        L'inscription de votre terrain s'est bien déroulée.
-                    </div>
-                <?php } else{ ?>
-                    <div class="col-lg-8 alert alert-danger">
-                        <b>Echec de l'opération !</b>
-                        Avez vous bien entré tous les champs requis?
-                    </div>
-                <?php }
-            } ?>
-        </div>
-
         <!-- Registration form - START -->
         <div class="container">
             <div class="row">
