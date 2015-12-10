@@ -36,7 +36,7 @@ or $_GET['InputEmailFirst1'] == NULL  ){
 
 // Ajout du duo de joueur
 $db = BDconnect();
-$req = $db->prepare("INSERT INTO Personne(ID, Title, FirstName, LastName, Ville, ZIPCode, Rue, Number, PhoneNumber, GSMNumber, BirthDate, Mail, CreationDate, Note, IsPlayer, IsOwner, IsStaff) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$req = $db->prepare("INSERT INTO TmpPersonne(ID, Title, FirstName, LastName, Ville, ZIPCode, Rue, Number, PhoneNumber, GSMNumber, BirthDate, Mail, CreationDate, Note, IsPlayer, IsOwner, IsStaff) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 $ID1	 	= '';
 $FirstName1	= utf8_decode($_GET['InputPrenom1']);
@@ -63,15 +63,23 @@ $req->bind_param("iisssisiiissssiii", $ID1, $Title1, $FirstName1, $LastName1, $V
 $req->execute();
 
 
-$reponse = $db->query('SELECT * FROM Personne WHERE "'.$FirstName1.'" = FirstName AND "'.$LastName1.'" = LastName');
+$reponse = $db->query('SELECT * FROM TmpPersonne WHERE "'.$FirstName1.'" = FirstName AND "'.$LastName1.'" = LastName');
 $donnees1 = $reponse->fetch_array();
 // Mise à jour de l'historique
 addHistory( $donnees1["ID"], "Joueur", "Ajout");
 
+//Generate MD code for confirmation email
+$text_code = $FirstName1 . $LastName1 . $BirthDate1 . $CreationDate;
+$verifiaction_code = (String) md5($text_code);
+$id='';
+$codePrep = $db->prepare("INSERT INTO ConfirmationPersonne(ID, Personne_ID, Code) VALUES (?, ?, ?)");
+$codePrep->bind_param('iis', $id, $donnees1['ID'], $verifiaction_code);
+$codePrep->execute();
+
 
 // --------------------AJOUTER PLAYER---------------------------
-$req = $db->prepare("INSERT INTO Player(ID_personne, IsLeader, Paid, AlreadyPart, Ranking) VALUES(?, ?, ?, ?, ?)");
-$req2 = $db->prepare("INSERT INTO PlayerAlone(ID_personne, Paid, AlreadyPart, Ranking) VALUES(?, ?, ?, ?)");
+$req = $db->prepare("INSERT INTO TmpPlayer(ID_personne, IsLeader, Paid, AlreadyPart, Ranking) VALUES(?, ?, ?, ?, ?)");
+//$req2 = $db->prepare("INSERT INTO PlayerAlone(ID_personne, Paid, AlreadyPart, Ranking) VALUES(?, ?, ?, ?)");
 
 $ID_Personne1=$donnees1['ID'];
 $IsLeader=0;
@@ -84,9 +92,9 @@ $Birth1	= date('d',mktime (0, 0, 0, 0, $_GET['birth_day1']))."/".date('m', mktim
 $ranking1 = getRanking($FirstName1, $LastName1, $Birth1);
 $ranking1[4] = $ranking1[4]== "" ? "NC" : $ranking1 ;
 $req->bind_param("iiiis", $ID_Personne1, $IsLeader, $Paid, $AlreadyPart, $ranking1[4]);
-$req2->bind_param("iiis", $ID_Personne1, $Paid, $AlreadyPart, $ranking1[4]);
+//$req2->bind_param("iiis", $ID_Personne1, $Paid, $AlreadyPart, $ranking1[4]);
 $req->execute();
-$req2->execute();
+//$req2->execute();
 
 /*On determine sa categorie - END */
 
@@ -98,7 +106,7 @@ while($extraID = $extraIDs->fetch_array()){
     $extraName="extra1_".(String) ($extraID['id']);
     if(isset($_GET[$extraName])) {
         $extra = $_GET[$extraName];
-        $db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extraID['id'].",".$ID_Personne1.")");
+        $db->query("INSERT INTO TmpPersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extraID['id'].",".$ID_Personne1.")");
     } else{
         // Do Nothing
     }
