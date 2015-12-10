@@ -20,13 +20,18 @@ if($ID==null)
     $flagPersonneFound = true;
 
 
+    // filling true table and deleting elements in temporary tables.
     $queryPers = "INSERT INTO Personne SELECT * FROM TmpPersonne WHERE TmpPersonne.ID=" . $ID;
     $queryPersonneExtra = "INSERT INTO PersonneExtra SELECT * FROM TmpPersonneExtra WHERE TmpPersonneExtra.Personne_ID=" . $ID;
     $queryPlayer = "INSERT INTO Player SELECT * FROM TmpPlayer WHERE TmpPlayer.ID_Personne=" . $ID;
 
     $db->query($queryPers);
+    $db->query('DELETE FROM TmpPersonne WHERE TmpPersonne.ID='. $ID);
     $db->query($queryPersonneExtra);
+    $db->query('DELETE FROM TmpPersonneExtra WHERE TmpPersonneExtra.Personne_ID=' . $ID);
     $db->query($queryPlayer);
+    $db->query('DELETE FROM TmpPlayer WHERE TmpPlayer.ID_Personne='. $ID);
+    $db->query('DELETE FROM ConfirmationPersonne');
 
 //add the confirmation for this player in Tmpteam
     $reqteamId = "SELECT * FROM TmpTeam WHERE ID_Player1=" . $ID . " OR ID_Player2=" . $ID;
@@ -53,7 +58,9 @@ if($ID==null)
     if (($repPlayerConfirmed['p1'] == 1) AND ($repPlayerConfirmed['p2'] == 1)) {
         $queryTeam = "INSERT INTO Team(ID, ID_Player1, ID_Player2, ID_Cat, NbWinMatch, AvgRanking, Group_Vic) SELECT ID, ID_Player1, ID_Player2, ID_Cat, NbWinMatch, AvgRanking, Group_Vic FROM TmpTeam WHERE ID=" . $teamID;
         $db->query($queryTeam);
+        $db->query('DELETE FROM TmpTeam WHERE ID='.$teamID);
     }
+
 }
 
 if($flagPersonneFound){ //if the confirmation code is valid
