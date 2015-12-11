@@ -50,7 +50,7 @@
                                         {
                                             error_log($owner['ID_Personne']);
                                             $personne = $db->query('SELECT * FROM Personne WHERE ID = '.$owner['ID_Personne'])->fetch_array();
-                                            echo "<option value=".$personne['ID']."> [".$personne['ID']."] ".utf8_encode($personne['FirstName'])." ".$personne['LastName']."</option>";
+                                            echo "<option value=".$personne['ID']."> [".$personne['ID']."] ".utf8_encode($personne['FirstName'])." ".utf8_encode($personne['LastName'])."</option>";
                                         }
                                         ?>
                                     </select>
@@ -151,7 +151,7 @@
                                             }
                                             $personne = $db->query('SELECT * FROM Personne WHERE ID = '.$owner['ID_Personne'])->fetch_array();
                                             //$personne = $db->query('SELECT Personne FROM Personne,Owner,OldOwner WHERE (Owner.ID_Personne = Personne.ID AND Owner.ID = '.$terrain['ID_Owner'].')  OR (OldOwner.ID_Personne = Personne.ID AND OldOwner.ID = '.$terrain['ID_Owner'].')')->fetch_array();
-                                            echo "<option value=".$terrain['ID']."> [".$terrain['ID']."] ".utf8_encode($terrain['adresse'])." - Propriétaire ".$personne['FirstName']." ".$personne['LastName']."</option>";
+                                            echo "<option value=".$terrain['ID']."> [".$terrain['ID']."] ".utf8_encode($terrain['adresse'])." - Propriétaire ".utf8_encode($personne['FirstName'])." ".utf8_encode($personne['LastName'])."</option>";
                                         }
                                         ?>
                                     </select>
