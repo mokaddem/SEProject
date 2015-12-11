@@ -51,10 +51,10 @@ Mise à jour de l'historique
 
  //Generate MD code for confirmation email
  $text_code = $FirstName1 . $LastName1 . $BirthDate1 . $CreationDate;
- $verifiaction_code = (String) md5($text_code);
+ $verification_code1 = (String) md5($text_code);
  $id='';
  $codePrep = $db->prepare("INSERT INTO ConfirmationPersonne(ID, Personne_ID, Code) VALUES (?, ?, ?)");
- $codePrep->bind_param('iis', $id, $donnees1['ID'], $verifiaction_code);
+ $codePrep->bind_param('iis', $id, $donnees1['ID'], $verifiaction_code1);
  $codePrep->execute();
 
     $req = $db->prepare("INSERT INTO TmpPersonne(ID, Title, FirstName, LastName, Ville, ZIPCode, Rue, Number, PhoneNumber, GSMNumber, BirthDate, Mail, CreationDate, Note, IsPlayer, IsOwner, IsStaff) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -92,10 +92,10 @@ Mise à jour de l'historique
 
  //Generate MD code for confirmation email
  $text_code = $FirstName2 . $LastName2 . $BirthDate2 . $CreationDate;
- $verifiaction_code = (String) md5($text_code);
+ $verification_code2 = (String) md5($text_code);
  $id='';
  $codePrep = $db->prepare("INSERT INTO ConfirmationPersonne(ID, Personne_ID, Code) VALUES (?, ?, ?)");
- $codePrep->bind_param('iis', $id, $donnees2['ID'], $verifiaction_code);
+ $codePrep->bind_param('iis', $id, $donnees2['ID'], $verification_code2);
  $codePrep->execute();
 
     // --------------------AJOUTER PLAYER---------------------------
@@ -265,6 +265,7 @@ Mise à jour de l'historique
 	}
 	$message = $listMessage[0];
 	$message.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";
+	$message.="\n"."Confirmez votre inscription en cliquant sur ce lien: "."http://test.pydehon.me/staff/pages/php/registration_confirmation.php?code=".$verification_code1;
 
 	sendMail($to1, $message, $sujet);
 
@@ -306,8 +307,9 @@ Mise à jour de l'historique
 	}
 	$message2 = $listMessage2[0];
 	$message2.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";
+ 	$message2.="\n"."Confirmez votre inscription en cliquant sur ce lien: "."http://test.pydehon.me/staff/pages/php/registration_confirmation.php?code=".$verification_code2;
 
-	sendMail($to2, $message2, $sujet);
+ sendMail($to2, $message2, $sujet);
 
 
   $reponse->free();

@@ -138,14 +138,14 @@
                                       <label class="pull-left" for="InputFrom">Du </label>
                                       <div class="input-group pull-right">
                                           <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                          <input size="10" maxlength="10" class="form-control" name="InputFrom" id="InputFrom" type="date" min="<?=date(" Y-m-d ")?>" max="2048-10-10" value="<?=date(" Y-m-d ")?>">
+                                          <input size="10" maxlength="10" class="form-control" name="calendarF" id="calendarF" type="date" min="<?=date(" Y-m-d ")?>" max="2048-10-10" value="<?=date(" Y-m-d ")?>">
                                       </div>
                                     </div>
                                     <div class="form-group">
                                       <label class="pull-left" for="InputTo">Au </label>
                                       <div class="input-group pull-right">
                                           <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                          <input size="10" maxlength="10" class="form-control" name="InputTo" id="InputTo" type="date" min="<?=date(" Y-m-d ")?>" max="2048-10-10" value="<?=date(" Y-m-d ")?>">
+                                          <input size="10" maxlength="10" class="form-control" name="calendarT" id="calendarT" type="date" min="<?=date(" Y-m-d ")?>" max="2048-10-10" value="<?=date(" Y-m-d ")?>">
                                       </div>
                                   </div>
                                 </br>

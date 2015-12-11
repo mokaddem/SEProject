@@ -28,8 +28,12 @@ function getDonnees($get) {
             case "oldOwner":
                 return getOldOwners();
 
+            case "confirm":
+                return getConfirm();
+
             case "team":
                 //return getTeams();
+
             break;
 
             case "staff":
@@ -67,6 +71,9 @@ function getTitreTable($get) {
         case "oldOwner":
             return array("ID", "Nom", "Prénom", "Créé le", "Action");
 
+        case "confirm":
+            return array("ID", "Nom", "Prénom", "email", "Créé le", "Action");
+
         case "team":
 //            return getTeams();
             break;
@@ -76,6 +83,8 @@ function getTitreTable($get) {
 
         case "category":
             return array("ID", "Tranche d'âge", "Désignation", "Action");
+
+
 
     }
 }
@@ -106,6 +115,9 @@ function getParam($get) {
 
         case "oldOwner":
             return array("ID_O", "LastName", "FirstName", "CreationDate");
+
+        case "confirm":
+            return array("ID", "LastName", "FirstName", "Mail", "CreationDate");
 
         case "team":
 //            return getTeams();
@@ -138,6 +150,8 @@ function getTitre($get) {
             return "propriétaires";
         case "oldOwner":
             return "propriétaires de l'année passée";
+        case "confirm":
+            return "Joueurs n'ayant pas confirmé leur inscription";
         case "team":
             return "équipes";
             break;
@@ -145,6 +159,7 @@ function getTitre($get) {
             return "staffeurs";
         case "category":
             return "catégories";
+
 
     }
 }
@@ -217,6 +232,11 @@ function getOldOwners() {
 function getPlayers() {
     $db = BDconnect(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
     return $db->query('SELECT * FROM Personne WHERE isPlayer=1');
+}
+
+function getConfirm() {
+    $db = BDconnect(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
+    return $db->query('SELECT * FROM TmpPersonne WHERE isPlayer=1');
 }
 
 function getPlayer($id) {

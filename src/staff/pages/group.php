@@ -497,18 +497,20 @@
     <script>
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();
-            $('[name="button_mail"]').popover({
+            $('[name="button_mail"]').each(function(){
+                $(this).popover({
                 placement: 'right',
                 html: true,
                 title: "<i class='fa fa-envelope-o'> Envoyer un mail</i>",
-                trigger: "focus",
-                content: "<button name='mail_button' data-Mailtarget='mailTous' class='btn btn-info'>Groupe</button> <button name='mail_button' data-Mailtarget='mailLeader' class='btn btn-info'>Leader</button> <button name='mail_button' data-Mailtarget='mailNP' class='btn btn-warning'>Non payé</button>"
+//                trigger: "focus",
+                content: "<button name='mail_button' data-Mailtarget='mailTous' class='btn btn-info' data-groupID=\""+$(this).attr("data-groupID")+"\" >Groupe</button> <button name='mail_button' data-Mailtarget='mailLeader' class='btn btn-info' data-groupID=\""+$(this).attr("data-groupID")+"\">Leader</button> <button name='mail_button' data-Mailtarget='mailNP' class='btn btn-warning' data-groupID=\""+$(this).attr("data-groupID")+"\">Non payé</button>"
             }).on('shown.bs.popover', function (eventShown) {
                 var $popup = $('#' + $(eventShown.target).attr('aria-describedby'));
                 $popup.find(':button').click(function(){
-                    sendTheMailTo($(this).attr('data-Mailtarget'), ($popup).attr("data-groupID"));
+                    sendTheMailTo($(this).attr('data-Mailtarget'), $(this).attr("data-groupID"));
                 });
-            });
+            });});
+
             if(<?php if(array_key_exists("popup",$_POST)){echo "true";}else{echo "false";} ?>) {
                 setTimeout(function () {$('#popupCreate').fadeIn('slow');}, 0);
                 setTimeout(function () {$('#popupCreate').fadeOut('slow');}, 3000);

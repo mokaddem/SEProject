@@ -21,9 +21,10 @@ if($ID==null)
 
 
     // filling true table and deleting elements in temporary tables.
-    $queryPers = "INSERT INTO Personne SELECT * FROM TmpPersonne WHERE TmpPersonne.ID=" . $ID;
-    $queryPersonneExtra = "INSERT INTO PersonneExtra SELECT * FROM TmpPersonneExtra WHERE TmpPersonneExtra.Personne_ID=" . $ID;
-    $queryPlayer = "INSERT INTO Player SELECT * FROM TmpPlayer WHERE TmpPlayer.ID_Personne=" . $ID;
+    $queryPers = "INSERT INTO Personne SELECT (Title, FirstName, LastName, Ville, ZIPCode, Rue, Number, PhoneNumber, GSMNumber, BirthDate, Mail, CreationDate, Note, IsPlayer, IsOwner, IsStaff) FROM TmpPersonne WHERE TmpPersonne.ID=" . $ID;
+    $queryPersonneExtra = "INSERT INTO PersonneExtra SELECT (Extra_ID, Personne_ID) FROM TmpPersonneExtra WHERE TmpPersonneExtra.Personne_ID=" . $ID;
+    $queryPlayer = "INSERT INTO Player SELECT (ID_player1, ID_player2, ID_Cat, NbWinMatch, AvgRanking) FROM TmpPlayer WHERE TmpPlayer.ID_Personne=" . $ID;
+
 
     $db->query($queryPers);
     $db->query('DELETE FROM TmpPersonne WHERE TmpPersonne.ID='. $ID);
@@ -57,7 +58,7 @@ if($ID==null)
         $repPlayerConfirmed = $repPlayerConfirmed->fetch_array();
 
         if (($repPlayerConfirmed['p1'] == 1) AND ($repPlayerConfirmed['p2'] == 1)) {
-            $queryTeam = "INSERT INTO Team(ID, ID_Player1, ID_Player2, ID_Cat, NbWinMatch, AvgRanking, Group_Vic) SELECT ID, ID_Player1, ID_Player2, ID_Cat, NbWinMatch, AvgRanking, Group_Vic FROM TmpTeam WHERE ID=" . $teamID;
+            $queryTeam = "INSERT INTO Team(ID_Player1, ID_Player2, ID_Cat, NbWinMatch, AvgRanking, Group_Vic) SELECT ID_Player1, ID_Player2, ID_Cat, NbWinMatch, AvgRanking, Group_Vic FROM TmpTeam WHERE ID=" . $teamID;
             $db->query($queryTeam);
             $db->query('DELETE FROM TmpTeam WHERE ID=' . $teamID);
         }
