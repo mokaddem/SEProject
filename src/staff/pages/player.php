@@ -386,7 +386,7 @@
     <script type="text/javascript">
         function registerAlone(){
             if($('#player2').attr("data-activated")==0){
-                var url="./php/add-single-player.php";
+                var url="./php/add-single-player.php?access=staff";
                 $('input').attr("required",false);
                 $('form').attr("action", url);
                 $('form').submit();

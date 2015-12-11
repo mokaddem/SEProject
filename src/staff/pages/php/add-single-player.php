@@ -26,11 +26,17 @@ or $_GET['birth_year1'] == NULL
 or $_GET['birth_month1'] == NULL
 or $_GET['birth_day1'] == NULL
 or $_GET['InputEmailFirst1'] == NULL  ){
+    
     if ($_GET['access'] == "visitor"){
+        
         header("Location: ../../../inscription/index.php?error=true" );
+        
     } elseif ($_GET['access'] == "staff") {
+        
         header("Location: ../player.php?error=true" );
+        
     }
+    
     return;
 }
 
