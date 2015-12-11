@@ -138,13 +138,13 @@ Mise à jour de l'historique
 	$req->bind_param("iiiis", $ID_Personne2, $IsLeader,$Paid, $AlreadyPart, $ranking2[4]);
 	$req->execute();
 
-	$reponse = $db->query('SELECT * FROM Team WHERE '.$ID_Personne1.' = ID_Player1 AND '.$ID_Personne2.' = ID_Player2');
+/*	$reponse = $db->query('SELECT * FROM Team WHERE '.$ID_Personne1.' = ID_Player1 AND '.$ID_Personne2.' = ID_Player2');
 	$donnees = $reponse->fetch_array();
 
   // Mise à jour de l'historique
  if (array_key_exists('ID', $_SESSION)) {
 	 addHistory( $donnees1["ID"], "Equipe", "Création");
- }
+ }*/
 
 	// ---------------------AJOUTER TEAM--------------------------
 	$req = $db->prepare("INSERT INTO ".$tmp."Team(ID, ID_player1, ID_player2, ID_Cat, NbWinMatch, AvgRanking) VALUES(?, ?, ?, ?, ?, ?)");
