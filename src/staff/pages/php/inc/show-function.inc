@@ -55,7 +55,7 @@ function getTitreTable($get) {
             return array("ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Jusqu'au", "Crée le", "Note", "Note du staff");
 
         case "oldCourt":
-            return array("ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Jusqu'au", "Crée le", "Note");
+            return array("ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Jusqu'au", "Crée le", "Note", "Note du staff");
 
         case "extra":
             return array("ID", "Nom", "Prix", "Description");
@@ -98,7 +98,7 @@ function getParam($get) {
             return array("ID", "adresse", "surface", "ID_Owner", "etat", "Type", "disponibiliteFrom", "disponibiliteTo", "CreationDate", "Note", "StaffNote");
 
         case "oldCourt":
-            return array("ID", "adresse", "surface", "ID_Owner", "etat", "Type", "disponibiliteFrom", "disponibiliteTo", "CreationDate", "Note");
+            return array("ID", "adresse", "surface", "ID_Owner", "etat", "Type", "disponibiliteFrom", "disponibiliteTo", "CreationDate", "Note", "StaffNote");
 
         case "extra":
             return array("ID", "Name", "Price", "Description"); // Name à modif (4eme param)
