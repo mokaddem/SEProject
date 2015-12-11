@@ -25,7 +25,8 @@ $Mail		= $_GET['InputEmailFirst'];
 
 $req = $db->prepare("UPDATE SEProjectC.Personne SET FirstName = ?,LastName = ?,Title = ?,ZIPCode =?,PhoneNumber = ?,GSMNumber = ?,Ville = ?,Rue = ?,Number = ?,BirthDate = ?,Mail = ? WHERE ".$ID."=Personne.ID");
 
-$req->bind_param("ssiissssiss", $FirstName, $LastName, $Title, $ZIPCode, $PhoneNumber, $GSMNumber, $Rue, $Number, $Ville, $BirthDate, $Mail);
+$req->bind_param("ssiissssiss", $FirstName, $LastName, $Title, $ZIPCode, $PhoneNumber, $GSMNumber, $Ville, $Rue, $Number, $BirthDate, $Mail);
+
 $req->execute();
 
 addHistory($ID, utf8_decode("Propriétaire"), "Edition");
