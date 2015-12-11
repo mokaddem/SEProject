@@ -3,7 +3,7 @@
 include_once("../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php");
 include_once("../../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php");
 include_once("../../../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php");
-
+include_once("../../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php");
 
 
 function sendMail($dest, $message, $subject){

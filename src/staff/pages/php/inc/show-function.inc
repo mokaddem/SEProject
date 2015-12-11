@@ -25,6 +25,9 @@ function getDonnees($get, $id) {
             case "oldOwner":
                 return getOldOwner($id);
 
+            case "confirm":
+                return getConfirm($id);
+
             case "team":
                 //return getTeam($id);
             break;
@@ -62,6 +65,9 @@ function getTitreTable($get) {
 
         case "oldOwner":
             return array("ID", "Nom", "Prénom", "E-mail", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "Créé le");
+
+        case "confirm":
+            return array("ID", "Nom", "Prénom", "email", "Créé le", "Action");
 
         case "team":
             return array("ID", "Nom", "Prénom", "Action");
@@ -103,6 +109,9 @@ function getParam($get) {
         case "oldOwner":
             return array("ID", "LastName", "FirstName", "Mail", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "CreationDate");
 
+        case "confirm":
+            return array("ID", "LastName", "FirstName", "Mail", "CreationDate");
+
         case "team":
             return array("ID", "L", "F", "ID_Cat");
             break;
@@ -137,6 +146,8 @@ function getTitre($get) {
             return "propriétaires";
         case "oldOwner":
             return "propriétaires antérieurs";
+        case "confirm":
+            return "Joueurs n'ayant pas confirmé leur inscription";
         case "team":
             return "équipes";
             break;
@@ -213,6 +224,10 @@ function getStaff($id) {
     return $reponse;
 }
 
+function getConfirm($id) {
+    $db = BDconnect(); // ne devrait pas avoir lieu, UNE SEULE INSTANCE DE BDD !!!
+    return $db->query('SELECT * FROM TmpPersonne WHERE isPlayer=1 and TmpPersonne.ID ='.$id.'');
+}
 
 function getTeam1() {
     $db = BDconnect();

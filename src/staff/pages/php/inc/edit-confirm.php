@@ -23,20 +23,16 @@ $Number		= $_GET['InputBat'];
 $BirthDate	= $_GET['birth_year']."-".$_GET['birth_month']."-".$_GET['birth_day'];
 $Mail		= $_GET['InputEmailFirst'];
 $Note       = utf8_decode($_GET['InputMessage']);
-
+$confirm="";
 if(array_key_exists("confirm", $_GET)){
-    $table1="TmpPersonne";
-    $table2="TmpPersonneExtra";
-    $type="confirm";
+    $table="TmpPersonne";
 }else{
-    $table1="Personne";
-    $table2="PersonneExtra";
-    $type="player";
+    $table="Personne";
 }
-error_log(serialize($_GET));
 
-$req = $db->prepare("UPDATE ".$table1." SET FirstName = ?,LastName = ?,Title = ?,ZIPCode =?,PhoneNumber = ?,GSMNumber = ?,Ville = ?,Rue = ?,Number = ?,BirthDate = ?,Mail = ?,Note=? WHERE ".$ID."=TmpPersonne.ID");
-$req->bind_param("ssiiiississs", $FirstName, $LastName, $Title, $ZIPCode, $PhoneNumber, $GSMNumber, $Ville, $Rue, $Number, $BirthDate, $Mail, $Note);
+
+$req = $db->prepare("UPDATE ".$table." SET FirstName = ?,LastName = ?,Title = ?,ZIPCode =?,PhoneNumber = ?,GSMNumber = ?,Ville = ?,Rue = ?,Number = ?,BirthDate = ?,Mail = ?,Note=? WHERE ".$ID."=Personne.ID");
+$req->bind_param("ssiiiississs", $FirstName, $LastName, $Title, $ZIPCode, $PhoneNumber, $GSMNumber, $Rue, $Number, $Ville, $BirthDate, $Mail, $Note);
 $req->execute();
 
 //$req = $db->prepare("UPDATE SEProjectC.PersonneExtra SET Extra_ID=? WHERE Personne_ID=?");
@@ -50,7 +46,7 @@ while($extraID = $extraIDs->fetch_array()){
         $extra = $_GET[$extraName];
 
         $extraPresent = false;
-        $extratemp = $db->query("SELECT Extra_ID as Eid FROM ".$table2." WHERE Personne_ID=".$ID);
+        $extratemp = $db->query("SELECT Extra_ID as Eid FROM PersonneExtra WHERE Personne_ID=".$ID);
         while($extraNameNumber = $extratemp->fetch_array()){
             if($extraNameNumber['Eid'] == $extraID['id']){
                 $extraPresent = true;
@@ -61,16 +57,16 @@ while($extraID = $extraIDs->fetch_array()){
             //Do nothing
         }
         else{
-            $db->query("INSERT INTO ".$table2." (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extraID['id'].",".$ID.")");
+            $db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extraID['id'].",".$ID.")");
         }
 
     } else{
-        $db->query("DELETE FROM ".$table2." WHERE Extra_ID=".$extraID['id']." AND Personne_ID=".$ID);
+        $db->query("DELETE FROM PersonneExtra WHERE Extra_ID=".$extraID['id']." AND Personne_ID=".$ID);
     }
 }
 
 addHistory($ID, "Joueur", "Edition");
 
-header("Location: ../../list.php?type=".$type);
+header("Location: ../../list.php?type=player");
 
 ?>

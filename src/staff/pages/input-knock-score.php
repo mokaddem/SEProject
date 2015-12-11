@@ -258,7 +258,7 @@
             <?php if($position > ceil($numberOfMatch/2)){ ?>
             <?php //if($round > 1){ ?>
                 <div class="" style="margin-top: 1.5%">
-                    <a class="pull-left" href="php/delete-knock.php?matchID=<?=$match['ID']?>&indice=<?=$indice?>&jour=<?=$_GET["jour"]?>&cat=<?=$_GET['cat']?>" onclick="return confirm('Voulez-vous vraiment supprimer ce groupe ?');" ><i class="fa fa-trash-o"></i></a>
+                    <a class="pull-left" href="php/delete-knock.php?matchID=<?=$match['ID']?>&indice=<?=$indice?>&jour=<?=$_GET["jour"]?>&cat=<?=$_GET['cat']?>" onclick="return confirm('Voulez-vous vraiment retirer cette équipe de ce match ?');" ><i class="fa fa-trash-o"></i></a>
                 </div>
             <?php } ?>
         </div>

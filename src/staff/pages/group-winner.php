@@ -147,7 +147,7 @@
                                                     <div class="form-group text-left col-lg-offset-1">
                                                         <?php $nameWin = "winner".$i."_".$group['ID'];?>
                                                         <label class="checkbox"><input type="checkbox" class="increase_size" name=<?=$nameWin?> value=<?=$teamID?> <?=$checked?>">
-                                                            <div class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Nombre de victoire(s)" <?php if($team['NbWinMatch']>= ($realteamNum-3)){echo "data-check=1";}else{echo "data-check=0";} ?> id="data-button">
+                                                            <div class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Nombre de victoire(s)" <?php if($team['NbWinMatch']> ($realteamNum/2)){echo "data-check=1";}else{echo "data-check=0";} ?> id="data-button">
                                                                 <?=$team['NbWinMatch']?>
                                                             </div>
                                                             <?= utf8_encode($player['LastName']) ?>

@@ -180,6 +180,9 @@
                             <li>
                                 <a href="email.php"> Récupérer les e-mails</a>
                             </li>
+                            <li>
+                                <a href="list.php?type=confirm"> Joueurs non confirmés </a>
+                            </li>
                             <!--<li>
                                     <a href="login.php">Login Page</a>
                                 </li>-->
