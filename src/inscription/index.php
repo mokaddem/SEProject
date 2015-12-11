@@ -140,7 +140,7 @@
                                         while ($extra = $tmp->fetch_array()){?>
                                             <div class="form-group" id="extraD1_<?php echo $i;?>" name="extraD1_<?php echo $i;?>">
                                                 <?php if ($i!=1){ ?>
-                                                    <input checked id="extra1_<?php echo $i;?>" name="extra1_<?php echo $i;?>" value=<?=$extra['ID']?> type="checkbox"> <strong><?php echo utf8_encode($extra['Name']);?></strong>: </input>
+                                                    <input checked id="extra1_<?php echo $i;?>" name="extra1_<?php echo $i;?>" value="<?=$extra['ID']?>" data-price1="<?=$extra['Price']?>" type="checkbox"> <strong><?php echo utf8_encode($extra['Name']);?></strong>: </input>
                                                 <?php }else{ ?>
                                                     <input id="extra1_<?php echo $i;?>" name="extra1_<?php echo $i;?>" value=<?=$extra['ID']?> type="checkbox"> <strong><?php echo utf8_encode($extra['Name']);?></strong>: </input>
                                                 <?php } ?>
@@ -155,7 +155,7 @@
                                         <?php $price = $db->query('SELECT * FROM GlobalVariables WHERE Name=\'Prix_Tournoi\'')->fetch_array(); ?>
                                         
                                         <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="<?=$price['Value'];?>" disabled>
+                                            <input type="text" class="form-control" id="totalPrice1" value="<?=$price['Value'];?>" disabled>
                                             <span class="input-group-addon">€</span>
                                         </div>
                                         <div class="input-group well well-sm">
@@ -273,9 +273,9 @@
                                             while ($extra = $tmp->fetch_array()){?>
                                             <div class="form-group" id="extraD2_<?php echo $i;?>" name="extraD2_<?php echo $i;?>">
                                                 <?php if($i==1){ ?>
-                                                    <input id="extra2_<?php echo $i;?>" name="extra2_<?php echo $i;?>" value=<?=$extra['ID']?> type="checkbox"> <strong><?php echo utf8_encode($extra['Name']);?></strong>: </input>
+                                                    <input id="extra2_<?php echo $i;?>" name="extra2_<?php echo $i;?>" value="<?=$extra['ID']?>" type="checkbox"><strong><?php echo utf8_encode($extra['Name']);?></strong>: </input>
                                                 <?php }else{ ?>
-                                                    <input checked id="extra2_<?php echo $i;?>" name="extra2_<?php echo $i;?>" value=<?=$extra['ID']?> type="checkbox"> <strong><?php echo utf8_encode($extra['Name']);?></strong>: </input>
+                                                    <input checked id="extra2_<?php echo $i;?>" name="extra2_<?php echo $i;?>" value="<?=$extra['ID']?>" type="checkbox" data-price2="<?=$extra['Price']?>"> <strong><?php echo utf8_encode($extra['Name']);?></strong>: </input>
                                                 <?php } ?>
                                                 <span><?php echo utf8_encode($extra['Description'])?></span>
                                             </div>
@@ -285,7 +285,7 @@
                                     <div class="form-group well well-sm">
                                         <label for="InputPhone">Montant à payer</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="<?=$price['Value'];?>" disabled>
+                                            <input type="text" class="form-control" id="totalPrice2" placeholder="" value="<?=$price['Value'];?>" disabled>
                                             <span class="input-group-addon">€</span>
                                         </div>
                                         <div class="input-group well well-sm">
@@ -336,6 +336,31 @@
     }
 </script>
 
+<script>
+    function updatePrice(e,num){
+        var total; var text;
+        if(num == 1){
+            total = $('#totalPrice1');
+            text = "data-price1"
+        }
+        else{
+            total = $('#totalPrice2');
+            text = "data-price2"
+        }
+        if(e.attr('checked')){
+            console.log(e);
+            var init = parseInt(total.val());
+            var add = parseInt(e.attr(text));
+            total.val(init+add)
+        }else {
+            console.log(e);
+            var init = parseInt(total.val());
+            var add = parseInt(e.attr(text));
+            total.val(init-add);
+        }
+    }
+</script>
+
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -354,6 +379,26 @@
                 $(extraName).hide();
             }
         }
+
+        //update initial price
+        $('[data-price1]').each(function(){
+//            console.log($(this))
+            if($(this).attr('checked')){
+//                console.log("Added "+$(this).val);
+                $('#totalPrice1').val( parseInt($('#totalPrice1').val())+ parseInt($(this).attr('data-price1')));
+            }else{
+                console.log("Nop");
+            }
+        });
+        $('[data-price2]').each(function(){
+            if($(this).attr('checked')){
+//                console.log("Added "+$(this).val);
+                $('#totalPrice2').val( parseInt($('#totalPrice2').val())+ parseInt($(this).attr('data-price2')));
+            }
+        });
+
+        $('[data-price1]').click(function(){updatePrice($(this),1);});
+        $('[data-price2]').click(function(){updatePrice($(this),2);});
     });
 </script>
 
