@@ -145,8 +145,8 @@ else //Si on est dimanche
 			$listRespMail;
 			$respCat= $db->query("SELECT DISTINCT Personne.FirstName, Personne.LastName, Personne.PhoneNumber, Personne.GSMNumber, Personne.Mail FROM Personne JOIN Staff ON Staff.ID_Personne = Personne.ID JOIN Categorie ON Staff.ID_Cat = Categorie.ID JOIN Team ON Team.ID_Cat = Categorie.ID JOIN GroupSunday ON GroupSunday.ID_t1 = Team.ID WHERE GroupSunday.ID=".$_POST["groupID"]);
 			$listCat;
+			$numeroCat= $db->query("SELECT Categorie.ID FROM Categorie JOIN Team ON Team.ID_Cat = Categorie.ID JOIN GroupSunday ON GroupSunday.ID_t1 = Team.ID WHERE GroupSunday.ID=".$_POST["groupID"]);
 			while($nCat = $numeroCat->fetch_array())
-				$numeroCat= $db->query("SELECT Categorie.ID FROM Categorie JOIN Team ON Team.ID_Cat = Categorie.ID JOIN GroupSunday ON GroupSunday.ID_t1 = Team.ID WHERE GroupSunday.ID=".$_POST["groupID"]);
 			{
 				$listCat[0]=$nCat['ID'];
 			}
