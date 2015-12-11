@@ -103,6 +103,6 @@ $listCorp;
 	$message=$listCorp[0];
 	sendMail($to, $message, $sujet);
 
-	header("Location: ../../../index.php?action=register");
+	header("Location: ../../../index.php?action=registerOwner");
 
 ?>
