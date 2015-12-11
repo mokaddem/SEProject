@@ -142,7 +142,7 @@
                                                 <?php if ($i!=1){ ?>
                                                     <input checked id="extra1_<?php echo $i;?>" name="extra1_<?php echo $i;?>" value="<?=$extra['ID']?>" data-price1="<?=$extra['Price']?>" type="checkbox"> <strong><?php echo utf8_encode($extra['Name']);?></strong>: </input>
                                                 <?php }else{ ?>
-                                                    <input id="extra1_<?php echo $i;?>" name="extra1_<?php echo $i;?>" value=<?=$extra['ID']?> type="checkbox"> <strong><?php echo utf8_encode($extra['Name']);?></strong>: </input>
+                                                    <input id="extra1_<?php echo $i;?>" name="extra1_<?php echo $i;?>" value="<?=$extra['ID']?>" data-price1="<?=$extra['Price']?>" type="checkbox"> <strong><?php echo utf8_encode($extra['Name']);?></strong>: </input>
                                                 <?php } ?>
                                                 <span><?php echo utf8_encode($extra['Description'])?></span>
                                             </div>
@@ -273,7 +273,7 @@
                                             while ($extra = $tmp->fetch_array()){?>
                                             <div class="form-group" id="extraD2_<?php echo $i;?>" name="extraD2_<?php echo $i;?>">
                                                 <?php if($i==1){ ?>
-                                                    <input id="extra2_<?php echo $i;?>" name="extra2_<?php echo $i;?>" value="<?=$extra['ID']?>" type="checkbox"><strong><?php echo utf8_encode($extra['Name']);?></strong>: </input>
+                                                    <input id="extra2_<?php echo $i;?>" name="extra2_<?php echo $i;?>" value="<?=$extra['ID']?>" data-price2="<?=$extra['Price']?>" type="checkbox"><strong><?php echo utf8_encode($extra['Name']);?></strong>: </input>
                                                 <?php }else{ ?>
                                                     <input checked id="extra2_<?php echo $i;?>" name="extra2_<?php echo $i;?>" value="<?=$extra['ID']?>" type="checkbox" data-price2="<?=$extra['Price']?>"> <strong><?php echo utf8_encode($extra['Name']);?></strong>: </input>
                                                 <?php } ?>
@@ -325,6 +325,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 
+
 <script type="text/javascript">
     function hideDispElem(extraDivName, time, disp){
         if (disp){
@@ -347,13 +348,11 @@
             total = $('#totalPrice2');
             text = "data-price2"
         }
-        if(e.attr('checked')){
-            console.log(e);
+        if(e.is(":checked")){
             var init = parseInt(total.val());
             var add = parseInt(e.attr(text));
             total.val(init+add)
         }else {
-            console.log(e);
             var init = parseInt(total.val());
             var add = parseInt(e.attr(text));
             total.val(init-add);
