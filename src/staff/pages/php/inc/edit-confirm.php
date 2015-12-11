@@ -32,7 +32,7 @@ if(array_key_exists("confirm", $_GET)){
 
 
 $req = $db->prepare("UPDATE ".$table." SET FirstName = ?,LastName = ?,Title = ?,ZIPCode =?,PhoneNumber = ?,GSMNumber = ?,Ville = ?,Rue = ?,Number = ?,BirthDate = ?,Mail = ?,Note=? WHERE ".$ID."=Personne.ID");
-$req->bind_param("ssiiiississs", $FirstName, $LastName, $Title, $ZIPCode, $PhoneNumber, $GSMNumber, $Rue, $Number, $Ville, $BirthDate, $Mail, $Note);
+$req->bind_param("ssiissssisss", $FirstName, $LastName, $Title, $ZIPCode, $PhoneNumber, $GSMNumber, $Rue, $Number, $Ville, $BirthDate, $Mail, $Note);
 $req->execute();
 
 //$req = $db->prepare("UPDATE SEProjectC.PersonneExtra SET Extra_ID=? WHERE Personne_ID=?");

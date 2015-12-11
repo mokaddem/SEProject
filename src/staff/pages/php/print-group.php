@@ -80,6 +80,10 @@ foreach ($staffeurs as $staffeur) {
 }
   $respoPrint = substr($respoPrint, 2, strlen($respoPrint));
 
+// Si pas de responsable
+if ($respoPrint == "") {
+  $respoPrint = "Pas de responsable";
+}
 
 $html = <<<EOD
 <h3 align="center">Tournoi</h3>
@@ -195,7 +199,7 @@ EOD;
   $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
 
 
-$reponse->free(); $t->free(); $t1p->free(); $t2p->free();
+$reponse->free();
 
 // ---------------------------------------------------------
 
