@@ -42,7 +42,7 @@
                         <h1 class="page-header">Modifier le Knock-Off
                           <?php $jour =$_GET['jour'] ?>
                           <a class="btn btn-default btn-outline pull-right" href="./php/print-knock-off.php?jour=<?=$jour?>" target="_blank"><i class="fa fa-print fa-fw"></i> Print</a>
-                          <button class="btn btn-info pull-right fa fa-question-circle" onclick="checkCourts();" style="font-size: 55%" data-toggle="tooltip" data-placement="left" title="Vérifier que les terrains sont différents"></button>
+                          <button class="btn btn-info pull-right fa fa-check" onclick="checkCourts();" style="font-size: 55%" data-toggle="tooltip" data-placement="left" title="Vérifier que les terrains sont différents"></button>
                         </h1>
                     </div>
                 </div>
@@ -346,11 +346,19 @@
                                     if($(target).attr("data-groupnum") == $(dndHandler.draggedElement).attr("data-groupnum")){ //On applique le style seulement si le draggred est dans un group différent
                                         //do nothing
                                     }
-                                    else{this.className += " drop_hover";}
+                                    else{
+                                        var elemSave = $(this);
+                                        this.className += " drop_hover";
+                                        setTimeout(function(){elemSave.removeClass("drop_hover");},1000);
+                                    }
                                 } else if(target.getAttribute("name") == "button-player") {
+                                    var elemSave = $(this);
                                     this.className += " drop_hover";
+                                    setTimeout(function(){elemSave.removeClass("drop_hover");},1000);
                                 }else if(flag_target_ok){
+                                    var elemSave = $(this);
                                     target.className += " drop_hover";
+                                    setTimeout(function(){elemSave.removeClass("drop_hover");},1000);
                                 }
                             }
                         }

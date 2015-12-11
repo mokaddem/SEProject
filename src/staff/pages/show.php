@@ -30,7 +30,7 @@ if ($_GET["type"]=="extra") { ?>
                 <?php if ($_GET['type'] == 'court') {
                   // Pour les teams et terrains
                     ?>
-                  <a class="btn btn-default pull-right" target="_blank" href="./php/print.php?id=<?=$donnees['ID']?>"><i class="fa fa-print"></i></a>
+                  <a class="btn btn-default pull-right" target="_blank" href="./php/print-court.php?id=<?=$donnees['ID']?>"><i class="fa fa-print"></i></a>
                 <?php } ?>
                 </h4>
             </div>
