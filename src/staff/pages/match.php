@@ -61,81 +61,93 @@
                     <?php } ?>
                 </div>
 
-                <!-- Registration form - START -->
-                <div class="row">
-                    <form role="form" method="GET" action="php/add-new-match.php">
-                        <div class="col-lg-6">
-                            <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
+                <?php
+                $nTeams = $db->query('SELECT COUNT(ID) as count FROM Team')->fetch_array();
+                if ($nTeams['count'] > 0) {
+                    ?>
 
-                            <div class="form-group">
-                                <label for="sel1"><span class="fa fa-users"></span> Première équipe</label>
-                                <select class="form-control" name="InputEq1" id="InputEq1">
-                                    <?php
-										$db = BDConnect();
-										$reponse = $db->query('SELECT * FROM Team');
-										while ($donnes = $reponse->fetch_array())
-										{
-                                            $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player1'].' = ID');
+                    <!-- Registration form - START -->
+                    <div class="row">
+                        <form role="form" method="GET" action="php/add-new-match.php">
+                            <div class="col-lg-6">
+                                <!-- <div class="well well-sm"><strong><span class="glyphicon glyphicon-ok"></span>Required Field</strong></div> -->
+
+                                <div class="form-group">
+                                    <label for="sel1"><span class="fa fa-users"></span> Première équipe</label>
+                                    <select class="form-control" name="InputEq1" id="InputEq1">
+                                        <?php
+                                        $db = BDConnect();
+                                        $reponse = $db->query('SELECT * FROM Team');
+                                        while ($donnes = $reponse->fetch_array()) {
+                                            $p = $db->query('SELECT * FROM Personne WHERE ' . $donnes['ID_Player1'] . ' = ID');
                                             $p1 = $p->fetch_array();
-                                            $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player2'].' = ID');
-											$p2 = $p->fetch_array();
-                                            echo "<option value=".$donnes['ID'].">".utf8_encode($p1['FirstName'])." ".utf8_encode($p1['LastName'])." & ".utf8_encode($p2['FirstName'])." ".utf8_encode($p2['LastName'])."</option>";
-										}
-			 	    				?>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="sel1"><span class="fa fa-users"></span> Seconde équipe</label>
-                                <select class="form-control" name="InputEq2" id="InputEq2">
-                                    <?php
-										$db = BDconnect();
-										$reponse = $db->query('SELECT * FROM Team');
-										while ($donnes = $reponse->fetch_array())
-										{
-                                            $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player1'].' = ID');
-                                            $p1 = $p->fetch_array();
-                                            $p = $db->query('SELECT * FROM Personne WHERE '.$donnes['ID_Player2'].' = ID');
-											$p2 = $p->fetch_array();
-                                            echo "<option value=".$donnes['ID'].">".utf8_encode($p1['FirstName'])." ".utf8_encode($p1['LastName'])." & ".utf8_encode($p2['FirstName'])." ".utf8_encode($p2['LastName'])."</option>";
-										}
-			 	    				?>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="sel1"><span class="fa fa-map-marker"></span> Lieu</label>
-
-                                <select class="form-control" name="InputCourt" id="InputCourt">
-                                    <?php
-										$db = BDconnect();
-										$reponse = $db->query('SELECT * FROM Terrain');
-										while ($donnes = $reponse->fetch_array())
-										{
-											echo "<option value=".$donnes['ID'].">".utf8_encode($donnes['adresse'])." - ".utf8_encode($donnes['etat'])."</option>";
-										}
-			 	    				?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="sel1"><span class="fa fa-clock-o"></span> Date & Heure</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                    <?php
-                                        echo '<input type="date" min="'.date("Y-m-d").'" max="2048-10-10" id="InputDate" name="InputDate" value="'.date("Y-m-d").'">';
-                                        echo '<input type="time" id="InputHour" name="InputHour" value="'.date("H:i").'">';
-                                    ?>
+                                            $p = $db->query('SELECT * FROM Personne WHERE ' . $donnes['ID_Player2'] . ' = ID');
+                                            $p2 = $p->fetch_array();
+                                            echo "<option value=" . $donnes['ID'] . ">" . utf8_encode($p1['FirstName']) . " " . utf8_encode($p1['LastName']) . " & " . utf8_encode($p2['FirstName']) . " " . utf8_encode($p2['LastName']) . "</option>";
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="sel1"><span class="fa fa-users"></span> Seconde équipe</label>
+                                    <select class="form-control" name="InputEq2" id="InputEq2">
+                                        <?php
+                                        $db = BDconnect();
+                                        $reponse = $db->query('SELECT * FROM Team');
+                                        while ($donnes = $reponse->fetch_array()) {
+                                            $p = $db->query('SELECT * FROM Personne WHERE ' . $donnes['ID_Player1'] . ' = ID');
+                                            $p1 = $p->fetch_array();
+                                            $p = $db->query('SELECT * FROM Personne WHERE ' . $donnes['ID_Player2'] . ' = ID');
+                                            $p2 = $p->fetch_array();
+                                            echo "<option value=" . $donnes['ID'] . ">" . utf8_encode($p1['FirstName']) . " " . utf8_encode($p1['LastName']) . " & " . utf8_encode($p2['FirstName']) . " " . utf8_encode($p2['LastName']) . "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="sel1"><span class="fa fa-map-marker"></span> Lieu</label>
+
+                                    <select class="form-control" name="InputCourt" id="InputCourt">
+                                        <?php
+                                        $db = BDconnect();
+                                        $reponse = $db->query('SELECT * FROM Terrain');
+                                        while ($donnes = $reponse->fetch_array()) {
+                                            echo "<option value=" . $donnes['ID'] . ">" . utf8_encode($donnes['adresse']) . " - " . utf8_encode($donnes['etat']) . "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sel1"><span class="fa fa-clock-o"></span> Date & Heure</label>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        <?php
+                                        echo '<input type="date" min="' . date("Y-m-d") . '" max="2048-10-10" id="InputDate" name="InputDate" value="' . date("Y-m-d") . '">';
+                                        echo '<input type="time" id="InputHour" name="InputHour" value="' . date("H:i") . '">';
+                                        ?>
+                                    </div>
+                                </div>
+
+                                <input type="submit" name="submit" id="submit" value="Créer"
+                                       class="btn btn-info pull-right">
+
                             </div>
+                        </form>
+                        <!-- Registration form - END -->
 
-                            <input type="submit" name="submit" id="submit" value="Créer" class="btn btn-info pull-right">
-
-                        </div>
-                    </form>
-                    <!-- Registration form - END -->
-
-                </div>
-                <!-- /.row -->
+                    </div>
+                    <!-- /.row -->
+                    <?php
+                }else{ ?>
+                    <div class="col-lg-4 alert alert-danger">
+                        <b>Erreur</b>
+                            Il n'y a aucune équipe pouvant s'affronter.
+                    </div>
+                <?php }
+                ?>
             </div>
             <!-- /#page-wrapper -->
 
