@@ -200,7 +200,7 @@ $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $html, $border=0, $ln=1, $fill=0, 
 }
 }
 
-$reponse->free(); $t->free(); $t1p->free(); $t2p->free();
+//$reponse->free(); $t->free(); $t1p->free(); $t2p->free();
 // ---------------------------------------------------------
 
 // Close and output PDF document
