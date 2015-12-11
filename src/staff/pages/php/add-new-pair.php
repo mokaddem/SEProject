@@ -46,12 +46,12 @@ Mise à jour de l'historique
 	$to1[0]= $_GET['InputEmailFirst1'];
 
 
-	$req->bind_param("iisssisiiissssiii", $ID1, $Title1, $FirstName1, $LastName1, $Ville1, $ZIPCode1, $Rue1, $Number1, $PhoneNumber1, $GSMNumber1, $BirthDate1, $Mail1, $CreationDate, $Note1, $IsPlayer1, $IsOwner1, $IsStaff1);
+	$req->bind_param("iisssisissssssiii", $ID1, $Title1, $FirstName1, $LastName1, $Ville1, $ZIPCode1, $Rue1, $Number1, $PhoneNumber1, $GSMNumber1, $BirthDate1, $Mail1, $CreationDate, $Note1, $IsPlayer1, $IsOwner1, $IsStaff1);
 
 	$req->execute();
 
 
-    $reponse = $db->query('SELECT * FROM '.$tmp.'Personne WHERE "'.$FirstName1.'" = FirstName AND "'.$LastName1.'" = LastName');
+    $reponse = $db->query('SELECT * FROM '.$tmp.'Personne WHERE "'.$FirstName1.'" = FirstName AND "'.$LastName1.'" = LastName AND GSMNumber = "'.$GSMNumber1.'"');
     $donnees1 = $reponse->fetch_array();
     // Mise à jour de l'historique si c'est le staff qui créé.
 	 if (array_key_exists('ID', $_SESSION)) {
@@ -89,13 +89,13 @@ Mise à jour de l'historique
 	$payer2 = $_GET['group2'];
 	$to2[0]= $_GET['InputEmailFirst2'];
 
- $req->bind_param("iisssisiiissssiii", $ID2, $Title2, $FirstName2, $LastName2, $Ville2, $ZIPCode2, $Rue2, $Number2, $PhoneNumber2, $GSMNumber2, $BirthDate2, $Mail2, $CreationDate, $Note2, $IsPlayer2, $IsOwner2, $IsStaff2);
+ $req->bind_param("iisssisissssssiii", $ID2, $Title2, $FirstName2, $LastName2, $Ville2, $ZIPCode2, $Rue2, $Number2, $PhoneNumber2, $GSMNumber2, $BirthDate2, $Mail2, $CreationDate, $Note2, $IsPlayer2, $IsOwner2, $IsStaff2);
 
 
 	$req->execute();
 
 
-    $reponse = $db->query('SELECT * FROM '.$tmp.'Personne WHERE "'.$FirstName2.'" = FirstName AND "'.$LastName2.'" = LastName');
+    $reponse = $db->query('SELECT * FROM '.$tmp.'Personne WHERE "'.$FirstName2.'" = FirstName AND "'.$LastName2.'" = LastName AND GSMNumber = "'.$GSMNumber1.'"');
     $donnees2 = $reponse->fetch_array();
     // Mise à jour de l'historique
  if (array_key_exists('ID', $_SESSION)) {

@@ -66,12 +66,12 @@ $IsStaff1	= 0;
 $to1[0]=$_GET['InputEmailFirst1'];
 $payer1 = $_GET['group1'];
 
-$req->bind_param("iisssisiiissssiii", $ID1, $Title1, $FirstName1, $LastName1, $Ville1, $ZIPCode1, $Rue1, $Number1, $PhoneNumber1, $GSMNumber1, $BirthDate1, $Mail1, $CreationDate, $Note1, $IsPlayer1, $IsOwner1, $IsStaff1);
+$req->bind_param("iisssisissssssiii", $ID1, $Title1, $FirstName1, $LastName1, $Ville1, $ZIPCode1, $Rue1, $Number1, $PhoneNumber1, $GSMNumber1, $BirthDate1, $Mail1, $CreationDate, $Note1, $IsPlayer1, $IsOwner1, $IsStaff1);
 
 $req->execute();
 
 
-$reponse = $db->query('SELECT * FROM '.$tmp.'Personne WHERE "'.$FirstName1.'" = FirstName AND "'.$LastName1.'" = LastName');
+$reponse = $db->query('SELECT * FROM '.$tmp.'Personne WHERE "'.$FirstName1.'" = FirstName AND "'.$LastName1.'" = LastName AND GSMNumber = "'.$GSMNumber1.'"');
 $donnees1 = $reponse->fetch_array();
 // Mise à jour de l'historique
 if (array_key_exists('ID', $_SESSION)) {
