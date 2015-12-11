@@ -25,15 +25,15 @@ $age1 = explode(" - ", $personne1["BirthDate"]);
 $age2 = explode(" - ", $personne2["BirthDate"]);
 $ageCurrent = max(intval(date('Y')) - intval($age1[0]), intval(date('Y')) - intval($age2[0]));
 $reponse = $db->query('SELECT * FROM Categorie');
-$ID_Cat		= '1';
 
 // Parcours des categories
 foreach ($reponse as $donnees) {
+	if(!$flagCatSet){$ID_Cat	= $donnees['ID'];}
 	$ageCat = explode(" - ", $donnees["Age"]);
-
 	// Si l'âge est dans la tranche d'âge on l'ajoute à cette catégorie
 	if (intval($ageCat[0])<= $ageCurrent && intval($ageCat[1]) >= $ageCurrent) {
 		$ID_Cat		= $donnees['ID'];
+		$flagCatSet = true;
 	}
 }
 /*On determine la categorie - END */
@@ -44,15 +44,12 @@ if ($ID_player1 == $ID_player2) {
 	header("Location: ../team.php?error=player");
 	return;
 }
-
 $req->bind_param("iiiii", $ID, $ID_player1, $ID_player2, $ID_Cat, $NbmatchWin);
 
 $req->execute();
 
 $reponse = $db->query('SELECT * FROM Team WHERE '.$ID_player1.' = ID_Player1 AND '.$ID_player2.' = ID_Player2');
 $donnees = $reponse->fetch_array();
-
-$db->query('DELETE FROM PlayerAlone WHERE ID_Personne='.$ID_player1.' OR ID_Personne='.$ID_player2);
 
 	// Mise à jour de l'historique
 addHistory( $donnees["ID"], "Equipe", "Ajout");
