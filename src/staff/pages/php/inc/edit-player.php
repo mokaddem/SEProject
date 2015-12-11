@@ -35,7 +35,7 @@ if(array_key_exists("confirm", $_GET)){
 }
 error_log(serialize($_GET));
 
-$req = $db->prepare("UPDATE ".$table1." SET FirstName = ?,LastName = ?,Title = ?,ZIPCode =?,PhoneNumber = ?,GSMNumber = ?,Ville = ?,Rue = ?,Number = ?,BirthDate = ?,Mail = ?,Note=? WHERE ".$ID."=TmpPersonne.ID");
+$req = $db->prepare("UPDATE ".$table1." SET FirstName = ?,LastName = ?,Title = ?,ZIPCode =?,PhoneNumber = ?,GSMNumber = ?,Ville = ?,Rue = ?,Number = ?,BirthDate = ?,Mail = ?,Note=? WHERE ".$ID."=".$table1.".ID");
 $req->bind_param("ssiissssisss", $FirstName, $LastName, $Title, $ZIPCode, $PhoneNumber, $GSMNumber, $Ville, $Rue, $Number, $BirthDate, $Mail, $Note);
 $req->execute();
 
