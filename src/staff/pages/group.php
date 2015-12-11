@@ -534,7 +534,8 @@
                 placement: 'right',
                 html: true,
                 title: "<i class='fa fa-envelope-o'> Envoyer un mail</i>",
-                content: "<button name='mail_button' data-Mailtarget='mailTous' class='btn btn-info' data-groupID=\""+$(this).attr("data-groupID")+"\" >Groupe</button> <button name='mail_button' data-Mailtarget='mailLeader' class='btn btn-info' data-groupID=\""+$(this).attr("data-groupID")+"\">Leader</button> <button name='mail_button' data-Mailtarget='mailNP' class='btn btn-warning' data-groupID=\""+$(this).attr("data-groupID")+"\">Non payé</button>"
+                content: "<button name='mail_button' data-Mailtarget='mailTous' class='btn btn-info' data-groupID=\""+$(this).attr("data-groupID")+"\" >Groupe</button> <button name='mail_button' data-Mailtarget='mailLeader' class='btn btn-info' data-groupID=\""+$(this).attr("data-groupID")+"\">Leader</button> <button name='mail_button' data-Mailtarget='mailNP' class='btn btn-warning' data-groupID=\""+$(this).attr("data-groupID")+"\">Non payé</button>",
+                trigger: "focus"
             }).on('shown.bs.popover', function (eventShown) {
                 var $popup = $('#' + $(eventShown.target).attr('aria-describedby'));
                 $popup.find(':button').click(function(){

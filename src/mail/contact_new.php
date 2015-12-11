@@ -1,5 +1,6 @@
 <?php
 	include_once('../staff/pages/php/BDD.php');
+	include_once("../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php");
 	include "mail_helper.php";
 
 	$db = BDconnect();
@@ -283,7 +284,7 @@ if($tousDim==true)
 		$message.="\n\n";
 		$message .= $listMessage[0];
 		//$message.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";
-	} 
+	}
 ///////////////////////////////////////////////////////////////////////////////
 
 	if($mesCat==true)
@@ -317,7 +318,7 @@ if($tousDim==true)
 		$message.="\n\n";
 		$message .= $listMessage[0];
 		//$message.="\n\nPS : Adresse du quartier general : ".$listHQ[0]."\n\n";
-	} 
+	}
 
 
 //Pour calculer le nombre de catégorie et vérifier si elles ont été recue
@@ -360,7 +361,7 @@ if($tousDim==true)
     			$destCoupe[$ajoutCat]=$listcatRecu[$compteur];
     			$ajoutCat++;
     		}
-    		
+
     		while($respC = $respCat->fetch_array())
 			{
 			$listRespFirst[$y]=$respC['FirstName'];
@@ -370,7 +371,7 @@ if($tousDim==true)
 			$listRespMail[$y]=$respC['Mail'];
 			$y++;
 			}
-  		
+
     		$psResponsable= utf8_decode("\n\nCoordonnées des responsables de la catégorie : ".$listCat[$z]." \n");
     		for($y--;$y!=-1;$y--)
     		{
@@ -386,7 +387,7 @@ if($tousDim==true)
     	$str="";
     	$cat="cat_";
     }
-    
+
 //Ajout adresse du HQ
 //Adresse HQ
 $adresse = $db->query('SELECT Value FROM GlobalVariables WHERE id=3');
@@ -397,7 +398,7 @@ while($lHQ = $adresse ->fetch_array())
 	$listHQ[0] = $lHQ['Value'];
 }
 $message.=utf8_decode("\n\nPS : Adresse du quartier général : ".$listHQ[0]."\n\n");
-		
+
 //Envoi du mail
 sendMail($destCoupe, $message, $sujet);
 header('Location: ../staff/pages/contact.php');

@@ -1,5 +1,6 @@
 <?php
 include_once('php/BDD.php');
+include_once("../../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php");
 include "../../mail/mail_helper.php";
 
 $db = BDconnect();
@@ -14,16 +15,16 @@ $sujet =  $db->query('SELECT Value FROM GlobalVariables WHERE id=5');
 
 $adresse = $db->query('SELECT Value FROM GlobalVariables WHERE id=3');
 
-//récuperer le message du mail 
+//récuperer le message du mail
 $listMessage;
-while($mes = $message->fetch_array())	
+while($mes = $message->fetch_array())
 {
 	$listMessage[0] = $mes['Value'];
 }
 
 //récuperer le sujet du mail
 $listSujet;
-while($suj = $sujet->fetch_array())	
+while($suj = $sujet->fetch_array())
 {
 	$listSujet[0] = $suj['Value'];
 }
@@ -64,7 +65,7 @@ if(ISSET($_POST["groupID"]))
 		while($nCat = $numeroCat->fetch_array())
 		{
 			$listCat[0]=$nCat['ID'];
-		}		
+		}
 		while($mailSam = $mailsSam ->fetch_array())
 		{
 			$listAdress[$j]=$mailSam['Mail'];
@@ -94,7 +95,7 @@ if($flagSam==1) //Si oui on envoie le mail à ceux du groupe cliqué
 	$h=0;
 for($j--;$j!=-1;$j--)
 {
-	$to[$h] = $listAdress[$j]; 
+	$to[$h] = $listAdress[$j];
 	$h++;
 }
 $email_subject = $listSujet[0];
@@ -149,7 +150,7 @@ else //Si on est dimanche
 			{
 				$listCat[0]=$nCat['ID'];
 			}
-			
+
 			while($mailDim = $mailsDim ->fetch_array())
 			{
 				$listAdressDim[$t]=$mailDim['Mail'];
@@ -176,7 +177,7 @@ else //Si on est dimanche
 	$h=0;
 	for($t--;$t!=-1;$t--)
 	{
-		$to[$h] = $listAdressDim[$t]; 
+		$to[$h] = $listAdressDim[$t];
 		$h++;
 	}
 	$email_subject = $listSujet[0];
@@ -193,7 +194,7 @@ else //Si on est dimanche
 	}
 	$email_body.=$psResponsable;
 	$email_body.="PS : Adresse du quartier general : ".$listHQ[0]."\n\n";
-	sendMail($to, $email_body, $email_subject);	
+	sendMail($to, $email_body, $email_subject);
 	header('Location: group.php?jour=dim&cat='.$listCat[0]);
 }
 ?>
