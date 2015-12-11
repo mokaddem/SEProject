@@ -135,15 +135,17 @@
                                         <?php
                                     }
                                 ?> <div class="col-lg-3 text-center"> <?php
+
+                                    $knockoff = $knockoff_all->fetch_array();
+                                    $match = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match'])->fetch_array();
                                     if ($s_a_m == "server-action-menu") {
                                         $s_a_m = "server-other-menu";
                                     } else {
                                         $s_a_m = "server-action-menu";
                                     }
-                                    $knockoff = $knockoff_all->fetch_array();
-                                    $match = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match'])->fetch_array();
+                                    if ($match['ID_Equipe2'] == -2) { $s_a_m = "server-warning-menu"; }
                                         ?>
-                                        <div class="form-group text-center <?=$s_a_m?>"  data-groupID="<?=$knockoff['ID']?>" data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>" data-teamNum="2" data-matchID="<?=$match['ID']?>" >
+                                        <div class="form-group text-center <?=$s_a_m?>" name="teamContainer" data-groupID="<?=$knockoff['ID']?>" data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>" data-teamNum="2" data-matchID="<?=$match['ID']?>" >
                                             <label for="sel1"><span class="fa fa-users"></span> Match <?= $i ?> </label>
                                             <?php
                                             if ($match['ID_Equipe2'] == -2) {
@@ -176,7 +178,7 @@
                                     <?php
                                     }
                                     ?>
-                                    <div class="col-lg-3 text-center  vcenter">
+                                    <div class="col-lg-3 text-center vcenter">
                                         <label> Tour <?= $round ?> </label>
                                         <?php
                                         if ($numberOfTeams == 2){
@@ -527,8 +529,8 @@
                 List.addEventListener("change", saveCourt);
             }
             $('[data-toggle="tooltip"]').tooltip();
+            checkForInvalideGroups();
         });
-
     </script>
 
 </body>
