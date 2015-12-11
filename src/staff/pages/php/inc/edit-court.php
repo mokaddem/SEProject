@@ -19,11 +19,12 @@ $disponibiliteFrom  =  $_GET['InputFrom'];
 $disponibiliteTo    =  $_GET['InputTo'];
 $Type    = utf8_decode($_GET['type']);
 $Note    = utf8_decode($_GET['InputNote']);
+$StaffNote = utf8_decode($_GET['InputStaffNote']);
 
 
-$req = $db->prepare("UPDATE SEProjectC.Terrain SET adresse = ?,surface = ?,ID_Owner = ?,etat =?,disponibiliteFrom = ?,disponibiliteTo = ?,Type = ?,Note = ? WHERE ".$ID."=Terrain.ID");
+$req = $db->prepare("UPDATE SEProjectC.Terrain SET adresse = ?,surface = ?,ID_Owner = ?,etat =?,disponibiliteFrom = ?,disponibiliteTo = ?,Type = ?,Note = ?, StaffNote=? WHERE ".$ID."=Terrain.ID");
 
-$req->bind_param("siisssss", $adresse, $surface, $ID_Owner, $etat, $disponibiliteFrom, $disponibiliteTo, $Type, $Note);
+$req->bind_param("siissssss", $adresse, $surface, $ID_Owner, $etat, $disponibiliteFrom, $disponibiliteTo, $Type, $Note, $StaffNote);
 $req->execute();
 
 

@@ -52,7 +52,7 @@ function getTitreTable($get) {
             return array("ID", "Nom", "Prénom", "E-mail", "Né(e) le", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "Chef?", "A payé", "Inscrit(e) le");
 
         case "court":
-            return array("ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Jusqu'au", "Crée le", "Note");
+            return array("ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Jusqu'au", "Crée le", "Note", "Note du staff");
 
         case "oldCourt":
             return array("ID", "Adresse", "Surface", "Propriétaire", "Etat", "Type", "Disponible", "Jusqu'au", "Crée le", "Note");
@@ -95,7 +95,7 @@ function getParam($get) {
             return array("ID", "LastName", "FirstName", "Mail", "BirthDate", "Rue", "Ville", "ZIPCode", "PhoneNumber", "GSMNumber", "IsLeader", "Paid", "CreationDate");
 
         case "court":
-            return array("ID", "adresse", "surface", "ID_Owner", "etat", "Type", "disponibiliteFrom", "disponibiliteTo", "CreationDate", "Note");
+            return array("ID", "adresse", "surface", "ID_Owner", "etat", "Type", "disponibiliteFrom", "disponibiliteTo", "CreationDate", "Note", "StaffNote");
 
         case "oldCourt":
             return array("ID", "adresse", "surface", "ID_Owner", "etat", "Type", "disponibiliteFrom", "disponibiliteTo", "CreationDate", "Note");
