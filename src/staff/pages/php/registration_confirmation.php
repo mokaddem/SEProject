@@ -1,5 +1,6 @@
 <?php
 include_once('BDD.php');
+include_once("../../../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php");
 include "../../../mail/mail_helper.php";
 require_once('add-new-history.php');
 include_once('get-ranking.php');

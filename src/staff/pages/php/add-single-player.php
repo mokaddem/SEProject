@@ -7,6 +7,7 @@ Mise à jour de l'historique
  -->
 <?php
 include_once('BDD.php');
+include_once("../../../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php");
 include "../../../mail/mail_helper.php";
 require_once('add-new-history.php');
 include_once('get-ranking.php');
@@ -26,7 +27,7 @@ or $_GET['birth_year1'] == NULL
 or $_GET['birth_month1'] == NULL
 or $_GET['birth_day1'] == NULL
 or $_GET['InputEmailFirst1'] == NULL  ){
-    
+
     if ($_GET['access'] == "visitor"){
         header("Location: ../../../inscription/index.php?error=true" );
     } elseif ($_GET['access'] == "staff") {
@@ -127,7 +128,7 @@ $reponse->free();
 // -------------------Envoie Mail Paiement----------------------------
 	$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE id=17');
 	$adresse = $db->query('SELECT Value FROM GlobalVariables WHERE id=3');
-	
+
 	//récuperer le sujet du mail
 	$listSujet;
 	while($suj = $sujetR->fetch_array())
