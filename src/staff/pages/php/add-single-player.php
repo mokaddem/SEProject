@@ -26,6 +26,7 @@ or $_GET['birth_year1'] == NULL
 or $_GET['birth_month1'] == NULL
 or $_GET['birth_day1'] == NULL
 or $_GET['InputEmailFirst1'] == NULL  ){
+    
     if ($_GET['access'] == "visitor"){
         header("Location: ../../../inscription/index.php?error=true" );
     } elseif ($_GET['access'] == "staff") {
@@ -34,9 +35,16 @@ or $_GET['InputEmailFirst1'] == NULL  ){
     return;
 }
 
+// On voit si c'est le staff qui créé le joueur ou pas.
+if (array_key_exists('ID', $_SESSION)) {
+	$tmp = "";
+} else {
+	$tmp = "Tmp";
+}
+
 // Ajout du duo de joueur
 $db = BDconnect();
-$req = $db->prepare("INSERT INTO TmpPersonne(ID, Title, FirstName, LastName, Ville, ZIPCode, Rue, Number, PhoneNumber, GSMNumber, BirthDate, Mail, CreationDate, Note, IsPlayer, IsOwner, IsStaff) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$req = $db->prepare("INSERT INTO ".$tmp."Personne(ID, Title, FirstName, LastName, Ville, ZIPCode, Rue, Number, PhoneNumber, GSMNumber, BirthDate, Mail, CreationDate, Note, IsPlayer, IsOwner, IsStaff) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 $ID1	 	= '';
 $FirstName1	= utf8_decode($_GET['InputPrenom1']);
@@ -63,10 +71,12 @@ $req->bind_param("iisssisiiissssiii", $ID1, $Title1, $FirstName1, $LastName1, $V
 $req->execute();
 
 
-$reponse = $db->query('SELECT * FROM TmpPersonne WHERE "'.$FirstName1.'" = FirstName AND "'.$LastName1.'" = LastName');
+$reponse = $db->query('SELECT * FROM '.$tmp.'Personne WHERE "'.$FirstName1.'" = FirstName AND "'.$LastName1.'" = LastName');
 $donnees1 = $reponse->fetch_array();
 // Mise à jour de l'historique
-addHistory( $donnees1["ID"], "Joueur", "Ajout");
+if (array_key_exists('ID', $_SESSION)) {
+	addHistory( $donnees1["ID"], "Joueur", "Création");
+}
 
 //Generate MD code for confirmation email
 $text_code = $FirstName1 . $LastName1 . $BirthDate1 . $CreationDate;
@@ -78,7 +88,7 @@ $codePrep->execute();
 
 
 // --------------------AJOUTER PLAYER---------------------------
-$req = $db->prepare("INSERT INTO TmpPlayer(ID_personne, IsLeader, Paid, AlreadyPart, Ranking) VALUES(?, ?, ?, ?, ?)");
+$req = $db->prepare("INSERT INTO ".$tmp."Player(ID_personne, IsLeader, Paid, AlreadyPart, Ranking) VALUES(?, ?, ?, ?, ?)");
 //$req2 = $db->prepare("INSERT INTO PlayerAlone(ID_personne, Paid, AlreadyPart, Ranking) VALUES(?, ?, ?, ?)");
 
 $ID_Personne1=$donnees1['ID'];
@@ -106,7 +116,7 @@ while($extraID = $extraIDs->fetch_array()){
     $extraName="extra1_".(String) ($extraID['id']);
     if(isset($_GET[$extraName])) {
         $extra = $_GET[$extraName];
-        $db->query("INSERT INTO TmpPersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extraID['id'].",".$ID_Personne1.")");
+        $db->query("INSERT INTO ".$tmp."PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extraID['id'].",".$ID_Personne1.")");
     } else{
         // Do Nothing
     }
