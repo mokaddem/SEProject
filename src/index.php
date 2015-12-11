@@ -105,6 +105,12 @@
                                 <div class="modal-body">
                                     <p>Félicitation !</p>
                                     <p>Votre inscription est confirmée !</p>
+                            <?php } elseif ($_GET["action"] == "registerOwner") { ?>
+                                    <h4 class="modal-title">Inscription réussite</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Félicitation !</p>
+                                    <p>Votre inscription et celle de votre terrain est confirmée !</p>
                             <?php } elseif ($_GET["action"] == "error") { ?>
                                     <h4 class="modal-title">Erreur !</h4>
                                 </div>

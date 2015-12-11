@@ -16,7 +16,7 @@
         <meta name="author" content="">
 
         <title>Staff - Charles de Lorraine</title>
-        
+
         <!-- Bootstrap Core CSS -->
         <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -51,7 +51,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <h1 class="page-header">Accueil <a href="./php/auto-populate.php" class="btn btn-success btn-outline pull-right">Remplir la Base de Données  <i class="fa fa-users"></i></a></h1>
-                                
+
                             </div>
                             <!-- /.col-lg-12 -->
                         </div>
@@ -64,7 +64,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <label for="sel1"><span class="fa fa-history"></span> Historique des modifications </label>
-                                
+
                                 <div class="panel panel-default">
 
                                     <!-- <div class="panel-heading">
@@ -141,7 +141,7 @@
                             <a href="./php/delete-history.php" class="btn btn-danger">Effacer</a>
                         </div>
                         <div class="pull-right">
-                            <a href="./php/delete-all.php" class="btn btn-danger btn-outline">Vider la Base de Données - Passer à l'année suivante <i class="fa fa-trash"></i></a>
+                            <a href="./php/delete-all.php" class="btn btn-danger">Passer à l'année suivante <i class="fa fa-trash"></i></a>
                         </div>
                       </span>
                         <!-- /.panel -->
