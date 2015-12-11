@@ -382,17 +382,13 @@
 
         //update initial price
         $('[data-price1]').each(function(){
-//            console.log($(this))
             if($(this).attr('checked')){
-//                console.log("Added "+$(this).val);
                 $('#totalPrice1').val( parseInt($('#totalPrice1').val())+ parseInt($(this).attr('data-price1')));
             }else{
-                console.log("Nop");
             }
         });
         $('[data-price2]').each(function(){
             if($(this).attr('checked')){
-//                console.log("Added "+$(this).val);
                 $('#totalPrice2').val( parseInt($('#totalPrice2').val())+ parseInt($(this).attr('data-price2')));
             }
         });
@@ -411,7 +407,10 @@
                 var extraDivName= nameDivExtra.toString() +i.toString();
                 var extraName= nameExtra.toString() +i.toString();
                 hideDispElem("#"+extraDivName, 100*(i-2), false);
-                document.getElementsByName(extraName.toString())[0].checked = false;
+                if(document.getElementsByName(extraName.toString())[0].checked == true){
+                    document.getElementsByName(extraName.toString())[0].checked = false;
+                    $('#totalPrice'+player.toString()).val(parseInt($('#totalPrice'+player.toString()).val())-parseInt(document.getElementsByName(extraName.toString())[0].getAttribute('data-price'+player)));
+                }
             }
         }
         else{
