@@ -32,16 +32,21 @@ Redirection vers la page d'accueil utilisateur
 	$req->bind_param("issiiiisissssiii", $ID, $FirstName, $LastName, $Title, $ZIPCode, $PhoneNumber, $GSMNumber, $Rue, $Number, $Ville, $BirthDate, $Mail, $CreationDate, $IsPlayer, $IsOwner, $IsStaff);
 	$req->execute();
 
-
 	$reponse = $db->query("SELECT ID FROM Personne WHERE FirstName=\"$FirstName\" AND LastName=\"$LastName\" AND Mail=\"$Mail\"");
 	$donnes = $reponse->fetch_array();
 	$ID_inserted = $donnes['ID'];
+
+
+	$prep = $db->prepare('INSERT INTO Owner(ID, ID_Personne, ID_Staff) VALUES(?, ?, ?)');
+	$staff = 7;
+	$prep->bind_param("iii", $ID, $ID_inserted, $staff);
+	$prep->execute();
 
 	$reponse = $db->query("SELECT Owner.ID as ID FROM Owner WHERE Owner.ID_Personne=".$ID_inserted);
 	$donnes = $reponse->fetch_array();
 	$ID_inserted_O = $donnes['ID'];
 
-	$req = $db->prepare("INSERT INTO Terrain(ID, adresse, surface, ID_Owner, etat, disponibiliteFrom, disponibiliteTo, CreationDate, type, Note) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+	$req = $db->prepare("INSERT INTO Terrain(ID, adresse, surface, ID_Owner, etat, disponibiliteFrom, disponibiliteTo, CreationDate, `Type`, Note) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 	$ID	 	= '';
 	$Adresse	= utf8_decode($_GET['InputAdresseCourt']);
 	$Surface	= utf8_decode($_GET['InputSurface']);
@@ -52,19 +57,26 @@ Redirection vers la page d'accueil utilisateur
 	$CreationDate	= date("Y-m-d");
 	$type		= utf8_decode($_GET['type']);
 	$Note		= utf8_decode($_GET['InputMessage']);
-	
+
+
+	$req->bind_param("isiissssss", $ID,$Adresse,$Surface,$ID_Owner,$Etat,$DispoFrom,$DispoTo,$CreationDate,$type,$Note);
+
+	error_log($req->execute());
+
+	$reponse->free();
+
 	//email confirmation 
-	$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE id=20');
-	$corpsR = $db->query('SELECT Value FROM GlobalVariables WHERE id=21');
+	$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE id=21');
+	$corpsR = $db->query('SELECT Value FROM GlobalVariables WHERE id=20');
 		
 	//récuperer le sujet du mail
 	$listSujet;
-	while($suj = $sujetR->fetch_array())
-	{
-		$listSujet[0] = $suj['Value'];
-	}
-	//Corps du mail
-	$listCorp;
+//Corps du mail
+while($suj = $sujetR->fetch_array())
+{
+	$listSujet[0] = $suj['Value'];
+}
+$listCorp;
 	while($lHQ = $corpsR ->fetch_array())
 	{
 		$listCorp[0] = $lHQ['Value'];
@@ -73,12 +85,7 @@ Redirection vers la page d'accueil utilisateur
 	$sujet = $listSujet[0];
 	$message=$listCorp[0];
 	sendMail($to, $message, $sujet);
-	
-	$req->bind_param("isiissssss", $ID,$Adresse,$Surface,$ID_Owner,$Etat,$DispoFrom,$DispoTo,$CreationDate,$type,$Note);
 
-	$req->execute();
-
-	$reponse->free();
 	header("Location: ../../../index.php?action=register");
 
 ?>
