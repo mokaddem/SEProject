@@ -44,7 +44,6 @@ if ($ID_player1 == $ID_player2) {
 	header("Location: ../team.php?error=player");
 	return;
 }
-error_log($ID_Cat);
 $req->bind_param("iiiii", $ID, $ID_player1, $ID_player2, $ID_Cat, $NbmatchWin);
 
 $req->execute();
