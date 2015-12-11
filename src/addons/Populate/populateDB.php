@@ -22,7 +22,11 @@ function PopulateDB(){
     $db->query('DELETE FROM GroupSunday');
     $db->query('DELETE FROM GroupSaturday');
     $db->query('DELETE FROM History');
-
+    $db->query('DELETE FROM KnockoffSaturday');
+    $db->query('DELETE FROM KnockoffSunday');
+    $db->query('DELETE FROM `Match`');
+    $db->query('DELETE FROM PersonneExtra');
+    $db->query('DELETE FROM Player');
     $db->query('DELETE FROM PlayerAlone');
     $db->query('DELETE FROM Team');
 
@@ -55,6 +59,11 @@ function PopulateDB(){
     require_once('add-new-history.php');
     addHistory( 0, utf8_decode("Suppression de toute l'année précédente."), "Suppression");
 
+    $extrasList;
+    $extraIDs = $db->query('SELECT ID as id FROM Extras');
+    foreach ($extraIDs as $extraID) {
+        $extrasList[] = $extraID['id'];
+    }
 
     /** Populate **/
 
@@ -64,7 +73,7 @@ function PopulateDB(){
         /*$req = $db->prepare("INSERT INTO Personne(Title, FirstName, LastName, Ville, ZIPCode, Rue, Number, PhoneNumber, GSMNumber, BirthDate, Mail, CreationDate, Note, IsPlayer, IsOwner, IsStaff) VALUES(1,'joueur".$1."','name".$1."','bxl','1000','rue de la pluie',".$1.",'665666','545535','1985-1-1','mailbidon".$1."@mailbidons.com','2015-11-11','',1,0,0)");
         $req->execute();*/
 
-        $prenoms = array("Adam", "Alex", "Alexandre", "Alexis", "Anthony", "Antoine", "Benjamin", "Cédric", "Charles", "Christopher", "David", "Dylan", "Édouard", "Elliot", "Émile", "Étienne", "Félix", "Gabriel", "Guillaume", "Hugo", "Isaac", "Jacob", "Jérémy", "Jonathan", "Julien", "Justin", "Léo", "Logan", "Loïc", "Louis", "Lucas", "Ludovic", "Malik", "Mathieu", "Mathis", "Maxime", "Michaël", "Nathan", "Nicolas", "Noah", "Olivier", "Philippe", "Raphaël", "Samuel", "Simon", "Thomas", "Tommy", "Tristan", "Victor", "Vincent");
+        $prenoms = array("Yvette", "Sébastien", "Marshall", "Vivienne", "Yves", "Anaïs", "Cendrillon", "Trinette", "Charlotte", "Huette", "Christian", "Jesper", "Élisabeth", "Loring", "Karel", "Aceline", "Tanguy", "Denise", "Zerbino", "Charline", "Iven", "Laure", "Jolie", "Tanguy", "Fantina", "Susanne", "Armand", "Burnell", "Amorette", "Parfait", "Evrard", "Marmion", "Sidney", "Olivier", "Ancelina", "Serge", "Diane", "Chapin", "Vivienne", "Brier", "Delmar", "Frédéric", "Laurene", "Christien ", "Hugues ", "Xavier ", "Artus ", "Dorothée ", "Pauline ", "Huon ", "Arno ", "Amarante ", "Maurelle ", "Blanche ", "Cloridan ", "Richard ", "Sacripant ", "Ray ", "Belda ", "Bayard ", "Evrard ", "Toussaint ", "Javier ", "Florus ", "Mavise ", "Aleron ", "Rive ", "Roslyn ", "Pénélope ", "Belle ", "Ansel ", "Gabriel ", "Olivie", "Adam", "Alex", "Alexandre", "Alexis", "Anthony", "Antoine", "Benjamin", "Cédric", "Charles", "Christopher", "David", "Dylan", "Édouard", "Elliot", "Émile", "Étienne", "Félix", "Gabriel", "Guillaume", "Hugo", "Isaac", "Jacob", "Jérémy", "Jonathan", "Julien", "Justin", "Léo", "Logan", "Loïc", "Louis", "Lucas", "Ludovic", "Malik", "Mathieu", "Mathis", "Maxime", "Michaël", "Nathan", "Nicolas", "Noah", "Olivier", "Philippe", "Raphaël", "Samuel", "Simon", "Thomas", "Tommy", "Tristan", "Victor", "Vincent");
         $noms = array("Tremblay", "Desmarais", "Larrivée", "Chan", "Gagnon", "Laberge", "Major", "Métivier", "Roy", "Nault", "Boissonneault", "Fradette", "Côté", "Bourgeois", "Patenaude", "Ranger", "Bouchard", "Lafrance", "Alarie", "Després", "Gauthier", "Lagacé", "Carpentier", "Lesage", "Morin", "Daoust", "Grenon", "Poliquin", "Lavoie", "Brault", "Bossé", "Généreux", "Fortin", "Castonguay", "Bessette", "Papineau", "Gagné", "Vallières", "Lajeunesse", "Frappier", "Ouellet", "Pellerin", "Barbeau", "Latreille", "Pelletier", "Rivest", "Miller", "Meloche", "Bélanger", "Brochu", "Masson", "Gouin", "Lévesque", "Samson", "Cournoyer", "Crête", "Bergeron", "Lépine", "Ratté", "Pedneault", "Leblanc", "Leroux", "Chrétien", "Berger", "Paquette", "Larochelle", "Bourgault", "Briand", "Girard", "Brousseau", "Leboeuf", "Olivier", "Simard", "Sauvé", "Nolet", "Truchon", "Boucher", "Laurin", "Sylvestre", "Sénéchal");
         $rankings = array("C30.5", "C30.4", "C30.3", "C30.2", "C30.1", "C30", "C15.5", "C15.4", "C15.3", "C15.2", "C15.1", "C15", "NC");
         // PREMIERE
@@ -211,36 +220,17 @@ function PopulateDB(){
 
 
         // -------------------AJOUTER EXTRAS FOR PLAYER 1----------------------------
-        $extraIDs = $db->query('SELECT ID as id FROM Extras');
+        // $extraIDs = $db->query('SELECT ID as id FROM Extras');
         //error_log(serialize($_GET));
         //for($i=1; $i<=$nbrIter; $i++){
-        while($extraID = $extraIDs->fetch_array()){
-        $extraName="extra1_".(String) ($extraID['id']);
-        if(isset($_GET[$extraName])) {
-          $extra = $_GET[$extraName];
-            $db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extraID['id'].",".$ID_Personne1.")");
-        } else{
-          // Do Nothing
-        }
-        }
+        // $extraID = $extraIDs->fetch_array()
+        //$extraName="extra1_". (String) ($extraID['id']);
+        //$extra = $_GET[$extraName];
+        $db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extrasList[array_rand($extrasList)].",".$ID_Personne1.")");
+
 
         // -------------------AJOUTER EXTRAS FOR PLAYER 2----------------------------
-        $extraIDs = $db->query('SELECT ID as id FROM Extras');
-        //error_log(serialize($_GET));
-        //for($i=1; $i<=$nbrIter; $i++){
-        while($extraID = $extraIDs->fetch_array()){
-        $extraName="extra2_".(String) ($extraID['id']);
-        if(isset($_GET[$extraName])) {
-          $extra = $_GET[$extraName];
-          $db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extraID['id'].",".$ID_Personne2.")");
-        } else{
-          // Do Nothing
-        }
-        }
-
-        $reponse->free();
-        $RankingReponse->free();
-
+        $db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extrasList[array_rand($extrasList)].",".$ID_Personne2.")");
 
         $IDPlayers[$i] = $db->insert_id;
         }
@@ -397,39 +387,14 @@ function PopulateDB(){
 
 
             // -------------------AJOUTER EXTRAS FOR PLAYER 1----------------------------
-            $extraIDs = $db->query('SELECT ID as id FROM Extras');
-            //error_log(serialize($_GET));
-            //for($i=1; $i<=$nbrIter; $i++){
-            while($extraID = $extraIDs->fetch_array()){
-            $extraName="extra1_".(String) ($extraID['id']);
-            if(isset($_GET[$extraName])) {
-              $extra = $_GET[$extraName];
-                $db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extraID['id'].",".$ID_Personne1.")");
-            } else{
-              // Do Nothing
-            }
-            }
+            $db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extrasList[array_rand($extrasList)].",".$ID_Personne1.")");
 
             // -------------------AJOUTER EXTRAS FOR PLAYER 2----------------------------
-            $extraIDs = $db->query('SELECT ID as id FROM Extras');
-            //error_log(serialize($_GET));
-            //for($i=1; $i<=$nbrIter; $i++){
-            while($extraID = $extraIDs->fetch_array()){
-            $extraName="extra2_".(String) ($extraID['id']);
-              if(isset($_GET[$extraName])) {
-                $extra = $_GET[$extraName];
-                $db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extraID['id'].",".$ID_Personne2.")");
-              } else{
-                // Do Nothing
-              }
-              }
-
-              $reponse->free();
-              $RankingReponse->free();
+            $db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extrasList[array_rand($extrasList)].",".$ID_Personne2.")");
 
 
-              $IDPlayers[$i] = $db->insert_id;
-              }
+            $IDPlayers[$i] = $db->insert_id;
+            }
 
         // 24 paires juniors hommes dans 5 groupes avec les résultats encodés prêt à être réparti en knock-out.
         for ($i = 0; $i < 48; $i+=2) {
@@ -583,36 +548,10 @@ function PopulateDB(){
 
 
             // -------------------AJOUTER EXTRAS FOR PLAYER 1----------------------------
-            $extraIDs = $db->query('SELECT ID as id FROM Extras');
-            //error_log(serialize($_GET));
-            //for($i=1; $i<=$nbrIter; $i++){
-            while($extraID = $extraIDs->fetch_array()){
-            $extraName="extra1_".(String) ($extraID['id']);
-            if(isset($_GET[$extraName])) {
-              $extra = $_GET[$extraName];
-                $db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extraID['id'].",".$ID_Personne1.")");
-            } else{
-              // Do Nothing
-            }
-            }
+            $db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extrasList[array_rand($extrasList)].",".$ID_Personne1.")");
 
             // -------------------AJOUTER EXTRAS FOR PLAYER 2----------------------------
-            $extraIDs = $db->query('SELECT ID as id FROM Extras');
-            //error_log(serialize($_GET));
-            //for($i=1; $i<=$nbrIter; $i++){
-            while($extraID = $extraIDs->fetch_array()){
-            $extraName="extra2_".(String) ($extraID['id']);
-            if(isset($_GET[$extraName])) {
-              $extra = $_GET[$extraName];
-              $db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extraID['id'].",".$ID_Personne2.")");
-            } else{
-              // Do Nothing
-            }
-            }
-
-            $reponse->free();
-            $RankingReponse->free();
-
+            $db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extrasList[array_rand($extrasList)].",".$ID_Personne2.")");
 
             $IDPlayers[$i] = $db->insert_id;
             }
@@ -769,36 +708,10 @@ function PopulateDB(){
 
 
                 // -------------------AJOUTER EXTRAS FOR PLAYER 1----------------------------
-                $extraIDs = $db->query('SELECT ID as id FROM Extras');
-                //error_log(serialize($_GET));
-                //for($i=1; $i<=$nbrIter; $i++){
-                while($extraID = $extraIDs->fetch_array()){
-                $extraName="extra1_".(String) ($extraID['id']);
-                if(isset($_GET[$extraName])) {
-                  $extra = $_GET[$extraName];
-                    $db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extraID['id'].",".$ID_Personne1.")");
-                } else{
-                  // Do Nothing
-                }
-                }
+                $db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extrasList[array_rand($extrasList)].",".$ID_Personne1.")");
 
                 // -------------------AJOUTER EXTRAS FOR PLAYER 2----------------------------
-                $extraIDs = $db->query('SELECT ID as id FROM Extras');
-                //error_log(serialize($_GET));
-                //for($i=1; $i<=$nbrIter; $i++){
-                while($extraID = $extraIDs->fetch_array()){
-                $extraName="extra2_".(String) ($extraID['id']);
-                  if(isset($_GET[$extraName])) {
-                    $extra = $_GET[$extraName];
-                    $db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extraID['id'].",".$ID_Personne2.")");
-                  } else{
-                    // Do Nothing
-                  }
-                  }
-
-                  $reponse->free();
-                  $RankingReponse->free();
-
+                $db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extrasList[array_rand($extrasList)].",".$ID_Personne2.")");
 
                   $IDPlayers[$i] = $db->insert_id;
                   }
@@ -955,39 +868,12 @@ function PopulateDB(){
 
 
             // -------------------AJOUTER EXTRAS FOR PLAYER 1----------------------------
-            $extraIDs = $db->query('SELECT ID as id FROM Extras');
-            //error_log(serialize($_GET));
-            //for($i=1; $i<=$nbrIter; $i++){
-            while($extraID = $extraIDs->fetch_array()){
-            $extraName="extra1_".(String) ($extraID['id']);
-            if(isset($_GET[$extraName])) {
-              $extra = $_GET[$extraName];
-                $db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extraID['id'].",".$ID_Personne1.")");
-            } else{
-              // Do Nothing
-            }
-            }
+            $db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extrasList[array_rand($extrasList)].",".$ID_Personne1.")");
+
 
             // -------------------AJOUTER EXTRAS FOR PLAYER 2----------------------------
-            $extraIDs = $db->query('SELECT ID as id FROM Extras');
-            //error_log(serialize($_GET));
-            //for($i=1; $i<=$nbrIter; $i++){
-            while($extraID = $extraIDs->fetch_array()){
-            $extraName="extra2_".(String) ($extraID['id']);
-              if(isset($_GET[$extraName])) {
-                $extra = $_GET[$extraName];
-                $db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extraID['id'].",".$ID_Personne2.")");
-              } else{
-                // Do Nothing
-              }
-            }
-
-
-        $reponse->free();
-        $RankingReponse->free();
-
-
-        $IDPlayers[$i] = $db->insert_id;
+            $db->query("INSERT INTO PersonneExtra (ID, Extra_ID, Personne_ID) VALUES(\"\",".$extrasList[array_rand($extrasList)].",".$ID_Personne2.")");
+            $IDPlayers[$i] = $db->insert_id;
     }
 
 }
