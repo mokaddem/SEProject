@@ -142,7 +142,11 @@
                                   $i=1;
                                   while ($extra = $tmp->fetch_array()){?>
                                       <div class="form-group" id="extraD1_<?php echo $i;?>" name="extraD1_<?php echo $i;?>">
-                                          <input id="extra1_<?php echo $i;?>" name="extra1_<?php echo $i;?>" value=<?=$extra['ID']?> type="checkbox"> <strong><?php echo utf8_encode($extra['Name']);?></strong>: </input>
+                                          <?php if($i==1){ ?>
+                                                <input id="extra1_<?php echo $i;?>" name="extra1_<?php echo $i;?>" value=<?=$extra['ID']?> type="checkbox"> <strong><?php echo utf8_encode($extra['Name']);?></strong>: </input>
+                                          <?php }else{ ?>
+                                                <input checked id="extra1_<?php echo $i;?>" name="extra1_<?php echo $i;?>" value=<?=$extra['ID']?> type="checkbox"> <strong><?php echo utf8_encode($extra['Name']);?></strong>: </input>
+                                          <?php } ?>
                                           <span><?php echo utf8_encode($extra['Description'])?></span>
                                       </div>
                                       <?php $i=$i+1;} $extraSize = $i; ?>
@@ -271,7 +275,11 @@
                                       $i=1;
                                       while ($extra = $tmp->fetch_array()){?>
                                       <div class="form-group" id="extraD2_<?php echo $i;?>" name="extraD2_<?php echo $i;?>">
-                                          <input id="extra2_<?php echo $i;?>" name="extra2_<?php echo $i;?>" value=<?=$extra['ID']?> type="checkbox"> <strong><?php echo utf8_encode($extra['Name']);?></strong>: </input>
+                                          <?php if($i==1){ ?>
+                                            <input id="extra2_<?php echo $i;?>" name="extra2_<?php echo $i;?>" value=<?=$extra['ID']?> type="checkbox"> <strong><?php echo utf8_encode($extra['Name']);?></strong>: </input>
+                                          <?php }else{ ?>
+                                            <input checked id="extra2_<?php echo $i;?>" name="extra2_<?php echo $i;?>" value=<?=$extra['ID']?> type="checkbox"> <strong><?php echo utf8_encode($extra['Name']);?></strong>: </input>
+                                          <?php } ?>
                                           <span><?php echo utf8_encode($extra['Description'])?></span>
                                       </div>
                                       <?php $i=$i+1;} ?>
