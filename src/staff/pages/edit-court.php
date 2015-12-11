@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Page de modification d'un terrain selectionné dans la liste -->
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
 
     <meta charset="utf-8">
@@ -148,8 +148,15 @@
 
                                 <div class="form-group">
                                     <!--<label for="InputMessage">Message</label>-->
+                                    <label for="InputTo">Note du propriétaire </label>
                                     <div class="input-group">
-                                        <textarea name="InputNote" id="InputNote" class="form-control" rows="5" required><?php echo $dataCourt['Note'] ?></textarea>
+                                        <textarea name="InputNote" id="InputNote" class="form-control" rows="6" cols="60" required><?php echo $dataCourt['Note'] ?></textarea>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
+                                    </div>
+                                    </br>
+                                    <label for="InputTo">Note du staff </label>
+                                    <div class="input-group">
+                                        <textarea name="InputStaffNote" id="InputStaffNote" class="form-control" rows="6" cols="60" required><?php echo $dataCourt['StaffNote'] ?></textarea>
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
                                     </div>
                                 </div>

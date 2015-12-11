@@ -2,6 +2,8 @@
 
 if ($_GET["type"]=="extra") { ?>
   <div class="modal-dialog">
+<?php } elseif ($_GET["type"]=="court") { ?>
+  <div class="modal-dialog modal-lg">
 <?php } else { ?>
   <div class="modal-dialog modal-sm">
 <?php } ?>
@@ -30,7 +32,7 @@ if ($_GET["type"]=="extra") { ?>
                 <?php if ($_GET['type'] == 'court') {
                   // Pour les teams et terrains
                     ?>
-                  <a class="btn btn-default pull-right" target="_blank" href="./php/print.php?id=<?=$donnees['ID']?>"><i class="fa fa-print"></i></a>
+                  <a class="btn btn-default pull-right" target="_blank" href="./php/print-court.php?id=<?=$donnees['ID']?>"><i class="fa fa-print"></i></a>
                 <?php } ?>
                 </h4>
             </div>
@@ -60,8 +62,8 @@ if ($_GET["type"]=="extra") { ?>
                 </div>
             </div>
             <div class="modal-footer">
-                <a class="btn btn-danger btn-outline" href="php/delete-<?=$_GET['type']?>.php?id=<?=$donnees['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimerQ ?');">Supprimer</a>
-                <a class="btn btn-success btn-outline" href="./edit-<?=$_GET['type']?>.php?id=<?=$donnees['ID']?>">Modifier</a>
+                <?php if($_GET['type']!="oldCourt" and $_GET['type']!="oldOwner"){?><a class="btn btn-danger btn-outline" href="php/delete-<?=$_GET['type']?>.php?id=<?=$donnees['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer ?');">Supprimer</a><?php } ?>
+                <?php if($_GET['type']!="oldCourt" and $_GET['type']!="oldOwner"){?><a class="btn btn-success btn-outline" href="./edit-<?=$_GET['type']?>.php?id=<?=$donnees['ID']?>">Modifier</a><?php } ?>
                 <button type="button" class="btn btn-info btn-outline" data-dismiss="modal">Retour</button>
             </div>
             <?php } ?>

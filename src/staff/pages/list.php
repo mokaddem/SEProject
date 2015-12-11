@@ -126,8 +126,8 @@ list.php?type=staff
                                                                     </td>
                                                                     <?php } ?>
                                                                         <td>
-                                                                            <a href="./edit-<?=$_GET['type']?>.php?id=<?=$donnee['ID']?>"><i class="fa fa-edit fa-fw"></i></a>
-                                                                            <a href="php/delete-<?=$_GET['type']?>.php?id=<?=$donnee['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer cette entrée ?');"><i class="fa fa-trash-o"></i></a>
+                                                                            <?php if($_GET['type']!="oldCourt" and $_GET['type']!="oldOwner"){?><a href="./edit-<?=$_GET['type']?>.php?id=<?=$donnee['ID']?>"><i class="fa fa-edit fa-fw"></i></a><?php } ?>
+                                                                            <?php if($_GET['type']!="oldCourt" and $_GET['type']!="oldOwner"){?><a href="php/delete-<?=$_GET['type']?>.php?id=<?=$donnee['ID']?>" onclick="return confirm('Voulez-vous vraiment supprimer cette entrée ?');"><i class="fa fa-trash-o"></i></a><?php } ?>
                                                                             <?php if ($_GET['type'] == 'court') {
                                                                               // Pour les teams et terrains ?>
                                                                               <a href="./php/print-<?=$_GET['type']?>.php?id=<?=$donnee['ID']?>" target="_blank"><i class="fa fa-print fa-fw"></i></a>

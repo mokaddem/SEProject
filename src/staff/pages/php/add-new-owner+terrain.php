@@ -6,6 +6,7 @@ Redirection vers la page d'accueil utilisateur
 
 <?php
 	include_once('BDD.php');
+	include_once("../../../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php");
 	include "../../../mail/mail_helper.php";
 $db = BDconnect();
 
@@ -81,10 +82,10 @@ if ($_GET['terrain'] == 0) {
 	$db->query('DELETE FROM OldTerrain WHERE ID = '.$_GET['terrain']);
 }
 
-	//email confirmation 
+	//email confirmation
 	$sujetR =  $db->query('SELECT Value FROM GlobalVariables WHERE id=21');
 	$corpsR = $db->query('SELECT Value FROM GlobalVariables WHERE id=20');
-		
+
 	//récuperer le sujet du mail
 	$listSujet;
 //Corps du mail

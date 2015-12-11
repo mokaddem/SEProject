@@ -341,6 +341,8 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
+
+    <?php if(!$canEdit){ ?>
     <script>
         (function() {
             var dndHandler = {
@@ -389,7 +391,11 @@
                         else {
                             if (target.getAttribute("name") != null) {
                                 if (target.getAttribute("name") == "divGroupContainer") { // Et on applique le style adéquat à notre zone de drop quand un élément la survole
-                                    if(flag_red){ target.className += " drop_hover_green";}
+                                    if(flag_red){
+                                        var elemSave = $(this);
+                                        target.className += " drop_hover_green";
+                                        setTimeout(function(){elemSave.removeClass("drop_hover_green");},1000);
+                                    }
                                     else{
                                         if($(target).attr("data-groupnum") == $(dndHandler.draggedElement).attr("data-groupnum")){ //On applique le style seulement si le draggred est dans un group différent
                                             //do nothing
@@ -401,14 +407,22 @@
                                         }
                                     }
                                 } else if(target.getAttribute("name") == "button-player") {
-                                    if(flag_red){ target.className += " drop_hover_green";}
+                                    if(flag_red){
+                                        var elemSave = $(this);
+                                        target.className += " drop_hover_green";
+                                        setTimeout(function(){elemSave.removeClass("drop_hover_green");},1000);
+                                    }
                                     else{
                                         var elemSave = $(this);
                                         this.className += " drop_hover";
                                         setTimeout(function(){elemSave.removeClass("drop_hover")},1000);
                                     }
                                 }else if(flag_target_ok){
-                                    if(flag_red){ target.className += " drop_hover_green";}
+                                    if(flag_red){
+                                        var elemSave = $(this);
+                                        target.className += " drop_hover_green";
+                                        setTimeout(function(){elemSave.removeClass("drop_hover_green");},1000);
+                                    }
                                     else{
                                         var elemSave = $(this);
                                         target.className += " drop_hover";
@@ -446,6 +460,8 @@
                     var dndHandler = this;
 
                     dropper.addEventListener('drop', function(e) {
+                        if(e.preventDefault) { e.preventDefault(); }
+                        if(e.stopPropagation) { e.stopPropagation(); }
                         var target = e.target;
                         while (target.className.indexOf('dropper') == -1) { // Cette boucle permet de remonter jusqu'à la zone de drop parente
                             target = target.parentNode;
@@ -491,18 +507,22 @@
         })();
     </script>
 
+    <?php } ?>
+
     <script>
         function init_the_swap(draggedElement_id, draggedElement_teamNum, draggedElement_groupNum, target_id, target_teamNum, target_groupNum){
-            if(draggedElement_groupNum != target_groupNum && target_teamNum<8) {
-                document.getElementById('idteam1').value = draggedElement_id;
-                document.getElementById('teamNumberG1').value = draggedElement_teamNum;
-                document.getElementById('groupID1').value = draggedElement_groupNum;
-                document.getElementById('idteam2').value = target_id;
-                document.getElementById('teamNumberG2').value = target_teamNum;
-                document.getElementById('groupID2').value = target_groupNum;
-                var myForm = document.getElementById('echanger');
-                myForm.submit();
-            }
+            if(draggedElement_id != null) {
+                if (draggedElement_groupNum != target_groupNum && target_teamNum < 8) {
+                    document.getElementById('idteam1').value = draggedElement_id;
+                    document.getElementById('teamNumberG1').value = draggedElement_teamNum;
+                    document.getElementById('groupID1').value = draggedElement_groupNum;
+                    document.getElementById('idteam2').value = target_id;
+                    document.getElementById('teamNumberG2').value = target_teamNum;
+                    document.getElementById('groupID2').value = target_groupNum;
+                    var myForm = document.getElementById('echanger');
+                    myForm.submit();
+                }
+            } //we dragged another thing than the team button
         }
     </script>
 
@@ -514,7 +534,8 @@
                 placement: 'right',
                 html: true,
                 title: "<i class='fa fa-envelope-o'> Envoyer un mail</i>",
-                content: "<button name='mail_button' data-Mailtarget='mailTous' class='btn btn-info' data-groupID=\""+$(this).attr("data-groupID")+"\" >Groupe</button> <button name='mail_button' data-Mailtarget='mailLeader' class='btn btn-info' data-groupID=\""+$(this).attr("data-groupID")+"\">Leader</button> <button name='mail_button' data-Mailtarget='mailNP' class='btn btn-warning' data-groupID=\""+$(this).attr("data-groupID")+"\">Non payé</button>"
+                content: "<button name='mail_button' data-Mailtarget='mailTous' class='btn btn-info' data-groupID=\""+$(this).attr("data-groupID")+"\" >Groupe</button> <button name='mail_button' data-Mailtarget='mailLeader' class='btn btn-info' data-groupID=\""+$(this).attr("data-groupID")+"\">Leader</button> <button name='mail_button' data-Mailtarget='mailNP' class='btn btn-warning' data-groupID=\""+$(this).attr("data-groupID")+"\">Non payé</button>",
+                trigger: "focus"
             }).on('shown.bs.popover', function (eventShown) {
                 var $popup = $('#' + $(eventShown.target).attr('aria-describedby'));
                 $popup.find(':button').click(function(){

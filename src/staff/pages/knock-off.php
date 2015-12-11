@@ -42,7 +42,7 @@
                         <h1 class="page-header">Modifier le Knock-Off
                           <?php $jour =$_GET['jour'] ?>
                           <a class="btn btn-default btn-outline pull-right" href="./php/print-knock-off.php?jour=<?=$jour?>" target="_blank"><i class="fa fa-print fa-fw"></i> Print</a>
-                          <button class="btn btn-info pull-right fa fa-question-circle" onclick="checkCourts();" style="font-size: 55%" data-toggle="tooltip" data-placement="left" title="Vérifier que les terrains sont différents"></button>
+                          <button class="btn btn-info pull-right fa fa-check" onclick="checkCourts();" style="font-size: 55%" data-toggle="tooltip" data-placement="left" title="Vérifier que les terrains sont différents"></button>
                         </h1>
                     </div>
                 </div>
@@ -135,15 +135,17 @@
                                         <?php
                                     }
                                 ?> <div class="col-lg-3 text-center"> <?php
+
+                                    $knockoff = $knockoff_all->fetch_array();
+                                    $match = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match'])->fetch_array();
                                     if ($s_a_m == "server-action-menu") {
                                         $s_a_m = "server-other-menu";
                                     } else {
                                         $s_a_m = "server-action-menu";
                                     }
-                                    $knockoff = $knockoff_all->fetch_array();
-                                    $match = $db->query("SELECT * FROM `Match` WHERE ID =" . $knockoff['ID_Match'])->fetch_array();
+                                    if ($match['ID_Equipe2'] == -2) { $s_a_m = "server-warning-menu"; }
                                         ?>
-                                        <div class="form-group text-center <?=$s_a_m?>"  data-groupID="<?=$knockoff['ID']?>" data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>" data-teamNum="2" data-matchID="<?=$match['ID']?>" >
+                                        <div class="form-group text-center <?=$s_a_m?>" name="teamContainer" data-groupID="<?=$knockoff['ID']?>" data-day="<?=$_GET['jour']?>" data-category="<?=$_GET['cat']?>" data-teamNum="2" data-matchID="<?=$match['ID']?>" >
                                             <label for="sel1"><span class="fa fa-users"></span> Match <?= $i ?> </label>
                                             <?php
                                             if ($match['ID_Equipe2'] == -2) {
@@ -176,7 +178,7 @@
                                     <?php
                                     }
                                     ?>
-                                    <div class="col-lg-3 text-center  vcenter">
+                                    <div class="col-lg-3 text-center vcenter">
                                         <label> Tour <?= $round ?> </label>
                                         <?php
                                         if ($numberOfTeams == 2){
@@ -346,11 +348,19 @@
                                     if($(target).attr("data-groupnum") == $(dndHandler.draggedElement).attr("data-groupnum")){ //On applique le style seulement si le draggred est dans un group différent
                                         //do nothing
                                     }
-                                    else{this.className += " drop_hover";}
+                                    else{
+                                        var elemSave = $(this);
+                                        this.className += " drop_hover";
+                                        setTimeout(function(){elemSave.removeClass("drop_hover");},1000);
+                                    }
                                 } else if(target.getAttribute("name") == "button-player") {
+                                    var elemSave = $(this);
                                     this.className += " drop_hover";
+                                    setTimeout(function(){elemSave.removeClass("drop_hover");},1000);
                                 }else if(flag_target_ok){
+                                    var elemSave = $(this);
                                     target.className += " drop_hover";
+                                    setTimeout(function(){elemSave.removeClass("drop_hover");},1000);
                                 }
                             }
                         }
@@ -519,8 +529,8 @@
                 List.addEventListener("change", saveCourt);
             }
             $('[data-toggle="tooltip"]').tooltip();
+            checkForInvalideGroups();
         });
-
     </script>
 
 </body>

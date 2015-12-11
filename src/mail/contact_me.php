@@ -1,6 +1,8 @@
 <?php
 // Check for empty fields
+include_once("../../vendor/phpmailer/phpmailer/PHPMailerAutoload.php");
 include "mail_helper.php";
+
 
 if(empty($_POST['name'])  		||
    empty($_POST['email']) 		||
@@ -11,7 +13,7 @@ if(empty($_POST['name'])  		||
 	echo "No arguments Provided!";
 	return false;
    }
-	
+
 $name = $_POST['name'];
 $email_address = $_POST['email'];
 $phone = $_POST['phone'];
@@ -21,5 +23,5 @@ $to[0] = 'seproject2015c@gmail.com'; // Add your email address inbetween the '' 
 $email_subject = utf8_decode("Website Contact Form:  $name");
 $email_body = utf8_decode("You have received a new message from your website contact form.\n\n"."Here are the details:\n\nName: $name\n\nEmail: $email_address\n\nPhone: $phone\n\nMessage:\n$message");
 
-sendMail($to, $email_body, $email_subject)	
+sendMail($to, $email_body, $email_subject)
 ?>
