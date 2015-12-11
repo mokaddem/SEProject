@@ -35,10 +35,13 @@ $db->query('DELETE FROM OldOwner');
 $db->query('DELETE FROM OldTerrain');
 $db->query('INSERT INTO OldOwner SELECT * FROM Owner');
 $db->query('INSERT INTO OldTerrain SELECT * FROM Terrain');
-//$db->query('DELETE FROM Owner');
-//$db->query('DELETE FROM Terrain');
+$db->query('DELETE FROM Owner');
+$db->query('DELETE FROM Terrain');
 
+// On retire tous les anciens joueurs.
 $db->query('DELETE FROM Personne WHERE IsPlayer = 1');
+// On retire tous les anciens owners qui n'ont pas été repris cette année.
+$db->query('DELETE FROM Personne WHERE IsOwner = 1 AND ID NOT IN (SELECT ID_Personne FROM OldOwner)');
 
 // Remise des variables globales à leurs valeurs d'origines:
 // Il n'y a plus de tournoi généré.

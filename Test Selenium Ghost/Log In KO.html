@@ -4,19 +4,19 @@
  <head profile="http://selenium-ide.openqa.org/profiles/test-case">
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
  <link rel="selenium.base" href="http://test.pydehon.me" />
- <title>Create Team Invalid</title>
+ <title>Log In KO</title>
  </head>
  <body>
  <table cellpadding="1" cellspacing="1" border="1">
  <thead>
  <tr>
- <td rowspan="1" colspan="3">Create Team Invalid</td>
+ <td rowspan="1" colspan="3">Log In KO</td>
  </tr>
  </thead>
  <tbody>
  <tr>
  <td>open</td>
- <td>/staff/pages/index.php</td>
+ <td>/index.php</td>
  <td></td>
  </tr>
 <tr>
@@ -26,12 +26,12 @@
  </tr>
 <tr>
  <td>waitForElementPresent</td>
- <td>css=#side-menu > li:nth-of-type(2) > a[href="#"]</td>
+ <td>css=a[href="./staff/pages/login.php"] > .text</td>
  <td></td>
  </tr>
 <tr>
  <td>click</td>
- <td>css=#side-menu > li:nth-of-type(2) > a[href="#"]</td>
+ <td>css=a[href="./staff/pages/login.php"] > .text</td>
  <td></td>
  </tr>
 <tr>
@@ -41,12 +41,12 @@
  </tr>
 <tr>
  <td>waitForElementPresent</td>
- <td>css=a[href="list-team.php"]</td>
+ <td>css=#username</td>
  <td></td>
  </tr>
 <tr>
  <td>click</td>
- <td>css=a[href="list-team.php"]</td>
+ <td>css=#username</td>
  <td></td>
  </tr>
 <tr>
@@ -56,13 +56,13 @@
  </tr>
 <tr>
  <td>waitForElementPresent</td>
- <td>css=a[href="./team.php"]</td>
+ <td>css=#username</td>
  <td></td>
  </tr>
 <tr>
- <td>click</td>
- <td>css=a[href="./team.php"]</td>
- <td></td>
+ <td>type</td>
+ <td>css=#username</td>
+ <td>test</td>
  </tr>
 <tr>
  <td>waitForPageToLoad</td>
@@ -71,12 +71,27 @@
  </tr>
 <tr>
  <td>waitForElementPresent</td>
- <td>css=#submit</td>
+ <td>css=#password</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>type</td>
+ <td>css=#password</td>
+ <td>test</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=input[type="submit"]</td>
  <td></td>
  </tr>
 <tr>
  <td>click</td>
- <td>css=#submit</td>
+ <td>css=input[type="submit"]</td>
  <td></td>
  </tr>
 </tbody>

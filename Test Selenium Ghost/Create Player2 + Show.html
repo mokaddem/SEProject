@@ -4,19 +4,19 @@
  <head profile="http://selenium-ide.openqa.org/profiles/test-case">
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
  <link rel="selenium.base" href="http://test.pydehon.me" />
- <title>Group Generate & Handling</title>
+ <title>Create Player2 + Show</title>
  </head>
  <body>
  <table cellpadding="1" cellspacing="1" border="1">
  <thead>
  <tr>
- <td rowspan="1" colspan="3">Group Generate & Handling</td>
+ <td rowspan="1" colspan="3">Create Player2 + Show</td>
  </tr>
  </thead>
  <tbody>
  <tr>
  <td>open</td>
- <td>/staff/pages/login.php?action=logout</td>
+ <td>/staff/pages/index.php</td>
  <td></td>
  </tr>
 <tr>
@@ -26,12 +26,12 @@
  </tr>
 <tr>
  <td>waitForElementPresent</td>
- <td>css=#username</td>
+ <td>css=#side-menu > li:nth-of-type(3) > a[href="#"]</td>
  <td></td>
  </tr>
 <tr>
  <td>click</td>
- <td>css=#username</td>
+ <td>css=#side-menu > li:nth-of-type(3) > a[href="#"]</td>
  <td></td>
  </tr>
 <tr>
@@ -41,13 +41,43 @@
  </tr>
 <tr>
  <td>waitForElementPresent</td>
- <td>css=#username</td>
+ <td>css=a[href="player.php"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=a[href="player.php"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#InputNom1</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=#InputNom1</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#InputNom1</td>
  <td></td>
  </tr>
 <tr>
  <td>type</td>
- <td>css=#username</td>
- <td>1</td>
+ <td>css=#InputNom1</td>
+ <td>Nom2-Test</td>
  </tr>
 <tr>
  <td>waitForPageToLoad</td>
@@ -56,13 +86,13 @@
  </tr>
 <tr>
  <td>waitForElementPresent</td>
- <td>css=#password</td>
+ <td>css=#InputPrenom1</td>
  <td></td>
  </tr>
 <tr>
  <td>type</td>
- <td>css=#password</td>
- <td>hello</td>
+ <td>css=#InputPrenom1</td>
+ <td>Prénom2</td>
  </tr>
 <tr>
  <td>waitForPageToLoad</td>
@@ -71,193 +101,238 @@
  </tr>
 <tr>
  <td>waitForElementPresent</td>
- <td>css=#password</td>
- <td></td>
- </tr>
-<tr>
- <td>keyPress</td>
- <td>css=#password</td>
- <td>13</td>
- </tr>
-<tr>
- <td>waitForPageToLoad</td>
- <td></td>
- <td></td>
- </tr>
-<tr>
- <td>waitForElementPresent</td>
- <td>css=a[href="./php/delete-all.php"]</td>
- <td></td>
- </tr>
-<tr>
- <td>click</td>
- <td>css=a[href="./php/delete-all.php"]</td>
- <td></td>
- </tr>
-<tr>
- <td>waitForPageToLoad</td>
- <td></td>
- <td></td>
- </tr>
-<tr>
- <td>waitForElementPresent</td>
- <td>css=a[href="./php/auto-populate.php"]</td>
- <td></td>
- </tr>
-<tr>
- <td>click</td>
- <td>css=a[href="./php/auto-populate.php"]</td>
- <td></td>
- </tr>
-<tr>
- <td>waitForPageToLoad</td>
- <td></td>
- <td></td>
- </tr>
-<tr>
- <td>waitForElementPresent</td>
- <td>css=#side-menu > li:nth-of-type(5) > a[href="#"]</td>
- <td></td>
- </tr>
-<tr>
- <td>click</td>
- <td>css=#side-menu > li:nth-of-type(5) > a[href="#"]</td>
- <td></td>
- </tr>
-<tr>
- <td>waitForPageToLoad</td>
- <td></td>
- <td></td>
- </tr>
-<tr>
- <td>waitForElementPresent</td>
- <td>css=a[href="group-generate.php"]</td>
- <td></td>
- </tr>
-<tr>
- <td>click</td>
- <td>css=a[href="group-generate.php"]</td>
- <td></td>
- </tr>
-<tr>
- <td>waitForPageToLoad</td>
- <td></td>
- <td></td>
- </tr>
-<tr>
- <td>waitForElementPresent</td>
- <td>css=button[type="submit"]</td>
- <td></td>
- </tr>
-<tr>
- <td>click</td>
- <td>css=button[type="submit"]</td>
- <td></td>
- </tr>
-<tr>
- <td>waitForPageToLoad</td>
- <td></td>
- <td></td>
- </tr>
-<tr>
- <td>waitForElementPresent</td>
- <td>css=.nav.nav-pills > li:nth-of-type(2) > a[href^="group.php"]</td>
- <td></td>
- </tr>
-<tr>
- <td>click</td>
- <td>css=.nav.nav-pills > li:nth-of-type(2) > a[href^="group.php"]</td>
- <td></td>
- </tr>
-<tr>
- <td>waitForPageToLoad</td>
- <td></td>
- <td></td>
- </tr>
-<tr>
- <td>waitForElementPresent</td>
- <td>css=#divGroup1 > [name="divButtonContainer"].form-group.text-center:nth-of-type(3) > span > [name="button-player"].btn.btn-default.btn-outlineW.draggable.dropper</td>
- <td></td>
- </tr>
-<tr>
- <td>click</td>
- <td>css=#divGroup1 > [name="divButtonContainer"].form-group.text-center:nth-of-type(3) > span > [name="button-player"].btn.btn-default.btn-outlineW.draggable.dropper</td>
- <td></td>
- </tr>
-<tr>
- <td>waitForPageToLoad</td>
- <td></td>
- <td></td>
- </tr>
-<tr>
- <td>waitForElementPresent</td>
- <td>css=#divGroup2 > [name="divButtonContainer"].form-group.text-center:nth-of-type(3) > span > [name="button-player"].btn.btn-default.btn-outlineW.draggable.dropper</td>
- <td></td>
- </tr>
-<tr>
- <td>click</td>
- <td>css=#divGroup2 > [name="divButtonContainer"].form-group.text-center:nth-of-type(3) > span > [name="button-player"].btn.btn-default.btn-outlineW.draggable.dropper</td>
- <td></td>
- </tr>
-<tr>
- <td>waitForPageToLoad</td>
- <td></td>
- <td></td>
- </tr>
-<tr>
- <td>waitForElementPresent</td>
- <td>css=input[type="submit"]</td>
- <td></td>
- </tr>
-<tr>
- <td>click</td>
- <td>css=input[type="submit"]</td>
- <td></td>
- </tr>
-<tr>
- <td>waitForPageToLoad</td>
- <td></td>
- <td></td>
- </tr>
-<tr>
- <td>waitForElementPresent</td>
- <td>css=#divGroup2 > [name="divButtonContainer"].form-group.text-center:nth-of-type(4) > span > [name="button-player"].btn.btn-default.btn-outlineW.draggable.dropper</td>
- <td></td>
- </tr>
-<tr>
- <td>click</td>
- <td>css=#divGroup2 > [name="divButtonContainer"].form-group.text-center:nth-of-type(4) > span > [name="button-player"].btn.btn-default.btn-outlineW.draggable.dropper</td>
- <td></td>
- </tr>
-<tr>
- <td>waitForPageToLoad</td>
- <td></td>
- <td></td>
- </tr>
-<tr>
- <td>waitForElementPresent</td>
- <td>css=#divGroup2 > .form-group:nth-of-type(2) > select[name="ExpandableListTerrain"].form-control</td>
- <td></td>
- </tr>
-<tr>
- <td>click</td>
- <td>css=#divGroup2 > .form-group:nth-of-type(2) > select[name="ExpandableListTerrain"].form-control</td>
- <td></td>
- </tr>
-<tr>
- <td>waitForPageToLoad</td>
- <td></td>
- <td></td>
- </tr>
-<tr>
- <td>waitForElementPresent</td>
- <td>css=#divGroup2 > .form-group:nth-of-type(2) > select[name="ExpandableListTerrain"].form-control</td>
+ <td>css=#birth_day1</td>
  <td></td>
  </tr>
 <tr>
  <td>type</td>
- <td>css=#divGroup2 > .form-group:nth-of-type(2) > select[name="ExpandableListTerrain"].form-control</td>
- <td>13</td>
+ <td>css=#birth_day1</td>
+ <td>10</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#birth_month1</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>type</td>
+ <td>css=#birth_month1</td>
+ <td>12</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#birth_year1</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>type</td>
+ <td>css=#birth_year1</td>
+ <td>1974</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#InputAdresse1</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=#InputAdresse1</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#InputAdresse1</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>type</td>
+ <td>css=#InputAdresse1</td>
+ <td>Adresse2</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#InputCP1</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>type</td>
+ <td>css=#InputCP1</td>
+ <td>78788</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#InputLoc1</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>type</td>
+ <td>css=#InputLoc1</td>
+ <td>Ville2</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#InputEmailFirst1</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=#InputEmailFirst1</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#InputEmailFirst1</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>type</td>
+ <td>css=#InputEmailFirst1</td>
+ <td>1.2@gmail.com</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#InputMob1</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>type</td>
+ <td>css=#InputMob1</td>
+ <td>0475787878</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#InputPartNo1</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=#InputPartNo1</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#extra1_1</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=#extra1_1</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=#submit</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=#submit</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=input[type="search"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=input[type="search"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=input[type="search"]</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>type</td>
+ <td>css=input[type="search"]</td>
+ <td>Nom2-Test</td>
+ </tr>
+<tr>
+ <td>waitForPageToLoad</td>
+ <td></td>
+ <td></td>
+ </tr>
+<tr>
+ <td>waitForElementPresent</td>
+ <td>css=tr.gradeX > td:nth-of-type(2)</td>
+ <td></td>
+ </tr>
+<tr>
+ <td>click</td>
+ <td>css=tr.gradeX > td:nth-of-type(2)</td>
+ <td></td>
  </tr>
 </tbody>
  </table>

@@ -17,6 +17,9 @@
 
     <div class="container">
 
+        <?php
+            include_once("../staff/pages/php/BDD.php");
+        ?>
         <div class="page-header">
             <h1>
                 Formulaire d'inscription
@@ -32,9 +35,25 @@
 
                         <div class="col-lg-6">
                             <div class="col-lg-9">
+
                                 <div class="form-group">
                                     <label><span class="fa fa-user"></span> Propriétaire</label>
 
+
+                                    <select class="form-control" id="owner" name="owner">
+                                        <option value="0"> Nouveau propriétaire </option>
+                                        <?php
+                                        $db = BDconnect();
+                                        $owners = $db->query('SELECT O.ID_Personne, Oo.ID_Personne FROM Owner O LEFT OUTER JOIN OldOwner Oo ON O.ID_Personne = Oo.ID_Personne UNION SELECT O.ID_Personne, Oo.ID_Personne FROM Owner O RIGHT OUTER JOIN OldOwner Oo ON O.ID_Personne = Oo.ID_Personne ');
+                                        foreach($owners as $owner)
+                                        {
+                                            $personne = $db->query('SELECT * FROM Personne WHERE ID = '.$owner['ID_Personne'])->fetch_array();
+                                            echo "<option value=".$personne['ID']."> [".$personne['ID']."] ".utf8_encode($personne['FirstName'])." ".$personne['LastName']."</option>";
+                                        }
+                                        ?>
+                                    </select>
+
+                                    <br/>
                                     <select class="form-control" id="title" name="title">
                                         <option>M.</option>
                                         <option>Mme.</option>
@@ -115,12 +134,33 @@
                                 <div id="mydiv">
                                     <div class="form-group">
                                         <label><span class="fa fa-circle-o"></span> Terrain</label>
+
+                                        <select class="form-control" id="terrain" name="terrain">
+                                            <option value="0"> Nouveau terrain </option>
+                                            <?php
+                                            $terrains = $db->query('SELECT * FROM OldTerrain');
+                                            foreach($terrains as $terrain)
+                                            {
+                                                error_log($terrain['ID_Owner']);
+                                                $owner = $db->query('SELECT * FROM Owner WHERE ID = '.$terrain['ID_Owner'])->fetch_array();
+                                                if ($owner == NULL){
+                                                    $owner = $db->query('SELECT * FROM OldOwner WHERE ID = '.$terrain['ID_Owner'])->fetch_array();
+                                                }
+                                                $personne = $db->query('SELECT * FROM Personne WHERE ID = '.$owner['ID_Personne'])->fetch_array();
+                                                //$personne = $db->query('SELECT Personne FROM Personne,Owner,OldOwner WHERE (Owner.ID_Personne = Personne.ID AND Owner.ID = '.$terrain['ID_Owner'].')  OR (OldOwner.ID_Personne = Personne.ID AND OldOwner.ID = '.$terrain['ID_Owner'].')')->fetch_array();
+                                                echo "<option value=".$terrain['ID']."> [".$terrain['ID']."] ".utf8_encode($terrain['adresse'])." - Propriétaire ".$personne['FirstName']." ".$personne['LastName']."</option>";
+                                            }
+                                            ?>
+                                        </select>
+
+                                        <br/>
+
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-map"></i></span>
                                             <input type="text" class="form-control" name="InputAdresseCourt" id="InputAdresseCourt" placeholder="Adresse" required>
                                             <input type="number" min="0" class="form-control" name="InputSurface" id="InputSurface" placeholder="Surface">
                                             <select class="form-control" id="type" name="type">
-                                                <option>Synthétiqe</option>
+                                                <option>Synthétique</option>
                                                 <option>Terre battue</option>
                                                 <option>Gazon</option>
                                             </select>
