@@ -8,8 +8,8 @@
 	// on récupère le contenu des variables
 	//Champs
 	$dest = isset($_POST['dest'])?$_POST['dest']:'';
-	$sujet = isset($_POST['sujet'])?$_POST['sujet']:'';
-	$message = isset($_POST['message'])?$_POST['message']:'';
+	$sujet = utf8_decode(isset($_POST['sujet'])?$_POST['sujet']:'');
+	$message = utf8_decode(isset($_POST['message'])?$_POST['message']:'');
 	//CheckBox Desti
 	$parti=isset($_POST['parti'])?$_POST['parti']:'';
 	$propri=isset($_POST['proprio'])?$_POST['proprio']:'';

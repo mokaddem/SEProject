@@ -7,7 +7,7 @@ $db = BDconnect();
 
 $gsSam = $db->query('SELECT GroupSaturday.ID as Gid FROM GroupSaturday');
 
-$groupsDim = $db->query('SELECT GroupSunday.ID as Gid FROM GroupSunday');
+//$groupsDim = $db->query('SELECT GroupSunday.ID as Gid FROM GroupSunday');
 
 $message = $db->query('SELECT Value FROM GlobalVariables WHERE id=6');
 
@@ -48,41 +48,44 @@ while ($gSam = $gsSam->fetch_array())
 $i--;
 While($i!=-1)
 {
-if(ISSET($_POST["groupID"]))
+	if($arraySam[$i]==$_POST["groupID"])
 	{
-		$j=0;
-		$listAdress;
-		$mailsSam = $db -> query("SELECT DISTINCT Mail FROM Personne JOIN Player ON Player.ID_Personne = Personne.ID JOIN Team ON Team.ID_Player1=Player.ID_Personne OR Team.ID_Player2=Player.ID_Personne JOIN GroupSaturday ON GroupSaturday.ID_t1 = Team.ID OR GroupSaturday.ID_t2 = Team.ID OR GroupSaturday.ID_t3 = Team.ID OR GroupSaturday.ID_t4 = Team.ID OR GroupSaturday.ID_t5 = Team.ID OR GroupSaturday.ID_t6 = Team.ID OR GroupSaturday.ID_t7 = Team.ID OR GroupSaturday.ID_t8 = Team.ID WHERE GroupSaturday.ID=".$_POST["groupID"]);
-		$y=0;
-		$listRespFirst;
-		$listRespLast;
-		$listRespPhone;
-		$listRespGSM;
-		$listRespMail;
-		$respCat= $db->query("SELECT DISTINCT Personne.FirstName, Personne.LastName, Personne.PhoneNumber, Personne.GSMNumber, Personne.Mail FROM Personne JOIN Staff ON Staff.ID_Personne = Personne.ID JOIN Categorie ON Staff.ID_Cat = Categorie.ID JOIN Team ON Team.ID_Cat = Categorie.ID JOIN GroupSaturday ON GroupSaturday.ID_t1 = Team.ID WHERE GroupSaturday.ID=".$_POST["groupID"]);
-		$listCat;
-		$numeroCat= $db->query("SELECT Categorie.ID FROM Categorie JOIN Team ON Team.ID_Cat = Categorie.ID JOIN GroupSaturday ON GroupSaturday.ID_t1 = Team.ID WHERE GroupSaturday.ID=".$_POST["groupID"]);
-		while($nCat = $numeroCat->fetch_array())
+		if(ISSET($_POST["groupID"]))
 		{
-			$listCat[0]=$nCat['ID'];
+				$j=0;
+				$listAdress;
+				$mailsSam = $db -> query("SELECT DISTINCT Mail FROM Personne JOIN Player ON Player.ID_Personne = Personne.ID JOIN Team ON Team.ID_Player1=Player.ID_Personne OR Team.ID_Player2=Player.ID_Personne JOIN GroupSaturday ON GroupSaturday.ID_t1 = Team.ID OR GroupSaturday.ID_t2 = Team.ID OR GroupSaturday.ID_t3 = Team.ID OR GroupSaturday.ID_t4 = Team.ID OR GroupSaturday.ID_t5 = Team.ID OR GroupSaturday.ID_t6 = Team.ID OR GroupSaturday.ID_t7 = Team.ID OR GroupSaturday.ID_t8 = Team.ID WHERE GroupSaturday.ID=".$_POST["groupID"]);
+				$y=0;
+				$listRespFirst;
+				$listRespLast;
+				$listRespPhone;
+				$listRespGSM;
+				$listRespMail;
+				$respCat= $db->query("SELECT DISTINCT Personne.FirstName, Personne.LastName, Personne.PhoneNumber, Personne.GSMNumber, Personne.Mail FROM Personne JOIN Staff ON Staff.ID_Personne = Personne.ID JOIN Categorie ON Staff.ID_Cat = Categorie.ID JOIN Team ON Team.ID_Cat = Categorie.ID JOIN GroupSaturday ON GroupSaturday.ID_t1 = Team.ID WHERE GroupSaturday.ID=".$_POST["groupID"]);
+				$listCat;
+				$numeroCat= $db->query("SELECT Categorie.ID FROM Categorie JOIN Team ON Team.ID_Cat = Categorie.ID JOIN GroupSaturday ON GroupSaturday.ID_t1 = Team.ID WHERE GroupSaturday.ID=".$_POST["groupID"]);
+				while($nCat = $numeroCat->fetch_array())
+				{
+					$listCat[0]=$nCat['ID'];
+				}
+				while($mailSam = $mailsSam ->fetch_array())
+				{
+					$listAdress[$j]=$mailSam['Mail'];
+					$j++;
+				}
+				while($respC = $respCat->fetch_array())
+				{
+					$listRespFirst[$y]=$respC['FirstName'];
+					$listRespLast[$y]=$respC['LastName'];
+					$listRespPhone[$y]=$respC['PhoneNumber'];
+					$listRespGSM[$y]=$respC['GSMNumber'];
+					$listRespMail[$y]=$respC['Mail'];
+					$y++;
+				}
+				//$i--;
+				$flagSam=1;
+				break;
 		}
-		while($mailSam = $mailsSam ->fetch_array())
-		{
-			$listAdress[$j]=$mailSam['Mail'];
-			$j++;
-		}
-		while($respC = $respCat->fetch_array())
-		{
-			$listRespFirst[$y]=$respC['FirstName'];
-			$listRespLast[$y]=$respC['LastName'];
-			$listRespPhone[$y]=$respC['PhoneNumber'];
-			$listRespGSM[$y]=$respC['GSMNumber'];
-			$listRespMail[$y]=$respC['Mail'];
-			$y++;
-		}
-		$i--;
-		$flagSam=1;
-		break;
 	}
 	else{
 		$i--;
@@ -122,16 +125,16 @@ header('Location: group.php?jour=sam&cat='.$listCat[0]);
 //Email à envoyer au Leader des groupes du dimanche
 else //Si on est dimanche
 {
-	$k=0;
-	$arrayDim;
-	while ($gDim = $groupsDim->fetch_array())
-	{
-		$arrayDim[$k] = $gDim['Gid'];
-		$k++;
-	}
-	$k--;
-	While($k!=-1)
-	{
+	//$k=0;
+	//$arrayDim;
+	//while ($gDim = $groupsDim->fetch_array())
+	//{
+		//$arrayDim[$k] = $gDim['Gid'];
+		//$k++;
+	//}
+	//$k--;
+	//While($k!=-1)
+	//{
 		if(ISSET($_POST["groupID"]))
 		{
 			$t=0;
@@ -145,8 +148,8 @@ else //Si on est dimanche
 			$listRespMail;
 			$respCat= $db->query("SELECT DISTINCT Personne.FirstName, Personne.LastName, Personne.PhoneNumber, Personne.GSMNumber, Personne.Mail FROM Personne JOIN Staff ON Staff.ID_Personne = Personne.ID JOIN Categorie ON Staff.ID_Cat = Categorie.ID JOIN Team ON Team.ID_Cat = Categorie.ID JOIN GroupSunday ON GroupSunday.ID_t1 = Team.ID WHERE GroupSunday.ID=".$_POST["groupID"]);
 			$listCat;
+			$numeroCat= $db->query("SELECT Categorie.ID FROM Categorie JOIN Team ON Team.ID_Cat = Categorie.ID JOIN GroupSunday ON GroupSunday.ID_t1 = Team.ID WHERE GroupSunday.ID=".$_POST["groupID"]);
 			while($nCat = $numeroCat->fetch_array())
-				$numeroCat= $db->query("SELECT Categorie.ID FROM Categorie JOIN Team ON Team.ID_Cat = Categorie.ID JOIN GroupSunday ON GroupSunday.ID_t1 = Team.ID WHERE GroupSunday.ID=".$_POST["groupID"]);
 			{
 				$listCat[0]=$nCat['ID'];
 			}
@@ -165,14 +168,14 @@ else //Si on est dimanche
 			$listRespMail[$y]=$respC['Mail'];
 			$y++;
 			}
-			$k--;
-			break;
+			//$k--;
+			//break;
 		}
-		else
-		{
-			$k--;
-		}
-	}
+		//else
+		//{
+		//	$k--;
+		//}
+	//}
 	$to[0]="";
 	$h=0;
 	for($t--;$t!=-1;$t--)
