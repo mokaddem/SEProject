@@ -41,12 +41,14 @@
 
 
                                     <select class="form-control" id="owner" name="owner">
-                                        <option value="0"> Nouveau propriétaire </option>
+                                        <option value="0" SELECTED> Nouveau propriétaire </option>
                                         <?php
                                         $db = BDconnect();
-                                        $owners = $db->query('SELECT O.ID_Personne, Oo.ID_Personne FROM Owner O LEFT OUTER JOIN OldOwner Oo ON O.ID_Personne = Oo.ID_Personne UNION SELECT O.ID_Personne, Oo.ID_Personne FROM Owner O RIGHT OUTER JOIN OldOwner Oo ON O.ID_Personne = Oo.ID_Personne ');
+//                                        $owners = $db->query('SELECT O.ID_Personne, Oo.ID_Personne FROM Owner O LEFT OUTER JOIN OldOwner Oo ON O.ID_Personne = Oo.ID_Personne UNION SELECT O.ID_Personne, Oo.ID_Personne FROM Owner O RIGHT OUTER JOIN OldOwner Oo ON O.ID_Personne = Oo.ID_Personne ');
+                                        $owners = $db->query('SELECT DISTINCT * FROM (SELECT * FROM `OldOwner` UNION ALL SELECT * FROM Owner) as R1');
                                         foreach($owners as $owner)
                                         {
+                                            error_log($owner['ID_Personne']);
                                             $personne = $db->query('SELECT * FROM Personne WHERE ID = '.$owner['ID_Personne'])->fetch_array();
                                             echo "<option value=".$personne['ID']."> [".$personne['ID']."] ".utf8_encode($personne['FirstName'])." ".$personne['LastName']."</option>";
                                         }
@@ -54,11 +56,12 @@
                                     </select>
 
                                     <br/>
+                                </div>
+                            <div id="countainerInfoOwn">
                                     <select class="form-control" id="title" name="title">
                                         <option>M.</option>
                                         <option>Mme.</option>
                                     </select>
-                                </div>
 
                                 <div class="form-group well well-sm">
                                     <div class="input-group">
@@ -129,49 +132,51 @@
 
                             </div>
                         </div>
+                        </div>
                         <div class="col-lg-6">
                             <div class="col-lg-9">
                                 <div id="mydiv">
-                                    <div class="form-group">
-                                        <label><span class="fa fa-circle-o"></span> Terrain</label>
+                                    <label><span class="fa fa-circle-o"></span> Terrain</label>
 
-                                        <select class="form-control" id="terrain" name="terrain">
-                                            <option value="0"> Nouveau terrain </option>
-                                            <?php
-                                            $terrains = $db->query('SELECT * FROM OldTerrain');
-                                            foreach($terrains as $terrain)
-                                            {
-                                                error_log($terrain['ID_Owner']);
-                                                $owner = $db->query('SELECT * FROM Owner WHERE ID = '.$terrain['ID_Owner'])->fetch_array();
-                                                if ($owner == NULL){
-                                                    $owner = $db->query('SELECT * FROM OldOwner WHERE ID = '.$terrain['ID_Owner'])->fetch_array();
-                                                }
-                                                $personne = $db->query('SELECT * FROM Personne WHERE ID = '.$owner['ID_Personne'])->fetch_array();
-                                                //$personne = $db->query('SELECT Personne FROM Personne,Owner,OldOwner WHERE (Owner.ID_Personne = Personne.ID AND Owner.ID = '.$terrain['ID_Owner'].')  OR (OldOwner.ID_Personne = Personne.ID AND OldOwner.ID = '.$terrain['ID_Owner'].')')->fetch_array();
-                                                echo "<option value=".$terrain['ID']."> [".$terrain['ID']."] ".utf8_encode($terrain['adresse'])." - Propriétaire ".$personne['FirstName']." ".$personne['LastName']."</option>";
+                                    <select class="form-control" id="terrain" name="terrain">
+                                        <option value="0"> Nouveau terrain </option>
+                                        <?php
+                                        $terrains = $db->query('SELECT * FROM OldTerrain');
+                                        foreach($terrains as $terrain)
+                                        {
+                                            error_log($terrain['ID_Owner']);
+                                            $owner = $db->query('SELECT * FROM Owner WHERE ID = '.$terrain['ID_Owner'])->fetch_array();
+                                            if ($owner == NULL){
+                                                $owner = $db->query('SELECT * FROM OldOwner WHERE ID = '.$terrain['ID_Owner'])->fetch_array();
                                             }
-                                            ?>
+                                            $personne = $db->query('SELECT * FROM Personne WHERE ID = '.$owner['ID_Personne'])->fetch_array();
+                                            //$personne = $db->query('SELECT Personne FROM Personne,Owner,OldOwner WHERE (Owner.ID_Personne = Personne.ID AND Owner.ID = '.$terrain['ID_Owner'].')  OR (OldOwner.ID_Personne = Personne.ID AND OldOwner.ID = '.$terrain['ID_Owner'].')')->fetch_array();
+                                            echo "<option value=".$terrain['ID']."> [".$terrain['ID']."] ".utf8_encode($terrain['adresse'])." - Propriétaire ".$personne['FirstName']." ".$personne['LastName']."</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div id="countainerInfoCou">
+                                <div class="form-group">
+
+                                    <br/>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-map"></i></span>
+                                        <input type="text" class="form-control" name="InputAdresseCourt" id="InputAdresseCourt" placeholder="Adresse" required>
+                                        <input type="number" min="0" class="form-control" name="InputSurface" id="InputSurface" placeholder="Surface">
+                                        <select class="form-control" id="type" name="type">
+                                            <option>Synthétique</option>
+                                            <option>Terre battue</option>
+                                            <option>Gazon</option>
                                         </select>
-
-                                        <br/>
-
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-map"></i></span>
-                                            <input type="text" class="form-control" name="InputAdresseCourt" id="InputAdresseCourt" placeholder="Adresse" required>
-                                            <input type="number" min="0" class="form-control" name="InputSurface" id="InputSurface" placeholder="Surface">
-                                            <select class="form-control" id="type" name="type">
-                                                <option>Synthétique</option>
-                                                <option>Terre battue</option>
-                                                <option>Gazon</option>
-                                            </select>
-                                            <select class="form-control" id="etat" name="etat">
-                                                <option>Neuf</option>
-                                                <option>Passable</option>
-                                                <option>Usé</option>
-                                            </select>
-                                        </div>
+                                        <select class="form-control" id="etat" name="etat">
+                                            <option>Neuf</option>
+                                            <option>Passable</option>
+                                            <option>Usé</option>
+                                        </select>
                                     </div>
-
                                 </div>
                                   <label><span class="fa fa-clock-o"></span> Disponibilités</label>
                                   <div class="form-group">
@@ -202,7 +207,8 @@
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-ok"></span></span>
                                     </div>
                                 </div>
-
+                                </div>
+                                </br>
                                 <input type="submit" name="submit" id="submit" value="Valider" class="btn btn-info pull-right">
                             </div>
                         </div>
@@ -220,15 +226,37 @@
 <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 
 
-<script type="text/javascript">
-    /*   function AddCourtInput(){
-                                      for (i = 1; i < document.getElementById("size").value; i++) {
-                                          var mydiv = document.getElementById('mydiv');
-                                          var mydiv2 = mydiv.cloneNode(true);
-                                          mydiv.appendChild(mydiv2);
-                                    }
-                                }*/
+<script>
+    function updateFieldOwner(){
+        if($('#owner option:selected').val() != 0){
+            $('#countainerInfoOwn').fadeOut('fast');
+            $(':input').removeAttr('required');
+        }else{
+            $('#countainerInfoOwn').fadeIn('fast');
+            $(':input').attr('required', "true");
+        }
+    }
+
+    function updateFieldCourt() {
+        if ($('#terrain option:selected').val() != 0) {
+            $('#countainerInfoCou').fadeOut('fast');
+            $(':input').removeAttr('required');
+        } else {
+            $('#countainerInfoCou').fadeIn('fast');
+            $(':input').prop('required', "true");
+        }
+    }
 </script>
+
+
+
+<script type="text/javascript">
+    $('#owner').change(updateFieldOwner);
+    $('#terrain').change(updateFieldCourt);
+    updateFieldOwner();
+    updateFieldCourt();
+</script>
+
 
 <script type="text/javascript">
     // document.getElementById("size").addEventListener("change", AddCourtInput);
