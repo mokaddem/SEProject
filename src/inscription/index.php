@@ -428,7 +428,7 @@
     function registerAlone(){
         $("#spinnergif").show();
         if($('#player2').attr("data-activated")==0){
-            var url="../staff/pages/php/add-single-player.php";
+            var url="../staff/pages/php/add-single-player.php?access=visitor";
             $('input').attr("required",false);
             $('form').attr("action", url);
             $('form').submit();

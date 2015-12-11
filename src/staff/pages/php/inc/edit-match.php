@@ -14,6 +14,6 @@ $reponse = $db->query("UPDATE SEProjectC.Match SET date = \"".$Date."\", Hour=\"
 
 addHistory($ID, "Match", "Edition");
 
-header("Location: ../../list.php?type=match");
+header("Location: ../../list-match.php");
 
 ?>

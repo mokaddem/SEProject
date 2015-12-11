@@ -70,7 +70,7 @@
             <div id="page-wrapper" style="background : url(../../images/staff-back.jpg) 0 0 fixed;">
                 <div class="row">
                     <div class="col-lg-12 noDeco">
-                        <h1 class="page-header"><a href="list.php?type=match"> Liste des matchs </a>> Modifier</h1>
+                        <h1 class="page-header"><a href="list-match.php"> Liste des matchs </a>> Modifier</h1>
                     </div>
                 </div>
                 <!-- Registration form - START -->
