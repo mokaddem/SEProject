@@ -341,6 +341,8 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
+
+    <?php if(!$canEdit){ ?>
     <script>
         (function() {
             var dndHandler = {
@@ -490,6 +492,8 @@
             }
         })();
     </script>
+
+    <?php } ?>
 
     <script>
         function init_the_swap(draggedElement_id, draggedElement_teamNum, draggedElement_groupNum, target_id, target_teamNum, target_groupNum){
