@@ -219,9 +219,9 @@
                             ?>
                             <div class="input-group">
                                 <span class="input-group-addon"><?= $currentTeamName ?></span>
-                                <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" min="0"
+                                <input type="number" class="form-control" name=<?=$nameField?>-1 id=<?=$nameField?>-1 placeholder="0" data-cur="1" min="0"
                                        step="1" style="width: 60px;" value=<?php echo $flip[$i-1] == 0 ? $arrayResult[$j-2] : $arrayResult[$j-1]; ?> required>
-                                <input type="number" class="form-control" name=<?=$nameField?>-2 id=<?=$nameField?>-2 placeholder="0" min="0"
+                                <input type="number" class="form-control" name=<?=$nameField?>-2 id=<?=$nameField?>-2 placeholder="0" data-cur="0" min="0"
                                        step="1" style="width: 60px;" value=<?php echo $flip[$i-1] == 0 ? $arrayResult[$j-1] : $arrayResult[$j-2]; ?> required>
                                 <span class="input-group-addon"><?= "[".$otherTeam. "] ". $p1 . " & " . $p2 ?></span>
                             </div>
@@ -234,7 +234,7 @@
                 <div class="col-lg-6">
                 <div class="form-group">
                     <label for="sel1"><span class="fa fa-edit" id="nbrwin"></span> Nombre de victoire(s)</label>
-                    <span class="form-control text-center" style="width: 70px;"><p><?=$winnumber ?></p></span>
+                    <span class="form-control text-center" style="width: 70px;"><p id="nbrwinValue"><?=$winnumber ?></p></span>
                 </div>
                 <?php }else{ ?>
                     <p><b> Cette équipe n'a aucun adversaire. </b></p>
@@ -307,25 +307,50 @@
 
 
             for (i = 0; i < js_matchNumber; i++) {
-                console.log("score"+(i+1)+"-1");
                 var js_temp_array=[];
                 js_temp_array[0] = document.getElementById("score"+(i+1)+"-1").value;
                 js_temp_array[1] = document.getElementById("score"+(i+1)+"-2").value;
                 js_arrayResult[i] = js_temp_array;
             }
             var data={ 'curTeamID':js_curTeamID, 'matchNumber':js_matchNumber, 'pouleID':js_pouleID, 'matchs[]':js_arrayTeamId , 'scores[]':js_arrayResult, 'matchsID[]':js_arrayMatchID, 'flip[]':js_flip};
-
             $.ajax({
                 type: "POST",
                 url: url,
-                data: data
+                data: data,
+                success: function (text) {
+                    setTimeout(function() {  $('#popup').fadeIn('slow');}, 0);
+                    setTimeout(function() {  $('#popup').fadeOut('slow');},3000);
+                    updateWinNumber();
+                },
+                error: function (text) {
+                    setTimeout(function() {  $('#popup').fadeIn('slow');}, 0);
+                    setTimeout(function() {  $('#popup').fadeOut('slow');},3000);
+                    updateWinNumber();
+                }
 
             });
+        }
+    </script>
 
-            setTimeout(function() {  $('#popup').fadeIn('slow');}, 0);
-            setTimeout(function() {  $('#popup').fadeOut('slow');},3000);
-            setTimeout(function() {  location.reload();}, 500+3000);
-
+    <script>
+        function updateWinNumber(){
+            var win=0; var loose=0;
+            $(':input[data-cur]').each(function(index) {
+                    if ($(this).attr('data-cur') == 1) {
+                        var name = $(this).attr('name');
+                        name =  name.substr(0,name.length-2) +"-"+2;
+                        var v1 = $(this).val();
+                        var v2 = $(':input[name='+name+']').val();
+                        if(v1>v2){
+                            win++;
+                        }else{
+                            loose++;
+                        }
+                    }
+                }
+            );
+            console.log("win:"+win);
+            $('#nbrwinValue').text(win);
         }
     </script>
 
