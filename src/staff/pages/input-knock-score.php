@@ -313,14 +313,12 @@
                         matchNumber = $(this).attr("data-position");
                         value2 = $( this ).val();
                         team2=$( this ).attr("data-teamID");
-//                        console.log('matchn='+matchNumber+', sc1='+value1+', sc2='+value2);
                         winningTeam = value1 == value2 ? -1 : (value1>value2 ? team1 : team2);
-//                        console.log(winningTeam);
                         button= $("#btnselect" + matchNumber);
                         button.attr("data-score1", value1).attr("data-score2", value2).attr("data-winning-team", winningTeam);
                         if(winningTeam!=-1){
                             round = parseInt($(this).attr("data-round"));
-                            var teambuttons= $("button[data-round='"+(round+1)+"'][data-teamID='"+winningTeam+"']");
+                            var teambuttons = $('input[data-round=\"'+(round+1)+'\"][data-teamID=\"'+winningTeam+'\"]');
                             if(teambuttons.size() == 0) {
                                 if(button.hasClass("btn-warning")){
                                     button.attr("disabled", true);
@@ -356,7 +354,7 @@
             $(":button[data-alone=true]").each(function (index){
                 winningTeam = $(this).attr("data-winning-team");
                 round = parseInt($(this).attr("data-round"));
-                var teambuttons= $(":button[data-round='"+(round+1)+"'][data-teamID='"+winningTeam+"']");
+                var teambuttons = $('input[data-round=\"'+(round+1)+'\"][data-teamID=\"'+winningTeam+'\"]');
                 if(teambuttons.size() == 0) {
                     if($(this).hasClass("btn-warning")){
                         $(this).attr("disabled", true);
